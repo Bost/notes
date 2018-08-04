@@ -1,10 +1,10 @@
 TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOffice Math
 
-* Category Theory: abstract algebra of abstract functions: "The Arrows Count"
+* Category Theory: abstract algebra of abstract functions: \"The Arrows Count\"
   Category C = (Obj, Hom, ◦, id)
    - Obj: Class of Objects: A, B, C, ... e.g. Types / Propositions / Algebras / Logic Formulas
    - Hom: Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? / Implication between Log. Formulas
-   - ◦: Morphism composition - associative function "(f ◦ g) ◦ h = f ◦ (g ◦ h)"
+   - ◦: Morphism composition - associative function \"(f ◦ g) ◦ h = f ◦ (g ◦ h)\"
         Hom(A, B) × Hom(B, C) → Hom(A, C): g ◦ f; it's a partialy binary operation on Mor(CAT::)
         (g ◦ f)(x) = g(f(x))
    - id: identity morphism on object A: id(A)
@@ -15,10 +15,10 @@ TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOf
    Localy Small Category: ∀ A,B: Hom(A, B) is a set
 
    (TODO arrow weight = price of calculation; preference for compositions)
-   "Up to isomorphis" - any such things are isomorphic (structurally the same)
+   \"Up to isomorphis\" - any such things are isomorphic (structurally the same)
    i.e. working via analogy (i.e. X is just a renamed version of Y)
 
-   "Commuting diagrams / It (i.e. the diagram) commutes" - no matter which way you go around you get the same thing
+   \"Commuting diagrams / It (i.e. the diagram) commutes\" - no matter which way you go around you get the same thing
 
 ** Cartesian Closed Category CCC: Usefull in programming
 *** cartesian: has product A x B (conjunction) for any pair of objs A, B
@@ -41,10 +41,10 @@ TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOf
    Universal Construction - 3 steps (? the triangle ?):
    1. Define a pattern:
 
-         Z'  (Z' x A) ---\
-         ⎢       ⎢        \
-       h ⎢       ⎢id       \ g'
-         ⎢       ⎢          \
+         Z'  (Z' x A) ---\\
+         ⎢       ⎢        \\
+       h ⎢       ⎢id       \\ g'
+         ⎢       ⎢          \\
     a=>b ↓       ↓           ↘
          Z   (Z x A) -------> B
                  A      g
@@ -52,7 +52,7 @@ TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOf
     g' = g ∘ (h x id)
 
    2. Define ranking between matches
-   3. The best match is "our guy"
+   3. The best match is \"our guy\"
 
 * A Crash Course in Category Theory - Bartosz Milewski https://www.youtube.com/watch?v=JH_Ou17_zyU
   https://twitter.com/@bartoszmilewski : Computer Science, Haskell, C++. PhD in Quantum Physics
@@ -63,7 +63,7 @@ TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOf
     Semantics must be provided; done by providing operational semantics
     None of  the main prog. languages have (operational semantics) only partially provided;
     Two ways of defining semantics:
-    - Operational: "How it executes"; reduction relation: e1 -> e2
+    - Operational: \"How it executes\"; reduction relation: e1 -> e2
     - Denotational: mapping into mathematics; interpretation of terms: ⟦e⟧ = ?;
       e.g.: ⟦ v : τ  ⊢  v : τ ⟧ = idτ - i.e. the meaning of is ⟦...⟧ is an identity on τ i.e. an access to variable v
 
@@ -193,7 +193,7 @@ TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOf
 
     a - some arbitrary Obj of C
     F - some arbitrary Ftor acting on the Obj a
-    ⋍ - "naturally isomorphic" (i.e. a NaT exists such that its components are
+    ⋍ - \"naturally isomorphic\" (i.e. a NaT exists such that its components are
         all invertible isomorphisms)
 
     Hom functors - Intuition:
@@ -227,8 +227,8 @@ TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOf
 
 *** Khan Extentions: the next abstraction level
 
-*** Adjunctions: weakening of "equality" of Categories
-    "inverse" is defined only for functions not functors
+*** Adjunctions: weakening of \"equality\" of Categories
+    \"inverse\" is defined only for functions not functors
 **** e.g. Currying: from a Pair to Function type
 *** Adjointness - constructing / generating principle
     - Adjunctions/Adjoins are monads ???
@@ -265,7 +265,7 @@ TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOf
 
 *** Representable Functor F: C → Set
    Represents objs of C as sets and functions of C as morphisms between sets.
-   i.e. functions "tabulate", "index" can be created; mapping of function to a data-type
+   i.e. functions \"tabulate\", \"index\" can be created; mapping of function to a data-type
 
    fix obj A ∈ C there is HomC(A,_): HomC(A, X) → HomC(A, Y) where there is a morphism X → Y
    e.g.:
@@ -323,13 +323,13 @@ TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOf
 
 ** Correspondance of type habitation and proposition
    inhabited - has elems / members
-   "Either a b" is inhabited if either a or b is inhabited (at least one of them is true / provable)
+   \"Either a b\" is inhabited if either a or b is inhabited (at least one of them is true / provable)
 
    Curry: ((a,b) -> c) -> (a -> (b -> c))
    Uncurry: (a -> (b -> c)) -> ((a,b) -> c)
 
    Eval: a function of two args / a pair
-   "((a => b), a) -> b" this is modus-ponens in logic "a => b ∧ a -> b"
+   \"((a => b), a) -> b\" this is modus-ponens in logic \"a => b ∧ a -> b\"
 
     | True proposition | False proposition | Conjunction a ∧ b         | Disjunction a ∨ b           | Implication a => b   |
     | Unit-type        | Void-type         | Pair (a,b)                | Either a b                  | Function type a -> b |
@@ -368,7 +368,7 @@ TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOf
    Monoidal monad:       ???
 
    Functor:
-   "forget the indexing (domain functor)"
+   \"forget the indexing (domain functor)\"
 
 *** Contract = Object
 *** Product: examples:
@@ -398,29 +398,29 @@ TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOf
    of mathematical truth.
 
 *** Mappings: X → Y (Zobrazenia):
-    Surjection: all Ys are used;                                     |X| ≥ |Y| (onto; "at least as big")
+    Surjection: all Ys are used;                                     |X| ≥ |Y| (onto; \"at least as big\")
     Injective:  distinct Xs -> distinct Ys;                          |X| ≤ |Y| (? one-to-one ?)
-    Bijection:  exact pairing between X, Y;                          |X| = |Y| (vzajomne jednoznacne zobrazenie, "same size")
-    Strict:     Surjection from X to Y but no bijection from Y to X; |X| < |Y| (? double usage of some Ys ?, "strictly bigger")
+    Bijection:  exact pairing between X, Y;                          |X| = |Y| (vzajomne jednoznacne zobrazenie, \"same size\")
+    Strict:     Surjection from X to Y but no bijection from Y to X; |X| < |Y| (? double usage of some Ys ?, \"strictly bigger\")
 
 * Ultimatelly the human lang to talk about ideas is the lang of math.
   Formulas, Multiplication, stupid mistakes in deriving, simplification etc.
   CT looks nicer: no numbers, it's about ideas
 
 Programming - understanding the meaning i.e. semantics: what does it mean (+ 1 2)
-* Operational: "if state === stateX then state = stateY":
+* Operational: \"if state === stateX then state = stateY\":
   for computers: local, progress oriented
   Mind machine: We keep on imagining the if-then-else steps.
   This is bad way - computers are much better at it.
 * Denotational:
   programs can be translated to math - math is a better lang for humans
-  "Programm has a meaning i.e. it's a piece of math: operation, declaration, definition"
+  \"Programm has a meaning i.e. it's a piece of math: operation, declaration, definition\"
 * Math: for humans by humans
 
 
 Functional Programming - mathematical semantics:
 * Types and fns:
-** types: sets of vals; it's not about "how" - fn body, it's about "what" - fn declaration; abstraction
+** types: sets of vals; it's not about \"how\" - fn body, it's about \"what\" - fn declaration; abstraction
    For mathematicians Set Theory is a low level assembly lang of maths - recenty started to be avoided:
 *** HoTT
 *** CT (Sets form a Category)
@@ -430,12 +430,12 @@ Functional Programming - mathematical semantics:
 * Categorical view (simplification):
 ** fns: arrows between objs
 ** types: objs whose props are defined by arrows
-*** composition(!) "this-fn after that-fn", associativity, identity
+*** composition(!) \"this-fn after that-fn\", associativity, identity
 - no deeper specification of the Fns and Objs are
 Mapping between CT and FP:
 * Views -> Change of perspective:
 ** Set-theoretical: props of sets defined by elems of sets
-** Categorical: Shrink the set to a point "I can't look at the structure of a set"
+** Categorical: Shrink the set to a point \"I can't look at the structure of a set\"
 describe different kinds of sets by their interraction with other sets i.e. by arrows
 - tell me who your friends are and I tell you who you are
 
@@ -454,7 +454,7 @@ Data types:
 
 * Unit (one-elem set): univ prop: terminal obj (opposite i.e. dual to init-obj); Duality - invert the arrows and you get something for free
 ** intro: A -> Unit (fn: just ignore the fn input)
-** elim: Unit -> A (fn: pick one elem of a type i.e. set; some sort of "cheating" - instead of an elem we pick a morphism)
+** elim: Unit -> A (fn: pick one elem of a type i.e. set; some sort of \"cheating\" - instead of an elem we pick a morphism)
 
 * Cartesian product (set of pairs): UP (universal construction) - best product triangle: for all other types there's the unique arrow
   projections: f: C -> A, g: C -> B
@@ -475,7 +475,7 @@ Algebra of types ...
 * Functor: structure preserving mapping between Cats (objs to objs, fns to fns):
 ** i.e. if there's an arrow A -> B, then there must be arrow F(A) -> F(B)
 ** may collapse things, preserves unit obj and composition
-** Endofunctor: mapping from the same Cat to the same Cat. Endo ~ inside, "Endoscopy"
+** Endofunctor: mapping from the same Cat to the same Cat. Endo ~ inside, \"Endoscopy\"
    Category of Endofunctors: Cat of ftors from C to C [C,C] 
 
 * Functor Category:
