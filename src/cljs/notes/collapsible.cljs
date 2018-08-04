@@ -44,9 +44,9 @@
                  }
            children]]]))))
 
-(defn ui [[title content]]
+(defn ui [[id title content]]
   [:div
-   [panel :ex-1
+   [panel id
     title
     #_"Example component"
     [example-component content]]])
