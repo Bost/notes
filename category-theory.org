@@ -1,4 +1,5 @@
-TODO use MathML or LaTeX or MathJax (AsciiMath), see Apache Open Office, LibreOffice Math
+TODO one of MathML LaTeX KaTex MathJax (AsciiMath), see Apache Open Office,
+LibreOffice Math
 
 * Category Theory: abstract algebra of abstract functions: \"The Arrows Count\"
   Category C = (Obj, Hom, ◦, id)
