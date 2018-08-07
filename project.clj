@@ -7,6 +7,7 @@
                  [ns-tracker "0.3.1"]
                  [re-pressed "0.2.2"]
                  [utils "0.9.3"]
+                 [cljsjs/katex "0.9.0-0"]
                  ]
 
   :plugins [[lein-cljsbuild "1.1.7"]
