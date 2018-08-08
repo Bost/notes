@@ -7,7 +7,7 @@
                  [ns-tracker "0.3.1"]
                  [re-pressed "0.2.2"]
                  [utils "0.9.3"]
-                 [cljsjs/katex "0.9.0-0"]
+                 #_[cljsjs/katex "0.9.0-0"]
                  ]
 
   :plugins [[lein-cljsbuild "1.1.7"]
@@ -55,6 +55,13 @@
                     :source-map-timestamp true
                     :preloads             [devtools.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}
+                    :install-deps true
+                    :npm-deps {
+                               :react "15.6.1"
+                               :react-dom "15.6.1"
+                               :katex "0.10.0-beta"
+                               :react-katex "2.0.2"
+                               }
                     }}
 
     {:id           "min"
@@ -63,9 +70,12 @@
                     :output-to       "resources/public/js/compiled/app.js"
                     :optimizations   :advanced
                     :closure-defines {goog.DEBUG false}
-                    :pretty-print    false}}
-
-
-    ]}
-
-  )
+                    :pretty-print    false
+                    :install-deps true
+                    :npm-deps {
+                               :react "15.6.1"
+                               :react-dom "15.6.1"
+                               :katex "0.10.0-beta"
+                               :react-katex "2.0.2"
+                               }
+                               }}]})

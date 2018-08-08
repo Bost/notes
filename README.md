@@ -50,4 +50,9 @@ To compile clojurescript to javascript:
 ```
 lein clean
 lein cljsbuild once min
+
+```
+(require 'figwheel-sidecar.repl-api)
+(figwheel-sidecar.repl-api/start-figwheel!)
+(figwheel-sidecar.repl-api/cljs-repl)
 ```

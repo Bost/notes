@@ -6,7 +6,12 @@
    [notes.subs :as subs]
    [notes.collapsible :as collapse]
    [clojure.string :refer [join]]
-   [cljsjs.katex]
+   ;; [katex]
+   [katex :as k :refer [render renderToString renderMathInElement]]
+   [react-katex :as rk :refer [InlineMath BlockMath]]
+   [react :as r :refer [createElement]]
+   [react-dom :as rd]
+   ["react-dom/server" :as rds :refer [renderToString]]
    ))
 
 (defn dispatch-keydown-rules []
@@ -55,11 +60,19 @@
         rpe])]))
 
 (defn main-panel []
-  #_(js/katex.renderToString "c = \\pm\\sqrt{a^2 + b^1}")
+  #_(js/console.log (rds/renderToString (r/createElement "div" nil "Hello World!")))
+
   [:div
+   ;; "See console"
    (let [elem (.getElementById js/document "app")]
-     (js/katex.render "c = \\pm\\sqrt{a^2 + b^1}" elem)
-     (.renderMathInElement js/ktx elem))]
+     #_(k/render "c = \\pm\\sqrt{a^2 + b^1}" elem)
+     (k/render "c = \\pm\\sqrt{a^2 + b^1}" elem)
+     #_(rds/render #_(k/renderToString "c = \\pm\\sqrt{a^2 + b^1}"))
+
+     #_(rd/render (rk/InlineMath "\\int_0^\\infty x^2 dx") elem)
+
+     #_(k/renderToString "c = \\pm\\sqrt{a^2 + b^1}")
+     #_(k/renderMathInElement elem))]
 
   #_[:div
    #_[display-re-pressed-example]
