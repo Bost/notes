@@ -38,7 +38,8 @@
 
     :plugins      [[lein-figwheel "0.5.16"]
                    ;; collection of nREPL middleware designed to enhance CIDER
-                   [cider/cider-nrepl "0.18.0"]
+                   [refactor-nrepl "2.4.0-SNAPSHOT"]
+                   [cider/cider-nrepl "0.17.0"]
                    ]}
    :prod { }}
 
