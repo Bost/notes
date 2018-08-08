@@ -6,6 +6,7 @@
    [notes.subs :as subs]
    [notes.collapsible :as collapse]
    [clojure.string :refer [join]]
+   [cljsjs.katex]
    ))
 
 (defn dispatch-keydown-rules []
@@ -54,7 +55,13 @@
         rpe])]))
 
 (defn main-panel []
+  #_(js/katex.renderToString "c = \\pm\\sqrt{a^2 + b^1}")
   [:div
+   (let [elem (.getElementById js/document "app")]
+     (js/katex.render "c = \\pm\\sqrt{a^2 + b^1}" elem)
+     (.renderMathInElement js/ktx elem))]
+
+  #_[:div
    #_[display-re-pressed-example]
    [collapse/ui
     [:id0
