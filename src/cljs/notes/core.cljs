@@ -7,6 +7,12 @@
    [notes.events :as events]
    [notes.views :as views]
    [notes.config :as config]
+
+   [katex :as k :refer [render renderToString renderMathInElement]]
+   [react-katex :as rk :refer [InlineMath BlockMath]]
+   [react :as r :refer [createElement]]
+   [react-dom :as rd]
+   ["react-dom/server" :as rds :refer [renderToString]]
    ))
 
 
@@ -17,8 +23,9 @@
 
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
-  (reagent/render [views/main-panel]
-                  (.getElementById js/document "app")))
+  (let [elem (.getElementById js/document "app")]
+    (k/render "c = \\pm\\sqrt{a^2 + b^5}" elem)
+    #_(reagent/render [views/main-panel] elem)))
 
 (defn ^:export init []
   (re-frame/dispatch-sync [::events/initialize-db])
