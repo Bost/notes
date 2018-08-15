@@ -7,11 +7,11 @@
 *** GeoREPL
 *** Cursive
 *** Chicago Clojure - 2017-06-21: Stuart Halloway on Repl Driven Development:
-**** Don't throw things away - save a file once in a month
+**** TODO Don't throw things away - save a file once in a month
 **** Visualisation - Desktop GUI: Seesaw - Live at REPL (as a custom inspector)
 **** Start java with a clojure.jar and hook up a REPL with custom prompt
 **** specs + graphvis: https://github.com/jebberjeb/specviz
-**** Lisp Continuations: would you like to replace this exception with some value and keep going?
+**** Lisp Continuations: replace this exception with some value and keep going?
 ***** JVM doesn't have continuations so Clojure doesn't have them neither
 *** CJUG - 2017-06-20 - Stuart Halloway on Clojure in 10 Big Ideas: 18:43
 ** Java & JVM
@@ -24,7 +24,7 @@
 *** function & imperative
 *** staticaly typed
 *** traits (multiple inheritance)
-*** clojuredocs - graficka reprezentacia prikladov
+*** clojuredocs - graphic examples
  #+BEGIN_SRC clojure
 lein swank-wrap 4005 webcli.server
 slime-connect
@@ -106,7 +106,7 @@ echo "Hello World from sh" # evaluate: C-c
 (defproject my-project "0.1.0"
   :description "My great Clojure project"
   :dependencies
-  [[org.clojure/clojure "1.8.0"]])
+  [[org.clojure/clojure "1.9.0"]])
 (println "Hello from clojure")
 #+END_SRC
 
@@ -151,42 +151,44 @@ private int returnCountOfDifferentPixels(String pic1, String pic2) {
 stuff
 :END:
 
-* Brick-a-Brack
-  http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/
-  Sequence of QR Codes/ graphical elements (pyramide, cube, sphere, toroid, etc.)
-  Responsive, mobile-first web sites https://www.w3schools.com/bootstrap/
+:Brick-a-Brack:
+http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/
+Sequence of QR Codes/ graphical elements (pyramide, cube, sphere, toroid, etc.)
+Responsive, mobile-first web sites https://www.w3schools.com/bootstrap/
 
-  Open Source Ecology: https://en.wikipedia.org/wiki/Open_Source_Ecology
-  Code as a Lego Block http://www.ted.com/talks/ayah_bdeir_building_blocks_that_blink_beep_and_teach.html
-  Smart the collective brain http://www.ted.com/talks/matt_ridley_when_ideas_have_sex.html
-  bicycle clickies
-  time bank
-  dokaz identity bez udania mena
-  google lab tags http://www.chromeweblab.com/en-GB/lab-tag-explorer
-  stuff to datomic - ?git has no services? http://www.youtube.com/watch?v=ROor6_NGIWU 58:00
+Open Source Ecology: https://en.wikipedia.org/wiki/Open_Source_Ecology
+Code as a Lego Block http://www.ted.com/talks/ayah_bdeir_building_blocks_that_blink_beep_and_teach.html
+Smart the collective brain http://www.ted.com/talks/matt_ridley_when_ideas_have_sex.html
+bicycle clickies
+time bank
+dokaz identity bez udania mena
+google lab tags http://www.chromeweblab.com/en-GB/lab-tag-explorer
+stuff to datomic - ?git has no services? http://www.youtube.com/watch?v=ROor6_NGIWU 58:00
 
-  klipse
-  Smart Contacts, Cardano
-  GraphQL
-  Pure vs. mostly harmless functions
+klipse
+Smart Contacts, Cardano
+GraphQL
+Pure vs. mostly harmless functions
+:END:
 
-* Books
-  HoTT https://homotopytypetheory.org/ (notion of equality)
-  Proofs, Formal Verification
-  LaTTe
-  bought books - Pierre
-  SICP
+:Books:
+HoTT https://homotopytypetheory.org/ (notion of equality)
+Proofs, Formal Verification
+LaTTe
+bought books - Pierre
+SICP
+:END:
 
-* Lang
-  http://www.ted.com/talks/patricia_kuhl_the_linguistic_genius_of_babies.html?fb_ref=talk
-  Learning pronounciation
-  How much of a language is silent? What does it look like when you take the silence out? (Video 2 Min)
-  http://www.theverge.com/2012/7/1/3129227/silenc-project-silent-letters
-  http://golancourses.net/ciid/19/silenc/
-  idioms, link sur FB, idioms - traduction + correcture
-  spelling glyphs
-  Comprehension - facile, s'exprimer - difficile
-  linguee.com - eu-texts
-  le Svejk, l'Etrangeur - examples
-  Communication w-/wo- Letters
-
+:Lang:
+http://www.ted.com/talks/patricia_kuhl_the_linguistic_genius_of_babies.html?fb_ref=talk
+Learning pronounciation
+How much of a language is silent? What does it look like when you take the silence out? (Video 2 Min)
+http://www.theverge.com/2012/7/1/3129227/silenc-project-silent-letters
+http://golancourses.net/ciid/19/silenc/
+idioms, link sur FB, idioms - traduction + correcture
+spelling glyphs
+Comprehension - facile, s'exprimer - difficile
+linguee.com - eu-texts
+le Svejk, l'Etrangeur - examples
+Communication w-/wo- Letters
+:END:
