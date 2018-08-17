@@ -35,15 +35,8 @@
 
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
-  (let [app-elem (dom/getElement "app")]
-    (reagent/render [views/main-panel] app-elem)
-    (let [elems (domina/by-class "math")]
-      (doall
-       (.log js/console "elems" elems)
-       (map (fn [elem]
-              (k/render (domina/attr elem "data-expr") elem)
-              #_(js/renderMathInElement elem))
-            elems)))))
+  (views/main-panel)
+  (js/window.renderMathInElement js/document.body))
 
 (defn ^:export init []
   (re-frame/dispatch-sync [::events/initialize-db])

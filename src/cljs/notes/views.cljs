@@ -75,6 +75,10 @@
   ;; ◦ \\circ
 
   [:div
+   (let [elem (.getElementById js/document "app")]
+     (k/render "c = \\pm\\sqrt{a^2 + b^1}" elem)
+     #_(k/render "c = \\pm\\sqrt{a^2 + b^3}" elem)
+     #_(rds/render #_(k/renderToString "c = \\pm\\sqrt{a^2 + b^1}"))
 
 
    #_[display-re-pressed-example]
