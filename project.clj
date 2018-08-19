@@ -1,14 +1,19 @@
 (defproject notes "0.1.0-SNAPSHOT"
-  :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.10.339"]
-                 [reagent "0.8.1"]
-                 [re-frame "0.10.5"]
-                 [garden "1.3.5"]
-                 [ns-tracker "0.3.1"]
-                 [re-pressed "0.2.2"]
-                 [utils "0.9.3"]
-                 #_[cljsjs/katex "0.9.0-0"]
-                 ]
+  :dependencies
+  [[org.clojure/clojure "1.9.0"]
+   [org.clojure/clojurescript "1.10.339"]
+   [reagent "0.8.1"]
+   [re-frame "0.10.5"]
+   [garden "1.3.5"]
+   [ns-tracker "0.3.1"]
+   [re-pressed "0.2.2"]
+   [utils "0.9.3"]
+   ;; Domina is a jQuery inspired DOM manipulation library for ClojureScript. It
+   ;; provides a functional, idiomatic Clojure interface to the DOM manipulation
+   ;; facilities provided by the Google Closure library.
+   [domina "1.0.3"]
+   #_[cljsjs/katex "0.9.0-0"]
+   ]
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-garden "0.2.8"]]

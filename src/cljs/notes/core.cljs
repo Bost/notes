@@ -9,6 +9,7 @@
    [notes.config :as config]
    [katex :as k :refer [render renderToString renderMathInElement]]
    [goog.dom :as dom]
+   [domina :as domina]
    ))
 
 (enable-console-print!)
@@ -35,23 +36,12 @@
   (re-frame/clear-subscription-cache!)
   (let [app-elem (dom/getElement "app")]
     (reagent/render [views/main-panel] app-elem)
-    ;; TODO iterate over ::math
-    (let [elems (
-                 #_identity
-                 lazy-nl-via-item (.getElementsByTagName js/document "math"))]
-      (js/console.log "(.-length elems)" (.-length elems))
+    (let [elems (domina/by-class "math")]
       (doall
-       (map-indexed
-        (fn [i _]
-          #_(js/console.log "i" i)
-          (let [eid (.getElementById js/document (str "m" i))]
-            #_(js/console.log "i" i "eid" eid)
-            (let [text (.-innerHTML eid)]
-              (do
-                (k/render text eid)
-                (js/renderMathInElement eid)))))
-        #_elems
-        (range (count elems)))))))
+       (map (fn [elem]
+              (k/render (domina/attr elem "data-expr") elem)
+              #_(js/renderMathInElement elem))
+            elems)))))
 
 (defn ^:export init []
   (re-frame/dispatch-sync [::events/initialize-db])
