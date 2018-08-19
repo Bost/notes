@@ -13,3 +13,8 @@
  ::set-re-pressed-example
  (fn [db [_ value]]
    (assoc db :re-pressed-example value)))
+
+(re-frame/reg-event-db
+ ::set-math
+ (fn [db [id expr]]
+   (assoc db [:math id] expr)))

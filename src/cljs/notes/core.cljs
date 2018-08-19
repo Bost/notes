@@ -16,13 +16,19 @@
     (enable-console-print!)
     (println "dev mode")))
 
+(defn render-math [{:keys [id expr]}]
+  (let [elem (.getElementById js/document id)]
+    (k/render expr elem)
+    (js/renderMathInElement elem)))
+
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
   (let [app-elem (.getElementById js/document "app")]
     (reagent/render [views/main-panel] app-elem)
-    (let [elem (.getElementById js/document "math")]
-      (k/render "c = \\pm\\sqrt{a^2 + b^1}" elem)
-      (js/renderMathInElement elem))))
+    ;; TODO iterate over ::math
+    (let [hm {:id "math"
+              :expr "c = \\pm\\sqrt{a^2 + b^2}"}]
+      (render-math hm))))
 
 (defn ^:export init []
   (re-frame/dispatch-sync [::events/initialize-db])

@@ -59,6 +59,10 @@
                  }}
         rpe])]))
 
+(defn div-math [{:keys [id expr]}]
+  #_(re-frame/dispatch [::events/set-math id] expr)
+  [:div {:id id}])
+
 (defn main-panel []
   #_(js/console.log (rds/renderToString (r/createElement "div" nil "c =
                                                        \\pm\\sqrt{a^2 + b^1}"
@@ -66,7 +70,10 @@
 
   [:div {:id "main-panel"}
    "main-panel"
-   [:div {:id "math"} "math"]]
+   (div-math {:id "math"
+              :expr
+              nil ;; for the moment
+              #_"c = \\pm\\sqrt{a^2 + b^1}"})]
 
   #_[:div
    #_[display-re-pressed-example]
