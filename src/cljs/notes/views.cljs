@@ -70,10 +70,10 @@
 
   [:div {:id "main-panel"}
    "main-panel"
-   (div-math {:id "math"
-              :expr
-              nil ;; for the moment
-              #_"c = \\pm\\sqrt{a^2 + b^1}"})]
+   [:div {:id "d0"}
+    [:math {:id "m0"} "c = \\pm\\sqrt{a^2 + b^1}"]]
+   [:div {:id "d1"}
+    [:math {:id "m1"} "c = \\pm\\sqrt{aa^2 + bb^1}"]]]
 
   #_[:div
    #_[display-re-pressed-example]
