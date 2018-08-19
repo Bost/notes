@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@cljs-oss/module-deps": "^1.1.1",
+    "katex": "^0.10.0-beta",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-katex": "^2.0.2"
+  }
+}

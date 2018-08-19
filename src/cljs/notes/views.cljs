@@ -63,14 +63,8 @@
   #_(js/console.log (rds/renderToString (r/createElement "div" nil "Hello World!")))
 
   [:div
-   "See console"
-   #_(let [elem (.getElementById js/document "app")]
-     (k/render "c = \\pm\\sqrt{a^2 + b^3}" elem)
-     #_(rds/render #_(k/renderToString "c = \\pm\\sqrt{a^2 + b^1}"))
-
-     #_(rd/render (rk/InlineMath "\\int_0^\\infty x^2 dx") elem)
-     #_(k/renderToString "c = \\pm\\sqrt{a^2 + b^1}")
-     #_(k/renderMathInElement elem))]
+   (let [elem (.getElementById js/document "app")]
+     (k/render "c = \\pm\\sqrt{a^2 + b^1}" elem))]
 
   #_[:div
    #_[display-re-pressed-example]
