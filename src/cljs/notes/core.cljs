@@ -7,6 +7,7 @@
    [notes.events :as events]
    [notes.views :as views]
    [notes.config :as config]
+   [katex :as k :refer [render renderToString renderMathInElement]]
    ))
 
 
@@ -17,8 +18,11 @@
 
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
-  (views/main-panel)
-  (js/renderMathInElement js/document.body))
+  (let [app-elem (.getElementById js/document "app")]
+    (reagent/render [views/main-panel] app-elem)
+    (let [elem (.getElementById js/document "math")]
+      (k/render "c = \\pm\\sqrt{a^2 + b^1}" elem)
+      (js/renderMathInElement elem))))
 
 (defn ^:export init []
   (re-frame/dispatch-sync [::events/initialize-db])

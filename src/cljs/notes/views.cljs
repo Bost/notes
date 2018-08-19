@@ -60,11 +60,13 @@
         rpe])]))
 
 (defn main-panel []
-  #_(js/console.log (rds/renderToString (r/createElement "div" nil "Hello World!")))
+  #_(js/console.log (rds/renderToString (r/createElement "div" nil "c =
+                                                       \\pm\\sqrt{a^2 + b^1}"
+                                                       #_"Hello World!")))
 
-  [:div
-   (let [elem (.getElementById js/document "app")]
-     (k/render "c = \\pm\\sqrt{a^2 + b^1}" elem))]
+  [:div {:id "main-panel"}
+   "main-panel"
+   [:div {:id "math"} "math"]]
 
   #_[:div
    #_[display-re-pressed-example]
