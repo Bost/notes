@@ -10,6 +10,7 @@
    [katex :as k :refer [render renderToString renderMathInElement]]
    [goog.dom :as dom]
    [domina :as domina]
+   #_[spyscope.core] ; doesn't exist for clojurescript?
    ))
 
 (enable-console-print!)
@@ -38,6 +39,7 @@
     (reagent/render [views/main-panel] app-elem)
     (let [elems (domina/by-class "math")]
       (doall
+       (.log js/console "elems" elems)
        (map (fn [elem]
               (k/render (domina/attr elem "data-expr") elem)
               #_(js/renderMathInElement elem))

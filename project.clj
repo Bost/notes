@@ -13,6 +13,7 @@
    ;; facilities provided by the Google Closure library.
    [domina "1.0.3"]
    #_[cljsjs/katex "0.9.0-0"]
+   [spyscope "0.1.6"]
    ]
 
   :plugins [[lein-cljsbuild "1.1.7"]

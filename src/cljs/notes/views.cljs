@@ -68,76 +68,83 @@
                                                        \\pm\\sqrt{a^2 + b^1}"
                                                        #_"Hello World!")))
 
-  [:div {:id "main-panel"}
+  #_[:div {:id "main-panel"}
    "main-panel"
    [:div {:class "math" :data-expr "c = \\pm\\sqrt{a^2 + b^1}"}]
    [:div {:class "math" :data-expr "c = \\pm\\sqrt{c^2 + d^2}"}]]
+  ;; ◦ \\circ
 
-  #_[:div
+  [:div
+
+
    #_[display-re-pressed-example]
    [collapse/ui
-    [:id0
-     "* Category Theory: abstract algebra of abstract functions: \"The Arrows Count\""
-     (join
-      "\n"
-      [
-       "  Category C = (Obj, Hom, ◦, id)"
-       "   - Obj: Class of Objects: A, B, C, ... e.g. Types / Propositions / Algebras / Logic Formulas"
-       "   - Hom: Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? / Implication between Log. Formulas"
-       "   - ◦: Morphism composition - associative function \"(f ◦ g) ◦ h = f ◦ (g ◦ h)\""
-       "        Hom(A, B) × Hom(B, C) → Hom(A, C): g ◦ f; it's a partialy binary operation on Mor(CAT::)"
-       "        (g ◦ f)(x) = g(f(x))"
-       "   - id: identity morphism on object A: id(A)"
-       ""
-       "   A collection of arrows and morphism that can be composed if they are adjacent."
-       "   A structure packing structures of the same type (same category) and structure preserving mappings between them."
-       "   Small Category: all objs and morphisms are sets"
-       "   Localy Small Category: ∀ A,B: Hom(A, B) is a set"
-       ""
-       "   (TODO arrow weight = price of calculation; preference for compositions)"
-       "   \"Up to isomorphis\" - any such things are isomorphic (structurally the same)"
-       "   i.e. working via analogy (i.e. X is just a renamed version of Y)"
-       ""
-       "   \"Commuting diagrams / It (i.e. the diagram) commutes\" - no matter which way you go around you get the same thing"
-       ""
-       "** Cartesian Closed Category CCC: Usefull in programming"
-       "*** cartesian: has product A x B (conjunction) for any pair of objs A, B"
-       "*** closed: has exponential B^A (functions) for any pair of objs A, B"
-       "*** 0-th power of an obj: has terminal obj 1 (for all objs there exists an unique map A → 1)"
-       "   - multiplying by terminal obj 1 gives back the original obj"
-       "   - dual to terminal obj 1 is the initial obj; Top and Bottom objs"
-       "   i.e. any one-element set (= singleton) is terminal"
-       "   DTTO for poset 1 is such an object that any other obj is below it"
-       ""
-       "   - ? monoindal structure on objs ?"
-       "*** Localy CCC: for every obj X sliced category is a CCC"
-       "** Bi-Cartesian Closed Category BCCC: Algebra of Types can be made here"
-       "*** has coproduct for every pair of objs"
-       "*** has initial obj"
-       ""
-       "** Universal Mapping Property (UMP) - The 'double' triangle of Product"
-       "   Consists of Initial and Terminal mapping (morphism)"
-       ""
-       "   Universal Construction - 3 steps (? the triangle ?):"
-       "   1. Define a pattern:"
-       ""
-       "         Z'  (Z' x A) ---\\"
-       "         ⎢       ⎢        \\"
-       "       h ⎢       ⎢id       \\ g'"
-       "         ⎢       ⎢          \\"
-       "    a=>b ↓       ↓           ↘"
-       "         Z   (Z x A) -------> B"
-       "                 A      g"
-       ""
-       "    g' = g ∘ (h x id)"
-       ""
-       "   2. Define ranking between matches"
-       "   3. The best match is \"our guy\""
-       ])]]
+    {:id "id0"
+     :title "* Category Theory: abstract algebra of abstract functions: \"The Arrows Count\""
+     :content
+     [:div
+      "  Category "
+      [:span {:class "math" :data-expr "C = (Obj, Hom, \\circ, id)"}]
+      (join
+       "\n"
+       [
+        "   - Obj: Class of Objects: A, B, C, ... e.g. Types / Propositions / Algebras / Logic Formulas"
+        "   - Hom: Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? / Implication between Log. Formulas"
+        "   - \\circ: Morphism composition - associative function \"(f \\circ g) \\circ h = f \\circ (g \\circ h)\""
+        "        Hom(A, B) × Hom(B, C) → Hom(A, C): g \\circ f; it's a partialy binary operation on Mor(CAT::)"
+        "        (g \\circ f)(x) = g(f(x))"
+        "   - id: identity morphism on object A: id(A)"
+        ""
+        "   A collection of arrows and morphism that can be composed if they are adjacent."
+        "   A structure packing structures of the same type (same category) and structure preserving mappings between them."
+        "   Small Category: all objs and morphisms are sets"
+        "   Localy Small Category: ∀ A,B: Hom(A, B) is a set"
+        ""
+        "   (TODO arrow weight = price of calculation; preference for compositions)"
+        "   \"Up to isomorphis\" - any such things are isomorphic (structurally the same)"
+        "   i.e. working via analogy (i.e. X is just a renamed version of Y)"
+        ""
+        "   \"Commuting diagrams / It (i.e. the diagram) commutes\" - no matter which way you go around you get the same thing"
+        ""
+        "** Cartesian Closed Category CCC: Usefull in programming"
+        "*** cartesian: has product A x B (conjunction) for any pair of objs A, B"
+        "*** closed: has exponential B^A (functions) for any pair of objs A, B"
+        "*** 0-th power of an obj: has terminal obj 1 (for all objs there exists an unique map A → 1)"
+        "   - multiplying by terminal obj 1 gives back the original obj"
+        "   - dual to terminal obj 1 is the initial obj; Top and Bottom objs"
+        "   i.e. any one-element set (= singleton) is terminal"
+        "   DTTO for poset 1 is such an object that any other obj is below it"
+        ""
+        "   - ? monoindal structure on objs ?"
+        "*** Localy CCC: for every obj X sliced category is a CCC"
+        "** Bi-Cartesian Closed Category BCCC: Algebra of Types can be made here"
+        "*** has coproduct for every pair of objs"
+        "*** has initial obj"
+        ""
+        "** Universal Mapping Property (UMP) - The 'double' triangle of Product"
+        "   Consists of Initial and Terminal mapping (morphism)"
+        ""
+        "   Universal Construction - 3 steps (? the triangle ?):"
+        "   1. Define a pattern:"
+        ""
+        "         Z'  (Z' x A) ---\\"
+        "         ⎢       ⎢        \\"
+        "       h ⎢       ⎢id       \\ g'"
+        "         ⎢       ⎢          \\"
+        "    a=>b ↓       ↓           ↘"
+        "         Z   (Z x A) -------> B"
+        "                 A      g"
+        ""
+        "    g' = g ∘ (h x id)"
+        ""
+        "   2. Define ranking between matches"
+        "   3. The best match is \"our guy\""
+        ])]}]
 
    [collapse/ui
-    [:id1
-     "* A Crash Course in Category Theory - Bartosz Milewski https://www.youtube.com/watch?v=JH_Ou17_zyU"
+    {:id "id1"
+     :title "* A Crash Course in Category Theory - Bartosz Milewski https://www.youtube.com/watch?v=JH_Ou17_zyU"
+     :content
      (join
       "\n"
       [
@@ -238,7 +245,7 @@
        "***** Verical Compositon of NaTs:"
        "     If α : F → G and β : G → H are natural transformations, then so is β • α : F → H."
        "     Is it defined by:"
-       "         (β • α)A = βA ◦ αA : FA → HA"
+       "         (β • α)A = βA \\circ αA : FA → HA"
        "     A - an Obj in the Category C"
        "     (...)A - an A-component of the NaT (...)"
        ""
@@ -247,27 +254,27 @@
        ""
        "***** Right Whiskering"
        "     If F, G : C → D and H : D → E are Ftors, and if α : F → G is a NaT, the right whiskering"
-       "         H ◦ α : H ◦ F → H ◦ G"
-       "     is defined as (H ◦ α)A : H(FA) → H(GA) by (H ◦ α)A = H(αA)"
+       "         H \\circ α : H \\circ F → H \\circ G"
+       "     is defined as (H \\circ α)A : H(FA) → H(GA) by (H \\circ α)A = H(αA)"
        ""
        "***** Left Whiskering"
        "     If F : C → D and G, H : D → E are Ftors, and if α : G → H is a NaT, the left whiskering"
-       "         α ◦ F : G ◦ F → H ◦ F"
-       "     is defined as (α ◦ F)A : G(FA) → H(FA) by (α ◦ F)A = αFA"
+       "         α \\circ F : G \\circ F → H \\circ F"
+       "     is defined as (α \\circ F)A : G(FA) → H(FA) by (α \\circ F)A = αFA"
        ""
        "***** Horizontal Compositon of NaTs:"
        "     If F, G : C → D and H, K : D → E are Ftors, and if α : F → G and β : H → K"
        "     are NaTs, the horizontal composition:"
-       "         β ◦ α : H ◦ F → K ◦ G"
+       "         β \\circ α : H \\circ F → K \\circ G"
        "     can be defined in two different ways:"
        "     - Right whiskering followed by left whiskering:"
-       "         β ◦ α = (β ◦ G) • (H ◦ α)"
+       "         β \\circ α = (β \\circ G) • (H \\circ α)"
        "     - Left whiskering followed by right whiskering:"
-       "         β ◦ α = (K ◦ α) • (β ◦ F)"
+       "         β \\circ α = (K \\circ α) • (β \\circ F)"
        ""
        "     The two definitions coincide, because"
-       "         [(β ◦ G) • (H ◦ α)]A = βGA ◦ H(α A), and"
-       "         [(K ◦ α) • (β ◦ F)]A = K(α A) ◦ βFA"
+       "         [(β \\circ G) • (H \\circ α)]A = βGA \\circ H(α A), and"
+       "         [(K \\circ α) • (β \\circ F)]A = K(α A) \\circ βFA"
        ""
        "     - is associative with an id, and the id coincides with that for vertical"
        "       composition."
@@ -488,28 +495,35 @@
        "    Injective:  distinct Xs -> distinct Ys;                          |X| ≤ |Y| (? one-to-one ?)"
        "    Bijection:  exact pairing between X, Y;                          |X| = |Y| (vzajomne jednoznacne zobrazenie, \"same size\")"
        "    Strict:     Surjection from X to Y but no bijection from Y to X; |X| < |Y| (? double usage of some Ys ?, \"strictly bigger\")"
-       ])]]
+       ])}]
 
    [collapse/ui
-    [:id2
-     "* Ultimatelly the human lang to talk about ideas is the lang of math."
+    {:id "id2"
+     :title "* Ultimatelly the human lang to talk about ideas is the lang of math."
+     :content
      (join
       "\n"
       [
        "  Formulas, Multiplication, stupid mistakes in deriving, simplification etc."
        "  CT looks nicer: no numbers, it's about ideas"
-       ])]]
+       ])}]
 
    [collapse/ui
-    [:id3
-     "Programming - understanding the meaning i.e. semantics: what does it mean (+ 1 2)"
-     ""]]
-
-
-   [collapse/ui
-    [:id4
-     "* Operational: \"if state === stateX then state = stateY\":"
+    {:id "id3"
+     :title "Programming - understanding the meaning i.e. semantics: what does it mean"
+     :content
      (join
+      "\n"
+      [
+       ""
+       ])}]
+
+
+   #_[collapse/ui
+      [:id4 "id4"
+     :title "* Operational: \"if state === stateX then state = stateY\":"
+     :content
+(join
       "\n"
       [
        "  for computers: local, progress oriented"
@@ -518,31 +532,33 @@
        ])]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id5
-     "* Denotational:"
-     (join
+     :title "* Denotational:"
+     :content
+(join
       "\n"
       [
        "  programs can be translated to math - math is a better lang for humans"
        "  \"Programm has a meaning i.e. it's a piece of math: operation, declaration, definition\""
        ])]]
 
-   [collapse/ui
+   #_[collapse/ui
     [:id6
-     "* Math: for humans by humans"
-     ""]]
+     :title "* Math: for humans by humans"
+     :content ""]]
 
-   [collapse/ui
+   #_[collapse/ui
     [:id7
-     "Functional Programming - mathematical semantics:"
-     ""]]
+     :title "Functional Programming - mathematical semantics:"
+     :content ""]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id8
-     "* Types and fns:"
-     (join
+     :title "* Types and fns:"
+     :content
+(join
       "\n"
       [
        "** types: sets of vals; it's not about \"how\" - fn body, it's about \"what\" - fn declaration; abstraction"
@@ -553,10 +569,11 @@
        ])]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id9
-     "* Categorical view (simplification):"
-     (join
+     :title "* Categorical view (simplification):"
+     :content
+(join
       "\n"
       [
        "** fns: arrows between objs"
@@ -565,16 +582,17 @@
        "- no deeper specification of the Fns and Objs are"
        ])]]
 
-   [collapse/ui
+   #_[collapse/ui
     [:id10
-     "Mapping between CT and FP:"
-     ""]]
+     :title "Mapping between CT and FP:"
+     :content ""]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id11
-     "* Views -> Change of perspective:"
-     (join
+     :title "* Views -> Change of perspective:"
+     :content
+(join
       "\n"
       [
        "** Set-theoretical: props of sets defined by elems of sets"
@@ -583,22 +601,23 @@
        "- tell me who your friends are and I tell you who you are"
        ])]]
 
-   [collapse/ui
+   #_[collapse/ui
     [:id12
-     "Phenomenons of Introduction and Elimination"
-     ""]]
+     :title "Phenomenons of Introduction and Elimination"
+     :content ""]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id13
-     "Data types:"
-     ""]]
+     :title "Data types:"
+     :content ""]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id14
-     "* Void (empty set): we don't know that it has no elems; describe/define the props"
-     (join
+     :title "* Void (empty set): we don't know that it has no elems; describe/define the props"
+     :content
+(join
       "\n"
       [
        "  using arrows, i.e. saying something universal; universal property UP"
@@ -610,10 +629,11 @@
        ])]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id15
-     "* Unit (one-elem set): univ prop: terminal obj (opposite i.e. dual to init-obj); Duality - invert the arrows and you get something for free"
-     (join
+     :title "* Unit (one-elem set): univ prop: terminal obj (opposite i.e. dual to init-obj); Duality - invert the arrows and you get something for free"
+     :content
+(join
       "\n"
       [
        "** intro: A -> Unit (fn: just ignore the fn input)"
@@ -621,10 +641,11 @@
        ])]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id16
-     "* Cartesian product (set of pairs): UP (universal construction) - best product triangle: for all other types there's the unique arrow"
-     (join
+     :title "* Cartesian product (set of pairs): UP (universal construction) - best product triangle: for all other types there's the unique arrow"
+     :content
+(join
       "\n"
       [
        "  projections: f: C -> A, g: C -> B"
@@ -635,10 +656,11 @@
        ])]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id17
-     "* Sum type (dual to product - coproduct)"
-     (join
+     :title "* Sum type (dual to product - coproduct)"
+     :content
+(join
       "\n"
       [
        "** intro: A -> either A or B, B -> either A or B"
@@ -647,22 +669,23 @@
        ])]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id18
-     "* Monoidal Cat: (objs, arrows, prods) looks kinda like multiplication / addition"
+     :title "* Monoidal Cat: (objs, arrows, prods) looks kinda like multiplication / addition"
      ""]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id19
-     "Algebra of types ..."
-     ""]]
+     :title "Algebra of types ..."
+     :content ""]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id19
-     "* Functor: structure preserving mapping between Cats (objs to objs, fns to fns):"
-     (join
+     :title "* Functor: structure preserving mapping between Cats (objs to objs, fns to fns):"
+     :content
+(join
       "\n"
       [
        "** i.e. if there's an arrow A -> B, then there must be arrow F(A) -> F(B)"
@@ -672,10 +695,11 @@
        ])]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id20
-     "* Functor Category:"
-     (join
+     :title "* Functor Category:"
+     :content
+(join
       "\n"
       [
        "** pick two Cats C, D; ftors from C to D form a Functor Category [C,D]:"
@@ -684,10 +708,11 @@
        ])]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id21
-     "* Adjunction: A pair of ftors: one ftor F adjunct to another ftor G; F and U are not an inverse of each other"
-     (join
+     :title "* Adjunction: A pair of ftors: one ftor F adjunct to another ftor G; F and U are not an inverse of each other"
+     :content
+(join
       "\n"
       [
        "  Obj in a Cat of Types such that: For every A, B there is a set of arrows from"
@@ -711,28 +736,29 @@
        ])]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id22
-     "* Natural transformations NaTs: Polymorphic functions: mapping between ftors:"
-     "  see picture at https://youtu.be/JH_Ou17_zyU?t=1h6m23s"]]
+     :title "* Natural transformations NaTs: Polymorphic functions: mapping between ftors:"
+     :content "  see picture at https://youtu.be/JH_Ou17_zyU?t=1h6m23s"]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id23
-     "* Polymorphic function - a function for every single type i.e. multiplication"
-     "  (Product) of all obj in a category. Also the dual - the Sum"]]
+     :title "* Polymorphic function - a function for every single type i.e. multiplication"
+     :content "  (Product) of all obj in a category. Also the dual - the Sum"]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id24
-     "* Categorical End (i.e. Product) and CoEnd (i.e. CoProduct i.e. Sum)"
-     "  notation is the integral sign"]]
+     :title "* Categorical End (i.e. Product) and CoEnd (i.e. CoProduct i.e. Sum)"
+     :content "  notation is the integral sign"]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id25
-     "* Monadic return-function: universally polymorphic function - works for any type"
-     (join
+     :title "* Monadic return-function: universally polymorphic function - works for any type"
+     :content
+(join
       "\n"
       [
        "  https://www.youtube.com/watch?v=CfoaY2Ybf8M&t=7m"
@@ -744,7 +770,7 @@
        ])]]
 
 
-   [collapse/ui
+   #_[collapse/ui
     [:id26
-     "* Product generalisation: Tensor Product in a monoidal category"
-     ""]]])
+     :title "* Product generalisation: Tensor Product in a monoidal category"
+     :content ""]]])

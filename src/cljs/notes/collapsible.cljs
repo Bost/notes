@@ -44,7 +44,7 @@
                  }
            children]]]))))
 
-(defn ui [[id title content]]
+(defn ui [{:keys [id title content]}]
   [:div
    [panel id
     title
