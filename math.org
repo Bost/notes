@@ -5,6 +5,9 @@
   complicated controll structure - implement at first with continuations and then traditionally
   solution of a Differential Equations (DE) is a function, not value.
 
+  The Little Typer
+  The Little Prover
+
 * Fractals http://blog.sciencevsmagic.net/science/fractal-machine/
 
 * Statistics:
