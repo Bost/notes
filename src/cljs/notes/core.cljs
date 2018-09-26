@@ -10,8 +10,8 @@
    [katex :as k :refer [render renderToString renderMathInElement]]
    [goog.dom :as dom]
    [domina :as domina]
-   #_[spyscope.core] ; doesn't exist for clojurescript?
-   ))
+   ;; does spyscope exist for clojurescript?
+   #_[spyscope.core]))
 
 (enable-console-print!)
 

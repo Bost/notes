@@ -13,8 +13,8 @@
    ;; facilities provided by the Google Closure library.
    [domina "1.0.3"]
    #_[cljsjs/katex "0.9.0-0"]
-   [spyscope "0.1.6"]
-   ]
+   [spyscope "0.1.6"]]
+
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-garden "0.2.8"]]
@@ -45,9 +45,9 @@
     :plugins      [[lein-figwheel "0.5.16"]
                    ;; collection of nREPL middleware designed to enhance CIDER
                    [refactor-nrepl "2.4.0-SNAPSHOT"]
-                   [cider/cider-nrepl "0.17.0"]
-                   ]}
-   :prod { }}
+                   [cider/cider-nrepl "0.17.0"]]}
+
+   :prod {}}
 
   :cljsbuild
   {:builds
@@ -66,9 +66,9 @@
                                :react "15.6.1"
                                :react-dom "15.6.1"
                                :katex "0.10.0-beta"
-                               :react-katex "2.0.2"
-                               }
-                    }}
+                               :react-katex "2.0.2"}}}
+
+
 
     {:id           "min"
      :source-paths ["src/cljs"]
@@ -82,6 +82,4 @@
                                :react "15.6.1"
                                :react-dom "15.6.1"
                                :katex "0.10.0-beta"
-                               :react-katex "2.0.2"
-                               }
-                               }}]})
+                               :react-katex "2.0.2"}}}]})
