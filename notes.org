@@ -11,7 +11,7 @@
 **** Visualisation - Desktop GUI: Seesaw - Live at REPL (as a custom inspector)
 **** Start java with a clojure.jar and hook up a REPL with custom prompt
 **** specs + graphvis: https://github.com/jebberjeb/specviz
-**** Lisp Continuations: replace this exception with some value and keep going?
+**** Lisp Continuations: replace this exception with some value and keep going
 ***** JVM doesn't have continuations so Clojure doesn't have them neither
 *** CJUG - 2017-06-20 - Stuart Halloway on Clojure in 10 Big Ideas: 18:43
 ** Java & JVM
@@ -24,7 +24,7 @@
 *** function & imperative
 *** staticaly typed
 *** traits (multiple inheritance)
-*** clojuredocs - graphic examples
+*** clojuredocs - graphic representation of example
  #+BEGIN_SRC clojure
 lein swank-wrap 4005 webcli.server
 slime-connect
@@ -171,12 +171,20 @@ GraphQL
 Pure vs. mostly harmless functions
 :END:
 
-:Books:
+:Books-Amazon:
 HoTT https://homotopytypetheory.org/ (notion of equality)
 Proofs, Formal Verification
 LaTTe
 bought books - Pierre
 SICP
+
+The Little Schemer
+The Seasoned Schemer
+The Reasoned Schemer
+The Little LISPer
+The Little Prover
+The Little MLer
+The Little Typer
 :END:
 
 :Lang:
