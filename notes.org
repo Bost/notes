@@ -163,6 +163,14 @@ GraphQL
 Pure vs. mostly harmless functions
 :END:
 
+:terminals:
+# A terminal for a more modern age
+https://github.com/Eugeny/terminus
+
+# electron-app terminal
+https://github.com/zeit/hyper
+:end:
+
 :Books-Amazon:
 HoTT https://homotopytypetheory.org/ (notion of equality)
 Proofs, Formal Verification
