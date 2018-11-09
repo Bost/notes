@@ -139,7 +139,11 @@ Proposition = ???
   judge, jury, religion, boss, conviction "No bugs in my code!"
   "I don't see why not": psycho (the oposing party must find argument)
 
-  A mathematical proof is a verification of a proposition by a chain of logical deductions from a set of axioms
+  A mathematical proof:
+  - an argument that convinces other mathematicians :)
+  - verification of a proposition by a chain of logical deductions from a set of axioms
+  - deduction from hypotheses to conclusion in which each step is justified by one of a finite list of rules of inference
+    https://home.sandiego.edu/~shulman/papers/rabbithole.pdf
 
   Proposition is a statement: can be true or false
   Predicate is a proposition: truth depends on the values of variable(s)
