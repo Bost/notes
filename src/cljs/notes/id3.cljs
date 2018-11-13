@@ -10,5 +10,5 @@
     :title "Programming - understanding the meaning i.e. semantics: what does it mean"
     :content
     [:div
-     [:div ""]
+     [:div " "]
      ]}])

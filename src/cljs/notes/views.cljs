@@ -93,7 +93,10 @@
   ;; ◦ \\circ
 
   [:div
-   [:button {:on-click #(collapse/doall-render-math)} "(doall-render-math)"]
+   [:button {:on-click (fn []
+                         (collapse/doall-render-math)
+                         (re-frame/dispatch [:notes/toggle-render-math]))}
+    "(doall-render-math)"]
    [:div " "]
    #_[display-re-pressed-example]
    id0/ui

@@ -9,4 +9,4 @@
    {:id "id18"
     :title "* Monoidal Cat: (objs, arrows, prods) looks kinda like multiplication / addition"
     :content
-    [:div [:div ""]]}])
+    [:div [:div " "]]}])
