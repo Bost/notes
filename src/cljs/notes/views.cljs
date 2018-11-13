@@ -5,8 +5,6 @@
    [notes.events :as events]
    [notes.subs :as subs]
    [notes.collapsible :as collapse]
-   [clojure.string :refer [join]]
-   [katex :as k :refer [render renderToString renderMathInElement]]
    [notes.id0 :as id0]
    [notes.id1 :as id1]
    [notes.id2 :as id2]
@@ -98,7 +96,7 @@
                          (re-frame/dispatch [:notes/toggle-render-math]))}
     "(doall-render-math)"]
    [:div " "]
-   #_[display-re-pressed-example]
+   [display-re-pressed-example]
    id0/ui
    id1/ui
    id2/ui

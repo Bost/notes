@@ -2,6 +2,7 @@
   (:require [reagent.core :as reagent]
             [re-frame.core :as re-frame]
             [katex :as k :refer [render renderMathInElement renderToString]]
+            [clojure.string :refer [replace]]
             [utils.core :refer [dbgv dbgi]]))
 
 (re-frame/reg-event-db
@@ -33,26 +34,33 @@
     (fn []
       [:div #_@s content])))
 
-(defn e [s] [:span {:class "m" :e s} s])
+(defn ex [txt ktx]
+  [:span {:class "m" :ktx (k/renderToString ktx) :txt txt} txt])
+
+(defn e
+  ([txt    ] (ex txt (let [exp0 txt
+                       exp1 (replace exp0 "◦" "\\circ")
+                       exp2 (replace exp1 "->" "\\rarr")
+                       exp3 (replace exp2 "<-" "\\larr")
+                       exp4 (replace exp3 "|" "\\lvert")]
+                   exp4)))
+  ([txt ktx] (ex txt ktx)))
 
 (defn render-math [render? el]
   ;; see k/renderMathInElement, (k/render exp3 el)
-  ;; (.log js/console (.getAttribute el "e"))
+  ;; (.log js/console (.getAttribute el "txt"))
+  ;; (.log js/console (.getAttribute el "ktx"))
   (set! (.-innerHTML el)
         (if render?
-          (let [exp0 (.-innerText el)
-                exp1 (clojure.string/replace exp0 "◦" "\\circ")
-                exp2 (clojure.string/replace exp1 "->" "\\rarr")
-                exp3 (clojure.string/replace exp2 "<-" "\\larr")]
-            (k/renderToString exp3))
-          (.getAttribute el "e"))))
+          (.getAttribute el "ktx")
+          (.getAttribute el "txt"))))
 
 (defn doall-render-math []
   (let [render-math? @(re-frame/subscribe [:notes/render-math-state])]
-    (.log js/console "render-math?" render-math?)
+    #_(.log js/console "render-math?" render-math?)
     (doall
      (let [elems (.getElementsByClassName js/document "m")]
-       (.log js/console "render-math in" (count elems) "elems")
+       #_(.log js/console "render-math in" (count elems) "elems")
        (map #(render-math render-math? %) elems)))))
 
 (defn panel [id title & children]

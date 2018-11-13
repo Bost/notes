@@ -1,6 +1,7 @@
 (ns notes.id1
   (:require
    [notes.collapsible :refer [e] :as collapse]
+   [clojure.string :refer [join]]
    ))
 
 ;; [e ""]
@@ -56,11 +57,28 @@
      [:div "      function type is an exponential which is a data type; (Exponential is like an interated product)"]
      [:div "    - Endofunctor [C,C]: A ftor that maps a category to itself"]
      [:div " "]
-     [:div "  | Covariant Functor                       | Contravariant Functor                      |"]
-     [:div "  |-----------------------------------------+--------------------------------------------|"]
-     [:div "  | " [e "G f :: (a -> b) -> (G a -> G b)"] "         | " [e "G f :: (a -> b) -> (G b -> G a)"]  "            |"]
-     [:div "  | Same directions in src and dst Category | Reverse directions in src and dst Category |"]
+
+     [:div [e
+            (join "\n"
+                  [
+                   "  | Covariant Functor                       | Contravariant Functor                      |"
+                   "  |-----------------------------------------+--------------------------------------------|"
+                   "  | G f :: (a → b) → (G a → G b)            | G f :: (a → b) → (G b → G a)               |"
+                   "  | Same directions in src and dst Category | Reverse directions in src and dst Category |"
+                   ]
+                  )
+            (join "\n"
+                  [
+                   ;; "\\def\\arraystretch{1.2}"
+                   "\\begin{array}{cc}"
+                   "| & \\text{Covariant Functor}                       & | & \\text{Contravariant Functor}                      & | \\\\"
+                   "| & G f :: (a → b) → (G a → G b)                    & | & G f :: (a → b) → (G b → G a)                       & | \\\\"
+                   "| & \\text{Same directions in src and dst Category} & | & \\text{Reverse directions in src and dst Category} & |"
+                   "\\end{array}"
+                   ])
+            ]]
      [:div " "]
+
      [:div "*** Bifunctor: C × D → E"]
      [:div "    Product is a bifunctor, i.e. it takes 2 objs and produces 3rd obj, but it"]
      [:div "    also takes two morphisms and produces 3rd morphism which is a product of"]
@@ -70,8 +88,9 @@
      [:div "    - type constructor: takes a type α and creates a list of α"]
      [:div " "]
      [:div "    Sum (+) and Product (*) are algebraic data types (Algebra on Types):"]
-     [:div "    List(α) = Nil | Const α (List α) ~ L(α) = 1 + α * L(α) => .. => L(α) = 1 / (1 - α) ="]
-     [:div "    = 1 + α + α*α + α*α*α + ..."]
+     [:div "    " [e
+                   "List(α) = Nil | Const α (List α) ~ L(α) = 1 + α * L(α) ⇒ .. ⇒ L(α) = 1 / (1 - α) = 1 + α + α*α + α*α*α + ..."
+                   "List(α) = Nil | Const α (List α) \\thicksim L(α) = 1 + α * L(α) ⇒ .. ⇒ L(α) = 1 / (1 - α) = 1 + α + α*α + α*α*α + ..."]]
      [:div " "]
      [:div "    Is Product a Ftor?"]
      [:div " "]
@@ -90,7 +109,7 @@
      [:div "     comorphism: replacing a square of (complex) relations with a single morphism"]
      [:div "   - picks a morphish between two Objs; Picking 1 morphishm from a homset"]
      [:div "   - Components of NaT"]
-     [:div "   - Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: α b * F f"]
+     [:div "   - Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: " [e "αb ◦ Ff"]]
      [:div " "]
      [:div "   - Every polymorphic Fn is a NaT: it is defined for every single type"]
      [:div "     i.e. multiplication (Product) of all Objs in a Category. The same goes for"]
@@ -108,9 +127,9 @@
      [:div "       βGA / βFA- GA/FA-component of the NaT β"]
      [:div " "]
      [:div "***** Verical Compositon of NaTs:"]
-     [:div "     If α : F → G and β : G → H are natural transformations, then so is β • α : F → H."]
+     [:div "     If " [e "α:F → G"] " and " [e "β:G → H"] " are natural transformations, then so is " [e "β•α : F → H"] "."]
      [:div "     Is it defined by:"]
-     [:div "         (β • α)A = βA ◦ αA : FA → HA"]
+     [:div "         " [e "(β • α)A = βA ◦ αA : FA → HA"]]
      [:div "     A - an Obj in the Category C"]
      [:div "     (...)A - an A-component of the NaT (...)"]
      [:div " "]
