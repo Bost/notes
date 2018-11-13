@@ -112,7 +112,7 @@ echo "Hello World from sh" # evaluate: C-c
 
 #+BEGIN_SRC python
 # Result displayed under '#+RESULTS:'
-return "Hello from Python" # evaluate: C-c 
+return "Hello from Python" # evaluate: C-c
 #+END_SRC
 
 #+RESULTS:
