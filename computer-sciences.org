@@ -1,20 +1,68 @@
-* Lambda Calculus: formal calculus for manipulating functions
-  Currying: Partial function application; Fixing some function parameters
+* Untyped Lambda λ-Calculus
+  I.e. Formal calculus for manipulating functions; Turing-complete (can simulate any Turing machine)
+
   e ::= x | λx.e | e e'
-        |    |      |
-        |    |      +---- application
-        |    +----------- function abstractions
-        +---------------- variable
+   e        - λ-term; expression of a λ-calculus; e.g. e, e', f, g, h are λ-terms
+   x        - variable; e.g. x, y, z
+   e e'     - left associative application of expression e to expression e'; e.g. M N L = ((M N)L)
+   λx.e     - function abstractions of x over e; abstract away the details of expression e
 
-* Typed Lambda Calculus
-  e ::= x | λx.e : τ | e e' | c
+   Currying: Partial function application; Fixing some function parameters
+   Application takes precedence over abstraction e.g. λx.M N = λx.(M N)
+   Successive abstraction λxy.e = λx.(λy.e)
+   Variable occurences in a λ-term; Free / Bounded / Binding
 
-* Damas-Hindley-Milner Calculus 
+   TODO what is a normal form of a λ-term
+
+** TODO Positive properties of an Untyped λ-Calculus
+*** Turing-complete
+
+** Negative properties of an Untyped λ-Calculus
+*** Self applications are allowed
+*** Existence of normal forms for λ-terms is not guaranteed; this may result in undesired infinite calculations
+*** Each λ-term has a fixed point. However some important functions e.g.:
+    g(n) = 2^n
+    succ(n) = n + 1
+   don't have a fixed point and cannot belong an Untyped λ-Calculus
+
+* Simply Typed Lambda λ-Calculus: λ->
+  Keeps the positive and remove the negative points on Untyped λ-Calculus:
+*** No more self application
+*** No infinite reduction sequencies (i.e. calculations)
+*** Not every simply typed function needs to have a fixed point.
+  Drawback: the λ-> is much too weak to encapsulate every computable function and hence it's not usable for the formalization of math.
+
+  Contains simple (basic) and funtion types
+
+  e ::= x:τ | (λ(x:σ).(e:τ)):(σ->τ) | e:τ e':τ | c:τ
+   e:τ                   - λ-term; expression of a simply typed λ-calculus; e.g. e:τ, e':τ, f:τ, g:τ, h:τ are simply typed λ-terms
+   x:τ                   - type variable of the simple type τ; e.g. x:τ, y:τ, z:τ
+   e:τ e':τ              - left associative application of expression e:τ to expression e':τ; e.g. e:τ f:τ g:τ = ((e:τ f:τ)g:τ)
+   (λ(x:σ).(e:τ)):(σ->τ) - function abstractions of an function with function type σ->τ; abstract away the details of the expression e:τ and declare the abstraction to be of the function type σ->τ
+   c:τ                   - ? constant ?
+   TODO simple type
+
+* Damas-Hindley-Milner Calculus
   e ::= x | λx.e | e e' | let x = e in e'
   W Algorithm - for type inference: W(Γ,e) = (S,τ)
   Γ - typing env
   S - state
   τ - type
+
+* Alpha α conversion a.k.a α equivalence
+  About renaming binding and bound variables
+
+* Beta β reduction (computational)
+  β reduction in computation a.k. calculation rule: Simplify proofs by replacing formal params with terms.
+  fst<g , h > = g
+  snd<g , h > = h
+  (λx.h)g = [g/x]h      - substitute variable x in the expression (i.e λ-term) h by the (i.e λ-term) g
+  (λx.f)x = [x/x]f = f  - ? do nothing, i.e. void substitution ?
+
+** Fixed Point Theorem: for each λ-term L there exists a λ-term M (a.k.a fixed point) such that LM =β M
+   =β   - β-conversion a.k.a β-equality
+
+* TODO Eta η extentionality principle
 
 * Math Structures:
 ** Monoid (M, *, e); Also a Category 'many' morphisms and 'few' (only one) object M
@@ -50,13 +98,6 @@
 ** eval, exponent in Category Theory
 
 * Tautology - "this is always true"
-* Beta β reduction (computational) / Eta η extentionality principle
-  β reduction in computation: Simplify proofs by replacing formal params with terms.
-
-  fst<Alpha, Beta> = Alpha
-  snd<Alpha, Beta> = Beta
-  (lambda x.Beta)Alpha = [Alpha/x]Beta
-  (lambda x.f)x = f
 
 * Type Theory: Extention of lambda calculus with explicit types
 ** ITT Inentional Type Theory
@@ -128,7 +169,7 @@ Proposition = ???
 
 * Trinity 1. Logic & Proof Theory: Philosophy; 2. Type Theory: Computer Science; 3. Category Theory: Mathematics
 * Proof Theory: Proof of soundness, proof of completeness
-* PT 1 - Judgements & Propositions 
+* PT 1 - Judgements & Propositions
 ** judgement (obj of knowledge); judgemens are made about propositions
    'A is true', 'A is false', M : A - M is a proof of A i.e. M is a program which has a type of A
    'A' - proposition
