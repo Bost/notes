@@ -2,4 +2,4 @@
 
 (def default-db
   (conj {:name "re-frame"}
-        {:panels {:id0 true}}))
+        {:open-panels {"id0" true}}))

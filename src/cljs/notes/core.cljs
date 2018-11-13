@@ -7,7 +7,7 @@
    [notes.events :as events]
    [notes.views :as views]
    [notes.config :as config]
-   [katex :as k :refer [render renderToString renderMathInElement]]
+   [katex :as k :refer [render renderMathInElement renderToString]]
    [goog.dom :as dom]
    [domina :as domina]
    ;; does spyscope exist for clojurescript?
@@ -20,10 +20,6 @@
     (enable-console-print!)
     (println "dev mode")))
 
-(defn render-math [elem]
-  #_(js/renderMathInElement elem)
-  (k/render (.-innerText elem) elem))
-
 ;; see LightTable/src/lt/util/dom.cljs
 (defn lazy-nl-via-item
   ([nl] (lazy-nl-via-item nl 0))
@@ -32,11 +28,11 @@
              (cons (. nl (item n))
                    (lazy-nl-via-item nl (inc n)))))))
 
+
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
   (reagent/render [views/main-panel] (.getElementById js/document "app"))
-  (doall
-   (map render-math (.getElementsByClassName js/document "m"))))
+  #_(collapse/doall-render-math))
 
 (defn ^:export init []
   (re-frame/dispatch-sync [::events/initialize-db])

@@ -11,12 +11,14 @@
             src="katex/contrib/auto-render.min.js" type="text/javascript"
         ></script>
         <style>
-         body { font-family: monospace; }
+         body {
+             font-family: monospace;
+             white-space: pre;
+         }
          .katex { font-size: 1.1em; }
         </style>
     </head>
     <body>
-        <!-- onload="renderMathInElement(document.body);" -->
         <div id="app">Loading...</div>
         <script src="js/compiled/app.js"></script>
         <script>notes.core.init();</script>
