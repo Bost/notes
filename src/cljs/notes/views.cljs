@@ -68,7 +68,8 @@
                                                        \\pm\\sqrt{a^2 + b^1}"
                                                        #_"Hello World!")))
 
-  #_[:div {:id "main-panel"}
+  #_
+  [:div {:id "main-panel"}
    "main-panel"
    [:div {:class "math" :data-expr "c = \\pm\\sqrt{a^2 + b^1}"}]
    [:div {:class "math" :data-expr "c = \\pm\\sqrt{c^2 + d^2}"}]]
@@ -81,7 +82,8 @@
      #_(rds/render #_(k/renderToString "c = \\pm\\sqrt{a^2 + b^1}"))
 
 
-   #_[display-re-pressed-example]
+   #_
+   [display-re-pressed-example]
    [collapse/ui
     {:id "id0"
      :title "* Category Theory: abstract algebra of abstract functions: \"The Arrows Count\""
@@ -523,11 +525,12 @@
        ])}]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
       [:id4 "id4"
      :title "* Operational: \"if state === stateX then state = stateY\":"
      :content
-(join
+       (join
       "\n"
       [
        "  for computers: local, progress oriented"
@@ -536,33 +539,37 @@
        ])]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id5
      :title "* Denotational:"
      :content
-(join
+     (join
       "\n"
       [
        "  programs can be translated to math - math is a better lang for humans"
        "  \"Programm has a meaning i.e. it's a piece of math: operation, declaration, definition\""
        ])]]
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id6
      :title "* Math: for humans by humans"
      :content ""]]
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id7
      :title "Functional Programming - mathematical semantics:"
      :content ""]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id8
      :title "* Types and fns:"
      :content
-(join
+     (join
       "\n"
       [
        "** types: sets of vals; it's not about \"how\" - fn body, it's about \"what\" - fn declaration; abstraction"
@@ -573,11 +580,12 @@
        ])]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id9
      :title "* Categorical view (simplification):"
      :content
-(join
+     (join
       "\n"
       [
        "** fns: arrows between objs"
@@ -586,17 +594,19 @@
        "- no deeper specification of the Fns and Objs are"
        ])]]
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id10
      :title "Mapping between CT and FP:"
      :content ""]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id11
      :title "* Views -> Change of perspective:"
      :content
-(join
+     (join
       "\n"
       [
        "** Set-theoretical: props of sets defined by elems of sets"
@@ -605,23 +615,26 @@
        "- tell me who your friends are and I tell you who you are"
        ])]]
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id12
      :title "Phenomenons of Introduction and Elimination"
      :content ""]]
 
 
-   #_[collapse/ui
+   #_
+[collapse/ui
     [:id13
      :title "Data types:"
      :content ""]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id14
      :title "* Void (empty set): we don't know that it has no elems; describe/define the props"
      :content
-(join
+     (join
       "\n"
       [
        "  using arrows, i.e. saying something universal; universal property UP"
@@ -633,11 +646,12 @@
        ])]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id15
      :title "* Unit (one-elem set): univ prop: terminal obj (opposite i.e. dual to init-obj); Duality - invert the arrows and you get something for free"
      :content
-(join
+     (join
       "\n"
       [
        "** intro: A -> Unit (fn: just ignore the fn input)"
@@ -645,11 +659,12 @@
        ])]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id16
      :title "* Cartesian product (set of pairs): UP (universal construction) - best product triangle: for all other types there's the unique arrow"
      :content
-(join
+     (join
       "\n"
       [
        "  projections: f: C -> A, g: C -> B"
@@ -660,11 +675,12 @@
        ])]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id17
      :title "* Sum type (dual to product - coproduct)"
      :content
-(join
+     (join
       "\n"
       [
        "** intro: A -> either A or B, B -> either A or B"
@@ -673,23 +689,26 @@
        ])]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id18
      :title "* Monoidal Cat: (objs, arrows, prods) looks kinda like multiplication / addition"
      ""]]
 
 
-   #_[collapse/ui
+   #_
+[collapse/ui
     [:id19
      :title "Algebra of types ..."
      :content ""]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id19
      :title "* Functor: structure preserving mapping between Cats (objs to objs, fns to fns):"
      :content
-(join
+     (join
       "\n"
       [
        "** i.e. if there's an arrow A -> B, then there must be arrow F(A) -> F(B)"
@@ -699,11 +718,12 @@
        ])]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id20
      :title "* Functor Category:"
      :content
-(join
+     (join
       "\n"
       [
        "** pick two Cats C, D; ftors from C to D form a Functor Category [C,D]:"
@@ -712,11 +732,12 @@
        ])]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id21
      :title "* Adjunction: A pair of ftors: one ftor F adjunct to another ftor G; F and U are not an inverse of each other"
      :content
-(join
+     (join
       "\n"
       [
        "  Obj in a Cat of Types such that: For every A, B there is a set of arrows from"
@@ -740,29 +761,33 @@
        ])]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id22
      :title "* Natural transformations NaTs: Polymorphic functions: mapping between ftors:"
      :content "  see picture at https://youtu.be/JH_Ou17_zyU?t=1h6m23s"]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id23
      :title "* Polymorphic function - a function for every single type i.e. multiplication"
      :content "  (Product) of all obj in a category. Also the dual - the Sum"]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id24
      :title "* Categorical End (i.e. Product) and CoEnd (i.e. CoProduct i.e. Sum)"
      :content "  notation is the integral sign"]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id25
      :title "* Monadic return-function: universally polymorphic function - works for any type"
      :content
-(join
+     (join
       "\n"
       [
        "  https://www.youtube.com/watch?v=CfoaY2Ybf8M&t=7m"
@@ -774,7 +799,8 @@
        ])]]
 
 
-   #_[collapse/ui
+   #_
+   [collapse/ui
     [:id26
      :title "* Product generalisation: Tensor Product in a monoidal category"
      :content ""]]])
