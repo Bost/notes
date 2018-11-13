@@ -56,3 +56,6 @@ lein cljsbuild once min
 (figwheel-sidecar.repl-api/start-figwheel!)
 (figwheel-sidecar.repl-api/cljs-repl)
 ```
+
+Trouble shooting:
+https://github.com/bhauman/lein-figwheel/issues/576

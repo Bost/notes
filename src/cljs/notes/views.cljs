@@ -8,10 +8,6 @@
    [clojure.string :refer [join]]
 
    [katex :as k :refer [render renderToString renderMathInElement]]
-   [react-katex :as rk :refer [InlineMath BlockMath]]
-   [react :as r :refer [createElement]]
-   [react-dom :as rd]
-   ["react-dom/server" :as rds :refer [renderToString]]
    ))
 
 (defn dispatch-keydown-rules []
@@ -64,90 +60,73 @@
   [:div {:id id}])
 
 (defn main-panel []
-  #_(js/console.log (rds/renderToString (r/createElement "div" nil "c =
-                                                       \\pm\\sqrt{a^2 + b^1}"
-                                                       #_"Hello World!")))
-
-  #_
-  [:div {:id "main-panel"}
-   "main-panel"
-   [:div {:class "math" :data-expr "c = \\pm\\sqrt{a^2 + b^1}"}]
-   [:div {:class "math" :data-expr "c = \\pm\\sqrt{c^2 + d^2}"}]]
+  #_[:div {:id "main-panel"}
+   [:div "line1 " [:span {:class "m"} "c = \\pm\\sqrt{a^2 + b^1}"] " after"]
+   [:div "line2 " [:span {:class "m"} "c = \\pm\\sqrt{c^2 + d^2}"] " after"]]
   ;; ◦ \\circ
 
-  [:div
-   (let [elem (.getElementById js/document "app")]
-     (k/render "c = \\pm\\sqrt{a^2 + b^1}" elem)
-     #_(k/render "c = \\pm\\sqrt{a^2 + b^3}" elem)
-     #_(rds/render #_(k/renderToString "c = \\pm\\sqrt{a^2 + b^1}"))
-
-
-   #_
-   [display-re-pressed-example]
+  [:div {:id "main-panel"}
+   #_[display-re-pressed-example]
    [collapse/ui
     {:id "id0"
      :title "* Category Theory: abstract algebra of abstract functions: \"The Arrows Count\""
      :content
      [:div
-      "  Category "
-      [:span {:class "math" :data-expr "C = (Obj, Hom, \\circ, id)"}]
-      (join
-       "\n"
-       [
-        "   - Obj: Class of Objects: A, B, C, ... e.g. Types / Propositions / Algebras / Logic Formulas"
-        "   - Hom: Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? / Implication between Log. Formulas"
-        "   - \\circ: Morphism composition - associative function \"(f \\circ g) \\circ h = f \\circ (g \\circ h)\""
-        "        Hom(A, B) × Hom(B, C) → Hom(A, C): g \\circ f; it's a partialy binary operation on Mor(CAT::)"
-        "        (g \\circ f)(x) = g(f(x))"
-        "   - id: identity morphism on object A: id(A)"
-        ""
-        "   A collection of arrows and morphism that can be composed if they are adjacent."
-        "   A structure packing structures of the same type (same category) and structure preserving mappings between them."
-        "   Small Category: all objs and morphisms are sets"
-        "   Localy Small Category: ∀ A,B: Hom(A, B) is a set"
-        ""
-        "   (TODO arrow weight = price of calculation; preference for compositions)"
-        "   \"Up to isomorphis\" - any such things are isomorphic (structurally the same)"
-        "   i.e. working via analogy (i.e. X is just a renamed version of Y)"
-        ""
-        "   \"Commuting diagrams / It (i.e. the diagram) commutes\" - no matter which way you go around you get the same thing"
-        ""
-        "** Cartesian Closed Category CCC: Usefull in programming"
-        "*** cartesian: has product A x B (conjunction) for any pair of objs A, B"
-        "*** closed: has exponential B^A (functions) for any pair of objs A, B"
-        "*** 0-th power of an obj: has terminal obj 1 (for all objs there exists an unique map A → 1)"
-        "   - multiplying by terminal obj 1 gives back the original obj"
-        "   - dual to terminal obj 1 is the initial obj; Top and Bottom objs"
-        "   i.e. any one-element set (= singleton) is terminal"
-        "   DTTO for poset 1 is such an object that any other obj is below it"
-        ""
-        "   - ? monoindal structure on objs ?"
-        "*** Localy CCC: for every obj X sliced category is a CCC"
-        "** Bi-Cartesian Closed Category BCCC: Algebra of Types can be made here"
-        "*** has coproduct for every pair of objs"
-        "*** has initial obj"
-        ""
-        "** Universal Mapping Property (UMP) - The 'double' triangle of Product"
-        "   Consists of Initial and Terminal mapping (morphism)"
-        ""
-        "   Universal Construction - 3 steps (? the triangle ?):"
-        "   1. Define a pattern:"
-        ""
-        "         Z'  (Z' x A) ---\\"
-        "         ⎢       ⎢        \\"
-        "       h ⎢       ⎢id       \\ g'"
-        "         ⎢       ⎢          \\"
-        "    a=>b ↓       ↓           ↘"
-        "         Z   (Z x A) -------> B"
-        "                 A      g"
-        ""
-        "    g' = g ∘ (h x id)"
-        ""
-        "   2. Define ranking between matches"
-        "   3. The best match is \"our guy\""
-        ])]}]
+      [:div "  Category " [:span {:class "m"} "C = (Obj, Hom, \\circ, id)"]]
+      [:div "   - " [:span {:class "m"} "Obj"] ": Class of Objects: A, B, C, ... e.g. Types / Propositions / Algebras / Logic Formulas"]
+      [:div "   - " [:span {:class "m"} "Hom"] ": Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? / Implication between Log. Formulas"]
+      [:div "   - " [:span {:class "m"} "\\circ"] ": Morphism composition - associative function " [:span {:class "m"} "(f \\circ g) \\circ h = f \\circ (g \\circ h)"]]
+      ;; [:div "        Hom(A, B) × Hom(B, C) → Hom(A, C): g \\circ f; it's a partialy binary operation on Mor(CAT::)"]
+      ;; [:div "        (g \\circ f)(x) = g(f(x))"]
+      ;; [:div "   - id: identity morphism on object A: id(A)"]
+      ;; [:div ""]
+      ;; [:div "   A collection of arrows and morphism that can be composed if they are adjacent."]
+      ;; [:div "   A structure packing structures of the same type (same category) and structure preserving mappings between them."]
+      ;; [:div "   Small Category: all objs and morphisms are sets"]
+      ;; [:div "   Localy Small Category: ∀ A,B: Hom(A, B) is a set"]
+      ;; [:div ""]
+      ;; [:div "   (TODO arrow weight = price of calculation; preference for compositions)"]
+      ;; [:div "   \"Up to isomorphis\" - any such things are isomorphic (structurally the same)"]
+      ;; [:div "   i.e. working via analogy (i.e. X is just a renamed version of Y)"]
+      ;; [:div ""]
+      ;; [:div "   \"Commuting diagrams / It (i.e. the diagram) commutes\" - no matter which way you go around you get the same thing"]
+      ;; [:div ""]
+      ;; [:div "** Cartesian Closed Category CCC: Usefull in programming"]
+      ;; [:div "*** cartesian: has product A x B (conjunction) for any pair of objs A, B"]
+      ;; [:div "*** closed: has exponential B^A (functions) for any pair of objs A, B"]
+      ;; [:div "*** 0-th power of an obj: has terminal obj 1 (for all objs there exists an unique map A → 1)"]
+      ;; [:div "   - multiplying by terminal obj 1 gives back the original obj"]
+      ;; [:div "   - dual to terminal obj 1 is the initial obj; Top and Bottom objs"]
+      ;; [:div "   i.e. any one-element set (= singleton) is terminal"]
+      ;; [:div "   DTTO for poset 1 is such an object that any other obj is below it"]
+      ;; [:div ""]
+      ;; [:div "   - ? monoindal structure on objs ?"]
+      ;; [:div "*** Localy CCC: for every obj X sliced category is a CCC"]
+      ;; [:div "** Bi-Cartesian Closed Category BCCC: Algebra of Types can be made here"]
+      ;; [:div "*** has coproduct for every pair of objs"]
+      ;; [:div "*** has initial obj"]
+      ;; [:div ""]
+      ;; [:div "** Universal Mapping Property (UMP) - The 'double' triangle of Product"]
+      ;; [:div "   Consists of Initial and Terminal mapping (morphism)"]
+      ;; [:div ""]
+      ;; [:div "   Universal Construction - 3 steps (? the triangle ?):"]
+      ;; [:div "   1. Define a pattern:"]
+      ;; [:div ""]
+      ;; [:div "         Z'  (Z' x A) ---\\"]
+      ;; [:div "         ⎢       ⎢        \\"]
+      ;; [:div "       h ⎢       ⎢id       \\ g'"]
+      ;; [:div "         ⎢       ⎢          \\"]
+      ;; [:div "    a=>b ↓       ↓           ↘"]
+      ;; [:div "         Z   (Z x A) -------> B"]
+      ;; [:div "                 A      g"]
+      ;; [:div ""]
+      ;; [:div "    g' = g ∘ (h x id)"]
+      ;; [:div ""]
+      ;; [:div "   2. Define ranking between matches"]
+      ;; [:div "   3. The best match is \"our guy\""]
+      ]}]
 
-   [collapse/ui
+   #_[collapse/ui
     {:id "id1"
      :title "* A Crash Course in Category Theory - Bartosz Milewski https://www.youtube.com/watch?v=JH_Ou17_zyU"
      :content
@@ -503,6 +482,7 @@
        "    Strict:     Surjection from X to Y but no bijection from Y to X; |X| < |Y| (? double usage of some Ys ?, \"strictly bigger\")"
        ])}]
 
+   #_
    [collapse/ui
     {:id "id2"
      :title "* Ultimatelly the human lang to talk about ideas is the lang of math."
@@ -514,6 +494,7 @@
        "  CT looks nicer: no numbers, it's about ideas"
        ])}]
 
+   #_
    [collapse/ui
     {:id "id3"
      :title "Programming - understanding the meaning i.e. semantics: what does it mean"

@@ -1,10 +1,10 @@
 (defproject notes "0.1.0-SNAPSHOT"
   :dependencies
   [[org.clojure/clojure "1.9.0"]
-   [org.clojure/clojurescript "1.10.339"]
+   [org.clojure/clojurescript "1.10.439"]
    [reagent "0.8.1"]
-   [re-frame "0.10.5"]
-   [garden "1.3.5"]
+   [re-frame "0.10.6"]
+   [garden "1.3.6"]
    [ns-tracker "0.3.1"]
    [re-pressed "0.2.2"]
    [utils "0.9.3"]
@@ -39,13 +39,13 @@
   :profiles
   {:dev
    {:dependencies [[binaryage/devtools "0.9.10"]
-                   [figwheel-sidecar "0.5.16"]
-                   [cider/piggieback "0.3.8"]]
+                   [figwheel-sidecar "0.5.17"]
+                   [cider/piggieback "0.3.10"]]
 
-    :plugins      [[lein-figwheel "0.5.16"]
+    :plugins      [[lein-figwheel "0.5.17"]
                    ;; collection of nREPL middleware designed to enhance CIDER
-                   [refactor-nrepl "2.4.0-SNAPSHOT"]
-                   [cider/cider-nrepl "0.17.0"]]}
+                   [refactor-nrepl "2.4.0"]
+                   [cider/cider-nrepl "0.18.0"]]}
 
    :prod {}}
 
@@ -63,9 +63,9 @@
                     :external-config      {:devtools/config {:features-to-install :all}}
                     :install-deps true
                     :npm-deps {
-                               :react "15.6.1"
-                               :react-dom "15.6.1"
-                               :katex "0.10.0-beta"
+                               :react "16.6.3"
+                               :react-dom "16.6.3"
+                               :katex "0.10.0"
                                :react-katex "2.0.2"}}}
 
 
@@ -79,7 +79,7 @@
                     :pretty-print    false
                     :install-deps true
                     :npm-deps {
-                               :react "15.6.1"
-                               :react-dom "15.6.1"
-                               :katex "0.10.0-beta"
+                               :react "16.6.3"
+                               :react-dom "16.6.3"
+                               :katex "0.10.0"
                                :react-katex "2.0.2"}}}]})

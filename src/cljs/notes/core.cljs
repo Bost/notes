@@ -20,10 +20,9 @@
     (enable-console-print!)
     (println "dev mode")))
 
-(defn render-math [{:keys [id expr]}]
-  (let [elem (.getElementById js/document id)]
-    (k/render expr elem)
-    (js/renderMathInElement elem)))
+(defn render-math [elem]
+  #_(js/renderMathInElement elem)
+  (k/render (.-innerText elem) elem))
 
 ;; see LightTable/src/lt/util/dom.cljs
 (defn lazy-nl-via-item
@@ -35,8 +34,9 @@
 
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
-  (views/main-panel)
-  (js/window.renderMathInElement js/document.body))
+  (reagent/render [views/main-panel] (.getElementById js/document "app"))
+  (doall
+   (map render-math (.getElementsByClassName js/document "m"))))
 
 (defn ^:export init []
   (re-frame/dispatch-sync [::events/initialize-db])

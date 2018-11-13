@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset='utf-8'>
+        <title>Katex example</title>
+        <link rel="stylesheet" href="katex/katex.min.css">
+        <script src="katex/katex.min.js" type="text/javascript"></script>
+        <script src="katex/contrib/auto-render.min.js"
+                type="text/javascript"></script>
+    </head>
+    <body>
+        <script>
+            element = document.body;
+            katex.render("c = \\pm\\sqrt{a^2 + b^3}", element, {
+            throwOnError: false
+            });
+        </script>
+    </body>
+</html>
