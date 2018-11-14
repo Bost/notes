@@ -9,10 +9,8 @@
    {:id "id27"
     :title "* Functor Category:"
     :content
-    (join
-     "\n"
-     [
-      "** pick two Cats C, D; ftors from C to D form a Functor Category [C,D]:"
-      "*** ??? Objs are ftors"
-      "*** ??? Arrows are NaT (Natural Transformation)"
-      ])}])
+    [:div
+     [:div "** pick two Cats C, D; ftors from C to D form a Functor Category [C,D]:"]
+     [:div "*** ??? Objs are ftors"]
+     [:div "*** ??? Arrows are NaT (Natural Transformation)"]
+     ]}])

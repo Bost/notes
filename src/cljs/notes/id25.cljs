@@ -9,13 +9,11 @@
    {:id "id25"
     :title "* Monadic return-function: universally polymorphic function - works for any type"
     :content
-    (join
-     "\n"
-     [
-      "  https://www.youtube.com/watch?v=CfoaY2Ybf8M&t=7m"
-      ""
-      "** Generalisation of everything. They sub-sume everything else, like adjuctions at a higher level"
-      "** Limits Colimits Monads Adjunctions can be redefined as Khan Extentions"
-      "** Intuition of Khan Extentions is dificult - they are more abstract than monads"
-      "*** Adjunction between a Product and a Function Type is Currying"
-      ])}])
+    [:div
+     [:div "  https://www.youtube.com/watch?v=CfoaY2Ybf8M&t=7m"]
+     [:div ""]
+     [:div "** Generalisation of everything. They sub-sume everything else, like adjuctions at a higher level"]
+     [:div "** Limits Colimits Monads Adjunctions can be redefined as Khan Extentions"]
+     [:div "** Intuition of Khan Extentions is dificult - they are more abstract than monads"]
+     [:div "*** Adjunction between a Product and a Function Type is Currying"]
+     ]}])

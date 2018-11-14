@@ -9,12 +9,10 @@
    {:id "id8"
     :title "* Types and fns:"
     :content
-    (join
-     "\n"
-     [
-      "** types: sets of vals; it's not about \"how\" - fn body, it's about \"what\" - fn declaration; abstraction"
-      "   For mathematicians Set Theory is a low level assembly lang of maths - recenty started to be avoided:"
-      "*** HoTT"
-      "*** CT (Sets form a Category)"
-      "** (pure) fns: mappings between sets"
-      ])}])
+    [:div
+      [:div "** types: sets of vals; it's not about \"how\" - fn body, it's about \"what\" - fn declaration; abstraction"]
+      [:div "   For mathematicians Set Theory is a low level assembly lang of maths - recenty started to be avoided:"]
+      [:div "*** HoTT"]
+      [:div "*** CT (Sets form a Category)"]
+      [:div "** (pure) fns: mappings between sets"]
+      ]}])

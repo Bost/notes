@@ -9,9 +9,7 @@
    {:id "id5"
     :title "* Denotational:"
     :content
-    (join
-     "\n"
-     [
-      "  programs can be translated to math - math is a better lang for humans"
-      "  \"Programm has a meaning i.e. it's a piece of math: operation, declaration, definition\""
-      ])}])
+    [:div
+     [:div "  programs can be translated to math - math is a better lang for humans"]
+     [:div "  \"Programm has a meaning i.e. it's a piece of math: operation, declaration, definition\""]
+     ]}])

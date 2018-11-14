@@ -9,11 +9,9 @@
    {:id "id9"
     :title "* Categorical view (simplification):"
     :content
-    (join
-     "\n"
-     [
-      "** fns: arrows between objs"
-      "** types: objs whose props are defined by arrows"
-      "*** composition(!) \"this-fn after that-fn\", associativity, identity"
-      "- no deeper specification of the Fns and Objs are"
-      ])}])
+    [:div
+      [:div "** fns: arrows between objs"]
+      [:div "** types: objs whose props are defined by arrows"]
+      [:div "*** composition(!) \"this-fn after that-fn\", associativity, identity"]
+      [:div "- no deeper specification of the Fns and Objs are"]
+      ]}])
