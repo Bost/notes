@@ -80,49 +80,44 @@
                  }}
         rpe])]))
 
-(defn div-math [{:keys [id expr]}]
-  #_(re-frame/dispatch [::events/set-math id] expr)
-  [:div {:id id}])
-
 (defn main-panel []
-  #_[:div {:id "main-panel"}
-   [:div "line1 " [:span {:class "m"} "c = \\pm\\sqrt{a^2 + b^1}"] " after"]
-   [:div "line2 " [:span {:class "m"} "c = \\pm\\sqrt{c^2 + d^2}"] " after"]]
-  ;; ◦ \\circ
-
   [:div
    [:button {:on-click (fn []
                          (collapse/doall-render-math)
                          (re-frame/dispatch [:notes/toggle-render-math]))}
     "(doall-render-math)"]
-   [:div " "]
-   [display-re-pressed-example]
-   ;; id0/ui
-   id1/ui
-   ;; id2/ui
-   ;; id3/ui
-   ;; id4/ui
-   ;; id5/ui
-   ;; id6/ui
-   ;; id7/ui
-   ;; id8/ui
-   ;; id9/ui
-   ;; id10/ui
-   ;; id11/ui
-   ;; id12/ui
-   ;; id13/ui
-   ;; id14/ui
-   ;; id15/ui
-   ;; id16/ui
-   ;; id17/ui
-   ;; id18/ui
-   ;; id19/ui
-   ;; id20/ui
-   ;; id21/ui
-   ;; id22/ui
-   ;; id23/ui
-   ;; id24/ui
-   ;; id25/ui
-   ;; id26/ui
-   ;; id27/ui
-   ])
+   #_[:div " "]
+   ;; [display-re-pressed-example]
+   #_[:div
+    id1/ui
+    ]
+   [:div
+    id0/ui
+    id1/ui
+    id2/ui
+    id3/ui
+    id4/ui
+    id5/ui
+    id6/ui
+    id7/ui
+    id8/ui
+    id9/ui
+    id10/ui
+    id11/ui
+    id12/ui
+    id13/ui
+    id14/ui
+    id15/ui
+    id16/ui
+    id17/ui
+    id18/ui
+    id19/ui
+    id20/ui
+    id21/ui
+    id22/ui
+    id23/ui
+    id24/ui
+    id25/ui
+    id26/ui
+    id27/ui
+    ]])
