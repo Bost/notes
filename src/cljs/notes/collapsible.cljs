@@ -39,11 +39,14 @@
 
 (defn e
   ([txt    ] (ex txt (let [exp0 txt
-                       exp1 (replace exp0 "◦" "\\circ")
-                       exp2 (replace exp1 "->" "\\rarr")
-                       exp3 (replace exp2 "<-" "\\larr")
-                       exp4 (replace exp3 "|" "\\lvert")]
-                   exp4)))
+                           exp1 (replace exp0 "◦" "\\circ")
+                           exp2 (replace exp1 "->" "\\rarr")
+                           exp3 (replace exp2 "<-" "\\larr")
+                           exp4 (replace exp3 "|" "\\lvert")
+                           exp5 (replace exp4 "•" "\\bullet")
+                           exp6 (replace exp5 "~" "\\thicksim")
+                           ]
+                   exp6)))
   ([txt ktx] (ex txt ktx)))
 
 (defn render-math [render? el]
