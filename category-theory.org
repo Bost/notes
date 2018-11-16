@@ -113,8 +113,7 @@ LibreOffice Math
     - type constructor: takes a type α and creates a list of α
 
     Sum (+) and Product (*) are algebraic data types (Algebra on Types):
-    List(α) = Nil | Const α (List α) ~ L(α) = 1 + α * L(α) => .. => L(α) = 1 / (1 - α) =
-    = 1 + α + α*α + α*α*α + ...
+    List(α) = Nil | Const α (List α) ~ L(α) = 1 + α * L(α) => .. => L(α) = 1 / (1 - α) = 1 + α + α*α + α*α*α + ...
 
     Is Product a Ftor?
 
@@ -122,18 +121,18 @@ LibreOffice Math
     to the same value; invertibility of a function to a fibre
 
     Lifting (= applying functor):
-                F f
-          F a ------> F b
-           ↑           ↑
-           |     f     |
-           a --------> b
+                Ff
+          Fa -------> Fb
+           ↑          ↑
+           |    f     |
+           a  ------> b
 
 *** Natural Transformation: a way of/for comparing functors
    - maps Morphism(s) to commuting diagram(s) (naturality squares). i.e.
      comorphism: replacing a square of (complex) relations with a single morphism
    - picks a morphish between two Objs; Picking 1 morphishm from a homset
    - Components of NaT
-   - Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: α b * F f
+   - Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: αb ◦ Ff
 
    - Every polymorphic Fn is a NaT: it is defined for every single type
      i.e. multiplication (Product) of all Objs in a Category. The same goes for

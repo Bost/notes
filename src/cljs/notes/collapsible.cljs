@@ -38,12 +38,16 @@
   [:span {:class "m" :ktx (k/renderToString ktx) :txt txt} txt])
 
 (def replacements
-  [["◦" "\\circ"]
+  [
+   ["◦" "\\circ"]
    ["->" "\\rarr"]
    ["<-" "\\larr"]
    ["|" "\\mid"]
    ["•" "\\bullet"]
    ["~" "\\thicksim"]
+   ;; this is a hack
+   [" α " "~α~"]
+   [" α" "~α"]
    ])
 
 (def replace-all
