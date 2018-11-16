@@ -21,10 +21,7 @@
      [:div "    Two ways of defining semantics:"]
      [:div "    - Operational: \"How it executes\"; reduction relation: " [e "e1 → e2"]]
      [:div "    - Denotational: mapping into mathematics; interpretation of terms: " [e "⟦e⟧ = ?"]]
-     [:div "      e.g.: " [e "⟦ v : τ  ⊢  v : τ ⟧ = idτ "] "- i.e. the meaning of "
-      [e "⟦...⟧"] " is an identity on "
-      [e "τ"] " i.e. an access to variable "
-      [e "v"]]
+     [:div "      e.g.: " [e "⟦ v : τ  ⊢  v : τ ⟧ = idτ "] "- i.e. the meaning of " [e "⟦...⟧"] " is an identity on " [e "τ"] " i.e. an access to variable " [e "v"]]
      [:div " "]
      [:div "*** Cartesian Product CP: set of all pairs"]
      [:div "    Relation: A subset of CP; doesn't have a directionality; n-to-n relation"]
@@ -57,34 +54,34 @@
      [:div "      function type is an exponential which is a data type; (Exponential is like an interated product)"]
      [:div "    - Endofunctor [C,C]: A ftor that maps a category to itself"]
      [:div " "]
-
-     [:div [e
-            (join "\n"
-                  [
-                   "  | Covariant Functor                       | Contravariant Functor                      |"
-                   "  |-----------------------------------------+--------------------------------------------|"
-                   "  | G f :: (a → b) → (G a → G b)            | G f :: (a → b) → (G b → G a)               |"
-                   "  | Same directions in src and dst Category | Reverse directions in src and dst Category |"
-                   ]
-                  )
-            (join "\n"
-                  [
-                   ;; "\\def\\arraystretch{1.2}"
-                   ;; "\\boxed"
-                   "\\begin{array}{cc}"
-                   "| & \\text{Covariant Functor}                       & | & \\text{Contravariant Functor}                      & | \\\\"
-                   "| & G f :: (a → b) → (G a → G b)                    & | & G f :: (a → b) → (G b → G a)                       & | \\\\"
-                   "| & \\text{Same directions in src and dst Category} & | & \\text{Reverse directions in src and dst Category} & |"
-                   "\\end{array}"
-                   ])
-            ]]
+     [:div
+      [e
+       (join
+        "\n"
+        [
+         "  | Covariant Functor                       | Contravariant Functor                      |"
+         "  |-----------------------------------------+--------------------------------------------|"
+         "  | G f :: (a → b) → (G a → G b)            | G f :: (a → b) → (G b → G a)               |"
+         "  | Same directions in src and dst Category | Reverse directions in src and dst Category |"
+         ]
+        )
+       (join
+        "\n"
+        [
+         ;; "\\def\\arraystretch{1.2}"
+         ;; "\\boxed"
+         "\\begin{array}{cc}"
+         "| & \\text{Covariant Functor}                       & | & \\text{Contravariant Functor}                      & | \\\\"
+         "| & G f :: (a → b) → (G a → G b)                    & | & G f :: (a → b) → (G b → G a)                       & | \\\\"
+         "| & \\text{Same directions in src and dst Category} & | & \\text{Reverse directions in src and dst Category} & |"
+         "\\end{array}"
+         ])]]
      [:div " "]
-
-     [:div "*** Bifunctor: C × D → E"]
+     [:div "*** Bifunctor: " [e "C × D → E"]]
      [:div "    Product is a bifunctor, i.e. it takes 2 objs and produces 3rd obj, but it"]
      [:div "    also takes two morphisms and produces 3rd morphism which is a product of"]
      [:div "    these two morphisms"]
-     [:div "**** List: List(α) = Nil | Const α (List α)"]
+     [:div "**** List: " [e "List(α) = Nil | Const α (List α)"]]
      [:div "    - most intuitive example of a Ftor"]
      [:div "    - type constructor: takes a type α and creates a list of α"]
      [:div " "]

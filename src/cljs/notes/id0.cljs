@@ -42,7 +42,6 @@
      [:div "   DTTO for poset 1 is such an object that any other obj is below it"]
      [:div " "]
      [:div "   - ? monoindal structure on objs ?"]
-     ;; TODO continue comparison with category-theory.org
      [:div "*** Localy CCC: for every obj X sliced category is a CCC"]
      [:div "** Bi-Cartesian Closed Category BCCC: Algebra of Types can be made here"]
      [:div "*** has coproduct for every pair of objs"]
