@@ -77,8 +77,8 @@ LibreOffice Math
     Directionality (arrow from->to i.e. functions are not symetric); n-to-1 relation
     - Inverse of function is not guaranteed to exist
 
-    Domain, Codomain, Image
-*** Morphisms:
+    Domain, Codomain, Image:
+*** Morphisms
     | Latin      | Greek                | Meaning                    | Functor  |
     |------------+----------------------+----------------------------+----------|
     | injective  | monic / monomorphism | distinct Xs -> distinct Ys | Faithful |
