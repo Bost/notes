@@ -81,7 +81,7 @@
      [:div "    Product is a bifunctor, i.e. it takes 2 objs and produces 3rd obj, but it"]
      [:div "    also takes two morphisms and produces 3rd morphism which is a product of"]
      [:div "    these two morphisms"]
-     [:div "**** List: " [e "List(α) = Nil | Const α (List α)"]]
+     [:div "**** List: " [e "List(α) = Nil | Const α (List α)" "List(α) = Nil | Const α (List α)"]]
      [:div "    - most intuitive example of a Ftor"]
      [:div "    - type constructor: takes a type α and creates a list of α"]
      [:div " "]

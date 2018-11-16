@@ -2,7 +2,7 @@
   (:require [reagent.core :as reagent]
             [re-frame.core :as re-frame]
             [katex :as k :refer [render renderMathInElement renderToString]]
-            [clojure.string :refer [replace]]
+            #_[clojure.string :as cs]
             [utils.core :refer [dbgv dbgi]]))
 
 (re-frame/reg-event-db
@@ -37,16 +37,31 @@
 (defn ex [txt ktx]
   [:span {:class "m" :ktx (k/renderToString ktx) :txt txt} txt])
 
+(def replacements
+  [["◦" "\\circ"]
+   ["->" "\\rarr"]
+   ["<-" "\\larr"]
+   ["|" "\\mid"]
+   ["•" "\\bullet"]
+   ["~" "\\thicksim"]
+   ])
+
+(def replace-all
+  (fn [exp replacements]
+    (loop [rec-exp exp
+           rec-replacements replacements
+           acc 0]
+      (if (or (> acc 100) ;; do not run forever if something's screwed
+              (empty? rec-replacements))
+        rec-exp
+        (let [[src dst] (first rec-replacements)]
+          (recur
+           (clojure.string/replace rec-exp src dst)
+           (rest rec-replacements)
+           (inc acc)))))))
+
 (defn e
-  ([txt    ] (ex txt (let [exp0 txt
-                           exp1 (replace exp0 "◦" "\\circ")
-                           exp2 (replace exp1 "->" "\\rarr")
-                           exp3 (replace exp2 "<-" "\\larr")
-                           exp4 (replace exp3 "|" "\\lvert")
-                           exp5 (replace exp4 "•" "\\bullet")
-                           exp6 (replace exp5 "~" "\\thicksim")
-                           ]
-                   exp6)))
+  ([txt    ] (ex txt (replace-all txt replacements)))
   ([txt ktx] (ex txt ktx)))
 
 (defn render-math [render? el]
