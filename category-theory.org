@@ -294,10 +294,10 @@ LibreOffice Math
    - Sheaf (Garbe, Faisceau, zvazok)- tool for tracking locally defined data
    - Presheaf: Functor F: Cop → Set
 
-*** Indexed Monad: IxMonad: ibind: m i j a -> (a -> m j k b) -> m i k b
+*** Indexed Monad: IxMonad: ibind: m i j a → (a → m j k b) → m i k b
    state composition
    Session Types, Dependent Types, Dependent State Types
-*** Curry-Howard-Lambek correspondence: Intuitionistic Logic <-> Type Theory <-> Category Theory:
+*** Curry-Howard-Lambek correspondence: Intuitionistic Logic ↔ Type Theory ↔ Category Theory:
   Function A -> B is a proof of logical implication A => B
   Direct relationship between computer programs and mathematical proofs; from 1940-ties
   Link between Computation and Logic;
@@ -332,7 +332,7 @@ LibreOffice Math
    \"((a => b), a) -> b\" this is modus-ponens in logic \"a => b ∧ a -> b\"
 
     | True proposition | False proposition | Conjunction a ∧ b         | Disjunction a ∨ b           | Implication a => b   |
-    | Unit-type        | Void-type         | Pair (a,b)                | Either a b                  | Function type a -> b |
+    | Unit-type        | Void-type         | Pair (a,b)                | Either a b                  | Function type a → b   |
     | sinhabited       | not inhabited     |                           |                             |                      |
     | Terminal obj     | Initial obj       | Categorical product a × b | Categorical coproduct a ⎥ b | Exponential obj b^a  |
 

@@ -5,7 +5,6 @@
    [notes.events :as events]
    [notes.subs :as subs]
    [notes.collapsible :as collapse]
-   [notes.n01-Category-Theory :as n01-CAT]
    [notes.id1  :as n1]
    [notes.id2  :as n2]
    [notes.id3  :as n3]

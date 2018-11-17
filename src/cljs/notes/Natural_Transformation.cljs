@@ -1,4 +1,4 @@
-(ns notes.n021-Natural-Transformations
+(ns notes.Natural-Transformation
   (:require
    [notes.collapsible :refer [e] :as collapse]
    [clojure.string :refer [join]]
@@ -7,21 +7,22 @@
 ;; [e ""]
 (def ui
   [collapse/ui
-   {:id "id021-NATs"
-    :title "*** Natural Transformation: a way of/for comparing functors"
+   {:id "nat"
+    :title "Natural Transformation (NaT)"
     :content
     [:div
+     [:div "A way of/for comparing Functors"]
      [:div "   - maps Morphism(s) to commuting diagram(s) (naturality squares). i.e."]
      [:div "     comorphism: replacing a square of (complex) relations with a single morphism"]
-     [:div "   - picks a morphish between two Objs; Picking 1 morphishm from a homset"]
+     [:div "   - picks a morphish between two Objs; Picking 1 morphishm from a Homset"]
      [:div "   - Components of NaT"]
      [:div "   - Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: " [e "αb ◦ Ff"]]
      [:div " "]
-     [:div "   - Every polymorphic Fn is a NaT: it is defined for every single type"]
+     [:div "   - Every polymorphic functions is a NaT: it is defined for every single type"]
      [:div "     i.e. multiplication (Product) of all Objs in a Category. The same goes for"]
      [:div "     the dual - the Sum."]
      [:div "   - Functor is a container, NaT repackages the container"]
-     [:div " "]
+     [:div "Naturality condition i.e. the Naturality Square: " [e "Gf ∘ αa = αb ∘ Ff"]]
      [:div "**** Compositons of Natural Transformations"]
      [:div "   See https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf"]
      [:div "   E.g. NaT compositons is scala: https://gist.github.com/Mzk-Levi/752d1e0f2f7f30cd3bda"]
@@ -68,34 +69,4 @@
      [:div " "]
      [:div "     - is associative with an id, and the id coincides with that for vertical"]
      [:div "       composition."]
-     [:div " "]
-     [:div " "]
-     [:div "*** Yoneda Lemma: [C,Set](C(a,-), F) ⋍ F a   also: [C,Set](C(a,-), C(b,-)) ⋍ C(b,a)"]
-     [:div "    - Intuition: NaT and Functor (i.e. Container) can replace each other"]
-     [:div "    - Description of integration over a special Ftor (i.e. Hom Functor)"]
-     [:div " "]
-     [:div "    a - some arbitrary Obj of C"]
-     [:div "    F - some arbitrary Ftor acting on the Obj a"]
-     [:div "    ⋍ - \"naturally isomorphic\" (i.e. a NaT exists such that its components are"]
-     [:div "        all invertible isomorphisms)"]
-     [:div " "]
-     [:div "    Hom functors - Intuition:"]
-     [:div "    - Play some special role in the Category of Ftors"]
-     [:div "    - Serve for the same purposes as Free Monoids"]
-     [:div " "]
-     [:div "    It's enough to define this NaT on one Obj (i.e. set C(a,a)) and moreover"]
-     [:div "    it's enough to define it on one Point in this Set i.e. the Identity on Obj a."]
-     [:div "    The rest of the NaT is transported from this Point."]
-     [:div " "]
-     [:div "    (                     ) ⋍ F a"]
-     [:div "              ⎜                ⎜"]
-     [:div "              ⎜                +-- Container of the Obj a (i.e. the data structure)"]
-     [:div "              +------------------- Polymorphic higher order Function"]
-     [:div " "]
-     [:div "    (∀ x : (a → x) → F x) ⋍ F a"]
-     [:div "              ⎜     ⎜   ⎜      ⎜"]
-     [:div "              ⎜     ⎜   ⎜      +-- Container of the Obj a (i.e data structure)"]
-     [:div "              ⎜     ⎜   +--------- Functor"]
-     [:div "              ⎜     +------------- NaT i.e. Polymorphic Higher Order Function"]
-     [:div "              +------------------- ..."]
      ]}])

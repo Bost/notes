@@ -1,18 +1,19 @@
-(ns notes.n01-Category-Theory
+(ns notes.Category-Theory
   (:require
    [notes.collapsible :refer [e] :as collapse]
    ))
 
 (def ui
   [collapse/ui
-   {:id "id0"
-    :title "* Category Theory: abstract algebra of abstract functions: \"The Arrows Count\""
+   {:id "cat"
+    :title "Category Theory"
     :content
     #_[:div
        [:div "line1"]
        [:div "line2"]]
     ;; [e ""]
     [:div
+     [:div "Abstract algebra of abstract functions: \"The Arrows Count\""]
      [:div "  Category " [e "C = (Obj, Hom, ◦, id)"]]
      [:div "   - " [e "Obj"] ": Class of Objects: A, B, C, ... e.g. Types / Propositions / Algebras / Logic Formulas"]
      [:div "   - " [e "Hom"] ": Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? / Implication between Log. Formulas"]
