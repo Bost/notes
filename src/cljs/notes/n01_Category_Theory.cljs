@@ -1,4 +1,4 @@
-(ns notes.id0
+(ns notes.n01-Category-Theory
   (:require
    [notes.collapsible :refer [e] :as collapse]
    ))
