@@ -2,6 +2,7 @@
   (:require
    [re-frame.core :as re-frame]
    [re-pressed.core :as rp]
+   [cljs_compiler.core :as compiler :refer [_compilation _evaluation-js _evaluation-clj]]
    [notes.events :as events]
    [notes.subs :as subs]
    [notes.collapsible :as collapse]
@@ -79,7 +80,41 @@
                  }}
         rpe])]))
 
+(defn process-input [s]
+  (re-frame/dispatch-sync [::events/input-save s])
+  (_compilation s)
+  (_evaluation-js s)
+  (_evaluation-clj s))
+
+(defn input-ui []
+  [:div "input-ui"
+   [:section
+    [:textarea {:autoFocus true
+                :onChange (fn [s]
+                            (process-input
+                             ;; two dots: clojurescript interop
+                             (.. s -target -value)))}]]])
+
+(defn compile-cljs-ui []
+  (let [[ns [status result]] @(re-frame/subscribe [::subs/compilation])]
+    [:div "compile-cljs" [:div result]]))
+
+(defn evaluate-clj-ui []
+  (let [[ns [status result]] @(re-frame/subscribe [::subs/evaluation-clj])]
+    [:div "evaluate-clj" [:div result]]))
+
+(defn evaluate-js-ui []
+  (let [[ns [status result]] @(re-frame/subscribe [::subs/evaluation-js])]
+    [:div "evaluate-js" [:div result]]))
+
 (defn main-panel []
+  #_[:div {:class "language-klipse"}
+   [input-ui]
+   [compile-cljs-ui]
+   [evaluate-clj-ui]
+   [evaluate-js-ui]
+     #_"(identity 1)"]
+
   [:div
    [:button {:on-click (fn []
                          (collapse/doall-render-math)

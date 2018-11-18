@@ -11,13 +11,12 @@
 (def ui
   [collapse/ui
    {:id "id1"
-    :title "* A Crash Course in Category Theory - Bartosz Milewski https://www.youtube.com/watch?v=JH_Ou17_zyU"
+    :title "A Crash Course in Category Theory - Bartosz Milewski https://www.youtube.com/watch?v=JH_Ou17_zyU"
     :content
     [:div
-     [:div "  https://twitter.com/@bartoszmilewski : Computer Science, Haskell, C++. PhD in Quantum Physics"]
-     [:div " "]
-     [:div "  Most important features of a category: ?, Composability, Identity"]
-     [:div "  Example in programming: Category of Types and Functions (set and functions between sets)"]
+     [:div "https://twitter.com/@bartoszmilewski : Computer Science, Haskell, C++. PhD in Quantum Physics"]
+     [:div "Most important features of a category: Associative composability, Identity"] ;; associativity (x ∗ y) ∗ z = x ∗ (y ∗ z)
+     [:div "Example in programming: Category of Types and Functions (set and functions between sets)"]
      [:div "*** Designing computer language:"]
      [:div "    Semantics must be provided; done by providing operational semantics"]
      [:div "    None of the main prog. languages have (operational semantics) only partially provided;"]
@@ -25,7 +24,7 @@
      [:div "    - Operational: \"How it executes\"; reduction relation: " [e "e1 → e2"]]
      [:div "    - Denotational: mapping into mathematics; interpretation of terms: " [e "⟦e⟧ = ?"]]
      [:div "      e.g.: " [e "⟦ v : τ  ⊢  v : τ ⟧ = idτ "] "- i.e. the meaning of " [e "⟦...⟧"] " is an identity on " [e "τ"] " i.e. an access to variable " [e "v"]]
-     [:div " "]
+     [:div {:class "language-klipse"} "(identity 1)"]
      [:div "*** Cartesian Product CP: set of all pairs"]
      [:div "    Relation: A subset of CP; doesn't have a directionality; n-to-n relation"]
      [:div "*** Functions: (Sets and functions between sets)"]

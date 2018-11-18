@@ -16,3 +16,22 @@
  ::re-pressed-example
  (fn [db _]
    (:re-pressed-example db)))
+
+(re-frame/reg-sub
+ ::compilation
+ (fn [db _]
+   #_(println "::compilation" db)
+   (:compilation db)))
+
+(re-frame/reg-sub
+ ::evaluation-clj
+ (fn [db _]
+   #_(println "::evaluation-clj" db)
+   (:evaluation-clj db)))
+
+(re-frame/reg-sub
+ ::evaluation-js
+ (fn [db _]
+   #_(println "::evaluation-js" db)
+   (:evaluation-js db)))
+
