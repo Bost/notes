@@ -1,8 +1,8 @@
 (ns notes.Yoneda
   (:require
    [notes.collapsible :refer [e] :as collapse]
-   [clojure.string :refer [join]]
-   ))
+   [clojure.string :refer [join]]))
+
 
 ;; [e ""]
 (def ui
@@ -43,10 +43,10 @@
                      "              ⎜    ⎜  ⎜    +-- Container of the Obj a (i.e data structure)"
                      "              ⎜    ⎜  +------- Functor"
                      "              ⎜    +---------- NaT i.e. Polymorphic Higher Order Function"
-                     "              +--------------- ..."
-                     ])
-                   "    (∀ x : (a → x) → Fx) ⋍ Fa"
-                   ]]
+                     "              +--------------- ..."])
+
+                   "    (∀ x : (a → x) → Fx) ⋍ Fa"]]
+
      [:div " "]
      [:div "*** Yoneda Embedding https://youtu.be/JH_Ou17_zyU?t=1h8m9s"]
      [:div "    Idaa: Replace a content of an Obj a (picked i.e. fixed) by a totality of Arrows ending in this Obj. It's content and props."]
@@ -54,5 +54,4 @@
      [:div " "]
      [:div "    Mapping from Obj x to the Set of Arrows x → a:"]
      [:div "    1. for every Obj a I get a different Ftor from C to Set,"]
-     [:div "    2. then vary the Obj a:"]
-     ]}])
+     [:div "    2. then vary the Obj a:"]]}])

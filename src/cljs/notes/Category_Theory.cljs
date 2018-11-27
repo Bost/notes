@@ -1,7 +1,7 @@
 (ns notes.Category-Theory
   (:require
-   [notes.collapsible :refer [e] :as collapse]
-   ))
+   [notes.collapsible :refer [e] :as collapse]))
+
 
 (def ui
   [collapse/ui
@@ -65,5 +65,4 @@
      [:div "    g' = g ∘ (h x id)"]
      [:div " "]
      [:div "   2. Define ranking between matches"]
-     [:div "   3. The best match is \"our guy\""]
-     ]}])
+     [:div "   3. The best match is \"our guy\""]]}])

@@ -1,8 +1,8 @@
 (ns notes.id4
   (:require
    [notes.collapsible :as collapse]
-   [clojure.string :refer [join]]
-   ))
+   [clojure.string :refer [join]]))
+
 
 (def ui
   [collapse/ui
@@ -12,5 +12,4 @@
     [:div
      [:div "  for computers: local, progress oriented"]
      [:div "  Mind machine: We keep on imagining the if-then-else steps."]
-     [:div "  This is bad way - computers are much better at it."]
-     ]}])
+     [:div "  This is bad way - computers are much better at it."]]}])

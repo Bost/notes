@@ -1,8 +1,8 @@
 (ns notes.id19
   (:require
    [notes.collapsible :as collapse]
-   [clojure.string :refer [join]]
-   ))
+   [clojure.string :refer [join]]))
+
 
 (def ui
   [collapse/ui
@@ -13,5 +13,4 @@
      [:div "** i.e. if there's an arrow A -> B, then there must be arrow F(A) -> F(B)"]
      [:div "** may collapse things, preserves unit obj and composition"]
      [:div "** Endofunctor: mapping from the same Cat to the same Cat. Endo ~ inside, \"Endoscopy\""]
-     [:div "   Category of Endofunctors: Cat of ftors from C to C [C,C]"]
-     ]}])
+     [:div "   Category of Endofunctors: Cat of ftors from C to C [C,C]"]]}])

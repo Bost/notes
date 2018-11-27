@@ -1,8 +1,8 @@
 (ns notes.id14
   (:require
    [notes.collapsible :as collapse]
-   [clojure.string :refer [join]]
-   ))
+   [clojure.string :refer [join]]))
+
 
 (def ui
   [collapse/ui
@@ -15,5 +15,4 @@
      [:div "  (corresponds to falsehood in logic)"]
      [:div "** intro: can't be constructed (can't construct a fn returning an elem of empty set)"]
      [:div "   ??? Identity fn on void ???"]
-     [:div "** elim: Void -> A (arrow from; polymorphic fn - works for any type)"]
-     ]}])
+     [:div "** elim: Void -> A (arrow from; polymorphic fn - works for any type)"]]}])

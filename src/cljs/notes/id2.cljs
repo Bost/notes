@@ -1,8 +1,8 @@
 (ns notes.id2
   (:require
    [notes.collapsible :as collapse]
-   [clojure.string :refer [join]]
-   ))
+   [clojure.string :refer [join]]))
+
 
 (def ui
   [collapse/ui
@@ -11,5 +11,4 @@
     :content
     [:div
      [:div "  Formulas, Multiplication, stupid mistakes in deriving, simplification etc."]
-     [:div "  CT looks nicer: no numbers, it's about ideas"]
-     ]}])
+     [:div "  CT looks nicer: no numbers, it's about ideas"]]}])

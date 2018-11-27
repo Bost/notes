@@ -1,8 +1,8 @@
 (ns notes.Natural-Transformation
   (:require
    [notes.collapsible :refer [e] :as collapse]
-   [clojure.string :refer [join]]
-   ))
+   [clojure.string :refer [join]]))
+
 
 ;; [e ""]
 (def ui
@@ -68,5 +68,4 @@
      [:div "         " [e "[(K ◦ α) • (β ◦ F)]A = K(α A) ◦ βFA"]]
      [:div " "]
      [:div "     - is associative with an id, and the id coincides with that for vertical"]
-     [:div "       composition."]
-     ]}])
+     [:div "       composition."]]}])

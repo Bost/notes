@@ -47,8 +47,8 @@
    ["~" "\\thicksim"]
    ;; this is a hack
    [" α " "~α~"]
-   [" α" "~α"]
-   ])
+   [" α" "~α"]])
+
 
 (def replace-all
   (fn [exp replacements]

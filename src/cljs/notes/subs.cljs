@@ -1,4 +1,4 @@
-(ns notes.subs
+ (ns notes.subs
   (:require
    [re-frame.core :as re-frame]))
 
@@ -34,4 +34,3 @@
  (fn [db _]
    #_(println "::evaluation-js" db)
    (:evaluation-js db)))
-

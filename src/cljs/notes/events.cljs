@@ -2,8 +2,8 @@
   (:require
    [re-frame.core :as re-frame]
    [notes.db :as db]
-   [cljs_compiler.core :as compiler :refer [_compilation _evaluation-js _evaluation-clj]]
-   ))
+   [cljs_compiler.core :as compiler :refer [_compilation _evaluation-js _evaluation-clj]]))
+
 
 (re-frame/reg-event-db
  ::initialize-db

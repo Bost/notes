@@ -1,8 +1,8 @@
 (ns notes.id21
   (:require
    [notes.collapsible :as collapse]
-   [clojure.string :refer [join]]
-   ))
+   [clojure.string :refer [join]]))
+
 
 (def ui
   [collapse/ui
@@ -27,5 +27,4 @@
      [:div "A Cat with such pairing and adjunction is called cartesian closed (i.e. this Cat has a function type)"]
      [:div ""]
      [:div "** function intro: lambda"]
-     [:div "** function elim: eval"]
-     ]}])
+     [:div "** function elim: eval"]]}])

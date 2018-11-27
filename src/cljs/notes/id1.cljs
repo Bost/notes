@@ -4,8 +4,8 @@
    [clojure.string :refer [join]]
    [notes.Functor :as ftor]
    [notes.Natural-Transformation :as nat]
-   [notes.Yoneda :as yoneda]
-   ))
+   [notes.Yoneda :as yoneda]))
+
 
 ;; [e ""]
 (def ui
@@ -196,5 +196,4 @@
      [:div "    Surjection: all Ys are used;                                     |X| ≥ |Y| (onto; \"at least as big\")"]
      [:div "    Injective:  distinct Xs → distinct Ys;                           |X| ≤ |Y| (? one-to-one ?)"]
      [:div "    Bijection:  exact pairing between X, Y;                          |X| = |Y| (vzajomne jednoznacne zobrazenie, \"same size\")"]
-     [:div "    Strict:     Surjection from X to Y but no bijection from Y to X; |X| < |Y| (? double usage of some Ys ?, \"strictly bigger\")"]
-     ]}])
+     [:div "    Strict:     Surjection from X to Y but no bijection from Y to X; |X| < |Y| (? double usage of some Ys ?, \"strictly bigger\")"]]}])

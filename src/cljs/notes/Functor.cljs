@@ -1,8 +1,8 @@
 (ns notes.Functor
   (:require
    [notes.collapsible :refer [e] :as collapse]
-   [clojure.string :refer [join]]
-   ))
+   [clojure.string :refer [join]]))
+
 
 ;; [e ""]
 (def ui
@@ -33,9 +33,7 @@
          "  | Covariant Functor                       | Contravariant Functor                      |"
          "  |-----------------------------------------+--------------------------------------------|"
          "  | G f :: (a → b) → (G a → G b)            | G f :: (a → b) → (G b → G a)               |"
-         "  | Same directions in src and dst Category | Reverse directions in src and dst Category |"
-         ]
-        )
+         "  | Same directions in src and dst Category | Reverse directions in src and dst Category |"])
        (join
         "\n"
         [
@@ -45,8 +43,8 @@
          "| & \\text{Covariant Functor}                       & | & \\text{Contravariant Functor}                      & | \\\\"
          "| & G f :: (a → b) → (G a → G b)                    & | & G f :: (a → b) → (G b → G a)                       & | \\\\"
          "| & \\text{Same directions in src and dst Category} & | & \\text{Reverse directions in src and dst Category} & |"
-         "\\end{array}"
-         ])]]
+         "\\end{array}"])]]
+
      [:div " "]
      [:div "*** Bifunctor: " [e "C × D → E"]]
      [:div "    Product is a bifunctor, i.e. it takes 2 objs and produces 3rd obj, but it"]
@@ -94,5 +92,4 @@
      [:div "   The forgetful functor Grp  → Set on the category of groups (G, *, e) is represented by (Z, 1)."]
      [:div "   The forgetful functor Ring → Set on the category of rings is represented by (Z[x], x), the polynomial ring in one variable with integer coefficients."]
      [:div "   The forgetful functor Vect → Set on the category of real vector spaces is represented by (R, 1)."]
-     [:div "   The forgetful functor Top → Set on the category of topological spaces is represented by any singleton topological space with its unique e"]
-     ]}])
+     [:div "   The forgetful functor Top → Set on the category of topological spaces is represented by any singleton topological space with its unique e"]]}])

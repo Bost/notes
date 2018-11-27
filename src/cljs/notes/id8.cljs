@@ -1,8 +1,8 @@
 (ns notes.id8
   (:require
    [notes.collapsible :as collapse]
-   [clojure.string :refer [join]]
-   ))
+   [clojure.string :refer [join]]))
+
 
 (def ui
   [collapse/ui
@@ -14,5 +14,4 @@
       [:div "   For mathematicians Set Theory is a low level assembly lang of maths - recenty started to be avoided:"]
       [:div "*** HoTT"]
       [:div "*** CT (Sets form a Category)"]
-      [:div "** (pure) fns: mappings between sets"]
-      ]}])
+      [:div "** (pure) fns: mappings between sets"]]}])

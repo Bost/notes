@@ -1,8 +1,8 @@
 (ns notes.id16
   (:require
    [notes.collapsible :as collapse]
-   [clojure.string :refer [join]]
-   ))
+   [clojure.string :refer [join]]))
+
 
 (def ui
   [collapse/ui
@@ -14,5 +14,4 @@
      [:div "- tuple (pair aka record) is better than tripple"]
      [:div "??? loop-over-all-types: for each of all possible types: 38:20"]
      [:div "** intro: A -> B -> (A,B) tupple"]
-     [:div "** elim: (A,B) -> A, (A,B) -> B"]
-     ]}])
+     [:div "** elim: (A,B) -> A, (A,B) -> B"]]}])

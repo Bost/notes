@@ -8,5 +8,4 @@
         {:input ""}
         {:compilation ""}
         {:evaluation-js ""}
-        {:evaluation-clj ""}
-        ))
+        {:evaluation-clj ""}))

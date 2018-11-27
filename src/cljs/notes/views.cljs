@@ -32,8 +32,8 @@
    [notes.id24 :as n24]
    [notes.id25 :as n25]
    [notes.id26 :as n26]
-   [notes.id27 :as n27]
-   ))
+   [notes.id27 :as n27]))
+
 
 (defn dispatch-keydown-rules []
   (re-frame/dispatch
@@ -43,12 +43,12 @@
                     {:which 69} ;; e
                     {:which 76} ;; l
                     {:which 76} ;; l
-                    {:which 79} ;; o
-                    ]]]
+                    {:which 79}]]] ;; o
+
 
      :clear-keys
-     [[{:which 27} ;; escape
-       ]]}]))
+     [[{:which 27}]]}])) ;; escape
+
 
 (defn display-re-pressed-example []
   (let [re-pressed-example (re-frame/subscribe [::subs/re-pressed-example])]
@@ -76,8 +76,8 @@
                  :background-color "lightgrey"
                  :border           "solid 1px grey"
                  :border-radius    "4px"
-                 :margin-top       "16px"
-                 }}
+                 :margin-top       "16px"}}
+
         rpe])]))
 
 (defn process-input [s]
@@ -109,10 +109,10 @@
 
 (defn main-panel []
   #_[:div {:class "language-klipse"}
-   [input-ui]
-   [compile-cljs-ui]
-   [evaluate-clj-ui]
-   [evaluate-js-ui]
+     [input-ui]
+     [compile-cljs-ui]
+     [evaluate-clj-ui]
+     [evaluate-js-ui]
      #_"(identity 1)"]
 
   [:div
@@ -123,11 +123,11 @@
    #_[:div " "]
    ;; [display-re-pressed-example]
    #_[:div
-    id1/ui
-    ]
+      id1/ui]
+
    [:div
     ;; n01/ui
-    n1/ui
+    n1/ui]])
     ;; n021-NATs/ui
     ;; n2/ui
     ;; n3/ui
@@ -155,4 +155,3 @@
     ;; n25/ui
     ;; n26/ui
     ;; n27/ui
-    ]])
