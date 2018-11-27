@@ -16,9 +16,6 @@
    [spyscope "0.1.6"]]
 
 
-  :plugins [[lein-cljsbuild "1.1.7"]
-            [lein-garden "0.2.8"]]
-
   :min-lein-version "2.5.3"
 
   :source-paths ["src/clj" "src/cljs"]
@@ -40,14 +37,7 @@
   {:dev
    {:dependencies [[binaryage/devtools "0.9.10"]
                    [figwheel-sidecar "0.5.17"]
-                   [cider/piggieback "0.3.10"]]
-
-    :plugins      [[lein-figwheel "0.5.17"]
-                   ;; collection of nREPL middleware designed to enhance CIDER
-                   [refactor-nrepl "2.4.0"]
-                   [cider/cider-nrepl "0.18.0"]]}
-
-   :prod {}}
+                   [cider/piggieback "0.3.10"]]}}
 
   :cljsbuild
   {:builds
