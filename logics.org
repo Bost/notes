@@ -1,15 +1,18 @@
 :Logic:
 Study of the principles of inference and reasoning. It's not about "what is true".
 
-Inductive inference "we try to inference something about a phenomenon we don't understand; what properties it might have"
-Deductive inference "we know that something is true; what else can we derive from it"
+Inductive inference:
+- We try to inference something about a phenomenon we don't understand. What properties it might have?
+Deductive inference:
+- Something is true. What else can we derive from it?
 
 Inference rules:
   Premise
 ------------
  Conclusion
 
-From the fact(s) above the line we can deduce / assert the fact below the line. It may contain are schematic variables.
+From the fact(s) / premise above the line we can deduce / assert / derive the
+fact / conclusion below the line. It may contain are schematic variables.
 
 TODO List of Substructural logics
 :END:
