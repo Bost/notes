@@ -1,3 +1,19 @@
+:Logic:
+Study of the principles of inference and reasoning. It's not about "what is true".
+
+Inductive inference "we try to inference something about a phenomenon we don't understand; what properties it might have"
+Deductive inference "we know that something is true; what else can we derive from it"
+
+Inference rules:
+  Premise
+------------
+ Conclusion
+
+From the fact(s) above the line we can deduce / assert the fact below the line. It may contain are schematic variables.
+
+TODO List of Substructural logics
+:END:
+
 * Examples of Logics:
   | Logical Judgement   | Branch of Logic      | Computation phenomenon                                      |
   |---------------------+----------------------+-------------------------------------------------------------|
@@ -38,7 +54,7 @@
   | s,t,u,v,w       | terms                      |                                                   |
   | x,y,z           | variables for terms        |                                                   |
 
-* Linear Logic: limited resources: construction / descruction
+* Linear Logic: state & limited resources: construction / descruction
   ? Unique pointers in C++ ?, "Stuff moved from place to place and it cannot be used twice only once"
 ** Grammar:
    A, B, C ::= X | A ⊸ B | A ⊗ B | A & B | A ⊕ B | !A
@@ -90,4 +106,3 @@
 **** Model checking of TLA+ specs
 ** Informal Specification: e.g. pretty-printing can't be exactly specified
    Set of rules/requiremens/axioms is usually a bad spec: consequesces of rules are hard to understand
-
