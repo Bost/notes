@@ -329,7 +329,7 @@ LibreOffice Math
    Uncurry: (a -> (b -> c)) -> ((a,b) -> c)
 
    Eval: a function of two args / a pair
-   \"((a => b), a) -> b\" this is modus-ponens in logic \"a => b ∧ a -> b\"
+   \"((a => b), a) -> b\" this is modus-ponens in logic \"(a => b) ∧ a -> b\"
 
     | True proposition | False proposition | Conjunction a ∧ b         | Disjunction a ∨ b           | Implication a => b   |
     | Unit-type        | Void-type         | Pair (a,b)                | Either a b                  | Function type a → b   |

@@ -124,7 +124,7 @@
      [:div "   Uncurry: (a → (b → c)) → ((a,b) → c)"]
      [:div " "]
      [:div "   Eval: a function of two args / a pair"]
-     [:div "   \"((a => b), a) → b\" this is modus-ponens in logic \"a => b ∧ a → b\""]
+     [:div "   \"((a => b), a) → b\" this is modus-ponens in logic \"(a => b) ∧ a → b\""]
      [:div " "]
      [:div "    | True proposition | False proposition | Conjunction a ∧ b         | Disjunction a ∨ b           | Implication a => b   |"]
      [:div "    | Unit-type        | Void-type         | Pair (a,b)                | Either a b                  | Function type a → b  |"]
