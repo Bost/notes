@@ -235,3 +235,19 @@ Communication w-/wo- Letters
   sudo chown -R $USER:$USER /usr/lib/android-sdk/
   rsync -azv $host:/usr/lib/android-sdk/ /usr/lib/
 #END_SRC
+
+* Siraj Raval: The Problem with Blockchain
+  https://www.youtube.com/watch?v=U2EYT5P4LvM
+  humaniq - identifiable bank account for everyone
+  bloom - risk assesement and credit scoring, credit worthiness
+  bibliograph BABB - save / transfer / invest wealth creating cycle of wealth generation
+  MintHealth - medical data in the blockchain (DLT)
+  SUKU - blockchain for supplychain: where / when a product has been delivered
+  Voatz - voting in federal election in Virginia
+  ICO vs ETO: Initial Coin Offering vs Equity Token Offering
+
+  Sharding - spliting network state into partitions (shards) containing independent piece of state and tx-history - higher through put
+  Quadratic Sharding - ???
+
+  Side chaing pegging into BTC blockchain - 2nd layer of operability
+  Proof of Stake side chaned into BTC blockchain to create another DAPP
