@@ -139,10 +139,18 @@ private int returnCountOfDifferentPixels(String pic1, String pic2) {
 #+END_SRC
 :END:
 
-:Brick-a-Brack:
+:Brick-à-Brack:
+"a selection of items of modest value, often sold in street markets and charity
+shops. In colloquial English: Knick knack."
+
 What is: David Allen's GTD (Getting Things Done) system
 Cheatsheet as orgmode document
 Formating with **/-/* etc.
+yacy, opensearchserver.com
+SciFi literature
+speechace - accent recognition and correction software
+system for algorithm building blocks: don't reinvent the wheel
+Browser based Virtual Machines
 
 http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/
 Sequence of QR Codes/ graphical elements (pyramide, cube, sphere, toroid, etc.)
