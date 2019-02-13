@@ -120,7 +120,8 @@ LibreOffice Math
     Inlining and refactoring are the opposite.** Fibre: a buch of points mapped
     to the same value; invertibility of a function to a fibre
 
-    Lifting (= applying functor):
+    Lifting (= applying functor) transforms a function into a corresponding
+    function within another (usually more general) setting
                 Ff
           Fa -------> Fb
            ↑          ↑
