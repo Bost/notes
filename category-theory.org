@@ -1,6 +1,8 @@
 TODO one of MathML LaTeX KaTex MathJax (AsciiMath), see Apache Open Office,
 LibreOffice Math
 
+Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
+
 * Category Theory: abstract algebra of abstract functions: \"The Arrows Count\"
   Category C = (Obj, Hom, ◦, id)
    - Obj: Class of Objects: A, B, C, ... e.g. Types / Propositions / Algebras / Logic Formulas
