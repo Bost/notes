@@ -204,9 +204,12 @@ Bodil Stokke
   πₙ(S-k-upper-index) Homotopy group exists even if n > k; measuring higher dimensional holes in k dimensional sphere
   "Patri" - containment relation
 
-* Homotopy Type Theory HoTT: paths in a space
-  Equivalence is equivalent to equality (For all types A,B):
-  Π A,B : Type.(A ≃ B) ≃ (A = B)
+* Homotopy Type Theory HoTT:
+- Allows mathematical proofs to be translated into a computer programming language for computer proof assistants much more easily than before
+- Notion of paths in a space
+- The Univalence Axiom: Identity is equivalent to equivalence, in particular: equivalent types are identical
+  For all types A,B:
+  Π A,B : Type.(A = B) ≃ (A ≃ B)
 
 * Continuations:
   call-cc:  call with current continuation
