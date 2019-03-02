@@ -1,3 +1,16 @@
+* Complexity classes & Zoo: https://complexityzoo.uwaterloo.ca/Complexity_Zoo
+  NP      - decision problems solvable by non-deterministic TM (Turing Machine) in polynomial time
+  PSPACE  - decision problems solvable by     deterministic TM                  in polynomial space
+** computational problem type: e.g. problems: decision, function, counting, optimization, promise, etc.
+** model of computational: e.g. deterministic TM (Turing Machine), non-deterministic TM, boolean circuits, quantum TM, monotone circuits
+** bounded resource(s): e.g. space, time
+** bounds: e.g. polynomial time, logarithmic space, constant depth
+
+* Unary languages
+* Sparse languages
+* Untyped Pi π-Calculus
+Business Process Modeling
+
 * Untyped Lambda λ-Calculus
   I.e. Formal calculus for manipulating functions; Turing-complete (can simulate any Turing machine)
 
