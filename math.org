@@ -1,8 +1,4 @@
 * bric-à-brac
-  recursive calls - creates "triangle" on the stack
-  stack space constrains can be avoided by "registering" (functions params turned to registers)
-  meaning of call with continuations is important for type theory
-  complicated controll structure - implement at first with continuations and then traditionally
   solution of a Differential Equations (DE) is a function, not value.
 
   The Little Typer
@@ -211,8 +207,3 @@ Bodil Stokke
   For all types A,B:
   Π A,B : Type.(A = B) ≃ (A ≃ B)
 
-* Continuations:
-  call-cc:  call with current continuation
-  First-class continuations - in Scheme and Ruby
-** Continuation Passing Style (CPS) – CPS is just a style of coding and any
-   language supporting anonymous functions will allow this style
