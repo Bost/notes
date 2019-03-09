@@ -473,7 +473,7 @@ Data types:
 
 * Monoidal Cat: (objs, arrows, prods) looks kinda like multiplication / addition
 
-Algebra of types ...
+  Algebra of types ...
 
 * Functor: structure preserving mapping between Cats (objs to objs, fns to fns):
 ** i.e. if there's an arrow A -> B, then there must be arrow F(A) -> F(B)
@@ -486,7 +486,7 @@ Algebra of types ...
 *** ??? Objs are ftors
 *** ??? Arrows are NaT (Natural Transformation)
 
-* Adjunction: A pair of ftors: one ftor F adjunct to another ftor G; F and U are not an inverse of each other
+* Adjunction: A pair of ftors: one ftor F adjunct to another ftor G; F and G are not an inverse of each other
   Obj in a Cat of Types such that: For every A, B there is a set of arrows from
   A to B. This obj is called function-type. It can be defined by an adjuction of
   two endo-ftors

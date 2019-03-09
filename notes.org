@@ -1,80 +1,3 @@
-* Java & Clojure: clojure in emacs
-** Clojure
-*** recursion: Clojure Tail Call Optimizer https://github.com/cjfrisz/clojure-tco
-*** dashing: drawing with certain velocity
-*** cljart <3
-*** defrecord is a cartesian product
-*** GeoREPL
-*** Cursive
-*** Chicago Clojure - 2017-06-21: Stuart Halloway on Repl Driven Development:
-**** TODO Don't throw things away - save a file once in a month
-**** Visualisation - Desktop GUI: Seesaw - Live at REPL (as a custom inspector)
-**** Start java with a clojure.jar and hook up a REPL with custom prompt
-**** specs + graphvis: https://github.com/jebberjeb/specviz
-**** Lisp Continuations: replace this exception with some value and keep going
-***** JVM doesn't have continuations so Clojure doesn't have them neither
-*** CJUG - 2017-06-20 - Stuart Halloway on Clojure in 10 Big Ideas: 18:43
-** Java & JVM
-*** Based on stack-based processor
-*** Statically typed instruction set
-*** http://www.root.cz/clanky/pohled-pod-kapotu-jvm-5-cast-popis-virtualniho-stroje-javy/
-** scala
-*** xml - first class support
-*** default get/set methods & constructor
-*** function & imperative
-*** staticaly typed
-*** traits (multiple inheritance)
-*** clojuredocs - graphic representation of example
-#+BEGIN_SRC clojure
-lein swank-wrap 4005 webcli.server
-slime-connect
-(let [x 1]
-  (swank.core/break))
-#+END_SRC
-*** Rick Hickey - TBD (To Better Do)
-  - User interfaces on top of programatic interfaces
-  - use composable services
-  - abstractions; no bespoke protocols and formats
-* Clojure AI
-** Eric Weinstein: Machine learning with Clojure and Apache Stark
-*** Apache Spark:
-**** Supervised learning, Generalization
-**** Classification or regression, generalizing from labeled to unlabeled data
-**** cluster computing framework - ideal for large data sets
-***** RDD Resilient Distrib Dataset
-***** Datase: RDD + Spark SQL execution engine
-***** DataFrame: dataset ordanized into named columns
-** Los Angeles police stop data, 600.000 http://bit.ly/2f9jVwn
-** Decision Trees (binary classifier) robust in noise; good for binary
-** No universal approach
-** Racist data leads to racist machines - bias problem
-** What's Deep learning
-*** neural networks - computational architecture modeled after brain
-**** many layers
-**** vanishing/exploding gradient problem
-*** Vanishing && Exploding Gradients
-*** Convolutional networks; stacks of feature maps
-*** Max Pooling / Downsampling
-*** Alternating Layers
-** Tale of two DSLs: Flambo vs. Sparkling
-*** 1. Flambo
-*** 2. Sparkling
-*** DL4J - Deep Learning 4 Java
-** nuroko.com - Nuroko Toolkit: Advanced machine learning (painting)
-** Peter Norvig / Stuart Russell: Artificial Intelligence: A Modern Approach
-** Syntax of log files changes (speach) sentence structure: subject comes at the end of line
-** Music: what is the relation between harmony and ryth; model of musical creativity
-** How represent speach context?
-** Create experience dbase
-** Android App: picture comparision
-** put together: chess ** languages **
-** Problemy tazke pre comp, lahke pre cloveka (arimaa - until 2020, etc.)
-** Lang words as a sound: celular automata: cell dyies / is born: play a tone
-** Society by Niklas Luhmann: (People are) recursing, self referencing systems of communication
-*** specialisations
-*** mastery vs. novelty (expensive)
-*** dealing with complexity of options
-
 * org mode tagging                                                      :org:
 
 | col1    | col2          |
@@ -144,8 +67,6 @@ private int returnCountOfDifferentPixels(String pic1, String pic2) {
 shops. In colloquial English: Knick knack."
 
 What is: David Allen's GTD (Getting Things Done) system
-Cheatsheet as orgmode document
-Formating with **/-/* etc.
 yacy, opensearchserver.com
 SciFi literature
 speechace - accent recognition and correction software
@@ -157,16 +78,14 @@ Sequence of QR Codes/ graphical elements (pyramide, cube, sphere, toroid, etc.)
 Responsive, mobile-first web sites https://www.w3schools.com/bootstrap/
 
 Open Source Ecology: https://en.wikipedia.org/wiki/Open_Source_Ecology
-Code as a Lego Block http://www.ted.com/talks/ayah_bdeir_building_blocks_that_blink_beep_and_teach.html
+
 Smart the collective brain http://www.ted.com/talks/matt_ridley_when_ideas_have_sex.html
-bicycle clickies
 time bank
 dokaz identity bez udania mena
 google lab tags http://www.chromeweblab.com/en-GB/lab-tag-explorer
 stuff to datomic - ?git has no services? http://www.youtube.com/watch?v=ROor6_NGIWU 58:00
 
 klipse
-Smart Contacts, Cardano
 GraphQL
 Pure vs. mostly harmless functions
 :END:
@@ -235,19 +154,3 @@ Communication w-/wo- Letters
   sudo chown -R $USER:$USER /usr/lib/android-sdk/
   rsync -azv $host:/usr/lib/android-sdk/ /usr/lib/
 #END_SRC
-
-* Siraj Raval: The Problem with Blockchain
-  https://www.youtube.com/watch?v=U2EYT5P4LvM
-  humaniq - identifiable bank account for everyone
-  bloom - risk assesement and credit scoring, credit worthiness
-  bibliograph BABB - save / transfer / invest wealth creating cycle of wealth generation
-  MintHealth - medical data in the blockchain (DLT)
-  SUKU - blockchain for supplychain: where / when a product has been delivered
-  Voatz - voting in federal election in Virginia
-  ICO vs ETO: Initial Coin Offering vs Equity Token Offering
-
-  Sharding - spliting network state into partitions (shards) containing independent piece of state and tx-history - higher through put
-  Quadratic Sharding - ???
-
-  Side chaing pegging into BTC blockchain - 2nd layer of operability
-  Proof of Stake side chaned into BTC blockchain to create another DAPP

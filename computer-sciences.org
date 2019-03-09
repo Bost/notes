@@ -178,7 +178,6 @@ Proposition = ???
   A user can write WhyML programs directly and get correct-by-construction OCaml programs through an automated extraction mechanism
 
 
-
 * Trinity 1. Logic & Proof Theory: Philosophy; 2. Type Theory: Computer Science; 3. Category Theory: Mathematics
 * Proof Theory: Proof of soundness, proof of completeness
 * PT 1 - Judgements & Propositions
