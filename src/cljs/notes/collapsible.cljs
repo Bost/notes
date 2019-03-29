@@ -88,26 +88,9 @@
 (defn panel [id title & children]
   (let [s (reagent/atom {:open false})]
     (fn [id title & children]
-      (let [open? @(re-frame/subscribe [:notes/panel-state id])
-            child-height (:child-height @s)]
+      (let [open? @(re-frame/subscribe [:notes/panel-state id])]
         ;; (.log js/console "open?" open?)
-        [:div
-         [:div {:on-click (fn [] (re-frame/dispatch [:notes/toggle-panel id]))
-                :style {:background-color "#ddd"
-                        :padding "0 1em"}}
-          [:div {:style {:float "right"}}
-           (if open? "-" "+")]
-          title]
-         [:div {:style  {:overflow "hidden"
-                         ;; :transition "max-height 0.8s"
-                         :max-height (if open? child-height 0)}}
-          [:div {:ref (fn [e]
-                        (when e
-                          (swap! s assoc :child-height (.-clientHeight e))))
-                 :style {:background-color "#eee"
-                         :padding "0 1em"}}
-           (let [key-id (gensym)]
-             (into [:div {:key key-id}] children))]]]))))
+        [:details [:summary title] children]))))
 
 (defn ui [{:keys [id title content]}]
   #_(.log js/console "id" id)

@@ -6,194 +6,200 @@
    [notes.Natural-Transformation :as nat]
    [notes.Yoneda :as yoneda]))
 
-
 ;; [e ""]
 (def ui
   [collapse/ui
    {:id "id1"
-    :title "A Crash Course in Category Theory - Bartosz Milewski https://www.youtube.com/watch?v=JH_Ou17_zyU"
+    :title "
+A Crash Course in Category Theory - Bartosz Milewski https://www.youtube.com/watch?v=JH_Ou17_zyU"
     :content
-    [:div
-     [:div "https://twitter.com/@bartoszmilewski : Computer Science, Haskell, C++. PhD in Quantum Physics"]
-     [:div "Most important features of a category: Associative composability, Identity"] ;; associativity (x ∗ y) ∗ z = x ∗ (y ∗ z)
-     [:div "Example in programming: Category of Types and Functions (set and functions between sets)"]
-     [:div "*** Designing computer language:"]
-     [:div "    Semantics must be provided; done by providing operational semantics"]
-     [:div "    None of the main prog. languages have (operational semantics) only partially provided;"]
-     [:div "    Two ways of defining semantics:"]
-     [:div "    - Operational: \"How it executes\"; reduction relation: " [e "e1 → e2"]]
-     [:div "    - Denotational: mapping into mathematics; interpretation of terms: " [e "⟦e⟧ = ?"]]
-     [:div "      e.g.: " [e "⟦ v : τ  ⊢  v : τ ⟧ = idτ "] "- i.e. the meaning of " [e "⟦...⟧"] " is an identity on " [e "τ"] " i.e. an access to variable " [e "v"]]
-     [:div {:class "language-klipse"} "(identity 1)"]
-     [:div "*** Cartesian Product CP: set of all pairs"]
-     [:div "    Relation: A subset of CP; doesn't have a directionality; n-to-n relation"]
-     [:div "*** Functions: (Sets and functions between sets)"]
-     [:div "    Pure: must be memoizable (lookup table)"]
-     [:div "    Total: defined for all arguments"]
-     [:div "    Partial: defined only for some arguments"]
-     [:div "    Directionality (arrow \"from → to\" i.e. functions are not symetric); n-to-1 relation"]
-     [:div "    - Inverse of function is not guaranteed to exist"]
-     [:div " "]
-     [:div "    Domain, Codomain, Image"]
-     [:div "*** Morphisms:"]
-     [:div "    | Latin      | Greek                | Meaning                   | Functor  |"]
-     [:div "    |------------+----------------------+---------------------------+----------|"]
-     [:div "    | injective  | monic / monomorphism | distinct Xs → distinct Ys | Faithful |"]
-     [:div "    | surjective | epic / epimorphism   | all Ys are used           | Full     |"]
-     [:div " "]
-     ftor/ui
-     nat/ui
-     yoneda/ui
-     [:div " "]
-     [:div "*** Khan Extentions: the next abstraction level"]
-     [:div " "]
-     [:div "*** Adjunctions: weakening of \"equality\" of Categories"]
-     [:div "    \"inverse\" is defined only for functions not functors"]
-     [:div "**** e.g. Currying: from a Pair to Function type"]
-     [:div "*** Adjointness - constructing / generating principle"]
-     [:div "    - Adjunctions/Adjoins are monads ???"]
-     [:div "    Adjoin examples:"]
-     [:div "    (-) x A (product) ⊣ (-)^A (exponential)"]
-     [:div "    '+' (coproduct) ⊣ '∆' (pairing) ⊣ 'x' (product)"]
-     [:div "    induction, recursion, Natural Numbers (inductively defined), Lists, ..."]
-     [:div "    conjunction, disjunction, True, False, Exponentiation"]
-     [:div "    Quantifiers: ∀ Every, ∃ Exists; Σ Sigma, Π Pi"]
-     [:div " "]
-     [:div "*** Fibre: a buch of points mapped to the same value; invertibility of a function to a fibre"]
-     [:div "*** Abstraction: i.e. non-invertibility"]
-     [:div "   - from all properties (i.e. all points of a fibre) I'm interested only in one"]
-     [:div "   - e.g. I'm not interested in what was the exact input value of a function,"]
-     [:div "     I'm interested only if it was an even or odd value"]
-     [:div "*** Modeling: mapping / injecting"]
-     [:div "*** HomSet: " [e "HomC(A,B) = {f: A → B}"] " - set of all morphisms " [e "A → B"] " in a category C (Objs of C don't need to be sets)"]
-     [:div "   External vs. Internal HomSet"]
-     [:div " "]
-     [:div "*** Free Monoid: has an unique mapping to every other monoid"]
-     [:div "*** Homomorphism: structure-preserving mapping between 2 algebraic structures (e.g. monoids, groups, rings, vector spaces)."]
-     [:div "    f(m * n) = f(m) * f(n)"]
-     [:div " "]
-     [:div "    Individual monoids themselves give category"]
-     [:div "    Monoids with homomorphisms give category"]
-     [:div " "]
-     [:div "*** Kleisli category:"]
-     [:div "   Monad: return: a → m a; bind: m a → (a → m b) → m b"]
-     [:div "     You can operate on IO Monad"]
-     [:div "     You can't extract anything from IO Monad (it's lost)"]
-     [:div "     Monoind in Category of Endofunctors"]
-     [:div "   Comonad: (w a → b) → (w b → c) → (w a → c)"]
-     [:div "     You can extract from IO Monad"]
-     [:div "     You can't put anything to IO Monad"]
-     [:div "*** Topos: a type of a Category being able to be a replacement for Set Theory; provides among other things a notion of a Subse"]
-     [:div "*** TODO:"]
-     [:div "   - Subobject Classifier etc.: see Bartosz's blog"]
-     [:div "   - Sheaf (Garbe, Faisceau, zvazok)- tool for tracking locally defined data"]
-     [:div "   - Presheaf: Functor F: Cop → Set"]
-     [:div " "]
-     [:div "*** Indexed Monad: IxMonad: ibind: m i j a → (a → m j k b) → m i k b"]
-     [:div "   state composition"]
-     [:div "   Session Types, Dependent Types, Dependent State Types"]
-     [:div "*** Curry-Howard-Lambek correspondence: Intuitionistic Logic ↔ Type Theory ↔ Category Theory:"]
-     [:div "  Function A → B is a proof of logical implication A => B"]
-     [:div "  Direct relationship between computer programs and mathematical proofs; from 1940-ties"]
-     [:div "  Link between Computation and Logic;"]
-     [:div "  Proofs-as-programs and propositions- or formulae-as-types interpretation;"]
-     [:div "  Proofs (= Programs) can be executed;"]
-     [:div "  Typed lambda calculi derived from the Curry–Howard-Lambek paradigm led to software like Coq;"]
-     [:div "  Curry-Howard-Lambek correspondence might lead to unification between mathematical logic and foundational computer science;"]
-     [:div "  Popular approach: use monads to segregate provably terminating from potentially non-terminating code"]
-     [:div " "]
-     [:div "    | INTUITIONISTIC (Constructive) LOGIC (Howard)   | TYPE THEORY - Functional Programming (Curry)                         | CATEGORY THEORY (Lambek) |"]
-     [:div "    |------------------------------------------------+----------------------------------------------------------------------+--------------------------|"]
-     [:div "    | Proposition of some type - (something is true) | Type (contract - a set of values that passes the contract)           |                          |"]
-     [:div "    | Proof of some type                             | Term (A program - guarded fn)                                        |                          |"]
-     [:div "    | Normalisation (Proof equality)                 | Computation (substitute variable with value)                         |                          |"]
-     [:div "    |------------------------------------------------+----------------------------------------------------------------------+--------------------------|"]
-     [:div "    | P implies Q: P → Q (i.e. there exists one)    | paricular fn of fn of P-contract to guarded fn of Q-contract: P → Q |                          |"]
-     [:div "    | → is constructive implication                 | → is function from-to                                               |                          |"]
-     [:div "    | false      → false (implies)                  | {}       →  {}  no values (empty set); contract cannot be satisfied |                          |"]
-     [:div "    | false      → true                             | {}       →  {.} (one element set)                                   |                          |"]
-     [:div "    | true       → true                             | {.}      →  {.} (identity function)                                 |                          |"]
-     [:div "    | true  (not →) false (does not imply)          | {.} (not →) {}                                                      |                          |"]
-     [:div " "]
-     [:div " "]
-     [:div "** Correspondance of type habitation and proposition"]
-     [:div "   inhabited - has elems / members"]
-     [:div "   \"Either a b\" is inhabited if either a or b is inhabited (at least one of them is true / provable)"]
-     [:div " "]
-     [:div "   Curry: ((a,b) → c) → (a → (b → c))"]
-     [:div "   Uncurry: (a → (b → c)) → ((a,b) → c)"]
-     [:div " "]
-     [:div "   Eval: a function of two args / a pair"]
-     [:div "   \"((a => b), a) → b\" this is modus-ponens in logic \"(a => b) ∧ a → b\""]
-     [:div " "]
-     [:div "    | True proposition | False proposition | Conjunction a ∧ b         | Disjunction a ∨ b           | Implication a => b   |"]
-     [:div "    | Unit-type        | Void-type         | Pair (a,b)                | Either a b                  | Function type a → b  |"]
-     [:div "    | sinhabited       | not inhabited     |                           |                             |                      |"]
-     [:div "    | Terminal obj     | Initial obj       | Categorical product a × b | Categorical coproduct a ⎥ b | Exponential obj b^a  |"]
-     [:div " "]
-     [:div " "]
-     [:div "    0 - void type - ?"]
-     [:div "    1 - unit type - 0th-power: terminal obj"]
-     [:div "    2 - bool type (two possible values): 1st-power: the obj itself"]
-     [:div "    3 - int type - 2nd-power: product"]
-     [:div "    4 - real type (if continuum hypothesis holds :-)"]
-     [:div "    5 - ? type"]
-     [:div " "]
-     [:div "    JavaScript & Category Theory: Category == Contracts + Functions guarded by contracts"]
-     [:div " "]
-     [:div "** Set vs. Category theory comparision:"]
-     [:div "   | Set theory                  | Category theory                                          | JavaScript                     |"]
-     [:div "   |-----------------------------+----------------------------------------------------------+--------------------------------|"]
-     [:div "   | membership relation         | -                                                        |                                |"]
-     [:div "   | elements                    | objects                                                  | contracts                      |"]
-     [:div "   | sets                        | categories                                               |                                |"]
-     [:div "   | -                           | morphisms (structure-preserving mapping between objects) | functions guarded by contracts |"]
-     [:div "   | functions                   | functors  (maps between categories)                      |                                |"]
-     [:div "   | equations between elements  | isomorphisms between objects                             |                                |"]
-     [:div "   | equations between sets      | equivalences between categories                          |                                |"]
-     [:div "   | equations between functions | natural transformations (maps between functors)          |                                |"]
-     [:div " "]
-     [:div "   Categorification: process of weakening structure, weakening equalities down to natural isomorphisms and then adding-in rules"]
-     [:div "   that these natural isomorphisms have to follow (so it behaves well)"]
-     [:div "   Counting number of elements in sets is decategorification; from category we get set or from set we get a number"]
-     [:div " "]
-     [:div "   Monoid homomorphisms: a function between the sets of monoid elements that preserved the monoid structure"]
-     [:div "   Monoidal functors:    a functor between categories that preserves the monoidal structure (should preserve multiplication)"]
-     [:div "   from functor(prodn([x, y, ..])) to prodn([functor(x), functor(y), ..])"]
-     [:div "   Monoidal monad:       ???"]
-     [:div " "]
-     [:div "   Functor:"]
-     [:div "   \"forget the indexing (domain functor)\""]
-     [:div " "]
-     [:div "*** Contract = Object"]
-     [:div "*** Product: examples:"]
-     [:div "    Objects   - numbers"]
-     [:div "    Morphisms - functions 'less/greater or equal than'"]
-     [:div " "]
-     [:div "*** Isomorphism (bijection when f is a function on set / sets):"]
-     [:div "  ∀ f: X → Y  there ∃ g: Y → X such that g ∘ f = idX and f ∘ g = idY; idX, idY are identity morphisms on X, Y"]
-     [:div "  (f is invertible and g is the inverse of f)"]
-     [:div " "]
-     [:div "** Category theory - Modeling (new vocabulary)"]
-     [:div "   | hierarchies                | partial orders     |"]
-     [:div "   | symmetries                 | group elements ?   |"]
-     [:div "   | data models                | categories         |"]
-     [:div "   | agent actions              | monoid actions     |"]
-     [:div "   | local-to-global principles | sheaves (lanovica) |"]
-     [:div "   | self-similarity            | operads            |"]
-     [:div "   | context                    | monads             |"]
-     [:div " "]
-     [:div " "]
-     [:div "** olog = ontology log"]
-     [:div "   Different branches of mathematics can be formalized"]
-     [:div "   into categories. These categories can then be connected together by functors. And the"]
-     [:div "   sense in which these functors provide powerful communication of ideas is that facts and"]
-     [:div "   theorems proven in one category can be transferred through a connecting functor to"]
-     [:div "   yield proofs of an analogous theorem in another category. A functor is like a conductor"]
-     [:div "   of mathematical truth."]
-     [:div " "]
-     [:div "*** Mappings: X → Y (Zobrazenia):"]
-     [:div "    Surjection: all Ys are used;                                     |X| ≥ |Y| (onto; \"at least as big\")"]
-     [:div "    Injective:  distinct Xs → distinct Ys;                           |X| ≤ |Y| (? one-to-one ?)"]
-     [:div "    Bijection:  exact pairing between X, Y;                          |X| = |Y| (vzajomne jednoznacne zobrazenie, \"same size\")"]
-     [:div "    Strict:     Surjection from X to Y but no bijection from Y to X; |X| < |Y| (? double usage of some Ys ?, \"strictly bigger\")"]]}])
+    [:span
+     "
+https://twitter.com/@bartoszmilewski : Computer Science, Haskell, C++. PhD in Quantum Physics
+Most important features of a category: Associative composability (x ∗ y) ∗ z = x ∗ (y ∗ z), Identity
+Example in programming: Category of Types and Functions (set and functions between sets)
+*** Designing computer language:
+    Semantics must be provided; done by providing operational semantics
+    None of the main prog. languages have (operational semantics) only partially provided;
+    Two ways of defining semantics:
+    - Operational: \"How it executes\"; reduction relation: " [e "e1 → e2"] "
+    - Denotational: mapping into mathematics; interpretation of terms: " [e "⟦e⟧ = ?"] "
+      e.g.: " [e "⟦ v : τ  ⊢  v : τ ⟧ = idτ "] "- i.e. the meaning of " [e "⟦...⟧"] " is an identity on " [e "τ"] " i.e. an access to variable " [e "v"]
+      #_[:div {:class "language-klipse"} "(identity 1)"] "
+*** Cartesian Product CP: set of all pairs
+    Relation: A subset of CP; doesn't have a directionality; n-to-n relation
+*** Functions: (Sets and functions between sets)
+    Pure: must be memoizable (lookup table)
+    Total: defined for all arguments
+    Partial: defined only for some arguments
+    Directionality (arrow \"from → to\" i.e. functions are not symetric); n-to-1 relation
+    - Inverse of function is not guaranteed to exist
+    Domain, Codomain, Image
+
+*** Morphisms:
+    | Latin      | Greek                | Meaning                   | Functor  |
+    |------------+----------------------+---------------------------+----------|
+    | injective  | monic / monomorphism | distinct Xs → distinct Ys | Faithful |
+    | surjective | epic / epimorphism   | all Ys are used           | Full     |
+
+"
+      ;; ftor/ui
+      ;; nat/ui
+      ;; yoneda/ui
+      "
+*** Khan Extentions: the next abstraction level
+
+*** Adjunctions: weakening of \"equality\" of Categories
+    \"inverse\" is defined only for functions not functors
+**** e.g. Currying: from a Pair to Function type
+*** Adjointness - constructing / generating principle
+    - Adjunctions/Adjoins are monads ???
+    Adjoin examples:
+    (-) x A (product) ⊣ (-)^A (exponential)
+    '+' (coproduct) ⊣ '∆' (pairing) ⊣ 'x' (product)
+    induction, recursion, Natural Numbers (inductively defined), Lists, ...
+    conjunction, disjunction, True, False, Exponentiation
+    Quantifiers: ∀ Every, ∃ Exists; Σ Sigma, Π Pi
+
+*** Fibre: a buch of points mapped to the same value; invertibility of a function to a fibre
+*** Abstraction: i.e. non-invertibility
+   - from all properties (i.e. all points of a fibre) I'm interested only in one
+   - e.g. I'm not interested in what was the exact input value of a function,
+     I'm interested only if it was an even or odd value
+*** Modeling: mapping / injecting
+*** HomSet: " [e "HomC(A,B) = {f: A → B}"] " - set of all morphisms " [e "A → B"] " in a category C (Objs of C don't need to be sets)
+   External vs. Internal HomSet
+
+*** Free Monoid: has an unique mapping to every other monoid
+*** Homomorphism: structure-preserving mapping between 2 algebraic structures (e.g. monoids, groups, rings, vector spaces).
+    f(m * n) = f(m) * f(n)
+
+    Individual monoids themselves give category
+    Monoids with homomorphisms give category
+
+*** Kleisli category:
+   Monad: return: a → m a; bind: m a → (a → m b) → m b
+     You can operate on IO Monad
+     You can't extract anything from IO Monad (it's lost)
+     Monoind in Category of Endofunctors
+   Comonad: (w a → b) → (w b → c) → (w a → c)
+     You can extract from IO Monad
+     You can't put anything to IO Monad
+*** Topos: a type of a Category being able to be a replacement for Set Theory; provides among other things a notion of a Subse
+*** TODO:
+   - Subobject Classifier etc.: see Bartosz's blog
+   - Sheaf (Garbe, Faisceau, zvazok)- tool for tracking locally defined data
+   - Presheaf: Functor F: Cop → Set
+
+*** Indexed Monad: IxMonad: ibind: m i j a → (a → m j k b) → m i k b
+   state composition
+   Session Types, Dependent Types, Dependent State Types
+*** Curry-Howard-Lambek correspondence: Intuitionistic Logic ↔ Type Theory ↔ Category Theory:
+  Function A → B is a proof of logical implication A => B
+  Direct relationship between computer programs and mathematical proofs; from 1940-ties
+  Link between Computation and Logic;
+  Proofs-as-programs and propositions- or formulae-as-types interpretation;
+  Proofs (= Programs) can be executed;
+  Typed lambda calculi derived from the Curry–Howard-Lambek paradigm led to software like Coq;
+  Curry-Howard-Lambek correspondence might lead to unification between mathematical logic and foundational computer science;
+  Popular approach: use monads to segregate provably terminating from potentially non-terminating code
+
+    | INTUITIONISTIC (Constructive) LOGIC (Howard)   | TYPE THEORY - Functional Programming (Curry)                         | CATEGORY THEORY (Lambek) |
+    |------------------------------------------------+----------------------------------------------------------------------+--------------------------|
+    | Proposition of some type - (something is true) | Type (contract - a set of values that passes the contract)           |                          |
+    | Proof of some type                             | Term (A program - guarded fn)                                        |                          |
+    | Normalisation (Proof equality)                 | Computation (substitute variable with value)                         |                          |
+    |------------------------------------------------+----------------------------------------------------------------------+--------------------------|
+    | P implies Q: P → Q (i.e. there exists one)     | paricular fn of fn of P-contract to guarded fn of Q-contract: P → Q  |                          |
+    | → is constructive implication                  | → is function from-to                                                |                          |
+    | false      → false (implies)                   | {}       →  {}  no values (empty set); contract cannot be satisfied  |                          |
+    | false      → true                              | {}       →  {.} (one element set)                                    |                          |
+    | true       → true                              | {.}      →  {.} (identity function)                                  |                          |
+    | true  (not →) false (does not imply)           | {.} (not →) {}                                                       |                          |
+
+
+** Correspondance of type habitation and proposition
+   inhabited - has elems / members
+   \"Either a b\" is inhabited if either a or b is inhabited (at least one of them is true / provable)
+
+   Curry: ((a,b) → c) → (a → (b → c))
+   Uncurry: (a → (b → c)) → ((a,b) → c)
+
+   Eval: a function of two args / a pair
+   \"((a => b), a) → b\" this is modus-ponens in logic \"(a => b) ∧ a → b\"
+
+    | True proposition | False proposition | Conjunction a ∧ b         | Disjunction a ∨ b           | Implication a => b   |
+    | Unit-type        | Void-type         | Pair (a,b)                | Either a b                  | Function type a → b  |
+    | sinhabited       | not inhabited     |                           |                             |                      |
+    | Terminal obj     | Initial obj       | Categorical product a × b | Categorical coproduct a ⎥ b | Exponential obj b^a  |
+
+
+    0 - void type - ?
+    1 - unit type - 0th-power: terminal obj
+    2 - bool type (two possible values): 1st-power: the obj itself
+    3 - int type - 2nd-power: product
+    4 - real type (if continuum hypothesis holds :-)
+    5 - ? type
+
+    JavaScript & Category Theory: Category == Contracts + Functions guarded by contracts
+
+** Set vs. Category theory comparision:
+   | Set theory                  | Category theory                                          | JavaScript                     |
+   |-----------------------------+----------------------------------------------------------+--------------------------------|
+   | membership relation         | -                                                        |                                |
+   | elements                    | objects                                                  | contracts                      |
+   | sets                        | categories                                               |                                |
+   | -                           | morphisms (structure-preserving mapping between objects) | functions guarded by contracts |
+   | functions                   | functors  (maps between categories)                      |                                |
+   | equations between elements  | isomorphisms between objects                             |                                |
+   | equations between sets      | equivalences between categories                          |                                |
+   | equations between functions | natural transformations (maps between functors)          |                                |
+
+   Categorification: process of weakening structure, weakening equalities down to natural isomorphisms and then adding-in rules
+   that these natural isomorphisms have to follow (so it behaves well)
+   Counting number of elements in sets is decategorification; from category we get set or from set we get a number
+
+   Monoid homomorphisms: a function between the sets of monoid elements that preserved the monoid structure
+   Monoidal functors:    a functor between categories that preserves the monoidal structure (should preserve multiplication)
+   from functor(prodn([x, y, ..])) to prodn([functor(x), functor(y), ..])
+   Monoidal monad:       ???
+
+   Functor:
+   \"forget the indexing (domain functor)\"
+
+*** Contract = Object
+*** Product: examples:
+    Objects   - numbers
+    Morphisms - functions 'less/greater or equal than'
+
+*** Isomorphism (bijection when f is a function on set / sets):
+  ∀ f: X → Y  there ∃ g: Y → X such that g ∘ f = idX and f ∘ g = idY; idX, idY are identity morphisms on X, Y
+  (f is invertible and g is the inverse of f)
+
+** Category theory - Modeling (new vocabulary)
+   | hierarchies                | partial orders     |
+   | symmetries                 | group elements ?   |
+   | data models                | categories         |
+   | agent actions              | monoid actions     |
+   | local-to-global principles | sheaves (lanovica) |
+   | self-similarity            | operads            |
+   | context                    | monads             |
+
+
+** olog = ontology log
+   Different branches of mathematics can be formalized
+   into categories. These categories can then be connected together by functors. And the
+   sense in which these functors provide powerful communication of ideas is that facts and
+   theorems proven in one category can be transferred through a connecting functor to
+   yield proofs of an analogous theorem in another category. A functor is like a conductor
+   of mathematical truth.
+
+*** Mappings: X → Y (Zobrazenia):
+    Surjection: all Ys are used;                                     |X| ≥ |Y| (onto; \"at least as big\")
+    Injective:  distinct Xs → distinct Ys;                           |X| ≤ |Y| (? one-to-one ?)
+    Bijection:  exact pairing between X, Y;                          |X| = |Y| (vzajomne jednoznacne zobrazenie, \"same size\")
+    Strict:     Surjection from X to Y but no bijection from Y to X; |X| < |Y| (? double usage of some Ys ?, \"strictly bigger\")
+
+" ;; there must be an extra empty line otherwise the last line won't be shown
+]      
+     }])

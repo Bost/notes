@@ -17,13 +17,24 @@
          };
         </script>
         <style>
+         /* https://disco.bu.edu/~tsl/using-tex-fonts-in-html/ */
+         body {
+             /* 1.2 * 12px = 19.2px */
+             font: 1.2em cmr10;
+         }
          div {
-             font-family: monospace;
-             font-size: x-small;
+             line-height: 1.5;
              white-space: pre;
          }
          .katex {
              font-size: 1.1em;
+         }
+         /* Optional styling */
+         summary::-webkit-details-marker {
+             color: blue;
+         }
+         summary:focus {
+             outline-style: none;
          }
         </style>
     </head>
