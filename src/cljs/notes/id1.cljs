@@ -1,6 +1,6 @@
 (ns notes.id1
   (:require
-   [notes.collapsible :refer [e] :as collapse]
+   [notes.views :refer [e] :as collapse]
    [clojure.string :refer [join]]
    [notes.Functor :as ftor]
    [notes.Natural-Transformation :as nat]

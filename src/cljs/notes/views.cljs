@@ -5,35 +5,99 @@
    [cljs_compiler.core :as compiler :refer [_compilation _evaluation-js _evaluation-clj]]
    [notes.events :as events]
    [notes.subs :as subs]
-   [notes.collapsible :as collapse]
-   [notes.id1  :as n1]
-   [notes.id2  :as n2]
-   [notes.id3  :as n3]
-   [notes.id4  :as n4]
-   [notes.id5  :as n5]
-   [notes.id6  :as n6]
-   [notes.id7  :as n7]
-   [notes.id8  :as n8]
-   [notes.id9  :as n9]
-   [notes.id10 :as n10]
-   [notes.id11 :as n11]
-   [notes.id12 :as n12]
-   [notes.id13 :as n13]
-   [notes.id14 :as n14]
-   [notes.id15 :as n15]
-   [notes.id16 :as n16]
-   [notes.id17 :as n17]
-   [notes.id18 :as n18]
-   [notes.id19 :as n19]
-   [notes.id20 :as n20]
-   [notes.id21 :as n21]
-   [notes.id22 :as n22]
-   [notes.id23 :as n23]
-   [notes.id24 :as n24]
-   [notes.id25 :as n25]
-   [notes.id26 :as n26]
-   [notes.id27 :as n27]))
+   [reagent.core :as reagent]
+   [katex :as k :refer [render renderMathInElement renderToString]]
+   [utils.core :refer [dbgv dbgi]]
+   ))
 
+(re-frame/reg-event-db
+ :notes/toggle-render-math
+ (fn [db [_ _]]
+   (update-in db [:render-math] not)))
+
+(re-frame/reg-event-db
+  :notes/toggle-panel
+  (fn [db [_ id]]
+    (update-in db [:open-panels id] not)))
+
+(re-frame/reg-sub
+ :notes/render-math-state
+ (fn [db [_ _]]
+   ;; (.log js/console "db" (pr-str db))
+   (get-in db [:render-math])))
+
+(re-frame/reg-sub
+  :notes/panel-state
+  (fn [db [_ id]]
+    ;; (.log js/console "db" (pr-str db))
+    (get-in db [:open-panels id])))
+
+(defn component [id content]
+  #_(.log js/console "content" content)
+  (let [s (reagent/atom 0)]
+    (js/setInterval #(swap! s inc) 1000)
+    (fn []
+      [:div #_@s content])))
+
+(defn ex [txt ktx]
+  [:span {:class "m" :ktx (k/renderToString ktx) :txt txt} txt])
+
+(def replacements
+  [
+   ["◦" "\\circ"]
+   ["{" "\\{"]
+   ["}" "\\}"]
+   ["->" "\\rarr"]
+   ["<-" "\\larr"]
+   ["|" "\\mid"]
+   ["•" "\\bullet"]
+   ["~" "\\thicksim"]
+   ;; this is a hack
+   [" α " "~α~"]
+   [" α" "~α"]])
+
+(def replace-all
+  (fn [exp replacements]
+    (loop [rec-exp exp
+           rec-replacements replacements
+           acc 0]
+      (if (or (> acc 100) ;; do not run forever if something's screwed
+              (empty? rec-replacements))
+        rec-exp
+        (let [[src dst] (first rec-replacements)]
+          (recur
+           (clojure.string/replace rec-exp src dst)
+           (rest rec-replacements)
+           (inc acc)))))))
+
+(defn e
+  ([txt    ] (ex txt (replace-all txt replacements)))
+  ([txt ktx] (ex txt ktx)))
+
+(defn render-math [render? el]
+  ;; see k/renderMathInElement, (k/render exp3 el)
+  ;; (.log js/console (.getAttribute el "txt"))
+  ;; (.log js/console (.getAttribute el "ktx"))
+  (set! (.-innerHTML el)
+        (if render?
+          (.getAttribute el "ktx")
+          (.getAttribute el "txt"))))
+
+(defn doall-render-math []
+  (let [render-math? @(re-frame/subscribe [:notes/render-math-state])]
+    #_(.log js/console "render-math?" render-math?)
+    (doall
+     (let [elems (.getElementsByClassName js/document "m")]
+       #_(.log js/console "render-math in" (count elems) "elems")
+       (map #(render-math render-math? %) elems)))))
+
+(defn ui [{:keys [id title content]}]
+  #_(.log js/console "id" id)
+  (let [open? @(re-frame/subscribe [:notes/panel-state id])
+        title "title"
+        content "content"]
+    ;; (.log js/console "open?" open?)
+    [:details [:summary title] content]))
 
 (defn dispatch-keydown-rules []
   (re-frame/dispatch
@@ -44,11 +108,8 @@
                     {:which 76} ;; l
                     {:which 76} ;; l
                     {:which 79}]]] ;; o
-
-
      :clear-keys
      [[{:which 27}]]}])) ;; escape
-
 
 (defn display-re-pressed-example []
   (let [re-pressed-example (re-frame/subscribe [::subs/re-pressed-example])]
@@ -117,41 +178,8 @@
 
   [:div
    [:button {:on-click (fn []
-                         (collapse/doall-render-math)
+                         (doall-render-math)
                          (re-frame/dispatch [:notes/toggle-render-math]))}
     "(doall-render-math)"]
-   #_[:div " "]
-   ;; [display-re-pressed-example]
-   #_[:div
-      id1/ui]
-
-   [:div
-    ;; n01/ui
-    n1/ui]])
-    ;; n021-NATs/ui
-    ;; n2/ui
-    ;; n3/ui
-    ;; n4/ui
-    ;; n5/ui
-    ;; n6/ui
-    ;; n7/ui
-    ;; n8/ui
-    ;; n9/ui
-    ;; n10/ui
-    ;; n11/ui
-    ;; n12/ui
-    ;; n13/ui
-    ;; n14/ui
-    ;; n15/ui
-    ;; n16/ui
-    ;; n17/ui
-    ;; n18/ui
-    ;; n19/ui
-    ;; n20/ui
-    ;; n21/ui
-    ;; n22/ui
-    ;; n23/ui
-    ;; n24/ui
-    ;; n25/ui
-    ;; n26/ui
-    ;; n27/ui
+   (ui {:title "title" :content "content"})
+   #_[display-re-pressed-example]])

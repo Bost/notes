@@ -1,6 +1,6 @@
 (ns notes.Category-Theory
   (:require
-   [notes.collapsible :refer [e] :as collapse]))
+   [notes.views :refer [e] :as collapse]))
 
 
 (def ui

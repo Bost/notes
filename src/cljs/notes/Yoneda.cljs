@@ -1,6 +1,6 @@
 (ns notes.Yoneda
   (:require
-   [notes.collapsible :refer [e] :as collapse]
+   [notes.views :refer [e] :as collapse]
    [clojure.string :refer [join]]))
 
 
