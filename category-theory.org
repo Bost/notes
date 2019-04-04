@@ -57,26 +57,27 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 * A Crash Course in Category Theory - Bartosz Milewski https://www.youtube.com/watch?v=JH_Ou17_zyU
   https://twitter.com/@bartoszmilewski : Computer Science, Haskell, C++. PhD in Quantum Physics
 
-  Most important features of a category: ?, Composability, Identity
+  Most important features of a category: Associative composability (x ∗ y) ∗ z = x ∗ (y ∗ z), Identity
   Example in programming: Category of Types and Functions (set and functions between sets)
 *** Designing computer language:
     Semantics must be provided; done by providing operational semantics
-    None of  the main prog. languages have (operational semantics) only partially provided;
+    None of the main prog. languages have (operational semantics) only partially provided;
     Two ways of defining semantics:
-    - Operational: "How it executes"; reduction relation: e1 -> e2
-    - Denotational: mapping into mathematics; interpretation of terms: ⟦e⟧ = ?;
-      e.g.: ⟦ v : τ  ⊢  v : τ ⟧ = idτ - i.e. the meaning of is ⟦...⟧ is an identity on τ i.e. an access to variable v
-
+    - Operational: "How it executes"; reduction relation: [e "e1 → e2"]
+    - Denotational: mapping into mathematics; interpretation of terms: [e "⟦e⟧ = ?"]
+      e.g.: [e "⟦ v : τ ⊢ v : τ ⟧ = idτ "] - i.e. the meaning of [e "⟦...⟧"] is
+      an identity on [e "τ"] i.e. an access to variable [e "v"]
+      TODO [klipse "(identity 1)"]
 *** Cartesian Product CP: set of all pairs
     Relation: A subset of CP; doesn't have a directionality; n-to-n relation
 *** Functions: (Sets and functions between sets)
     Pure: must be memoizable (lookup table)
     Total: defined for all arguments
     Partial: defined only for some arguments
-    Directionality (arrow from->to i.e. functions are not symetric); n-to-1 relation
+    Directionality (arrow "from → to" i.e. functions are not symetric); n-to-1 relation
     - Inverse of function is not guaranteed to exist
+    Domain, Codomain, Image
 
-    Domain, Codomain, Image:
 *** Morphisms
     | Latin      | Greek                | Meaning                    | Functor  |
     |------------+----------------------+----------------------------+----------|
@@ -103,7 +104,7 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
   | G f :: (a -> b) -> (G a -> G b)         | G f :: (a -> b) -> (G b -> G a)            |
   | Same directions in src and dst Category | Reverse directions in src and dst Category |
 
-*** Bifunctor: C × D → E
+*** Bifunctor: [e "C × D → E"]
     Product is a bifunctor, i.e. it takes 2 objs and produces 3rd obj, but it
     also takes two morphisms and produces 3rd morphism which is a product of
     these two morphisms
@@ -218,7 +219,8 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 
 
 *** Yoneda Embedding https://youtu.be/JH_Ou17_zyU?t=1h8m9s
-    Ideaa: Replace a content of an Obj a (picked i.e. fixed) by a totality of Arrows ending in this Obj. It's content and props.
+    Idea: Replace a content of an Obj a (picked i.e. fixed) by a totality of
+    Arrows ending in this Obj. It's content and props.
     Set of Arrow from every possible Obj x to the Obj a
 
     Mapping from Obj x to the Set of Arrows x->a:
@@ -264,15 +266,15 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     Hom(h, B) : Hom(Y, B) → Hom(X, B) given by
 
 *** Representable Functor F: C → Set is naturally isomorphic to HomC(A,-) for some object A of C
-   Represents objs of C as sets and morphisms of C as morphisms between sets.
-   i.e. functions "tabulate", "index" can be created; mapping of function to a data-type
+    Represents objs of C as sets and morphisms of C as morphisms between sets.
+    i.e. functions "tabulate", "index" can be created; mapping of function to a data-type
 
-   fix obj A ∈ C there is HomC(A,-): HomC(A, X) → HomC(A, Y) where there is a morphism X → Y
-   e.g.:
-   The forgetful functor Grp  → Set on the category of groups (G, *, e) is represented by (Z, 1).
-   The forgetful functor Ring → Set on the category of rings is represented by (Z[x], x), the polynomial ring in one variable with integer coefficients.
-   The forgetful functor Vect → Set on the category of real vector spaces is represented by (R, 1).
-   The forgetful functor Top  → Set on the category of topological spaces is represented by any singleton topological space with its unique e
+    fix obj A ∈ C there is HomC(A,-): HomC(A, X) → HomC(A, Y) where there is a morphism X → Y
+    e.g.:
+    The forgetful functor Grp  → Set on the category of groups (G, *, e) is represented by (Z, 1).
+    The forgetful functor Ring → Set on the category of rings is represented by (Z[x], x), the polynomial ring in one variable with integer coefficients.
+    The forgetful functor Vect → Set on the category of real vector spaces is represented by (R, 1).
+    The forgetful functor Top  → Set on the category of topological spaces is represented by any singleton topological space with its unique e
 *** Naturality condition: Gf ∘ αa = αb ∘ Ff i.e. the Naturality Square
 *** Homomorphism: structure-preserving mapping between 2 algebraic structures (e.g. monoids, groups, rings, vector spaces).
     f(m * n) = f(m) * f(n)
