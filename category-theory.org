@@ -1,18 +1,18 @@
 Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 
-* Category Theory: abstract algebra of abstract functions: "The Arrows Count"
-  Category C = (Obj, Hom, ◦, id)
-   - Obj: Class of Objects: A, B, C, ... e.g. Types / Propositions / Algebras / Logic Formulas
-   - Hom: Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? / Implication between Log. Formulas
-   - ◦: Morphism composition - associative function "(f ◦ g) ◦ h = f ◦ (g ◦ h)"
-        Hom(A, B) × Hom(B, C) → Hom(A, C): g ◦ f; it's a partialy binary operation on Mor(CAT::)
-        (g ◦ f)(x) = g(f(x))
-   - id: identity morphism on object A: id(A)
+* Abstract algebra of abstract functions: "The Arrows Count"
+  Category [e "C = (Obj, Hom, ◦, id)"]
+   - [e "Obj"] : Class of Objects: A, B, C, ... e.g. Types / Propositions / Algebras / Logic Formulas
+   - [e "Hom"] : Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? / Implication between Log. Formulas
+   - [e "◦"] : Morphism composition - associative function [e "(f ◦ g) ◦ h = f ◦ (g ◦ h)"]
+        [e "Hom(A, B) × Hom(B, C) → Hom(A, C): g ◦ f"] ; it's a partialy binary operation on Mor(CAT::)
+        [e "(g ◦ f)(x) = g(f(x))"]
+   - [e "id"] : identity morphism on object [e "A: id(A)"]
 
    A collection of arrows and morphism that can be composed if they are adjacent.
    A structure packing structures of the same type (same category) and structure preserving mappings between them.
    Small Category: all objs and morphisms are sets
-   Localy Small Category: ∀ A,B: Hom(A, B) is a set
+   Localy Small Category: [e "∀ A,B: Hom(A, B)"]  is a set
 
    (TODO arrow weight = price of calculation; preference for compositions)
    "Up to isomorphis" - any such things are isomorphic (structurally the same)
@@ -21,9 +21,9 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
    "Commuting diagrams / It (i.e. the diagram) commutes" - no matter which way you go around you get the same thing
 
 ** Cartesian Closed Category CCC: Usefull in programming
-*** cartesian: has product A x B (conjunction) for any pair of objs A, B
-*** closed: has exponential B^A (functions) for any pair of objs A, B
-*** 0-th power of an obj: has terminal obj 1 (for all objs there exists an unique map A → 1)
+*** cartesian: has product [e "A × B"] (conjunction) for any pair of objs A, B
+*** closed: has exponential [e "B^A"]  (functions) for any pair of objs A, B
+*** 0-th power of an obj: has terminal obj 1 (for all objs there exists an unique map [e "A → 1"] )
    - multiplying by terminal obj 1 gives back the original obj
    - dual to terminal obj 1 is the initial obj; Top and Bottom objs
    i.e. any one-element set (= singleton) is terminal
