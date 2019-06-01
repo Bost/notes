@@ -131,29 +131,29 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 *** Natural Transformation: a way of/for comparing functors
    - maps Morphism(s) to commuting diagram(s) (naturality squares). i.e.
      comorphism: replacing a square of (complex) relations with a single morphism
-   - picks a morphish between two Objs; Picking 1 morphishm from a homset
+   - picks a morphish between two Objs; Picking 1 morphishm from a Homset
    - Components of NaT
-   - Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: αb ◦ Ff
+   - Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: [e "αb ◦ Ff"]
 
-   - Every polymorphic Fn is a NaT: it is defined for every single type
+   - Every polymorphic functions is a NaT: it is defined for every single type
      i.e. multiplication (Product) of all Objs in a Category. The same goes for
      the dual - the Sum.
    - Functor is a container, NaT repackages the container
-
+   Naturality condition i.e. the Naturality Square: [e "Gf ∘ αa = αb ∘ Ff"]
 **** Compositons of Natural Transformations
    See https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf
    E.g. NaT compositons is scala: https://gist.github.com/Mzk-Levi/752d1e0f2f7f30cd3bda
    Legend:
-       A - an Obj in the Category C
-       (...)A / [...]A - an A-component of the NaT (...) / [...]
-       αA / βA - an A-component of the NaT α / β
-       αFA - an FA-component of the NaT α
-       βGA / βFA- GA/FA-component of the NaT β
+       [e "A"] - an Obj in the Category C
+       [e "(...)A"] / [e "[...]A"] - an A-component of the NaT (...) / [...]
+       [e "αA"] / [e "βA"] - an A-component of the NaT α / β
+       [e "αFA"] - an FA-component of the NaT α
+       [e "βGA"] / [e "βFA"] - GA/FA-component of the NaT β
 
 ***** Verical Compositon of NaTs:
-     If α : F → G and β : G → H are natural transformations, then so is β • α : F → H.
+     If [e "α:F → G"] and [e "β:G → H"] are natural transformations, then so is [e "β • α : F → H"].
      Is it defined by:
-         (β • α)A = βA ◦ αA : FA → HA
+         [e "(β • α)A = βA ◦ αA : FA → HA"]
      A - an Obj in the Category C
      (...)A - an A-component of the NaT (...)
 
@@ -162,27 +162,27 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 
 ***** Right Whiskering
      If F, G : C → D and H : D → E are Ftors, and if α : F → G is a NaT, the right whiskering
-         H ◦ α : H ◦ F → H ◦ G
-     is defined as (H ◦ α)A : H(FA) → H(GA) by (H ◦ α)A = H(αA)
+         [e "H ◦ α : H ◦ F → H ◦ G"]
+     is defined as [e "(H ◦ α)A : H(FA) → H(GA)"] by [e "(H ◦ α)A = H(αA)"]
 
 ***** Left Whiskering
      If F : C → D and G, H : D → E are Ftors, and if α : G → H is a NaT, the left whiskering
-         α ◦ F : G ◦ F → H ◦ F
-     is defined as (α ◦ F)A : G(FA) → H(FA) by (α ◦ F)A = αFA
+         [e "α ◦ F : G ◦ F → H ◦ F"]
+     is defined as [e "(α ◦ F)A : G(FA) → H(FA)"] by [e "(α ◦ F)A = αFA"]
 
 ***** Horizontal Compositon of NaTs:
      If F, G : C → D and H, K : D → E are Ftors, and if α : F → G and β : H → K
      are NaTs, the horizontal composition:
-         β ◦ α : H ◦ F → K ◦ G
+         [e "β ◦ α : H ◦ F → K ◦ G"]
      can be defined in two different ways:
      - Right whiskering followed by left whiskering:
-         β ◦ α = (β ◦ G) • (H ◦ α)
+         [e "β ◦ α = (β ◦ G) • (H ◦ α)"]
      - Left whiskering followed by right whiskering:
-         β ◦ α = (K ◦ α) • (β ◦ F)
+         [e "β ◦ α = (K ◦ α) • (β ◦ F)"]
 
      The two definitions coincide, because
-         [(β ◦ G) • (H ◦ α)]A = βGA ◦ H(α A), and
-         [(K ◦ α) • (β ◦ F)]A = K(α A) ◦ βFA
+         [e "[(β ◦ G) • (H ◦ α)]A = βGA ◦ H(α A)"], and
+         [e "[(K ◦ α) • (β ◦ F)]A = K(α A) ◦ βFA"]
 
      - is associative with an id, and the id coincides with that for vertical
        composition.
@@ -275,7 +275,6 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     The forgetful functor Ring → Set on the category of rings is represented by (Z[x], x), the polynomial ring in one variable with integer coefficients.
     The forgetful functor Vect → Set on the category of real vector spaces is represented by (R, 1).
     The forgetful functor Top  → Set on the category of topological spaces is represented by any singleton topological space with its unique e
-*** Naturality condition: Gf ∘ αa = αb ∘ Ff i.e. the Naturality Square
 *** Homomorphism: structure-preserving mapping between 2 algebraic structures (e.g. monoids, groups, rings, vector spaces).
     f(m * n) = f(m) * f(n)
 
