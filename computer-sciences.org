@@ -91,15 +91,19 @@ Business Process Modeling
 ** PreOrder (A, ≤): Nonempty set A, Pre-ordering relation ≤
    A - nonempty set
    ≤ - pre-ordering relation: must be
-                   - reflexive: a ≤ a
-                   - transitive: a ≤ b and b ≤ c then a ≤ c
+                   - reflexive: [e "a ≤ a"]
+                   - transitive: [e "a ≤ b"] and [e "b ≤ c"] then [e "a ≤ c"]
 
 ** PoSet - Partialy Ordered Set (A, ≤); Also a Category with 'few' (only one) morphisms between any two objects and many objects
    A - no-nempty set
    ≤ - relation: must be
-                   - reflexive: a ≤ a
-                   - transitive: a ≤ b and b ≤ c then a ≤ c
-                   - aymetric: a ≤ b and b ≤ a then a = b
+                   - reflexive: [e "a ≤ a"]
+                   - transitive: [e "a ≤ b"] and [e "b ≤ c"] then [e "a ≤ c"]
+                   - asymetric: [e "a ≤ b"] and [e "b ≤ a"] then [e "a ≅ b"] (a and b are equivalent)
+
+** Join ∨ - least upper bound / supremum
+
+** Meet ∧ - greatest lower bound / infimum
 
 ** TODO Pointed Set
 ** TODO Pointed Function
