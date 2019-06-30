@@ -59,6 +59,7 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 
   Most important features of a category: Associative composability (x ∗ y) ∗ z = x ∗ (y ∗ z), Identity
   Example in programming: Category of Types and Functions (set and functions between sets)
+
 *** Designing computer language:
     Semantics must be provided; done by providing operational semantics
     None of the main prog. languages have (operational semantics) only partially provided;
@@ -68,8 +69,10 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
       e.g.: [e "⟦ v : τ ⊢ v : τ ⟧ = idτ "] - i.e. the meaning of [e "⟦...⟧"] is
       an identity on [e "τ"] i.e. an access to variable [e "v"]
       TODO [klipse "(identity 1)"]
+
 *** Cartesian Product CP: set of all pairs
     Relation: A subset of CP; doesn't have a directionality; n-to-n relation
+
 *** Functions: (Sets and functions between sets)
     Pure: must be memoizable (lookup table)
     Total: defined for all arguments
@@ -78,12 +81,27 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     - Inverse of function is not guaranteed to exist
     Domain, Codomain, Image
 
-*** Morphisms
-    | Latin      | Greek                | Meaning                    | Functor  |
-    |------------+----------------------+----------------------------+----------|
-    | injective  | monic / monomorphism | distinct Xs -> distinct Ys | Faithful |
-    | surjective | epic / epimorphism   | all Ys are used            | Full     |
+*** Morphisms / Mappings X → Y
+    | Latin      | Greek                | Meaning                         | Functor  |
+    |------------+----------------------+---------------------------------+----------|
+    | injective  | monic / monomorphism | distinct Xs -> distinct Ys      | Faithful |
+    | surjective | epic / epimorphism   | all Ys are used                 | Full     |
+    | bijective  | ? epi-mono?          | exact pairing between X, Y      |          |
+    | strict     |                      | surj X -> Y but not bije Y -> X |          |
+    Also:
+    Injection   |X| ≤ |Y|  one-to-one / X at least as small Y or smaller
+    Surjection  |X| ≥ |Y|  onto / X at least as big Y or bigger
+    Bijection   |X| = |Y|  mutually unambiguous, same size
+    Strict      |X| < |Y|  ? double usage of some Ys ?, X strictly smaller than Y
+    
+*** Pullback
+     f: X -> Y     f is monomorphism (X is at least as big as Y)
+     idY: Y -> Y
 
+*** Pushout
+     f: X -> Y     f is epimorphism (all Ys are used)
+     idX: X -> X
+    
 *** Functor:
     - preserves structure between 2 categories, i.e. a homomorphism by definition
     - in programming: total mapping of types; (total = all objs from the source are mapped)
@@ -377,8 +395,9 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     Morphisms - functions 'less/greater or equal than'
 
 *** Isomorphism (bijection when f is a function on set / sets):
-  ∀ f: X → Y  there ∃ g: Y → X such that g ∘ f = idX and f ∘ g = idY; idX, idY are identity morphisms on X, Y
-  (f is invertible and g is the inverse of f)
+  ∀ f: X → Y there ∃ g: Y → X such that g ∘ f = idX and f ∘ g = idY
+  where idX, idY are identity morphisms on X, Y.
+  IOW f is invertible and g is the inverse of f
 
 ** Category theory - Modeling (new vocabulary)
    | hierarchies                | partial orders     |
@@ -398,12 +417,6 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
    yield proofs of an analogous theorem in another category. A functor is like a conductor
    of mathematical truth.
 
-*** Mappings: X → Y (Zobrazenia):
-    Surjection: all Ys are used;                                     |X| ≥ |Y| (onto; "at least as big")
-    Injective:  distinct Xs -> distinct Ys;                          |X| ≤ |Y| (? one-to-one ?)
-    Bijection:  exact pairing between X, Y;                          |X| = |Y| (vzajomne jednoznacne zobrazenie, "same size")
-    Strict:     Surjection from X to Y but no bijection from Y to X; |X| < |Y| (? double usage of some Ys ?, "strictly bigger")
-
 * Ultimatelly the human lang to talk about ideas is the lang of math.
   Formulas, Multiplication, stupid mistakes in deriving, simplification etc.
   CT looks nicer: no numbers, it's about ideas
@@ -416,8 +429,6 @@ Programming - understanding the meaning i.e. semantics: what does it mean (+ 1 2
 * Denotational:
   programs can be translated to math - math is a better lang for humans
   "Programm has a meaning i.e. it's a piece of math: operation, declaration, definition"
-* Math: for humans by humans
-
 
 Functional Programming - mathematical semantics:
 * Types and fns:
@@ -470,7 +481,6 @@ Data types:
 ** in functional programming - tagged unions
 
 * Monoidal Cat: (objs, arrows, prods) looks kinda like multiplication / addition
-
   Algebra of types ...
 
 * Functor: structure preserving mapping between Cats (objs to objs, fns to fns):
