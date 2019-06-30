@@ -22,15 +22,15 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 
 ** Cartesian Closed Category CCC: Usefull in programming
 *** cartesian: has product [e "A × B"] (conjunction) for any pair of objs A, B
-*** closed: has exponential [e "B^A"]  (functions) for any pair of objs A, B
+*** closed: has exponential [e "B^A"]  (functions A -> B) for any pair of objs A, B
 *** 0-th power of an obj: has terminal obj 1 (for all objs there exists an unique map [e "A → 1"] )
    - multiplying by terminal obj 1 gives back the original obj
-   - dual to terminal obj 1 is the initial obj; Top and Bottom objs
+   - initial obj - dual to terminal obj 1; Top and Bottom objs
    i.e. any one-element set (= singleton) is terminal
    DTTO for poset 1 is such an object that any other obj is below it
 
    - ? monoindal structure on objs ?
-*** Localy CCC: for every obj X sliced category is a CCC
+*** Localy Closed Cartesian Category LCCC: for every obj X sliced category is a CCC
 ** Bi-Cartesian Closed Category BCCC: Algebra of Types can be made here
 *** has coproduct for every pair of objs
 *** has initial obj
