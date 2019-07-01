@@ -15,8 +15,12 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
    Localy Small Category: [e "∀ A,B: Hom(A, B)"]  is a set
 
    (TODO arrow weight = price of calculation; preference for compositions)
-   "Up to isomorphis" - any such things are isomorphic (structurally the same)
-   i.e. working via analogy (i.e. X is just a renamed version of Y)
+
+*** Meaning of "Up to isomorphis" - any such things are isomorphic i.e.:
+   - structurally the same i.e.
+   - only formally different i.e.
+   - working via analogy i.e.
+   - X is just a renamed version of Y
 
    "Commuting diagrams / It (i.e. the diagram) commutes" - no matter which way you go around you get the same thing
 
@@ -93,15 +97,23 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     Surjection  |X| ≥ |Y|  onto / X at least as big Y or bigger
     Bijection   |X| = |Y|  mutually unambiguous, same size
     Strict      |X| < |Y|  ? double usage of some Ys ?, X strictly smaller than Y
-    
+
+    epimorphism and monomorphism are dual to each other
+
+    isomorphisms / isomorphic - "only formally different"
+
 *** Pullback
-     f: X -> Y     f is monomorphism (X is at least as big as Y)
-     idY: Y -> Y
+    f: X -> Y     f is monomorphism (X is at least as big as Y)
+    idY: Y -> Y
 
 *** Pushout
-     f: X -> Y     f is epimorphism (all Ys are used)
-     idX: X -> X
-    
+    f: X -> Y     f is epimorphism (all Ys are used)
+    idX: X -> X
+
+*** Subobject of Object A
+    a set of equivalent monomorphisms to A
+    ie. a set of equivalent morphisms mapping distinct to A
+
 *** Functor:
     - preserves structure between 2 categories, i.e. a homomorphism by definition
     - in programming: total mapping of types; (total = all objs from the source are mapped)
@@ -487,17 +499,17 @@ Data types:
 ** i.e. if there's an arrow A -> B, then there must be arrow F(A) -> F(B)
 ** may collapse things, preserves unit obj and composition
 ** Endofunctor: mapping from the same Cat to the same Cat. Endo ~ inside, "Endoscopy"
-   Category of Endofunctors: Cat of ftors from C to C [C,C] 
+   Category of Endofunctors: Cat of ftors from C to C [C,C]
 
 * Functor Category:
 ** pick two Cats C, D; ftors from C to D form a Functor Category [C,D]:
 *** ??? Objs are ftors
 *** ??? Arrows are NaT (Natural Transformation)
 
-* Adjunction: A pair of ftors: one ftor F adjunct to another ftor G; F and G are not an inverse of each other
+* Adjunction: A pair of ftors F, G: F is adjunct (but not inverse) to G
   Obj in a Cat of Types such that: For every A, B there is a set of arrows from
   A to B. This obj is called function-type. It can be defined by an adjuction of
-  two endo-ftors
+  two endofunctors
 ** It's more interesting if F, G are not an inverse of each other
 ** F left adjoing to G:
 *** left side: prepare an argument for some function using functor F
@@ -530,4 +542,3 @@ A Cat with such pairing and adjunction is called cartesian closed (i.e. this Cat
 *** Adjunction between a Product and a Function Type is Currying
 
 * Product generalisation: Tensor Product in a monoidal category
-
