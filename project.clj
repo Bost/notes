@@ -1,13 +1,13 @@
 (defproject notes "0.1.0-SNAPSHOT"
   :dependencies
   [
-   [org.clojure/clojure "1.10.0"]
+   [org.clojure/clojure "1.10.1"]
    [org.clojure/clojurescript "1.10.520"]
    [reagent "0.8.1"]
-   [re-frame "0.10.6"]
-   [garden "1.3.6"]
-   [ns-tracker "0.3.1"]
-   [re-pressed "0.2.2"]
+   [re-frame "0.10.7"]
+   [garden "1.3.9"]
+   [ns-tracker "0.4.0"]
+   [re-pressed "0.3.0"]
    [utils "0.0.0-21-0xd148"]
    ;; Domina is a jQuery inspired DOM manipulation library for ClojureScript. It
    ;; provides a functional, idiomatic Clojure interface to the DOM manipulation
@@ -39,8 +39,8 @@
   :profiles
   {:dev
    {:dependencies [[binaryage/devtools "0.9.10"]
-                   [figwheel-sidecar "0.5.18"]
-                   [cider/piggieback "0.4.0"]]}}
+                   [figwheel-sidecar "0.5.19"]
+                   [cider/piggieback "0.4.1"]]}}
 
   :cljsbuild
   {:builds
