@@ -456,15 +456,44 @@ Programming - understanding the meaning i.e. semantics: what does it mean (+ 1 2
   "Programm has a meaning i.e. it's a piece of math: operation, declaration, definition"
 
 Functional Programming - mathematical semantics:
-* Functions and types:
-** A type consists of:
+
+* HoTT - functions, types and proofs:
+** A type it's about its construction.
+*** A type consists of:
   Constructor: how to create an element of this type
   Induction: how to use elements of this type
-*** It's an abstraction about the set of vals; it's about "what" (function declaration)
+*** It's an abstraction about a set of vals; it's about "what" (function declaration)
     For mathematicians Set Theory is a low level assembly lang of maths - recenty started to be avoided:
+*** Difference between a type and a set: https://youtu.be/ba4E6EMagj0?t=283
+    A type provides tools for creation of funtions using this type. A set
+    doesn't provide such tools. I.e. a type has more stucture than a set.
 ** A (pure) function: mapping between sets
 *** It's about "how" (function body) - ? contrary of abstraction ?
-** Categorical view (simplification):
+
+** A proof is an object to be constructed analogically as an object of a certain type
+   [e "x = y"] is an equality-type. To proove this equality means to create an
+   object of the equality-type
+*** [e "x ≡ y"] definitional equality - does not correspond to a type
+    x and y can constructed from the definition of their type using the
+    type-constructor. I.e. they're basically constructed "the same way"
+*** [e "x = y"] propositional equality
+    if x and y are definitionally equal then an associated propositionally equal
+    element can be deduced from this.
+*** Theorem:
+    - for every function f there is a function [e "ap-f: (x = y) -> (f(x) = f(y))"]
+    - from (an element of the type) [e "(x = y)"] the ap-f is going to construct
+    (an element of the type) [e "(f(x) = f(y))"]
+    - in logic the funtion ap-f corresponds to an implication. In generall in the
+    type theory a funtion is nothing else than an implication
+*** Classical logic and type theory correspondence:
+    Type theory searches for construction of a type-dependent function f (or z) ...:
+    | classical logic  | type theory            | notation                   |
+    | ∀n∀m (n+m = m+n) | f:(n,m) -> (n+m = m+n) | f: Π n:ℕ Π m:ℕ (n+m = m+n) |
+    | ∃n∀m (n+m = m)   |                        | z: Σ n:ℕ Π m:ℕ (n+m = m)   |
+    |                  |                        |                            |
+
+
+** Siplified Categorical view of functions and types:
 *** functions: arrows between objs
 *** types: objs whose properties are defined by arrows
 **** composition(!) "this-fn after that-fn", associativity, identity
