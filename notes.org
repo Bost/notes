@@ -99,10 +99,8 @@ https://github.com/zeit/hyper
 :end:
 
 :Books-Amazon:
-HoTT https://homotopytypetheory.org/ (notion of equality)
 Proofs, Formal Verification
 LaTTe
-bought books - Pierre
 SICP
 
 The Little Schemer

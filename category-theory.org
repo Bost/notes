@@ -456,20 +456,21 @@ Programming - understanding the meaning i.e. semantics: what does it mean (+ 1 2
   "Programm has a meaning i.e. it's a piece of math: operation, declaration, definition"
 
 Functional Programming - mathematical semantics:
-* Types and fns:
-** types: sets of vals; it's not about "how" - fn body, it's about "what" - fn declaration; abstraction
-   For mathematicians Set Theory is a low level assembly lang of maths - recenty started to be avoided:
-*** HoTT
-*** CT (Sets form a Category)
-** (pure) fns: mappings between sets
+* Functions and types:
+** A type consists of:
+  Constructor: how to create an element of this type
+  Induction: how to use elements of this type
+*** It's an abstraction about the set of vals; it's about "what" (function declaration)
+    For mathematicians Set Theory is a low level assembly lang of maths - recenty started to be avoided:
+** A (pure) function: mapping between sets
+*** It's about "how" (function body) - ? contrary of abstraction ?
+** Categorical view (simplification):
+*** functions: arrows between objs
+*** types: objs whose properties are defined by arrows
+**** composition(!) "this-fn after that-fn", associativity, identity
+ - no deeper specification of the Fns and Objs are
+ Mapping between CT and FP:
 
-
-* Categorical view (simplification):
-** fns: arrows between objs
-** types: objs whose props are defined by arrows
-*** composition(!) "this-fn after that-fn", associativity, identity
-- no deeper specification of the Fns and Objs are
-Mapping between CT and FP:
 * Views -> Change of perspective:
 ** Set-theoretical: props of sets defined by elems of sets
 ** Categorical: Shrink the set to a point "I can't look at the structure of a set"

@@ -177,9 +177,9 @@
   πₙ(S-k-upper-index) Homotopy group exists even if n > k; measuring higher dimensional holes in k dimensional sphere
   "Patri" - containment relation
 
-* Homotopy Type Theory HoTT:
+* Homotopy Type Theory HoTT: https://homotopytypetheory.org/
+- Notions of paths in a space; equality and equivalence
 - Allows mathematical proofs to be translated into a computer programming language for computer proof assistants much more easily than before
-- Notion of paths in a space
 - The Univalence Axiom: Identity is equivalent to equivalence, in particular: equivalent types are identical
   For all types A,B:
   Π A,B : Type.(A = B) ≃ (A ≃ B)
