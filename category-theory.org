@@ -102,11 +102,11 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 
     isomorphisms / isomorphic - "only formally different"
 
-*** Pullback
+*** Pullback - type of a limit
     f: X -> Y     f is monomorphism (X is at least as big as Y)
     idY: Y -> Y
 
-*** Pushout
+*** Pushout - type of a colimit
     f: X -> Y     f is epimorphism (all Ys are used)
     idX: X -> X
 
@@ -253,30 +253,34 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     Arrows ending in this Obj. It's content and props.
     Set of Arrow from every possible Obj x to the Obj a
 
-    Mapping from Obj x to the Set of Arrows x->a:
-    1. for every Obj a I get a different Ftor from C to Set,
-    2. then vary the Obj a:
+    Mapping from an Obj X to the Set of Arrows X -> A:
+    1. for every Obj A Iget a different Ftor from C to Set,
+    2. then vary the Obj A:
 
 *** Khan Extentions: the next abstraction level
 
 *** Adjunctions: weakening of "equality" of Categories
     "inverse" is defined only for functions not functors
-**** e.g. Currying: from a Pair to Function type
+    e.g. Currying: from a Pair to Function type
+
 *** Adjointness - constructing / generating principle
     - Adjunctions/Adjoins are monads ???
-    Adjoin examples:
-    (-) x A (product) ⊣ (-)^A (exponential)
-    '+' (coproduct) ⊣ '∆' (pairing) ⊣ 'x' (product)
+    examples:
+    - product is left adjoint to exponential: [e "(-) x A ⊣ (-)^A"]
+    - left adjointness of sum (coproduct), pairing and product: [e "Σ ⊣ ∆ ⊣ Π"]
     induction, recursion, Natural Numbers (inductively defined), Lists, ...
     conjunction, disjunction, True, False, Exponentiation
     Quantifiers: ∀ Every, ∃ Exists; Σ Sigma, Π Pi
 
-*** Fibre: a buch of points mapped to the same value; invertibility of a function to a fibre
+*** Fibre: points mapped to the same value; invertibility of a function to a fibre
+
 *** Abstraction: i.e. non-invertibility
    - from all properties (i.e. all points of a fibre) I'm interested only in one
    - e.g. I'm not interested in what was the exact input value of a function,
      I'm interested only if it was an even or odd value
+
 *** Modeling: mapping / injecting
+
 *** HomSet: HomC(A,B) = {f: A → B} - set of all morphisms A → B in category C (Objs of C don't need to be sets)
    External vs. Internal Homset
 
@@ -319,15 +323,24 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
    Comonad: (w a -> b) -> (w b -> c) -> (w a -> c)
      You can extract from IO Monad
      You can't put anything to IO Monad
-*** Topos: a type of a Category being able to be a replacement for Set Theory; provides among other things a notion of a Subse
-*** TODO:
-   - Subobject Classifier etc.: see Bartosz's blog
-   - Sheaf (Garbe, Faisceau, zvazok)- tool for tracking locally defined data
-   - Presheaf: Functor F: Cop → Set
+
+*** Topos: a type of a Category being able to be a replacement for Set Theory
+    - provides among other things a notion of a Subset
+    - comes equiped with an "internal language", i.e. graphs, groups, topological spaces (changing over time) can be defined in any topos
+
+*** Subobject Classifier: Object Ω with Mononorphisms 1 -> Ω
+    1 - is a category with only one obj
+    monomorphism X -> Y: distinct Xs -> distinct Ys
+
+*** Sheaf (Garbe, Faisceau, zväzok): Functor
+     tool for tracking locally defined data
+
+*** Presheaf: Functor F: Cop → Set
 
 *** Indexed Monad: IxMonad: ibind: m i j a → (a → m j k b) → m i k b
    state composition
    Session Types, Dependent Types, Dependent State Types
+
 *** Curry-Howard-Lambek correspondence: Intuitionistic Logic ↔ Type Theory ↔ Category Theory:
   Function A -> B is a proof of logical implication A => B
   Direct relationship between computer programs and mathematical proofs; from 1940-ties
@@ -537,7 +550,9 @@ A Cat with such pairing and adjunction is called cartesian closed (i.e. this Cat
   https://www.youtube.com/watch?v=CfoaY2Ybf8M&t=7m
 
 ** Generalisation of everything. They sub-sume everything else, like adjuctions at a higher level
-** Limits Colimits Monads Adjunctions can be redefined as Khan Extentions
+
+** Limits, Colimits, Monads Adjunctions can be redefined as Khan Extentions
+
 ** Intuition of Khan Extentions is dificult - they are more abstract than monads
 *** Adjunction between a Product and a Function Type is Currying
 

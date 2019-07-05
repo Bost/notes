@@ -101,9 +101,13 @@ Business Process Modeling
                    - transitive: [e "a ≤ b"] and [e "b ≤ c"] then [e "a ≤ c"]
                    - asymetric: [e "a ≤ b"] and [e "b ≤ a"] then [e "a ≅ b"] (a and b are equivalent)
 
-** Join ∨ - least upper bound / supremum
+** Limit / Meet ∧ / greatest lower bound / infimum
+   - the obj on the top w/ its cone (morphisms). Since its "on top" it has only outgoing morphisms
+   - Pullback: an important type of limit
 
-** Meet ∧ - greatest lower bound / infimum
+** Colimit / Join ∨ / least upper bound / supremum
+   - the obj on the bottom w/ its inverse cone (morphisms). Since its "on bottom" it has only incoming morphisms
+   - Pushout: an important type of colimit
 
 ** TODO Pointed Set
 ** TODO Pointed Function
