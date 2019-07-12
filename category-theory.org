@@ -144,9 +144,9 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
            |    f     |
            a -------> b
     - Covariant: Same directions in src and dst Category
-      [e "G f :: (a -> b) -> (G a -> G b)"]
+      [e "G f :: (a → b) → (G a → G b)"]
     - Contravariant: Reverse directions in src and dst Category
-      [e "G f :: (a -> b) -> (G b -> G a)"]
+      [e "G f :: (a → b) → (G b → G a)"]
     - Bifunctor: e.g a Product - it takes 2 objs and produces 3rd obj, but it
       also takes two morphisms and produces 3rd morphism which is a product of
       these two morphisms [e "C × D → E"]
