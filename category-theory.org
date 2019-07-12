@@ -7,41 +7,45 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
    - [e "◦"] : Morphism composition - associative function [e "(f ◦ g) ◦ h = f ◦ (g ◦ h)"]
         [e "Hom(A, B) × Hom(B, C) → Hom(A, C): g ◦ f"] ; it's a partialy binary operation on Mor(CAT::)
         [e "(g ◦ f)(x) = g(f(x))"]
-   - [e "id"] : identity morphism on object [e "A: id(A)"]
+   - [e "id"] : identity morphism on an object [e "A: id(A)"]
 
+** Category - informal description
    A collection of arrows and morphism that can be composed if they are adjacent.
    A structure packing structures of the same type (same category) and structure preserving mappings between them.
-   Small Category: all objs and morphisms are sets
-   Localy Small Category: [e "∀ A,B: Hom(A, B)"]  is a set
 
-   (TODO arrow weight = price of calculation; preference for compositions)
+*** Small Category: all objects and morphisms are sets
+
+*** Locally Small Category: all objects and morphisms are sets and it "doesn't have too many morphisms"
+    [e "∀ objects A,B: Hom(A, B)"] is a set
+
+    (TODO arrow weight = price of calculation; preference for compositions)
 
 *** Meaning of "Up to isomorphis" - any such things are isomorphic i.e.:
-   - structurally the same i.e.
-   - only formally different i.e.
-   - working via analogy i.e.
-   - X is just a renamed version of Y
+    - structurally the same i.e.
+    - only formally different i.e.
+    - working via analogy i.e.
+    - X is just a renamed version of Y
 
-   "Commuting diagrams / It (i.e. the diagram) commutes" - no matter which way you go around you get the same thing
+*** Meaning of "Commuting diagrams / It (i.e. a diagram) commutes"
+    no matter which way you go around you get the same thing
 
 ** Cartesian Closed Category CCC: Usefull in programming
-*** cartesian: has product [e "A × B"] (conjunction) for any pair of objs A, B
-*** closed: has exponential [e "B^A"]  (functions A -> B) for any pair of objs A, B
+*** Cartesian: has product [e "A × B"] (conjunction) for any pair of objs A, B
+*** Closed: has exponential [e "B^A"]  (functions A -> B) for any pair of objs A, B
 *** 0-th power of an obj: has terminal obj 1 (for all objs there exists an unique map [e "A → 1"] )
    - multiplying by terminal obj 1 gives back the original obj
    - initial obj - dual to terminal obj 1; Top and Bottom objs
    i.e. any one-element set (= singleton) is terminal
    DTTO for poset 1 is such an object that any other obj is below it
-
    - ? monoindal structure on objs ?
-*** Localy Closed Cartesian Category LCCC: for every obj X sliced category is a CCC
+*** Locally Closed Cartesian Category LCCC: for every obj X sliced category is a CCC
+
 ** Bi-Cartesian Closed Category BCCC: Algebra of Types can be made here
 *** has coproduct for every pair of objs
 *** has initial obj
 
 ** Universal Mapping Property (UMP) - The 'double' triangle of Product
    Consists of Initial and Terminal mapping (morphism)
-
    Universal Construction - 3 steps (? the triangle ?):
    1. Define a pattern:
 
@@ -59,9 +63,10 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
    3. The best match is "our guy"
 
 * A Crash Course in Category Theory - Bartosz Milewski https://www.youtube.com/watch?v=JH_Ou17_zyU
-  https://twitter.com/@bartoszmilewski : Computer Science, Haskell, C++. PhD in Quantum Physics
-
-  Most important features of a category: Associative composability (x ∗ y) ∗ z = x ∗ (y ∗ z), Identity
+  https://twitter.com/@bartoszmilewski
+  Most important features of a category:
+*** Associative composability (x ◦ y) ◦ z = x ◦ (y ◦ z)
+*** Identity
   Example in programming: Category of Types and Functions (set and functions between sets)
 
 *** Designing computer language:
@@ -74,16 +79,20 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
       an identity on [e "τ"] i.e. an access to variable [e "v"]
       TODO [klipse "(identity 1)"]
 
-*** Cartesian Product CP: set of all pairs
-    Relation: A subset of CP; doesn't have a directionality; n-to-n relation
+*** Cartesian Product - "A set of all pairs"
+    Relation: A subset of a Cartesian Product; doesn't have a directionality; n-to-n relation
 
-*** Functions: (Sets and functions between sets)
+*** Function - on sets / between sets
     Pure: must be memoizable (lookup table)
     Total: defined for all arguments
     Partial: defined only for some arguments
     Directionality (arrow "from → to" i.e. functions are not symetric); n-to-1 relation
-    - Inverse of function is not guaranteed to exist
-    Domain, Codomain, Image
+    Inverse: not guaranteed to exist
+    f: X -> Y  - X: Domain, Y: Codomain
+    Image: A proper subset of a Codomain
+    Container: function itself can be regarded as a container. E.g. identity function;
+    Evaluation: it returns a value (when evaluated) i.e. data are represented as values; i.e functions and data are the same
+    Function type: is an exponential which is a data type; (Exponential is like an iterated product)
 
 *** Morphisms / Mappings X → Y
     | Latin      | Greek                | Meaning                         | Functor  |
@@ -97,9 +106,7 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     Surjection  |X| ≥ |Y|  onto / X at least as big Y or bigger
     Bijection   |X| = |Y|  mutually unambiguous, same size
     Strict      |X| < |Y|  ? double usage of some Ys ?, X strictly smaller than Y
-
-    epimorphism and monomorphism are dual to each other
-
+    Epimorphism and Monomorphism are dual to each other
     isomorphisms / isomorphic - "only formally different"
 
 *** Pullback - type of a limit
@@ -111,52 +118,48 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     idX: X -> X
 
 *** Subobject of Object A
-    a set of equivalent monomorphisms to A
-    ie. a set of equivalent morphisms mapping distinct to A
+    if [e "f: X -> Y"] is a monomorphism (i.e. an injection i.e. different Xs ->
+    different Ys - don’t smush multiple elements into one, i.e. parallel arrows) then it is isomorphic
+    (i.e. only formally different) from Y.
+
+    I have a set of different monomorphisms to Y; S = {f1: A -> Y, f2: B -> Y}
+    f1, f2 are equivalent if there exists a in isomorphism h: A -> B such that [e "f2 = h ∘ f1"] then S is isomorphic to some subset of Y.
+    ie. a set of equivalent morphisms mapping distinct to Y
 
 *** Functor:
-    - preserves structure between 2 categories, i.e. a homomorphism by definition
-    - in programming: total mapping of types; (total = all objs from the source are mapped)
+    - Is a homomorphism by definition: it preserves structure between 2 categories
+    - In programming: total mapping of types; (total = all objs from the source are mapped)
     - Constant functor: collapses all objs into 1 obj and all morphisms into an identity
     - Intuitive understanding: (endo) functor is a container - i.e. list contains values
       (Comonad is a container that already comes prefilled with many values and
       with an access point to one particular value. E.g. hidden params (for
       hidden param propagation it's better to use comonad than monad), history,
       neighbourhood etc.)
-    - function itself can be regarded as a container. E.g. identity function;
-      functions (when evaluated) return value i.e. data are represented as values
-      functions and data are the same
-      function type is an exponential which is a data type; (Exponential is like an interated product)
     - Endofunctor [C,C]: A ftor that maps a category to itself
-
-  | Covariant Functor                       | Contravariant Functor                      |
-  |-----------------------------------------+--------------------------------------------|
-  | G f :: (a -> b) -> (G a -> G b)         | G f :: (a -> b) -> (G b -> G a)            |
-  | Same directions in src and dst Category | Reverse directions in src and dst Category |
-
-*** Bifunctor: [e "C × D → E"]
-    Product is a bifunctor, i.e. it takes 2 objs and produces 3rd obj, but it
-    also takes two morphisms and produces 3rd morphism which is a product of
-    these two morphisms
-**** List: List(α) = Nil | Const α (List α)
-    - most intuitive example of a Ftor
-    - type constructor: takes a type α and creates a list of α
-
-    Sum (+) and Product (*) are algebraic data types (Algebra on Types):
-    List(α) = Nil | Const α (List α) ~ L(α) = 1 + α * L(α) => .. => L(α) = 1 / (1 - α) = 1 + α + α*α + α*α*α + ...
-
-    Is Product a Ftor?
-
-    Inlining and refactoring are the opposite.** Fibre: a buch of points mapped
-    to the same value; invertibility of a function to a fibre
-
-    Lifting (= applying functor) transforms a function into a corresponding
-    function within another (usually more general) setting
+    - Lifting: (= applying functor) transforms a function into a corresponding
+      function within another (usually more general) setting
                 Ff
           Fa -------> Fb
            ↑          ↑
            |    f     |
-           a  ------> b
+           a -------> b
+    - Covariant: Same directions in src and dst Category
+      [e "G f :: (a -> b) -> (G a -> G b)"]
+    - Contravariant: Reverse directions in src and dst Category
+      [e "G f :: (a -> b) -> (G b -> G a)"]
+    - Bifunctor: e.g a Product - it takes 2 objs and produces 3rd obj, but it
+      also takes two morphisms and produces 3rd morphism which is a product of
+      these two morphisms [e "C × D → E"]
+    - List: [e "List(α) = Nil | Const α (List α)"] - most intuitive(?) functor example
+      It's also a type constructor: takes a type α and creates a list of α
+
+    Sum (+) and Product (*) are algebraic data types (Algebra on Types):
+    List(α) = Nil | Const α (List α) ~ L(α) = 1 + α * L(α) => .. => L(α) = 1 / (1 - α) = 1 + α + α*α + α*α*α + ...
+
+    Inlining and refactoring are the opposite.
+
+*** Fibre:
+    Points mapped to the same value; invertibility of a function to a fibre
 
 *** Natural Transformation: a way of/for comparing functors
    - maps Morphism(s) to commuting diagram(s) (naturality squares). i.e.
@@ -164,12 +167,12 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
    - picks a morphish between two Objs; Picking 1 morphishm from a Homset
    - Components of NaT
    - Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: [e "αb ◦ Ff"]
-
    - Every polymorphic functions is a NaT: it is defined for every single type
      i.e. multiplication (Product) of all Objs in a Category. The same goes for
      the dual - the Sum.
    - Functor is a container, NaT repackages the container
-   Naturality condition i.e. the Naturality Square: [e "Gf ∘ αa = αb ∘ Ff"]
+   - Naturality condition i.e. the Naturality Square: [e "Gf ∘ αa = αb ∘ Ff"]
+
 **** Compositons of Natural Transformations
    See https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf
    E.g. NaT compositons is scala: https://gist.github.com/Mzk-Levi/752d1e0f2f7f30cd3bda
@@ -217,9 +220,22 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
      - is associative with an id, and the id coincides with that for vertical
        composition.
 
+** Yoneda perspective, embeding and lemma
+*** Yoneda Perspective:
+    An object is completely determined by its relationships to other objects
 
-*** Yoneda Lemma: [C,Set](C(a,-), F) ⋍ F a   also: [C,Set](C(a,-), C(b,-)) ⋍ C(b,a)
-    - Intuition: NaT and Functor (i.e. Container) can replace each other
+*** Yoneda Embedding https://youtu.be/JH_Ou17_zyU?t=1h8m9s
+    Idea: replace content of an object (picked i.e. fixed) by all arrows ending in this object.
+    It's content and properties.
+    Set of Arrow from every possible Obj x to the Obj a
+
+    Mapping from an Obj X to the Set of Arrows X → A:
+    1. for every Obj A get a different functor F: C → Set
+    2. then vary the Obj A:
+
+*** Yoneda Lemma:
+    Idea: Natural transformation and functor (i.e. Container) can replace each other
+     [C,Set](C(a,-), F) ⋍ F a   also: [C,Set](C(a,-), C(b,-)) ⋍ C(b,a)
     - Description of integration over a special Ftor (i.e. Hom Functor)
 
     a - some arbitrary Obj of C
@@ -240,22 +256,13 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
               ⎜                +-- Container of the Obj a (i.e. the data structure)
               +------------------- Polymorphic higher order Function
 
-    (∀ x : (a -> x) -> F x) ⋍ F a
-              ⎜     ⎜   ⎜      ⎜
-              ⎜     ⎜   ⎜      +-- Container of the Obj a (i.e data structure)
-              ⎜     ⎜   +--------- Functor
-              ⎜     +------------- NaT i.e. Polymorphic Higher Order Function
-              +------------------- ...
+    (∀ x : (a → x) → F x) ⋍ F a
+              ⎜    ⎜  ⎜      ⎜
+              ⎜    ⎜  ⎜      +--- Container of the Obj a (i.e data structure)
+              ⎜    ⎜  +---------- Functor
+              ⎜    +------------- NaT i.e. Polymorphic Higher Order Function
+              +------------------ ...
 
-
-*** Yoneda Embedding https://youtu.be/JH_Ou17_zyU?t=1h8m9s
-    Idea: Replace a content of an Obj a (picked i.e. fixed) by a totality of
-    Arrows ending in this Obj. It's content and props.
-    Set of Arrow from every possible Obj x to the Obj a
-
-    Mapping from an Obj X to the Set of Arrows X -> A:
-    1. for every Obj A Iget a different Ftor from C to Set,
-    2. then vary the Obj A:
 
 *** Khan Extentions: the next abstraction level
 
@@ -285,16 +292,18 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
    External vs. Internal Homset
 
 *** Free Monoid: has an unique mapping to every other monoid; "a list of accumulated vals"
+
 *** HomFunctor: Functor to category of Sets; has a NaT to every other functor; this NaT is not unique but limited
    Reader functor in Haskell
+
 *** Covariant functor: Hom(A,–) : C → Set;
-    G f :: (a -> b) -> (G a -> G b); Same directions in src and dst Category
+    [e "F f :: (a → b) → (F a → F b)"] - same directions in src and dst Category
     Hom(A,–) maps each object X in C to the set of morphisms, Hom(A, X)
     Hom(A,–) maps each morphism f : X → Y to the function
     Hom(A, f) : Hom(A, X) → Hom(A, Y) given by
 
-*** Contravariant functor: Hom(–,B) : C → Set
-    G f :: (a -> b) -> (G b -> G a); Reverse directions in src and dst Category
+*** Contravariant functor: Hom(–,B) : C-op → Set
+    [e "F f :: (a → b) → (F b → F a)"] - Reverse directions in src and dst Category
     Hom(–,B) maps each object X in C to the set of morphisms, Hom(X, B)
     Hom(–,B) maps each morphism h : X → Y to the function
     Hom(h, B) : Hom(Y, B) → Hom(X, B) given by
@@ -309,6 +318,7 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     The forgetful functor Ring → Set on the category of rings is represented by (Z[x], x), the polynomial ring in one variable with integer coefficients.
     The forgetful functor Vect → Set on the category of real vector spaces is represented by (R, 1).
     The forgetful functor Top  → Set on the category of topological spaces is represented by any singleton topological space with its unique e
+
 *** Homomorphism: structure-preserving mapping between 2 algebraic structures (e.g. monoids, groups, rings, vector spaces).
     f(m * n) = f(m) * f(n)
 
@@ -332,24 +342,24 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     1 - is a category with only one obj
     monomorphism X -> Y: distinct Xs -> distinct Ys
 
-*** Sheaf (Garbe, Faisceau, zväzok): Functor
+*** Sheaf (Garbe, Faisceau, zväzok): Functor F: C → Set
      tool for tracking locally defined data
 
-*** Presheaf: Functor F: Cop → Set
+*** Presheaf - Functor F: C-op → Set
 
 *** Indexed Monad: IxMonad: ibind: m i j a → (a → m j k b) → m i k b
    state composition
    Session Types, Dependent Types, Dependent State Types
 
 *** Curry-Howard-Lambek correspondence: Intuitionistic Logic ↔ Type Theory ↔ Category Theory:
-  Function A -> B is a proof of logical implication A => B
-  Direct relationship between computer programs and mathematical proofs; from 1940-ties
-  Link between Computation and Logic;
-  Proofs-as-programs and propositions- or formulae-as-types interpretation;
-  Proofs (= Programs) can be executed;
-  Typed lambda calculi derived from the Curry–Howard-Lambek paradigm led to software like Coq;
-  Curry-Howard-Lambek correspondence might lead to unification between mathematical logic and foundational computer science;
-  Popular approach: use monads to segregate provably terminating from potentially non-terminating code
+    Function A -> B is a proof of logical implication A => B
+    Direct relationship between computer programs and mathematical proofs; from 1940-ties
+    Link between Computation and Logic;
+    Proofs-as-programs and propositions- or formulae-as-types interpretation;
+    Proofs (= Programs) can be executed;
+    Typed lambda calculi derived from the Curry–Howard-Lambek paradigm led to software like Coq;
+    Curry-Howard-Lambek correspondence might lead to unification between mathematical logic and foundational computer science;
+    Popular approach: use monads to segregate provably terminating from potentially non-terminating code
 
     | INTUITIONISTIC (Constructive) LOGIC (Howard)   | TYPE THEORY - Functional Programming (Curry)                         | CATEGORY THEORY (Lambek) |
     |------------------------------------------------+----------------------------------------------------------------------+--------------------------|
@@ -420,9 +430,9 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
     Morphisms - functions 'less/greater or equal than'
 
 *** Isomorphism (bijection when f is a function on set / sets):
-  ∀ f: X → Y there ∃ g: Y → X such that g ∘ f = idX and f ∘ g = idY
-  where idX, idY are identity morphisms on X, Y.
-  IOW f is invertible and g is the inverse of f
+    ∀ f: X → Y there ∃ g: Y → X such that g ∘ f = idX and f ∘ g = idY
+    where idX, idY are identity morphisms on X, Y.
+    IOW f is invertible and g is the inverse of f
 
 ** Category theory - Modeling (new vocabulary)
    | hierarchies                | partial orders     |
@@ -492,7 +502,6 @@ Functional Programming - mathematical semantics:
     | ∃n∀m (n+m = m)   |                        | z: Σ n:ℕ Π m:ℕ (n+m = m)   |
     |                  |                        |                            |
 
-
 ** Siplified Categorical view of functions and types:
 *** functions: arrows between objs
 *** types: objs whose properties are defined by arrows
@@ -505,8 +514,6 @@ Functional Programming - mathematical semantics:
 ** Categorical: Shrink the set to a point "I can't look at the structure of a set"
 describe different kinds of sets by their interraction with other sets i.e. by arrows
 - tell me who your friends are and I tell you who you are
-
-
 
 Phenomenons of Introduction and Elimination
 
@@ -583,7 +590,7 @@ A Cat with such pairing and adjunction is called cartesian closed (i.e. this Cat
 
 ** Limits, Colimits, Monads Adjunctions can be redefined as Khan Extentions
 
-** Intuition of Khan Extentions is dificult - they are more abstract than monads
+** Intuition of Khan Extentions is difficult - they are more abstract than monads
 *** Adjunction between a Product and a Function Type is Currying
 
 * Product generalisation: Tensor Product in a monoidal category
