@@ -62,7 +62,8 @@
                                :react-dom   "16.8.6"
                                :katex       "0.10.1"
                                :react-katex "2.0.2"
-                               }}}
+                               }
+                    }}
 
     {:id           "min"
      :source-paths ["src/cljs"]
