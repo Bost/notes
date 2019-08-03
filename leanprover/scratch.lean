@@ -1,7 +1,9 @@
+-- M-x lean-std-exe: C-c C-l
+
 #eval 1 + 1
 
 variables p q : Prop
--- BEGIN
+
 example (hpq : p → q) (hnq : ¬q) : ¬p :=
 assume hp : p,
 show false, from hnq (hpq hp)
@@ -13,4 +15,15 @@ def x := false
 
 #check eq.subst --
 
--- END
+constants p q : Prop
+
+theorem t1 : p → q → p := λ hp : p, λ hq : q, hp
+
+#check t1
+
+#print t1
+
+universe u
+inductive foo (a : α) : Sort u
+| constructor₁ : Π (b : β₁), foo
+| constructor₂ : Π (b : β₂), foo
