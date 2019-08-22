@@ -181,3 +181,6 @@ Proposition = ???
   symbols at all. Note that these sequences may be empty. The derivation
   [e "A0 => β0 A1 α0 =>^+ A1 α0 =>^+ β1 A2 α1 α0 =>^+ ... =>^+ A0 αn ... α1 α0"]
   then gives A0 as leftmost in its final sentential form.
+* Normal Forms of Formulas
+** DNF - Disjunctive Normal Form / Formula e.g. (A ∧ ¬B ∧ C) ∨ (¬D ∧ E ∧ F)
+** CNF - Conjunctive Normal Form / Formula e.g. (A ∨ ¬B ∨ C) ∧ (¬D ∨ E ∧ F)
