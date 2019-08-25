@@ -178,8 +178,9 @@
   "Patri" - containment relation
 
 * Homotopy Type Theory HoTT: https://homotopytypetheory.org/
-  - Notions of paths in a space; equality and equivalence
-  - Easier translation of mathematical proofs to a programming language of proof assistants (than before)
+  Foundational framework
+  Notions of paths in a space; equality and equivalence
+  Easier translation of mathematical proofs to a programming language of proof assistants (than before)
 ** The Univalence Axiom: Identity is equivalent to equivalence, in particular: equivalent types are identical
    For all types A,B: Π A,B : Type.(A = B) ≃ (A ≃ B)
    - There's a function UA: (A ≃ B) -> (A = B) such that from a proof equivalence of A ≃ B it constructs a proof of equality A = B.
