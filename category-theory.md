@@ -1,9 +1,16 @@
 Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 
 # Abstract algebra of abstract functions
-"The Arrows Count"; Category [e "C = (Obj, Hom, ◦, id)"]
+"The Arrows Count"; Category [e "C = (Obj, Hom, ◦, id)"]  
+Category theory as a foundational framework of mathematics: the foundations of
+category theory itself have to be clarified yet
 - [e "Obj"] : Class of Objects: A, B, C, ... e.g. Types / Propositions /
-  Algebras / Logic Formulas
+  Algebras / Logic Formulas  
+  An object exists in and depends upon an ambient category.  
+  An object is characterized by its morphisms going in and out of it.  
+  Objects are always characterized up to isomorphism (in the best cases, up to  
+  a unique isomorphism). E.g. there is no such thing as _the_ natural numbers.
+  However, the concept of natural numbers exists.  
 - [e "Hom"] : Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? /
   Implication between Logic Formulas
 - [e "◦"] : Morphism composition - associative function [e "(f ◦ g) ◦ h = f ◦ (g
@@ -11,7 +18,7 @@ Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 [e "Hom(A, B) × Hom(B, C) → Hom(A, C): g ◦ f"] ; it's a partialy binary
 operation on Mor(CAT::)  
 [e "(g ◦ f)(x) = g(f(x))"]
-- [e "id"] : identity morphism on an object [e "A: id(A)"]
+- [e "id"] : identity morphism on every object [e "A: id(A)"]
 
 ## Category - informal description
 A collection of arrows and morphism that can be composed if they are adjacent.  
