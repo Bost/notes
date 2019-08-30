@@ -15,6 +15,7 @@
    [domina "1.0.3"]
    #_[cljsjs/katex "0.9.0-0"]
    [spyscope "0.1.6"]
+   #_[clojupyter "0.2.3"]
    ]
 
   ;; Using: openjdk version "11.0.1" 2018-10-16; GraalVM-java doesn't work!
