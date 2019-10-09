@@ -1,7 +1,15 @@
-(require '[clojupyter.display :as display])
+(ns user
+  (:require
+   [clojupyter.kernel.version :as ver]
+   [clojupyter.display :as display]
+   [clojure.core.logic :as l])
+  #_(:use [clojure.core.logic]))
+
+(defn user-ver []
+  (ver/version-string-long))
 
 (def color "black")
-#_(+ 1 2)
+
 (defn dot-base [x y r]
   [:circle {:cx x :cy y :r r
             :fill color
@@ -10,8 +18,20 @@
 
 (defn dot [x y] (dot-base x y 4))
 
-(defn path [d] [:path {:d d :stroke color
+(defn path [d]
+  "M = moveto
+L = lineto
+H = horizontal lineto
+V = vertical lineto
+C = curveto
+S = smooth curveto
+Q = quadratic Bézier curve
+T = smooth quadratic Bézier curveto
+A = elliptical Arc
+Z = closepath"
+  [:path {:d d :stroke color
                        :marker-end "url(#head)"
+                       ;; :stroke-width "3"
                        :fill "transparent"}])
 
 (defn go []
