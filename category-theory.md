@@ -13,8 +13,7 @@ category theory itself have to be clarified yet
   However, the concept of natural numbers exists.  
 - [e "Hom"] : Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? /
   Implication between Logic Formulas
-- [e "◦"] : Morphism composition - associative function [e "(f ◦ g) ◦ h = f ◦ (g
-◦ h)"]  
+- [e "◦"] : Morphism composition - associative function [e "(f ◦ g) ◦ h = f ◦ (g ◦ h)"]  
 [e "Hom(A, B) × Hom(B, C) → Hom(A, C): g ◦ f"] ; it's a partialy binary
 operation on Mor(CAT::)  
 [e "(g ◦ f)(x) = g(f(x))"]
