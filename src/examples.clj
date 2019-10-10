@@ -1,4 +1,4 @@
-(ns user
+(ns examples
   (:require
    [clojupyter.kernel.version :as ver]
    [clojupyter.display :as display]
@@ -10,59 +10,16 @@
 
 (def color "black")
 
-(defn dot-base [{:keys [x y r]}]
+(defn dot-base [x y r]
   [:circle {:cx x :cy y :r r
             :fill color
             :stroke "black" :stroke-width "4"
             }])
 
-(def shift 10)
-
-(defn dot [{:keys [x y] :as prm}] (dot-base {:x (+ x shift) :y (+ y shift) :r 4}))
-
-(def x {:x 0 :y 0})
-(def y {:x 100 :y 0})
-
-(def dot-x (dot x))
-(def dot-y (dot y))
-
-(->> [dot-x dot-y]
-     (into [:svg
-            (conj {:xmlns "http://www.w3.org/2000/svg"}
-                  #_{:viewBox "-50 -100 200 200"}
-                  {:height 200 :width 200}
-                  {:transform "translate(10 10)"})
-            [:defs
-             [:marker {:id "head" :orient "auto" :markerWidth "2" :markerHeight "4"
-                       :refX "0.1" :refY "2"}
-              ;; triangle pointing right (+x)
-              [:path {:d "M0,0 V4 L2,2 Z" :fill "black"}]]]])
-     display/hiccup-html)
-
-(def d-prms {:M :moveto
-             :L :lineto
-             :H :horizontal-lineto
-             :V :vertical-lineto
-             :C :curveto
-             :S :smooth-curveto
-             :Q :quadratic-bezier-curve
-             :T :smooth-quadratic-bezier-curveto
-             :A :elliptical-arc
-             :Z :closepath})
-
-(defn path [{:keys [M C] :as prm}]
-  (let [{mx :x my :y} m]
-    [:path {:d (str "m" mx "," my " "
-                    "c" )
-            :stroke color
-            :marker-end "url(#head)"
-            ;; :stroke-width "3"
-            :fill "transparent"}]))
-
+(defn dot [x y] (dot-base x y 4))
 
 (defn path [d]
-  "Upper case - absolute, lower case - relative
-M = moveto
+  "M = moveto
 L = lineto
 H = horizontal lineto
 V = vertical lineto
