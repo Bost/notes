@@ -40,8 +40,17 @@
              :A :elliptical-arc
              :Z :closepath})
 
+(defn point-vals [{:keys [x y] :as point}]
+  "E.g. {:x 0 :y 1} -> \"0,1\""
+  (str x "," y))
+
+(def elems [{:moveto {:x 10 :y 10}
+             :curveto {:control-point-beg {:x 20 :y 20}
+                       :control-point-end {:x 40 :y 20}
+                       :dst {:x 50 :y 10}}}])
+
 (defn path
-  [{:keys [M C] :as prm}]
+  [{:keys [moveto curveto] :as prm}]
   "Upper case - absolute, lower case - relative
 M = moveto
 L = lineto
@@ -53,15 +62,15 @@ Q = quadratic Bézier curve
 T = smooth quadratic Bézier curveto
 A = elliptical Arc
 Z = closepath"
-  (let [{mx :x my :y} M]
-    [:path {:d (str "M" mx "," my " "
-                    "C" C)
+  (let [{cpb :control-point-beg
+         cpe :control-point-end
+         dst :dst} curveto]
+    [:path {:d (str "M" (point-vals moveto)
+                    "C" (point-vals cpb) " " (point-vals cpe) " " (point-vals dst))
             :stroke color
             :marker-end "url(#head)"
             ;; :stroke-width "3"
             :fill "transparent"}]))
-
-(def elems [{:M {:x 10 :y 10} :C "20 20, 40 20, 50 10"}])
 
 (defn go [elems]
   {:pre [(vector? elems)]}
@@ -86,3 +95,16 @@ Z = closepath"
                #_{:viewBox "-50 -100 200 200"}
                {:height 200 :width 200})
     dot-x]))
+
+(defn zoom [{:keys [point dx dy] :or {dx 0 dy 0}}]
+  (-> point
+      (update :x (fn [x] (+ x dx)))
+      (update :y (fn [y] (+ y dy)))))
+
+#_(zoom {:point (:moveto e) :dx 20 :dy 10})
+
+(->> elems
+     (mapv (fn [e]
+             (update e :moveto (fn [p] (zoom {:point p :dx 20 :dy 10})))
+             ))
+     (go))
