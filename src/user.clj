@@ -36,29 +36,36 @@
         (update :x (fn [x] (+ x dx)))
         (update :y (fn [y] (+ y dy))))))
 
-(def a (Point. {:x 1 :y 1}))
-
-(move a {:dx 12 :dy 20})
+;; (move (Point. {:x 1 :y 1}) {:dx 12 :dy 20})
 
 (def x (Point. {:x 0 :y 0}))
 (def y (Point. {:x 100 :y 0}))
 
 (defrecord QuadraticBezier [coordinates]
   Move
-  (move [this {:keys [dx dy] :or {dx 0 dy 0}}]
-    (-> this
-        #_(update :x (fn [x] (+ x dx)))
-        #_(update :y (fn [y] (+ y dy))))))
+  (move [this {:keys [dx dy] :or {dx 0 dy 0} :as prm}]
+    (let [{src :moveto curveto :curveto} this]
+      (let [{cpb :crtl-point-beg
+             cpe :crtl-point-end
+             dst :dst} curveto]
+        (let [move-fn (fn [p] (move (Point. p) prm))]
+          (-> (:coordinates this)
+              (update :moveto move-fn)
+              (update :curveto (fn [curveto]
+                                 (-> curveto
+                                     (update :crtl-point-beg move-fn)
+                                     (update :crtl-point-end move-fn)
+                                     (update :dst move-fn))))))))))
 
 (def curve (QuadraticBezier. {:moveto {:x 10 :y 10}
-                              :curveto {:control-point-beg {:x 20 :y 20}
-                                        :control-point-end {:x 40 :y 20}
+                              :curveto {:crtl-point-beg {:x 20 :y 20}
+                                        :crtl-point-end {:x 40 :y 20}
                                         :dst {:x 50 :y 10}}}))
 
-(move curve {:dx 12 :dy 20})
+(move curve {:dx 1 :dy 2})
 
-(def dot-x (dot x))
-(def dot-y (dot y))
+;; (def dot-x (dot x))
+;; (def dot-y (dot y))
 
 (def d-prms {:M :moveto
              :L :lineto
@@ -76,8 +83,8 @@
   (str x "," y))
 
 (def elems [{:moveto {:x 10 :y 10}
-             :curveto {:control-point-beg {:x 20 :y 20}
-                       :control-point-end {:x 40 :y 20}
+             :curveto {:crtl-point-beg {:x 20 :y 20}
+                       :crtl-point-end {:x 40 :y 20}
                        :dst {:x 50 :y 10}}}])
 
 (defn path
@@ -93,8 +100,8 @@ Q = quadratic Bézier curve
 T = smooth quadratic Bézier curveto
 A = elliptical Arc
 Z = closepath"
-  (let [{cpb :control-point-beg
-         cpe :control-point-end
+  (let [{cpb :crtl-point-beg
+         cpe :crtl-point-end
          dst :dst} curveto]
     [:path {:d (str "M" (point-vals moveto)
                     "C" (point-vals cpb) " " (point-vals cpe) " " (point-vals dst))
