@@ -23,8 +23,39 @@
                                              (f/fmap (fn [val] (+ val dot-radius)) prm)
                                              {:r dot-radius})))
 
-(def x {:x 0 :y 0})
-(def y {:x 100 :y 0})
+(defprotocol Move
+  "A simple protocol for moving"
+  (move [this prm]
+    "Default method to move"))
+
+(defrecord Point [coordinates]
+  Move
+  (move [this {:keys [dx dy] :or {dx 0 dy 0}}]
+    #_(str "this: " this "; keys " (:coordinates this))
+    (-> (:coordinates this)
+        (update :x (fn [x] (+ x dx)))
+        (update :y (fn [y] (+ y dy))))))
+
+(def a (Point. {:x 1 :y 1}))
+
+(move a {:dx 12 :dy 20})
+
+(def x (Point. {:x 0 :y 0}))
+(def y (Point. {:x 100 :y 0}))
+
+(defrecord QuadraticBezier [coordinates]
+  Move
+  (move [this {:keys [dx dy] :or {dx 0 dy 0}}]
+    (-> this
+        #_(update :x (fn [x] (+ x dx)))
+        #_(update :y (fn [y] (+ y dy))))))
+
+(def curve (QuadraticBezier. {:moveto {:x 10 :y 10}
+                              :curveto {:control-point-beg {:x 20 :y 20}
+                                        :control-point-end {:x 40 :y 20}
+                                        :dst {:x 50 :y 10}}}))
+
+(move curve {:dx 12 :dy 20})
 
 (def dot-x (dot x))
 (def dot-y (dot y))
@@ -96,15 +127,8 @@ Z = closepath"
                {:height 200 :width 200})
     dot-x]))
 
-(defn zoom [{:keys [point dx dy] :or {dx 0 dy 0}}]
-  (-> point
-      (update :x (fn [x] (+ x dx)))
-      (update :y (fn [y] (+ y dy)))))
-
-#_(zoom {:point (:moveto e) :dx 20 :dy 10})
 
 (->> elems
      (mapv (fn [e]
-             (update e :moveto (fn [p] (zoom {:point p :dx 20 :dy 10})))
-             ))
+             (update e :moveto (fn [p] (move {:point p :dx 20 :dy 10})))))
      (go))
