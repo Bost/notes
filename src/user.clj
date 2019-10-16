@@ -25,44 +25,63 @@
 
 (defprotocol Move
   "A simple protocol for moving"
-  (move [this prm]
-    "Default method to move"))
+  (move [this] [this prm] "Default method to move"))
 
-(defrecord Point [coordinates]
+(defrecord Point []
   Move
+  (move [this] (move this {}))
   (move [this {:keys [dx dy] :or {dx 0 dy 0}}]
-    #_(str "this: " this "; keys " (:coordinates this))
-    (-> (:coordinates this)
+    #_(println "this:" this "dx:" dx "dy:" dy)
+    (-> this
         (update :x (fn [x] (+ x dx)))
         (update :y (fn [y] (+ y dy))))))
 
-;; (move (Point. {:x 1 :y 1}) {:dx 12 :dy 20})
+(defn make-point
+  ([] (make-point {}))
+  ([prm] (let [defaults {:x 0 :y 0}]
+           (Point. nil (merge defaults prm)))))
 
-(def x (Point. {:x 0 :y 0}))
-(def y (Point. {:x 100 :y 0}))
+#_(defmacro make [cfn prm]
+  `(let [cfn# ~cfn
+         prm# ~prm]
+     #_(println "~prm" ~prm "(quote ~prm)" (quote ~prm) "prm#" prm#)
+     (println "~cfn" ~cfn "(quote ~cfn)" (quote ~cfn) "cfn#" cfn# "(type ~cfn)" (type ~cfn))
+     (let [defaults {:x 0 :y 0}]
+       ((.newInstance cfn#) nil (merge defaults prm#)))))
 
-(defrecord QuadraticBezier [coordinates]
+(move (make-point {:x 1 :y 1}))
+(move (make-point {:x 1 :y 1}) {:dx 12 :dy 20})
+
+(defrecord QuadraticBezier []
   Move
+  (move [this] (move this {}))
   (move [this {:keys [dx dy] :or {dx 0 dy 0} :as prm}]
     (let [{src :moveto curveto :curveto} this]
-      (let [{cpb :crtl-point-beg
-             cpe :crtl-point-end
+      (let [{cpb :ctrl-point-beg
+             cpe :ctrl-point-end
              dst :dst} curveto]
-        (let [move-fn (fn [p] (move (Point. p) prm))]
-          (-> (:coordinates this)
+        (let [move-fn (fn [p] (move (make-point p) prm))]
+          (-> this
               (update :moveto move-fn)
               (update :curveto (fn [curveto]
                                  (-> curveto
-                                     (update :crtl-point-beg move-fn)
-                                     (update :crtl-point-end move-fn)
+                                     (update :ctrl-point-beg move-fn)
+                                     (update :ctrl-point-end move-fn)
                                      (update :dst move-fn))))))))))
+(defn make-curve
+  ([] (make-curve {}))
+  ([prm] (let [defaults {:moveto (make-point)
+                         :curveto {:ctrl-point-beg (make-point)
+                                   :ctrl-point-end (make-point)
+                                   :dst (make-point)}}]
+           (QuadraticBezier. nil (merge defaults prm)))))
 
-(def curve (QuadraticBezier. {:moveto {:x 10 :y 10}
-                              :curveto {:crtl-point-beg {:x 20 :y 20}
-                                        :crtl-point-end {:x 40 :y 20}
-                                        :dst {:x 50 :y 10}}}))
-
-(move curve {:dx 1 :dy 2})
+(move (make-curve {
+                   #_#_:moveto {:x 10 :y 10}
+                   :curveto {:ctrl-point-beg {:x 20 :y 20}
+                             #_#_:ctrl-point-end {:x 40 :y 20}
+                             :dst {:x 50 :y 10}}})
+      {:dx 100})
 
 ;; (def dot-x (dot x))
 ;; (def dot-y (dot y))
@@ -83,8 +102,8 @@
   (str x "," y))
 
 (def elems [{:moveto {:x 10 :y 10}
-             :curveto {:crtl-point-beg {:x 20 :y 20}
-                       :crtl-point-end {:x 40 :y 20}
+             :curveto {:ctrl-point-beg {:x 20 :y 20}
+                       :ctrl-point-end {:x 40 :y 20}
                        :dst {:x 50 :y 10}}}])
 
 (defn path
@@ -100,8 +119,8 @@ Q = quadratic Bézier curve
 T = smooth quadratic Bézier curveto
 A = elliptical Arc
 Z = closepath"
-  (let [{cpb :crtl-point-beg
-         cpe :crtl-point-end
+  (let [{cpb :ctrl-point-beg
+         cpe :ctrl-point-end
          dst :dst} curveto]
     [:path {:d (str "M" (point-vals moveto)
                     "C" (point-vals cpb) " " (point-vals cpe) " " (point-vals dst))
@@ -135,7 +154,7 @@ Z = closepath"
     dot-x]))
 
 
-(->> elems
-     (mapv (fn [e]
-             (update e :moveto (fn [p] (move {:point p :dx 20 :dy 10})))))
-     (go))
+;; (->> elems
+;;      (mapv (fn [e]
+;;              (update e :moveto (fn [p] (move {:point p :dx 20 :dy 10})))))
+;;      (go))
