@@ -130,6 +130,8 @@ isomorphisms / isomorphic - "only formally different"
 ### Pullback: type of a limit
 f: X -> Y     f is monomorphism (X is at least as big as Y)
 idY: Y -> Y
+also: Pullback of a functor I along a functor F is a composite functor
+(functor composition): I ◦ F
 
 ### Pushout: type of a colimit
 f: X -> Y     f is epimorphism (all Ys are used)
