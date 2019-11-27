@@ -1,7 +1,7 @@
 Classes of math structures http://math.chapman.edu/~jipsen/structures/doku.php/
 
-* Algebraic structures
-** Group-like
+https://en.wikipedia.org/wiki/Algebraic_structure
+
 # Algebraic structures
 ## Group-like
    | Group-like-Structure | Closed | Associative | Identity | Invertibile | Commutative |
@@ -97,3 +97,30 @@ Classes of math structures http://math.chapman.edu/~jipsen/structures/doku.php/
 ### Algebra
 ### Associative Non-associative Composition algebra
 ### Lie algebra Graded Bialgebra
+
+## Intuition: Category of X
+### Objects(X):
+Elements  :
+Structure :
+Properties:
+### Morphisms(X):
+Elements -> Elements; preserve structure
+
+## Topological spaces: Top
+Objects(Top)  : All Topological Spaces
+Morphisms(Top): Continuous Maps
+
+## Vector Spaces: Vec
+### Objects(Vec):
+Elements : All Vector Spaces
+Structure: add and scale vectors
+Properties: adding vectors is commutative
+### Morphisms(Vec):
+Linear transformations preserving sums and scalar multiplications.
+
+## Posets: Pos
+### Objects(Pos)
+Elements(Pos)  : Partialy ordered sets
+Structure(Pos) : Order
+Properties(Pos): Reflexivity, Transitivity
+### Morphisms(Pos): TODO
