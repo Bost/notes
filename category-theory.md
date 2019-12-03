@@ -367,10 +367,21 @@ Comonad: (w a -> b) -> (w b -> c) -> (w a -> c)
 You can extract from IO Monad
 You can't put anything to IO Monad
 
-### Topos: a type of a Category being able to replace the Set Theory
+### Topos:
+- Applied Category Theory. Chapter 7, lecture 1 (Spivak)
+  https://youtu.be/Qp6b-XbPog0
+- a world where mathematical statements can be interpreted
+- a type of a Category being able to replace the Set Theory
 - provides among other things a notion of a Subset
 - comes equiped with an "internal language", i.e. graphs, groups, topological
   spaces (changing over time) can be defined in any topos
+- every topos has a notion of truht value and truth values are much more
+  expressive than they are in the topos of sets
+- truth can vary over time and space: e.g. predicate "it rains" is not true
+  everywhere and anytime. In the topos of timespace truth values say when and
+  where "it rains" is or is not true
+- In temporal logic we have a logic of "when" - when something is true
+- Set topos / topos of sets is a topos of single point
 
 ### Subobject Classifier: Object Ω with Mononorphisms 1 -> Ω
 1 - is a category with only one obj
