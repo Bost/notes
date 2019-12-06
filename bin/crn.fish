@@ -1,9 +1,10 @@
 function crn
-    set d $dev/notes
-    cheat-grep $argv $d/category-theory.md \
-                     $d/computer-sciences.md \
-                     $d/logics.org \
-                     $d/math.org \
-                     $d/notes.org \
-                     $d/math-structures.md
+    set pth $dev/notes
+    set files $files $pth/category-theory.md
+    set files $files $pth/computer-sciences.md
+    set files $files $pth/logics.org
+    set files $files $pth/math.org
+    set files $files $pth/notes.org
+    set files $files $pth/math-structures.md
+    cheat-grep --grep-args="$argv" --files="$files"
 end
