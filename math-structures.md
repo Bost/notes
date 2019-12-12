@@ -5,6 +5,7 @@ https://en.wikipedia.org/wiki/Algebraic_structure
 # Algebraic structures
 ## Group-like
    | Group-like-Structure | Closed | Associative | Identity | Invertibile | Commutative |
+   |----------------------|--------|-------------|----------|-------------|-------------|
    | Semigroupoid         | -      | Y           | -        | -           | -           |
    | Small-Category       | -      | Y           | Y        | -           | -           |
    | Groupoid             | -      | Y           | Y        | Y           | -           |
@@ -16,6 +17,7 @@ https://en.wikipedia.org/wiki/Algebraic_structure
    | Monoid               | Y      | Y           | Y        | -           | -           |
    | Group                | Y      | Y           | Y        | Y           | -           |
    | Abelian-group        | Y      | Y           | Y        | Y           | Y           |
+
 ### Semigroup / Halbgruppe (G, ∘):
     ∘ - closed / closure: a ∘ b must be also in G
     Not required: ∘ is commutative: x ∘ y = y ∘ x
