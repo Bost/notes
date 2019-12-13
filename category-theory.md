@@ -88,10 +88,6 @@ Bartosz Milewski on [youtube](https://www.youtube.com/watch?v=JH_Ou17_zyU) and
 Example in programming: Category of Types and Functions (set and functions
 between sets)
 
-### Cartesian Product: A set of all pairs
-Relation: A subset of a Cartesian Product; doesn't have a directionality; n-to-n
-relation
-
 ### Function
 On sets / between sets  
 Pure: must be memoizable (lookup table)  
@@ -404,19 +400,24 @@ Proofs (= Programs) can be executed;
 Typed lambda calculi derived from the Curry–Howard-Lambek paradigm led to software like Coq;
 Curry-Howard-Lambek correspondence might lead to unification between mathematical logic and foundational computer science;
 Popular approach: use monads to segregate provably terminating from potentially non-terminating code
+Alternative: P or Q - "doesn't really matter what which one it is as long as at least one works"
 
-| INTUITIONISTIC (Constructive) LOGIC (Howard)   | TYPE THEORY - Functional Programming (Curry)                         | CATEGORY THEORY (Lambek) |
-|------------------------------------------------|----------------------------------------------------------------------|--------------------------|
-| Proposition of some type - (something is true) | Type (contract - a set of values that passes the contract)           |                          |
-| Proof of some type                             | Term (A program - guarded fn)                                        |                          |
-| Normalisation (Proof equality)                 | Computation (substitute variable with value)                         |                          |
-| &nbsp;                                         | &nbsp;                                                               | &nbsp;                   |
-| P implies Q: P -> Q (i.e. there exists one)    | paricular fn of fn of P-contract to guarded fn of Q-contract: P -> Q |                          |
-| -> is constructive implication                 | -> is function from-to                                               |                          |
-| false      -> false (implies)                  | {}       ->  {}  no values (empty set); contract cannot be satisfied |                          |
-| false      -> true                             | {}       ->  {.} (one element set)                                   |                          |
-| true       -> true                             | {.}      ->  {.} (identity function)                                 |                          |
-| true  (not ->) false (does not imply)          | {.} (not ->) {}                                                      |                          |
+| INTUITIONISTIC (Constructive) LOGIC            | TYPE THEORY - Functional Programming                                 | CATEGORY THEORY |
+| Howard                                         | Curry                                                                | Lambek          |
+|------------------------------------------------|----------------------------------------------------------------------|-----------------|
+| Proposition of some type - (something is true) | Type (contract - a set of values that passes the contract)           |                 |
+| Proof of some type                             | Term (A program - guarded fn)                                        |                 |
+| Normalisation (Proof equality)                 | Computation (substitute variable with value)                         |                 |
+|                                                |                                                                      |                 |
+| P implies Q: P -> Q (i.e. there exists one)    | paricular fn of fn of P-contract to guarded fn of Q-contract: P -> Q | Exponential     |
+| -> is constructive implication                 | -> is function from-to                                               |                 |
+| false      -> false (implies)                  | {}       ->  {}  no values (empty set); contract cannot be satisfied |                 |
+| false      -> true                             | {}       ->  {.} (one element set)                                   |                 |
+| true       -> true                             | {.}      ->  {.} (identity function)                                 |                 |
+| true  (not ->) false (does not imply)          | {.} (not ->) {}                                                      |                 |
+| Conjunction - and: P ⋀ Q                       | Pair (P, Q)     (proof-of-P, proof-of-Q)                             | Product         |
+| Alternative - or: P ⋁ Q                        | Union of (different) proofs P, Q                                     | Sum             |
+
 
 ## Correspondance of type habitation and proposition
 inhabited - has elems / members
@@ -585,12 +586,18 @@ initial obj: Univ prop: unique(1.) arrow to every(2.) single other obj
 ## intro: A -> Unit (fn: just ignore the fn input)
 ## elim: Unit -> A (fn: pick one elem of a type i.e. set; some sort of "cheating" - instead of an elem we pick a morphism)
 
-# Cartesian product (set of pairs): UP (universal construction) - best product triangle: for all other types there's the unique arrow
-projections: f: C -> A, g: C -> B
-tuple (pair aka record) is better than tripple
-??? loop-over-all-types: for each of all possible types: 38:20
+# Cartesian(?) Product
+- https://youtu.be/8AGWTWVOJ74?t=1329
+  "I have one thing, I have another thing and now I have two things"
+- set of all pairs: UP (universal construction) - best product triangle: for all
+other types there's the unique arrow projections: f: C -> A, g: C -> B
+- tuple (pair aka record) is better than tripple ??? loop-over-all-types: for each of
+all possible types: 38:20
 ## intro: A -> B -> (A,B) tupple
 ## elim: (A,B) -> A, (A,B) -> B
+
+# Relation
+A subset of a Cartesian Product; doesn't have a directionality; n-to-n relation
 
 # Sum type (dual to product - coproduct)
 ## intro: A -> either A or B, B -> either A or B
