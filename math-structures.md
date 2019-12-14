@@ -63,7 +63,14 @@ https://en.wikipedia.org/wiki/Algebraic_structure
 ### Near-ring
 ### Commutative ring
 ### Integral domain
-### Field
+### Field (TODO is Field a ring-like structure, really?)
+https://www.johndcook.com/blog/2017/03/26/visualizing-kinds-of-rings/
+- Euclidean domain: Every field is a Euclidean domain.
+- Principal Ideal Domain: Every Euclidean domain is a principal ideal domain (PID).
+- Unique Factorization Domain Every principal ideal domain is a unique factorization domain (UFD).
+- Domain: Every unique factorization domain is an integral domain.
+- Integral Domain: A finite integral domain is a field.
+
 ### Division ring
 ### Ring (R, +, ·) / Okruh
 #### R -commutative i.e. abelian group under addition:
@@ -90,17 +97,19 @@ https://en.wikipedia.org/wiki/Algebraic_structure
 ### Lattice theory
 
 ## Module-like
-### Module
+### Module - A vector space with a ring of scalars
 ### Group with operators
-### Vector space
-### Linear algebra
-
+### Vector space a.k.a linear space
+* Socratica - What is a Vector Space? https://youtu.be/ozwodzD5bJM __ E.g.
+* Vector - an arrow with a length and direction; Vector Space - collection of
+vectors
+* Subject of Linear algebra i.e. study of vector spaces
 ## Algebra-like
 ### Algebra
 ### Associative Non-associative Composition algebra
 ### Lie algebra Graded Bialgebra
 
-## Intuition: Category of X
+# Intuition: Category of X
 ### Objects(X):
 Elements  :
 Structure :
@@ -118,7 +127,8 @@ Elements : All Vector Spaces
 Structure: add and scale vectors
 Properties: adding vectors is commutative
 ### Morphisms(Vec):
-Linear transformations preserving sums and scalar multiplications.
+Linear transformations preserving sums and scalar multiplications - i.e. vector
+scaling
 
 ## Posets: Pos
 ### Objects(Pos)

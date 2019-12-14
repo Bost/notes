@@ -41,3 +41,7 @@ Windows Subsystem for Linux 2 (WSL 2)
 - remove the notion of time. Change over time is one of the major sources of program complexity.
 - declarative. Most of the algorithms are imperative. Under declarative approach you don't have to trace the flow of time through a data structure.
 
+### Database
+Database schema         - Category
+Database instance       - Set-valued functor
+Database transformation - Universal Construction

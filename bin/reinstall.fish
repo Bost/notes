@@ -14,5 +14,11 @@ if test $status = 0
         set cmd clj -m clojupyter.cmdline install --ident $ident --jarfile $jarfile
         echo $cmd
         eval $cmd
+        if test $status = 0
+            set cmd jupyter lab
+            echo $cmd
+            eval $cmd
+        end
     end
 end
+

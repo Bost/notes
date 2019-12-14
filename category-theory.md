@@ -44,7 +44,7 @@ no matter which way you go around you get the same thing
 CCC is usefull in programming
 - Cartesian: has product [e "A × B"] (conjunction) for any pair of objs A, B
 - Closed: has exponential [e "B^A"] (functions A -> B) for any pair of objs A, B
-- 0-th power of an obj: has terminal obj 1 (for all objs there exists an unique
+- 0-th power of an obj: has terminal obj 1 (for all objs there exists a unique
   map [e "A → 1"] )
 
 - multiplying by terminal obj 1 gives back the original obj
@@ -108,15 +108,15 @@ iterated product)
 ### Morphisms / Mappings X → Y
 | Latin      | Greek / morphisms | Meaning                         | Functor  |
 |------------|-------------------|---------------------------------|----------|
-| injective  | monic / mono      | distinct Xs -> distinct Ys      | Faithful |
-| surjective | epic / epi        | all Ys are used                 | Full     |
+| surjective | epic / epi   ↠    | all Ys are used                 | Full     |
+| injective  | monic / mono ↣    | distinct Xs -> distinct Ys      | Faithful |
 | bijective  | ? epi-mono?       | exact pairing between X, Y      |          |
 | strict     | &nbsp;            | surj X -> Y but not bije Y -> X |          |
 
 Also:
 ```
-Injection   |X| ≤ |Y|  one-to-one / X at least as small Y or smaller
 Surjection  |X| ≥ |Y|  onto / X at least as big Y or bigger
+Injection   |X| ≤ |Y|  one-to-one / X at least as small Y or smaller
 Bijection   |X| = |Y|  mutually unambiguous, same size
 Strict      |X| < |Y|  ? double usage of some Ys ?, X strictly smaller than Y
 Epimorphism and Monomorphism are dual to each other
@@ -315,7 +315,7 @@ HomSet: HomC(A,B) = {f: A → B} - set of all morphisms A → B in category C (O
 of C don't need to be sets)  
 External vs. Internal Homset
 
-### Free Monoid: has an unique mapping to every other monoid
+### Free Monoid: has a unique mapping to every other monoid
 A list of accumulated vals
 
 ### HomFunctor: Functor to category of Sets
@@ -364,10 +364,12 @@ You can extract from IO Monad
 You can't put anything to IO Monad
 
 ### Topos:
-- Applied Category Theory. Chapter 7, lecture 1 (Spivak)
-  https://youtu.be/Qp6b-XbPog0
-- a world where mathematical statements can be interpreted
-- a type of a Category being able to replace the Set Theory
+Applied Category Theory. Chapter 7, lecture 1 (Spivak)
+https://youtu.be/Qp6b-XbPog0
+Topos is:
+1. a type of a Category being able to replace the Set Theory
+2. a place where you can do logic; i.e. a world where mathematical statements
+   can be interpreted
 - provides among other things a notion of a Subset
 - comes equiped with an "internal language", i.e. graphs, groups, topological
   spaces (changing over time) can be defined in any topos
@@ -378,6 +380,17 @@ You can't put anything to IO Monad
   where "it rains" is or is not true
 - In temporal logic we have a logic of "when" - when something is true
 - Set topos / topos of sets is a topos of single point
+Topos properties
+1. has limits and colimits
+2. every morphishm has an epi-mono factorisation. I.e. it can be seen as a
+   surjection (onto) followed (one-to-one) by an injection
+3. is cartesian closed
+- Cartesian: has product [e "A × B"] (conjunction) for any pair of objs A, B
+- Closed: has exponential [e "B^A"] (functions A -> B) for any pair of objs A, B
+- 0-th power of an obj: has terminal obj 1 (for all objs there exists a unique
+  map [e "A → 1"])
+4. has a subobject clasifier - contains the "core" of topos logic
+
 
 ### Subobject Classifier: Object Ω with Mononorphisms 1 -> Ω
 1 - is a category with only one obj
@@ -668,3 +681,8 @@ Intuition of Khan Extentions is difficult - they are more abstract than monads
 Adjunction between a Product and a Function Type is Currying
 
 Product generalisation: Tensor Product in a monoidal category
+
+# Category theory - definition dependencies
+Based on definitions in The Joy of Cats.
+https://www.johndcook.com/blog/category_theory/
+
