@@ -5,6 +5,8 @@
 #+LATEX_HEADER: \usepackage{parskip}    % paragraphs
 #+LATEX_HEADER: \usepackage{hyperref}
 #+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc} %% unicode chars
+#+LATEX_HEADER: \usepackage{minted}     % syntax coloring
 
 * org mode tagging                                                      :org:
 | col1    | col2          |
