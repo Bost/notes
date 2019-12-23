@@ -51,7 +51,7 @@ return "Hello from Python" # evaluate: C-c
 : Hello from python
 
 :Compare-2-bitmaps:
-#+BEGIN_SRC
+#+BEGIN_SRC java
 // http://stackoverflow.com/questions/10487152/comparing-two-images-for-motion-detecting-purposes
 private int returnCountOfDifferentPixels(String pic1, String pic2) {
         Bitmap i1 = loadBitmap(pic1);
