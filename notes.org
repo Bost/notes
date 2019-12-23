@@ -1,9 +1,15 @@
-* org mode tagging                                                      :org:
+#+LATEX: % generate pdf: M-x org-latex-export-to-pdf
 
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage{float}      % fixed table position
+#+LATEX_HEADER: \usepackage{parskip}    % paragraphs
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
+
+* org mode tagging                                                      :org:
 | col1    | col2          |
 |---------+---------------|
 | content | other content |
-
 
 #+BEGIN_SRC emacs-lisp
   (message "Yeah from emacs-lisp!")
@@ -63,8 +69,11 @@ private int returnCountOfDifferentPixels(String pic1, String pic2) {
 :END:
 
 :Brick-à-Brack:
-"a selection of items of modest value, often sold in street markets and charity
-shops. In colloquial English: Knick knack."
+Solution of a Differential Equations (DE) is a function, not value \\
+[[https://youtu.be/czL0ZSscbsM?t=II709][National Renewable Energy Laboratory: Energy-Cell Efficiencies]] \\
+[[http://blog.sciencevsmagic.net/science/fractal-machine/][Fractals]] \\
+Go over the book from the Prof. from Karlsruhe \\
+Tensor: most general bilinear operation; Notation $\otimes$
 
 What is: David Allen's GTD (Getting Things Done) system
 yacy, opensearchserver.com
@@ -107,9 +116,7 @@ The Little Schemer
 The Seasoned Schemer
 The Reasoned Schemer
 The Little LISPer
-The Little Prover
 The Little MLer
-The Little Typer
 :END:
 
 :Lang:

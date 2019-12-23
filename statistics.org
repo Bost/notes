@@ -1,0 +1,80 @@
+#+LATEX: % generate pdf: M-x org-latex-export-to-pdf
+
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage{float}      % fixed table position
+#+LATEX_HEADER: \usepackage{parskip}    % paragraphs
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
+
+* Statistics
+** Data
+
+#+BEGIN_SRC
+   Nominal Data                Interval / Ratio Data
+   I======================I   I========================================================I
+   I  +-----------------+ I   I                                  +-------------------+ I
+   I  | Test for        | I   I                                  | Test for a mean   | I
+   I  | Proportion      | I   I                                  |                   | I
+   I  +-----------------+ I   I                                  +-------------------+ I
+   I                      I   I                                                        I
+   I  +-----------------+ I   I +-------------------------+                            I
+   I  | Difference of   | I   I | difference of two means |                            I
+   I  | two proportions | I   I | (independent samples)   |                            I
+   I  +-----------------+ I   I +-------------------------+                            I
+   I                      I   I                                                        I
+   I  +-----------------+ I   I +-------------------------+      +-------------------+ I
+   I  | Chi-sq test for | I   I | Regression analysis     |      | Difference of two | I
+   I  | independence    | I   I |                         |      | means (paired)    | I
+   I  +-----------------+ I   I +-------------------------+      +-------------------+ I
+   I======================I   I========================================================I
+#+END_SRC
+** Samples
+#+BEGIN_SRC
+   One Sample
+   I===================================================================================I
+   I  +-----------------+                                        +-------------------+ I
+   I  | Test for        |                                        | Test for a mean   | I
+   I  | Proportion      |                                        |                   | I
+   I  +-----------------+                                        +-------------------+ I
+   I===================================================================================I
+   Two Samples
+   I===================================================================================I
+   I  +-----------------+       +-------------------------+                            I
+   I  | Difference of   |       | difference of two means |                            I
+   I  | two proportions |       | (independent samples)   |                            I
+   I  +-----------------+       +-------------------------+                            I
+   I===================================================================================I
+   One Sample, Two Measures
+   I===================================================================================I
+   I  +-----------------+       +-------------------------+      +-------------------+ I
+   I  | Chi-sq test for |       | Regression analysis     |      | Difference of two | I
+   I  | independence    |       |                         |      | means (paired)    | I
+   I  +-----------------+       +-------------------------+      +-------------------+ I
+   I===================================================================================I
+#+END_SRC
+** Purpose
+#+BEGIN_SRC
+   Testing against a value
+   I===================================================================================I
+   I  +-----------------+                                        +-------------------+ I
+   I  | Test for        |                                        | Test for a mean   | I
+   I  | Proportion      |                                        |                   | I
+   I  +-----------------+                                        +-------------------+ I
+   I===================================================================================I
+   Comparing two statistics
+   I                        I
+   I===================================================================================I
+   I  +-----------------+     +-------------------------+  I  I                        I
+   I  | Difference of   |     | difference of two means |  I  I                        I
+   I  | two proportions |     | (independent samples)   |  I  I                        I
+   I  +-----------------+     +-------------------------+  I  I                        I
+   I=======================================================I                           I
+   Looking for relationships
+   I                        I
+   I=======================================================I                           I
+   I  +-----------------+     +-------------------------+  I  I  +-------------------+ I
+   I  | Chi-sq test for |     | Regression analysis     |  I  I  | Difference of two | I
+   I  | independence    |     |                         |  I  I  | means (paired)    | I
+   I  +-----------------+     +-------------------------+  I  I  +-------------------+ I
+   I===================================================================================I
+#+END_SRC
