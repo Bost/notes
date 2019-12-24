@@ -5,13 +5,20 @@
 #+LATEX_HEADER: \usepackage{parskip}    % paragraphs
 #+LATEX_HEADER: \usepackage{hyperref}
 #+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
-#+LATEX_HEADER: \usepackage[utf8]{inputenc} %% unicode chars
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}   % unicode chars
 #+LATEX_HEADER: \usepackage{minted}     % syntax coloring
 
-* org mode tagging                                                      :org:
-| col1    | col2          |
-|---------+---------------|
-| content | other content |
+\begin{minted}[style=solarized-dark]{clojure}
+  (defn foo [] (println "foo"))
+\end{minted}
+
+\begin{minted}[style=solarized-dark]{bash}
+  #!/usr/bin/bash
+  for (( i=0; i != 10; i=i+1)); do
+    echo $i
+  done
+\end{minted}
+
 
 #+BEGIN_SRC emacs-lisp
   (message "Yeah from emacs-lisp!")
@@ -70,7 +77,7 @@ private int returnCountOfDifferentPixels(String pic1, String pic2) {
 #+END_SRC
 :END:
 
-:Brick-à-Brack:
+* Brick-à-Brack
 Solution of a Differential Equations (DE) is a function, not value \\
 [[https://youtu.be/czL0ZSscbsM?t=II709][National Renewable Energy Laboratory: Energy-Cell Efficiencies]] \\
 [[http://blog.sciencevsmagic.net/science/fractal-machine/][Fractals]] \\
@@ -83,6 +90,11 @@ SciFi literature
 speechace - accent recognition and correction software
 system for algorithm building blocks: don't reinvent the wheel
 Browser based Virtual Machines
+
+Why Do Nigerian Scammers Say They are From Nigeria? \\
+It works like a filter. If you believe them, you passed it. And you're likely
+stupid enough to do anything they ask you for. IOW send them money. \\
+If you don't pass it then it's probably not worth effort to flirt with you.
 
 http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/
 Sequence of QR Codes/ graphical elements (pyramide, cube, sphere, toroid, etc.)
@@ -99,7 +111,6 @@ stuff to datomic - ?git has no services? http://www.youtube.com/watch?v=ROor6_NG
 klipse
 GraphQL
 Pure vs. mostly harmless functions
-:END:
 
 :terminals:
 # A terminal for a more modern age
@@ -161,3 +172,8 @@ Communication w-/wo- Letters
   sudo chown -R $USER:$USER /usr/lib/android-sdk/
   rsync -azv $host:/usr/lib/android-sdk/ /usr/lib/
 #END_SRC
+
+:org-mode-tagging:                                                      :org:
+| col1    | col2          |
+|---------+---------------|
+| content | other content |
