@@ -5,6 +5,8 @@
 #+LATEX_HEADER: \usepackage{parskip}    % paragraphs
 #+LATEX_HEADER: \usepackage{hyperref}
 #+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}   % unicode chars
+#+LATEX_HEADER: \usepackage{minted}     % syntax coloring
 
 * Hierarchy
 What is needed to understand $X$? A big tree and paths through this tree.
@@ -126,17 +128,17 @@ really-h      & 0.9         & test-h  & 0.7     & 0.63                          
 
 #+NAME: <name>
 #+BEGIN_SRC clojure
-  #                      +-- test positive 0.9: 0.1 * 0.9 = 0.09
-  #                      |
-  #    +-----  ill 0.1 --+
-  #    |                 |
-  #    |                 +-- test negative 0.1: 0.1 * 0.1 = 0.01
-  # ---+
-  #    |                 +-- test positive 0.3: 0.9 * 0.3 = 0.27
-  #    |                 |
-  #    +-- healthy 0.9 --+
-  #                      |
-  #                      +-- test negative 0.7: 0.9 * 0.7 = 0.63
+  ;;                      +-- test positive 0.9: 0.1 * 0.9 = 0.09
+  ;;                      |
+  ;;    +-----  ill 0.1 --+
+  ;;    |                 |
+  ;;    |                 +-- test negative 0.1: 0.1 * 0.1 = 0.01
+  ;; ---+
+  ;;    |                 +-- test positive 0.3: 0.9 * 0.3 = 0.27
+  ;;    |                 |
+  ;;    +-- healthy 0.9 --+
+  ;;                      |
+  ;;                      +-- test negative 0.7: 0.9 * 0.7 = 0.63
   ;; test is negative i.e. says "you're healthy" and the patient is really
   ;; ill (has the condition)
   (/ 0.01 (+ 0.01 0.63)) = 0.015625
