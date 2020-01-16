@@ -1,0 +1,113 @@
+#+LATEX: % generate pdf: M-x org-latex-export-to-pdf
+
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage{float}      % fixed table position
+#+LATEX_HEADER: \usepackage{parskip}    % paragraphs
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \usepackage{syntax}     % grammar rules
+#+LATEX_HEADER: \usepackage{cmll}       % logic symbols; sudo snap install texlive-fonts-extra; http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf
+#+LATEX_HEADER: \usepackage{proof}      % inference rules
+#+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}   % unicode chars
+#+LATEX_HEADER: \usepackage{minted}     % syntax coloring
+#+LATEX_HEADER: \usepackage{mathrsfs}   % https://www.ctan.org/pkg/mathrsfs
+#+LATEX_HEADER: \usepackage{oz}         % arrow with vertical stroke e.g. \pfun
+#+LATEX_HEADER: \usepackage{mathtools}  % arrow with text
+
+* Collaborative Design: Profunctors, Categorification, and Monoidal Categories
+
+** \href{https://youtu.be/4Uqgsy3zrjs}{Chapter 4, lecture 1 (Spivak)}
+   Reference to Andrea Censi; CoDesign = Collaborative design; Functionalities -
+   resources provided vs. resources required
+
+   Feed back loop - compact closure
+
+   Pareto optimal front
+
+   Preorder (P, \leq) velocity $v$ and weight $w$ are preorders \\
+   $v \times w$ is also a preorder;
+
+   $v \times w$ is not a linear preorder anymore; certain thing are neither
+   worse nor better than the other things
+
+   antichain: subset $A$ of $P$: $A \subseteq P$ such that (s.th.) for all a1,
+   a2 from A if a1 \leq a2 then a1 = a2. IOW no two different things are
+   comparable.
+
+   Categorical Idea: V-Profunctors = feasibility relationships especially if $V$
+   is $Bool$
+
+   $\mathcal{V}\text{-}category$ is a diagram where by the elements of
+   $\mathcal{V}$. $\mathcal{V}$ knows how to compose by what's called tensor.
+
+   V-profunctor of Bool: "Can I get a motor that can provide this much torque
+   and speed for this much weight, current and voltage?"
+
+   V-profunctor of Cost: "How much would it cost to get a motor that can
+   providing this much torque and speed for this much
+
+   V-profunctor of Set. see \href{https://youtu.be/4Uqgsy3zrjs?t=491}{8:11} what
+   are the ways to
+
+   Idea: (wire diagrams ) \\
+   $\mathcal{V}\text{-}category$: wires - each wire is carrying a preorder \\
+   $\mathcal{V}\text{-}profunctor$: boxes \\
+   $\mathcal{V}\text{-}profunctor\text{-}composition$: whole design problem; composition = feed-forward
+   co-design. \\
+   compact closed structure: add feedback
+
+   V is Bool: \\
+   V-category is a preorder: Less than or equal to is a true/false question.
+
+   Opposite of a V-category $P$: \\
+   A V-category w/ the same objects, arrows are reversed. I.e. if $p' \leq p$ in
+   $P$ then $p \leq p'$ in $P\textsuperscript{op}$.
+
+** V-profunctor: from one category to another
+   #+LATEX: % TODO replace \pfun with a proper symbol
+   We have $P \pfun Q$ \href{https://youtu.be/4Uqgsy3zrjs?t=861}{14:21} where
+   $P$, $Q$ are wires, $\pfun$ is a box called \Phi "phi" as in "feasibility".
+
+   $\mathcal{V}$ is a symmetric monoidal poset or a symmetric monoidal category:
+   1. Notion of object: has a set of objects $Obj(P)$
+   2. Notion of element: for all $p1, p2 \in Ob(P)$ we have $P(p1,p2) \in
+      \mathcal{V}$
+
+   Conditions:
+   1. $I \leq_\mathcal{V} P(p,p)$
+   2. $P(p1,p2) \otimes P(p2,p3) \leq_\mathcal{V} P(p1,p3)$
+
+   $P = (\mathcal{V}, \otimes, I)$ is a $\mathcal{V}\text{-}category$ - it means
+   enriched in itself. That also means it's a quantale, and that means it has
+   all joins.
+   #+LATEX: % TODO find the definition of quantale \href{https://youtu.be/4Uqgsy3zrjs?t=1126}{18:46}
+
+   $\mathcal{V}\text{-}profunctor$: $P\textsuperscript{op} \times Q \pfun
+   \mathcal{V}$ where $\mathcal{V} = \{true, false\}$ is a boolean.
+
+   $\pfun$ is a profunctor, $\rightarrow$ is a normal functor. IOW $\underscore
+   \pfun \underscore$ packages up $\underscore \rightarrow \underscore$
+
+   _Unpacking $\Phi(p, q)$_: is $p$ feasible, given $q$? \\
+   $p$ - resources provided \\
+   $q$ - resources required
+
+   _Meaning of opposite $\textsuperscript{op}$_: is there a path?"\\
+   Can you give me a dinner for two $p$? - Yes that's feasible. Actually I need
+   just a dinner for one $p'$: \\
+   if $p' \leq p$ and $q' \leq q$ then $\Phi(p, q) \leq \Phi(p', q')$
+
+   Bool profunctor drawn in a form of collage. Like a Hasse diagram for the
+   whole profunctor.
+
+   _Profunctor_: a generalisation of functor where not everything from the
+   domain has to be included and two things may be spread out. See page
+   7Sketches.pdf, page
+   \href{http://math.mit.edu/~dspivak/teaching/sp18/7Sketches.pdf}{122}. Also:
+   Every functor is a kind of profunctor.
+
+   A functor between $Bool$ categories is a monotone map. So any monotone map is
+   a profunctor. N are natural number with $\leq$ and $+$ relations. $N \times N
+   \xrightarrow[]{\text{+}} N$.
+
+** \href{https://youtu.be/92Xp1z9PwJM}{Chapter 4, lecture 2 (Fong)}
