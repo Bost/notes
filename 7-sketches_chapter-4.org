@@ -161,7 +161,36 @@
     #+LATEX: % TODO use $\catname{Set}$
 
     Axioms - ways to ensure that Hasse diagrams have unambiguous interpretation
-    associativity
+    associativity.
 
-    _Def: SCM_
-    #+LATEX: % TODO 12:18
+
+    _Def: SCM_ $(\mathscr{C}, \otimes, I)$ is:
+    - a category $\mathscr{C}$
+    - a functor for monoidal product $\otimes: \mathscr{C} \times \mathscr{C}
+      \rightarrow \mathscr{C}$
+    - a functor $1 \rightarrow \mathscr{C}$ i.e. an object $I \in Ob\mathscr{C}$
+    - Natural Isomorphism:
+        * $\lambda_X : I \otimes X \rightarrow X$ i.e. left unitor
+        * $\rho_X : X \otimes I \rightarrow X$ i.e. right unitor
+    - Associativity: $\alpha_{X,Y,Z} : (X \otimes Y) \otimes Z \rightarrow X \otimes (Y \otimes
+      Z)$
+    SMC: $\delta_{X,Y}: X \otimes Y \rightarrow Y \otimes X$ i.e. swap map \\
+    SMC is this data such that the natural isomorphisms are well behaved
+
+    Tensor product $f \otimes g$ - parallel "execution" of $f$ and $g$
+
+    SMC Examples: \\
+    1. $(\catname{Set}, \times, 1)$:
+    * Underlying category is the category of all sets: $\catname{Set}$ \\
+    * monoidal product $\times$ is given by product of sets and also by product
+      of functions. See \href{https://youtu.be/92Xp1z9PwJM?t=1658}{27:38}
+
+    2. $(\catname{Set}, \amalg , \emptyset)$ where $\amalg$ is disjoint union of sets
+
+    3. $(\catname{Vect_{k}}, \otimes, k)$: $k$ is a field; objects are vector
+       spaces; monoidal product $\otimes$ i.e. monoidal structure comes from the
+       tensor product of linear maps and vector spaces
+
+    4. $(\catname{Prof}_{\mathcal{V}}, \times, 1)$: category of profunctors; objects are
+       V-categories for some symmetric monoidal preorder; morphisms are the profunctors;
+       monoidal product $\times$ is product of V-categories
