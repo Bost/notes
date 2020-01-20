@@ -13,11 +13,32 @@
 #+LATEX_HEADER: \usepackage{mathrsfs}   % https://www.ctan.org/pkg/mathrsfs
 #+LATEX_HEADER: \usepackage{oz}         % arrow with vertical stroke e.g. \pfun
 #+LATEX_HEADER: \usepackage{mathtools}  % arrow with text
-
 #+LATEX_HEADER: \newcommand{\catname}[1]{\mathbf{#1}}
-
 #+LATEX: % https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
+#+STARTUP: latexpreview     % nolatexpreview / nolatexpreview C-c C-x C-l
 
+* Generative Effects: Orders and Galois Connections
+* Resource Theories: Monoid Preorders and Enrichment
+** Symmetric Monoidal Preoder
+   Preorder $(X, \leq)$: \\
+   Set $X$ with a reflexive $x \leq x$ and transitive $x \leq y \land y \leq
+   z \implies x \leq z$ preorder relation $\leq$. \\
+   Partially ordered: \\
+   preorder with skeletality requirement ($x \cong y \implies x = y$) where
+   $x \leq y \land y \leq x \implies x \cong y$. \\
+   Also: poset - partially ordered set
+
+   Every preorder can be made into partial order by adding the skeletality
+   requirement.
+
+   Monoid $(M, *, e)$ - set $M$, multiplication $*: M \times M \fun M$,
+   unit element $e$. \\
+   Monoidal preorder: $x_1, y_1, x_2, y_2 \in X: x_1 \leq y_1 \land x_2 \leq y_2
+   \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$
+
+   Symmetric: $x, y \in X: x \otimes y = y \otimes x$
+*** TODO $\mathcal{V}$ Enrichment
+* Databases: Categories, Functors and Universal Constructions
 * Collaborative Design: Profunctors, Categorification, and Monoidal Categories
 ** \href{https://youtu.be/4Uqgsy3zrjs}{Chapter 4, lecture 1 (Spivak)}
    Reference to Andrea Censi; CoDesign = Collaborative design; Functionalities -
@@ -27,8 +48,8 @@
 
    Pareto optimal front
 
-   Preorder $(P, \leq)$ velocity $v$ and weight $w$ are preorders \\
-   $v \times w$ is also a preorder;
+   Preorder $(P, \leq)$ velocity $v$ and weight $w$ are preorders; $v \times w$
+   is also a preorder;
 
    $v \times w$ is not a linear preorder anymore; certain thing are neither
    worse nor better than the other things
@@ -37,20 +58,21 @@
    a2$ from A if $a1 \leq a2$ then $a1 = a2$. IOW no two different things are
    comparable.
 
-   Categorical Idea: $\mathcal{V}\text{-}profunctors$ = feasibility
-   relationships especially if $V$ is $Bool$
+   Categorical idea: $\mathcal{V}\text{-}profunctors$ = feasibility
+   relationships especially if $\mathcal{V}$ is $Bool$.
 
    $\mathcal{V}\text{-}category$ is a diagram where by the elements of
    $\mathcal{V}$. $\mathcal{V}$ knows how to compose by what's called tensor.
 
-   V-profunctor of Bool: "Can I get a motor that can provide this much torque
-   and speed for this much weight, current and voltage?"
+   $\mathcal{V}\text{-}profunctor$ of $Bool$: "Can I get a motor that can
+   provide this much torque and speed for this much weight, current and
+   voltage?"
 
-   V-profunctor of Cost: "How much would it cost to get a motor that can
-   providing this much torque and speed for this much
+   $\mathcal{V}\text{-}profunctor$ of $Cost$: "How much would it cost to get a
+   motor that can providing this much torque and speed for this much
 
-   V-profunctor of Set. see \href{https://youtu.be/4Uqgsy3zrjs?t=491}{8:11} what
-   are the ways to
+   $\mathcal{V}\text{-}profunctor$ of $Set$. see
+   \href{https://youtu.be/4Uqgsy3zrjs?t=491}{8:11} what are the ways to
 
    Idea: (wire diagrams ) \\
    $\mathcal{V}\text{-}category$: wires - each wire is carrying a preorder \\
@@ -76,23 +98,25 @@
     2. Notion of element: for all $p1, p2 \in Ob(P)$ we have $P(p1,p2) \in
        \mathcal{V}$
 
-    Conditions:
-    1. $I \leq_\mathcal{V} P(p,p)$
-    2. $P(p1,p2) \otimes P(p2,p3) \leq_\mathcal{V} P(p1,p3)$
+    Conditions for:
+    1. monoidal unit $I \leq_\mathcal{V} P(p,p)$
+    2. monoidal product $P(p1,p2) \otimes P(p2,p3) \leq_\mathcal{V} P(p1,p3)$
 
     $P = (\mathcal{V}, \otimes, I)$ is a $\mathcal{V}\text{-}category$ - it
-    means enriched in itself. That also means it's a quantale, and that means it
-    has all joins. $\mathcal{V}$ is also a symmetric monoidal preorder with
-    joins that distribute over tensor. i.e. a quantale.
+    means it is enriched in itself. That also means it's a quantale, and that
+    means it has all joins. $\mathcal{V}$ is also a symmetric monoidal preorder
+    with joins that distribute over tensor. i.e. a quantale.
     \href{https://youtu.be/4Uqgsy3zrjs?t=2620}{43:40}
     #+LATEX: % TODO find quantale def \href{https://youtu.be/4Uqgsy3zrjs?t=1126}{18:46}
     #+LATEX: % TODO is the 43:40 a proper quantale definition?
 
+    TODO following should be just $\fun$, not $\pfun$
+
     $\mathcal{V}\text{-}profunctor$: $P\textsuperscript{op} \times Q \pfun
     \mathcal{V}$ where $\mathcal{V} = \{true, false\}$ is a boolean.
 
-    $\pfun$ is a profunctor, $\rightarrow$ is a normal functor. IOW $\underscore
-    \pfun \underscore$ packages up $\underscore \rightarrow \underscore$
+    $\pfun$ is a profunctor, $\fun$ is a normal functor. IOW $\underscore
+    \pfun \underscore$ packages up $\underscore \fun \underscore$
 
     _Unpacking $\Phi(p, q)$_: is $p$ feasible, given $q$? \\
     $p$ - resources provided \\
