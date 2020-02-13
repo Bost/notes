@@ -297,8 +297,8 @@ interacting physical and computational parts)
 I.e. It makes sense over any $\catname{Rig}$ which is basically a
 $\catname{Ring}: R[s, s\textsuperscript{-1}]$
 
-\underline{Prop} $(\mathscr{C}, \otimes, I)$: Special kind of a monoidal
-category where the objects are "easy" such that:
+\underline{Prop} $(\mathscr{C}, \otimes, I)$: Special kind of a strict symmetric
+monoidal category SMC where the objects are "easy" such that:
  - $Ob(\mathscr{C}) := \mathbb{N}$
  - $I := 0$
  - $\forall m,n \in Ob(\mathscr{C}) := \mathbb{N}: m \otimes n := m + n$
@@ -333,6 +333,23 @@ diagram manipulations
 \underline{Free structure}: free from unnecessary constraints. See
 $\catname{Free}(G)$
 
+Notion of adjuction ...
+
+??? Underlying set of Monoid
+
+strict Symmetric Monoidal Category SMC:
+- strict - unitors, associators are identities; i.e strict means that the objects
+  form a proper monoid
+
+props are categories$!
+
 \underline{Transitive closure} $R^+$ of a binary relation $R$: \\
 Example: $R = \{(1,2),(2,3)\}$ then $R^+ = \{(1,2),(2,3),(1,3)\}$ i.e. extend
 the $R$ by every possible composition.
+
+\underline{Prop Signature} $\Sigma$
+Set $G$ of things and two functions $s$, $t$ to natural numbers $\mathbb{N}$.
+
+TODO Full Functor from C to D
+
+TODO Matrix Kernel
