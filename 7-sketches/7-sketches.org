@@ -18,6 +18,26 @@
 #+STARTUP: latexpreview     % nolatexpreview / nolatexpreview C-c C-x C-l
 
 * Generative Effects: Orders and Galois Connections
+
+\underline{Disjoint Union} of sets $\sqcup$ - see also
+\href{https://en.wikipedia.org/wiki/Disjoint_union}{wikipedia}:\\
+Set of ordered pairs $(x, i)$:\\
+$$A = \bigsqcup_{i \in I} A_i = \bigcup_{i \in I}\{(x, i): x \in A_i}$$
+
+$A_i$ is a family of sets indexed by the indexing set $I$. There are also
+injective functions $A_i \rightarrow A; x \rightarrow (x, i)$. Example:\\
+
+$A_0 = \{5, 6, 7\}$ indexed: $A^*_0 = \{(5, 0), (6, 0), (7, 0)\}$ \\
+$A_1 = \{5, 6\}$ indexed: $A^*_1 = \{(5, 1), (6, 1)\}$ \\
+$A = A_0 \sqcup A_1 = A^*_0 \union A*_1 = \{(5, 0), (6, 0), (7, 0), (5, 1), (6,
+1)\}$
+
+Every element of the result $A_0 \sqcup A_1$ has the information (the index $i$)
+where it comes from. Elements which belong to multiple sets $A_i: i \in I$
+appear separately in the result.
+
+In Category Theory, disjoint union is the coproduct of the category of sets.
+
 * Resource Theories: Monoid Preorders and Enrichment
 ** TODO $\mathcal{V}$ Enrichment
 ** Symmetric Monoidal Preoder
@@ -54,8 +74,9 @@ closed: $(a \otimes v) \leq w \iff a \leq (v \multimap w)$ where $(v \multimap
 w)$ is the \emph{hom-element}.
 
 ** Quantales
-   \underline{Unital Commutative Quantale}: Symmetric Monoidal Closed Preorder
-   $\mathcal{V} = (V, \leq, I, \otimes, \multimap)$
+
+\underline{Unital Commutative Quantale}: Symmetric Monoidal Closed Preorder
+$\mathcal{V} = (V, \leq, I, \otimes, \multimap)$
 
 * Databases: Categories, Functors and Universal Constructions
 
@@ -72,7 +93,17 @@ that in a sense contains $G$ and obeys no equations other than those that
 categories are forced to obey.
 
 * Collaborative Design: Profunctors, Categorification, and Monoidal Categories
-** \href{https://youtu.be/4Uqgsy3zrjs}{Chapter 4, lecture 1 (Spivak)}
+
+\href{https://youtu.be/4Uqgsy3zrjs}{Chapter 4, lecture 1 (Spivak)},
+\href{https://youtu.be/92Xp1z9PwJM}{Chapter 4, lecture 2 (Fong)}
+
+Collaborative design problem asks for:
+Given a set of specifications of teams what can the team as a whole produce?
+
+Hasse diagram is intuitive but also formal at the same time. It also provide a
+particular algorithm how do we compute the entire capability of the team. How
+this team can collaborate to design some product.
+
 
 Reference to Andrea Censi; CoDesign = Collaborative design; Functionalities -
 resources provided vs. resources required
@@ -209,15 +240,6 @@ For any category that category is it's own profunctor.
 \href{https://censi.science/}{Andrea Censi} passes around the pareto optimal
 anti-chains
 
-** \href{https://youtu.be/92Xp1z9PwJM}{Chapter 4, lecture 2 (Fong)}
-
-Collaborative design problem asks for:
-Given a set of specifications of teams what can the team as a whole produce?
-
-Hasse diagram is intuitive but also formal at the same time. It also provide a
-particular algorithm how do we compute the entire capability of the team. How
-this team can collaborate to design some product.
-
 ** Symmetric Monoidal Categories SMC
 
 - Preorder $(P, \leq)$; e.g. $1 \leq 2$; $P$ is the wires, $\leq$ is the
@@ -289,7 +311,9 @@ Example - Categorify $\mathbb{N}$ using $\catname{FinSet}:$
 - replace equality with the structure of an isomorphism.
 
 * Signal Flow Graphs: Props, Presentations and Proofs
-** \href{https://youtu.be/33yVpzPOLjM}{Chapter 5, lecture 1 (Spivak)}
+
+\href{https://youtu.be/33yVpzPOLjM}{Chapter 5, lecture 1 (Spivak)},
+\href{https://youtu.be/0tnqd29TY9w}{Chapter 5, lecture 2 (Fong)}
 
 Signal Flow Graphs - used in amplifiers filter, cyber-physical systems (tightly
 interacting physical and computational parts)
@@ -303,7 +327,8 @@ monoidal category SMC where the objects are "easy" such that:
  - $I := 0$
  - $\forall m,n \in Ob(\mathscr{C}) := \mathbb{N}: m \otimes n := m + n$
 I.e. $Prop$ is a SMC where objects just have some finite cardinality. They're
-just numbers (i.e. lines)
+just numbers (i.e. lines) \\
+Symmetric: when equivalent then also equal: $1 + 2 \cong 3 \implies 1 + 2 = 3$
 
 Example: \\
 $Prop Mat_\mathbb{R}$ of matrices over a $\catname{Rig}$ $\mathbb{R}$; in this
@@ -324,11 +349,16 @@ something, Semantics is the math formula with integrals
 Soundness: if you can prove that one diagram equals to another using String
 diagram manipulations
 
-\underline{Prop Functor}
+\underline{Prop Functor} $F: \mathscr{C} \rightarrow \mathscr{D}$: \\
+A functor between $Props$, i.e. categories with the set natural numbers
+$\mathbb{N}$ as their objects. It is an identity-on-objects.  \\
+It preserves composition as a functor should and also it preserves the tensor
+product
+
+\underline{Prop Signature} $\Sigma$
+Set $G$ with ...
 
 \underline{Port Graph}
-
-** \href{https://youtu.be/0tnqd29TY9w}{Chapter 5, lecture 2 (Fong)}
 
 \underline{Free structure}: free from unnecessary constraints. See
 $\catname{Free}(G)$
