@@ -6,3 +6,6 @@
 /resources/public/js/compiled
 out
 /node_modules
+/.cpcache/
+/.ipynb_checkpoints/
+/clojupyter-standalone.jar
