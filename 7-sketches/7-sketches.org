@@ -21,8 +21,8 @@
 
 \underline{Disjoint Union} of sets $\sqcup$ - see also
 \href{https://en.wikipedia.org/wiki/Disjoint_union}{wikipedia}:\\
-Set of ordered pairs $(x, i)$:\\
-$$A = \bigsqcup_{i \in I} A_i = \bigcup_{i \in I}\{(x, i): x \in A_i}$$
+Set of ordered pairs $(x, i)$:
+$$A = \bigsqcup_{i \in I} A_i = \bigcup_{i \in I}{(x, i): x \in A_i}$$
 
 $A_i$ is a family of sets indexed by the indexing set $I$. There are also
 injective functions $A_i \rightarrow A; x \rightarrow (x, i)$. Example:\\
@@ -91,6 +91,12 @@ Morphisms of $\catname{Free}(G)$ are exactly the paths in $G$ and they form the
 \textit{closure} of the set of Arrows $A$. $\catname{Free}(G)$ is a category
 that in a sense contains $G$ and obeys no equations other than those that
 categories are forced to obey.
+
+See also the \href{https://youtu.be/UerS3uXNAng}{Arrow Theoretic} definition of
+a Category which is equivalent with the usual Object/Morphism theory of
+Categories.
+
+Map Theory of Categories
 
 * Collaborative Design: Profunctors, Categorification, and Monoidal Categories
 
@@ -242,44 +248,45 @@ anti-chains
 
 ** Symmetric Monoidal Categories SMC
 
-- Preorder $(P, \leq)$; e.g. $1 \leq 2$; $P$ is the wires, $\leq$ is the
-  boxes/series
-- Monoid $(M, \textasteriskcentered, e)$ e.g. string of processes $(1 + 2) + 3$;
-  $M$ is the boxes, $\textasteriskcentered$ is series of composition.
-- Monoidal Preorder $(P, \leq, \textasteriskcentered, e)$ where $P$ is a set. We
-  can put things in parallel (wires, boxes, parallel boxes)
-- Category: generalization of Monoid and Preorder $(Ob(\mathscr{C}),
-  Mo(\mathscr{C}), \fcmp, id)$: (wires, boxes, series)
-- Monoidal Preorder and Category are special types of Preoder and Monoid
-  \href{https://youtu.be/92Xp1z9PwJM?t=270}{4:30}
-- Monoidal Category: special type of Monoidal Preoder and Category
-  $(\mathscr{C}, \otimes, I)$ - (-, parallel, -)
+Preorder $(P, \leq)$; e.g. $1 \leq 2$; $P$ is the wires, $\leq$ is the
+boxes/series
+
+Monoid $(M, \otimes, e)$; e.g. string of processes $(1 + 2) + 3$; $M$ is the
+boxes, $\otimes$ is series of composition; $f \otimes g$ - parallel "execution"
+of $f$ and $g$.
+
+Generalizations of Monoid and Preorder. See
+\href{https://youtu.be/92Xp1z9PwJM?t=270}{4:30}:
+1. Monoidal Preorder $(P, \leq, \otimes, e)$: where $P$ is a set. We can put
+   things in parallel (wires, boxes, parallel boxes)
+2. Category $(Ob(\mathscr{C}), Mo(\mathscr{C}), \cmp, id)$: (wires, boxes,
+   series)
+
+Monoidal Category: special type of Monoidal Preoder and Category (-, parallel, -)
 
  #+LATEX: % TODO use $\catname{Set}$
 
 Axioms - ways to ensure that Hasse diagrams have unambiguous interpretation
 associativity.
 
-\underline{Symmetric Monoidal Category SMC} $(\mathscr{C}, \otimes, I)$ consists
-of a:
+\underline{Symmetric Monoidal Category SMC} $(\mathscr{C}, \otimes, I)$
+
+SMC is a category equipped with a symmetric monoidal structure (SMS). SMS
+consists of:
 - Category $\mathscr{C}$
 - Functor for monoidal product $\otimes: \mathscr{C} \times \mathscr{C}
   \rightarrow \mathscr{C}$
 - Functor I: $\catname{1} \rightarrow \mathscr{C}$ i.e. an object $I \in
   Ob(\mathscr{C})$
-- Natural Isomorphism:
-  * $\lambda_X : I \otimes X \rightarrow X$ i.e. left unitor
-  * $\rho_X : X \otimes I \rightarrow X$ i.e. right unitor
-- Associativity: $\alpha_{X,Y,Z} : (X \otimes Y) \otimes Z \rightarrow X
-  \otimes (Y \otimes Z)$
+- Well-behaved natural isomorphism - for every $c, d, e \in Ob(\mathscr{C})$:
+  + Left unitor: $\lambda_c : I \otimes c \cong c$
+  + Right unitor: $\rho_c : c \otimes I \cong c$
+  + Associativity condition: $\alpha_{c,d,e} : (c \otimes d) \otimes e \cong c
+    \otimes (d \otimes e)$
+  + Symmetricity condition: swap map $\sigma_{c,d}: c \otimes d \cong d \otimes
+    c$ such that $\sigma \cmp \sigma = id$
 
-SMC: $\delta_{X,Y}: X \otimes Y \rightarrow Y \otimes X$ i.e. swap map
-(symmetricity) \\
-SMC is this data such that the natural isomorphisms are well behaved
-
-Tensor product $f \otimes g$ - parallel "execution" of $f$ and $g$
-
-SMC Examples:
+SMC examples:
 1. $(\catname{Set}, \times, \catname{1})$: underlying $\catname{Set}$ category
    is the category of all sets: objects are sets, morphisms are functions;
    monoidal product $\times$ is a product of sets and product of functions. See
@@ -303,9 +310,9 @@ Take a known thing and add structure to it. So that \underline{properties}
 become \underline{structures}. See 7Sketches.pdf, page
 \href{http://math.mit.edu/~dspivak/teaching/sp18/7Sketches.pdf}{133}. \\
 
-$\catname{FinSet}$: Category of finite sets and functions. \\
-
-Example - Categorify $\mathbb{N}$ using $\catname{FinSet}:$
+\underline{Example}:\\
+Categorification of $\mathbb{N}$ using $\catname{FinSet}$ - a category
+of finite sets and functions:
 - replace every number with a set of that many elements.
 - replace $+$ with disjoint union of sets $\sqcup$.
 - replace equality with the structure of an isomorphism.
