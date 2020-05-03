@@ -19,10 +19,23 @@ operation on Mor(CAT::)
 [e "(g ◦ f)(x) = g(f(x))"]
 - [e "id"] : identity morphism on every object [e "A: id(A)"]
 
+- Category Theory is context rich and content poor
+
 ## Category - informal description
-A collection of arrows and morphism that can be composed if they are adjacent.  
-A structure packing structures of the same type (same category) and structure
-preserving mappings between them.
+- A collection of arrows and morphism that can be composed if they are adjacent.  
+- A structure packing structures of the same type (same category) and structure
+  preserving mappings between them.  
+- Directed Multigraph with Algebra of paths. Each finite path is associated with
+  a unique arrow.  
+  -- Empty path: Identity
+  -- One path: Morphism
+  -- Two paths: Composition
+  -- Three paths: Associativity law of composition.
+
+Categories: mathematical contexts where constructions are possible.  
+Functors: Constructors  
+Natural Transformations: Comparison of constructions  
+
 
 ### Small Category: all objects and morphisms are sets
 
@@ -311,8 +324,11 @@ Quantifiers: ∀ Every, ∃ Exists; Σ Sigma, Π Pi
 I'm interested only if it was an even or odd value
 
 ### Modeling: mapping / injecting
-HomSet: HomC(A,B) = {f: A → B} - set of all morphisms A → B in category C (Objs
-of C don't need to be sets)  
+HomSet: HomC(A,B) = {f: A → B}
+- Set of all morphisms A → B in a category C. Objs of C don't need to be sets.  
+- A collection of two monoids A,B (The identity on an object is its monoidal
+  operation) with a set of compatible transitions between them.
+
 External vs. Internal Homset
 
 ### Free Monoid: has a unique mapping to every other monoid
