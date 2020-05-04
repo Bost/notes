@@ -123,8 +123,6 @@ Morphisms(Top): Continuous Maps
 
 ## Vector Spaces: Vec
 
-Dot (a.k.a scalar) product: takes coordinates of two vector, returns a single number
-
 ### Objects(Vec):
 Elements : All Vector Spaces
 Structure: add and scale vectors

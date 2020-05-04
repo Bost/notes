@@ -7,10 +7,122 @@
 #+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
 #+LATEX_HEADER: \usepackage[utf8]{inputenc} % unicode chars
 #+LATEX_HEADER: \usepackage{minted}         % syntax coloring
-
+#+LATEX_HEADER: \usepackage{amsmath}        % split equation over multiple lines
+#+LATEX_HEADER: \renewcommand{\vec}[1]{\mathbf{#1}} % bold text
 # nolatexpreview / nolatexpreview C-c C-x C-l
 #+STARTUP: latexpreview
 
+* \(k\)-linear maps / transformations
+** Linear map
+Let $U$ and $W$ be vector spaces over the same field $K$. Function $f: U
+\rightarrow W$ is a linear map between vector spaces (or modules over a
+commutative Ring) $U$ and $W$ if for any two vectors $\vec{u}, \vec{v} \in U$
+and any scalar $c \in K$ the following two conditions are satisfied:
+
+\begin{enumerate}
+\item addition
+\begin{equation}
+\begin{split}
+  f(\vec{u} + \vec{v}) = f(\vec{u}) + f(\vec{v})
+\end{split}
+\end{equation}
+
+\item scalar multiplication i.e. homogeneity of degree 1
+\begin{equation}
+  f(c \cdot \vec{u}) = c \cdot f(\vec{u})
+\end{equation}
+\end{enumerate}
+
+By the associativity of the addition $+$, for any vectors $\vec{u_1} \dotsc \vec{u_n} \in
+U$ and scalars $c_1 \dotsc c_n \in K$ the following equality holds:
+
+\begin{equation}
+   f(c_1 \cdot \vec{u_1} + \dotsb + c_n \cdot \vec{u_n}) =
+   c_1 \cdot f(\vec{u_1}) + \dotsb + c_n \cdot f(\vec{u_n})
+\end{equation}
+
+If $U = W$ the $f$ is a linear endomorphism of $V$.
+
+Linearity meaning: can be drawn as a line.
+
+Linear map in abstract algebra - module homomorphism
+
+Linear map in category theory - morphism in the category of Modules over a given Ring
+
+** Bilinear and multilinear map
+
+Function $f: U_1 \times \dotsb \times U_k \rightarrow W$ is a \(k\)-linear map
+between $k$ vector spaces (or modules over a commutative Ring) with the
+following property:
+  $\forall i = 1 \dots n$
+if all of the vectors but $\vec{v_i}$ are held constant, then
+  $f(\vec{v_1}, \dotsc \vec{v_i}, \dotsc \vec{v_n})$
+is a linear function of $\vec{v_i}$.
+
+
+For $k = 1$ the map is called linear, for $k = 2$ bilinear.
+
+* Tensors
+Generalization of matrices to \(n\)-dimensional space. Also \(n\)-dimensional
+data containers with descriptions of the valid linear transformations between
+tensors.
+
+See \href{https://youtu.be/tpL95Sd7zT0}{Jim Fowler: Tensor products} \\
+
+** Tensors as multidimensional arrays
+*** Scalar
+0-dimensional tensor, i.e. a single number. E.g: \\
+\begin{equation}
+\begin{matrix}
+1
+\end{matrix}
+\end{equation}
+
+Scalar (dot) product: takes two vectors, returns a single number
+
+*** Vector
+1-dimensional tensor. An arrow with a length and orientation. E.g.: \\
+\begin{equation}
+\begin{bmatrix}
+1 \\
+2
+\end{bmatrix}
+\end{equation}
+
+Can represent a quantity with magnitude and direction (e.g. area):
+- orientation is perpendicular to the area
+- length is proportional to the amount the area
+
+Vector (cross) product: takes two vectors $\vec{v_1}$, $\vec{v_2}$, returns a
+perpendicular vector. $\vec{v_1}$, $\vec{v_2}$ must be linearly independent,
+i.e. one cannot by obtained (linearly combined) from the other.
+
+*** Matrix
+2-dimensional tensor. E.g.: \\
+\begin{equation}
+\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}
+\end{equation}
+
+Matrix product (multiplication): takes two matrices, returns a matrix. Number of
+columns in the first matrix must be equal to the number of rows in the second
+matrix
+
+*** Multidimensional tensor
+E.g. 3-dimensional tensor. E.g: \\
+\begin{equation}
+\begin{bmatrix}
+  [ 1 & 2 ] & [1 & 0] \\
+  [ 3 & 3 ] & [3 & 4]
+\end{bmatrix}
+\end{equation}
+
+??? Tensor product $\otimes$: most general bilinear operation ???
+
+** Tensors as multilinear maps
+TODO
 
 * Hierarchy
 What is needed to understand $X$? A big tree and paths through this tree.
