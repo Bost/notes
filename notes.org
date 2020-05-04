@@ -59,37 +59,11 @@ return "Hello from Python" # evaluate: C-c
 #+RESULTS:
 : Hello from python
 
-:Compare-2-bitmaps:
-#+BEGIN_SRC java
-// http://stackoverflow.com/questions/10487152/comparing-two-images-for-motion-detecting-purposes
-private int returnCountOfDifferentPixels(String pic1, String pic2) {
-        Bitmap i1 = loadBitmap(pic1);
-        Bitmap i2 = loadBitmap(pic2);
-
-        int count=0;
-        for (int y = 0; y < i1.getHeight(); ++y)
-               for (int x = 0; x < i1.getWidth(); ++x)
-                    if (i1.getPixel(x, y) != i2.getPixel(x, y)) {
-                        count++;
-                    }
-        return count;
-    }
-#+END_SRC
-:END:
-
 * Brick-à-Brack
 Solution of a Differential Equations (DE) is a function, not value \\
 [[https://youtu.be/czL0ZSscbsM?t=II709][National Renewable Energy Laboratory: Energy-Cell Efficiencies]] \\
 [[http://blog.sciencevsmagic.net/science/fractal-machine/][Fractals]] \\
 Go over the book from the Prof. from Karlsruhe \\
-Tensor: most general bilinear operation; Notation $\otimes$
-
-What is: David Allen's GTD (Getting Things Done) system
-yacy, opensearchserver.com
-SciFi literature
-speechace - accent recognition and correction software
-system for algorithm building blocks: don't reinvent the wheel
-Browser based Virtual Machines
 
 Why Do Nigerian Scammers Say They are From Nigeria? \\
 It works like a filter. If you believe them, you passed it. And you're likely
@@ -98,18 +72,12 @@ If you don't pass it then it's probably not worth effort to flirt with you.
 
 http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/
 Sequence of QR Codes/ graphical elements (pyramide, cube, sphere, toroid, etc.)
-Responsive, mobile-first web sites https://www.w3schools.com/bootstrap/
-
 Open Source Ecology: https://en.wikipedia.org/wiki/Open_Source_Ecology
-
 Smart the collective brain http://www.ted.com/talks/matt_ridley_when_ideas_have_sex.html
 time bank
 dokaz identity bez udania mena
 google lab tags http://www.chromeweblab.com/en-GB/lab-tag-explorer
-stuff to datomic - ?git has no services? http://www.youtube.com/watch?v=ROor6_NGIWU 58:00
 
-klipse
-GraphQL
 Pure vs. mostly harmless functions
 
 :terminals:
@@ -119,18 +87,6 @@ https://github.com/Eugeny/terminus
 # electron-app terminal
 https://github.com/zeit/hyper
 :end:
-
-:Books-Amazon:
-Proofs, Formal Verification
-LaTTe
-SICP
-
-The Little Schemer
-The Seasoned Schemer
-The Reasoned Schemer
-The Little LISPer
-The Little MLer
-:END:
 
 :Lang:
 http://www.ted.com/talks/patricia_kuhl_the_linguistic_genius_of_babies.html?fb_ref=talk
