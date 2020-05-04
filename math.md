@@ -1,9 +1,3 @@
-# bric-à-brac
-Solution of a Differential Equations (DE) is a function, not value  
-National Renewable Energy Laboratory: Energy-Cell Efficiencies https://youtu.be/czL0ZSscbsM?t=709   
-Fractals http://blog.sciencevsmagic.net/science/fractal-machine/   
-Go over the book from the Prof. from Karlsruhe   
-
 # Statistics:
 ## Data:
 ```
