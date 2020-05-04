@@ -1,20 +1,27 @@
-#+LATEX: % generate pdf: M-x org-latex-export-to-pdf
+# generate pdf: M-x org-latex-export-to-pdf
 
 #+LATEX_HEADER: \usepackage[margin=1in]{geometry}
 #+LATEX_HEADER: \usepackage{float}      % fixed table position
 #+LATEX_HEADER: \usepackage{parskip}    % paragraphs
 #+LATEX_HEADER: \usepackage{hyperref}
 #+LATEX_HEADER: \usepackage{syntax}     % grammar rules
-#+LATEX_HEADER: \usepackage{cmll}       % logic symbols; sudo snap install texlive-fonts-extra; http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf
+
+# logic symbols; sudo snap install texlive-fonts-extra;
+# http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf
+#+LATEX_HEADER: \usepackage{cmll}
+
 #+LATEX_HEADER: \usepackage{proof}      % inference rules
 #+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
-#+LATEX_HEADER: \usepackage[utf8]{inputenc}   % unicode chars
+
+# unicode chars
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+
 #+LATEX_HEADER: \usepackage{minted}     % syntax coloring
 #+LATEX_HEADER: \usepackage{mathrsfs}   % https://www.ctan.org/pkg/mathrsfs
 #+LATEX_HEADER: \usepackage{oz}         % arrow with vertical stroke e.g. \pfun
 #+LATEX_HEADER: \usepackage{mathtools}  % arrow with text
 #+LATEX_HEADER: \newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
-#+LATEX: % https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
+# https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
 #+STARTUP: latexpreview     % nolatexpreview / nolatexpreview C-c C-x C-l
 
 * Generative Effects: Orders and Galois Connections

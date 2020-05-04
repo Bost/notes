@@ -1,12 +1,16 @@
-#+LATEX: % generate pdf: M-x org-latex-export-to-pdf
+# generate pdf: M-x org-latex-export-to-pdf
 
 #+LATEX_HEADER: \usepackage[margin=1in]{geometry}
-#+LATEX_HEADER: \usepackage{float}      % fixed table position
-#+LATEX_HEADER: \usepackage{parskip}    % paragraphs
+#+LATEX_HEADER: \usepackage{float}          % fixed table position
+#+LATEX_HEADER: \usepackage{parskip}        % paragraphs
 #+LATEX_HEADER: \usepackage{hyperref}
 #+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
-#+LATEX_HEADER: \usepackage[utf8]{inputenc}   % unicode chars
-#+LATEX_HEADER: \usepackage{minted}     % syntax coloring
+#+LATEX_HEADER: \usepackage[utf8]{inputenc} % unicode chars
+#+LATEX_HEADER: \usepackage{minted}         % syntax coloring
+
+# nolatexpreview / nolatexpreview C-c C-x C-l
+#+STARTUP: latexpreview
+
 
 * Hierarchy
 What is needed to understand $X$? A big tree and paths through this tree.
