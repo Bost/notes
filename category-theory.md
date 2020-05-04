@@ -1,47 +1,46 @@
 Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 
 # Abstract algebra of abstract functions
-"The Arrows Count"; Category [e "C = (Obj, Hom, ◦, id)"]  
+"The Arrows Count"; Category [e "C = (Obj, Hom, ◦, id)"]
 Category theory as a foundational framework of mathematics: the foundations of
 category theory itself have to be clarified yet
 - [e "Obj"] : Class of Objects: A, B, C, ... e.g. Types / Propositions /
-  Algebras / Logic Formulas  
-  An object exists in and depends upon an ambient category.  
-  An object is characterized by its morphisms going in and out of it.  
-  Objects are always characterized up to isomorphism (in the best cases, up to  
+  Algebras / Logic Formulas
+  An object exists in and depends upon an ambient category.
+  An object is characterized by its morphisms going in and out of it.
+  Objects are always characterized up to isomorphism (in the best cases, up to
   a unique isomorphism). E.g. there is no such thing as _the_ natural numbers.
-  However, the concept of natural numbers exists.  
+  However, the concept of natural numbers exists.
 - [e "Hom"] : Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? /
   Implication between Logic Formulas
-- [e "◦"] : Morphism composition - associative function [e "(f ◦ g) ◦ h = f ◦ (g ◦ h)"]  
+- [e "◦"] : Morphism composition - associative function [e "(f ◦ g) ◦ h = f ◦ (g ◦ h)"]
 [e "Hom(A, B) × Hom(B, C) → Hom(A, C): g ◦ f"] ; it's a partialy binary
-operation on Mor(CAT::)  
+operation on Mor(CAT::)
 [e "(g ◦ f)(x) = g(f(x))"]
 - [e "id"] : identity morphism on every object [e "A: id(A)"]
 
 - Category Theory is context rich and content poor
 
 ## Category - informal description
-- A collection of arrows and morphism that can be composed if they are adjacent.  
+- A collection of arrows and morphism that can be composed if they are adjacent.
 - A structure packing structures of the same type (same category) and structure
-  preserving mappings between them.  
+  preserving mappings between them.
 - Directed Multigraph with Algebra of paths. Each finite path is associated with
-  a unique arrow.  
+  a unique arrow.
   -- Empty path: Identity
   -- One path: Morphism
   -- Two paths: Composition
   -- Three paths: Associativity law of composition.
 
-Categories: mathematical contexts where constructions are possible.  
-Functors: Constructors  
-Natural Transformations: Comparison of constructions  
-
+Categories: mathematical contexts where constructions are possible.
+Functors: Constructors
+Natural Transformations: Comparison of constructions
 
 ### Small Category: all objects and morphisms are sets
 
-### Locally Small Category: all objects and morphisms are sets 
-LSC "doesn't have too many morphisms"  
-[e "∀ objects A,B: Hom(A, B)"] is a set.  
+### Locally Small Category: all objects and morphisms are sets
+LSC "doesn't have too many morphisms"
+[e "∀ objects A,B: Hom(A, B)"] is a set.
 (TODO arrow weight = price of calculation; preference for compositions)
 
 ### Meaning of "Up to isomorphis" - any such things are isomorphic i.e.:
@@ -102,19 +101,19 @@ Example in programming: Category of Types and Functions (set and functions
 between sets)
 
 ### Function
-On sets / between sets  
-Pure: must be memoizable (lookup table)  
-Total: defined for all arguments  
-Partial: defined only for some arguments  
+On sets / between sets
+Pure: must be memoizable (lookup table)
+Total: defined for all arguments
+Partial: defined only for some arguments
 Directionality (arrow "from → to" i.e. functions are not symetric); n-to-1
-relation  
-Inverse: not guaranteed to exist  
-f: X -> Y  - X: Domain, Y: Codomain  
-Image: A proper subset of a Codomain  
+relation
+Inverse: not guaranteed to exist
+f: X -> Y  - X: Domain, Y: Codomain
+Image: A proper subset of a Codomain
 Container: function itself can be regarded as a container. E.g. identity
-function  
+function
 Evaluation: it returns a value (when evaluated) i.e. data are represented as
-values; i.e functions and data are the same  
+values; i.e functions and data are the same
 Function type: is an exponential which is a data type; (Exponential is like an
 iterated product)
 
@@ -188,7 +187,7 @@ these two morphisms [e "C × D → E"]
 - List: [e "List(α) = Nil | Const α (List α)"] - most intuitive(?) functor
 example It's also a type constructor: takes a type α and creates a list of α
 
-Sum (+) and Product (×) are algebraic data types (Algebra on Types):  
+Sum (+) and Product (×) are algebraic data types (Algebra on Types):
 List(α) = Nil | Const α (List α) ~ L(α) = 1 + α × L(α) => .. => L(α) = 1 / (1 -
 α) = 1 + α + α × α + α × α × α + ...
 
@@ -212,19 +211,19 @@ the dual - the Sum.
 #### Compositons of Natural Transformations
 See https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf
 E.g. NaT compositons is scala: https://gist.github.com/Mzk-Levi/752d1e0f2f7f30cd3bda
-Legend:  
-[e "A"] - an Obj in the Category C  
-[e "(...)A"] / [e "[...]A"] - an A-component of the NaT (...) / [...]  
-[e "αA"] / [e "βA"] - an A-component of the NaT α / β  
-[e "αFA"] - an FA-component of the NaT α  
+Legend:
+[e "A"] - an Obj in the Category C
+[e "(...)A"] / [e "[...]A"] - an A-component of the NaT (...) / [...]
+[e "αA"] / [e "βA"] - an A-component of the NaT α / β
+[e "αFA"] - an FA-component of the NaT α
 [e "βGA"] / [e "βFA"] - GA/FA-component of the NaT β
 
 ##### Verical Compositon of NaTs:
 If [e "α:F → G"] and [e "β:G → H"] are natural transformations, then so is [e "β
-• α : F → H"].  
-Is it defined by:  
-[e "(β • α)A = βA ◦ αA : FA → HA"]  
-A - an Obj in the Category C  
+• α : F → H"].
+Is it defined by:
+[e "(β • α)A = βA ◦ αA : FA → HA"]
+A - an Obj in the Category C
 (...)A - an A-component of the NaT (...)
 
 - is associative and has an id, and allows one to consider the collection
@@ -233,27 +232,27 @@ of all functors C → D itself as a category.
 ##### Right Whiskering
 If F, G : C → D and H : D → E are Ftors, and if α : F → G is a NaT, the right
 whiskering
-[e "H ◦ α : H ◦ F → H ◦ G"]  
-is defined as [e "(H ◦ α)A : H(FA) → H(GA)"] by [e "(H ◦ α)A = H(αA)"]  
+[e "H ◦ α : H ◦ F → H ◦ G"]
+is defined as [e "(H ◦ α)A : H(FA) → H(GA)"] by [e "(H ◦ α)A = H(αA)"]
 
 ##### Left Whiskering
 If F : C → D and G, H : D → E are Ftors, and if α : G → H is a NaT, the left
-whiskering  
-[e "α ◦ F : G ◦ F → H ◦ F"]  
+whiskering
+[e "α ◦ F : G ◦ F → H ◦ F"]
 is defined as [e "(α ◦ F)A : G(FA) → H(FA)"] by [e "(α ◦ F)A = αFA"]
 
 ##### Horizontal Compositon of NaTs:
 If F, G : C → D and H, K : D → E are Ftors, and if α : F → G and β : H → K
-are NaTs, the horizontal composition:  
-[e "β ◦ α : H ◦ F → K ◦ G"]  
-can be defined in two different ways:  
-- Right whiskering followed by left whiskering:  
-[e "β ◦ α = (β ◦ G) • (H ◦ α)"]  
-- Left whiskering followed by right whiskering:  
-[e "β ◦ α = (K ◦ α) • (β ◦ F)"]  
+are NaTs, the horizontal composition:
+[e "β ◦ α : H ◦ F → K ◦ G"]
+can be defined in two different ways:
+- Right whiskering followed by left whiskering:
+[e "β ◦ α = (β ◦ G) • (H ◦ α)"]
+- Left whiskering followed by right whiskering:
+[e "β ◦ α = (K ◦ α) • (β ◦ F)"]
 
-The two definitions coincide, because  
-[e "[(β ◦ G) • (H ◦ α)]A = βGA ◦ H(α A)"], and  
+The two definitions coincide, because
+[e "[(β ◦ G) • (H ◦ α)]A = βGA ◦ H(α A)"], and
 [e "[(K ◦ α) • (β ◦ F)]A = K(α A) ◦ βFA"]
 
 - is associative with an id, and the id coincides with that for vertical
@@ -265,8 +264,8 @@ An object is completely determined by its relationships to other objects
 
 ### Yoneda Embedding https://youtu.be/JH_Ou17_zyU?t=1h8m9s
 Idea: replace content of an object (picked i.e. fixed) by all arrows ending in
-this object.  
-It's content and properties.  
+this object.
+It's content and properties.
 Set of Arrow from every possible Obj x to the Obj a
 
 Mapping from an Obj X to the Set of Arrows X → A:
@@ -284,7 +283,6 @@ F - some arbitrary Ftor acting on the Obj a
 all invertible isomorphisms)
 
 Hom functors - Intuition:
-- Play some special role in the Category of Ftors
 - Serve for the same purposes as Free Monoids
 
 It's enough to define this NaT on one Obj (i.e. set C(a,a)) and moreover
@@ -325,7 +323,7 @@ I'm interested only if it was an even or odd value
 
 ### Modeling: mapping / injecting
 HomSet: HomC(A,B) = {f: A → B}
-- Set of all morphisms A → B in a category C. Objs of C don't need to be sets.  
+- Set of all morphisms A → B in a category C. Objs of C don't need to be sets.
 - A collection of two monoids A,B (The identity on an object is its monoidal
   operation) with a set of compatible transitions between them.
 
@@ -345,23 +343,33 @@ Hom(A,–) maps each morphism f : X → Y to the function
 Hom(A, f) : Hom(A, X) → Hom(A, Y) given by
 
 ### Contravariant functor: Hom(–,B) : C-op → Set
-[e "F f :: (a → b) → (F b → F a)"] - Reverse directions in src and dst Category  
-Hom(–,B) maps each object X in C to the set of morphisms, Hom(X, B)  
-Hom(–,B) maps each morphism h : X → Y to the function  
+[e "F f :: (a → b) → (F b → F a)"] - Reverse directions in src and dst Category
+Hom(–,B) maps each object X in C to the set of morphisms, Hom(X, B)
+Hom(–,B) maps each morphism h : X → Y to the function
 Hom(h, B) : Hom(Y, B) → Hom(X, B) given by
 
 ### Representable Functor F: C → Set is naturally isomorphic to HomC(A,-) for some object A of C
-Represents objs of C as sets and morphisms of C as morphisms between sets. i.e.
-functions "tabulate", "index" can be created; mapping of function to a data-type
+Represents:
+- objs of C as sets
+- morphisms of C as morphisms between sets.
+i.e. functions "tabulate", "index" can be created; mapping of function to a data-type
 
-fix obj A ∈ C there is HomC(A,-): HomC(A, X) → HomC(A, Y) where there is a morphism X → Y
-e.g.:  
+Functors as representations (Lawvere):
+Think of a functor F: C → D as giving a picture, or "representation", of C in D.
+
+Following Lawvere, logicians often call the categoryCa ‘theory’, and call the
+functor F : C →D a "model" of this theory.
+
+(TODO see Bartosz's intuition about functors in the "Programming with Categories" videos)
+
+For any fix obj A of C, we have a HomC(A,-) such that we have a mapping
+HomC(A,X) → HomC(A, Y) when there is a morphism X → Y. E.g.:
 The forgetful functor Grp → Set on the category of groups (G, *, e) is
-represented by (Z, 1).  
+represented by (Z, 1).
 The forgetful functor Ring → Set on the category of rings is represented by
-(Z[x], x), the polynomial ring in one variable with integer coefficients.  
+(Z[x], x), the polynomial ring in one variable with integer coefficients.
 The forgetful functor Vect → Set on the category of real vector spaces is
-represented by (R, 1).  
+represented by (R, 1).
 The forgetful functor Top → Set on the category of topological spaces is
 represented by any singleton topological space with its unique e
 
@@ -487,14 +495,14 @@ JavaScript & Category Theory: Category == Contracts + Functions guarded by contr
 
 Categorification: process of weakening structure, weakening equalities down to
 natural isomorphisms and then adding-in rules that these natural isomorphisms
-have to follow (so it behaves well)  
+have to follow (so it behaves well)
 Counting number of elements in sets is decategorification; from category we get
-set or from set we get a number  
+set or from set we get a number
 Monoid homomorphisms: a function between the sets of monoid elements that
-preserved the monoid structure  
+preserved the monoid structure
 Monoidal functors: a functor between categories that preserves the monoidal
 structure (should preserve multiplication) from functor(prodn([x, y, ..])) to
-prodn([functor(x), functor(y), ..])  
+prodn([functor(x), functor(y), ..])
 Monoidal monad:       ???
 
 Functor:
@@ -634,16 +642,16 @@ A subset of a Cartesian Product; doesn't have a directionality; n-to-n relation
 ## in functional programming - tagged unions
 
 # Monoidal Cat (objs, arrows, prods)
-looks kinda like multiplication / addition  
+looks kinda like multiplication / addition
 Algebra of types ...
 
 # Functor
 Structure preserving mapping between Cats (objs to objs, fns to fns): i.e. if
-there's an arrow A -> B, then there must be arrow F(A) -> F(B)  
+there's an arrow A -> B, then there must be arrow F(A) -> F(B)
 May collapse things, preserves unit obj and composition
 
 ## Endofunctor
-mapping from the same Cat to the same Cat. Endo ~ inside, "Endoscopy"  
+mapping from the same Cat to the same Cat. Endo ~ inside, "Endoscopy"
 Category of Endofunctors: Cat of ftors from C to C [C,C]
 
 # ? Functor Category
@@ -652,7 +660,7 @@ Objects: functors
 Morphisms: natural transformations between functor
 
 # Adjunction
-A pair of ftors F, G: F is adjunct (but not inverse) to G  
+A pair of ftors F, G: F is adjunct (but not inverse) to G
 Obj in a Cat of Types such that: For every A, B there is a set of arrows from
 A to B. This obj is called function-type. It can be defined by an adjuction of
 two endofunctors
@@ -680,7 +688,7 @@ has a function type)
 NaTs: Polymorphic functions: mapping between ftors. See a
 [picture](https://youtu.be/JH_Ou17_zyU?t=1h6m23s)
 # Polymorphic function
-a function for every single type i.e. multiplication  
+a function for every single type i.e. multiplication
 (Product) of all obj in a category. Also the dual - the Sum
 # Categorical End (i.e. Product) and CoEnd (i.e. CoProduct i.e. Sum)
 notation is the integral sign
