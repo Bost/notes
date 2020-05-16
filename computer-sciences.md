@@ -184,3 +184,29 @@ Proposition = ???
 # Normal Forms of Formulas
 ## DNF - Disjunctive Normal Form / Formula e.g. (A ∧ ¬B ∧ C) ∨ (¬D ∧ E ∧ F)
 ## CNF - Conjunctive Normal Form / Formula e.g. (A ∨ ¬B ∨ C) ∧ (¬D ∨ E ∧ F)
+
+# Homoiconicity
+LISP programs are represented as LISP structures.
+Emacs Lisp form can be represented by a data structure called an s-expression that prints out the same as the form.
+
+"five times the sum of seven and three" can be written as a s-expression with prefix notation. In Lisp, the s-expression might look like (* 5 (+ 7 3))
+
+s-expression / sexpr or sexp - symbolic expression is:
+1. an atom, or
+2. an expression of the form (x . y) where x and y are s-expressions.
+
+# Quasiquote
+
+more general mechanism than quote for creating nested list structure without using constructors explicitly
+
+# Variable scope within a certain function
+## static / lexical
+scope of a variable v is the program block (e.g. a function): within that block,
+the variable name exists, and is bound to the variable's value, but outside that
+block, the variable name does not exist.
+
+## dynamic
+scope of a variable v is the time-period during which the program block (e.g. a
+function) is executing: while the function is running, the variable name exists,
+and is bound to its value, but after the function returns, the variable name
+does not exist.
