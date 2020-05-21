@@ -21,6 +21,13 @@
 #+LATEX_HEADER: \usepackage{oz}         % arrow with vertical stroke e.g. \pfun
 #+LATEX_HEADER: \usepackage{mathtools}  % arrow with text
 #+LATEX_HEADER: \newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+
+# opposite Category C-op
+#+LATEX_HEADER: \usepackage{amsmath}
+# #+LATEX_HEADER: \newcommand\opcat[1]{{#1}^{\mathrm{op}}
+
+# #+LATEX_HEADER: \newcommand{\catname}[1]{\upshape{\textbf{#1}}}
+
 # https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
 # latexpreview / nolatexpreview C-c C-x C-l
 #+STARTUP: nolatexpreview
@@ -399,5 +406,63 @@ TODO Full Functor from C to D
 
 TODO Matrix Kernel
 
+* Electric circuits: Hypergraph categories and operads
 * Logic of behavior: Sheaves, toposes, and internal languages
+
+\href{https://youtu.be/Qp6b-XbPog0}{Chapter 7, lecture 1 (Spivak)} \\
+
+\underline{Topos} is:
+- is a type of a category being able to replace the Set Theory
+
+- is a place "where you can do logic" i.e. a world where mathematical statements
+  can be interpreted
+
+- provides among other things a notion of a Subset
+
+- comes equiped with an "internal language", i.e. graphs, groups, topological
+  spaces (changing over time) can be defined in any topos
+
+- every topos has a notion of truht value and truth values are much more
+  expressive than they are in the topos of sets
+
+- truth can vary over time and space: e.g. predicate "it rains" is not true
+  everywhere and anytime. In the topos of timespace truth values say when and
+  where "it rains" is or is not true
+
+- in temporal logic we have a logic of "when" - when something is true
+
+- Set topos / topos of sets is a topos of single point
+
+\underline{Topos properties}:
+1. has limits and colimits
+
+2. every morphishm has an epi-mono factorization, i.e. it can be seen as a
+   surjection (onto) followed by an injection (one-to-one)
+
+3. is cartesian closed
+- cartesian: has product $A \times B$ (conjunction) for any pair of objects $A$,
+  $B$
+
+- closed: has exponential $B^A$ (functions A \rightarrow B) for any pair of
+  objects $A$, $B$
+
+- 0-th power of an object: has a terminal object \cdot (for all objects there
+  exists a unique map $A \rightarrow \cdot$)
+
+4. has a subobject classifier \Omega - contains the "core" of topos logic
+
+
+*** Subobject Classifier: Object \Omega with Mononorphisms $\catname{1} \rightarrow \Omega$
+
+$\mathcal{1}$ is a category with only one object
+monomorphism $X \rightarrow Y$: distinct $Xs$ \rightarrow distinct $Ys$
+
+*** Sheaf (Garbe, Faisceau, zväzok): Functor $F: \mathcal{C} \rightarrow \catname{Set}$
+tool for tracking locally defined data
+
+
+*** Presheaf: Functor $F: \mathcal{C}^\mathrm{op} \rightarrow \catname{Set}$
+*** Presheaf: Functor $F: \mathcal{C}^{op} \rightarrow \catname{Set}$
+*** Presheaf: Functor $F: \mathcal{C}\textsuperscript{op} \rightarrow \catname{Set}$
+TODO choose the right superscript version
 
