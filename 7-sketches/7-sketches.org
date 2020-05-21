@@ -22,7 +22,8 @@
 #+LATEX_HEADER: \usepackage{mathtools}  % arrow with text
 #+LATEX_HEADER: \newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
 # https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
-#+STARTUP: latexpreview     % nolatexpreview / nolatexpreview C-c C-x C-l
+# latexpreview / nolatexpreview C-c C-x C-l
+#+STARTUP: nolatexpreview
 
 * Generative Effects: Orders and Galois Connections
 

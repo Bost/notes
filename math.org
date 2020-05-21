@@ -9,7 +9,7 @@
 #+LATEX_HEADER: \usepackage{minted}         % syntax coloring
 #+LATEX_HEADER: \usepackage{amsmath}        % split equation over multiple lines
 #+LATEX_HEADER: \renewcommand{\vec}[1]{\mathbf{#1}} % bold text
-# nolatexpreview / nolatexpreview C-c C-x C-l
+# latexpreview / nolatexpreview C-c C-x C-l
 #+STARTUP: latexpreview
 
 * \(k\)-linear maps / transformations
