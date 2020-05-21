@@ -9,3 +9,9 @@ out
 /.cpcache/
 /.ipynb_checkpoints/
 /clojupyter-standalone.jar
+# *.tex
+*.pdf
+/auto/
+/7-sketches/auto/
+/ltximg/
+/_minted-math/
