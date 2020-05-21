@@ -397,3 +397,6 @@ Set $G$ of things and two functions $s$, $t$ to natural numbers $\mathbb{N}$.
 TODO Full Functor from C to D
 
 TODO Matrix Kernel
+
+* Logic of behavior: Sheaves, toposes, and internal languages
+
