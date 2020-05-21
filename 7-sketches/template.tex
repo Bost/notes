@@ -1,0 +1,614 @@
+% Created pdf document: M-x TeX-command-master LaTeX
+% Thanks to David Spivak
+
+\documentclass[11pt, book]{memoir}
+
+\settrims{0pt}{0pt} % page and stock same size
+% Picas 1pc = 1/6th of 1in: 34.5pc == 146.0488mm
+% \settypeblocksize{*}{34.5pc}{*} % {height}{width}{ratio}
+\settypeblocksize{*}{165mm}{*} % {height}{width}{ratio}
+\setlrmargins{*}{*}{1} % {spine}{edge}{ratio}
+\setulmarginsandblock{1in}{1in}{*} % height of typeblock computed
+\setheadfoot{\onelineskip}{2\onelineskip} % {headheight}{footskip}
+\setheaderspaces{*}{1.5\onelineskip}{*} % {headdrop}{headsep}{ratio}
+\checkandfixthelayout
+
+% \chapterstyle{bianchi}
+\renewcommand{\printchaptername}{}
+% \renewcommand{\printchapternum}{}
+\newcommand{\titlefont}{\normalfont\Huge\bfseries}
+\renewcommand{\chaptitlefont}{\titlefont}
+
+% -------- Packages --------%
+
+% \usepackage[T1]{fontenc}
+
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{accents}
+\usepackage{newpxtext}
+\usepackage[varg,bigdelims]{newpxmath}
+\usepackage{eucal}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage[siunitx]{circuitikz}
+\usepackage{graphicx}
+\usepackage{outline}
+\usepackage{varwidth}
+\usepackage[inline]{enumitem}
+\usepackage{ifthen}
+\usepackage{footnote}
+\usepackage[utf8]{inputenc} %allows non-ascii in bib file
+\usepackage[bookmarks=true, colorlinks=true, linkcolor=blue!50!black,
+citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperref}
+\usepackage{subfiles}
+\usepackage[capitalize]{cleveref}
+\usepackage[backend=biber, backref=true, maxbibnames = 10, style = alphabetic]{biblatex}
+\usepackage{makeidx}
+\usepackage[all]{xy}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{todonotes}
+\usepackage{tablefootnote}
+%\usepackage{changepage} %indented paragraphs in solutions
+%\usepackage{showkeys} %for drafting; prints labels in margin
+
+%-------- Package setup --------%
+
+% cleveref %
+  \newcommand{\creflastconjunction}{, and\nobreakspace} % serial comma
+
+% biblatex %
+  \addbibresource{Library20200504.bib}
+
+% makeidx %
+  \makeindex
+
+% hyperref %
+  \hypersetup{final}
+
+% enumitem %
+  \setlist{nosep}
+ 
+% footnote
+\makesavenoteenv{tabular}
+
+
+% tikz %
+  \usetikzlibrary{
+  cd,
+  math,
+  decorations.markings,
+decorations.pathreplacing,
+  positioning,
+  arrows.meta,
+  shapes,
+shadows,
+shadings,
+  calc,
+  fit,
+  quotes,
+  intersections,
+    circuits,
+    circuits.ee.IEC
+  }
+ 
+\tikzcdset{arrow style=tikz, diagrams={>=To}}
+
+% mdframed/tablefootnote%
+% This makes \tablefootnote allow construction of footnotes that appear at bottom of page instead of inside frame
+
+\makeatletter
+\AfterEndEnvironment{mdframed}{%
+  \tfn@tablefootnoteprintout%
+  \gdef\tfn@fnt{0}%
+}
+\makeatother
+
+% TikZ Stuff
+
+\input{tikz-stuff}
+
+% Theorem environments
+
+% Colored box background colours
+
+\colorlet{theoremcolor}{white!92!blue}
+\colorlet{definitioncolor}{white!92!purple}
+\colorlet{examplecolor}{white!93!green}
+
+\mdfdefinestyle{theoremframe}{
+    linewidth=0pt,
+    %linecolor=blue,
+    backgroundcolor=theoremcolor,
+    roundcorner=6pt,
+    nobreak=true,
+    leftmargin=0,
+    innerleftmargin=0,
+    rightmargin=0,
+    innerrightmargin=0,
+    }
+
+\mdfdefinestyle{definitionframe}{
+    linewidth=0pt,
+    %linecolor=blue,
+    backgroundcolor=definitioncolor,
+    roundcorner=6pt,
+    leftmargin=0,
+    innerleftmargin=0,
+    rightmargin=0,
+    innerrightmargin=0,
+    }
+
+\mdfdefinestyle{exampleframe}{
+    linewidth=0pt,
+    backgroundcolor=examplecolor,
+    leftmargin=0,
+    innerleftmargin=0,
+    rightmargin=0,
+    innerrightmargin=0,
+    }
+
+%\mdfdefinestyle{exerciseframe}{
+%    linecolor=white!93!yellow,
+%    backgroundcolor=white!93!yellow,
+%    }
+
+\newtheoremstyle{plain}
+  {-\topsep} %space above
+  {} %space below
+  {\normalfont} %body font
+  {} %indent amount
+  {\bfseries} %theorem head font
+  {.} %punctuation after theorem head
+  {.5em} %space after theorem head
+  {} %theorem head spec
+
+% amsthm %
+  \theoremstyle{plain}
+  \newmdtheoremenv[style=theoremframe]{theorem}[equation]{Theorem}
+  \newmdtheoremenv[style=theoremframe]{proposition}[equation]{Proposition}
+  \newmdtheoremenv[style=theoremframe]{corollary}[equation]{Corollary}
+  \newmdtheoremenv[style=theoremframe]{lemma}[equation]{Lemma}
+ 
+  \theoremstyle{plain}
+  \newmdtheoremenv[style=definitionframe]{definition}[equation]{Definition}
+  \newmdtheoremenv[style=definitionframe]{roughDef}[equation]{Rough Definition}
+  \crefname{roughDef}{Definition}{Definitions}
+  \newtheorem{construction}[equation]{Construction}
+  \newtheorem{notation}[equation]{Notation}
+  \newtheorem{axiom}{Axiom}
+  \newtheorem*{axiom*}{Axiom}
+ 
+  \theoremstyle{remark}
+  \newtheorem{remark}[equation]{Remark}
+  \newtheorem{warning}[equation]{Warning}
+%  \newtheorem{exercise}[equation]{Exercise}
+
+
+% Solution environment
+
+\newcommand{\finishSolutionChapter}{
+%\vfill\hrulefill\\\noindent
+%\arabic{solcounterlocal} exercises in Chapter \arabic{section}, and \arabic{solcounterglobal} total exercises up to this point.
+%
+\clearpage
+}
+
+\makeatletter
+\newcommand{\nolisttopbreak}{\nobreak\@afterheading}
+\makeatother
+
+\newcounter{solcounterlocal}[section]
+\newcounter{solcounterglobal}
+
+\newcommand{\sol}[4][noprint]{
+
+\stepcounter{solcounterlocal}\stepcounter{solcounterglobal}
+
+\noindent\ignorespacesafterend\emph{Solution to} \cref{#2}.%
+\nopagebreak%
+\ifthenelse{\equal{#1}{print}}{
+\nopagebreak%
+\begin{mdframed}[backgroundcolor=examplecolor,linewidth=0pt]%
+#3%
+\end{mdframed}%
+\nopagebreak
+}{}%
+\nolisttopbreak
+\begin{description}[leftmargin=2.5ex,itemindent=0pt,topsep=0ex,nosep]
+\item\nopagebreak
+#4
+\end{description}
+\bigskip
+}
+
+% Aligned tikz environment
+\newenvironment{altikz}{
+\begin{aligned}
+\begin{tikzpicture}
+}
+{
+\end{tikzpicture}
+\end{aligned}
+}
+
+%Getting ending symbols in example and exercise environments:
+
+\newmdtheoremenv[style=exampleframe]{example}[equation]{Example}
+
+\newtheorem{exc-inner}[equation]{Exercise}
+\newenvironment{exercise}[1][]{
+  \def\qedsymbol{$\lozenge$}% Set the QED symbol.
+  \pushQED{\qed}
+  \begin{exc-inner}[#1]~
+}{
+  \popQED
+  \end{exc-inner}
+}
+  \crefname{exercise}{Exercise}{Exercises}
+
+
+% Adjunctions
+\newcommand{\adj}[5][30pt]{%[size] Cat L, Left, Right, Cat R.
+\begin{tikzcd}[ampersand replacement=\&, column sep=#1]
+  #2\ar[r, bend left=15, shift left=2pt, "#3"]
+  \ar[r, Rightarrow, shorten <=8pt, shorten >=8pt]\&
+  #5\ar[l, bend left=15, shift left=2pt, "#4"]
+\end{tikzcd}
+}
+
+\newcommand{\adjr}[5][30pt]{%[size] Cat R, Right, Left, Cat L.
+\begin{tikzcd}[ampersand replacement=\&, column sep=#1]
+  #2\ar[r, bend left=15, shift left=2pt, "#3"]\&
+  #5\ar[l, bend left=15, shift left=2pt, "#4"]
+  \ar[l, Rightarrow, shorten <=8pt, shorten >=8pt]
+\end{tikzcd}
+}
+
+ 
+%-------- Single symbols --------%
+
+\DeclareSymbolFont{stmry}{U}{stmry}{m}{n}
+\DeclareMathSymbol\fatsemi\mathop{stmry}{"23}
+
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+
+
+%-------- Renewed commands --------%
+
+\renewcommand{\ss}{\subseteq}
+
+%-------- Other Macros --------%
+
+\DeclarePairedDelimiter{\pair}{\langle}{\rangle}
+\DeclarePairedDelimiter{\copair}{[}{]}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\DeclarePairedDelimiter{\corners}{\ulcorner}{\urcorner}
+
+
+
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator*{\colim}{colim}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\dju}{\sqcup}
+
+\newcommand{\const}[1]{\mathtt{#1}}%a constant, or named element of a set
+\newcommand{\Set}[1]{\mathrm{#1}}%a named set
+\newcommand{\cat}[1]{\mathcal{#1}}%a generic category
+\newcommand{\Cat}[1]{\mathbf{#1}}%a named category
+\newcommand{\fun}[1]{\textit{#1}}%function
+\newcommand{\Fun}[1]{\mathsf{#1}}%functor
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\cocolon}{:\!}
+\newcommand{\iso}{\cong}
+\newcommand{\too}{\longrightarrow}
+\newcommand{\tto}{\rightrightarrows}
+\newcommand{\To}[1]{\xrightarrow{#1}}
+\newcommand{\Tto}[3][13pt]{\begin{tikzcd}[sep=#1, cramped, ampersand replacement=\&, text height=1ex, text depth=.3ex]\ar[r, shift left=2pt, "#2"]\ar[r, shift right=2pt, "#3"']\&{}\end{tikzcd}}
+\newcommand{\Too}[1]{\xrightarrow{\;\;#1\;\;}}
+\newcommand{\from}{\leftarrow}
+\newcommand{\From}[1]{\xleftarrow{#1}}
+\newcommand{\Fromm}[1]{\xleftarrow{\;\;#1\;\;}}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\inj}{\rightarrowtail}
+\newcommand{\wavyto}{\rightsquigarrow}
+\newcommand{\lollipop}{\multimap}
+\newcommand{\pr}{\mathrm{pr}}
+% \newcommand{\tickar}{\begin{tikzcd}[baseline=-0.5ex,cramped,sep=small,ampersand,replacement=\&]{}\ar[r,tick]\&{}\end{tikzcd}}
+\newcommand{\imp}{\Rightarrow}
+\renewcommand{\iff}{\Leftrightarrow}
+\renewcommand{\th}{\ensuremath{^\tn{th}}\ }
+\newcommand{\down}{\mathbin{\downarrow}}
+\newcommand{\then}{\mathbin{\scalebox{.8}{/\!\!/}}}
+\newcommand{\op}{^\tn{op}}
+\newcommand{\grph}[1]{{#1}_{\mathrm{Gr}}}
+
+\newcommand{\tn}[1]{\textnormal{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\newcommand{\LMO}[2][over]{\ifthenelse{\equal{#1}{over}}{\overset{#2}{\bullet}}{\underset{#2}{\bullet}}}
+\newcommand{\LTO}[2][\bullet]{\overset{\tn{#2}}{#1}}
+
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\bb}{\mathbb{B}}
+\newcommand{\BB}{\mathbb{B}}
+\newcommand{\nn}{\NN}
+%\newcommand{\PP}{\mathbb{P}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\IR}{\mathbb{I}\hspace{.6pt}\mathbb{R}}
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\singleton}{\{1\}}
+\newcommand{\powset}{\Fun{P}}
+\newcommand{\upset}{\Fun{U}}
+\newcommand{\beh}{\Fun{B}}
+\newcommand{\prt}[1]{\Fun{Prt}(#1)}
+
+\newcommand{\upclose}{\mathop{\uparrow}}
+
+\newcommand{\foo}{\const{foo}}
+
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\inp}[1]{#1^\tn{in}}
+\newcommand{\outp}[1]{#1^\tn{out}}
+
+\newcommand{\TFS}{\Cat{TFS}}
+\newcommand{\Grph}{\Cat{Grph}}
+\newcommand{\SMC}{\Cat{SMC}}
+\newcommand{\smset}{\Cat{Set}}
+\newcommand{\smcat}{\Cat{Cat}}
+\newcommand{\Bx}{\Set{Box}}
+\newcommand{\Op}{\Cat{Op}}
+\newcommand{\Shv}{\Cat{Shv}}
+\newcommand{\true}{\const{true}}
+\newcommand{\false}{\const{false}}
+\newcommand{\Bool}{\Cat{Bool}}
+%\newcommand{\Prob}{\Cat{Prob}}
+\newcommand{\Cost}{\Cat{Cost}}
+\newcommand{\List}{\Fun{List}}
+\newcommand{\inst}{\tn{-}\Cat{Inst}}
+\newcommand{\mat}{\Cat{Mat}}
+\newcommand{\corel}[1]{\Cat{Corel}_{#1}}
+\newcommand{\rel}{\Cat{Rel}}
+\newcommand{\cospan}[1]{\Cat{Cospan}_{#1}}
+\newcommand{\finset}{\Cat{FinSet}}
+
+% Collaborative design{
+  \newcommand{\Prof}{\Cat{Prof}}
+  \newcommand{\Feas}{\Cat{Feas}}
+  \newcommand{\Unit}[1]{\mathrm{U}_{#1}}
+  \newcommand{\comp}[1]{\widehat{#1}}
+  \newcommand{\conj}[1]{\widecheck{#1}}
+  \newcommand{\col}[1]{\mathrm{col(#1)}}
+%}
+
+\newcommand{\cp}{\mathbin{\fatsemi}}
+
+
+% Signal flow graphs{
+\newcommand{\pgin}{\fun{in}}
+\newcommand{\pgout}{\fun{out}}
+\newcommand{\ord}[1]{\underline{{#1}}}
+\newcommand{\free}{\Cat{Free}}
+\newcommand{\expr}{\mathrm{Expr}}
+\newcommand{\sfg}{\mathbf{SFG}}
+\newcommand\addgen{\lower8pt\hbox{$\includegraphics[height=0.7cm]{pics/add.pdf}$}}
+\newcommand\zerogen{\lower5pt\hbox{$\includegraphics[height=0.5cm]{pics/zero.pdf}$}}
+%\newcommand\copygen{\lower8pt\hbox{$\includegraphics[height=0.7cm]{pics/copy.pdf}$}}
+%\newcommand\discardgen{\lower5pt\hbox{$\includegraphics[height=0.5cm]{pics/discard.pdf}$}}
+\newcommand\delaygen{\lower6pt\hbox{$\includegraphics[height=0.6cm]{pics/delay.pdf}$}}
+%\newcommand\minonegen{\lower6pt\hbox{$\includegraphics[height=0.6cm]{pics/minone.pdf}$}}
+%\newcommand\delayopgen{\lower6pt\hbox{$\includegraphics[height=0.6cm]{pics/delayop.pdf}$}}
+\newcommand\scalargen{\lower6pt\hbox{$\includegraphics[height=0.6cm]{pics/scalar.pdf}$}}
+%\newcommand\addopgen{\lower8pt\hbox{$\includegraphics[height=0.7cm]{pics/addop.pdf}$}}
+%\newcommand\zeroopgen{\lower5pt\hbox{$\includegraphics[height=0.5cm]{pics/zeroop.pdf}$}}
+\newcommand\copyopgen{\lower8pt\hbox{$\includegraphics[height=0.7cm]{pics/copyop.pdf}$}}
+\newcommand\discardopgen{\lower5pt\hbox{$\includegraphics[height=0.5cm]{pics/discardop.pdf}$}}
+%\newcommand\scalaropgen{\lower6pt\hbox{$\includegraphics[height=0.6cm]{pics/scalarop.pdf}$}}
+%\newcommand\delaygenl{\lower6pt\hbox{$\includegraphics[height=0.6cm]{pics/delayl.pdf}$}}
+%\newcommand\delayopgenl{\lower6pt\hbox{$\includegraphics[height=0.6cm]{pics/delayopl.pdf}$}}
+%\newcommand\delaygenk{\lower6pt\hbox{$\includegraphics[height=0.6cm]{pics/delayk.pdf}$}}
+%\newcommand\delayopgenk{\lower6pt\hbox{$\includegraphics[height=0.6cm]{pics/delayopk.pdf}$}}
+\newcommand\twist{\lower6pt\hbox{$\includegraphics[height=0.6cm]{pics/twist.pdf}$}}
+%\newcommand\id{\lower3pt\hbox{$\includegraphics[height=0.3cm]{pics/id.pdf}$}}
+
+\tikzstyle{none}=[inner sep=0pt]
+\tikzstyle{circ}=[circle,fill=black,draw,inner sep=3pt]
+\tikzstyle{circw}=[circle,fill=white,draw,inner sep=3pt,thick]
+
+%%fakesubsubsection generators
+%}
+
+% Circuits
+\newcommand{\oprdset}{\mathbf{Set}}
+\newcommand{\oprdcospan}{\mathbf{Cospan}}
+\newcommand{\light}{\texttt{light}}
+\newcommand{\switch}{\texttt{switch}}
+\newcommand{\battery}{\texttt{battery}}
+\newcommand{\elec}{\Fun{Circ}}
+
+% Topos temporal logic{
+\newcommand{\restrict}[2]{#1\big|_{#2}}
+\newcommand{\Prop}{\const{Prop}}
+\newcommand{\Time}{\const{Time}}
+%}
+
+\newcommand{\boxCD}[2][black]{\fcolorbox{#1}{white}{\begin{varwidth}{\textwidth}\centering #2\end{varwidth}}}
+
+\newcommand{\?}{{\color{gray}{?}}}
+\newcommand{\DNE}{{\color{gray}{\boxtimes}}}
+
+\newcommand{\erase}[2][]{{\color{red}#1}}
+\newcommand{\showhide}[2]{#1}
+\newcommand{\overtime}[1]{{\color{gray}#1}}
+
+\newcommand{\union}{\cup}
+
+\linespread{1.15}
+%\allowdisplaybreaks
+\setsecnumdepth{subsubsection}
+\settocdepth{subsection}
+\setlength{\parindent}{15pt}
+\setcounter{tocdepth}{1}
+
+%================ Document ================%
+\begin{document}   
+
+\tableofcontents
+
+% \title{}
+% \author{}
+% \date{\vspace{-.3in}}
+  
+% \maketitle
+
+%============ Abstract ============%
+% \begin{abstract}
+% \end{abstract}
+
+%======== Chapter ========%
+
+\chapter{Some Chapter}
+\section{Some Section}
+
+  1 $\const{A}$ a constant, or named element of a set \\
+  2 $\Set{A}$ a named set \\
+  3 $\cat{A}$ a generic category \\
+  4 $\Cat{A}$ a named category \\
+  5 $\fun{A}$ function \\
+  6 $\Fun{A}$ functor \\
+  7 $\id{A}$, $\id{a}$ identity \\
+  8 $\cocolon$ \\
+  9 $A \iso B$ \\
+ 10 $A \too B$ \\
+ 11 $A \tto B$ \\
+ 12 $A \To{aaa} B$ \\
+ 13 $A \Tto{aaa} B$ \\
+ 14 $A \Too{aaa} B$ \\
+ 15 $\from{A}$ \\
+ 16 $\From{A}$ \\
+ 17 $\Fromm{A}$ \\
+ 18 $\surj$ \\
+ 19 $\inj$ \\
+ 20 $\wavyto$ \\
+ 21 $\lollipop$ \\
+ 22 $\pr$ \\
+ 23 $\tickar$ \\
+ 24 $\imp$ \\
+ 25 $A \iff B$\\
+ 26 $n\th$ \\
+ 27 $\down$ \\
+ 28 $\then$ \\
+ 29 $A\op$ \\
+ 30 $\grph{aaa}{bbb}{ccc}$ \\
+ 31 $\tn{aaa}{bbb}{ccc}$ \\
+ 32 $\ol{aaa}{bbb}{ccc}$ \\
+ 33 $\ul{aaa}{bbb}{ccc}$ \\
+ 34 $\wt{aaa}{bbb}{ccc}$ \\
+ 35 $\wh{aaa}{bbb}{ccc}$ \\
+ 36 $\ubar{aaa}{bbb}{ccc}$ \\
+ % 37 $\LMO{aaa}{bbb}{ccc}$ \\
+ % 38 $\LTO{aaa}{bbb}{ccc}$ \\
+ 39 $\NN$ \\
+ 40 $\bb$ \\
+ 41 $\BB$ \\
+ 42 $\nn$ \\
+ 43 $\QQ$ \\
+ 44 $\ZZ$ \\
+ 45 $\zz$ \\
+ 46 $\RR$ \\
+ 47 $\rr$ \\
+ 48 $\IR$ \\
+ 49 $\oo$ \\
+ 50 $\singleton$ \\
+ 51 $\powset$ \\
+ 52 $\upset$ \\
+ 53 $\beh$ \\
+ 54 $\prt$ \\
+ 55 $\upclose$ \\
+ 56 $\foo$ \\
+ 57 $A\inv$ inverse\\
+ 58 $\inp{aaa}{bbb}{ccc}$ \\
+ 59 $\outp{aaa}{bbb}{ccc}$ \\
+ 60 $\TFS{aaa}{bbb}{ccc}$ \\
+ 61 $\Grph{aaa}{bbb}{ccc}$ \\
+ 62 $\SMC{aaa}{bbb}{ccc}$ \\
+ 63 $\smset$ \\
+ 64 $\smcat$ \\
+ 65 $\Bx$ \\
+ 66 $\Op$ \\
+ 67 $\Shv$ \\
+ 68 $\true$ \\
+ 69 $\false$ \\
+ 70 $\Bool$ \\
+ 71 $\Cost$ \\
+ 72 $\List$ \\
+ 73 $\inst$ \\
+ 74 $\mat$ \\
+ 75 $\corel{aaa}{bbb}{ccc}$ \\
+ 76 $\rel{aaa}{bbb}{ccc}$ \\
+ 77 $\cospan{aaa}{bbb}{ccc}$ \\
+ 78 $\finset$ \\
+ 79 $\Prof$ \\
+ 80 $\Feas$ \\
+ 81 $\Unit{aaa}{bbb}{ccc}$ \\
+ 82 $\comp{aaa}{bbb}{ccc}$ \\
+ 83 $\conj{aaa}{bbb}{ccc}$ \\
+ 84 $\col{aaa}{bbb}{ccc}$ \\
+ 85 $\cp$ \\
+ 86 $\pgin$ \\
+ 87 $\pgout$ \\
+ 88 $\ord{aaa}{bbb}{ccc}$ \\
+ 89 $\free$ \\
+ 90 $\expr$ \\
+ 91 $\sfg$ \\
+ % 92 $\addgen$ \\
+ % 93 $\zerogen$ \\
+ % 94 $\delaygen$ \\
+ % 95 $\scalargen$ \\
+ % 96 $\copyopgen$ \\
+ % 97 $\discardopgen$ \\
+ % 98 $\twist$ \\
+ % 99 $\oprdset$ \\
+100 $\oprdcospan$ \\
+101 $\light$ \\
+102 $\switch$ \\
+103 $\battery$ \\
+104 $\elec$ \\
+105 $\restrict{aaa}{bbb}{ccc}$ \\
+106 $\Prop{aaa}{bbb}{ccc}$ \\
+107 $\Time{aaa}{bbb}{ccc}$ \\
+108 $\boxCD{aaa}{bbb}$ \\
+109 $\?$ \\
+110 $\DNE$ \\
+111 $\erase{aaa}{bbb}$ \\
+112 $\showhide{aaa}{bbb}$ \\
+113 $\overtime{aaa}$ \\
+
+\end{document}
