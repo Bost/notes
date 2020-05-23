@@ -18,8 +18,8 @@
 \RequirePackage{ifthen}
 \RequirePackage{footnote}
 \RequirePackage[utf8]{inputenc} %allows non-ascii in bib file
-\RequirePackage[bookmarks=true, colorlinks=true, linkcolor=blue!50!black, citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperref}
-\RequirePackage{subfiles}
+\RequirePackage{hyperref}
+% \RequirePackage{subfiles}
 \RequirePackage[capitalize]{cleveref}
 \RequirePackage[backend=biber, backref=true, maxbibnames = 10, style = alphabetic]{biblatex}
 \RequirePackage{makeidx}
@@ -33,6 +33,12 @@
 
 % -------- Package setup --------%
 
+\hypersetup{
+  % bookmarks=true,
+  colorlinks=true, linkcolor=blue!50!black,
+  citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode}
+% \hypersetup{final}
+
 % cleveref %
 \newcommand{\creflastconjunction}{, and\nobreakspace} % serial comma
 
@@ -41,11 +47,6 @@
 
 % makeidx %
 \makeindex
-
-% hyperref %
-% \hypersetup{final}
-\hypersetup{bookmarks=true, colorlinks=true, linkcolor=blue!50!black,
-citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode}
 
 % enumitem %
 \setlist{nosep}
@@ -369,9 +370,9 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode}
 \newcommand{\inst}{\tn{-}\Cat{Inst}}
 \newcommand{\mat}{\Cat{Mat}}
 \newcommand{\corel}[1]{\Cat{Corel}_{#1}}
-\newcommand{\rel}{\Cat{Rel}}
-\newcommand{\cospan}[1]{\Cat{Cospan}_{#1}}
-\newcommand{\finset}{\Cat{FinSet}}
+\newcommand{\Rel}{\Cat{Rel}}
+\newcommand{\Cospan}[1]{\Cat{Cospan}_{#1}}
+\newcommand{\FinSet}{\Cat{FinSet}}
 
 % Collaborative design{
 \newcommand{\Prof}{\Cat{Prof}}
@@ -443,3 +444,6 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode}
 \newcommand{\overtime}[1]{{\color{gray}#1}}
 
 \newcommand{\union}{\cup}
+% \rule[<raise height>]{<width>}{<height>}
+\newcommand{\underscore}{\rule{2.5mm}{0.15mm}}
+\newcommand{\after}{\circ}

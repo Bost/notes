@@ -14,7 +14,7 @@ Set of ordered pairs $(x, i)$:
 $$A = \bigsqcup_{i \in I} A_i = \bigcup_{i \in I}{(x, i): x \in A_i}$$
 
 $A_i$ is a family of sets indexed by the indexing set $I$. There are also
-injective functions $A_i \rightarrow A; x \rightarrow (x, i)$. Example:\\
+injective functions $A_i \too A; x \too (x, i)$. Example:
 
 $A_0 = \{5, 6, 7\}$ indexed: $A^*_0 = \{(5, 0), (6, 0), (7, 0)\}$ \\
 $A_1 = \{5, 6\}$ indexed: $A^*_1 = \{(5, 1), (6, 1)\}$ \\
@@ -28,7 +28,7 @@ appear separately in the result.
 In Category Theory, disjoint union is the coproduct of the category of sets.
 
 * Resource Theories: Monoid Preorders and Enrichment
-** TODO $\mathcal{V}$ Enrichment
+** TODO V-enrichment
 ** Symmetric Monoidal Preoder
 
 \underline{Preorder} $(X, \leq)$: Set $X$ with a reflexive $x \leq x$ and
@@ -41,7 +41,7 @@ Also: poset - partially ordered set. Every preorder can be made into partial
 order by adding the skeletality requirement.
 
 \underline{Monoid} $(X, \otimes, I)$: Set $X$, monoidal product (i.e.
-multiplication) $\otimes: X \times X \fun X$, monoidal unit element $I \in X$.
+multiplication) $\otimes: X \times X \too X$, monoidal unit element $I \in X$.
 Conditions:
 - unitality: $\forall x \in X: I \otimes x = x \otimes I = x$
 - associativity: $\forall x,y,z \in X: (x \otimes y) \otimes z = x \otimes (y
@@ -58,14 +58,14 @@ not commutative.
 \underline{Symmetric}: condition:
 - symmetry: $x \otimes y = y \otimes x$
 
-\underline{Closed}: $\mathcal{V} = (V, \leq, I, \otimes)$ is symmetric monoidal
+\underline{Closed}: $\cat{V} = (V, \leq, I, \otimes)$ is symmetric monoidal
 closed: $(a \otimes v) \leq w \iff a \leq (v \multimap w)$ where $(v \multimap
 w)$ is the \emph{hom-element}.
 
 ** Quantales
 
 \underline{Unital Commutative Quantale}: Symmetric Monoidal Closed Preorder
-$\mathcal{V} = (V, \leq, I, \otimes, \multimap)$
+$\cat{V} = (V, \leq, I, \otimes, \multimap)$
 
 * Databases: Categories, Functors and Universal Constructions
 
@@ -117,52 +117,50 @@ antichain: subset $A$ of $P$: $A \subseteq P$ such that (s.th.) for all $a1, a2$
 from A if $a1 \leq a2$ then $a1 = a2$. IOW no two different things are
 comparable.
 
-Categorical idea: $\mathcal{V}\text{-}profunctors$ = feasibility relationships
-especially if $\mathcal{V}$ is $\Bool$.
+Categorical idea: $\cat{V}$ -profunctors = feasibility relationships
+especially if $\cat{V}$ is $\Bool$.
 
-$\mathcal{V}\text{-}category$ is a diagram where by the elements of
-$\mathcal{V}$. $\mathcal{V}$ knows how to compose by what's called tensor.
+$\cat{V}$ -category is a diagram where by the elements of
+$\cat{V}$. $\cat{V}$ knows how to compose by what's called tensor.
 
-$\mathcal{V}\text{-}profunctor$ of $\Bool$: "Can I get a motor that can
+$\cat{V}$ -profunctor of $\Bool$: "Can I get a motor that can
 provide this much torque and speed for this much weight, current and voltage?"
 
-$\mathcal{V}\text{-}profunctor$ of $\Cost$: "How much would it cost to
+$\cat{V}$ -profunctor of $\Cost$: "How much would it cost to
 get a motor that can providing this much torque and speed for this much
 
-$\mathcal{V}\text{-}profunctor$ of $\SmSet$. see
+$\cat{V}$ -profunctor of $\SmSet$. see
 \href{https://youtu.be/4Uqgsy3zrjs?t=491}{8:11} what are the ways to
 
 Idea: (wire diagrams ) \\
-$\mathcal{V}\text{-}category$: wires - each wire is carrying a preorder \\
-$\mathcal{V}\text{-}profunctor$: boxes \\
-$\mathcal{V}\text{-}profunctor\text{-}composition$: whole design problem;
+$\cat{V}$ -category: wires - each wire is carrying a preorder \\
+$\cat{V}$ -profunctor: boxes \\
+$\cat{V}$ -profunctor-composition$: whole design problem;
 composition = feed-forward co-design. \\
 compact closed structure: add feedback
 
-$\mathcal{V}$ is $\Bool$: \\
-$\mathcal{V}\text{-}category$ is a preorder: Less than or equal to is a
+$\cat{V}$ is $\Bool$: \\
+$\cat{V}$ -category is a preorder: Less than or equal to is a
 true/false question.
 
-Opposite of a $\mathcal{V}\text{-}category$ $P$: \\
-A $\mathcal{V}\text{-}category$ w/ the same objects, arrows are reversed.
+Opposite of a $\cat{V}$ -category $P$: \\
+A $\cat{V}$ -category w/ the same objects, arrows are reversed.
 I.e. if $p' \leq p$ in $P$ then $p \leq p'$ in $P\textsuperscript{op}$.
 
-*** $\mathcal{V}\text{-}profunctor$: from one category to another
+** V-profunctor: from one category to another
 
-\href{https://youtu.be/4Uqgsy3zrjs?t=859}{14:19}
-$\mathcal{V}\text{-}profunctor$: $P \pfun Q$ is A
-$\mathcal{V}\text{-}functor: P\textsuperscript{op} \times Q \fun \mathcal{V}$
-between
-$\mathcal{V}\text{-}categories$ $P$ and $Q$. \\
+\href{https://youtu.be/4Uqgsy3zrjs?t=859}{14:19} \\
+$\cat{V}$ -profunctor: $P \tickar Q$ is a $\cat{V}$ -functor:
+$P\op \times Q \too \cat{V}$ between $\cat{V}$ -categories $P$ and $Q$.
 
-In Hasse diagram $P$ and $Q$ are wires and $\pfun$ is a box \Phi
+In Hasse diagram $P$ and $Q$ are wires and $\tickar$ is a box \Phi
 (phi-easibility).
 
-$\mathcal{V}$ is a Symmetric Monoidal Poset (i.e. a Symmetric Monoidal Category
+$\cat{V}$ is a Symmetric Monoidal Poset (i.e. a Symmetric Monoidal Category
 where the Category is a Poset) equipped with:
 1. Notion of object: has a set of objects $Ob(P)$
 2. Notion of element: for all $p1, p2 \in Ob(P)$ we have $P(p1,p2) \in
-   \mathcal{V}$
+   \cat{V}$
 
 Symmetric Monoidal Preorder (i.e. a Symmetric Monoidal Category where the
 Category is a Preorder; Poset is a Preorder with skeletality requirement) i.e. a
@@ -170,23 +168,22 @@ Category where the morphism are "easy", i.e. between any two objects there
 either is one or isn't one morphism. I.e. only one or none morphism.
 
 Conditions for:
-1. monoidal unit $I \leq_\mathcal{V} P(p,p)$
-2. monoidal product $P(p1,p2) \otimes P(p2,p3) \leq_\mathcal{V} P(p1,p3)$
+1. monoidal unit $I \leq_\cat{V} P(p,p)$
+2. monoidal product $P(p1,p2) \otimes P(p2,p3) \leq_\cat{V} P(p1,p3)$
 
-$P = (\mathcal{V}, \otimes, I)$ is a $\mathcal{V}\text{-}category$ - it means it
+$P = (\cat{V}, \otimes, I)$ is a $\cat{V}$ -category, it means it
 is enriched in itself. That also means it's a quantale, and that means it has
-all joins. $\mathcal{V}$ is also a symmetric monoidal preorder with joins that
+all joins. $\cat{V}$ is also a symmetric monoidal preorder with joins that
 distribute over tensor. i.e. a quantale.
 \href{https://youtu.be/4Uqgsy3zrjs?t=2620}{43:40}
 
 #+LATEX: % TODO find quantale def \href{https://youtu.be/4Uqgsy3zrjs?t=1126}{18:46}
 #+LATEX: % TODO is the 43:40 a proper quantale definition?
 
-$\mathcal{V}\text{-}profunctor$: $P\textsuperscript{op} \times Q \fun
-\mathcal{V}$ where $\mathcal{V} = \{true, false\}$ is a boolean.
+$\cat{V}$ -profunctor: $P\op \times Q \too \cat{V}$ where $\cat{V} = \{true, false\}$ is a boolean.
 
-$\pfun$ is a profunctor, $\fun$ is a normal functor. IOW $\underscore \pfun
-\underscore$ packages up $\underscore \fun \underscore$
+$\tickar$ is a profunctor, $\too$ is a normal functor. IOW
+$\underscore \tickar \underscore$ packages up $\underscore \too \underscore$
 
 _Unpacking $\Phi(p, q)$_: is $p$ feasible, given $q$? \\
 $p$ - resources provided \\
@@ -197,7 +194,7 @@ Can you give me a dinner for two $p$? - Yes that's feasible. Actually I need
 just a dinner for one $p'$: \\
 if $p' \leq p$ and $q' \leq q$ then $\Phi(p, q) \leq \Phi(p', q')$
 
-$\Bool\text{-}profunctor$ drawn in a form of collage. Like a Hasse diagram
+$\Bool$ -profunctor drawn in a form of collage. Like a Hasse diagram
 for the whole profunctor.
 
 _Profunctor_: a generalisation of functor where not everything from the domain
@@ -209,13 +206,12 @@ Every functor is a kind of profunctor.
 f(y)$
 
 A functor between $\Bool$ categories is a monotone map. So any
-monotone map is a profunctor. $\mathbb{N}$ are natural number with $\leq$ and
-$+$ relations / operations. $\mathbb{N} \times \mathbb{N}
-\xrightarrow[]{\text{+}} \mathbb{N}$.
+monotone map is a profunctor. $\NN$ are natural number with $\leq$ and
+$+$ relations / operations. $\NN \times \NN \Too{+} \NN$.
 
 Whenever some says a "functor", "category", "profunctor" w/o mentioning the
-$\mathcal{V}$ they always mean a $\SmSet\text{-}category$ or a
-$\SmSet\text{-}(pro)functor$ Note: \SmSet is a monoidal category.
+$\cat{V}$ they always mean a $\SmSet$ -category or a
+$\SmSet$ -(pro)functor. Note: $\SmSet$ is a monoidal category.
 
 *** Profunctor composition
 
@@ -225,11 +221,11 @@ some $q \in Q$, such that:
 $$(\Phi;\Psi)(p,r) = \bigvee_{q \in Q} \Phi(p,q) \wedge \Psi(q,r)$$
 
 where $\Phi$, $\Psi$ are boolean feasibilities and $\wedge$, $\bigvee$ are $AND$
-and $OR$ in \Bool.
+and $OR$ in $\Bool$.
 
-_Identity on $P$_:\\
-$$id_{P}: P\textsuperscript{op} \times P \rightarrow \mathcal{V}$$ where
-$\mathcal{V}$ is $\Bool$ $$id_{P}(p,p'): = P(p,p')$$
+_Identity on $P$_:
+$$id_{P}: P\op \times P \too \cat{V}$$ where
+$\cat{V}$ is $\Bool$ $$id_{P}(p,p'): = P(p,p')$$
 
 For any category that category is it's own profunctor.
 
@@ -249,33 +245,32 @@ Generalizations of Monoid and Preorder. See
 \href{https://youtu.be/92Xp1z9PwJM?t=270}{4:30}:
 1. Monoidal Preorder $(P, \leq, \otimes, e)$: where $P$ is a set. We can put
    things in parallel (wires, boxes, parallel boxes)
-2. Category $(Ob(\mathscr{C}), Mo(\mathscr{C}), \cmp, id)$: (wires, boxes,
-   series)
+2. Category $(Ob(\cat{C}), Mo(\cat{C}), \after, \id{})$: (wires, boxes, series)
 
 Monoidal Category: special type of Monoidal Preoder and Category (-, parallel, -)
 
 Axioms - ways to ensure that Hasse diagrams have unambiguous interpretation
 associativity.
 
-\underline{Symmetric Monoidal Category SMC} $(\mathscr{C}, \otimes, I)$
+_Symmetric Monoidal Category SMC_ $(\cat{C}, \otimes, I)$
 
 SMC is a category equipped with a symmetric monoidal structure (SMS). SMS
 consists of:
-- Category $\mathscr{C}$
-- Functor for monoidal product $\otimes: \mathscr{C} \times \mathscr{C}
-  \rightarrow \mathscr{C}$
-- Functor I: $\catname{1} \rightarrow \mathscr{C}$ i.e. an object $I \in
-  Ob(\mathscr{C})$
-- Well-behaved natural isomorphism - for every $c, d, e \in Ob(\mathscr{C})$:
+- Category $\cat{C}$
+- Functor for monoidal product $\otimes: \cat{C} \times \cat{C}
+  \too \cat{C}$
+- Functor I: $\cat{1} \too \cat{C}$ i.e. an object $I \in
+  Ob(\cat{C})$
+- Well-behaved natural isomorphism - for every $c, d, e \in Ob(\cat{C})$:
   + Left unitor: $\lambda_c : I \otimes c \cong c$
   + Right unitor: $\rho_c : c \otimes I \cong c$
   + Associativity condition: $\alpha_{c,d,e} : (c \otimes d) \otimes e \cong c
     \otimes (d \otimes e)$
-  + Symmetricity condition: swap map $\sigma_{c,d}: c \otimes d \cong d \otimes
-    c$ such that $\sigma \cmp \sigma = id$
+  + Symmetricity condition: swap map $\sigma_{c,d}: c \otimes d \cong d \otimes c$
+     such that $\sigma \after \sigma = id$
 
 SMC examples:
-1. $(\SmSet, \times, \catname{1})$: underlying $\SmSet$ category
+1. $(\SmSet, \times, \cat{1})$: underlying $\SmSet$ category
    is the category of all sets: objects are sets, morphisms are functions;
    monoidal product $\times$ is a product of sets and product of functions. See
    \href{https://youtu.be/92Xp1z9PwJM?t=1658}{27:38}
@@ -283,23 +278,23 @@ SMC examples:
 2. $(\SmSet, \sqcup, \emptyset)$: $\sqcup$ is the coproduct of disjoint
    unional sets.
 
-3. $(\catname{Vect_{k}}, \otimes, k)$: $k$ is a field; objects are vector
+3. $(\cat{Vect_{k}}, \otimes, k)$: $k$ is a field; objects are vector
    spaces; monoidal product $\otimes$ i.e. monoidal structure comes from the
    tensor product of linear maps and vector spaces
 
-4. $(\catname{Prof}_{\mathcal{V}}, \times, \catname{1})$: category of
-   profunctors; objects are $\mathcal{V}\text{-}categories$ for some symmetric
+4. $(\Prof_{\cat{V}}, \times, \cat{1})$: category of
+   profunctors; objects are $\cat{V}$ -categories for some symmetric
    monoidal preorder; morphisms are the profunctors; monoidal product $\times$
-   is product of $\mathcal{V}\text{-}categories$.
+   is product of $\cat{V}$ -categories.
 
 ** Categorification
 
 Take a known thing and add structure to it. So that \underline{properties}
 become \underline{structures}. See 7Sketches.pdf, page
-\href{http://math.mit.edu/~dspivak/teaching/sp18/7Sketches.pdf}{133}. \\
+\href{http://math.mit.edu/~dspivak/teaching/sp18/7Sketches.pdf}{133}.
 
 \underline{Example}:\\
-Categorification of $\mathbb{N}$ using $\catname{FinSet}$ - a category
+Categorification of $\NN$ using $\FinSet$ - a category
 of finite sets and functions:
 - replace every number with a set of that many elements.
 - replace $+$ with disjoint union of sets $\sqcup$.
@@ -313,24 +308,24 @@ of finite sets and functions:
 Signal Flow Graphs - used in amplifiers filter, cyber-physical systems (tightly
 interacting physical and computational parts)
 
-I.e. It makes sense over any $\catname{Rig}$ which is basically a
-$\catname{Ring}: R[s, s\textsuperscript{-1}]$
+I.e. It makes sense over any $\Cat{Rig}$ which is basically a
+$\Cat{Ring}: R[s, s\textsuperscript{-1}]$
 
-\underline{Prop} $(\mathscr{C}, \otimes, I)$: Special kind of a strict symmetric
+\underline{Prop} $(\cat{C}, \otimes, I)$: Special kind of a strict symmetric
 monoidal category SMC where the objects are "easy" such that:
- - $Ob(\mathscr{C}) := \mathbb{N}$
+ - $Ob(\cat{C}) := \NN$
  - $I := 0$
- - $\forall m,n \in Ob(\mathscr{C}) := \mathbb{N}: m \otimes n := m + n$
+ - $\forall m,n \in Ob(\cat{C}) := \NN: m \otimes n := m + n$
 I.e. $Prop$ is a SMC where objects just have some finite cardinality. They're
 just numbers (i.e. lines) \\
 Symmetric: when equivalent then also equal: $1 + 2 \cong 3 \implies 1 + 2 = 3$
 
 Example: \\
-$Prop Mat_\mathbb{R}$ of matrices over a $\catname{Rig}$ $\mathbb{R}$; in this
-case real numbers $\mathbb{R}$. A $\catname{Rig}$ is an algebraic object where
+$Prop Mat_\RR$ of matrices over a $\Cat{Rig}$ $\RR$; in this
+case real numbers $\RR$. A $\Cat{Rig}$ is an algebraic object where
 you can add and multiple things. I.e.
-- $Ob(Mat_\mathbb{R}) := \mathbb{N}$
-- $Mat_\mathbb{R}(m,n) := Mat_\mathbb{R}(m,n)$ - can't distinguish between the
+- $Ob(Mat_\RR) := \NN$
+- $Mat_\RR(m,n) := Mat_\RR(m,n)$ - can't distinguish between the
   notations.
 Compose an tensor of two matrices:
 
@@ -344,9 +339,9 @@ something, Semantics is the math formula with integrals
 Soundness: if you can prove that one diagram equals to another using String
 diagram manipulations
 
-\underline{Prop Functor} $F: \mathscr{C} \rightarrow \mathscr{D}$: \\
+\underline{Prop Functor} $F: \cat{C} \too \cat{D}$: \\
 A functor between $Props$, i.e. categories with the set natural numbers
-$\mathbb{N}$ as their objects. It is an identity-on-objects.  \\
+$\NN$ as their objects. It is an identity-on-objects.  \\
 It preserves composition as a functor should and also it preserves the tensor
 product
 
@@ -373,7 +368,7 @@ Example: $R = \{(1,2),(2,3)\}$ then $R^+ = \{(1,2),(2,3),(1,3)\}$ i.e. extend
 the $R$ by every possible composition.
 
 \underline{Prop Signature} $\Sigma$
-Set $G$ of things and two functions $s$, $t$ to natural numbers $\mathbb{N}$.
+Set $G$ of things and two functions $s$, $t$ to natural numbers $\NN$.
 
 TODO Full Functor from C to D
 
@@ -382,7 +377,7 @@ TODO Matrix Kernel
 * Electric circuits: Hypergraph categories and operads
 * Logic of behavior: Sheaves, toposes, and internal languages
 
-\href{https://youtu.be/Qp6b-XbPog0}{Chapter 7, lecture 1 (Spivak)} \\
+\href{https://youtu.be/Qp6b-XbPog0}{Chapter 7, lecture 1 (Spivak)}
 
 \underline{Topos} is:
 - is a type of a category being able to replace the Set Theory
@@ -416,26 +411,25 @@ TODO Matrix Kernel
 - cartesian: has product $A \times B$ (conjunction) for any pair of objects $A$,
   $B$
 
-- closed: has exponential $B^A$ (functions A \rightarrow B) for any pair of
+- closed: has exponential $B^A$ (functions $A \too B$) for any pair of
   objects $A$, $B$
 
 - 0-th power of an object: has a terminal object \cdot (for all objects there
-  exists a unique map $A \rightarrow \cdot$)
+  exists a unique map $A \too \cdot$)
 
 4. has a subobject classifier \Omega - contains the "core" of topos logic
 
 
-*** Subobject Classifier: Object \Omega with Mononorphisms $\catname{1} \rightarrow \Omega$
+** Subobject Classifier: Object \Omega with Mononorphisms \(\cat{1} \too \Omega\)
 
-$\mathcal{1}$ is a category with only one object
-monomorphism $X \rightarrow Y$: distinct $Xs$ \rightarrow distinct $Ys$
+$\cat{1}$ is a category with only one object monomorphism $X \too Y$: distinct
+$Xs \too$ distinct $Ys$
 
-*** Sheaf (Garbe, Faisceau, zväzok): Functor $F: \mathcal{C} \rightarrow \SmSet$
+** Sheaf (Garbe, Faisceau, zväzok): Functor \(F: \cat{C} \too \SmSet\)
 tool for tracking locally defined data
 
 
-*** Presheaf: Functor $F: \mathcal{C}^\mathrm{op} \rightarrow \SmSet$
-*** Presheaf: Functor $F: \mathcal{C}^{op} \rightarrow \SmSet$
-*** Presheaf: Functor $F: \mathcal{C}\textsuperscript{op} \rightarrow \SmSet$
+** Presheaf: Functor \(F: \cat{C}^\mathrm{op} \too \SmSet\)
+** Presheaf: Functor \(F: \cat{C}\op \too \SmSet\)
+** Presheaf: Functor \(F: \cat{C}\textsuperscript{op} \too \SmSet\)
 TODO choose the right superscript version
-
