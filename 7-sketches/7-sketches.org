@@ -129,7 +129,7 @@ provide this much torque and speed for this much weight, current and voltage?"
 $\mathcal{V}\text{-}profunctor$ of $\Cost$: "How much would it cost to
 get a motor that can providing this much torque and speed for this much
 
-$\mathcal{V}\text{-}profunctor$ of $\Set$. see
+$\mathcal{V}\text{-}profunctor$ of $\SmSet$. see
 \href{https://youtu.be/4Uqgsy3zrjs?t=491}{8:11} what are the ways to
 
 Idea: (wire diagrams ) \\
@@ -150,8 +150,9 @@ I.e. if $p' \leq p$ in $P$ then $p \leq p'$ in $P\textsuperscript{op}$.
 *** $\mathcal{V}\text{-}profunctor$: from one category to another
 
 \href{https://youtu.be/4Uqgsy3zrjs?t=859}{14:19}
-$\mathcal{V}\text{-}profunctor$: $P \pfun Q$ is A $\mathcal{V}\text{-}functor:
-P\textsuperscript{op} \times Q \fun \mathcal{V}$ between
+$\mathcal{V}\text{-}profunctor$: $P \pfun Q$ is A
+$\mathcal{V}\text{-}functor: P\textsuperscript{op} \times Q \fun \mathcal{V}$
+between
 $\mathcal{V}\text{-}categories$ $P$ and $Q$. \\
 
 In Hasse diagram $P$ and $Q$ are wires and $\pfun$ is a box \Phi
@@ -213,8 +214,8 @@ $+$ relations / operations. $\mathbb{N} \times \mathbb{N}
 \xrightarrow[]{\text{+}} \mathbb{N}$.
 
 Whenever some says a "functor", "category", "profunctor" w/o mentioning the
-$\mathcal{V}$ they always mean a $\catname{Set}\text{-}category$ or a
-$\catname{Set}\text{-}(pro)functor$ Note: \catname{Set} is a monoidal category.
+$\mathcal{V}$ they always mean a $\SmSet\text{-}category$ or a
+$\SmSet\text{-}(pro)functor$ Note: \SmSet is a monoidal category.
 
 *** Profunctor composition
 
@@ -253,8 +254,6 @@ Generalizations of Monoid and Preorder. See
 
 Monoidal Category: special type of Monoidal Preoder and Category (-, parallel, -)
 
- #+LATEX: % TODO use $\catname{Set}$
-
 Axioms - ways to ensure that Hasse diagrams have unambiguous interpretation
 associativity.
 
@@ -276,12 +275,12 @@ consists of:
     c$ such that $\sigma \cmp \sigma = id$
 
 SMC examples:
-1. $(\catname{Set}, \times, \catname{1})$: underlying $\catname{Set}$ category
+1. $(\SmSet, \times, \catname{1})$: underlying $\SmSet$ category
    is the category of all sets: objects are sets, morphisms are functions;
    monoidal product $\times$ is a product of sets and product of functions. See
    \href{https://youtu.be/92Xp1z9PwJM?t=1658}{27:38}
 
-2. $(\catname{Set}, \sqcup, \emptyset)$: $\sqcup$ is the coproduct of disjoint
+2. $(\SmSet, \sqcup, \emptyset)$: $\sqcup$ is the coproduct of disjoint
    unional sets.
 
 3. $(\catname{Vect_{k}}, \otimes, k)$: $k$ is a field; objects are vector
@@ -431,12 +430,12 @@ TODO Matrix Kernel
 $\mathcal{1}$ is a category with only one object
 monomorphism $X \rightarrow Y$: distinct $Xs$ \rightarrow distinct $Ys$
 
-*** Sheaf (Garbe, Faisceau, zväzok): Functor $F: \mathcal{C} \rightarrow \catname{Set}$
+*** Sheaf (Garbe, Faisceau, zväzok): Functor $F: \mathcal{C} \rightarrow \SmSet$
 tool for tracking locally defined data
 
 
-*** Presheaf: Functor $F: \mathcal{C}^\mathrm{op} \rightarrow \catname{Set}$
-*** Presheaf: Functor $F: \mathcal{C}^{op} \rightarrow \catname{Set}$
-*** Presheaf: Functor $F: \mathcal{C}\textsuperscript{op} \rightarrow \catname{Set}$
+*** Presheaf: Functor $F: \mathcal{C}^\mathrm{op} \rightarrow \SmSet$
+*** Presheaf: Functor $F: \mathcal{C}^{op} \rightarrow \SmSet$
+*** Presheaf: Functor $F: \mathcal{C}\textsuperscript{op} \rightarrow \SmSet$
 TODO choose the right superscript version
 
