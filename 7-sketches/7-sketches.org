@@ -8,7 +8,7 @@
 
 * Generative Effects: Orders and Galois Connections
 
-\underline{Disjoint Union} of sets $\sqcup$ - see also
+_Disjoint Union_ of sets $\sqcup$ - see also
 \href{https://en.wikipedia.org/wiki/Disjoint_union}{wikipedia}:\\
 Set of ordered pairs $(x, i)$:
 $$A = \bigsqcup_{i \in I} A_i = \bigcup_{i \in I}{(x, i): x \in A_i}$$
@@ -31,40 +31,40 @@ In Category Theory, disjoint union is the coproduct of the category of sets.
 ** TODO V-enrichment
 ** Symmetric Monoidal Preoder
 
-\underline{Preorder} $(X, \leq)$: Set $X$ with a reflexive $x \leq x$ and
+_Preorder_ $(X, \leq)$: Set $X$ with a reflexive $x \leq x$ and
 transitive $x \leq y \land y \leq z \implies x \leq z$ preorder relation $\leq$.
 
-\underline{Partially ordered}: preorder with skeletality requirement ($x \cong y
+_Partially ordered_: preorder with skeletality requirement ($x \cong y
 \implies x = y$; equivalence implies equality) where $x \leq y \land y \leq x
 \implies x \cong y$.\\
 Also: poset - partially ordered set. Every preorder can be made into partial
 order by adding the skeletality requirement.
 
-\underline{Monoid} $(X, \otimes, I)$: Set $X$, monoidal product (i.e.
+_Monoid_ $(X, \otimes, I)$: Set $X$, monoidal product (i.e.
 multiplication) $\otimes: X \times X \too X$, monoidal unit element $I \in X$.
 Conditions:
 - unitality: $\forall x \in X: I \otimes x = x \otimes I = x$
 - associativity: $\forall x,y,z \in X: (x \otimes y) \otimes z = x \otimes (y
   \otimes z)$
 
-\underline{Commutative Monoid} $(X, \otimes, I)$ Note: matrix multiplication is
+_Commutative Monoid_ $(X, \otimes, I)$ Note: matrix multiplication is
 not commutative.
 - commutativity: $\forall x,y \in X: (x \otimes y) = y \otimes x$
 
-\underline{Monoidal Preorder}: Condition:
+_Monoidal Preorder_: Condition:
 - monotonicity: $x_1 \leq y_1 \land x_2 \leq y_2 \implies x_1 \otimes x_2 \leq
   y_1 \otimes y_2$
 
-\underline{Symmetric}: condition:
+_Symmetric_: condition:
 - symmetry: $x \otimes y = y \otimes x$
 
-\underline{Closed}: $\cat{V} = (V, \leq, I, \otimes)$ is symmetric monoidal
+_Closed_: $\cat{V} = (V, \leq, I, \otimes)$ is symmetric monoidal
 closed: $(a \otimes v) \leq w \iff a \leq (v \multimap w)$ where $(v \multimap
 w)$ is the \emph{hom-element}.
 
 ** Quantales
 
-\underline{Unital Commutative Quantale}: Symmetric Monoidal Closed Preorder
+_Unital Commutative Quantale_: Symmetric Monoidal Closed Preorder
 $\cat{V} = (V, \leq, I, \otimes, \multimap)$
 
 * Databases: Categories, Functors and Universal Constructions
@@ -202,7 +202,7 @@ has to be included and two things may be spread out. See page 7Sketches.pdf,
 page \href{http://math.mit.edu/~dspivak/teaching/sp18/7Sketches.pdf}{122}. Also:
 Every functor is a kind of profunctor.
 
-\underline{Monotone map}: order preserving function $f: x \leq y$ then $f(x) \leq
+_Monotone map_: order preserving function $f: x \leq y$ then $f(x) \leq
 f(y)$
 
 A functor between $\Bool$ categories is a monotone map. So any
@@ -289,13 +289,13 @@ SMC examples:
 
 ** Categorification
 
-Take a known thing and add structure to it. So that \underline{properties}
-become \underline{structures}. See 7Sketches.pdf, page
+Take a known thing and add structure to it. So that _properties_
+become _structures_. See 7Sketches.pdf, page
 \href{http://math.mit.edu/~dspivak/teaching/sp18/7Sketches.pdf}{133}.
 
-\underline{Example}:\\
-Categorification of $\NN$ using $\FinSet$ - a category
-of finite sets and functions:
+_Example_: \\
+Categorification of $\NN$ using $\FinSet$ - a category of finite sets and
+functions:
 - replace every number with a set of that many elements.
 - replace $+$ with disjoint union of sets $\sqcup$.
 - replace equality with the structure of an isomorphism.
@@ -311,7 +311,7 @@ interacting physical and computational parts)
 I.e. It makes sense over any $\Cat{Rig}$ which is basically a
 $\Cat{Ring}: R[s, s\textsuperscript{-1}]$
 
-\underline{Prop} $(\cat{C}, \otimes, I)$: Special kind of a strict symmetric
+_Prop_ $(\cat{C}, \otimes, I)$: Special kind of a strict symmetric
 monoidal category SMC where the objects are "easy" such that:
  - $Ob(\cat{C}) := \NN$
  - $I := 0$
@@ -329,9 +329,9 @@ you can add and multiple things. I.e.
   notations.
 Compose an tensor of two matrices:
 
-\underline{Presented Prop}
+_Presented Prop_
 
-\underline{String Diagrams} (Syntax and Semantics, Soundness and Completeness)
+_String Diagrams_ (Syntax and Semantics, Soundness and Completeness)
 
 \href{https://youtu.be/33yVpzPOLjM?t=433}{7:13} String diagrams are syntax for
 something, Semantics is the math formula with integrals
@@ -339,18 +339,18 @@ something, Semantics is the math formula with integrals
 Soundness: if you can prove that one diagram equals to another using String
 diagram manipulations
 
-\underline{Prop Functor} $F: \cat{C} \too \cat{D}$: \\
+_Prop Functor_ $F: \cat{C} \too \cat{D}$: \\
 A functor between $Props$, i.e. categories with the set natural numbers
 $\NN$ as their objects. It is an identity-on-objects.  \\
 It preserves composition as a functor should and also it preserves the tensor
 product
 
-\underline{Prop Signature} $\Sigma$
+_Prop Signature_ $\Sigma$
 Set $G$ with ...
 
-\underline{Port Graph}
+_Port Graph_
 
-\underline{Free structure}: free from unnecessary constraints. See
+_Free structure_: free from unnecessary constraints. See
 $\Cat{Free}(G)$
 
 Notion of adjuction ...
@@ -363,11 +363,11 @@ strict Symmetric Monoidal Category SMC:
 
 props are categories$!
 
-\underline{Transitive closure} $R^+$ of a binary relation $R$: \\
+_Transitive closure_ $R^+$ of a binary relation $R$: \\
 Example: $R = \{(1,2),(2,3)\}$ then $R^+ = \{(1,2),(2,3),(1,3)\}$ i.e. extend
 the $R$ by every possible composition.
 
-\underline{Prop Signature} $\Sigma$
+_Prop Signature_ $\Sigma$
 Set $G$ of things and two functions $s$, $t$ to natural numbers $\NN$.
 
 TODO Full Functor from C to D
@@ -379,7 +379,7 @@ TODO Matrix Kernel
 
 \href{https://youtu.be/Qp6b-XbPog0}{Chapter 7, lecture 1 (Spivak)}
 
-\underline{Topos} is:
+_Topos_ is:
 - is a type of a category being able to replace the Set Theory
 
 - is a place "where you can do logic" i.e. a world where mathematical statements
@@ -401,7 +401,7 @@ TODO Matrix Kernel
 
 - Set topos / topos of sets is a topos of single point
 
-\underline{Topos properties}:
+_Topos properties_:
 1. has limits and colimits
 
 2. every morphishm has an epi-mono factorization, i.e. it can be seen as a
