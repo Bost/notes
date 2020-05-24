@@ -14,7 +14,8 @@
 \RequirePackage{graphicx}
 \RequirePackage{outline}
 \RequirePackage{varwidth}
-\RequirePackage[inline]{enumitem}
+% \RequirePackage[inline]{enumitem}
+\RequirePackage{enumitem}
 \RequirePackage{ifthen}
 \RequirePackage{footnote}
 \RequirePackage[utf8]{inputenc} %allows non-ascii in bib file
@@ -49,8 +50,26 @@
 \makeindex
 
 % enumitem %
-\setlist{nosep}
+% \setlist{nosep}
+% no indentation of the bullet and number lists
 
+% Thanks to https://tex.stackexchange.com/a/300418
+% \itemsep = vertical space added after each item in the list.
+% \parsep = vertical space added after each paragraph in the list.
+% \topsep = vertical space added above and below the list.
+% \partopsep = vertical space added above and below the list, but only if the list starts a new paragraph.
+
+
+% \setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=0pt, parsep=0pt, partopsep=0mm, parskip=0pt}
+% \setlist[enumerate]{leftmargin=*, itemsep=0pt, topsep=0pt, parsep=0pt, partopsep=0mm, parskip=0pt}
+\setlist[itemize]{leftmargin=*}
+\setlist[enumerate]{leftmargin=*}
+\setlist{nosep}
+% \setlength{\itemsep}{0pt}
+% \setlength{\parskip}{0pt}
+% \setlength{\parsep}{0pt}
+% \setlength{\topsep}{0pt}
+% \setlength{\partopsep}{0pt}
 
 % tikz %
 \tikzstyle{none}=[inner sep=0pt]                               % Signal flow graphs
@@ -263,6 +282,7 @@
 \renewcommand{\ll}{\mathbb{L}} %Old \ll is <<
 \renewcommand{\ss}{\subseteq}
 \renewcommand{\iff}{\Leftrightarrow}
+\renewcommand{\implies}{\Rightarrow}
 \renewcommand{\th}{\ensuremath{^\tn{th}}\ }
 
 \DeclareMathOperator*{\colim}{colim}
@@ -290,6 +310,11 @@
 \DeclarePairedDelimiter{\unary}{{\langle\,}}{{\,\rangle}}
 
 \setlength\tabcolsep{3pt}
+% no indentation of the first paragraph line
+\setlength{\parindent}{0em}
+% space between paragraphs
+% \setlength{\parskip}{4mm}
+
 \linespread{1.10}
 
 
@@ -322,7 +347,7 @@
 \newcommand{\Bool}{\Cat{Bool}}
 \newcommand{\Bx}{\Set{Box}}
 \newcommand{\CCat}[1]{\mathbb{\StrLeft{#1}{1}}\Cat{\StrGobbleLeft{#1}{1}}} % a named category; does not seem to work in section headers...
-\newcommand{\Cat}[1]{\mathbf{#1}}                                            % a named category
+\newcommand{\Cat}[1]{\mathbf{#1}}                                          % a named category
 \newcommand{\Cdots}[1]{\overset{#1}{\cdots}}
 \newcommand{\Cob}{\Cat{Cob}}
 \newcommand{\Cospan}[1]{\Cat{Cospan}_{#1}}                                 % Cospan stuff
@@ -336,7 +361,8 @@
 \newcommand{\Fun}[1]{\mathsf{#1}}                                          % functor
 \newcommand{\Grph}{\Cat{Grph}}
 \newcommand{\IR}{\mathbb{I}\hspace{.6pt}\mathbb{R}}
-\newcommand{\Inj}[1]{\overset{#1}{\rightarrowtail}}
+\newcommand{\inj}[1]{\overset{#1}{\rightarrowtail}}
+\newcommand{\mono}[1]{\inj{#1}}
 \newcommand{\LMO}[2][over]{\ifthenelse{\equal{#1}{over}}{\overset{#2}{\bullet}}{\underset{#2}{\bullet}}}
 \newcommand{\LTO}[2][\bullet]{\overset{\tn{#2}}{#1}}
 \newcommand{\Ldots}[1]{\overset{#1}{\ldots}}
@@ -440,12 +466,11 @@
 \newcommand{\sfg}{\mathbf{SFG}}                                            % Signal flow graphs
 \newcommand{\showhide}[2]{#1}
 \newcommand{\singleton}{\{1\}}
-\newcommand{\smcat}{\Cat{Cat}}
 \newcommand{\smf}{\Cat{SMF}}
-\newcommand{\smset}{\Cat{Set}}
 \newcommand{\ssmc}{\CCat{SMC}}
 \newcommand{\strict}[1]{\overline{#1}}
 \newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\epi}{\surj}
 \newcommand{\switch}{\texttt{switch}}                                      % Circuits
 \newcommand{\then}{\mathbin{\scalebox{.8}{/\!\!/}}}
 \newcommand{\tn}[1]{\textnormal{#1}}
@@ -466,3 +491,5 @@
 \newcommand{\zero}{\cat{I}}
 \newcommand{\zz}{\mathbb{Z}}
 
+% debugging
+\newcommand{\printvalues}{topsep=\the\topsep; itemsep=\the\itemsep; parsep=\the\parsep; partopsep=\the\partopsep}
