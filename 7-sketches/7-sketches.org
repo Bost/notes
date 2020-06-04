@@ -179,24 +179,24 @@ $\cat{V}$ -profunctor of $\SmSet$. see
 
 \bigskip
 
-Idea: (wire diagrams ) \\
+Idea: (wire diagrams) \\
 $\cat{V}$ -category: wires - each wire is carrying a preorder \\
 $\cat{V}$ -profunctor: boxes \\
-$\cat{V}$ -profunctor-composition$: whole design problem;
-composition = feed-forward co-design. \\
+$\cat{V}$ -profunctor-composition: whole design problem; \\
+composition = feed-forward co-design \\
 compact closed structure: add feedback
 
 \bigskip
 
 $\cat{V}$ is $\Bool$: \\
-$\cat{V}$ -category is a preorder: Less than or equal to is a
+$\cat{V}$ -category is a preorder: $\leq$ - /less than or equal to?/ is a
 true/false question.
 
 \bigskip
 
 Opposite of a $\cat{V}$ -category $P$: \\
 A $\cat{V}$ -category w/ the same objects, arrows are reversed.
-I.e. if $p' \leq p$ in $P$ then $p \leq p'$ in $P\textsuperscript{op}$.
+I.e. if $p' \leq p$ in $P \implies p \leq p'$ in $P\textsuperscript{op}$.
 
 ** V-profunctor: from one category to another
 
@@ -324,8 +324,8 @@ boxes/series
 \bigskip
 
 Monoid $(M, \otimes, e)$; e.g. string of processes $(1 + 2) + 3$; $M$ is the
-boxes, $\otimes$ is series of composition; $f \otimes g$ - parallel "execution"
-of $f$ and $g$.
+boxes, $\otimes$ is series of composition; \\
+$f \otimes g$ - parallel "execution" of $f$ and $g$.
 
 \bigskip
 
@@ -337,7 +337,7 @@ Generalizations of Monoid and Preorder. See
 
 \bigskip
 
-Monoidal Category: special type of Monoidal Preoder and Category (-, parallel, -)
+Monoidal Category: special type of Monoidal Preoder and Category $(-, parallel, -)$
 
 \bigskip
 

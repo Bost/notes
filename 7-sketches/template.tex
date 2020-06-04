@@ -19,7 +19,7 @@
 \newcommand{\titlefont}{\normalfont\Huge\bfseries}
 \renewcommand{\chaptitlefont}{\titlefont}
 
-\usepackage{my}
+\usepackage{cat-7-sketches}
 %\usepackage{changepage} %indented paragraphs in solutions
 %\usepackage{showkeys} %for drafting; prints labels in margin
 
@@ -27,9 +27,6 @@
 
 % cleveref %
   \newcommand{\creflastconjunction}{, and\nobreakspace} % serial comma
-
-% biblatex %
-  \addbibresource{Library20200504.bib}
 
 % makeidx %
   \makeindex
@@ -110,26 +107,26 @@
   {.5em} %space after theorem head
   {} %theorem head spec
 
-% amsthm %
-  \theoremstyle{plain}
-  \newmdtheoremenv[style=theoremframe]{theorem}[equation]{Theorem}
-  \newmdtheoremenv[style=theoremframe]{proposition}[equation]{Proposition}
-  \newmdtheoremenv[style=theoremframe]{corollary}[equation]{Corollary}
-  \newmdtheoremenv[style=theoremframe]{lemma}[equation]{Lemma}
+% % amsthm %
+%   \theoremstyle{plain}
+%   \newmdtheoremenv[style=theoremframe]{theorem}[equation]{Theorem}
+%   \newmdtheoremenv[style=theoremframe]{proposition}[equation]{Proposition}
+%   \newmdtheoremenv[style=theoremframe]{corollary}[equation]{Corollary}
+%   \newmdtheoremenv[style=theoremframe]{lemma}[equation]{Lemma}
  
-  \theoremstyle{plain}
-  \newmdtheoremenv[style=definitionframe]{definition}[equation]{Definition}
-  \newmdtheoremenv[style=definitionframe]{roughDef}[equation]{Rough Definition}
-  \crefname{roughDef}{Definition}{Definitions}
-  \newtheorem{construction}[equation]{Construction}
-  \newtheorem{notation}[equation]{Notation}
-  \newtheorem{axiom}{Axiom}
-  \newtheorem*{axiom*}{Axiom}
+%   \theoremstyle{plain}
+%   \newmdtheoremenv[style=definitionframe]{definition}[equation]{Definition}
+%   \newmdtheoremenv[style=definitionframe]{roughDef}[equation]{Rough Definition}
+%   \crefname{roughDef}{Definition}{Definitions}
+%   \newtheorem{construction}[equation]{Construction}
+%   \newtheorem{notation}[equation]{Notation}
+%   \newtheorem{axiom}{Axiom}
+%   \newtheorem*{axiom*}{Axiom}
  
-  \theoremstyle{remark}
-  \newtheorem{remark}[equation]{Remark}
-  \newtheorem{warning}[equation]{Warning}
-%  \newtheorem{exercise}[equation]{Exercise}
+%   \theoremstyle{remark}
+%   \newtheorem{remark}[equation]{Remark}
+%   \newtheorem{warning}[equation]{Warning}
+% %  \newtheorem{exercise}[equation]{Exercise}
 
 
 % Solution environment
@@ -181,9 +178,9 @@
 
 %Getting ending symbols in example and exercise environments:
 
-\newmdtheoremenv[style=exampleframe]{example}[equation]{Example}
+% \newmdtheoremenv[style=exampleframe]{example}[equation]{Example}
 
-\newtheorem{exc-inner}[equation]{Exercise}
+% \newtheorem{exc-inner}[equation]{Exercise}
 \newenvironment{exercise}[1][]{
   \def\qedsymbol{$\lozenge$}% Set the QED symbol.
   \pushQED{\qed}
@@ -231,7 +228,7 @@
  16 $\From{A}$ \\
  17 $\Fromm{A}$ \\
  18 $\surj$ \\
- 19 $\inj$ \\
+ 19 $\inj $ \\
  20 $\wavyto$ \\
  21 $\lollipop$ \\
  22 $\pr$ \\
@@ -269,7 +266,7 @@
  54 $\prt$ \\
  55 $\upclose$ \\
  56 $\foo$ \\
- 57 $A\inv$ inverse\\
+ 57 $A\inv$ inverse \\
  58 $\inp{aaa}{bbb}{ccc}$ \\
  59 $\outp{aaa}{bbb}{ccc}$ \\
  60 $\TFS{aaa}{bbb}{ccc}$ \\
@@ -326,5 +323,8 @@
 111 $\erase{aaa}{bbb}$ \\
 112 $\showhide{aaa}{bbb}$ \\
 113 $\overtime{aaa}$ \\
+114 $a \in A$, $a \notin A$ \\
+115 $\minus a$ \\
+
 
 \end{document}
