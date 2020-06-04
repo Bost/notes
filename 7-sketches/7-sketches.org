@@ -6,7 +6,7 @@
 # https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
 # latexpreview / nolatexpreview C-c C-x C-l
 # #+STARTUP: nolatexpreview
-#+STARTUP: showeverything inlineimages latexpreview
+#+STARTUP: showeverything inlineimages nolatexpreview
 
 * Generative Effects: Orders and Galois Connections
 
@@ -114,7 +114,7 @@ Map Theory of Categories
 
 \bigskip
 
-Collaborative design problem asks for:
+Collaborative design problem asks for: \\
 Given a set of specifications of teams what can the team as a whole produce?
 
 \bigskip
@@ -148,8 +148,8 @@ nor better than the other things
 
 \bigskip
 
-antichain: subset $A$ of $P$: $A \subseteq P$ such that (s.th.) for all $a1, a2$
-from A if $a1 \leq a2$ then $a1 = a2$. IOW no two different things are
+_antichain_: subset $A$ of $P$: $A \subseteq P$ such that (s.th.) $\forall a_1,
+a_2 \in A : a_1 \leq a_2 \implies a_1 = a_2$. IOW no two different things are
 comparable.
 
 \bigskip
