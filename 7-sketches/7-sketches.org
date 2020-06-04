@@ -1,6 +1,7 @@
 # generate pdf: M-x org-latex-export-to-pdf
 
-#+LATEX_HEADER: \usepackage{my}
+#+LATEX_HEADER: \usepackage{cat-7-sketches}
+# #+LATEX_HEADER: \usepackage{foo}
 
 # https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
 # latexpreview / nolatexpreview C-c C-x C-l
@@ -549,8 +550,8 @@ _Topos properties_:
 
 $\cat{E}$ is a category with:
 - Objects: $\Ob(\cat{E}) = \{\Omega, X, Y, 1\}$ 
-- Morphisms: $\Mor(\cat{E}) = \{!, m, \corners{m}, true\}$ where $true$ is a monomorphism $1
-  \mono{} \Omega$ (mono = mapping distinct $x$'s to distinct $y$'s), in $\SmSet$ typically
+- Morphisms: $\Mor(\cat{E}) = \{!, m, \corners{m}, true\}$ where $true$ is a monomorphism
+  $1 \mono{} \Omega$ (mono = mapping distinct $x$'s to distinct $y$'s), in $\SmSet$ typically
   mapping $1 \mapsto \top$ where $\Omega = \{\top, \bot\}$ (read "Top, Bottom").
 
 \bigskip
