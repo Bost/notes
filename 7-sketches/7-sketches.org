@@ -31,23 +31,42 @@ In Category Theory, disjoint union is the coproduct of the category of sets.
 
 * Resource Theories: Monoid Preorders and Enrichment
 ** TODO V-enrichment
-** Symmetric Monoidal Preoder
+** Symmetric Monoidal Preorder
 
-_Preorder_ $(X, \leq)$: Set $X$ with a reflexive $x \leq x$ and
-transitive $x \leq y \land y \leq z \implies x \leq z$ preorder relation $\leq$.
+TODO verify definitions of Preorder, Full and Partial Order
+
+_Preorder Relation_ conditions: \\
+reflexivity:  $x \leq x$ \\
+transitivity: $x \leq y \land y \leq z \implies x \leq z$ \\
+equivalence:  $x \leq y \land y \leq x \implies x \cong y$ \\
+
+_Partial Order Relation_ conditions: \\
+reflexivity:  $x \leq x$ \\
+transitivity: $x \leq y \land y \leq z \implies x \leq z$ \\
+equivalence:  $x \leq y \land y \leq x \implies x \cong y$ \\
+
+_(Full?) Order Relation_ conditions: \\
+reflexivity:  $x \leq x$ \\
+transitivity: $x \leq y \land y \leq z \implies x \leq z$ \\
+equivalence:  $x \leq y \land y \leq x \implies x \cong y$ \\
+equality:     $x \cong y \implies x = y$, i.e. /equivalence implies equality/ -
+the skeletality condition \\
+
+_Notes_:
+- if $\leq$ is an order relation on a set $X$, then the tuple $(X, leq)$ is
+  called a /poset/ (partially ordered set).
+- A relation "x is a linear combination of y" on a set of three vectors
+  $$\{v_1=[1,0], v_2=[2,0], v_3=[3,0]\} \in \RR^2$$ is reflexive and transitive
+  so that (according to Def. 1.30., b-condition) $v_1, v_2, v_3$ are all
+  equivalent. That makes this relation to be a preorder. However these vectors
+  are not equal and this preorder can't be made into a partial order.
 
 \bigskip
 
-_Partially ordered_: preorder with skeletality requirement ($x \cong y
-\implies x = y$; equivalence implies equality) where $x \leq y \land y \leq x
-\implies x \cong y$.\\
-Also: poset - partially ordered set. Every preorder can be made into partial
-order by adding the skeletality requirement.
-
-\bigskip
-
-_Monoid_ $(X, \otimes, I)$: Set $X$, monoidal product (i.e.
-multiplication) $\otimes: X \times X \to X$, monoidal unit element $I \in X$.
+_Monoid_ is a triple $(X, \otimes, I)$ such that: \\
+$X$ is a set \\
+$\otimes: X \times X \to X$ is a monoidal product (i.e. multiplication) \\
+$I \in X$ is a monoidal unit element \\
 Conditions:
 - unitality: $\forall x \in X: I \otimes x = x \otimes I = x$
 - associativity: $\forall x,y,z \in X: (x \otimes y) \otimes z = x \otimes (y
@@ -55,8 +74,8 @@ Conditions:
 
 \bigskip
 
-_Commutative Monoid_ $(X, \otimes, I)$ Note: matrix multiplication is
-not commutative.
+_Commutative Monoid_ $(X, \otimes, I)$ \\
+Note: matrix multiplication is not commutative.
 - commutativity: $\forall x,y \in X: (x \otimes y) = y \otimes x$
 
 \bigskip
