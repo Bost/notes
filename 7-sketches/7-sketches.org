@@ -287,7 +287,7 @@ for the whole profunctor.
 
 \bigskip
 
-_Profunctor_: a generalisation of functor where not everything from the domain
+_Profunctor_: a generalization of functor where not everything from the domain
 has to be included and two things may be spread out. See
 \href{http://math.mit.edu/~dspivak/teaching/sp18/7Sketches.pdf}{page 122}. Also:
 Every functor is a kind of a profunctor.
