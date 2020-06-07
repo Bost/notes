@@ -2,6 +2,7 @@
 % Thanks to David Spivak
 
 \documentclass[11pt, book]{memoir}
+% \documentclass[twocolumn]{article}
 
 \settrims{0pt}{0pt} % page and stock same size
 % Picas 1pc = 1/6th of 1in: 34.5pc == 146.0488mm
@@ -22,6 +23,8 @@
 \usepackage{cat-7-sketches}
 %\usepackage{changepage} %indented paragraphs in solutions
 %\usepackage{showkeys} %for drafting; prints labels in margin
+
+\usepackage{multicol}
 
 %-------- Package setup --------%
 
@@ -192,8 +195,9 @@
 
 %================ Document ================%
 \begin{document}   
+\begin{multicols}{3}
 
-\tableofcontents
+% \tableofcontents
 
 % \title{}
 % \author{}
@@ -206,16 +210,15 @@
 % \end{abstract}
 
 %======== Chapter ========%
+% \chapter{Some Chapter}
+% \section{Some Section}
 
-\chapter{Some Chapter}
-\section{Some Section}
-
-  1 $\const{A}$ a constant, or named element of a set \\
-  2 $\Set{A}$ a named set \\
-  3 $\cat{A}$ a generic category \\
-  4 $\Cat{A}$ a named category \\
-  5 $\fun{A}$ function \\
-  6 $\Fun{A}$ functor \\
+  1 $\const{X}$ constant, named set-element \\
+  2 $\Set{X}$ named set \\
+  3 $\cat{X}$ generic category \\
+  4 $\Cat{X}$ named category \\
+  5 $\fun{X}$ function \\
+  6 $\Fun{X}$ functor \\
   7 $\id{A}$, $\id{a}$ identity \\
   8 $\cocolon$ \\
   9 $A \iso B$ \\
@@ -251,6 +254,7 @@
  39 $\NN$ \\
  40 $\bb$ \\
  41 $\BB$ \\
+ 41 $\CC$ complex numbers \\
  42 $\nn$ \\
  43 $\QQ$ \\
  44 $\ZZ$ \\
@@ -323,8 +327,10 @@
 111 $\erase{aaa}{bbb}$ \\
 112 $\showhide{aaa}{bbb}$ \\
 113 $\overtime{aaa}$ \\
-114 $a \in A$, $a \notin A$ \\
-115 $\minus a$ \\
+114 $a \in A$, $a \notin A$ is a member, belongs to \\
+115 $\minus a$ minus \\
+116 $\times $ times, cross \\
 
 
+\end{multicols}
 \end{document}
