@@ -1,11 +1,11 @@
 # generate pdf: M-x org-latex-export-to-pdf
 
-#+LATEX_HEADER: \usepackage{7-sketches/my}
+#+LATEX_HEADER: \usepackage{cat-7-sketches}
 
 # https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
 # latexpreview / nolatexpreview C-c C-x C-l
 # #+STARTUP: nolatexpreview
-#+STARTUP: showeverything inlineimages latexpreview
+#+STARTUP: showeverything inlineimages nolatexpreview
 
 Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 
@@ -155,26 +155,30 @@ $f: X \rightarrow Y$     $f$ is epimorphism (all $Ys$ are used)
 $id_X: X \rightarrow X$
 
 *** Subobject of Object A
-if $f: X \rightarrow Y$ is a monomorphism (i.e. an injection i.e. different $Xs \rightarrow$ different $Ys$ - don’t smush multiple elements into one, i.e. parallel arrows)
-then it is isomorphic (i.e. only formally different) from $Y$.
+if $f: X \rightarrow Y$ is a monomorphism (i.e. an injection i.e. different $Xs
+\rightarrow$ different $Ys$ - don’t smush multiple elements into one, i.e.
+parallel arrows) then it is isomorphic (i.e. only formally different) from $Y$.
 
 I have a set of different monomorphisms to $Y$: \\
   $$S = {f1: A \rightarrow Y, f2: B \rightarrow Y}$$ \\
-then $f1$, $f2$ are equivalent if there exists a in isomorphism $h: A \rightarrow B$ such that $f2 = h ∘ f1$ then $S$ is isomorphic to some subset of $Y$. i.e. a set of equivalent
-morphisms mapping distinct to $Y$.
+then $f1$, $f2$ are equivalent if there exists a in isomorphism
+$h: A \rightarrow B$ such that $f2 = h ∘ f1$
+then $S$ is isomorphic to some subset of $Y$. i.e. a set of equivalent morphisms
+mapping distinct to $Y$.
 
 *** Functor: preserves structure between 2 categories
-- Is a homomorphism by definition: it preserves structure between 2 categories
+- Is a homomorphism by definition, i.e. it preserves structure between two
+  categories
 - In programming: total mapping of types; (total = all objs from the source are
   mapped)
-- Constant functor: collapses all objs into 1 obj and all morphisms into an
+- Constant functor: collapses all objs into one obj and all morphisms into an
   identity
 - Intuitive understanding: (endo) functor is a container - i.e. list contains
 values (Comonad is a container that already comes prefilled with many values and
 with an access point to one particular value. E.g. hidden params (for hidden
 param propagation it's better to use comonad than monad), history, neighbourhood
 etc.)
-- Endofunctor $[C,C]$: $A$ ftor that maps a category to itself
+- Endofunctor $[\cat{C},\cat{C}]$: is a functor that maps a category to itself
 - Lifting: (= applying functor) transforms a function into a corresponding
   function within another (usually more general) setting
 
@@ -185,19 +189,26 @@ etc.)
            |    f     |
            a ------\rightarrow b
 ```
-- Covariant: Same directions in src and dst Category
-$G f :: (a \rightarrow b) \rightarrow (G a \rightarrow G b)$
-- Contravariant: Reverse directions in src and dst Category
-$G f :: (a \rightarrow b) \rightarrow (G b \rightarrow G a)$
-- Bifunctor: e.g a Product - it takes 2 objs and produces 3rd obj, but it
-also takes two morphisms and produces 3rd morphism which is a product of
-these two morphisms $C \times D \rightarrow E$
-- List: $List(α) = Nil | Const α (List α)$ - most intuitive(?) functor
-example It's also a type constructor: takes a type α and creates a list of α
+- Covariant functor: Same directions in src and dst Category \\
+  $G f : (a \rightarrow b) \rightarrow (G a \rightarrow G b)$
 
-Sum (+) and Product (\times) are algebraic data types (Algebra on Types):
-List(α) = Nil | Const α (List α) ~ L(α) = 1 + α \times L(α) => .. => L(α) = 1 / (1 -
-α) = 1 + α + α \times α + α \times α \times α + ...
+- Contravariant functor: Reverse direction in src or dst Category \\
+  $G f : (a \rightarrow b) \rightarrow (G b \rightarrow G a)$ 
+  respectively
+  $G f : (b \rightarrow a) \rightarrow (G a \rightarrow G b)$ \\
+  i.e.
+  $Gf : \cat{C^\op} \rightarrow \cat{D}$ respectively $Gf : \cat{C} \rightarrow \cat{D^\op}$ 
+
+- Bifunctor: e.g a Product - it takes 2 objs and produces 3rd obj, but it also
+  takes two morphisms and produces 3rd morphism which is a product of these two
+  morphisms $C \times D \rightarrow E$
+
+- List: $List(\alpha) = Nil | Const \alpha (List \alpha)$ - most intuitive(?) functor example
+  It's also a type constructor: takes a type $\alpha$ and creates a list of $\alpha$.
+
+Sum $+$ and Product $\times$ are algebraic data types (Algebra on Types): \\
+List(\alpha) = Nil | Const \alpha (List \alpha) ~ L(\alpha) = 1 + \alpha \times L(\alpha) => .. => L(\alpha) = 1 / (1 -
+\alpha) = 1 + \alpha + \alpha \times \alpha + \alpha \times \alpha \times \alpha + ...
 
 Inlining and refactoring are the opposite.
 
@@ -209,12 +220,12 @@ invertibility: function to fibre
 comorphism: replacing a square of (complex) relations with a single morphism
 - picks a morphish between two Objs; Picking 1 morphishm from a Homset
 - Components of NaT
-- Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: $αb \circ Ff$
+- Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: $\alphab \circ Ff$
 - Every polymorphic functions is a NaT: it is defined for every single type
 i.e. multiplication (Product) of all Objs in a Category. The same goes for
 the dual - the Sum.
 - Functor is a container, NaT repackages the container
-- Naturality condition i.e. the Naturality Square: $Gf ∘ αa = αb ∘ Ff$
+- Naturality condition i.e. the Naturality Square: $Gf ∘ \alphaa = \alphab ∘ Ff$
 
 **** Compositons of Natural Transformations
 See https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf
@@ -222,14 +233,14 @@ E.g. NaT compositons is scala: https://gist.github.com/Mzk-Levi/752d1e0f2f7f30cd
 Legend:
 $A$ - an Obj in the Category $\mathcal{C}$
 $(...)A$ / $[...]A$ - an A-component of the NaT (...) / [...]
-$αA$ / $βA$ - an A-component of the NaT α / β
-$αFA$ - an FA-component of the NaT α
-$βGA$ / $βFA$ - GA/FA-component of the NaT β
+$\alphaA$ / $\betaA$ - an A-component of the NaT \alpha / \beta
+$\alphaFA$ - an FA-component of the NaT \alpha
+$\betaGA$ / $\betaFA$ - GA/FA-component of the NaT \beta
 
 ***** Verical Compositon of NaTs:
-If $α:F \rightarrow G$ and $β:G \rightarrow H$ are natural transformations, then so is $β • α : F \rightarrow H$.
+If $\alpha:F \rightarrow G$ and $\beta:G \rightarrow H$ are natural transformations, then so is $\beta • \alpha : F \rightarrow H$.
 Is it defined by:
-$(β • α)A = βA \circ αA : FA \rightarrow HA$
+$(\beta • \alpha)A = \betaA \circ \alphaA : FA \rightarrow HA$
 A - an Obj in the Category C
 (...)A - an A-component of the NaT (...)
 
@@ -237,30 +248,30 @@ A - an Obj in the Category C
 of all functors C \rightarrow D itself as a category.
 
 ***** Right Whiskering
-If $F, G : C \rightarrow D$ and $H : D \rightarrow E$ are Ftors, and if $α : F \rightarrow G$ is a NaT, the right
+If $F, G : C \rightarrow D$ and $H : D \rightarrow E$ are Ftors, and if $\alpha : F \rightarrow G$ is a NaT, the right
 whiskering
-$H \circ α : H \circ F \rightarrow H \circ G$
-is defined as $(H \circ α)A : H(FA) \rightarrow H(GA)$ by $(H \circ α)A = H(αA)$
+$H \circ \alpha : H \circ F \rightarrow H \circ G$
+is defined as $(H \circ \alpha)A : H(FA) \rightarrow H(GA)$ by $(H \circ \alpha)A = H(\alphaA)$
 
 ***** Left Whiskering
-If $F : C \rightarrow D$ and $G, H : D \rightarrow E$ are Ftors, and if $α : G \rightarrow H$ is a NaT, the left
+If $F : C \rightarrow D$ and $G, H : D \rightarrow E$ are Ftors, and if $\alpha : G \rightarrow H$ is a NaT, the left
 whiskering
-$α \circ F : G \circ F \rightarrow H \circ F$
-is defined as $(α \circ F)A : G(FA) \rightarrow H(FA)$ by $(α \circ F)A = αFA$
+$\alpha \circ F : G \circ F \rightarrow H \circ F$
+is defined as $(\alpha \circ F)A : G(FA) \rightarrow H(FA)$ by $(\alpha \circ F)A = \alphaFA$
 
 ***** Horizontal Compositon of NaTs:
-If $F, G : C \rightarrow D$ and $H, K : D \rightarrow E$ are Ftors, and if $α : F \rightarrow G$ and β$ : H \rightarrow K$
+If $F, G : C \rightarrow D$ and $H, K : D \rightarrow E$ are Ftors, and if $\alpha : F \rightarrow G$ and \beta$ : H \rightarrow K$
 are NaTs, the horizontal composition:
-$β \circ α : H \circ F \rightarrow K \circ G$
+$\beta \circ \alpha : H \circ F \rightarrow K \circ G$
 can be defined in two different ways:
 - Right whiskering followed by left whiskering:
-$β \circ α = (β \circ G) • (H \circ α)$
-- Left whiskering followed by right whiskering:
-$β \circ α = (K \circ α) • (β \circ F)$
+$\beta \circ \alpha = (\beta \circ G) • (H \circ \alpha)$
+- Left whiskering followed by right whiskering: \\
+ $\beta \circ \alpha = (K \circ \alpha) • (\beta \circ F)$
 
-The two definitions coincide, because
-$[(β \circ G) • (H \circ α)]A = βGA \circ H(α A)$, and
-$[(K \circ α) • (β \circ F)]A = K(α A) \circ βFA$
+The two definitions coincide, because \\
+$[(\beta \circ G) • (H \circ \alpha)]A = \betaGA \circ H(\alpha A)$, and
+$[(K \circ \alpha) • (\beta \circ F)]A = K(\alpha A) \circ \betaFA$
 
 - is associative with an id, and the id coincides with that for vertical
 composition.

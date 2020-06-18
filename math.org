@@ -1,23 +1,19 @@
 # generate pdf: M-x org-latex-export-to-pdf
 
-#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
-#+LATEX_HEADER: \usepackage{float}          % fixed table position
-#+LATEX_HEADER: \usepackage{parskip}        % paragraphs
-#+LATEX_HEADER: \usepackage{hyperref}
-#+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
-#+LATEX_HEADER: \usepackage[utf8]{inputenc} % unicode chars
-#+LATEX_HEADER: \usepackage{minted}         % syntax coloring
-#+LATEX_HEADER: \usepackage{amsmath}        % split equation over multiple lines
-#+LATEX_HEADER: \renewcommand{\vec}[1]{\mathbf{#1}} % bold text
+#+LATEX_HEADER: \usepackage{cat-7-sketches}
+
 # latexpreview / nolatexpreview C-c C-x C-l
-#+STARTUP: latexpreview
+#+STARTUP: nolatexpreview
 
 * \(k\)-linear maps / transformations
 ** Linear map
 Let $U$ and $W$ be vector spaces over the same field $K$. Function $f: U
 \rightarrow W$ is a linear map between vector spaces (or modules over a
-commutative Ring) $U$ and $W$ if for any two vectors $\vec{u}, \vec{v} \in U$
-and any scalar $c \in K$ the following two conditions are satisfied:
+commutative Ring) $U$ and $W$ that preserves the operations of addition and
+scalar multiplication.
+
+That means, if for any two vectors $\vec{u}, \vec{v} \in U$ and any scalar $c
+\in K$ the following two conditions are satisfied:
 
 \begin{enumerate}
 \item addition
