@@ -7,25 +7,31 @@
 # #+STARTUP: nolatexpreview
 #+STARTUP: showeverything inlineimages nolatexpreview
 
-Tai-Danae Bradley https://www.math3ma.com/categories/category-theory
 
 * Abstract algebra of abstract functions
-"The Arrows Count"; Category $C = (Obj, Hom, \circ, id)$
+
+See also \href{https://www.math3ma.com/categories/category-theory}{Tai-Danae Bradley Category Theory}
+
+"The Arrows Count"; Category is a quadruple $\cat{C} = (Obj, Hom, \circ, id)$
+
 Category theory as a foundational framework of mathematics: the foundations of
 category theory itself have to be clarified yet
-- $Obj$ : Class of Objects: $A, B, C, ...$ e.g. Types / Propositions /
-  Algebras / Logic Formulas
-  An object exists in and depends upon an ambient category.
-  An object is characterized by its morphisms going in and out of it.
+
+- $Obj$ : Class of Objects: $A$, $B$, $C$, $\dots$ e.g. Types / Propositions /
+  Algebras / Logic Formulas \\
+  An object exists in and depends upon an ambient category. \\
+  An object is characterized by its morphisms going in and out of it. \\
   Objects are always characterized up to isomorphism (in the best cases, up to
-  a unique isomorphism). E.g. there is no such thing as _the_ natural numbers.
-  However, the concept of natural numbers exists.
-- $Hom$ : Morphisms (arrows): f, g, h, ... e.g. Computation / Proofs / ??? /
+  a unique isomorphism). E.g. there is no such thing as _the_ natural numbers. \\
+  However, the concept of natural numbers exists. \\
+- $Hom$ : Morphisms (arrows): $f$, $g$, $h$, $\dots$ e.g. Computation / Proofs / ??? / \\
   Implication between Logic Formulas
-- $\circ$ : Morphism composition - associative function $(f \circ g) \circ h = f \circ (g \circ h)$
-$Hom(A, B) \times Hom(B, C) \rightarrow Hom(A, C): g \circ f$ ; it's a partialy binary
-operation on Mor(CAT::)
-$(g \circ f)(x) = g(f(x))$
+- $\circ$ : Morphism composition - associative function
+  $$(f \circ g) \circ h = f \circ (g \circ h)$$
+
+$$Hom(A, B) \times Hom(B, C) \rightarrow Hom(A, C): g \circ f$$
+is a partially binary operation on Mor(CAT::)
+$$(g \circ f)(x) = g(f(x))$$
 - $id$ : identity morphism on every object $A: id(A)$
 
 - Category Theory is context rich and content poor
@@ -35,14 +41,14 @@ $(g \circ f)(x) = g(f(x))$
 - A structure packing structures of the same type (same category) and structure
   preserving mappings between them.
 - Directed Multigraph with Algebra of paths. Each finite path is associated with
-  a unique arrow.
-  -- Empty path: Identity
-  -- One path: Morphism
-  -- Two paths: Composition
+  a unique arrow. \\
+  -- Empty path: Identity \\
+  -- One path: Morphism \\
+  -- Two paths: Composition \\
   -- Three paths: Associativity law of composition.
 
-Categories: mathematical contexts where constructions are possible.
-Functors: Constructors
+Categories: mathematical contexts where constructions are possible. \\
+Functors: Constructors \\
 Natural Transformations: Comparison of constructions
 
 *** Small Category: all objects and morphisms are sets
@@ -64,14 +70,19 @@ no matter which way you go around you get the same thing
 ** Cartesian Closed Category
 CCC is usefull in programming;
 - Cartesian: has product $A \times B$ for any pair of objs $A$, $B$
-- Closed: has exponential $B^A$ (functions from $A$ to $B$) for any pair of objs $A$, $B$
-- 0-th power of an obj: has terminal obj \cdot (for all objects there exists a unique map $A \rightarrow \cdot$)
 
-- multiplying by terminal obj \cdot gives back the original obj
-- initial obj - dual to terminal obj \cdot; Top and Bottom objs i.e. any one-element
+- Closed: has exponential $B^A$ (functions from $A$ to $B$) for any pair of objs
+  $A$, $B$
+
+- 0-th power of an obj: has terminal obj $\termObj$ (for all objects there
+  exists a unique map $A \rightarrow \termObj$)
+
+- multiplying by terminal obj $\termObj$ gives back the original obj
+- initial obj $\initObj$ - dual to terminal obj $\termObj$; Top and Bottom objs
+  i.e. any one-element
 set (= singleton) is terminal DTTO for poset 1 is such an object that any other
 obj is below it
-- ? monoindal structure on objs ?
+- ? monoidal structure on objects ?
 
 *** Locally Closed Cartesian Category
 LCCC: for every obj $X$ sliced category is a CCC
@@ -79,7 +90,7 @@ LCCC: for every obj $X$ sliced category is a CCC
 ** Bi-Cartesian Closed Category
 BCCC: Algebra of Types can be made here
 *** has coproduct for every pair of objs
-*** has initial obj
+*** has initial obj $\initObj$
 
 ** Universal Mapping Property (UMP): 'double' triangle of Product
 Universal - for all
@@ -101,8 +112,9 @@ Universal Construction - 3 steps (? the triangle ?):
 3. The best match is "our guy"
 
 * A Crash Course in Category Theory
-Bartosz Milewski on [youtube](https://www.youtube.com/watch?v=JH_Ou17_zyU) and
-[twitter](https://twitter.com/@bartoszmilewski)
+YouTube \href{https://www.youtube.com/watch?v=JH_Ou17_zyU}{A Crash Course in Category Theory - Bartosz Milewski},
+Twitter \href{https://twitter.com/@bartoszmilewski}{@bartoszmilewski}
+
 ** Most important features of a category
 *** Associative composability: $(x \circ y) \circ z = x \circ (y \circ z)$
 *** Identity
@@ -111,18 +123,28 @@ between sets)
 
 *** Function
 On sets / between sets
+
 Pure: must be memoizable (lookup table)
+
 Total: defined for all arguments
+
 Partial: defined only for some arguments
-Directionality (arrow "from \rightarrow to" i.e. functions are not symetric); n-to-1
-relation
+
+Directionality: a function is an arrow "from \rightarrow to", i.e. functions are
+not symmetric; potentially an /n-to-1/ relation.
+
 Inverse: not guaranteed to exist
-$f: X \rightarrow Y$  - $X$ is Domain, $Y$ is Codomain
+
+$f: X \rightarrow Y$ where $X$ is Domain, $Y$ is Codomain
+
 Image: A proper subset of a Codomain
+
 Container: function itself can be regarded as a container. E.g. identity
 function
+
 Evaluation: it returns a value (when evaluated) i.e. data are represented as
 values; i.e functions and data are the same
+
 Function type: is an exponential which is a data type; (Exponential is like an
 iterated product)
 
@@ -132,17 +154,17 @@ iterated product)
 | surjective | epic / epi   \twoheadrightarrow | all $Ys$ are used                                     | Full     |
 | injective  | monic / mono \rightarrowtail    | distinct $Xs$ $\rightarrow$ distinct $Ys$             | Faithful |
 | bijective  | ? epi-mono?                     | exact pairing between $X, Y$                          |          |
-| strict     | &nbsp;                          | surj $X \rightarrow Y$ but not bije $Y \rightarrow X$ |          |
+| strict     |                                 | surj $X \rightarrow Y$ but not bije $Y \rightarrow X$ |          |
 
-Also:
-```
-Surjection  $|X| ≥ |Y|$  onto / $X$ at least as big $Y$ or bigger
-Injection   $|X| ≤ |Y|$  one-to-one / $X$ at least as small $Y$ or smaller
-Bijection   $|X| = |Y|$  mutually unambiguous, same size
-Strict      $|X| < |Y|$  ? double usage of some $Ys$ ?, $X$ strictly smaller than $Y$
-Epimorphism and Monomorphism are dual to each other
-isomorphisms / isomorphic - "only formally different"
-```
+Also: \\
+| Surjection | $\abs{X} \geq \abs{Y}$ | onto / $X$ at least as big $Y$ or bigger                     |
+| Injection  | $\abs{X} \leq \abs{Y}$ | one-to-one / $X$ at least as small $Y$ or smaller            |
+| Bijection  | $\abs{X} =    \abs{Y}$ | mutually unambiguous, same size                              |
+| Strict     | $\abs{X} <    \abs{Y}$ | ? double usage of some $Ys$ ?, $X$ strictly smaller than $Y$ |
+
+Epimorphism and Monomorphism are dual to each other \\
+Isomorphism / isomorphic - "only formally different"
+
 
 *** Pullback: type of a limit
 $f: X \rightarrow Y$     $f$ is monomorphism ($X$ is at least as big as $Y$)
@@ -193,15 +215,17 @@ etc.)
   $G f : (a \rightarrow b) \rightarrow (G a \rightarrow G b)$
 
 - Contravariant functor: Reverse direction in src or dst Category \\
-  $G f : (a \rightarrow b) \rightarrow (G b \rightarrow G a)$ 
+  $G f : (a \rightarrow b) \rightarrow (G b \rightarrow G a)$
   respectively
+
   $G f : (b \rightarrow a) \rightarrow (G a \rightarrow G b)$ \\
   i.e.
-  $Gf : \cat{C^\op} \rightarrow \cat{D}$ respectively $Gf : \cat{C} \rightarrow \cat{D^\op}$ 
+  $Gf : \cat{C^\op} \rightarrow \cat{D}$ respectively $Gf : \cat{C} \rightarrow
+  \cat{D^\op}$
 
-- Bifunctor: e.g a Product - it takes 2 objs and produces 3rd obj, but it also
-  takes two morphisms and produces 3rd morphism which is a product of these two
-  morphisms $C \times D \rightarrow E$
+- Bifunctor: e.g a Product - it takes two objs and produces third obj, but it
+  also takes two morphisms and produces 3rd morphism which is a product of these
+  two morphisms $C \times D \rightarrow E$
 
 - List: $List(\alpha) = Nil | Const \alpha (List \alpha)$ - most intuitive(?) functor example
   It's also a type constructor: takes a type $\alpha$ and creates a list of $\alpha$.
@@ -220,58 +244,78 @@ invertibility: function to fibre
 comorphism: replacing a square of (complex) relations with a single morphism
 - picks a morphish between two Objs; Picking 1 morphishm from a Homset
 - Components of NaT
-- Composing Ftor acting on an Obj with a Ftor acting on a Morphishm: $\alphab \circ Ff$
+
+- Composing Ftor acting on an Obj with a Ftor acting on a Morphishm:
+ $\alpha b \circ Ff$
+
 - Every polymorphic functions is a NaT: it is defined for every single type
 i.e. multiplication (Product) of all Objs in a Category. The same goes for
 the dual - the Sum.
 - Functor is a container, NaT repackages the container
-- Naturality condition i.e. the Naturality Square: $Gf ∘ \alphaa = \alphab ∘ Ff$
+- Naturality condition i.e. the Naturality Square:
+$$Gf ∘ \alpha a = \alpha b ∘ Ff$$
 
 **** Compositons of Natural Transformations
-See https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf
-E.g. NaT compositons is scala: https://gist.github.com/Mzk-Levi/752d1e0f2f7f30cd3bda
-Legend:
+
+See \href{https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf}{SelingerTACL20132}
+E.g. NaT compositions in \href{https://gist.github.com/Mzk-Levi/752d1e0f2f7f30cd3bda}{Scala} \\
+
+Legend: \\
 $A$ - an Obj in the Category $\mathcal{C}$
-$(...)A$ / $[...]A$ - an A-component of the NaT (...) / [...]
-$\alphaA$ / $\betaA$ - an A-component of the NaT \alpha / \beta
-$\alphaFA$ - an FA-component of the NaT \alpha
-$\betaGA$ / $\betaFA$ - GA/FA-component of the NaT \beta
+$(...)A$ / $[...]A$ - an A-component of the NaT (...) / [...] \\
+$\alpha A$ / $\beta A$ - an A-component of the NaT $\alpha$ / $\beta$ \\
+$\alpha FA$ - an FA-component of the NaT $\alpha$ \\
+$\beta GA$ / $\beta FA$ - $GA$ / $FA$ -component of the NaT $\beta$
 
 ***** Verical Compositon of NaTs:
-If $\alpha:F \rightarrow G$ and $\beta:G \rightarrow H$ are natural transformations, then so is $\beta • \alpha : F \rightarrow H$.
-Is it defined by:
-$(\beta • \alpha)A = \betaA \circ \alphaA : FA \rightarrow HA$
-A - an Obj in the Category C
-(...)A - an A-component of the NaT (...)
+
+If $\alpha:F \rightarrow G$ and $\beta:G \rightarrow H$ are NaTs, then their
+vertical composition
+$$\beta * \alpha : F \rightarrow H$$
+
+is defined by:
+$$(\beta * \alpha)A = \beta A \circ \alpha A : FA \rightarrow HA$$
+where $A$ is an Obj in the Category C and $(...)A$ is an A-component of the NaT
+(...)
 
 - is associative and has an id, and allows one to consider the collection
 of all functors C \rightarrow D itself as a category.
 
 ***** Right Whiskering
-If $F, G : C \rightarrow D$ and $H : D \rightarrow E$ are Ftors, and if $\alpha : F \rightarrow G$ is a NaT, the right
-whiskering
-$H \circ \alpha : H \circ F \rightarrow H \circ G$
-is defined as $(H \circ \alpha)A : H(FA) \rightarrow H(GA)$ by $(H \circ \alpha)A = H(\alphaA)$
+
+If $F, G : C \rightarrow D$ and $H : D \rightarrow E$ are Ftors, and if
+$\alpha : F \rightarrow G$ is a NaT, the right whiskering
+$$H \circ \alpha : H \circ F \rightarrow H \circ G$$
+is defined as
+$$(H \circ \alpha)A : H(FA) \rightarrow H(GA)$$
+by $(H \circ \alpha)A = H(\alpha A)$
 
 ***** Left Whiskering
-If $F : C \rightarrow D$ and $G, H : D \rightarrow E$ are Ftors, and if $\alpha : G \rightarrow H$ is a NaT, the left
-whiskering
-$\alpha \circ F : G \circ F \rightarrow H \circ F$
-is defined as $(\alpha \circ F)A : G(FA) \rightarrow H(FA)$ by $(\alpha \circ F)A = \alphaFA$
+
+If $F : C \rightarrow D$ and $G, H : D \rightarrow E$ are Ftors, and if
+$\alpha : G \rightarrow H$ is a NaT, the left whiskering
+$$\alpha \circ F : G \circ F \rightarrow H \circ F$$
+is defined as
+$$(\alpha \circ F)A : G(FA) \rightarrow H(FA)$$
+by $(\alpha \circ F)A = \alpha FA$
 
 ***** Horizontal Compositon of NaTs:
-If $F, G : C \rightarrow D$ and $H, K : D \rightarrow E$ are Ftors, and if $\alpha : F \rightarrow G$ and \beta$ : H \rightarrow K$
-are NaTs, the horizontal composition:
-$\beta \circ \alpha : H \circ F \rightarrow K \circ G$
+
+If $F, G : C \rightarrow D$ and $H, K : D \rightarrow E$ are Ftors, and if
+$\alpha : F \rightarrow G$ and $\beta : H \rightarrow K$ are NaTs, the
+horizontal composition
+$$\beta \circ \alpha : H \circ F \rightarrow K \circ G$$
+
 can be defined in two different ways:
 - Right whiskering followed by left whiskering:
-$\beta \circ \alpha = (\beta \circ G) • (H \circ \alpha)$
-- Left whiskering followed by right whiskering: \\
- $\beta \circ \alpha = (K \circ \alpha) • (\beta \circ F)$
+ $\beta \circ \alpha = (\beta \circ G) * (H \circ \alpha)$
 
-The two definitions coincide, because \\
-$[(\beta \circ G) • (H \circ \alpha)]A = \betaGA \circ H(\alpha A)$, and
-$[(K \circ \alpha) • (\beta \circ F)]A = K(\alpha A) \circ \betaFA$
+- Left whiskering followed by right whiskering:
+ $\beta \circ \alpha = (K \circ \alpha) * (\beta \circ F)$
+
+The two definitions coincide, because
+$$(\beta \circ G) * (H \circ \alpha) A = \beta GA \circ H(\alpha A)$$
+$$(K \circ \alpha) * (\beta \circ F) A = K(\alpha A) \circ \beta FA$$
 
 - is associative with an id, and the id coincides with that for vertical
 composition.
@@ -332,7 +376,7 @@ examples:
 - left adjointness of sum (coproduct), pairing and product: $Σ ⊣ ∆ ⊣ Π$
 induction, recursion, Natural Numbers (inductively defined), Lists, ...
 conjunction, disjunction, True, False, Exponentiation
-Quantifiers: \forall Every, \exists Exists; Σ Sigma, Π Pi
+Quantifiers: $\forall$ Every, $\exists$ Exists; $Σ$ Sigma, $Π$ Pi
 
 *** Abstraction: the non-invertibility
 - from all properties (i.e. all points of a fibre) I'm interested only in one
@@ -362,14 +406,14 @@ Hom(A, f) : Hom(A, X) \rightarrow Hom(A, Y) given by
 
 *** Contravariant functor: Hom(–,B) : C-op \rightarrow Set
 $F f :: (a \rightarrow b) \rightarrow (F b \rightarrow F a)$ - Reverse directions in src and dst Category
-Hom(–,B) maps each object X in C to the set of morphisms, Hom(X, B)
-Hom(–,B) maps each morphism h : X \rightarrow Y to the function
-Hom(h, B) : Hom(Y, B) \rightarrow Hom(X, B) given by
+$Hom(–,B)$ maps each obj $X \in \cat{C}$ to the set of morphisms $Hom(X, B)$
+$Hom(–,B)$ maps each morphism $h : X \rightarrow Y$ to the function
+$Hom(h, B) : Hom(Y, B) \rightarrow Hom(X, B)$ given by
 
 *** Representable Functor F: C \rightarrow Set is naturally isomorphic to HomC(A,-) for some object A of C
 Represents:
-- objs of C as sets
-- morphisms of C as morphisms between sets.
+- obj of $\cat{C}$ as sets
+- morphisms of $\cat{C}$ as morphisms between sets.
 i.e. functions "tabulate", "index" can be created; mapping of function to a data-type
 
 Functors as representations (Lawvere):
@@ -380,7 +424,7 @@ functor $F : C \rightarrow D$ a "model" of this theory.
 
 (TODO see Bartosz's intuition about functors in the "Programming with Categories" videos)
 
-For any fix obj $A \in C$, we have a $HomC(A,-)$ such that we have a mapping
+For any fix obj $A \in \cat{C}$, we have a $HomC(A,-)$ such that we have a mapping
 $HomC(A,X) \rightarrow HomC(A, Y)$ when there is a morphism $X \rightarrow Y$. E.g.:
 The forgetful functor Grp \rightarrow Set on the category of groups $(G, *, e)$ is
 represented by $(Z, 1)$.
@@ -447,10 +491,10 @@ Uncurry: (a \rightarrow (b \rightarrow c)) \rightarrow ((a,b) \rightarrow c)
 Eval: a function of two args / a pair
 $((a => b), a) \rightarrow b$ this is modus-ponens in logic $(a => b) ∧ a \rightarrow b$
 
-| True proposition | False proposition | Conjunction $a ∧ b$              | Disjunction $a ∨ b$           | Implication $a => b$            |
-| Unit-type        | Void-type         | Pair $(a,b)$                     | Either $a$ or $b$             | Function type $a \rightarrow b$ |
-| sinhabited       | not inhabited     |                                  |                               |                                 |
-| Terminal obj     | Initial obj       | Categorical product $a \times b$ | Categorical coproduct $a ⎥ b$ | Exponential obj $b^a$           |
+| True proposition        | False proposition      | Conjunction $a ∧ b$              | Disjunction $a ∨ b$           | Implication $a => b$            |
+| Unit-type               | Void-type              | Pair $(a,b)$                     | Either $a$ or $b$             | Function type $a \rightarrow b$ |
+| sinhabited              | not inhabited          |                                  |                               |                                 |
+| Terminal obj $\termObj$ | Initial obj $\initObj$ | Categorical product $a \times b$ | Categorical coproduct $a ⎥ b$ | Exponential obj $b^a$           |
 
 
 0 - void type - ?
@@ -495,9 +539,9 @@ Objects   - numbers
 Morphisms - functions 'less/greater or equal than'
 
 *** Isomorphism (bijection when f is a function on set / sets):
-\forall f: X \rightarrow Y there \exists g: Y \rightarrow X such that g ∘ f = idX and f ∘ g = idY
-where idX, idY are identity morphisms on X, Y.
-IOW f is invertible and g is the inverse of f
+\forall f: X \rightarrow Y there \exists g: Y \rightarrow X such that $g \after
+f = id_X$ and $f \after g = id_Y$ where $id_X$, $id_Y$ are identity morphisms on
+$X$, $Y$, i.e. $f$ is invertible and $g$ is the inverse of $f$.
 
 ** Category theory - Modeling (new vocabulary)
 | hierarchies                | partial orders     |
@@ -608,11 +652,11 @@ initial obj: Univ prop: unique(1.) arrow to every(2.) single other obj
 - https://youtu.be/8AGWTWVOJ74?t=1329
   "I have one thing, I have another thing and now I have two things"
 - set of all pairs: UP (universal construction) - best product triangle: for all
-other types there's the unique arrow projections: f: C \rightarrow A, g: C \rightarrow B
+other types there's the unique arrow projections: $f: C \rightarrow A$, $g: C \rightarrow B$
 - tuple (pair aka record) is better than tripple ??? loop-over-all-types: for each of
 all possible types: 38:20
-** intro: A \rightarrow B \rightarrow (A,B) tupple
-** elim: (A,B) \rightarrow A, (A,B) \rightarrow B
+** intro: $A \rightarrow B \rightarrow (A,B) tupple$
+** elim: $(A,B) \rightarrow A, (A,B) \rightarrow B$
 
 * Relation
 A subset of a Cartesian Product; doesn't have a directionality; n-to-n relation
@@ -706,3 +750,29 @@ $-2$ -Category: There's only one. (Tom provides no explanation in the video.) \\
 $-1$ -Category: Boolean truth values, i.e. there are two $-1$ categories: $True$, $False$. \\
 $+0$ -Category: set \\
 $+1$ -Category: ...
+
+# https://github.com/yishn/tikzcd-editor
+# https://meet.google.com/linkredirect?authuser=0&dest=https%3A%2F%2Ftikzcd.yichuanshen.de%2F%23N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRACUQBfU9TXfIRQBGclVqMWbAMrdeIDNjwEiZYePrNWiEAFkA%2BmAAU7AJRy%2BSwUVHrqmqToPHp5npYEqUZAEwbJ2iAAqiZu8oqeQsiifvYBbCGu3OIwUADm8ESgAGYAThAAtkhkIDgQSKISWmzZFiB5hUg%2B1GVIAMxx1U6GRtlhOflFiAAsLeWIAKydjsG9-fWDTWNIo1UzsDj6nO4LjYgdpeNTa4Eb%2BrJcFFxAA
+
+
+# https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADEByACne4A0AlIJABfUuky58hFAFZyVWoxZsuvbgE1hYiSAzY8BIgCZSJpfWatEHASPGTDMogGZzllTbvbdT6cYoZK6e1mwA4jzh9g56BgGyyGYh1FaqttFCfvpSRonuKcphGVqx-nlECoVp3pHc0dplOc6BSaQALKHpIAAS9tnxFSjunalebH2+js0JRGQAbF3ePTx9Qk2DLvKki2PFvaulDkowUADm8ESgAGYAThAAtkhkIDgQSACMe93qfNc61AYdAARjAGAAFXJbEAMGDXHDZO6PZ7UN5IdrfbzcAA62MYaAAFnROAACABUJNx+KJggA+vwQICQWDIS1ZCBblgzgSEYCsGBvFAIExgbDEfcnogvq93ogAOyYtg4vEMQnE8mUlVqumaRkw5kQqGBGFw3kw-mC4Wi1jTJGSswypAKIrdKmqon0vVA0GGtlsTncs0MC1sIUisW2iVIB1oxDuF3eP4iJk+1mzWyw+Hi5GIGOyl41JVcTUAYywtxLJPYdIZKZZRvZAZ52cl8dj80VtjdatpurrvvTJqzfIFoatEb0dqQbdl0sLtl4pNxZYrVZ1XoNaaGQ4RkZzGMdUoL4wXuNBOHVFLPMAvNY3qYb-q5zZHlvDNsnUcQztjAA5OyA14Xp6-ZbtCTZBiGthhtaLZOqisodgmETcP8971n6GamnB34IeiAH1Eu2IrpW4R3qBj62BBOFIbGACcAFAXQvboQO26ZpBo7QeOH43F+tGygqyELpEpblqR64UZhO44UJsYfHOJ4gMq56XpqqmSfqD7SRxXpQSAMETnxOb-oeDHCb0qHJlpGGDrpe6SqZ8nHvs3ArGJq49ORNlsdC9mfjm5nyYprnucu4kkl5LFSYO1EOZ8LzBQBKxuVZ1nerZ25xRQohAA
+\begin{tikzcd}
+F'(F(X)) \arrow[rrrrr, "F'(F(f))"] \arrow[ddd, "\alpha'_X", Rightarrow]  &  &                                                                                         &                                                                       &  & F'(F(Y)) \arrow[ddd, "\alpha'_Y", Rightarrow] \\
+                                                                         &  &                                                                                         &                                                                       &  &                                               \\
+                                                                         &  & F(X) \arrow[d, "\alpha_X", Rightarrow] \arrow[r, "F(f)"] \arrow[lluu, "(F' \circ F)_X"] & F(Y) \arrow[d, "\alpha_Y", Rightarrow] \arrow[rruu, "(F' \circ F)_Y"] &  &                                               \\
+G'(G(X)) \arrow[ddd, "\beta'_X", Rightarrow]                             &  & G(X) \arrow[d, "\beta_X", Rightarrow] \arrow[r, "G(f)"] \arrow[ll, "(G' \circ G)_X"]    & G(Y) \arrow[d, "\beta_Y", Rightarrow] \arrow[rr, "(G' \circ G)_Y"]    &  & G'(G(Y)) \arrow[ddd, "\beta'_Y", Rightarrow]  \\
+                                                                         &  & H(X) \arrow[r, "H(f)"] \arrow[lldd, "(H' \circ H)_X"]                                   & H(Y) \arrow[rrdd, "(H' \circ H)_Y"]                                   &  &                                               \\
+                                                                         &  &                                                                                         &                                                                       &  &                                               \\
+H'(H(X)) \arrow[rrrrr, "H'(H(f))" ]                                      &  &                                                                                         &                                                                       &  & H'(H(Y))                                                
+\end{tikzcd}
+
+
+# https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbbrxAZseAkQBMY6vWatEIGXwWCiAZjUTN0nnoFKUAFhMap2gJq65-RUOQB2UsPEOtEAAxAHIACiCw9gBKaNd5K08ADl9-SUD49wMRMj91dLZQiLCnWMz9a29SZTSzbQBxcPqosos3CuTq2scdNoSPImEyGvy6kEaw5tK4vqzK1UNuwMiY8sSjUkXRnrWB202l81l+7OQAVgPt5ZKZ47nPHy3THoAJcJeW28s95BSngKO31OQ0uz0CbzCH2mu1OqhshwaLRhlWM8KugPa632aLBGJOlQuOIBiNKyM8qjOCJAH1Wsw6G0p6O0ZKIdkZuOZdKx51I7OJ1Ju3HEMCgAHN4ERQAAzABOEAAtkgyCAcBAkHYOSApSBqAw6AAjGAMAAK9zYDBgUpwrllCqQohVasQymMmpeOpAesNJrN2gtVo9DCwYECUAgOBwIptcsVzuoqvtAE4meNAwajab6X7LdbdcHQ+HI1Bo3bEK6E4hhKpNUE097M1jPTnA-m2GGI1G2rbYxdHUgfDXwpEpWVdemfVmmwGuzGkL2KylNQAdJeMNAACzoIQA+pwx-XfSAZVhRevc57W9ow0x9RaSz3407hL3+WEV4acFuAAQrgDGWBlX8f1XBgNy3aJdzrDND2PU9z0NMBi0QABaLwHSDEM2wgG872odcYDoJCwCYBgGHjOgsAYNhIEwmdSwHCsQWXECwJ3Fx92gydYLPFtMKvbDb1YOjY0XRiXwKbR3xgT8dz3T1xwbPYjxPHi8z4kBr0E+8kFEp9lX5CZmhHOIOInRt-WtYT7WVRiB35KSZO3dj5IPLiVPPDCCxwoTZG7e0HUYxd7JYzdINMxTsmUuDeK8rSrMrAKnw1flhxMlzOMbbjLN82cEsfJBlGrV8HLoYD-0A4C103CC5K9DKlKyj0EKQ1CNU8rDvI9fDCKQYjSPIyjqIIHzpVy4RyydAA2FNQigsyGvcmKsI7Yt4uEDUK2UB1gqqugnLmiLrCi1SL3UzS7zW+cnzsiTqXeMJjIOw8LO0ytdIKorbpKsL0vmyLGrU2KLpy0thHe51ttuoy0rqv6jsa+LlBsp1k01Ronrc6LAeWotXq2-LnXEsZvuc2HDqEY6PMvDSBOB0bS0KgnlCJ14HphhSYMWxGNqfaa3RCDHMsW7H+JWoUuCAA
+\begin{tikzcd}
+X \arrow[rrrr, "f"] & {} \arrow[rrddddd, "H", dotted] & {} \arrow[rdddd, "G", dotted]                                                                                                 & {} \arrow[ddd, "F", dotted] & Y                                &                                         &  &                                                                                                                                         &    &  &                                              \\
+                    &                                 &                                                                                                                               &                             &                                  &                                         &  & F'(F(X)) \arrow[rrr, "F'(F(f))"] \arrow[d, "\alpha'_X"', Rightarrow] \arrow[dd, "(\beta' \circ \alpha')_X"', Rightarrow, bend right=71] & {} &  & F'(F(Y)) \arrow[d, "\alpha'_Y"', Rightarrow] \\
+                    &                                 &                                                                                                                               &                             &                                  &                                         &  & G'(G(X)) \arrow[d, "\beta'_X"', Rightarrow] \arrow[rrr, "G'(G(f))"]                                                                     & {} &  & G'(G(Y)) \arrow[d, "\beta'_Y"', Rightarrow]  \\
+                    &                                 & F(X) \arrow[d, "\alpha_X"', Rightarrow] \arrow[rrr, "F(f)"'] \arrow[dd, "(\beta \circ \alpha)_X"', Rightarrow, bend right=74] & {}                          & {} \arrow[rrrruu, "F'"', dotted] & F(Y) \arrow[d, "\alpha_Y"', Rightarrow] &  & H'(H(X)) \arrow[rrr, "H'(H(f))"]                                                                                                        & {} &  & H'(H(Y))                                     \\
+                    &                                 & G(X) \arrow[d, "\beta_X"', Rightarrow] \arrow[rrr, "G(f)"']                                                                   & {}                          & {} \arrow[rrrruu, "G'"', dotted] & G(Y) \arrow[d, "\beta_Y"', Rightarrow]  &  &                                                                                                                                         &    &  &                                              \\
+                    &                                 & H(X) \arrow[rrr, "H(f)"']                                                                                                     & {}                          & {} \arrow[rrrruu, "H'"', dotted] & H(Y)                                    &  &                                                                                                                                         &    &  &                                             
+\end{tikzcd}
