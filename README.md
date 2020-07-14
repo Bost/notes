@@ -1,6 +1,6 @@
 # notes
 
-A [re-frame](https://github.com/Day8/re-frame) application designed to ... well, that part is up to you.
+TODO https://github.com/200ok-ch/org-parser - parse org-files to clojurescript
 
 ## Development Mode
 
@@ -15,7 +15,8 @@ Put this in your Emacs config file:
          (figwheel-sidecar.repl-api/cljs-repl))")
 ```
 
-Navigate to a clojurescript file and start a figwheel REPL with `cider-jack-in-clojurescript` or (`C-c M-J`)
+Navigate to a clojurescript file and start a figwheel REPL with
+`cider-jack-in-clojurescript` or (`C-c M-J`)
 
 ### Compile css:
 
