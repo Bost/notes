@@ -9,7 +9,6 @@
 
 
 * Abstract algebra of abstract functions
-
 See also \href{https://www.math3ma.com/categories/category-theory}{Tai-Danae Bradley Category Theory}
 
 "The Arrows Count"; Category is a quadruple $\cat{C} = (Obj, Hom, \circ, id)$
@@ -324,18 +323,19 @@ composition.
 *** Yoneda Perspective
 An object is completely determined by its relationships to other objects
 
-*** Yoneda Embedding https://youtu.be/JH_Ou17_zyU?t=1h8m9s
-Idea: replace content of an object (picked i.e. fixed) by all arrows ending in
-this object.
-It's content and properties.
-Set of Arrow from every possible Obj $X$ to the Obj $A$
+*** Yoneda Embedding
 
-Mapping from an Obj $X$ to the Set of Arrows $X \rightarrow A$:
+_Idea_: replace content of an object (picked i.e. fixed) by all arrows ending in
+this object. See \href{https://youtu.be/JH_Ou17_zyU?t=1h8m9s}{youtube}.
+It's content and properties.
+Set of Arrow from every possible Obj $X$ to the Obj $A$.
+
+How to map from an Obj $X$ to the Set of Arrows $X \rightarrow A$:
 1. for every Obj $A$ get a different functor $F: C \rightarrow Set$
 2. then vary the Obj $A$:
 
 *** Yoneda Lemma
-Idea: Natural transformation and functor (i.e. Container) can replace each other
+_Idea_: Natural transformation and functor (i.e. Container) can replace each other
 $[C,Set](C(a,-), F) \simeq F a$   also: $[C,Set](C(a,-), C(b,-)) \simeq C(b,a)$
 - Description of integration over a special Ftor (i.e. Hom Functor)
 
@@ -365,15 +365,47 @@ The rest of the NaT is transported from this Point.
 ```
 
 *** Khan Extentions: the next abstraction level
+
+** Adjoints, Adjunctions, Adjointness
+Adjunction: a relationship between two functors.
+Adjoints / adjoint functors - functors with a relation of adjunction between them.
+
+\\
+
+If $F$ is (left) adjoint to $G$, then there is typically some formula of the
+type $(x, Gy) \iso (Fx, y)$.
+
+Functor $F$ is left adjoint to the functor $G$: $F \ladj G$ and $G$ is right
+adjoint to $F$: $G \radj F$
+
+$$m_C \iso n_D$$
+$$\cat{C}(C_1, GD_2) \cong \cat{D}(FC_1, D_2)$$
+
+_Left adjointness $\ladj$_
+
+morphisms $m_C$, $n_D$ in the categories $\cat{C}$, $\cat{D}$ are drawn from the
+top to the bottom, functor components $F_1$, $G_2$ are drawn clockwise.
+(Components $F_2$, $G_1$ are not drawn.)
+
+# % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGEB9ARhAF9S6TLnyEUAVnJVajFmwAiPAAQBeJQDEuvAUOx4CRACykATNPrNWiEIpP9BIDHtFFup87KsdOJ1UoDitva6IgYoJlLUFnLWgTzBjsL6YsgAbO5RnmyaPvzSMFAA5vBEoABmAE4QALZIZCA4EEhuIABGMGBQSADM9QxYYF5QEEytDKzUABYwdF2IYEwMDNQ4dFgMbJCDIJmW2TsgDHTtDAAKSS7WFViFkzgJlTXNK02IETJ71mCc8g9VtW8Xj1qO1OnVqP1ttZhqNxgdprMkAslis1hsvgQJh8YiB-Acjidzs4wiBrrd7joQI8AfVGsDsV5qpx2PjjjAzhcSWS7n8nogWnTEMZDgMhiMxliEXNkcsGmjNpiDtEvHiQR05sRKdSkMLBd0IaK2MMcDgCkqsrFvr8tf96YLJG11UgALS9A1QkAwiXwmbSxay1brBXbXY49S8gEC14OyFik1m0NedRMll8Ch8IA
+\begin{center}
+\begin{tikzcd}
+C_1 \arrow[rrrrr, "F_1"', Rightarrow, bend left] \arrow[rdd, "m_C"'] &                                                         & GD_1 \arrow[ldd, "Gn_D", dotted] &  &                                     & D_1 = FC_1 \arrow[ldd, "n_D"] \arrow[lll, "G_1", Rightarrow] \arrow[rdd, "Fm_C", dotted] &      \\
+                                                                     &                                                         &                                  &  &                                     &                                                                                          &      \\
+                                                                     & C_2 = GD_2 \arrow[rrrrr, "F_2", Rightarrow, bend right] &                                  &  & D_2 \arrow[lll, "G_2"', Rightarrow] &                                                                                          & FC_2
+\end{tikzcd}
+\end{center}
+
 *** Adjunctions: weakening of "equality" of Categories
-"inverse" is defined only for functions not functors
-e.g. Currying: from a Pair to Function type
+
+"inverse" is defined only for functions not functors, e.g. Currying: from a Pair
+to Function type
 
 *** Adjointness: constructing / generating principle
 - Adjunctions/Adjoins are monads ???
 examples:
-- product is left adjoint to exponential: $(-) x A ⊣ (-)^A$
-- left adjointness of sum (coproduct), pairing and product: $Σ ⊣ ∆ ⊣ Π$
+- product is left adjoint to exponential: $(-) x A \ladj (-)^A$
+- left adjointness of sum (coproduct), pairing and product: $Σ \ladj ∆ \ladj Π$
 induction, recursion, Natural Numbers (inductively defined), Lists, ...
 conjunction, disjunction, True, False, Exponentiation
 Quantifiers: $\forall$ Every, $\exists$ Exists; $Σ$ Sigma, $Π$ Pi
@@ -685,10 +717,23 @@ Objects: functors
 Morphisms: natural transformations between functor
 
 * Adjunction
-A pair of ftors F, G: F is adjunct (but not inverse) to G
-Obj in a Cat of Types such that: For every A, B there is a set of arrows from
-A to B. This obj is called function-type. It can be defined by an adjuction of
-two endofunctors
+
+A pair of functors $F$, $G$: $F$ is adjunct (but not inverse) to $G$.
+
+Obj in a Cat of Types such that: For every $A$, $B$ there is a set of arrows
+from $A$ to $B$. This obj is called function-type. It can be defined by an
+adjunction of two endofunctors. \\
+
+$F \ladj G$ : "$F$ is left adjoint to $G$"
+
+Edit on \href{https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQBBEAX1PU1z5CKAEwVqdJq3YAxABQcAlDz4gM2PASJiREhizaIQAIRX8NQ7aQDMeqYZMByM2oGbhJUrpr7pRgOJyxsq85oJaKGS2PvbsgcaOIarq4R7kpMR2BuwAOjk4MAAeOMCMMABmOAAE9FAAVhBYYNU4ENxVeXlVMh05UPRwABa0Vf48EjBQAObwRKDlAE4QALZI6SCtSGKS2UZTLosrWzSbiNYxuyAAjgdLq4hkGxBrNIxNDv1DkyAXfiAyPxAACMYGAoEhrI9GPQQYwAApuSxGJrYWC3I4PE7PRAAFl+DjyQPoC2AU24gOhsIRFgiIAWWCmgxw6PueKeSAArPi4nIrspXjCYPDEbT6YzmaEQId7ttTmy3mAPgNBt9uQFASCwRCoYLhTThCAUVg0ZLpRCsZzXu92J8VeC1SAxgKqSKDUa0TRNeCzsRTXckI9TlzgaDvQBaABsj18DkCfN6AGMsAsE70iSSyRTddTUuwxUyWS92WdPaGkFGHVdE8nU-s-Rj1qdHl7tVbFTblaqdn8nSBKUKc+52O62PXWRbENsWz620qvvbuw4Ac6B67h2BUaPVGbEMHTucQ1qZ33rUZbV2Y7Isy79evN+NuEA}{tikzcd}.
+\begin{center}
+\begin{tikzcd}
+A \arrow[rr, "F" description, dashed, bend left] \arrow[d, "\bar{g}"'] \arrow[dd, "G(q) \circ \bar{g}"', bend right=60] &                                      & F(A) \arrow[d, "g"] \arrow[dd, "q \circ g", bend left=60] \arrow[ll, "G" description, dashed, bend left] \\
+G(B) \arrow[d, "G(q)"'] \arrow[rr, "F" description, dashed, bend left]                                                  &                                      & B \arrow[d, "q"] \arrow[ll, "G" description, dashed, bend left]                                          \\
+G(B') \arrow[rr, "F" description, dashed, bend left]                                                                    &                                      & B' \arrow[ll, "G" description, dashed, bend left]                                                       
+\end{tikzcd}
+\end{center}
 
 ** It's more interesting if F, G are not an inverse of each other
 ** F left adjoing to G:
@@ -755,11 +800,11 @@ $+1$ -Category: ...
 # https://meet.google.com/linkredirect?authuser=0&dest=https%3A%2F%2Ftikzcd.yichuanshen.de%2F%23N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRACUQBfU9TXfIRQBGclVqMWbAMrdeIDNjwEiZYePrNWiEAFkA%2BmAAU7AJRy%2BSwUVHrqmqToPHp5npYEqUZAEwbJ2iAAqiZu8oqeQsiifvYBbCGu3OIwUADm8ESgAGYAThAAtkhkIDgQSKISWmzZFiB5hUg%2B1GVIAMxx1U6GRtlhOflFiAAsLeWIAKydjsG9-fWDTWNIo1UzsDj6nO4LjYgdpeNTa4Eb%2BrJcFFxAA
 
 * Vertical and horizontal composition of NaTs
-
 Probably erroneous. See \href{https://arxiv.org/pdf/1612.09375.pdf}{page 38},
 edit on
-\href{https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADEByACne4A0AlIJABfUuky58hFAFZyVWoxZsuvbgE1hYiSAzY8BIgCZSJpfWatEHASPGTDMogGZzllTbvbdT6cYoACwe1Faqtn76UkayyAoWYV5sUQYBcWSuntZsAOI8ufYOemmxpqRZSTm2hUKpMS4o7pXK1SCFvo7RzoHxFdkR7QVaOl2ljchmQQPeABL29T1x7tNVg-OdJQ29ZABsM2yzPPNCxf5l8qT7a3PHIw5KMFAA5vBEoABmAE4QALZIZBAOAgSAAjDc1Dw+B8dNQGHQAEYwBgABW2shAXywzwAFjgQNQkWAoEhXICGFgwN4oBAcDgnlFvn8AdRgUhdhDbNwADrcxhoHF0TgAAgAVMLefzBYIAPr8AkgeFI1HotiU7CwBUUqlsGlMBEMVhdJn-RDgoEgxAATk5IB5fIYAqFYolDqdss0WsRyLRSzVYA1rDhlOpEH1hsZP1NZgtSAA7LbJY7BXKvcrfel-YGtSHdWGDUa9CakDG2Yh3K1BtCRHDvSq-bYsbj8cGdbYaXSGcaoyXWZbAeFvLwRbyAMZYL6j4XsWXy2vp1W2dVYTXd5nlvtIAAcibdKc9859i5Ay81rdD4cLnx7G9jZttw9d48n049aaPDZPAZXV5AxcQHJ3qCMaDmw9pIjgzriryEF0LO771pmS7fmeiq5u2+YRmupqAWWNqVt4+TcIUMI1oqdYZhciowB8LYgESJKIEE+HaqGnYkth8abmaA7JLYMEwJBqaHohVGnkGaFtiAeoFpG64JneO4EXk3AwghlGNJi2J4jmUkdvSJKEjAxIApxiAKWWgGgVy+RPhOU65PBIkaYEWnNnJppKWWoLmtZIACUJB7kQun7ibpF6yWZXmWvhfnESO3LPg5b7Ocehq0R5SD4d5FZxQFUGurBKXBR+SFftm555pemU8dxPm2vMampZ+TY6ZVGHsTVoKAt5IF8XaRx2S+sxOSVomaWFZn1UBuX9dwg1jvZwojTKQVKqVYkob+-7AXVs1tEc82qbCY0uRiYVGSZiDkuh0m0gZYgUKIQA}{https://tikzcd.yichuanshen.de}:
+\href{https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADEByACne4A0AlIJABfUuky58hFAFZyVWoxZsuvbgE1hYiSAzY8BIgCZSJpfWatEHASPGTDMogGZzllTbvbdT6cYoACwe1Faqtn76UkayyAoWYV5sUQYBcWSuntZsAOI8ufYOemmxpqRZSTm2hUKpMS4o7pXK1SCFvo7RzoHxFdkR7QVaOl2ljchmQQPeABL29T1x7tNVg-OdJQ29ZABsM2yzPPNCxf5l8qT7a3PHIw5KMFAA5vBEoABmAE4QALZIZBAOAgSAAjDc1Dw+B8dNQGHQAEYwBgABW2shAXywzwAFjgQNQkWAoEhXICGFgwN4oBAcDgnlFvn8AdRgUhdhDbNwADrcxhoHF0TgAAgAVMLefzBYIAPr8AkgeFI1HotiU7CwBUUqlsGlMBEMVhdJn-RDgoEgxAATk5IB5fIYAqFYolDqdss0WsRyLRSzVYA1rDhlOpEH1hsZP1NZgtSAA7LbJY7BXKvcrfel-YGtSHdWGDUa9CakDG2Yh3K1BtCRHDvSq-bYsbj8cGdbYaXSGcaoyXWZbAeFvLwRbyAMZYL6j4XsWXy2vp1W2dVYTXd5nlvtIAAcibdKc9859i5Ay81rdD4cLnx7G9jZttw9d48n049aaPDZPAZXV5AxcQHJ3qCMaDmw9pIjgzriryEF0LO771pmS7fmeiq5u2+YRmupqAWWNqVt4+TcIUMI1oqdYZhciowB8LYgESJKIEE+HaqGnYkth8abmaA7JLYMEwJBqaHohVGnkGaFtiAeoFpG64JneO4EXk3AwghlGNJi2J4jmUkdvSJKEjAxIApxiAKWWgGgVy+RPhOU65PBIkaYEWnNnJppKWWoLmtZIACUJB7kQun7ibpF6yWZXmWvhfnESO3LPg5b7Ocehq0R5SD4d5FZxQFUGurBKXBR+SFftm555pemU8dxPm2vMampZ+TY6ZVGHsTVoKAt5IF8XaRx2S+sxOSVomaWFZn1UBuX9dwg1jvZwojTKQVKqVYkob+-7AXVs1tEc82qbCY0uRiYVGSZiDkuh0m0gZYgUKIQA}{tikzcd}:
 
+\begin{center}
 \begin{tikzcd}
 F'(F(X)) \arrow[rrrrr, "F'(F(f))"', dotted, bend left] \arrow[ddd, "(\alpha' * \alpha)_X" description, Rightarrow] &  &                                                                                                                          &                                                                                               &    & F'(F(Y)) \arrow[ddd, "(\alpha' * \alpha)_Y" description, Rightarrow] \\
                                                                                                                    &  &                                                                                                                          &                                                                                               &    &                                                                      \\
@@ -769,9 +814,11 @@ G'(G(X)) \arrow[ddd, "(\beta' * \beta)_X" description, Rightarrow] \arrow[rrrrr,
                                                                                                                    &  &                                                                                                                          &                                                                                               &    &                                                                      \\
 H'(H(X)) \arrow[rrrrr, "H'(H(f))" description, dotted]                                                             &  &                                                                                                                          &                                                                                               &    & H'(H(Y))                                                            
 \end{tikzcd}
+\end{center}
 
-Edit on \href{https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbbrxAZseAkQBMY6vWatEIGXwWCiAZjUTN0nnoFKUAFhMap2gJq65-RUOQB2UsPEOtEAAxAHIACiCw9gBKaNd5K08ADl9-SUD49wMRMj91dLZQiLCnWMz9a29SZTSzbQBxcPqosos3CuTq2scdNoSPImEyGvy6kEaw5tK4vqzK1UNuwMiY8sSjUkXRnrWB202l81l+7OQAVgPt5ZKZ47nPHy3THoAJcJeW28s95BSngKO31OQ0uz0CbzCH2mu1OqhshwaLRhlWM8KugPa632aLBGJOlQuOIBiNKyM8qjOCJAH1Wsw6G0p6O0ZKIdkZuOZdKx51I7OJ1Ju3HEMCgAHN4ERQAAzABOEAAtkgyCAcBAkHYOSApSBqAw6AAjGAMAAK9zYDBgUpwrllCqQohVasQymMmpeOpAesNJrN2gtVo9DCwYECUAgOBwIptcsVzuoqvtAE4meNAwajab6X7LdbdcHQ+HI1Bo3bEK6E4hhKpNUE097M1jPTnA-m2GGI1G2rbYxdHUgfDXwpEpWVdemfVmmwGuzGkL2KylNQAdJeMNAACzoIQA+pwx-XfSAZVhRevc57W9ow0x9RaSz3407hL3+WEV4acFuAAQrgDGWBlX8f1XBgNy3aJdzrDND2PU9z0NMBi0QABaLwHSDEM2wgG872odcYDoJCwCYBgGHjOgsAYNhIEwmdSwHCsQWXECwJ3Fx92gydYLPFtMKvbDb1YOjY0XRiXwKbR3xgT8dz3T1xwbPYjxPHi8z4kBr0E+8kFEp9lX5CZmhHOIOInRt-WtYT7WVRiB35KSZO3dj5IPLiVPPDCCxwoTZG7e0HUYxd7JYzdINMxTsmUuDeK8rSrMrAKnw1flhxMlzOMbbjLN82cEsfJBlGrV8HLoYD-0A4C103CC5K9DKlKyj0EKQ1CNU8rDvI9fDCKQYjSPIyjqIIHzpVy4RyydAA2FNQigsyGvcmKsI7Yt4uEDUK2UB1gqqugnLmiLrCi1SL3UzS7zW+cnzsiTqXeMJjIOw8LO0ytdIKorbpKsL0vmyLGrU2KLpy0thHe51ttuoy0rqv6jsa+LlBsp1k01Ronrc6LAeWotXq2-LnXEsZvuc2HDqEY6PMvDSBOB0bS0KgnlCJ14HphhSYMWxGNqfaa3RCDHMsW7H+JWoUuCAA}{https://tikzcd.yichuanshen.de}:
+Edit on \href{https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbbrxAZseAkQBMY6vWatEIGXwWCiAZjUTN0nnoFKUAFhMap2gJq65-RUOQB2UsPEOtEAAxAHIACiCw9gBKaNd5K08ADl9-SUD49wMRMj91dLZQiLCnWMz9a29SZTSzbQBxcPqosos3CuTq2scdNoSPImEyGvy6kEaw5tK4vqzK1UNuwMiY8sSjUkXRnrWB202l81l+7OQAVgPt5ZKZ47nPHy3THoAJcJeW28s95BSngKO31OQ0uz0CbzCH2mu1OqhshwaLRhlWM8KugPa632aLBGJOlQuOIBiNKyM8qjOCJAH1Wsw6G0p6O0ZKIdkZuOZdKx51I7OJ1Ju3HEMCgAHN4ERQAAzABOEAAtkgyCAcBAkHYOSApSBqAw6AAjGAMAAK9zYDBgUpwrllCqQohVasQymMmpeOpAesNJrN2gtVo9DCwYECUAgOBwIptcsVzuoqvtAE4meNAwajab6X7LdbdcHQ+HI1Bo3bEK6E4hhKpNUE097M1jPTnA-m2GGI1G2rbYxdHUgfDXwpEpWVdemfVmmwGuzGkL2KylNQAdJeMNAACzoIQA+pwx-XfSAZVhRevc57W9ow0x9RaSz3407hL3+WEV4acFuAAQrgDGWBlX8f1XBgNy3aJdzrDND2PU9z0NMBi0QABaLwHSDEM2wgG872odcYDoJCwCYBgGHjOgsAYNhIEwmdSwHCsQWXECwJ3Fx92gydYLPFtMKvbDb1YOjY0XRiXwKbR3xgT8dz3T1xwbPYjxPHi8z4kBr0E+8kFEp9lX5CZmhHOIOInRt-WtYT7WVRiB35KSZO3dj5IPLiVPPDCCxwoTZG7e0HUYxd7JYzdINMxTsmUuDeK8rSrMrAKnw1flhxMlzOMbbjLN82cEsfJBlGrV8HLoYD-0A4C103CC5K9DKlKyj0EKQ1CNU8rDvI9fDCKQYjSPIyjqIIHzpVy4RyydAA2FNQigsyGvcmKsI7Yt4uEDUK2UB1gqqugnLmiLrCi1SL3UzS7zW+cnzsiTqXeMJjIOw8LO0ytdIKorbpKsL0vmyLGrU2KLpy0thHe51ttuoy0rqv6jsa+LlBsp1k01Ronrc6LAeWotXq2-LnXEsZvuc2HDqEY6PMvDSBOB0bS0KgnlCJ14HphhSYMWxGNqfaa3RCDHMsW7H+JWoUuCAA}{tikzcd}:
 
+\begin{center}
 \begin{tikzcd}
 X \arrow[rrrr, "f"] & {} \arrow[rrddddd, "H", dotted] & {} \arrow[rdddd, "G", dotted]                                                                                                 & {} \arrow[ddd, "F", dotted] & Y                                &                                         &  &                                                                                                                                         &    &  &                                              \\
                     &                                 &                                                                                                                               &                             &                                  &                                         &  & F'(F(X)) \arrow[rrr, "F'(F(f))"] \arrow[d, "\alpha'_X"', Rightarrow] \arrow[dd, "(\beta' \circ \alpha')_X"', Rightarrow, bend right=71] & {} &  & F'(F(Y)) \arrow[d, "\alpha'_Y"', Rightarrow] \\
@@ -780,3 +827,4 @@ X \arrow[rrrr, "f"] & {} \arrow[rrddddd, "H", dotted] & {} \arrow[rdddd, "G", do
                     &                                 & G(X) \arrow[d, "\beta_X"', Rightarrow] \arrow[rrr, "G(f)"']                                                                   & {}                          & {} \arrow[rrrruu, "G'"', dotted] & G(Y) \arrow[d, "\beta_Y"', Rightarrow]  &  &                                                                                                                                         &    &  &                                              \\
                     &                                 & H(X) \arrow[rrr, "H(f)"']                                                                                                     & {}                          & {} \arrow[rrrruu, "H'"', dotted] & H(Y)                                    &  &                                                                                                                                         &    &  &                                             
 \end{tikzcd}
+\end{center}

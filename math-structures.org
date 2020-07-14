@@ -14,7 +14,9 @@ https://en.wikipedia.org/wiki/Algebraic_structure
 * Algebraic structures
 
   $G$ is an underlying body of an algebraic structure. Often it's a set. \\
-  $\cdot$ is a binary operation.
+  $\cdot$ is a binary operation. \\
+  $\blank^{-1}$ element inversion is apparently not always being consider to an
+  operation.
 
 ** Group-like structures
 | Group-like-Structure | Closed | Associative | Identity | Invertible | Commutative |
@@ -37,7 +39,7 @@ $\cdot$ is closed / closure: $a \cdot b$ must be also in $G$ \\
 Not required: $\cdot$ is commutative: $x \cdot y = y \cdot x$ \\
 $\cdot$ is associative: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ \\
 Not required: $e$ is neutral element (identity) \\
-Not required: x-inverse (dual obj): $x \cdot x\inv = x\inv \cdot x = e$
+Not required: $\blank\inv$ inversion (dual obj): $x \cdot x\inv = x\inv \cdot x = e$
 
 *** Monoid
 Monoid is a triple $(G, \cdot, e)$ such that: \\
@@ -45,7 +47,7 @@ A group without inverse elements. \\
 $\cdot$ is closed / closure: $a \cdot b$ must be also in $G$ \\
 $\cdot$ is associative: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ \\
 $e$ is neutral element (identity) \\
-Not required: x-inverse (dual obj): $x \cdot x\inv = x\inv \cdot x = e$
+Not required: $\blank\inv$ inversion (dual obj): $x \cdot x\inv = x\inv \cdot x = e$
 
 *** Group
 Group is a triple $(G, \cdot, e)$ such that: \\
@@ -54,10 +56,19 @@ $\cdot$ is closed / closure: $a \cdot b$ must be also in $G$ \\
 Not required: $\cdot$ is commutative: $x \cdot y = y \cdot x$ \\
 $\cdot$ is associative: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ \\
 $e$ is neutral element (identity) \\
-x-inverse (dual obj): $x \cdot x\inv = x\inv \cdot x = e$ \\
+$\blank\inv$ inversion (dual obj): $x \cdot x\inv = x\inv \cdot x = e$ \\
 
 A category of /many/ morphisms and only /one/ object. All the morphisms are
 invertible.
+
+The pieces of the structure on $G$ can bee seen as maps of sets: \\
+$\cdot : G^{2} \to G$ \\
+$\blank\inv : G^{1} \to G$ \\
+$e : G^{0} \to G$ \\
+
+$G^{0}$ is the one-element set $1$ and we are using the observation that a map $1
+\to G$ of sets is essentially the same thing as an element of $G$.
+
 
 *** Normal Subgroups, Quotient (a.k.a Factor) Groups
 Modular arithmetic done in the group theory by normal subgroups and quotient groups. \\
@@ -86,7 +97,7 @@ $\cdot$ is closed / closure: a \cdot b must be also in $G$ \\
 $\cdot$ is commutative: $x \cdot y = y \cdot x$ \\
 $\cdot$ is associative: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ \\
 $e$ is neutral element (identity) \\
-x-inverse (dual obj): $x \cdot x\inv = x\inv \cdot x = e$
+$\blank\inv$ inversion (dual obj): $x \cdot x\inv = x\inv \cdot x = e$
 
 ** Ring-like structures
 
@@ -119,9 +130,9 @@ addition and multiplication are distributive: $a \times (b + c) = a \times b + a
 \times c$ \\
 
 _Examples_: \\
-Complex $\CC$, Real $\RR$ and Rational $\QQ$ numbers form a Field. \\
-Integer $\ZZ$ numbers don't form a Field. The $\ZZ$ don't have multiplicative inverses: $2\inv
-= \dfrac{1}{2} \notin \ZZ$
+$\CC$ Complex, $\RR$ Real and $\QQ$ Rational numbers form a Field. $\ZZ$ Integer
+numbers don't form a Field. The $\ZZ$ don't have multiplicative inverses:
+$$2\inv = \dfrac{1}{2} \notin \ZZ$$
 
 \bigskip
 
@@ -142,17 +153,17 @@ See
 
 *** Ring / Okruh
 Ring is triple $(R, +, \cdot)$ such that: \\
-- $R$ is commutative i.e. abelian group under addition:
+- $R$ is commutative i.e. abelian group under addition: \\
   $+$ is associative:               $(a + b) + c = a + (b + c)$ \\
   $+$ is commutative:               $a + b = b + a$ \\
   $0$ is additive identity:         $a + 0 = a$ \\
   existence of an additive inverse: $\forall a \exists \minus a : a + (\minus a) = 0$
 
-- $R$ is monoid under multiplication:
+- $R$ is monoid under multiplication: \\
   $\cdot$ is associative:         $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ \\
   $1$ is multiplicative identity: $a \cdot 1 = 1 \cdot a = a$
 
-- Multiplication is distributive with respect to addition:
+- Multiplication is distributive with respect to addition: \\
   left distributivity:  $a \cdot (b + c) = (a \cdot b) + (a \cdot c)$ \\
   right distributivity: $(b + c) \cdot a = (b \cdot a) + (c \cdot a)$
 
@@ -174,15 +185,15 @@ Ring is triple $(R, +, \cdot)$ such that: \\
 *** Vector space
 Vector is quadruple $(V, +_v, F, +_f, \cdot, 1_f)$ such that: \\
 - $V$ is an Abelian Group: $+_v$ is closed, commutative, associative, it has an
-  identity and has invertible elements $\forall v \in V \exists v\inv \in V$. It
-  contains a collection of vectors.
+  identity and has invertible elements: $\forall v \in V \exists v\inv \in V$,
+  and it contains a collection of vectors.
 - $F$ is a Field of scalars.
-- Operations:
-vector addition - is commutative: $v_1 +_v v_2 = v_2 +_v v_1$ \\
+- Operations and their properties:
+commutative vector addition: $v_1 +_v v_2 = v_2 +_v v_1$ \\
 vector scaling: $v \in V, f \in F: f \cdot v \in V$ \\
-distributive properties: $f \cdot (v_1 +_v v_2) = f \cdot v_1 +_f f \cdot v_2$,
+distributivity of $\cdot$: $f \cdot (v_1 +_v v_2) = f \cdot v_1 +_f f \cdot v_2$,
 $(f_1 +_f f_2) \cdot v = f_1 \cdot v +_v f_2 \cdot v$ \\
-associative properties: $f_1 \cdot (f_2 \cdot v) = (f_1 \times \f_2) \cdot v$ \\
+associativity of $\cdot$: $f_1 \cdot (f_2 \cdot v) = (f_1 \times \f_2) \cdot v$ \\
 scaling by $1_f$: $1_f \cdot v = v$
 
 Linear algebra - study of vector spaces.
