@@ -1,86 +1,104 @@
 # generate pdf: M-x org-latex-export-to-pdf
 
 #+LATEX_HEADER: \usepackage{cat-7-sketches}
+#+LATEX_HEADER: \usepackage{minted}     % syntax coloring
 
 # https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
 # latexpreview / nolatexpreview C-c C-x C-l
 # #+STARTUP: nolatexpreview
 #+STARTUP: showeverything inlineimages nolatexpreview
 
+* Category Theory
+# \href{https://www.math3ma.com/categories/category-theory}{Tai-Danae Bradley}
+# \href{https://www.youtube.com/watch?v=JH_Ou17_zyU}{Bartosz Milewski}
 
-* Abstract algebra of abstract functions
-See \href{https://www.math3ma.com/categories/category-theory}{Tai-Danae Bradley Category Theory}.
-Category theory as a foundational framework of mathematics: the foundations of
-category theory itself have to be clarified yet.
+_Category Theory_:
+- Foundational framework of mathematics: the foundations of category theory
+  itself have to be clarified yet
+- An abstract algebra of abstract functions
+- It's the arrows what counts.
 
-/It is the arrows what count/
+\bigskip
 
-Category is a quadruple $\cat{C} = (Obj, \Hom, \circ, id)$
+_Category - informal description_:
+- A collection of arrows and morphism that can be composed if they are adjacent.
+- A structure packing structures of the same type (same category) and structure
+  preserving mappings between them.
+- Directed Multigraph with Algebra of paths. Each finite path is associated with
+  an unique arrow.
+#+ATTR_LATEX: :align c l
+| Nr. of path segments | Path type                        |
+|----------------------+----------------------------------|
+|                    0 | Identity                         |
+|                    1 | Morphism                         |
+|                    2 | Composition                      |
+|                    3 | Associativity law of composition |
 
-- $Obj$ : Class of Objects: $A$, $B$, $C$, $\dots$ e.g. Types / Propositions /
+- Is context rich and content poor
+- Is mathematical context where construction is possible.
+  + Functors: Constructors
+  + Natural Transformations: Comparison of constructions
+- Example in programming:
+  + Objects are types
+  + Morphisms are functions between types
+
+\bigskip
+
+_Category - formal definition_:
+# TODO can it be considered to be a quadruple type?
+- A quadruple $\cat{C}: (\Ob, \Mor, \comp, \id)$
+- $\Ob(\cat{C})$ : Class of objects: $A$, $B$, $C$, $\dots$ e.g. Types / Propositions /
   Algebras / Logic Formulas \\
   An object exists in and depends upon an ambient category. \\
   An object is characterized by its morphisms going in and out of it. \\
   Objects are always characterized up to isomorphism (in the best cases, up to
   a unique isomorphism). E.g. there is no such thing as _the_ natural numbers. \\
   However, the concept of natural numbers exists.
-
-- $\Hom$ : Morphisms (arrows): $f$, $g$, $h$, $\dots$ e.g. Computation / Proofs / ??? / \\
+- $\Mor(\cat{C})$ : Morphisms (arrows): $f$, $g$, $h$, $\dots$ e.g. Computation
+  / Proofs / ??? / \\
   Implication between Logic formulas
+- $\comp$ : Morphism composition - associative (binary) operation:
+ $$(f \comp g) \comp h = f \comp (g \comp h)$$
+ $$\Hom(A,B) \cprod \Hom(B,C) \to \Hom(A,C): g \comp f$$
+ is a partially binary operation on Mor(CAT::)
+ $$(g \comp f)(x) = g(f(x))$$
+- $\id$ : an identity morphism on every object $A: \id_A$
 
-- $\circ$ : Morphism composition - associative function
-  $$(f \circ g) \circ h = f \circ (g \circ h)$$
-
-$$\Hom(A,B) \times \Hom(B,C) \to \Hom(A,C): g \circ f$$
-is a partially binary operation on Mor(CAT::)
-$$(g \circ f)(x) = g(f(x))$$
-
-- $id$ : an identity morphism on every object $A: id_A$
-
-- Category Theory is context rich and content poor
-
-** Category - informal description
-- A collection of arrows and morphism that can be composed if they are adjacent.
-- A structure packing structures of the same type (same category) and structure
-  preserving mappings between them.
-- Directed Multigraph with Algebra of paths. Each finite path is associated with
-  a unique arrow. \\
-  -- Empty path: Identity \\
-  -- One path: Morphism \\
-  -- Two paths: Composition \\
-  -- Three paths: Associativity law of composition.
-
-Categories: mathematical contexts where constructions are possible. \\
-Functors: Constructors \\
-Natural Transformations: Comparison of constructions
-
-*** Small Category: all objects and morphisms are sets
-
-*** Locally Small Category: all objects and morphisms are sets
-LSC "doesn't have too many morphisms"
-$\forall A,B \in \mathcal{C}: \Hom_\cat{C}(A, B)$ is a set.
+** Types of categories
+_Locally Small Category LSC_:\\
+A category where each Hom-set is a small set, i.e. a set and not a proper class. \\
+LSC "doesn't have too many morphisms" \\
+$\forall A,B \in \Ob(\cat{C}): \Hom_\cat{C}(A, B)$ is a small set. \\
 (TODO arrow weight = price of calculation; preference for compositions)
 
-*** Meaning of "Up to isomorphism"
+\bigskip
+
+_Small Category SC_: \\
+A locally small category such that also the objects form a small set, i.e. a set and
+not a proper class, i.e. both the objects and morphisms form small sets.
+
+\bigskip
+
+_Up to isomorphism_ - meaning: \\
 Things are isomorphic, i.e.
 - structurally the same, i.e.
 - only formally different, i.e.
 - working via analogy, i.e.
 - $X$ is just a renamed version of $Y$
 
-*** Meaning of "Commuting diagram / The diagram commutes"
+\bigskip
+
+_Commuting diagram / The diagram commutes_ - meaning: \\
 No matter which way you go around you get the same thing.
 
-** Cartesian Closed Category
-CCC is usefull in programming;
-- Cartesian: has product $A \times B$ for any pair of objs $A$, $B$
+\bigskip
 
-- Closed: has exponential $B^A$ (functions from $A$ to $B$) for any pair of objs
+_Cartesian Closed Category CCC_ - useful in programming
+- Cartesian: has product $A \cprod B$ for any pair of objs $A$, $B$
+- Closed: has exponential $B^A$, i.e. morphisms $A \to B$ for any pair of objs
   $A$, $B$
-
 - 0-th power of an obj: has terminal obj $\termObj$ (for all objects there
   exists a unique map $A \to \termObj$)
-
 - multiplying by terminal obj $\termObj$ gives back the original obj
 - initial obj $\initObj$ - dual to terminal obj $\termObj$; Top and Bottom objs
   i.e. any one-element
@@ -88,19 +106,23 @@ set (= singleton) is terminal DTTO for poset 1 is such an object that any other
 obj is below it
 - ? monoidal structure on objects ?
 
-*** Locally Closed Cartesian Category
-LCCC: for every obj $X$ sliced category is a CCC
+\bigskip
 
-** Bi-Cartesian Closed Category
-BCCC: Algebra of Types can be made here
-*** has coproduct for every pair of objs
-*** has initial obj $\initObj$
+_Locally Closed Cartesian Category LCCC_: \\
+For every obj $X$ sliced category is a CCC
 
-** Universal Mapping Property
-UMP is the /double/ triangle of Product \\
-Universal - for all \\
-Consists of Initial and Terminal mapping (morphism) \\
-Universal Construction - 3 steps (? the triangle ?):
+\bigskip
+
+_Bi-Cartesian Closed Category BCCC_: Algebra of Types can be made here
+- has coproduct for every pair of objs
+- has initial obj $\initObj$
+
+\bigskip
+
+_Universal Mapping Property UMP_: The /double/ triangle of Product
+- Universal - for all
+- Consists of Initial and Terminal mapping (morphism)
+- Universal Construction - 3 steps (? the triangle ?):
 1. Define a pattern:
 \begin{verbatim}
          Z'  (Z' \cross A) ---+
@@ -111,25 +133,22 @@ Universal Construction - 3 steps (? the triangle ?):
          Z   (Z \cross A) --------> B
                  A      g
 
-    g' = g \circ (h \cross id)
+    g' = g \comp (h \cross id)
 \end{verbatim}
 2. Define ranking between matches
 3. The best match is "our guy"
 
-* A Crash Course in Category Theory
-YouTube \href{https://www.youtube.com/watch?v=JH_Ou17_zyU}{A Crash Course in Category Theory - Bartosz Milewski},
-Twitter \href{https://twitter.com/@bartoszmilewski}{@bartoszmilewski}
+** Features of a category
+_Associative composability_ \\
+$(x \comp y) \comp z = x \comp (y \comp z)$
 
-Example in programming: \\
-Category of Types and Functions is a category where objs are sets and morphisms
-are functions between sets.
+\bigskip
 
-** Most important features of a category
-*** Associative composability
-$(x \circ y) \circ z = x \circ (y \circ z)$
+_Identity on objects_ \\
 
-# *** Identity
-*** Function
+\bigskip
+
+_Function_
 On sets / between sets
 
 Pure: must be memoizable (lookup table)
@@ -156,46 +175,61 @@ values; i.e functions and data are the same
 Function type: is an exponential which is a data type; (Exponential is like an
 iterated product)
 
-*** Morphisms and Mappings
-Mapping or morphism of $X$ to/on $Y$: $X \to Y$
+\bigskip
 
-| Latin      | Greek / morphisms               | Meaning                                               | Functor  |
-|------------+---------------------------------+-------------------------------------------------------+----------|
-| surjective | epic / epi   \twoheadrightarrow | all $Ys$ are used                                     | Full     |
-| injective  | monic / mono \rightarrowtail    | distinct $Xs$ $\rightarrow$ distinct $Ys$             | Faithful |
-| bijective  | ? epi-mono?                     | exact pairing between $X, Y$                          |          |
-| strict     |                                 | surj $X \to Y$ but not bije $Y \to X$ |          |
+** Morphisms and Mappings
+Mapping or morphism of $X$ to/on $Y$: $X \to Y$:
+| Latin      | Greek / morphisms  | Meaning                          | Functor  |
+|------------+--------------------+----------------------------------+----------|
+| surjective | epic / epi   \surj | all $Ys$ are used                | Full     |
+| injective  | monic / mono \inj  | distinct $Xs \to$ distinct $Ys$  | Faithful |
+| bijective  | epi and mono \bij  | exact pairing between $X, Y$     |          |
+| strict     |                    | $X \surj Y$ but not $Y \inj X$   |          |
 
-Also: \\
-| Surjection | $\abs{X} \geq \abs{Y}$ | onto / $X$ at least as big $Y$ or bigger                     |
-| Injection  | $\abs{X} \leq \abs{Y}$ | one-to-one / $X$ at least as small $Y$ or smaller            |
-| Bijection  | $\abs{X} =    \abs{Y}$ | mutually unambiguous, same size                              |
-| Strict     | $\abs{X} <    \abs{Y}$ | ? double usage of some $Ys$ ?, $X$ strictly smaller than $Y$ |
+Also:
+| Morphism   | Size relation          | Meaning                       | Reading                                 |
+|------------+------------------------+-------------------------------+-----------------------------------------|
+| Surjection | $\abs{X} \geq \abs{Y}$ | onto                          | $X$ at least as big as $Y$ or bigger    |
+| Injection  | $\abs{X} \leq \abs{Y}$ | one-to-one correspondence     | $X$ at least as small as $Y$ or smaller |
+| Bijection  | $\abs{X} =    \abs{Y}$ | mutually unambiguous          | $X$ has the same size as $Y$            |
+| Strict     | $\abs{X} <    \abs{Y}$ | ? double usage of some $Ys$ ? | $X$ strictly smaller than $Y$           |
 
-Epimorphism and monomorphism are dual to each other \\
-Isomorphism / isomorphic - "only formally different"
+- Epimorphism and monomorphism are dual to each other
+- Isomorphism / isomorphic - "only formally different"
+- Homomorphism - structure-preserving mapping between 2 algebraic objects
+ $f(m * n) = f(m) * f(n)$ \\
+ Individual monoids themselves give category \\
+ Monoids with homomorphisms give category
 
-*** Pullback: type of a limit
-$f: X \to Y$ is monomorphism ($X$ is at least as big as $Y$) \\
-Also: Pullback of a ftor $I$ along a functor $F$ is a composite ftor, i.e. ftor
-composition $I \circ F$.
+\bigskip
 
-*** Pushout: type of a colimit
-$f: X \to Y$ is epimorphism (all $Ys$ are used)
+_Pushout_ - type of a colimit: \\
+$f: X \surj Y$ is epimorphism, i.e. surjective, i.e. all $Ys$ are used.
 
-*** Subobject of obj A
-if $f: X \to Y$ is monomorphism (i.e. an injection, i.e. different $Xs \to$
+\bigskip
+
+_Pullback_ - type of a limit: \\
+$f: X \inj Y$ is monomorphism, i.e. injective, i.e. $X$ is at least as big as
+$Y$. Also: Pullback of a functor $\Fun{G}$ along a functor $\Fun{F}$ is a
+composite functor, i.e. functor composition $\Fun{G} \comp \Fun{F}$.
+
+\bigskip
+
+_Subobject of an object_
+If $f: X \inj Y$ is monomorphism, i.e. an injection, i.e. different $Xs \to$
 different $Ys$ - don’t smush multiple elements into one, i.e. parallel arrows,
 then it is isomorphic (only formally different) from $Y$.
 
 I have a set of different monomorphisms to $Y$: \\
   $$\Set{S} = \{f_1: A \to Y, f_2: B \to Y\}$$ \\
 then $f_1 \equiv f_2$ are equivalent if there is an isomorphism
-$h: A \to B$ such that $f_2 = h \circ f_1$
+$h: A \to B$ such that $f_2 = h \comp f_1$
 then $\Set{S}$ is isomorphic to some subset of $Y$. i.e. a set of equivalent
 morphisms mapping distinct $As$ and $Bs$ to $Y$.
 
-*** Functor: preserves structure between 2 categories
+** Functors
+_Functor_:
+- Preserves structure between two categories
 - Is a homomorphism by definition, i.e. it preserves structure between two
   categories
 - In programming: total mapping of types; (total = all objs from the source are
@@ -203,10 +237,10 @@ morphisms mapping distinct $As$ and $Bs$ to $Y$.
 - Constant functor: collapses all objs into one obj and all morphisms into an
   identity
 - Intuitive understanding: (endo) functor is a container - i.e. list contains
-values (Comonad is a container that already comes prefilled with many values and
-with an access point to one particular value. E.g. hidden params (for hidden
-param propagation it's better to use comonad than monad), history, neighbourhood
-etc.)
+  values (Comonad is a container that already comes prefilled with many values
+  and with an access point to one particular value. E.g. hidden params (for
+  hidden param propagation it's better to use comonad than monad), history,
+  neighborhood etc.)
 - Endofunctor $[\cat{C},\cat{C}]$: is a functor that maps a category to itself
 - Lifting: (= applying functor) transforms a function into a corresponding
   function within another (usually more general) setting
@@ -218,41 +252,45 @@ etc.)
            |    f     |
            a -------> b
 \end{verbatim}
-- Covariant functor: Same directions in src and dst Category \\
-  $G f : (a \to b) \to (G a \to G b)$
-
-- Contravariant functor: Reverse direction in src or dst Category \\
-  $G f : (a \to b) \to (G b \to G a)$
-  respectively
-
-  $G f : (b \to a) \to (G a \to G b)$ \\
-  i.e.
-  $Gf : \cat{C^\op} \to \cat{D}$ respectively $Gf : \cat{C} \to
-  \cat{D^\op}$
+- Covariant functor: Same directions in src and dst category
+#+BEGIN_SRC haskell
+G f : (a -> b) -> (G a -> G b)
+#+END_SRC
+- Contravariant functor: Reverse direction in src or dst category
+#+BEGIN_SRC haskell
+G f : (a -> b) -> (G b -> G a)
+#+END_SRC
+respectively
+#+BEGIN_SRC haskell
+G f : (b -> a) -> (G a -> G b)
+#+END_SRC
+i.e. $G f : \cat{C^\op} \to \cat{D}$ respectively $Gf : \cat{C} \to \cat{D^\op}$
 
 - Bifunctor: e.g a Product - it takes two objs and produces third obj, but it
   also takes two morphisms and produces 3rd morphism which is a product of these
-  two morphisms $C \times D \to E$
+  two morphisms $C \cprod D \to E$
+- List: $List(\alpha) = Nil | Const \alpha (List \alpha)$ - most intuitive(?)
+  functor example. It's also a type constructor: takes a type $\alpha$ and
+  creates a list of $\alpha$.
 
-- List: $List(\alpha) = Nil | Const \alpha (List \alpha)$ - most intuitive(?) functor example
-  It's also a type constructor: takes a type $\alpha$ and creates a list of $\alpha$.
-
-Sum $+$ and Product $\times$ are algebraic data types (Algebra on Types): \\
-List(\alpha) = Nil | Const \alpha (List \alpha) ~ L(\alpha) = 1 + \alpha \times L(\alpha) => .. => L(\alpha) = 1 / (1 -
-\alpha) = 1 + \alpha + \alpha \times \alpha + \alpha \times \alpha \times \alpha + ...
+Sum $\csum$ and Product $\cprod are algebraic data types (Algebra on Types): \\
+List(\alpha) = Nil | Const \alpha (List \alpha) ~ L(\alpha) = 1 + \alpha \cprod L(\alpha) => .. => L(\alpha) = 1 / (1 - \alpha) = 1 + \alpha + \alpha \cprod \alpha + \alpha \cprod \alpha \cprod \alpha + ...
 
 Inlining and refactoring are the opposite.
 
-*** Fibre: points mapped to the same value
+\bigskip
+
+_Fibre_: points mapped to the same value_
 invertibility: function to fibre
 
-*** Natural Transformation: a way of/for comparing functors
+** Natural Transformations
+- a way of/for comparing functors
 - maps Morphism(s) to commuting diagram(s) (naturality squares). i.e.
   comorphism: replacing a square of (complex) relations with a single morphism
 - picks a morphish between two Objs; Picking 1 morphishm from a Homset
 - Components of NaT
 - Composing ftor acting on an obj with a ftor acting on a Morphishm:
- $\alpha b \circ Ff$
+ $\alpha b \comp Ff$
 
 - Every polymorphic functions is a NaT: it is defined for every single type
 i.e. multiplication (Product) of all Objs in a Category. The same goes for
@@ -261,8 +299,8 @@ the dual - the Sum.
 - Naturality condition i.e. the Naturality Square:
 $$Gf ∘ \alpha a = \alpha b ∘ Ff$$
 
-**** Compositons of Natural Transformations
-See \href{https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf}{SelingerTACL20132}, 
+_Compositons of Natural Transformations_ \\
+See \href{https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf}{SelingerTACL20132},
 e.g. NaT compositions in \href{https://gist.github.com/Mzk-Levi/752d1e0f2f7f30cd3bda}{Scala} \\
 
 Legend: \\
@@ -272,62 +310,69 @@ $\alpha A$ / $\beta A$ - an A-component of the NaT $\alpha$ / $\beta$ \\
 $\alpha FA$ - an FA-component of the NaT $\alpha$ \\
 $\beta GA$ / $\beta FA$ - $GA$ / $FA$ -component of the NaT $\beta$
 
-***** Verical Compositon of NaTs:
+\bigskip
+
+*** Vertical composition
 If $\alpha:F \to G$ and $\beta:G \to H$ are NaTs, then their
 vertical composition
 $$\beta * \alpha : F \to H$$
 
 is defined by:
-$$(\beta * \alpha)A = \beta A \circ \alpha A : FA \to HA$$
+$$(\beta * \alpha)A = \beta A \comp \alpha A : FA \to HA$$
 where $A$ is an obj in the Category C and $(...)A$ is an A-component of the NaT
 (...)
 
 - is associative and has an id, and allows one to consider the collection
 of all functors C \to D itself as a category.
 
-***** Right Whiskering
+\bigskip
+
+_Right Whiskering_ \\
 If $F, G : C \to D$ and $H : D \to E$ are Ftors, and if
 $\alpha : F \to G$ is a NaT, the right whiskering
-$$H \circ \alpha : H \circ F \to H \circ G$$
+$$H \comp \alpha : H \comp F \to H \comp G$$
 is defined as
-$$(H \circ \alpha)A : H(FA) \to H(GA)$$
-by $(H \circ \alpha)A = H(\alpha A)$
+$$(H \comp \alpha)A : H(FA) \to H(GA)$$
+by $(H \comp \alpha)A = H(\alpha A)$
 
-***** Left Whiskering
+\bigskip
+
+_Left Whiskering_ \\
 If $F : C \to D$ and $G, H : D \to E$ are Ftors, and if
 $\alpha : G \to H$ is a NaT, the left whiskering
-$$\alpha \circ F : G \circ F \to H \circ F$$
+$$\alpha \comp F : G \comp F \to H \comp F$$
 is defined as
-$$(\alpha \circ F)A : G(FA) \to H(FA)$$
-by $(\alpha \circ F)A = \alpha FA$
+$$(\alpha \comp F)A : G(FA) \to H(FA)$$
+by $(\alpha \comp F)A = \alpha FA$
 
-***** Horizontal Compositon of NaTs:
+*** Horizontal composition
 If $F, G : C \to D$ and $H, K : D \to E$ are Ftors, and if
 $\alpha : F \to G$ and $\beta : H \to K$ are NaTs, the
 horizontal composition
-$$\beta \circ \alpha : H \circ F \to K \circ G$$
+$$\beta \comp \alpha : H \comp F \to K \comp G$$
 
 can be defined in two different ways:
 - Right whiskering followed by left whiskering:
- $\beta \circ \alpha = (\beta \circ G) * (H \circ \alpha)$
+ $\beta \comp \alpha = (\beta \comp G) * (H \comp \alpha)$
 
 - Left whiskering followed by right whiskering:
- $\beta \circ \alpha = (K \circ \alpha) * (\beta \circ F)$
+ $\beta \comp \alpha = (K \comp \alpha) * (\beta \comp F)$
 
 The two definitions coincide, because
-$$(\beta \circ G) * (H \circ \alpha) A = \beta GA \circ H(\alpha A)$$
-$$(K \circ \alpha) * (\beta \circ F) A = K(\alpha A) \circ \beta FA$$
+$$(\beta \comp G) * (H \comp \alpha) A = \beta GA \comp H(\alpha A)$$
+$$(K \comp \alpha) * (\beta \comp F) A = K(\alpha A) \comp \beta FA$$
 
 - is associative with an id, and the id coincides with that for vertical
 composition.
 
-** Yoneda perspective, embeding and lemma
-*** Yoneda Perspective
-_Idea_: An object is completely determined by its relationships to other
-objects.
+* Yoneda perspective, embeding and lemma
+_Yoneda Perspective_ - idea: \\
+An object is completely determined by its relationships to other objects.
 
-*** Yoneda Embedding
-_Idea_: replace content of an obj (picked i.e. fixed) by all arrows impinging on
+\bigskip
+
+_Yoneda Embedding_ - idea: \\
+Replace content of an obj (picked i.e. fixed) by all arrows impinging on
 (ending in) this obj. See \href{https://youtu.be/JH_Ou17_zyU?t=1h8m9s}{Object in Context}.
 
 It's content and properties. \\
@@ -336,8 +381,10 @@ in $A$: $\{X_i \to A\}$: \\
 For every obj $A \in \cat{C}$ get a different functor $\Fun{F}_A: \cat{C} \to
 \SmSet$
 
-*** Yoneda Lemma
-_Idea_: NaT and ftor (i.e. Container) can replace each other:
+\bigskip
+
+_Yoneda Lemma_ - idea: \\
+NaT and ftor (i.e. Container) can replace each other:
 $[\mathcal{C},\SmSet](\cat{C}(A,\minus), \Fun{F}) \iso \Fun{F}A$ \\
 also: $[\cat{C},\SmSet](\cat{C}(A,\minus), \cat{C}(B,\minus)) \iso \cat{C}(B,A)$ \\
 Description of integration over a special ftor, i.e. Hom functor.
@@ -346,9 +393,9 @@ $A$ is some arbitrary obj of $\cat{C}$. \\
 $F$ is some arbitrary ftor acting on the obj $A$. \\
 $\iso$ - "naturally isomorphic", i.e. a NaT exists such that its components are
 all invertible isomorphisms. \\
-\\
+
 Hom functors intuition: Serve for the same purposes as Free monoids. \\
-\\
+
 It's enough to define this NaT on one obj, i.e. set $\cat{C}(A,A)$ and moreover
 it's enough to define it on one point in this set i.e. the $\id_A$. The rest of
 the NaT is transported from this point.
@@ -367,24 +414,25 @@ the NaT is transported from this point.
            +------------------ ...
 \end{verbatim}
 
-*** Khan Extentions: the next abstraction level
+# * Khan Extentions: the next abstraction level
 
-** Adjoints, Adjunctions, Adjointness
-Adjunction: a relationship between two functors. \\
-Adjoints / adjoint functors - functors with a relation of adjunction between
-them.
-
-\\
+* Adjoints, Adjunctions, Adjointness
+- Adjunction: a relationship between two functors.
+- Adjoints / adjoint functors - functors with a relation of adjunction between
+  them.
 
 If $\Fun{F}$ is (left) adjoint to $\Fun{G}$, then there is typically some
 formula of the type $(x, \Fun{G}y) \iso (\Fun{F}x, y)$.
 
-*** Adjunctions: weakening of "equality" of Categories
+\bigskip
 
+_Adjunctions_ - weakening of "equality" of Categories
 "inverse" is defined only for functions not functors, e.g. Currying: from a Pair
 to Function type
 
-*** Adjointness: constructing / generating principle
+\bigskip
+
+_Adjointness_ - constructing / generating principle
 - Adjunctions/Adjoins are monads ???
 examples:
 - product is left adjoint to exponential: $(\minus) \cross A \ladj (\minus)^A$
@@ -393,13 +441,17 @@ induction, recursion, Natural Numbers (inductively defined), Lists, ...
 conjunction, disjunction, True, False, Exponentiation
 Quantifiers: $\forall$ Every, $\exists$ Exists; $\Sigma$ Sigma, $\Pi$ Pi
 
-*** Abstraction: the non-invertibility
+\bigskip
+
+_Abstraction_: the non-invertibility
 - from all properties (i.e. all points of a fibre) I'm interested only in one
 - e.g. I'm not interested in what was the exact input value of a function,
 I'm interested only if it was an even or odd value
 
-*** Modeling: mapping / injecting
-HomSet: $HomC(A,B) = \{f: A \to B\}$
+\bigskip
+
+_Modeling_: mapping / injecting
+HomSet of category $\cat{C}$: $\Hom_{\cat{C}}(A,B) = \{f: A \to B\}$
 - Set of all morphisms $A \to B$ in the category $\cat{C}$. Objs of
   $\cat{C}$ don't need to be sets.
 - A collection of two monoids $A$,$B$ (The identity on an object is its monoidal
@@ -407,49 +459,60 @@ HomSet: $HomC(A,B) = \{f: A \to B\}$
 
 External vs. Internal Homset
 
-*** Free Monoid: has a unique mapping to every other monoid
+\bigskip
+
+_Free Monoid_: has a unique mapping to every other monoid \\
 A list of accumulated vals
 
-*** Hom functor: Functor to category of Sets
+\bigskip
+
+_Hom functor_: Functor to category of Sets \\
 Has a NaT to every other functor. This NaT is not unique but limited
 Reader functor in Haskell
 
-*** Covariant Hom functor
+\bigskip
+
+_Covariant Hom functor_ \\
 $\Hom(A,\minus) : \cat{C} \to \SmSet$ \\
-$\Fun{F} f :: (a \to b) \to (\Fun{F} a \to \Fun{F} b)$ -
-same directions in src and dst Category \\
-$\Hom(A,\minus)$ maps each object X in $\cat{C}$ to the set of morphisms $\Hom(A,X)$ \\
+Same directions in src and dst Category - Haskell type signature:
+#+BEGIN_SRC haskell
+F f :: (a -> b) -> (F a -> F b)
+#+END_SRC
+
+$\Hom(A,\minus)$ maps each obj $X \in \cat{C}$ to the set of morphisms $\Hom(A,X)$ \\
 $\Hom(A,\minus)$ maps each morphism $f : X \to Y$ to the function \\
 $\Hom(A,f) : \Hom(A,X) \to \Hom(A,Y)$ given by
 
-*** Contravariant Hom functor
-$\Hom(\minus,B) : \cat{C}\op \to Set$ \\
-Reverse directions in src and dst Category
+\bigskip
 
-Haskell type signature:
+_Contravariant Hom functor_ \\
+$\Hom(\minus,B) : \cat{C}\op \to Set$ \\
+Reverse directions in src and dst category - Haskell type signature:
 #+BEGIN_SRC haskell
-F f :: (a \to b) \to (F b \to F a)
+F f :: (a -> b) -> (F b -> F a)
 #+END_SRC
 
 $\Hom(\minus,B)$ maps each obj $X \in \cat{C}$ to the set of morphisms $\Hom(X,B)$ \\
 $\Hom(\minus,B)$ maps each morphism $h : X \to Y$ to the function \\
 $\Hom(h,B) : \Hom(Y,B) \to \Hom(X,B)$ given by \\
 
-*** Representable functor
-$\Fun{F}: \cat{C} \to \SmSet$ is naturally isomorphic to $HomC(A,\minus)$ for some
-object $A$ of $\cat{C}$
+\bigskip
 
-Represents: \\
+_Representable functor_ \\
+$\Fun{F}: \cat{C} \to \SmSet$ is naturally isomorphic to $HomC(A,\minus)$ for
+some obj $A$ of $\cat{C}$
+
+Represents:
 - Objs of $\cat{C}$ as sets
 - Morphisms of $\cat{C}$ as morphisms between sets, i.e. the functions
   "tabulate" and "index" can be created; mapping of function to a data-type
 
 Functors as representations (Lawvere): \\
 Think of a functor $\Fun{F}: \cat{C} \to \cat{D}$ as giving a picture,
-or "representation", of $\cat{C}$ in $\cat{D}$.
+or "representation" of $\cat{C}$ in $\cat{D}$.
 
 Following Lawvere, logicians often call the category ‘theory’, and the functor
-$\Fun{F} : C \to D$ a "model" of this theory.
+$\Fun{F} : \cat{C} \to \cat{D}$ a "model" of this theory.
 
 (TODO see Bartosz's intuition about functors in the "Programming with Categories" videos)
 
@@ -465,12 +528,7 @@ represented by $(R, 1)$.
 The forgetful functor $\Cat{Top} \to \Cat{Set}$ on the category of topological spaces is
 represented by any singleton topological space with its unique $e$.
 
-*** Homomorphism: structure-preserving mapping between 2 algebraic structures
-$f(m * n) = f(m) * f(n)$
-Individual monoids themselves give category
-Monoids with homomorphisms give category
-
-*** Kleisli category
+** Kleisli category
 Monad - Haskell type signature:
 #+BEGIN_SRC haskell
 return: a -> m a
@@ -479,7 +537,7 @@ bind: m a -> (a -> m b) -> m b
 
 You can operate on IO Monad \\
 You can't extract anything from IO Monad (it's lost) \\
-Monoind in Category of Endofunctors \\
+Monoid in the category of Endofunctors \\
 
 Comonad - Haskell type signature:
 #+BEGIN_SRC haskell
@@ -489,7 +547,7 @@ Comonad - Haskell type signature:
 You can extract from IO Monad \\
 You can't put anything to IO Monad
 
-*** Indexed Monad
+** Indexed Monad
 IxMonad - Haskell type signature:
 #+BEGIN_SRC haskell
 ibind: m i j a -> (a -> m j k b) -> m i k b
@@ -498,14 +556,16 @@ ibind: m i j a -> (a -> m j k b) -> m i k b
 state composition \\
 Session Types, Dependent Types, Dependent State Types
 
-*** Curry-Howard-Lambek correspondence:
-Intuitionistic Logic \leftarrowrightarrow Type Theory \leftarrowrightarrow Category Theory \\
+* Curry-Howard-Lambek correspondence:
+Intuitionistic Logic $\bij$ Type Theory $\bij$ Category Theory
+
+\bigskip
 
 Function $A \to B$ is a proof of logical implication $A \imp B$ \\
 Direct relationship between computer programs and mathematical proofs; from 1940-ties \\
-Link between Computation and Logic; \\
-Proofs-as-programs and propositions- or formulae-as-types interpretation; \\
-Proofs (= Programs) can be executed; \\
+Link between Computation and Logic \\
+Proofs-as-programs and propositions- or formulae-as-types interpretation \\
+Proofs (= Programs) can be executed \\
 Typed lambda calculi derived from the Curry–Howard-Lambek paradigm led to software like Coq; \\
 Curry-Howard-Lambek correspondence might lead to unification between mathematical logic and foundational computer science; \\
 Popular approach: use monads to segregate provably terminating from potentially non-terminating code \\
@@ -524,54 +584,58 @@ Alternative: $P$ or $Q$ - "doesn't really matter what which one it is as long as
 | false      \to true                            | {}       \to  {.} (one element set)                                   |                 |
 | true       \to true                            | {.}      \to  {.} (identity function)                                 |                 |
 | true  (not \to) false (does not imply)         | {.} (not \to) {}                                                      |                 |
-| Conjunction - and: P ⋀ Q                       | Pair (P, Q)     (proof-of-P, proof-of-Q)                              | Product         |
-| Alternative - or: P ⋁ Q                        | Union of (different) proofs P, Q                                      | Sum             |
+| Conjunction - and: P \land Q                   | Pair (P, Q)     (proof-of-P, proof-of-Q)                              | Product         |
+| Alternative - or: P \lor Q                     | Union of (different) proofs P, Q                                      | Sum             |
 
 
 ** Correspondance of type habitation and proposition
-inhabited - has elems / members
-"Either a b" is inhabited if either a or b is inhabited (at least one of them is true / provable)
+inhabited - has elements / members \\
+"Either $a$ $b$" is inhabited if either $a$ or $b$ is inhabited (at least one of them is true / provable)
 
-Curry: ((a,b) \to c) \to (a \to (b \to c))
-Uncurry: (a \to (b \to c)) \to ((a,b) \to c)
+#+BEGIN_SRC haskell
+Curry: ((a,b) -> c) -> (a -> (b -> c))
+Uncurry: (a -> (b -> c)) -> ((a,b) -> c)
+#+END_SRC
 
-Eval: a function of two args / a pair
-$((a => b), a) \to b$ this is modus-ponens in logic $(a => b) ∧ a \to b$
+Eval: a function of two args / a pair \\
+$((a \imp b), a) \to b$ this is Modus ponens in logic $(a \imp b) \land a \to b$
 
-| True proposition        | False proposition      | Conjunction $a ∧ b$              | Disjunction $a ∨ b$           | Implication $a => b$            |
-| Unit-type               | Void-type              | Pair $(a,b)$                     | Either $a$ or $b$             | Function type $a \to b$ |
-| sinhabited              | not inhabited          |                                  |                               |                                 |
-| Terminal obj $\termObj$ | Initial obj $\initObj$ | Categorical product $a \times b$ | Categorical coproduct $a ⎥ b$ | Exponential obj $b^a$           |
+| True proposition        | False proposition      | Conjunction $a \land b$          | Disjunction $a \lor b$            | Implication $a \imp b$  |
+| Unit-type               | Void-type              | Pair $(a,b)$                     | Either $a$ or $b$                 | Function type $a \to b$ |
+| is inhabited            | not inhabited          |                                  |                                   |                         |
+| Terminal obj $\termObj$ | Initial obj $\initObj$ | Categorical product $a \cprod b$ | Categorical coproduct $a \csum b$ | Exponential obj $b^a$   |
 
 
-0 - void type - ?
-1 - unit type - 0th-power: terminal obj
-2 - bool type (two possible values): 1st-power: the obj itself
-3 - int type - 2nd-power: product
-4 - real type (if continuum hypothesis holds :-)
-5 - ? type
+0 - void type - ? \\
+1 - unit type - 0th-power: terminal obj \\
+2 - bool type (two possible values): 1st-power: the obj itself \\
+3 - int type - 2nd-power: product \\
+4 - real type (if continuum hypothesis holds :-) \\
+5 - ? type \\
 
 JavaScript & Category Theory: Category == Contracts + Functions guarded by contracts
 
 ** Set vs. Category theory comparision
-| Set theory                  | Category theory                                          | JavaScript                     |
-|-----------------------------|----------------------------------------------------------|--------------------------------|
-| membership relation         | -                                                        |                                |
-| elements                    | objects                                                  | contracts                      |
-| sets                        | categories                                               |                                |
-| -                           | morphisms (structure-preserving mapping between objects) | functions guarded by contracts |
-| functions                   | functors  (maps between categories)                      |                                |
-| equations between elements  | isomorphisms between objects                             |                                |
-| equations between sets      | equivalences between categories                          |                                |
-| equations between functions | natural transformations (maps between functors)          |                                |
+| Set theory              | Category theory                            | JavaScript               |
+|-------------------------+--------------------------------------------+--------------------------|
+| membership relation     | -                                          |                          |
+| elements                | objects                                    | contracts                |
+| sets                    | categories                                 |                          |
+| -                       | morphisms: preserve structure between objs | fns guarded by contracts |
+| functions               | functors: maps between categories          |                          |
+| equations between elems | isomorphisms between objects               |                          |
+| equations between sets  | equivalences between categories            |                          |
+| equations between fns   | NaTs: maps between functors                |                          |
 
-Categorification: process of weakening structure, weakening equalities down to
+Categorification: structure-weakening process, weakening equalities down to
 natural isomorphisms and then adding-in rules that these natural isomorphisms
 have to follow (so it behaves well)
 Counting number of elements in sets is decategorification; from category we get
 set or from set we get a number
+
 Monoid homomorphisms: a function between the sets of monoid elements that
 preserved the monoid structure
+
 Monoidal functors: a functor between categories that preserves the monoidal
 structure (should preserve multiplication) from functor(prodn([x, y, ..])) to
 prodn([functor(x), functor(y), ..])
@@ -615,6 +679,7 @@ CT looks nicer: no numbers, it's about ideas
 Designing computer language - Semantics must be provided; done by providing operational semantics
 Programming - understanding the meaning i.e. semantics: what does it mean (+ 1 2)
 None of the main prog. languages have (operational semantics) only partially provided.
+
 ** Operational semantics: "if state === stateX then state = stateY"
 "How it executes"; reduction relation: $e1 \to e2$
 for computers: local, progress oriented
@@ -654,30 +719,29 @@ type-constructor. I.e. they're basically constructed "the same way"
 if x and y are definitionally equal then an associated propositionally equal
 element can be deduced from this.
 *** Theorem
-- for every function f there is a function $ap-f: (x = y) \to (f(x) = f(y))$
+- for every function $f$ there is a function $ap-f: (x = y) \to (f(x) = f(y))$
 - from (an element of the type) $(x = y)$ the $ap-f$ is going to construct
 (an element of the type) $(f(x) = f(y))$
-- in logic the funtion ap-f corresponds to an implication. In generall in the
+- in logic the funtion $ap-f$ corresponds to an implication. In generall in the
 type theory a funtion is nothing else than an implication
 *** Classical logic and type theory correspondence
-Type theory searches for construction of a type-dependent function f (or z) ...:
-| classical logic              | type theory            | notation                   |
-| \foralln\forallm (n+m = m+n) | f:(n,m) \to (n+m = m+n) | f: Π n:ℕ Π m:ℕ (n+m = m+n) |
-| \existsn\forallm (n+m = m)   |                        | z: Σ n:ℕ Π m:ℕ (n+m = m)   |
-|                              |                        |                            |
+Type theory searches for construction of a type-dependent function $f$ (or $z$) ...:
+| classical logic                 | type theory             | notation                           |
+| \forall n \forall m (n+m = m+n) | f:(n,m) \to (n+m = m+n) | f: \Pi n:N \pi m:N (n+m = m+n)     |
+| \exists n \forall m (n+m = m)   |                         | z: \Sigma n:N \sigma m:N (n+m = m) |
 
 ** Siplified Categorical view of functions and types:
 *** Functions: arrows between objs
 *** Types: objects whose properties are defined by arrows
 *** Composition, associativity, identity: see Group-like structures
-Composition: "this-fn after that-fn"
-No deeper specification of what the funtions and objects are
-Mapping between CT and FP:
+Composition $\comp$: Usually read as "this-fn after that-fn" \\
+No deeper specification of what the funtions and objects are Mapping between
+Category Theory and Functional Programming:
 
 * Views \to Change of perspective
 ** Set-theoretical: props of sets defined by elems of sets
 ** Categorical: Shrink the set to a point "I can't look at the structure of a set"
-Describe different kinds of sets by their interraction with other sets i.e. by arrows.
+Describe different kinds of sets by their interraction with other sets i.e. by arrows. \\
 Tell me who your friends are and I tell you who you are
 
 Phenomenons of Introduction and Elimination
@@ -702,8 +766,8 @@ initial obj: Univ prop: unique(1.) arrow to every(2.) single other obj
 other types there's the unique arrow projections: $f: C \to A$, $g: C \to B$
 - tuple (pair aka record) is better than tripple ??? loop-over-all-types: for each of
 all possible types: 38:20
-** intro: $A \to B \to (A,B) tupple$
-** elim: $(A,B) \to A, (A,B) \to B$
+** intro: $A \to B \to (A,B)$ tupple
+** elim: tupple $(A,B) \to A; (A,B) \to B$
 
 * Relation
 A subset of a Cartesian Product; doesn't have a directionality; n-to-n relation
@@ -713,29 +777,34 @@ A subset of a Cartesian Product; doesn't have a directionality; n-to-n relation
 ** elim: case e of: left a \to f a, right b \to f b
 ** in functional programming - tagged unions
 
-* Monoidal Cat (objs, arrows, prods)
-looks kinda like multiplication / addition
+* Monoidal category
+Has (objs, arrows, product), looks kinda like multiplication / addition \\
 Algebra of types ...
 
 * Functor
-Structure preserving mapping between Cats (objs to objs, fns to fns): i.e. if
-there's an arrow A \to B, then there must be arrow F(A) \to F(B)
+Structure preserving mapping $\Fun{F}: \cat{C} \to \cat{D}$ between two
+categories (objs to objs, fns to fns): i.e. if there's an arrow $c_1 \to c_2$, then
+there must be arrow $\Fun{F}c_1 \to \Fun{F}c_2$ where $\Fun{F}c_i \in \Ob(\cat{D})$.
+
 May collapse things, preserves unit obj and composition
 
-** Endofunctor
-mapping from the same Cat to the same Cat. Endo ~ inside, "Endoscopy"
-Category of Endofunctors: Cat of ftors from C to C [C,C]
+_Endofunctor_: \\
+Mapping $\cat{C} \to \cat{C}$ from the same Cat to the same Cat. Endo ~ inside,
+"Endoscopy"
 
-* ? Functor Category
-Pick two Categories C, D - functors from C to D form a Functor Category [C,D]:
-Objects: functors
-Morphisms: natural transformations between functor
+* Functor category
+Functors between two categories $\cat{C}$, $\cat{D}$ form a Functor category $[\cat{C},\cat{D}]$ where:
+- Objects are functors
+- Morphisms are natural transformations between functors
+
+_Endofunctor category_: \\
+$[\cat{C},\cat{C}]$ is a category of functors from $\cat{C}$ to $\cat{C}$.
 
 * Adjoints, Adjunctions, Adjointness
-Adjunction: a relationship between two functors.
+Adjunction: a relationship between two functors. \\
 Adjoints / adjoint functors - functors with a relation of adjunction between them.
 
-A pair of functors $F$, $G$: $F$ is adjunct (but not inverse) to $G$.
+A pair of functors $\Fun{F}$, $\Fun{G}$: $\Fun{F}$ is adjunct (but not inverse) to $\Fun{G}$.
 
 Object in a Category of Types such that: For every $A$, $B$ there is a set of
 arrows from $A$ to $B$. This obj is called function-type. It can be defined by
@@ -743,9 +812,9 @@ an adjunction of two endofunctors. \\
 
 \begin{center}
 \begin{tikzcd}
-A \arrow[rr, "F" description, dashed, bend left] \arrow[d, "\bar{g}"'] \arrow[dd, "G(q) \circ \bar{g}"', bend right=60] &                                      & F(A) \arrow[d, "g"] \arrow[dd, "q \circ g", bend left=60] \arrow[ll, "G" description, dashed, bend left] \\
-G(B) \arrow[d, "G(q)"'] \arrow[rr, "F" description, dashed, bend left]                                                  &                                      & B \arrow[d, "q"] \arrow[ll, "G" description, dashed, bend left]                                          \\
-G(B') \arrow[rr, "F" description, dashed, bend left]                                                                    &                                      & B' \arrow[ll, "G" description, dashed, bend left]                                                       
+A \arrow[rr, "F"', bend left] \arrow[d, "\bar{g}"', dotted] \arrow[dd, "G(q) \circ \bar{g}"', dotted, bend right=60] &  & F(A) \arrow[d, "g", dotted] \arrow[dd, "q \circ g", dotted, bend left=60] \arrow[ll, "G"', bend left] \\
+G(B) \arrow[d, "G(q)"', dotted] \arrow[rr, "F"', bend left]                                                          &  & B \arrow[d, "q", dotted] \arrow[ll, "G"', bend left]                                                  \\
+G(B') \arrow[rr, "F"', bend left]                                                                                    &  & B' \arrow[ll, "G"', bend left]                                                                       
 \end{tikzcd}
 \end{center}
 
@@ -762,12 +831,12 @@ top to the bottom, functor components $F_1$, $G_2$ are drawn clockwise.
 (Components $F_2$, $G_1$ are not drawn.)
 
 \begin{center}
-# % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGEB9ARgF4ACAOIARHiAC+pdJlz5CKAMzkqtRizaju-AQDEu3CVJAZseAkSUAmFfWatEIUZe389nS4emm5RMteq26g5czgIi7hIqMFAA5vBEoABmAE4QALZIZCA4EEjc1ABGMGBQSApZDFhg9iBwEJWl1AAWMHSliGBMDAzUOHRYDGyQ1SABajU6YtQMdEUMAAoyZvIgyVgxTTieICnpeb25iJZjdkOcwi46aZzsoyCVIw5QEDg40du7GUcHZYXF7eVplUanUGncWm0kJ1ur1+oMHMNWCcgiBBBFprMYAslj4HGsNltJElUl8sjlfqpTg5ruwXIIwOc7jM5otvOY8etNkzgWxnq93kSdiT9tlDhUeQ5QVhGiAIe1oT1snChgQkSAiiUyllAjU0QYMSycezVpzCUZPhTyd91f8tUDHrV6tLwa15V1FX0BiqRsiJuj7pjsWyVviuYKLYgyWLphAIGgiNwABxkRKMOAwFTMrGs2TG0Nbe0gp0yuVQ92wr0I1V3HVsACSUE4wH04g+wsQSlFFIYsfjKBTaYzBuzRpDpu5DqlJddZZhSsr4Grvvrjeb7lb4fbxy71p7cd8pFTDHTmcDOeWbHzNfGK6bTg35vb+R3z73feQSYHx6HAcNwcv47Lg4DZ3jwG4UOIQA
 \begin{tikzcd}
-C_1= GD_1 \arrow[rrr, "F_1"', bend left] \arrow[dd, "m_C = Gn_D"', dotted] \arrow["Id_{C_1}"', loop, distance=2em, in=125, out=55] &  &  & D_1 = FC_1 \arrow[dd, "n_D = Fm_C", dotted] \arrow[lll, "G_1"', bend left] \arrow["Id_{D_1}"', loop, distance=2em, in=125, out=55] \\
-                                                                                                                                   &  &  &                                                                                                                                    \\
-C_2 = GD_2 \arrow[rrr, "F_2"', bend left] \arrow["Id_{C_2}"', loop, distance=2em, in=305, out=235]                                 &  &  & D_2 = FC_2 \arrow[lll, "G_2"', bend left] \arrow["Id_{D_2}"', loop, distance=2em, in=305, out=235]                                
-\end{tikzcd}\end{center}
+C_1= GD_1 \arrow[rrr, "F_1"', bend left] \arrow[dd, "m_C = Gn_D"', dotted] \arrow["Id_{C_1}"', dotted, loop, distance=2em, in=125, out=55] &  &  & D_1 = FC_1 \arrow[dd, "n_D = Fm_C", dotted] \arrow[lll, "G_1"', bend left] \arrow["Id_{D_1}"', dotted, loop, distance=2em, in=125, out=55] \\
+                                                                                                                                           &  &  &                                                                                                                                            \\
+C_2 = GD_2 \arrow[rrr, "F_2"', bend left] \arrow["Id_{C_2}"', dotted, loop, distance=2em, in=305, out=235]                                 &  &  & D_2 = FC_2 \arrow[lll, "G_2"', bend left] \arrow["Id_{D_2}"', dotted, loop, distance=2em, in=305, out=235]                                
+\end{tikzcd}
+\end{center}
 
 ** It's more interesting if F, G are not an inverse of each other
 ** F left adjoing to G:
@@ -831,34 +900,29 @@ $+0$ -Category: set \\
 $+1$ -Category: ...
 
 # https://github.com/yishn/tikzcd-editor
-# https://meet.google.com/linkredirect?authuser=0&dest=https%3A%2F%2Ftikzcd.yichuanshen.de%2F%23N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRACUQBfU9TXfIRQBGclVqMWbAMrdeIDNjwEiZYePrNWiEAFkA%2BmAAU7AJRy%2BSwUVHrqmqToPHp5npYEqUZAEwbJ2iAAqiZu8oqeQsiifvYBbCGu3OIwUADm8ESgAGYAThAAtkhkIDgQSKISWmzZFiB5hUg%2B1GVIAMxx1U6GRtlhOflFiAAsLeWIAKydjsG9-fWDTWNIo1UzsDj6nO4LjYgdpeNTa4Eb%2BrJcFFxAA
 
 * Vertical and horizontal composition of NaTs
 Probably erroneous. See \href{https://arxiv.org/pdf/1612.09375.pdf}{page 38},
-edit on
-\href{https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADEByACne4A0AlIJABfUuky58hFAFZyVWoxZsuvbgE1hYiSAzY8BIgCZSJpfWatEHASPGTDMogGZzllTbvbdT6cYoACwe1Faqtn76UkayyAoWYV5sUQYBcWSuntZsAOI8ufYOemmxpqRZSTm2hUKpMS4o7pXK1SCFvo7RzoHxFdkR7QVaOl2ljchmQQPeABL29T1x7tNVg-OdJQ29ZABsM2yzPPNCxf5l8qT7a3PHIw5KMFAA5vBEoABmAE4QALZIZBAOAgSAAjDc1Dw+B8dNQGHQAEYwBgABW2shAXywzwAFjgQNQkWAoEhXICGFgwN4oBAcDgnlFvn8AdRgUhdhDbNwADrcxhoHF0TgAAgAVMLefzBYIAPr8AkgeFI1HotiU7CwBUUqlsGlMBEMVhdJn-RDgoEgxAATk5IB5fIYAqFYolDqdss0WsRyLRSzVYA1rDhlOpEH1hsZP1NZgtSAA7LbJY7BXKvcrfel-YGtSHdWGDUa9CakDG2Yh3K1BtCRHDvSq-bYsbj8cGdbYaXSGcaoyXWZbAeFvLwRbyAMZYL6j4XsWXy2vp1W2dVYTXd5nlvtIAAcibdKc9859i5Ay81rdD4cLnx7G9jZttw9d48n049aaPDZPAZXV5AxcQHJ3qCMaDmw9pIjgzriryEF0LO771pmS7fmeiq5u2+YRmupqAWWNqVt4+TcIUMI1oqdYZhciowB8LYgESJKIEE+HaqGnYkth8abmaA7JLYMEwJBqaHohVGnkGaFtiAeoFpG64JneO4EXk3AwghlGNJi2J4jmUkdvSJKEjAxIApxiAKWWgGgVy+RPhOU65PBIkaYEWnNnJppKWWoLmtZIACUJB7kQun7ibpF6yWZXmWvhfnESO3LPg5b7Ocehq0R5SD4d5FZxQFUGurBKXBR+SFftm555pemU8dxPm2vMampZ+TY6ZVGHsTVoKAt5IF8XaRx2S+sxOSVomaWFZn1UBuX9dwg1jvZwojTKQVKqVYkob+-7AXVs1tEc82qbCY0uRiYVGSZiDkuh0m0gZYgUKIQA}{tikzcd}:
 
 \begin{center}
 \begin{tikzcd}
 F'(F(X)) \arrow[rrrrr, "F'(F(f))"', dotted, bend left] \arrow[ddd, "(\alpha' * \alpha)_X" description, Rightarrow] &  &                                                                                                                          &                                                                                               &    & F'(F(Y)) \arrow[ddd, "(\alpha' * \alpha)_Y" description, Rightarrow] \\
                                                                                                                    &  &                                                                                                                          &                                                                                               &    &                                                                      \\
-                                                                                                                   &  & F(X) \arrow[d, "\alpha_X" description, Rightarrow] \arrow[r, "F(f)"', dotted] \arrow[lluu, "(F' \circ F)_X" description] & F(Y) \arrow[d, "\alpha_Y" description, Rightarrow] \arrow[rruu, "(F' \circ F)_Y" description] & {} & {}                                                                   \\
-G'(G(X)) \arrow[ddd, "(\beta' * \beta)_X" description, Rightarrow] \arrow[rrrrr, "G'(G(f))", dotted, bend left=49] &  & G(X) \arrow[d, "\beta_X" description, Rightarrow] \arrow[r, "G(f)"', dotted] \arrow[ll, "(G' \circ G)_X"']               & G(Y) \arrow[d, "\beta_Y" description, Rightarrow] \arrow[rr, "(G' \circ G)_Y"]                &    & G'(G(Y)) \arrow[ddd, "(\beta' * \beta)_Y" description, Rightarrow]   \\
-                                                                                                                   &  & H(X) \arrow[r, "H(f)"', dotted] \arrow[lldd, "(H' \circ H)_X" description]                                               & H(Y) \arrow[rrdd, "(H' \circ H)_Y" description]                                               &    &                                                                      \\
+                                                                                                                   &  & F(X) \arrow[d, "\alpha_X" description, Rightarrow] \arrow[r, "F(f)"', dotted] \arrow[lluu, "(F' \comp F)_X" description] & F(Y) \arrow[d, "\alpha_Y" description, Rightarrow] \arrow[rruu, "(F' \comp F)_Y" description] & {} & {}                                                                   \\
+G'(G(X)) \arrow[ddd, "(\beta' * \beta)_X" description, Rightarrow] \arrow[rrrrr, "G'(G(f))", dotted, bend left=49] &  & G(X) \arrow[d, "\beta_X" description, Rightarrow] \arrow[r, "G(f)"', dotted] \arrow[ll, "(G' \comp G)_X"']               & G(Y) \arrow[d, "\beta_Y" description, Rightarrow] \arrow[rr, "(G' \comp G)_Y"]                &    & G'(G(Y)) \arrow[ddd, "(\beta' * \beta)_Y" description, Rightarrow]   \\
+                                                                                                                   &  & H(X) \arrow[r, "H(f)"', dotted] \arrow[lldd, "(H' \comp H)_X" description]                                               & H(Y) \arrow[rrdd, "(H' \comp H)_Y" description]                                               &    &                                                                      \\
                                                                                                                    &  &                                                                                                                          &                                                                                               &    &                                                                      \\
-H'(H(X)) \arrow[rrrrr, "H'(H(f))" description, dotted]                                                             &  &                                                                                                                          &                                                                                               &    & H'(H(Y))                                                            
+H'(H(X)) \arrow[rrrrr, "H'(H(f))" description, dotted]                                                             &  &                                                                                                                          &                                                                                               &    & H'(H(Y))
 \end{tikzcd}
 \end{center}
-
-Edit on \href{https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbbrxAZseAkQBMY6vWatEIGXwWCiAZjUTN0nnoFKUAFhMap2gJq65-RUOQB2UsPEOtEAAxAHIACiCw9gBKaNd5K08ADl9-SUD49wMRMj91dLZQiLCnWMz9a29SZTSzbQBxcPqosos3CuTq2scdNoSPImEyGvy6kEaw5tK4vqzK1UNuwMiY8sSjUkXRnrWB202l81l+7OQAVgPt5ZKZ47nPHy3THoAJcJeW28s95BSngKO31OQ0uz0CbzCH2mu1OqhshwaLRhlWM8KugPa632aLBGJOlQuOIBiNKyM8qjOCJAH1Wsw6G0p6O0ZKIdkZuOZdKx51I7OJ1Ju3HEMCgAHN4ERQAAzABOEAAtkgyCAcBAkHYOSApSBqAw6AAjGAMAAK9zYDBgUpwrllCqQohVasQymMmpeOpAesNJrN2gtVo9DCwYECUAgOBwIptcsVzuoqvtAE4meNAwajab6X7LdbdcHQ+HI1Bo3bEK6E4hhKpNUE097M1jPTnA-m2GGI1G2rbYxdHUgfDXwpEpWVdemfVmmwGuzGkL2KylNQAdJeMNAACzoIQA+pwx-XfSAZVhRevc57W9ow0x9RaSz3407hL3+WEV4acFuAAQrgDGWBlX8f1XBgNy3aJdzrDND2PU9z0NMBi0QABaLwHSDEM2wgG872odcYDoJCwCYBgGHjOgsAYNhIEwmdSwHCsQWXECwJ3Fx92gydYLPFtMKvbDb1YOjY0XRiXwKbR3xgT8dz3T1xwbPYjxPHi8z4kBr0E+8kFEp9lX5CZmhHOIOInRt-WtYT7WVRiB35KSZO3dj5IPLiVPPDCCxwoTZG7e0HUYxd7JYzdINMxTsmUuDeK8rSrMrAKnw1flhxMlzOMbbjLN82cEsfJBlGrV8HLoYD-0A4C103CC5K9DKlKyj0EKQ1CNU8rDvI9fDCKQYjSPIyjqIIHzpVy4RyydAA2FNQigsyGvcmKsI7Yt4uEDUK2UB1gqqugnLmiLrCi1SL3UzS7zW+cnzsiTqXeMJjIOw8LO0ytdIKorbpKsL0vmyLGrU2KLpy0thHe51ttuoy0rqv6jsa+LlBsp1k01Ronrc6LAeWotXq2-LnXEsZvuc2HDqEY6PMvDSBOB0bS0KgnlCJ14HphhSYMWxGNqfaa3RCDHMsW7H+JWoUuCAA}{tikzcd}:
 
 \begin{center}
 \begin{tikzcd}
 X \arrow[rrrr, "f"] & {} \arrow[rrddddd, "H", dotted] & {} \arrow[rdddd, "G", dotted]                                                                                                 & {} \arrow[ddd, "F", dotted] & Y                                &                                         &  &                                                                                                                                         &    &  &                                              \\
-                    &                                 &                                                                                                                               &                             &                                  &                                         &  & F'(F(X)) \arrow[rrr, "F'(F(f))"] \arrow[d, "\alpha'_X"', Rightarrow] \arrow[dd, "(\beta' \circ \alpha')_X"', Rightarrow, bend right=71] & {} &  & F'(F(Y)) \arrow[d, "\alpha'_Y"', Rightarrow] \\
+                    &                                 &                                                                                                                               &                             &                                  &                                         &  & F'(F(X)) \arrow[rrr, "F'(F(f))"] \arrow[d, "\alpha'_X"', Rightarrow] \arrow[dd, "(\beta' \comp \alpha')_X"', Rightarrow, bend right=71] & {} &  & F'(F(Y)) \arrow[d, "\alpha'_Y"', Rightarrow] \\
                     &                                 &                                                                                                                               &                             &                                  &                                         &  & G'(G(X)) \arrow[d, "\beta'_X"', Rightarrow] \arrow[rrr, "G'(G(f))"]                                                                     & {} &  & G'(G(Y)) \arrow[d, "\beta'_Y"', Rightarrow]  \\
-                    &                                 & F(X) \arrow[d, "\alpha_X"', Rightarrow] \arrow[rrr, "F(f)"'] \arrow[dd, "(\beta \circ \alpha)_X"', Rightarrow, bend right=74] & {}                          & {} \arrow[rrrruu, "F'"', dotted] & F(Y) \arrow[d, "\alpha_Y"', Rightarrow] &  & H'(H(X)) \arrow[rrr, "H'(H(f))"]                                                                                                        & {} &  & H'(H(Y))                                     \\
+                    &                                 & F(X) \arrow[d, "\alpha_X"', Rightarrow] \arrow[rrr, "F(f)"'] \arrow[dd, "(\beta \comp \alpha)_X"', Rightarrow, bend right=74] & {}                          & {} \arrow[rrrruu, "F'"', dotted] & F(Y) \arrow[d, "\alpha_Y"', Rightarrow] &  & H'(H(X)) \arrow[rrr, "H'(H(f))"]                                                                                                        & {} &  & H'(H(Y))                                     \\
                     &                                 & G(X) \arrow[d, "\beta_X"', Rightarrow] \arrow[rrr, "G(f)"']                                                                   & {}                          & {} \arrow[rrrruu, "G'"', dotted] & G(Y) \arrow[d, "\beta_Y"', Rightarrow]  &  &                                                                                                                                         &    &  &                                              \\
-                    &                                 & H(X) \arrow[rrr, "H(f)"']                                                                                                     & {}                          & {} \arrow[rrrruu, "H'"', dotted] & H(Y)                                    &  &                                                                                                                                         &    &  &                                             
+                    &                                 & H(X) \arrow[rrr, "H(f)"']                                                                                                     & {}                          & {} \arrow[rrrruu, "H'"', dotted] & H(Y)                                    &  &                                                                                                                                         &    &  &
 \end{tikzcd}
 \end{center}

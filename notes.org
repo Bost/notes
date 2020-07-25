@@ -127,7 +127,7 @@ Communication w-/wo- Letters
   sudo rsync -azv licenses/ $ANDROID_HOME/licenses/
   sudo chown -R $USER:$USER /usr/lib/android-sdk/
   rsync -azv $host:/usr/lib/android-sdk/ /usr/lib/
-#END_SRC
+#+END_SRC
 
 :org-mode-tagging:                                                      :org:
 | col1    | col2          |
