@@ -9,12 +9,13 @@
 
 
 * Abstract algebra of abstract functions
-See also \href{https://www.math3ma.com/categories/category-theory}{Tai-Danae Bradley Category Theory}
-
-"The Arrows Count"; Category is a quadruple $\cat{C} = (Obj, Hom, \circ, id)$
-
+See \href{https://www.math3ma.com/categories/category-theory}{Tai-Danae Bradley Category Theory}.
 Category theory as a foundational framework of mathematics: the foundations of
-category theory itself have to be clarified yet
+category theory itself have to be clarified yet.
+
+/It is the arrows what count/
+
+Category is a quadruple $\cat{C} = (Obj, \Hom, \circ, id)$
 
 - $Obj$ : Class of Objects: $A$, $B$, $C$, $\dots$ e.g. Types / Propositions /
   Algebras / Logic Formulas \\
@@ -22,16 +23,19 @@ category theory itself have to be clarified yet
   An object is characterized by its morphisms going in and out of it. \\
   Objects are always characterized up to isomorphism (in the best cases, up to
   a unique isomorphism). E.g. there is no such thing as _the_ natural numbers. \\
-  However, the concept of natural numbers exists. \\
-- $Hom$ : Morphisms (arrows): $f$, $g$, $h$, $\dots$ e.g. Computation / Proofs / ??? / \\
-  Implication between Logic Formulas
+  However, the concept of natural numbers exists.
+
+- $\Hom$ : Morphisms (arrows): $f$, $g$, $h$, $\dots$ e.g. Computation / Proofs / ??? / \\
+  Implication between Logic formulas
+
 - $\circ$ : Morphism composition - associative function
   $$(f \circ g) \circ h = f \circ (g \circ h)$$
 
-$$Hom(A, B) \times Hom(B, C) \rightarrow Hom(A, C): g \circ f$$
+$$\Hom(A,B) \times \Hom(B,C) \to \Hom(A,C): g \circ f$$
 is a partially binary operation on Mor(CAT::)
 $$(g \circ f)(x) = g(f(x))$$
-- $id$ : identity morphism on every object $A: id(A)$
+
+- $id$ : an identity morphism on every object $A: id_A$
 
 - Category Theory is context rich and content poor
 
@@ -54,17 +58,18 @@ Natural Transformations: Comparison of constructions
 
 *** Locally Small Category: all objects and morphisms are sets
 LSC "doesn't have too many morphisms"
-$\forall A,B \in \mathcal{C}: Hom_\mathcal{C}(A, B)$ is a set.
+$\forall A,B \in \mathcal{C}: \Hom_\cat{C}(A, B)$ is a set.
 (TODO arrow weight = price of calculation; preference for compositions)
 
-*** Meaning of "Up to isomorphis" - any such things are isomorphic i.e.:
-- structurally the same i.e.
-- only formally different i.e.
-- working via analogy i.e.
+*** Meaning of "Up to isomorphism"
+Things are isomorphic, i.e.
+- structurally the same, i.e.
+- only formally different, i.e.
+- working via analogy, i.e.
 - $X$ is just a renamed version of $Y$
 
-*** Meaning of "Commuting diagrams / It (i.e. a diagram) commutes"
-no matter which way you go around you get the same thing
+*** Meaning of "Commuting diagram / The diagram commutes"
+No matter which way you go around you get the same thing.
 
 ** Cartesian Closed Category
 CCC is usefull in programming;
@@ -74,7 +79,7 @@ CCC is usefull in programming;
   $A$, $B$
 
 - 0-th power of an obj: has terminal obj $\termObj$ (for all objects there
-  exists a unique map $A \rightarrow \termObj$)
+  exists a unique map $A \to \termObj$)
 
 - multiplying by terminal obj $\termObj$ gives back the original obj
 - initial obj $\initObj$ - dual to terminal obj $\termObj$; Top and Bottom objs
@@ -91,22 +96,23 @@ BCCC: Algebra of Types can be made here
 *** has coproduct for every pair of objs
 *** has initial obj $\initObj$
 
-** Universal Mapping Property (UMP): 'double' triangle of Product
-Universal - for all
-Consists of Initial and Terminal mapping (morphism)
+** Universal Mapping Property
+UMP is the /double/ triangle of Product \\
+Universal - for all \\
+Consists of Initial and Terminal mapping (morphism) \\
 Universal Construction - 3 steps (? the triangle ?):
 1. Define a pattern:
-```
-         Z'  (Z' x A) ---+
-         ⎢       ⎢        \
-       h ⎢       ⎢id       \ g'
-         ⎢       ⎢          \
-    a=>b ↓       ↓           ↘
-         Z   (Z x A) ------\rightarrow B
+\begin{verbatim}
+         Z'  (Z' \cross A) ---+
+         |⎢          |⎢          \
+       h |⎢          |⎢id         \ g'
+         |⎢          |⎢            \
+    a=>b ↓          ↓               ↘
+         Z   (Z \cross A) --------> B
                  A      g
 
-    g' = g ∘ (h x id)
-```
+    g' = g \circ (h \cross id)
+\end{verbatim}
 2. Define ranking between matches
 3. The best match is "our guy"
 
@@ -114,12 +120,15 @@ Universal Construction - 3 steps (? the triangle ?):
 YouTube \href{https://www.youtube.com/watch?v=JH_Ou17_zyU}{A Crash Course in Category Theory - Bartosz Milewski},
 Twitter \href{https://twitter.com/@bartoszmilewski}{@bartoszmilewski}
 
-** Most important features of a category
-*** Associative composability: $(x \circ y) \circ z = x \circ (y \circ z)$
-*** Identity
-Example in programming: Category of Types and Functions (set and functions
-between sets)
+Example in programming: \\
+Category of Types and Functions is a category where objs are sets and morphisms
+are functions between sets.
 
+** Most important features of a category
+*** Associative composability
+$(x \circ y) \circ z = x \circ (y \circ z)$
+
+# *** Identity
 *** Function
 On sets / between sets
 
@@ -129,16 +138,16 @@ Total: defined for all arguments
 
 Partial: defined only for some arguments
 
-Directionality: a function is an arrow "from \rightarrow to", i.e. functions are
-not symmetric; potentially an /n-to-1/ relation.
+Directionality: a function is an arrow "from \to to", i.e. functions are not
+symmetric; potentially an /n-to-1/ relation.
 
 Inverse: not guaranteed to exist
 
-$f: X \rightarrow Y$ where $X$ is Domain, $Y$ is Codomain
+$f: X \to Y$ where $X$ is a Domain and $Y$ is a Codomain of $f$
 
 Image: A proper subset of a Codomain
 
-Container: function itself can be regarded as a container. E.g. identity
+Container: function itself can be regarded as a container, e.g. identity
 function
 
 Evaluation: it returns a value (when evaluated) i.e. data are represented as
@@ -147,13 +156,15 @@ values; i.e functions and data are the same
 Function type: is an exponential which is a data type; (Exponential is like an
 iterated product)
 
-*** Morphisms / Mappings X \rightarrow Y
+*** Morphisms and Mappings
+Mapping or morphism of $X$ to/on $Y$: $X \to Y$
+
 | Latin      | Greek / morphisms               | Meaning                                               | Functor  |
 |------------+---------------------------------+-------------------------------------------------------+----------|
 | surjective | epic / epi   \twoheadrightarrow | all $Ys$ are used                                     | Full     |
 | injective  | monic / mono \rightarrowtail    | distinct $Xs$ $\rightarrow$ distinct $Ys$             | Faithful |
 | bijective  | ? epi-mono?                     | exact pairing between $X, Y$                          |          |
-| strict     |                                 | surj $X \rightarrow Y$ but not bije $Y \rightarrow X$ |          |
+| strict     |                                 | surj $X \to Y$ but not bije $Y \to X$ |          |
 
 Also: \\
 | Surjection | $\abs{X} \geq \abs{Y}$ | onto / $X$ at least as big $Y$ or bigger                     |
@@ -161,31 +172,28 @@ Also: \\
 | Bijection  | $\abs{X} =    \abs{Y}$ | mutually unambiguous, same size                              |
 | Strict     | $\abs{X} <    \abs{Y}$ | ? double usage of some $Ys$ ?, $X$ strictly smaller than $Y$ |
 
-Epimorphism and Monomorphism are dual to each other \\
+Epimorphism and monomorphism are dual to each other \\
 Isomorphism / isomorphic - "only formally different"
 
-
 *** Pullback: type of a limit
-$f: X \rightarrow Y$     $f$ is monomorphism ($X$ is at least as big as $Y$)
-$id_Y: Y \rightarrow Y$
-also: Pullback of a functor $I$ along a functor $F$ is a composite functor
-(functor composition): $I \circ F$s
+$f: X \to Y$ is monomorphism ($X$ is at least as big as $Y$) \\
+Also: Pullback of a ftor $I$ along a functor $F$ is a composite ftor, i.e. ftor
+composition $I \circ F$.
 
 *** Pushout: type of a colimit
-$f: X \rightarrow Y$     $f$ is epimorphism (all $Ys$ are used)
-$id_X: X \rightarrow X$
+$f: X \to Y$ is epimorphism (all $Ys$ are used)
 
-*** Subobject of Object A
-if $f: X \rightarrow Y$ is a monomorphism (i.e. an injection i.e. different $Xs
-\rightarrow$ different $Ys$ - don’t smush multiple elements into one, i.e.
-parallel arrows) then it is isomorphic (i.e. only formally different) from $Y$.
+*** Subobject of obj A
+if $f: X \to Y$ is monomorphism (i.e. an injection, i.e. different $Xs \to$
+different $Ys$ - don’t smush multiple elements into one, i.e. parallel arrows,
+then it is isomorphic (only formally different) from $Y$.
 
 I have a set of different monomorphisms to $Y$: \\
-  $$S = {f1: A \rightarrow Y, f2: B \rightarrow Y}$$ \\
-then $f1$, $f2$ are equivalent if there exists a in isomorphism
-$h: A \rightarrow B$ such that $f2 = h ∘ f1$
-then $S$ is isomorphic to some subset of $Y$. i.e. a set of equivalent morphisms
-mapping distinct to $Y$.
+  $$\Set{S} = \{f_1: A \to Y, f_2: B \to Y\}$$ \\
+then $f_1 \equiv f_2$ are equivalent if there is an isomorphism
+$h: A \to B$ such that $f_2 = h \circ f_1$
+then $\Set{S}$ is isomorphic to some subset of $Y$. i.e. a set of equivalent
+morphisms mapping distinct $As$ and $Bs$ to $Y$.
 
 *** Functor: preserves structure between 2 categories
 - Is a homomorphism by definition, i.e. it preserves structure between two
@@ -203,28 +211,28 @@ etc.)
 - Lifting: (= applying functor) transforms a function into a corresponding
   function within another (usually more general) setting
 
-```
+\begin{verbatim}
                 Ff
-          Fa ------\rightarrow Fb
+          Fa -------> Fb
            ↑          ↑
            |    f     |
-           a ------\rightarrow b
-```
+           a -------> b
+\end{verbatim}
 - Covariant functor: Same directions in src and dst Category \\
-  $G f : (a \rightarrow b) \rightarrow (G a \rightarrow G b)$
+  $G f : (a \to b) \to (G a \to G b)$
 
 - Contravariant functor: Reverse direction in src or dst Category \\
-  $G f : (a \rightarrow b) \rightarrow (G b \rightarrow G a)$
+  $G f : (a \to b) \to (G b \to G a)$
   respectively
 
-  $G f : (b \rightarrow a) \rightarrow (G a \rightarrow G b)$ \\
+  $G f : (b \to a) \to (G a \to G b)$ \\
   i.e.
-  $Gf : \cat{C^\op} \rightarrow \cat{D}$ respectively $Gf : \cat{C} \rightarrow
+  $Gf : \cat{C^\op} \to \cat{D}$ respectively $Gf : \cat{C} \to
   \cat{D^\op}$
 
 - Bifunctor: e.g a Product - it takes two objs and produces third obj, but it
   also takes two morphisms and produces 3rd morphism which is a product of these
-  two morphisms $C \times D \rightarrow E$
+  two morphisms $C \times D \to E$
 
 - List: $List(\alpha) = Nil | Const \alpha (List \alpha)$ - most intuitive(?) functor example
   It's also a type constructor: takes a type $\alpha$ and creates a list of $\alpha$.
@@ -240,11 +248,10 @@ invertibility: function to fibre
 
 *** Natural Transformation: a way of/for comparing functors
 - maps Morphism(s) to commuting diagram(s) (naturality squares). i.e.
-comorphism: replacing a square of (complex) relations with a single morphism
+  comorphism: replacing a square of (complex) relations with a single morphism
 - picks a morphish between two Objs; Picking 1 morphishm from a Homset
 - Components of NaT
-
-- Composing Ftor acting on an Obj with a Ftor acting on a Morphishm:
+- Composing ftor acting on an obj with a ftor acting on a Morphishm:
  $\alpha b \circ Ff$
 
 - Every polymorphic functions is a NaT: it is defined for every single type
@@ -255,55 +262,50 @@ the dual - the Sum.
 $$Gf ∘ \alpha a = \alpha b ∘ Ff$$
 
 **** Compositons of Natural Transformations
-
-See \href{https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf}{SelingerTACL20132}
-E.g. NaT compositions in \href{https://gist.github.com/Mzk-Levi/752d1e0f2f7f30cd3bda}{Scala} \\
+See \href{https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf}{SelingerTACL20132}, 
+e.g. NaT compositions in \href{https://gist.github.com/Mzk-Levi/752d1e0f2f7f30cd3bda}{Scala} \\
 
 Legend: \\
-$A$ - an Obj in the Category $\mathcal{C}$
+$A$ - an obj in the Category $\mathcal{C}$
 $(...)A$ / $[...]A$ - an A-component of the NaT (...) / [...] \\
 $\alpha A$ / $\beta A$ - an A-component of the NaT $\alpha$ / $\beta$ \\
 $\alpha FA$ - an FA-component of the NaT $\alpha$ \\
 $\beta GA$ / $\beta FA$ - $GA$ / $FA$ -component of the NaT $\beta$
 
 ***** Verical Compositon of NaTs:
-
-If $\alpha:F \rightarrow G$ and $\beta:G \rightarrow H$ are NaTs, then their
+If $\alpha:F \to G$ and $\beta:G \to H$ are NaTs, then their
 vertical composition
-$$\beta * \alpha : F \rightarrow H$$
+$$\beta * \alpha : F \to H$$
 
 is defined by:
-$$(\beta * \alpha)A = \beta A \circ \alpha A : FA \rightarrow HA$$
-where $A$ is an Obj in the Category C and $(...)A$ is an A-component of the NaT
+$$(\beta * \alpha)A = \beta A \circ \alpha A : FA \to HA$$
+where $A$ is an obj in the Category C and $(...)A$ is an A-component of the NaT
 (...)
 
 - is associative and has an id, and allows one to consider the collection
-of all functors C \rightarrow D itself as a category.
+of all functors C \to D itself as a category.
 
 ***** Right Whiskering
-
-If $F, G : C \rightarrow D$ and $H : D \rightarrow E$ are Ftors, and if
-$\alpha : F \rightarrow G$ is a NaT, the right whiskering
-$$H \circ \alpha : H \circ F \rightarrow H \circ G$$
+If $F, G : C \to D$ and $H : D \to E$ are Ftors, and if
+$\alpha : F \to G$ is a NaT, the right whiskering
+$$H \circ \alpha : H \circ F \to H \circ G$$
 is defined as
-$$(H \circ \alpha)A : H(FA) \rightarrow H(GA)$$
+$$(H \circ \alpha)A : H(FA) \to H(GA)$$
 by $(H \circ \alpha)A = H(\alpha A)$
 
 ***** Left Whiskering
-
-If $F : C \rightarrow D$ and $G, H : D \rightarrow E$ are Ftors, and if
-$\alpha : G \rightarrow H$ is a NaT, the left whiskering
-$$\alpha \circ F : G \circ F \rightarrow H \circ F$$
+If $F : C \to D$ and $G, H : D \to E$ are Ftors, and if
+$\alpha : G \to H$ is a NaT, the left whiskering
+$$\alpha \circ F : G \circ F \to H \circ F$$
 is defined as
-$$(\alpha \circ F)A : G(FA) \rightarrow H(FA)$$
+$$(\alpha \circ F)A : G(FA) \to H(FA)$$
 by $(\alpha \circ F)A = \alpha FA$
 
 ***** Horizontal Compositon of NaTs:
-
-If $F, G : C \rightarrow D$ and $H, K : D \rightarrow E$ are Ftors, and if
-$\alpha : F \rightarrow G$ and $\beta : H \rightarrow K$ are NaTs, the
+If $F, G : C \to D$ and $H, K : D \to E$ are Ftors, and if
+$\alpha : F \to G$ and $\beta : H \to K$ are NaTs, the
 horizontal composition
-$$\beta \circ \alpha : H \circ F \rightarrow K \circ G$$
+$$\beta \circ \alpha : H \circ F \to K \circ G$$
 
 can be defined in two different ways:
 - Right whiskering followed by left whiskering:
@@ -321,48 +323,49 @@ composition.
 
 ** Yoneda perspective, embeding and lemma
 *** Yoneda Perspective
-An object is completely determined by its relationships to other objects
+_Idea_: An object is completely determined by its relationships to other
+objects.
 
 *** Yoneda Embedding
+_Idea_: replace content of an obj (picked i.e. fixed) by all arrows impinging on
+(ending in) this obj. See \href{https://youtu.be/JH_Ou17_zyU?t=1h8m9s}{Object in Context}.
 
-_Idea_: replace content of an object (picked i.e. fixed) by all arrows ending in
-this object. See \href{https://youtu.be/JH_Ou17_zyU?t=1h8m9s}{youtube}.
-It's content and properties.
-Set of Arrow from every possible Obj $X$ to the Obj $A$.
-
-How to map from an Obj $X$ to the Set of Arrows $X \rightarrow A$:
-1. for every Obj $A$ get a different functor $F: C \rightarrow Set$
-2. then vary the Obj $A$:
+It's content and properties. \\
+How to map from every possible obj $X_i \in \cat{C}$ to the set of arrows ending
+in $A$: $\{X_i \to A\}$: \\
+For every obj $A \in \cat{C}$ get a different functor $\Fun{F}_A: \cat{C} \to
+\SmSet$
 
 *** Yoneda Lemma
-_Idea_: Natural transformation and functor (i.e. Container) can replace each other
-$[C,Set](C(a,-), F) \simeq F a$   also: $[C,Set](C(a,-), C(b,-)) \simeq C(b,a)$
-- Description of integration over a special Ftor (i.e. Hom Functor)
+_Idea_: NaT and ftor (i.e. Container) can replace each other:
+$[\mathcal{C},\SmSet](\cat{C}(A,\minus), \Fun{F}) \iso \Fun{F}A$ \\
+also: $[\cat{C},\SmSet](\cat{C}(A,\minus), \cat{C}(B,\minus)) \iso \cat{C}(B,A)$ \\
+Description of integration over a special ftor, i.e. Hom functor.
 
-$a$ - some arbitrary Obj of C
-$F$ - some arbitrary Ftor acting on the Obj a
-$\simeq$ - "naturally isomorphic" (i.e. a NaT exists such that its components are
-all invertible isomorphisms)
+$A$ is some arbitrary obj of $\cat{C}$. \\
+$F$ is some arbitrary ftor acting on the obj $A$. \\
+$\iso$ - "naturally isomorphic", i.e. a NaT exists such that its components are
+all invertible isomorphisms. \\
+\\
+Hom functors intuition: Serve for the same purposes as Free monoids. \\
+\\
+It's enough to define this NaT on one obj, i.e. set $\cat{C}(A,A)$ and moreover
+it's enough to define it on one point in this set i.e. the $\id_A$. The rest of
+the NaT is transported from this point.
 
-Hom functors - Intuition:
-- Serve for the same purposes as Free Monoids
-
-It's enough to define this NaT on one Obj (i.e. set C(a,a)) and moreover
-it's enough to define it on one Point in this Set i.e. the Identity on Obj a.
-The rest of the NaT is transported from this Point.
-```
- (                     ) \simeq F a
-           ⎜                ⎜
-           ⎜                +-- Container of the Obj a (i.e. the data structure)
+\begin{verbatim}
+ (                     ) \iso \Fun{F}A
+           |⎜                |⎜
+           |⎜                +-- Container of the obj a (i.e. the data structure)
            +------------------- Polymorphic higher order Function
 
- (\forall x : (a \rightarrow x) \rightarrow F x) \simeq F a
-           ⎜    ⎜  ⎜      ⎜
-           ⎜    ⎜  ⎜      +--- Container of the Obj a (i.e data structure)
-           ⎜    ⎜  +---------- Functor
-           ⎜    +------------- NaT i.e. Polymorphic Higher Order Function
+ (\forall X : (A \to X) \to \Fun{F}X) \iso \Fun{F}A
+           |⎜    |⎜  |⎜      |⎜
+           |⎜    |⎜  |⎜      +--- Container of the obj $A$, i.e data structure
+           |⎜    |⎜  +---------- Functor
+           |⎜    +------------- NaT i.e. Polymorphic Higher Order Function
            +------------------ ...
-```
+\end{verbatim}
 
 *** Khan Extentions: the next abstraction level
 
@@ -384,7 +387,7 @@ to Function type
 *** Adjointness: constructing / generating principle
 - Adjunctions/Adjoins are monads ???
 examples:
-- product is left adjoint to exponential: $(-) \cross A \ladj (-)^A$
+- product is left adjoint to exponential: $(\minus) \cross A \ladj (\minus)^A$
 - left adjointness of sum (coproduct), pairing and product: $\Sigma \ladj \Delta \ladj \Pi$
 induction, recursion, Natural Numbers (inductively defined), Lists, ...
 conjunction, disjunction, True, False, Exponentiation
@@ -396,8 +399,8 @@ Quantifiers: $\forall$ Every, $\exists$ Exists; $\Sigma$ Sigma, $\Pi$ Pi
 I'm interested only if it was an even or odd value
 
 *** Modeling: mapping / injecting
-HomSet: $HomC(A,B) = \{f: A \rightarrow B\}$
-- Set of all morphisms $A \rightarrow B$ in a category $\cat{C}$. Objs of
+HomSet: $HomC(A,B) = \{f: A \to B\}$
+- Set of all morphisms $A \to B$ in the category $\cat{C}$. Objs of
   $\cat{C}$ don't need to be sets.
 - A collection of two monoids $A$,$B$ (The identity on an object is its monoidal
   operation) with a set of compatible transitions between them.
@@ -407,49 +410,59 @@ External vs. Internal Homset
 *** Free Monoid: has a unique mapping to every other monoid
 A list of accumulated vals
 
-*** HomFunctor: Functor to category of Sets
+*** Hom functor: Functor to category of Sets
 Has a NaT to every other functor. This NaT is not unique but limited
 Reader functor in Haskell
 
-*** Covariant functor: Hom(A,–) : C \rightarrow Set
-$\Fun{F} f :: (a \rightarrow b) \rightarrow (\Fun{F} a \rightarrow \Fun{F} b)$ -
+*** Covariant Hom functor
+$\Hom(A,\minus) : \cat{C} \to \SmSet$ \\
+$\Fun{F} f :: (a \to b) \to (\Fun{F} a \to \Fun{F} b)$ -
 same directions in src and dst Category \\
-$Hom(A,–)$ maps each object X in $\cat{C}$ to the set of morphisms $Hom(A, X)$ \\
-$Hom(A,–)$ maps each morphism $f : X \rightarrow Y$ to the function \\
-$Hom(A, f) : Hom(A, X) \rightarrow Hom(A, Y)$ given by
+$\Hom(A,\minus)$ maps each object X in $\cat{C}$ to the set of morphisms $\Hom(A,X)$ \\
+$\Hom(A,\minus)$ maps each morphism $f : X \to Y$ to the function \\
+$\Hom(A,f) : \Hom(A,X) \to \Hom(A,Y)$ given by
 
-*** Contravariant functor: Hom(–,B) : C-op \rightarrow Set
-$\Fun{F} f :: (a \rightarrow b) \rightarrow (\Fun{F} b \rightarrow \Fun{F} a)$ -
-Reverse directions in src and dst Category \\
-$Hom(–,B)$ maps each obj $X \in \cat{C}$ to the set of morphisms $Hom(X, B)$ \\
-$Hom(–,B)$ maps each morphism $h : X \rightarrow Y$ to the function \\
-$Hom(h, B) : Hom(Y, B) \rightarrow Hom(X, B)$ given by \\
+*** Contravariant Hom functor
+$\Hom(\minus,B) : \cat{C}\op \to Set$ \\
+Reverse directions in src and dst Category
 
-*** Representable Functor F: C \rightarrow Set is naturally isomorphic to HomC(A,-) for some object A of C
+Haskell type signature:
+#+BEGIN_SRC haskell
+F f :: (a \to b) \to (F b \to F a)
+#+END_SRC
+
+$\Hom(\minus,B)$ maps each obj $X \in \cat{C}$ to the set of morphisms $\Hom(X,B)$ \\
+$\Hom(\minus,B)$ maps each morphism $h : X \to Y$ to the function \\
+$\Hom(h,B) : \Hom(Y,B) \to \Hom(X,B)$ given by \\
+
+*** Representable functor
+$\Fun{F}: \cat{C} \to \SmSet$ is naturally isomorphic to $HomC(A,\minus)$ for some
+object $A$ of $\cat{C}$
+
 Represents: \\
-- obj of $\cat{C}$ as sets \\
-- morphisms of $\cat{C}$ as morphisms between sets. \\
-i.e. functions "tabulate", "index" can be created; mapping of function to a data-type
+- Objs of $\cat{C}$ as sets
+- Morphisms of $\cat{C}$ as morphisms between sets, i.e. the functions
+  "tabulate" and "index" can be created; mapping of function to a data-type
 
 Functors as representations (Lawvere): \\
-Think of a functor $\Fun{F}: \cat{C} \rightarrow \cat{D}$ as giving a picture,
+Think of a functor $\Fun{F}: \cat{C} \to \cat{D}$ as giving a picture,
 or "representation", of $\cat{C}$ in $\cat{D}$.
 
 Following Lawvere, logicians often call the category ‘theory’, and the functor
-$\Fun{F} : C \rightarrow D$ a "model" of this theory.
+$\Fun{F} : C \to D$ a "model" of this theory.
 
 (TODO see Bartosz's intuition about functors in the "Programming with Categories" videos)
 
-For any fix obj $A \in \cat{C}$, we have a $HomC(A,-)$ such that we have a
-mapping $HomC(A,X) \rightarrow HomC(A, Y)$ when there is a morphism $X
-\rightarrow Y$. E.g.: The forgetful functor $\Cat{Grp} \rightarrow \Set$ on the
+For any fix obj $A \in \cat{C}$, we have a $HomC(A,\minus)$ such that we have a
+mapping $HomC(A,X) \to HomC(A, Y)$ when there is a morphism $X
+\to Y$. E.g.: The forgetful functor $\Cat{Grp} \to \Set$ on the
 category of groups $(G, *, e)$ is represented by $(Z, 1)$.
 
-The forgetful functor $\Cat{Ring} \rightarrow \Cat{Set}$ on the category of rings is represented by
+The forgetful functor $\Cat{Ring} \to \Cat{Set}$ on the category of rings is represented by
 $(Z[x], x)$, the polynomial ring in one variable with integer coefficients.
-The forgetful functor $\Cat{Vect} \rightarrow \Cat{Set}$ on the category of real vector spaces is
+The forgetful functor $\Cat{Vect} \to \Cat{Set}$ on the category of real vector spaces is
 represented by $(R, 1)$.
-The forgetful functor $\Cat{Top} \rightarrow \Cat{Set}$ on the category of topological spaces is
+The forgetful functor $\Cat{Top} \to \Cat{Set}$ on the category of topological spaces is
 represented by any singleton topological space with its unique $e$.
 
 *** Homomorphism: structure-preserving mapping between 2 algebraic structures
@@ -458,20 +471,37 @@ Individual monoids themselves give category
 Monoids with homomorphisms give category
 
 *** Kleisli category
-Monad: return: $a \rightarrow m a$; bind: $m a \rightarrow (a \rightarrow m b) \rightarrow m b$ \\
+Monad - Haskell type signature:
+#+BEGIN_SRC haskell
+return: a -> m a
+bind: m a -> (a -> m b) -> m b
+#+END_SRC
+
 You can operate on IO Monad \\
 You can't extract anything from IO Monad (it's lost) \\
 Monoind in Category of Endofunctors \\
-Comonad: $(w a \rightarrow b) \rightarrow (w b \rightarrow c) \rightarrow (w a \rightarrow c)$ \\
+
+Comonad - Haskell type signature:
+#+BEGIN_SRC haskell
+(w a -> b) -> (w b -> c) -> (w a -> c)
+#+END_SRC
+
 You can extract from IO Monad \\
 You can't put anything to IO Monad
 
-*** Indexed Monad: IxMonad: ibind: m i j a \rightarrow (a \rightarrow m j k b) \rightarrow m i k b
-state composition
+*** Indexed Monad
+IxMonad - Haskell type signature:
+#+BEGIN_SRC haskell
+ibind: m i j a -> (a -> m j k b) -> m i k b
+#+END_SRC
+
+state composition \\
 Session Types, Dependent Types, Dependent State Types
 
-*** Curry-Howard-Lambek correspondence: Intuitionistic Logic \leftarrowrightarrow Type Theory \leftarrowrightarrow Category Theory:
-Function $A \rightarrow B$ is a proof of logical implication $A => B$ \\
+*** Curry-Howard-Lambek correspondence:
+Intuitionistic Logic \leftarrowrightarrow Type Theory \leftarrowrightarrow Category Theory \\
+
+Function $A \to B$ is a proof of logical implication $A \imp B$ \\
 Direct relationship between computer programs and mathematical proofs; from 1940-ties \\
 Link between Computation and Logic; \\
 Proofs-as-programs and propositions- or formulae-as-types interpretation; \\
@@ -481,35 +511,35 @@ Curry-Howard-Lambek correspondence might lead to unification between mathematica
 Popular approach: use monads to segregate provably terminating from potentially non-terminating code \\
 Alternative: $P$ or $Q$ - "doesn't really matter what which one it is as long as at least one works"
 
-| INTUITIONISTIC (Constructive) LOGIC                  | TYPE THEORY - Functional Programming                                          | CATEGORY THEORY |
-| Howard                                               | Curry                                                                         | Lambek          |
-|------------------------------------------------------+-------------------------------------------------------------------------------+-----------------|
-| Proposition of some type - (something is true)       | Type (contract - a set of values that passes the contract)                    |                 |
-| Proof of some type                                   | Term (A program - guarded fn)                                                 |                 |
-| Normalisation (Proof equality)                       | Computation (substitute variable with value)                                  |                 |
-|                                                      |                                                                               |                 |
-| P implies Q: P \rightarrow Q (i.e. there exists one) | paricular fn of fn of P-contract to guarded fn of Q-contract: P \rightarrow Q | Exponential     |
-| \rightarrow is constructive implication              | \rightarrow is function from-to                                               |                 |
-| false      \rightarrow false (implies)               | {}       \rightarrow  {}  no values (empty set); contract cannot be satisfied |                 |
-| false      \rightarrow true                          | {}       \rightarrow  {.} (one element set)                                   |                 |
-| true       \rightarrow true                          | {.}      \rightarrow  {.} (identity function)                                 |                 |
-| true  (not \rightarrow) false (does not imply)       | {.} (not \rightarrow) {}                                                      |                 |
-| Conjunction - and: P ⋀ Q                             | Pair (P, Q)     (proof-of-P, proof-of-Q)                                      | Product         |
-| Alternative - or: P ⋁ Q                              | Union of (different) proofs P, Q                                              | Sum             |
+| INTUITIONISTIC (Constructive) LOGIC            | TYPE THEORY - Functional Programming                                  | CATEGORY THEORY |
+| Howard                                         | Curry                                                                 | Lambek          |
+|------------------------------------------------+-----------------------------------------------------------------------+-----------------|
+| Proposition of some type - (something is true) | Type (contract - a set of values that passes the contract)            |                 |
+| Proof of some type                             | Term (A program - guarded fn)                                         |                 |
+| Normalisation (Proof equality)                 | Computation (substitute variable with value)                          |                 |
+|                                                |                                                                       |                 |
+| P implies Q: P \to Q (i.e. there exists one)   | paricular fn of fn of P-contract to guarded fn of Q-contract: P \to Q | Exponential     |
+| \to is constructive implication                | \to is function from-to                                               |                 |
+| false      \to false (implies)                 | {}       \to  {}  no values (empty set); contract cannot be satisfied |                 |
+| false      \to true                            | {}       \to  {.} (one element set)                                   |                 |
+| true       \to true                            | {.}      \to  {.} (identity function)                                 |                 |
+| true  (not \to) false (does not imply)         | {.} (not \to) {}                                                      |                 |
+| Conjunction - and: P ⋀ Q                       | Pair (P, Q)     (proof-of-P, proof-of-Q)                              | Product         |
+| Alternative - or: P ⋁ Q                        | Union of (different) proofs P, Q                                      | Sum             |
 
 
 ** Correspondance of type habitation and proposition
 inhabited - has elems / members
 "Either a b" is inhabited if either a or b is inhabited (at least one of them is true / provable)
 
-Curry: ((a,b) \rightarrow c) \rightarrow (a \rightarrow (b \rightarrow c))
-Uncurry: (a \rightarrow (b \rightarrow c)) \rightarrow ((a,b) \rightarrow c)
+Curry: ((a,b) \to c) \to (a \to (b \to c))
+Uncurry: (a \to (b \to c)) \to ((a,b) \to c)
 
 Eval: a function of two args / a pair
-$((a => b), a) \rightarrow b$ this is modus-ponens in logic $(a => b) ∧ a \rightarrow b$
+$((a => b), a) \to b$ this is modus-ponens in logic $(a => b) ∧ a \to b$
 
 | True proposition        | False proposition      | Conjunction $a ∧ b$              | Disjunction $a ∨ b$           | Implication $a => b$            |
-| Unit-type               | Void-type              | Pair $(a,b)$                     | Either $a$ or $b$             | Function type $a \rightarrow b$ |
+| Unit-type               | Void-type              | Pair $(a,b)$                     | Either $a$ or $b$             | Function type $a \to b$ |
 | sinhabited              | not inhabited          |                                  |                               |                                 |
 | Terminal obj $\termObj$ | Initial obj $\initObj$ | Categorical product $a \times b$ | Categorical coproduct $a ⎥ b$ | Exponential obj $b^a$           |
 
@@ -556,7 +586,7 @@ Objects   - numbers
 Morphisms - functions 'less/greater or equal than'
 
 *** Isomorphism (bijection when f is a function on set / sets):
-\forall f: X \rightarrow Y there \exists g: Y \rightarrow X such that $g \after
+\forall f: X \to Y there \exists g: Y \to X such that $g \after
 f = id_X$ and $f \after g = id_Y$ where $id_X$, $id_Y$ are identity morphisms on
 $X$, $Y$, i.e. $f$ is invertible and $g$ is the inverse of $f$.
 
@@ -586,7 +616,7 @@ Designing computer language - Semantics must be provided; done by providing oper
 Programming - understanding the meaning i.e. semantics: what does it mean (+ 1 2)
 None of the main prog. languages have (operational semantics) only partially provided.
 ** Operational semantics: "if state === stateX then state = stateY"
-"How it executes"; reduction relation: $e1 \rightarrow e2$
+"How it executes"; reduction relation: $e1 \to e2$
 for computers: local, progress oriented
 Mind machine: We keep on imagining the if-then-else steps.
 This is bad way - computers are much better at it.
@@ -624,7 +654,7 @@ type-constructor. I.e. they're basically constructed "the same way"
 if x and y are definitionally equal then an associated propositionally equal
 element can be deduced from this.
 *** Theorem
-- for every function f there is a function $ap-f: (x = y) \rightarrow (f(x) = f(y))$
+- for every function f there is a function $ap-f: (x = y) \to (f(x) = f(y))$
 - from (an element of the type) $(x = y)$ the $ap-f$ is going to construct
 (an element of the type) $(f(x) = f(y))$
 - in logic the funtion ap-f corresponds to an implication. In generall in the
@@ -632,7 +662,7 @@ type theory a funtion is nothing else than an implication
 *** Classical logic and type theory correspondence
 Type theory searches for construction of a type-dependent function f (or z) ...:
 | classical logic              | type theory            | notation                   |
-| \foralln\forallm (n+m = m+n) | f:(n,m) \rightarrow (n+m = m+n) | f: Π n:ℕ Π m:ℕ (n+m = m+n) |
+| \foralln\forallm (n+m = m+n) | f:(n,m) \to (n+m = m+n) | f: Π n:ℕ Π m:ℕ (n+m = m+n) |
 | \existsn\forallm (n+m = m)   |                        | z: Σ n:ℕ Π m:ℕ (n+m = m)   |
 |                              |                        |                            |
 
@@ -644,7 +674,7 @@ Composition: "this-fn after that-fn"
 No deeper specification of what the funtions and objects are
 Mapping between CT and FP:
 
-* Views \rightarrow Change of perspective
+* Views \to Change of perspective
 ** Set-theoretical: props of sets defined by elems of sets
 ** Categorical: Shrink the set to a point "I can't look at the structure of a set"
 Describe different kinds of sets by their interraction with other sets i.e. by arrows.
@@ -659,28 +689,28 @@ initial obj: Univ prop: unique(1.) arrow to every(2.) single other obj
 (corresponds to falsehood in logic)
 ** intro: can't be constructed (can't construct a fn returning an elem of empty set)
 ??? Identity fn on void ???
-** elim: Void \rightarrow A (arrow from; polymorphic fn - works for any type)
+** elim: Void \to A (arrow from; polymorphic fn - works for any type)
 
 * Unit (one-elem set): univ prop: terminal obj (opposite i.e. dual to init-obj); Duality - invert the arrows and you get something for free
-** intro: A \rightarrow Unit (fn: just ignore the fn input)
-** elim: Unit \rightarrow A (fn: pick one elem of a type i.e. set; some sort of "cheating" - instead of an elem we pick a morphism)
+** intro: A \to Unit (fn: just ignore the fn input)
+** elim: Unit \to A (fn: pick one elem of a type i.e. set; some sort of "cheating" - instead of an elem we pick a morphism)
 
 * Cartesian(?) Product
 - https://youtu.be/8AGWTWVOJ74?t=1329
   "I have one thing, I have another thing and now I have two things"
 - set of all pairs: UP (universal construction) - best product triangle: for all
-other types there's the unique arrow projections: $f: C \rightarrow A$, $g: C \rightarrow B$
+other types there's the unique arrow projections: $f: C \to A$, $g: C \to B$
 - tuple (pair aka record) is better than tripple ??? loop-over-all-types: for each of
 all possible types: 38:20
-** intro: $A \rightarrow B \rightarrow (A,B) tupple$
-** elim: $(A,B) \rightarrow A, (A,B) \rightarrow B$
+** intro: $A \to B \to (A,B) tupple$
+** elim: $(A,B) \to A, (A,B) \to B$
 
 * Relation
 A subset of a Cartesian Product; doesn't have a directionality; n-to-n relation
 
 * Sum type (dual to product - coproduct)
-** intro: A \rightarrow either A or B, B \rightarrow either A or B
-** elim: case e of: left a \rightarrow f a, right b \rightarrow f b
+** intro: A \to either A or B, B \to either A or B
+** elim: case e of: left a \to f a, right b \to f b
 ** in functional programming - tagged unions
 
 * Monoidal Cat (objs, arrows, prods)
@@ -689,7 +719,7 @@ Algebra of types ...
 
 * Functor
 Structure preserving mapping between Cats (objs to objs, fns to fns): i.e. if
-there's an arrow A \rightarrow B, then there must be arrow F(A) \rightarrow F(B)
+there's an arrow A \to B, then there must be arrow F(A) \to F(B)
 May collapse things, preserves unit obj and composition
 
 ** Endofunctor
@@ -744,10 +774,10 @@ C_2 = GD_2 \arrow[rrr, "F_2"', bend left] \arrow["Id_{C_2}"', loop, distance=2em
 *** left side: prepare an argument for some function using functor F
 *** right side: modifying the output of some function using functor G
 F A === (A, C)   ftor F acts on A and creates a pair type (A, C)
-G B === C \rightarrow B   ftor G acts on B and creates a function type from C to B
+G B === C \to B   ftor G acts on B and creates a function type from C to B
 
 Currying arrises from an Adjunction:
-(A, C) \rightarrow B is isomorphic (i.e. equivalent) to A \rightarrow (C \rightarrow B)
+(A, C) \to B is isomorphic (i.e. equivalent) to A \to (C \to B)
 
 If you have a pairing (product) and if you have such an adjunction in your Cat
 then you are able to define a function type (en exponential).
