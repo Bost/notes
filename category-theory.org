@@ -879,12 +879,14 @@ Adjunction between a Product and a Function Type is Currying
 
 Product generalization: Tensor Product in a monoidal category
 
-There are many generalizations. If you get rid of the idea of having distinct
-objects you get a monoid. If you get rid of the idea of composition/identity
-being always defined you get a paracategory. If you generalize composition as in
-"many morphisms can be composed together" you get an operad. If you get rid of
-the idea of composition/identity laws having to hold with equality you get
-higher categories.
+* Generalizations
+Get rid of:
+- distinct objects you get a monoid.
+- composition/identity being always defined you get a paracategory. If you
+  generalize composition as in "many morphisms can be composed together" you get
+  an operad.
+- idea of composition/identity laws having to hold with equality you get higher
+  categories.
 
 * Category theory - definition dependencies
 Based on definitions in The Joy of Cats.
