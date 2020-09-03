@@ -215,10 +215,15 @@ product of primes. \\
     Difference                     \> $P(B - A) = P(B) - P(A \cap B)$                \\
     Inclusion-Exclusion            \> $P(A \cup B) = P(A) + P(B) - P(A \cap B)$      \\
     Boole’s Inequality             \> $P(A \cup B) \Leftarrow P(A) + P(B)$           \\
-    Monotonicity                   \> If $A \subseteq B$ then $P(A) \Leftarrow P(B)$ \\
+    Monotonicity                   \> If $A \subseteq B$ then $P(A) \Leftarrow P(B)$
 \end{tabbing}
 
-** Ordinary conditional probability $P(A \mid B) = P(A \cap B) / P(B)$
+** Ordinary conditional probability
+$$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$
+
+See \href{https://youtu.be/M8xlOm2wPAA}{Bayes' Theorem applied to disease diagnosis}
+on YouTube.
+
 \begin{table}[H]
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
@@ -251,21 +256,23 @@ really-h      & 0.9         & test-h  & 0.7     & 0.63                          
   ;;    +-- healthy 0.9 --+
   ;;                      |
   ;;                      +-- test negative 0.7: 0.9 * 0.7 = 0.63
-  ;; test is negative i.e. says "you're healthy" and the patient is really
+  ;; test negative, i.e. says "you're healthy" and the patient is really
   ;; ill (has the condition)
   (/ 0.01 (+ 0.01 0.63)) = 0.015625
-  ;; test is positive i.e. says "you're ill" and the patient is really ill (has
+  ;; test positive, i.e. says "you're ill" and the patient is really ill (has
   ;; the condition)
   (/ 0.09 (+ 0.09 0.27)) = 0.25
-  ;; test is negative i.e. says "you're healthy" and the patient is really
-  ;; health (doesn't have the condition)y
+  ;; test negative, i.e. says "you're healthy" and the patient is really
+  ;; health (doesn't have the condition)
   (/ 0.63 (+ 0.01 0.63)) = 0.984375
-  ;; test is posivite i.e. says "you're ill" and the patient is really
+  ;; test posivite, i.e. says "you're ill" and the patient is really
   ;; healthy (doesn't have the condition)
   (/ 0.27 (+ 0.09 0.27)) = 0.75
 #+END_SRC
+
 ** A posteriori conditional probability
-$$P(B \mid A) = P(A \cap B) / P(B)$$
+$$P(B \mid A) = \frac{P(A \cap B)}{P(B)}$$
+
 If event $B$ precedes event $A$ in time. \\
 Example: The probability it was cloudy this morning, given that it rained in the
 afternoon.
