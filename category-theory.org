@@ -179,12 +179,13 @@ iterated product)
 
 ** Morphisms and Mappings
 Mapping or morphism of $X$ to/on $Y$: $X \to Y$:
-| Latin      | Greek / morphisms  | Meaning                          | Functor  |
-|------------+--------------------+----------------------------------+----------|
-| surjective | epic / epi   \surj | all $Ys$ are used                | Full     |
-| injective  | monic / mono \inj  | distinct $Xs \to$ distinct $Ys$  | Faithful |
-| bijective  | epi and mono \bij  | exact pairing between $X, Y$     |          |
-| strict     |                    | $X \surj Y$ but not $Y \inj X$   |          |
+| Latin      | Greek / morphisms  | Meaning                         | Functor               |
+|------------+--------------------+---------------------------------+-----------------------|
+| surjective | epic / epi   \surj | all $Ys$ are used               | Full                  |
+| injective  | monic / mono \inj  | distinct $Xs \to$ distinct $Ys$ | Faithful              |
+| bijective  | epi and mono \bij  | exact pairing between $X, Y$    |                       |
+| strict     |                    | $X \surj Y$ but not $Y \inj X$  |                       |
+|            |                    |                                 | Faithful but not Full |
 
 Also:
 | Morphism   | Size relation          | Meaning                       | Reading                                 |
@@ -529,10 +530,22 @@ The forgetful functor $\Cat{Top} \to \Cat{Set}$ on the category of topological s
 represented by any singleton topological space with its unique $e$.
 
 ** Kleisli category
-Monad - Haskell type signature:
+
+- embellishment of functions. Embellishment is a monad.
+- naturally associated to any monad T
+- equivalent to a the category of free T-Algebras
+
+** Monads
+
+Type signature of Monad-?functions? in Haskell:
 #+BEGIN_SRC haskell
-return: a -> m a
-bind: m a -> (a -> m b) -> m b
+  return :: a -> m a
+  bind :: m a -> (a -> m b) -> m b
+  -- In Haskell monad is defined on sets therefore the type signature of bind is ???
+  join :: m (m a) -> m b
+  fmap :: (a -> b) -> m a -> m b
+  bind f m  = join (fmap f m)
+  -- and
 #+END_SRC
 
 You can operate on IO Monad \\
@@ -556,7 +569,7 @@ ibind: m i j a -> (a -> m j k b) -> m i k b
 state composition \\
 Session Types, Dependent Types, Dependent State Types
 
-* Curry-Howard-Lambek correspondence:
+* Curry-Howard-Lambek correspondence
 Intuitionistic Logic $\bij$ Type Theory $\bij$ Category Theory
 
 \bigskip
@@ -571,21 +584,23 @@ Curry-Howard-Lambek correspondence might lead to unification between mathematica
 Popular approach: use monads to segregate provably terminating from potentially non-terminating code \\
 Alternative: $P$ or $Q$ - "doesn't really matter what which one it is as long as at least one works"
 
-| INTUITIONISTIC (Constructive) LOGIC            | TYPE THEORY - Functional Programming                                  | CATEGORY THEORY |
-| Howard                                         | Curry                                                                 | Lambek          |
-|------------------------------------------------+-----------------------------------------------------------------------+-----------------|
-| Proposition of some type - (something is true) | Type (contract - a set of values that passes the contract)            |                 |
-| Proof of some type                             | Term (A program - guarded fn)                                         |                 |
-| Normalisation (Proof equality)                 | Computation (substitute variable with value)                          |                 |
-|                                                |                                                                       |                 |
-| P implies Q: P \to Q (i.e. there exists one)   | paricular fn of fn of P-contract to guarded fn of Q-contract: P \to Q | Exponential     |
-| \to is constructive implication                | \to is function from-to                                               |                 |
-| false      \to false (implies)                 | {}       \to  {}  no values (empty set); contract cannot be satisfied |                 |
-| false      \to true                            | {}       \to  {.} (one element set)                                   |                 |
-| true       \to true                            | {.}      \to  {.} (identity function)                                 |                 |
-| true  (not \to) false (does not imply)         | {.} (not \to) {}                                                      |                 |
-| Conjunction - and: P \land Q                   | Pair (P, Q)     (proof-of-P, proof-of-Q)                              | Product         |
-| Alternative - or: P \lor Q                     | Union of (different) proofs P, Q                                      | Sum             |
+| INTUITIONISTIC (Constructive) LOGIC            | TYPE THEORY - Functional Programming                                                              | CATEGORY THEORY |
+| Howard                                         | Curry                                                                                             | Jim Lambek      |
+|------------------------------------------------+---------------------------------------------------------------------------------------------------+-----------------|
+| Proposition of some type - (something is true) | Type (contract - a set of values that passes the contract)                                        | Objects         |
+| Proof of some type                             | Term (A program - guarded fn)                                                                     | Morphisms       |
+| Normalisation (Proof equality)                 | Computation (substitute variable with value)                                                      |                 |
+|                                                |                                                                                                   |                 |
+| P implies Q: $P \to Q$ (i.e. there exists one) | particular fn of fn of P-contract to guarded fn of Q-contract: $P \to Q$, i.e. the $\lambda$ type | Exponential     |
+|------------------------------------------------+---------------------------------------------------------------------------------------------------+-----------------|
+| $\to$ is constructive implication              | \to is function from-to                                                                           |                 |
+| $false      \to false$ (implies)               | {}       \to  {}  no values (empty set); contract cannot be satisfied                             |                 |
+| $false      \to true$                          | {}       \to  {.} (one element set)                                                               |                 |
+| $true       \to true$                          | {.}      \to  {.} (identity function)                                                             |                 |
+|------------------------------------------------+---------------------------------------------------------------------------------------------------+-----------------|
+| true  (not \to) false (does not imply)         | {.} (not \to) {}                                                                                  |                 |
+| Conjunction - and: P \land Q                   | Pair (P, Q)     (proof-of-P, proof-of-Q)                                                          | Product         |
+| Alternative - or: P \lor Q                     | Union of (different) proofs P, Q                                                                  | Sum             |
 
 
 ** Correspondance of type habitation and proposition
@@ -814,7 +829,7 @@ an adjunction of two endofunctors. \\
 \begin{tikzcd}
 A \arrow[rr, "F"', bend left] \arrow[d, "\bar{g}"', dotted] \arrow[dd, "G(q) \circ \bar{g}"', dotted, bend right=60] &  & F(A) \arrow[d, "g", dotted] \arrow[dd, "q \circ g", dotted, bend left=60] \arrow[ll, "G"', bend left] \\
 G(B) \arrow[d, "G(q)"', dotted] \arrow[rr, "F"', bend left]                                                          &  & B \arrow[d, "q", dotted] \arrow[ll, "G"', bend left]                                                  \\
-G(B') \arrow[rr, "F"', bend left]                                                                                    &  & B' \arrow[ll, "G"', bend left]                                                                       
+G(B') \arrow[rr, "F"', bend left]                                                                                    &  & B' \arrow[ll, "G"', bend left]
 \end{tikzcd}
 \end{center}
 
@@ -834,7 +849,7 @@ top to the bottom, functor components $F_1$, $G_2$ are drawn clockwise.
 \begin{tikzcd}
 C_1= GD_1 \arrow[rrr, "F_1"', bend left] \arrow[dd, "m_C = Gn_D"', dotted] \arrow["Id_{C_1}"', dotted, loop, distance=2em, in=125, out=55] &  &  & D_1 = FC_1 \arrow[dd, "n_D = Fm_C", dotted] \arrow[lll, "G_1"', bend left] \arrow["Id_{D_1}"', dotted, loop, distance=2em, in=125, out=55] \\
                                                                                                                                            &  &  &                                                                                                                                            \\
-C_2 = GD_2 \arrow[rrr, "F_2"', bend left] \arrow["Id_{C_2}"', dotted, loop, distance=2em, in=305, out=235]                                 &  &  & D_2 = FC_2 \arrow[lll, "G_2"', bend left] \arrow["Id_{D_2}"', dotted, loop, distance=2em, in=305, out=235]                                
+C_2 = GD_2 \arrow[rrr, "F_2"', bend left] \arrow["Id_{C_2}"', dotted, loop, distance=2em, in=305, out=235]                                 &  &  & D_2 = FC_2 \arrow[lll, "G_2"', bend left] \arrow["Id_{D_2}"', dotted, loop, distance=2em, in=305, out=235]
 \end{tikzcd}
 \end{center}
 
@@ -928,3 +943,14 @@ X \arrow[rrrr, "f"] & {} \arrow[rrddddd, "H", dotted] & {} \arrow[rdddd, "G", do
                     &                                 & H(X) \arrow[rrr, "H(f)"']                                                                                                     & {}                          & {} \arrow[rrrruu, "H'"', dotted] & H(Y)                                    &  &                                                                                                                                         &    &  &
 \end{tikzcd}
 \end{center}
+
+
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAhAAgB0e8AtvC4cQAX1LpMufIRTlSxanSat2oiVOx4CRAEyLlDFm0SdxkkBm2yiZPUdWnzmq9J1ySpAMyOT7AEELLRldFDIAVj81MwDefiwhOC4g12tQzwUAFmjnVMt0j31SHJpjGJB8kKKUA18yp3Zgtxsw5AV6lX8zcWUYKABzeCJQADMAJwgBJCyaHAgkCJpGLDBnKHo4AAt+kAbukD4YAA8sOBw4AEIAfSqQCamkbzmFxAUQFbX2De3d-YqjqdzldrqIaDt6FAkGBmIxGHN6FhGOxIF9XA9pm8XkgDB9Vs44BAVlDwTBIdDYfCQDhEcizKi2P9nHw0FhrsA9KCxM0MUh3vMkGQ8V8zITiXsQBCoYgYXCEUiUQRGV0ATxWeziFyJYx6AAjGCMAAK7lsZnGWAGWxwPMmmNm1NezxVzlG2r1BuNrTkIFW2FgNseiAAbNjEELyi63fqjSawh8YKNrejbUgAOyh3ER9iu5bumNe9jmy1Jyy84Oh+2fdYQZi6xjKqWKr7yungJUBu2h9PC6u1+sSxv09stptsZOBpYOtNM9gstkc27c3PRz0ZQsWq0dxahkPO2dq+eagLc8eYp0CsPLfHfGt1htk6Vt5vU2mjreIc+vXFVm99+-kodnxpBVALHUsU0Qe0LwADivEUQCgW9+1JACn2VYDWwZCVtiwRMkAAWgATlPGZQ0IuDezvAcHzfEdQOwrZcOtRBiMoMQgA
+\begin{tikzcd}
+                                                   & B \times B \arrow[rd, "\pi_{2_B}"] \arrow[ld, "\pi_{1_B}"']                                                                                                                              &                     \\
+B                                                  &                                                                                                                                                                                          & B                   \\
+                                                   & B \arrow[uu, "\exists!_B", dashed] \arrow[lu, no head, Rightarrow] \arrow[ru, no head, Rightarrow]                                                                                       &                     \\
+{}                                                 & A \arrow[dd, "\exists!_A", dashed] \arrow[u, "f" description] \arrow[rd, no head, Rightarrow] \arrow[r, no head, Rightarrow, shift left=9] \arrow[l, no head, Rightarrow, shift right=9] & {}                  \\
+A \arrow[uuu, "f"] \arrow[ru, no head, Rightarrow] &                                                                                                                                                                                          & A \arrow[uuu, "f"'] \\
+                                                   & A \times A \arrow[ru, "\pi_{2_A}"'] \arrow[lu, "\pi_{1_A}"]                                                                                                                              &
+\end{tikzcd}
