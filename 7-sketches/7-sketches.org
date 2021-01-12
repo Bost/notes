@@ -369,18 +369,16 @@ associativity.
 
 \bigskip
 
-_Symmetric Monoidal Category SMC_ $(\cat{C}, \otimes, I)$: \\
-SMC is equipped with a symmetric monoidal structure (SMS). SMS consists of:
-- Category $\cat{C}$
-- Functor for monoidal product $\otimes: \cat{C} \times \cat{C}
-  \to \cat{C}$
-- Functor I: $\Cat{1} \to \cat{C}$ i.e. an object $I \in \Ob(\cat{C})$
+_Symmetric Monoidal Category SMC_ $(\cat{C}, \tensor, I)$: \\
+SMC is a Symmetric Monoidal Structure on a category $\cat{C}$ equipped with:
+- Monoidal unit object $I \in \Ob(\cat{C})$.
+- Monoidal product functor $\tensor: \cat{C} \times \cat{C} \to \cat{C}$ called tensor.
 - Well-behaved natural isomorphism - $\forall c, d, e \in \Ob(\cat{C})$:
-  + Left unitor: $\lambda_c : I \otimes c \cong c$
-  + Right unitor: $\rho_c : c \otimes I \cong c$
-  + Associativity condition: $\alpha_{c,d,e} : (c \otimes d) \otimes e \cong c
-    \otimes (d \otimes e)$
-  + Symmetricity condition: swap map $\sigma_{c,d}: c \otimes d \cong d \otimes
+  + Left unitor: $\lambda_c : I \tensor c \cong c$
+  + Right unitor: $\rho_c : c \tensor I \cong c$
+  + Associativity condition: $\alpha_{c,d,e} : (c \tensor d) \tensor e \cong c
+    \tensor (d \tensor e)$
+  + Symmetricity condition: swap map $\sigma_{c,d}: c \tensor d \cong d \tensor
     c$ such that $\sigma \after \sigma = \id{}$
 
 \bigskip

@@ -243,6 +243,9 @@ _Functor_:
   hidden param propagation it's better to use comonad than monad), history,
   neighborhood etc.)
 - Endofunctor $[\cat{C},\cat{C}]$: is a functor that maps a category to itself
+  Sahil, 15:41 ACTE4, 12.01.2021: From Ancient Greek ἔνδον (éndon, “inner,
+  internal”). \href{https://youtu.be/FyoQjkwsy7o?t=2259}{Endofunctors &
+  Endoscopy}
 - Lifting: (= applying functor) transforms a function into a corresponding
   function within another (usually more general) setting
 
@@ -273,6 +276,10 @@ i.e. $G f : \cat{C^\op} \to \cat{D}$ respectively $Gf : \cat{C} \to \cat{D^\op}$
 - List: $List(\alpha) = Nil | Const \alpha (List \alpha)$ - most intuitive(?)
   functor example. It's also a type constructor: takes a type $\alpha$ and
   creates a list of $\alpha$.
+- Functoriality: A morphism is functorial, if it fulfills definition of a functor
+
+
+- Profunctor:
 
 Sum $\csum$ and Product $\cprod are algebraic data types (Algebra on Types): \\
 List(\alpha) = Nil | Const \alpha (List \alpha) ~ L(\alpha) = 1 + \alpha \cprod L(\alpha) => .. => L(\alpha) = 1 / (1 - \alpha) = 1 + \alpha + \alpha \cprod \alpha + \alpha \cprod \alpha \cprod \alpha + ...
@@ -531,21 +538,69 @@ represented by any singleton topological space with its unique $e$.
 
 ** Kleisli category
 
+- dependency of `negate` on `log` is like a long distance interaction in quantum
+  mechanics: changes to `log` have a "long distance" influence on the `negate`,
+  although `negate` just takes and returns a boolean value.
+
+#+BEGIN_SRC clojure
+  (def log (atom ""))
+  (defn negate
+    [x]
+    {:pre [(boolean? x)] :post [(boolean? ret-val)]}
+    (swap! log (fn [_] (str log "negate")))
+    (not x))
+#+END_SRC
+
 - embellishment of functions. Embellishment is a monad.
 - naturally associated to any monad T
 - equivalent to a the category of free T-Algebras
 
-** Monads
+** Monad
+- Monad is "just" a way of composing special type of functions
+- Monad is sort of dual to F-Algebra (sometimes called just Algebra):
+  Algebra takes a term and evaluates it
+  Monad can be used to create terms
+
+** Algebra and F-Algebra
+Intuition in programming: Algebra provides a way to combine elements inside a
+container. Algebra is defined for a specific type of elements.\\
+
+\\
+
+In Category Theory F-Algebra is a tuple $(\const{A}, \Fun{F})$ where:
+- $\Fun{F} : \cat{C} \to \cat{C}$ is an endofunctor in category $\cat{C}$.
+- $\const{A} \in \Ob{\cat{C}}$ is an object in $\cat{C}$
+
+\\
+
+
+F-Algebras satisfying coherence conditions for a monad:
+
+$\sigma \comp \eta_a = \id_a$ \\
+$\sigma \comp \mu_a = \sigma \comp T \sigma$
+
+are called Monad Algebras. And these Monad Algebras form Eilenberg-Moore category.
+
+\bigskip
+
+\\
+
+#+BEGIN_SRC haskell
+-- f is the endofunctor; t is the carrier type
+newtype Algebra f t = Algebra (f t -> t)
+sumAlg :: Algebra [] Int
+sumAlg = Algebra (foldr (+) 0)
+#+END_SRC
 
 Type signature of Monad-?functions? in Haskell:
 #+BEGIN_SRC haskell
-  return :: a -> m a
-  bind :: m a -> (a -> m b) -> m b
-  -- In Haskell monad is defined on sets therefore the type signature of bind is ???
-  join :: m (m a) -> m b
-  fmap :: (a -> b) -> m a -> m b
-  bind f m  = join (fmap f m)
-  -- and
+return :: a -> m a
+bind :: m a -> (a -> m b) -> m b
+-- In Haskell monad is defined on sets therefore the type signature of bind is ???
+join :: m (m a) -> m b
+fmap :: (a -> b) -> m a -> m b
+bind f m  = join (fmap f m)
+-- and
 #+END_SRC
 
 You can operate on IO Monad \\
@@ -712,63 +767,84 @@ programs can be translated to math - math is a better lang for humans
 ** Mathematical semantics: Functional Programming
 
 * HoTT: functions, types and proofs
-** A type it's about its construction
-*** A type consists of
-Constructor: how to create an element of this type
-Induction: how to use elements of this type
-*** It's an abstraction about a set of vals; it's about "what" (function declaration)
-For mathematicians Set Theory is a low level assembly lang of maths - recenty started to be avoided:
-*** Difference between a type and a set: https://youtu.be/ba4E6EMagj0?t=283
-A type provides tools for creation of funtions using this type. A set
-doesn't provide such tools. I.e. a type has more stucture than a set.
-** A (pure) function: mapping between sets
-It's about "how" (function body) - ? contrary of abstraction ?
 
-** A proof is an object to be constructed analogically as an object of a certain type
+A type is an abstraction about a set of vals; it's its construction, i.e. about
+"what" (function declaration). It consists of: \\
+Constructor: how to create an element of this type \\
+Induction: how to use elements of this type \\
+
+\\
+
+For mathematicians Set Theory is a low level assembly lang of maths - recenty started to be avoided. \\
+
+\\
+
+Difference between a type and a set - See \href{https://youtu.be/ba4E6EMagj0?t=283}{La théorie des types | Infini 24}: \\
+A type provides tools for creation of funtions using this type. A set doesn't
+provide such tools. I.e. a type has more stucture than a set.\\
+
+\\
+
+A (pure) function: mapping between sets. It's about "how" (function body) - ? contrary of abstraction ? \\
+
+
+A proof is an object to be constructed analogically as an object of a certain type. \\
 $x = y$ is an equality-type. To proove this equality means to create an
-object of the equality-type
-*** $x \equiv y$ definitional equality - does not correspond to a type
-x and y can constructed from the definition of their type using the
-type-constructor. I.e. they're basically constructed "the same way"
-*** $x = y$ propositional equality
+object of the equality-type \\
+
+\\
+
+$x \equiv y$ definitional equality - does not correspond to a type \\
+$x$ and $y$ can constructed from the definition of their type using the
+type-constructor. I.e. they're basically constructed "the same way" \\
+
+\\
+
+$x = y$ propositional equality \\
 if x and y are definitionally equal then an associated propositionally equal
-element can be deduced from this.
-*** Theorem
+element can be deduced from this. \\
+
+\\
+
+Theorem:
 - for every function $f$ there is a function $ap-f: (x = y) \to (f(x) = f(y))$
 - from (an element of the type) $(x = y)$ the $ap-f$ is going to construct
 (an element of the type) $(f(x) = f(y))$
-- in logic the funtion $ap-f$ corresponds to an implication. In generall in the
-type theory a funtion is nothing else than an implication
-*** Classical logic and type theory correspondence
+- in logic the funtion $ap-f$ corresponds to an implication. In general in the
+type theory a funtion is nothing else than an implication \\
+
+\\
+
+Classical logic and type theory correspondence \\
 Type theory searches for construction of a type-dependent function $f$ (or $z$) ...:
 | classical logic                 | type theory             | notation                           |
 | \forall n \forall m (n+m = m+n) | f:(n,m) \to (n+m = m+n) | f: \Pi n:N \pi m:N (n+m = m+n)     |
 | \exists n \forall m (n+m = m)   |                         | z: \Sigma n:N \sigma m:N (n+m = m) |
 
-** Siplified Categorical view of functions and types:
-*** Functions: arrows between objs
-*** Types: objects whose properties are defined by arrows
-*** Composition, associativity, identity: see Group-like structures
+Simplified Categorical view of functions and types:
+- Functions: arrows between objects
+- Types: objects whose properties are defined by arrows
+- Composition, associativity, identity: see Group-like structures
 Composition $\comp$: Usually read as "this-fn after that-fn" \\
 No deeper specification of what the funtions and objects are Mapping between
 Category Theory and Functional Programming:
 
-* Views \to Change of perspective
-** Set-theoretical: props of sets defined by elems of sets
-** Categorical: Shrink the set to a point "I can't look at the structure of a set"
+Views \to Change of perspective \\
+- Set-theoretical: props of sets defined by elems of sets
+- Categorical: Shrink the set to a point "I can't look at the structure of a set"
 Describe different kinds of sets by their interraction with other sets i.e. by arrows. \\
-Tell me who your friends are and I tell you who you are
+Tell me who your friends are and I tell you who you are \\
 
-Phenomenons of Introduction and Elimination
+Phenomenons of Introduction and Elimination \\
 
 Data types:
-* Void (empty set): we don't know that it has no elems; describe/define the props
+- Void (empty set): we don't know that it has no elems; describe/define the props
 using arrows, i.e. saying something universal; universal property UP
 initial obj: Univ prop: unique(1.) arrow to every(2.) single other obj
 (corresponds to falsehood in logic)
-** intro: can't be constructed (can't construct a fn returning an elem of empty set)
+- intro: can't be constructed (can't construct a fn returning an elem of empty set)
 ??? Identity fn on void ???
-** elim: Void \to A (arrow from; polymorphic fn - works for any type)
+- elim: Void \to A (arrow from; polymorphic fn - works for any type)
 
 * Unit (one-elem set): univ prop: terminal obj (opposite i.e. dual to init-obj); Duality - invert the arrows and you get something for free
 ** intro: A \to Unit (fn: just ignore the fn input)
@@ -794,7 +870,14 @@ A subset of a Cartesian Product; doesn't have a directionality; n-to-n relation
 
 * Monoidal category
 Has (objs, arrows, product), looks kinda like multiplication / addition \\
-Algebra of types ...
+Algebra of types ... \\
+(ADT - abstract algebraic data type) \\
+
+Monoidal category has:
+- categorical product $\tensor$ s.t. $\cat{C} \tensor \cat{C} \to \cat{C}$ i.e.
+  tensor product.
+- terminal object $\const{I}$ s.t. $\const{I} \tensor c = c \tensor \const{I} = c$
+  for every $c \in \Ob(\cat{C})$, i.e. unit object.
 
 * Functor
 Structure preserving mapping $\Fun{F}: \cat{C} \to \cat{D}$ between two
