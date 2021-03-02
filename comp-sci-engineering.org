@@ -1,15 +1,14 @@
-*** :tex :latex :document-processing
+*** TeX, LaTeX and document-processing
     TeX processes layout. LaTeX processes content. LaTeX has a collection of TeX
     macros and a program to process LaTeX documents, and because the plain TeX
     formatting commands are elementary, it provides ready-made commands for
     formatting and layout requirements e.g. chapter headings, footnotes,
     cross-references, bibliographies.
 
-*** TeX and LaTeX
-- `\usepackage[T1]{fontenc}` - output oriented, i.e. what fonts to use for
+- `\usepackage[T1]{fontenc}`: output oriented, i.e. what fonts to use for
   printing characters.
 
-- `\usepackage[utf8x]{inputenc}` - allows to input accented characters directly
+- `\usepackage[utf8x]{inputenc}`: allows to input accented characters directly
   from the keyboard.
 
 *** Numeric tower - numbers:
