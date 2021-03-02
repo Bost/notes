@@ -78,3 +78,8 @@ category-theory.log
 
 math-structures.tex
 math-structures.pdf
+*.pdf
+*.tex
+*.ipynb
+/_minted-test/
+/_minted-category-theory/
