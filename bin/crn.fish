@@ -1,4 +1,4 @@
-function crn
+function crn --description="Search through the notes"
     set pth $dev/notes
     set files $files $pth/category-theory.org
     set files $files $pth/computer-sciences.md
