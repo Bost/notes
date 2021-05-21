@@ -280,6 +280,7 @@ i.e. $G f : \cat{C^\op} \to \cat{D}$ respectively $Gf : \cat{C} \to \cat{D^\op}$
 
 
 - Profunctor:
+  Lenses are profuntors. (In Clojure: get-in, update-in, assoc-in functions)
 
 Sum $\csum$ and Product $\cprod are algebraic data types (Algebra on Types): \\
 List(\alpha) = Nil | Const \alpha (List \alpha) ~ L(\alpha) = 1 + \alpha \cprod L(\alpha) => .. => L(\alpha) = 1 / (1 - \alpha) = 1 + \alpha + \alpha \cprod \alpha + \alpha \cprod \alpha \cprod \alpha + ...

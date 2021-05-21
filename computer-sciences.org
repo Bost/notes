@@ -1,3 +1,13 @@
+# generate pdf: M-x org-latex-export-to-pdf
+
+#+LATEX_HEADER: \usepackage{cat-7-sketches}
+# #+LATEX_HEADER: \usepackage{foo}
+
+# https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
+# latexpreview / nolatexpreview C-c C-x C-l
+# #+STARTUP: nolatexpreview
+#+STARTUP: showeverything inlineimages nolatexpreview
+
 * Complexity classes & Zoo: https://complexityzoo.uwaterloo.ca/Complexity_Zoo
   NP      - decision problems solvable by non-deterministic TM (Turing Machine) in polynomial time
   PSPACE  - decision problems solvable by     deterministic TM                  in polynomial space
@@ -73,8 +83,8 @@ Business Process Modeling
 ** ITT Inentional Type Theory
 ** OTT Observational Type Theory
    Type of a Variable - a set(?) of possible values of that type
-   From context Gamma a M can be derrived such that x:A.B
-   Context Gamma, x:A, y:Bx (e.g. x be a number with property Bx, y is a variable for the proof of type Bx)
+   ? From context Gamma a M can be derrived such that x:A.B ?
+   Context $\Gamma, x:A, y:Bx$ (e.g. $x$ be a number with property $Bx$, $y$ is a variable for the proof of type $Bx$)
    What's the point of having a number? Well we can count up to that number.
    Depandent type theory is the master theory of all programming languages. If you understand dependent type theory then you understand everything (every programming language)
    Maybe Type: A or B (e.g. A or Fail, A or AirMessage)
@@ -210,3 +220,27 @@ scope of a variable v is the time-period during which the program block (e.g. a
 function) is executing: while the function is running, the variable name exists,
 and is bound to its value, but after the function returns, the variable name
 does not exist.
+
+* Fixed-point combinator / Y-combinator
+  "implement recursion in a language without recursion"
+  \href{https://youtu.be/9T8A89jgeTI}{Essentials: Functional Programming's Y Combinator - Computerphile}
+
+
+  \href{https://en.wikipedia.org/wiki/Fixed-point_combinator#Fixed-point_combinators_in_lambda_calculus}{Fixed-point combinators in lambda calculus}
+  Definition:
+  Y = λf.(λx.f(x x) λx.f(x x))
+
+  Y g = (λf.(λx.f(x x) λx.f(x x)))g   (by definition of Y)
+      = (λx.g(x x) λx.g(x x))         (by β-reduction of λf: applied Y to g)
+      = g(λx.g(x x) λx.g(x x))        (by β-reduction of λx: applied left function to right function)
+      = g(Y g)                        (by second equality)
+      = g(g(Y g))
+      = g(g(g(Y g))
+      = g(...(g(Y g)...)
+
+  \href{https://youtu.be/9T8A89jgeTI?t=217}{Encoding of Boolean values}
+  One is opposite of the other:
+  TRUE  = λx.λy.x
+  FALSE = λx.λy.y
+
+  TODO https://en.wikipedia.org/wiki/SKI_combinator_calculus

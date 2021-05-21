@@ -104,6 +104,8 @@ Communication w-/wo- Letters
 
 * android
 #+BEGIN_SRC fish
+  exit 1 # just in case ...
+
   set cmd "ip address"
   eval $cmd
   #...

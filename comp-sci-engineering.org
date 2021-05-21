@@ -14,7 +14,7 @@
 *** Numeric tower - numbers:
     Natural ℕ ⊆ Integer ℤ ⊆ Rational ℚ ⊆ Real ℝ ⊆ Complex ℂ ⊆ Quaternion ℍ
 
-*** structure type - record datatype composing a number of fields
+*** Structure type - record datatype composing a number of fields
     Sum type (OCaml): Generalization of enumeration. Bring heterogeneous values
     together into a common type
 
