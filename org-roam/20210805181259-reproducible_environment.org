@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       195c451a-4de0-4759-ba08-05d0c46295ff
+:END:
+#+title: Reproducible Environment
+
+Tools for managing reproducible development environments. Mirror of https://sr.ht/abcdw/rde/
+
+
+??? home-environment / guix-home ???
