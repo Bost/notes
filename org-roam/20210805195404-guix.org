@@ -1,0 +1,117 @@
+:PROPERTIES:
+:ID:       78c3b40b-4600-4264-bb9a-810131987771
+:END:
+#+title: GNU Guix
+
+* See also
+  [[https://snapcraft.io/][snap]]
+  [[https://flatpak.org/][flatpak]]
+  [[https://nixos.org/][nixos]]
+  [[https://guix.gnu.org/][guix]]
+
+* Comparisons
+  [[https://www.slant.co/versus/1145/5880/~gnu-guix_vs_docker][GNU Guix vs. Docker]]
+  [[https://www.slant.co/versus/1143/1145/~nix_vs_gnu-guix][Nix vs. GNU Guix]]
+
+  https://unix.stackexchange.com/questions/612398/what-are-the-main-differences-between-guixsd-and-nixos
+
+* Various commands
+  #+begin_src sh
+  guix package --list-generations
+  guix package --list-installed
+  guix package --install hello
+  guix package --install guile
+  guix package --rollback
+  guix package --remove python --install guile
+  guix package --search=hello
+  guix package --export-manifest
+
+  # systemctl status guix-daemon # on a foreign host
+
+  guix describe --list-formats
+  guix describe vim --format=channels
+
+  # lists the currently defined services
+  sudo herd status
+
+  # `guix system reconfigure configuration.scm` may produce:
+  #   guix system: error: symlink: Permission denied: "/var/guix/profiles/system-2-link.new"
+  # so try with sudo -E / --preserve-env
+  sudo -E guix system reconfigure configuration.scm
+  #+end_src
+
+* [[https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html][Upgrade Guix]]
+** On foreign system (e.g. Ubuntu)
+  #+begin_src sh
+  sudo --login guix pull
+  systemctl restart guix-daemon.service
+  #+end_src
+** On Guix System
+  #+begin_src sh
+  guix pull
+  # guix system reconfigure - this doesn't work
+  sudo herd restart guix-daemon
+  #+end_src
+
+* Remove Guix from Ubuntu
+  #+begin_src sh
+  sudo systemctl stop guix-daemon.service
+  sudo rm -rf /gnu
+  sudo rm -rf /var/guix/
+  sudo rm -rf /etc/guix/
+  #+end_src
+
+* [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
+  #+begin_src sh
+  guix system describe
+  guix system search console
+  #+end_src
+
+* [[https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html][Basic setup with manifests]]
+  #+begin_src sh
+  # see also guix package --export-manifest
+  guix package --list-profiles
+  GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
+  mkdir -p "$GUIX_EXTRA_PROFILES"/my-project # if it does not exist yets
+  guix package --manifest=$HOME/guix-my-project-manifest.scm \
+               --profile="$GUIX_EXTRA_PROFILES"/my-project/my-project
+
+  guix package -p "$GUIX_EXTRA_PROFILES"/my-project/my-project --list-installed
+  #+end_src
+
+  Add to ~/.bashrc (adding to ~/.bash_profile doesn't work):
+  #+begin_src sh
+  GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
+  for i in $GUIX_EXTRA_PROFILES/*; do
+    profile=$i/$(basename "$i")
+    if [ -f "$profile"/etc/profile ]; then
+      GUIX_PROFILE="$profile"
+      . "$GUIX_PROFILE"/etc/profile
+    fi
+    unset profile
+  done
+  #+end_src
+
+* SSH https://guix.gnu.org/manual/en/html_node/Running-Guix-in-a-VM.html
+  Edit the /run/current-system/configuration.scm
+  #+begin_src guile
+  (service openssh-service-type
+  (openssh-configuration
+  (permit-root-login 'without-password)))
+  #+end_src
+
+  #+begin_src sh
+  guix system reconfigure /path/to/configuration.scm
+  ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022 guest@localhost
+  #+end_src
+
+  #+begin_src sh
+  guix deploy /path/to/some/file.scm
+  #+end_src
+
+* Sending patches
+  [[Documentation source code][https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi]]
+  Read info about submitting patches (in the GUIX VM):
+  #+begin_src sh
+  info "(guix)Submitting Patches"
+  #+end_src

@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       c510a39e-9230-4075-be1f-7ee51c0cfbf1
+:END:
+#+title: Video Editing
+
+[[https://lang.video/][Racket's video language]]
+[[https://guix.gnu.org/en/blog/2021/reproducible-data-processing-pipelines/][Guix]] guix build -m render-videos.scm
+[[https://bigbluebutton.org/][BigBlueButton]]
+
