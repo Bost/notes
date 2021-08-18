@@ -21,7 +21,7 @@
   guix package --list-installed
   guix package --install hello
   guix package --install guile
-  guix package --rollback
+  guix package --roll-back
   guix package --remove python --install guile
   guix package --search=hello
   guix package --export-manifest
@@ -114,4 +114,16 @@
   Read info about submitting patches (in the GUIX VM):
   #+begin_src sh
   info "(guix)Submitting Patches"
+  #+end_src
+
+* QEMU shrink disk size - doesn't work
+  https://pve.proxmox.com/wiki/Shrink_Qcow2_Disk_Files
+  #+begin_src sh
+  dd if=/dev/zero of=mytempfile
+  # that could take a some time
+  sync
+  rm -f mytempfile
+
+  cp guix-system-vm-image-1.3.0.x86_64-linux.qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup
+  qemu-img convert -O qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup guix-system-vm-image-1.3.0.x86_64-linux.qcow2
   #+end_src
