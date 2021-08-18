@@ -1,0 +1,39 @@
+:PROPERTIES:
+:ID:       8ca6cd71-b358-47d1-98f2-f8a3cfb351b7
+:END:
+#+title: Android
+
+TWRP
+Team Win Recovery Project
+https://www.mojandroid.sk/twrp-recovery-android-aplikacia/
+
+ADB
+Android Debug Bridge
+
+APK
+Android Package Kit
+
+LineageOS
+OS for smartphones, tablets, and set-top boxes, based on Android; mostly free and open-source
+Successor to CyanogenMod
+
+
+#+begin_src sh
+wget https://spflashtool.com/download/SP_Flash_Tool-5.1916_Linux.zip
+
+sudo add-apt-repository ppa:linuxuprising/libpng12
+sudo apt update
+sudo apt install libpng12-0
+
+bash -c ./flash_tool.sh
+#+end_src
+
+
+https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300M/Z300M_UnlockTool_Android_N_9003_signed.zip
+
+https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_P01T_1_signed.zip
+https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_P01T_signed.zip
+
+
+http://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_N_9003_signed.zip
+

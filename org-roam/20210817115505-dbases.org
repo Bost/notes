@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       196716b8-feeb-4028-9021-c02a019a8f73
+:END:
+#+title: Dbases
+
+[[https://en.wikipedia.org/wiki/MariaDB][MariaDB]] - free, open source, commercially supported MySQL fork.
