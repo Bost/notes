@@ -1,0 +1,16 @@
+:PROPERTIES:
+:ID:       17655473-2c42-4399-bf81-0cf69c893e40
+:END:
+#+title: Guix Features
+
+[[https://ambrevar.xyz/guix-advance/]]
+
+* Multiple Outputs
+  A package can have multiple “outputs” that serves as a mean to separate
+  various component of a program (libraries, extra tools, documentation, etc.).
+
+* Non-propagated Inputs
+  “Inputs,” in Guix parlance, are the package
+  dependencies. The user profile and environment only contains the packages the
+  user explicitly installed and not necessarily the dependencies of those
+  packages.

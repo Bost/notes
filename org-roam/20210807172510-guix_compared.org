@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       13b4c7d3-bec1-46ac-82d3-362d11894cfa
+:END:
+#+title: Guix Compared
+
+[[https://www.slant.co/versus/1145/5880/~gnu-guix_vs_docker][GNU Guix vs. Docker]]
+[[https://www.slant.co/versus/1143/1145/~nix_vs_gnu-guix][Nix vs. GNU Guix]]
+
+https://unix.stackexchange.com/questions/612398/what-are-the-main-differences-between-guixsd-and-nixos
+
+

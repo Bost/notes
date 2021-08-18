@@ -9,12 +9,6 @@
   [[https://nixos.org/][nixos]]
   [[https://guix.gnu.org/][guix]]
 
-* Comparisons
-  [[https://www.slant.co/versus/1145/5880/~gnu-guix_vs_docker][GNU Guix vs. Docker]]
-  [[https://www.slant.co/versus/1143/1145/~nix_vs_gnu-guix][Nix vs. GNU Guix]]
-
-  https://unix.stackexchange.com/questions/612398/what-are-the-main-differences-between-guixsd-and-nixos
-
 * Various commands
   #+begin_src sh
   guix package --list-generations
