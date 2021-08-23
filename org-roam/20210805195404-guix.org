@@ -1,18 +1,15 @@
 :PROPERTIES:
 :ID:       78c3b40b-4600-4264-bb9a-810131987771
 :END:
-#+title: GNU Guix
+#+title: Guix
 
 * Various commands
   #+begin_src sh
   guix package --list-generations
-  guix package --list-installed
-  guix package --install hello
-  guix package --install guile
+  guix package --list-installed # guix package --export-manifest
   guix package --roll-back
   guix package --remove python --install guile
   guix package --search=hello
-  guix package --export-manifest
 
   # systemctl status guix-daemon # on a foreign host
 
