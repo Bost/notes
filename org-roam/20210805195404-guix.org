@@ -6,7 +6,15 @@
 * Various commands
   #+begin_src sh
   guix package --list-generations
-  guix package --list-installed # guix package --export-manifest
+
+  # list installed packages
+  guix package --list-installed
+
+  # export list installed packages
+  guix package --export-manifest > manifest.scm
+  # reproduce, i.e. reinstall packages
+  guix package --manifest=manifest.scm
+
   guix package --roll-back
   guix package --remove python --install guile
   guix package --search=hello
