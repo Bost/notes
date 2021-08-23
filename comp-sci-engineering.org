@@ -65,3 +65,12 @@
     parent class of these other classes.
 
     Mixin class is being "included" rather than "Inherited".
+
+*** Lisp / Minimal Scheme Implementation for use as an Extension Language
+    http://synthcode.com/wiki/chibi-scheme
+
+    Scheme implementation meant to be embedded in a C-program, i.e. scripting
+    C-applications etc.
+
+    System Crafters Live! - Lisp Compiler Progress • Live Lisp Hacking • Q&A
+    https://youtu.be/E-g3Ls1GRz4
