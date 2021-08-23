@@ -3,12 +3,6 @@
 :END:
 #+title: GNU Guix
 
-* See also
-  [[https://snapcraft.io/][snap]]
-  [[https://flatpak.org/][flatpak]]
-  [[https://nixos.org/][nixos]]
-  [[https://guix.gnu.org/][guix]]
-
 * Various commands
   #+begin_src sh
   guix package --list-generations

@@ -1,0 +1,86 @@
+:PROPERTIES:
+:ID:       03b37946-8b56-43eb-b714-4124321ae40a
+:END:
+#+title: Racket
+
+* Resources
+  :PROPERTIES:
+  :ID:       e538b9e0-6f63-420b-aba1-5815caae4566
+  :END:
+
+https://stackoverflow.com/a/54165633
+The Scheme standard uses only the term procedure.
+In Racket function is a procedure with no side effects.
+
+#+BEGIN_SRC sh
+  # package management
+  raco pkg install <package>
+  raco pkg remove <package>
+
+  # how to run a Racket program
+  racket program.rkt
+
+  # 'Hello World' from the command line
+  racket -e    '(printf "Hello World\n")'
+  racket -eval '(printf "Hello World\n")'
+#+END_SRC
+
+#+BEGIN_SRC racket
+  ;; pwd; print working directory
+  (current-directory)
+
+  ;; structures definition
+  (struct structName (item0
+                      item1
+                      ; ...
+                      item-n)
+    #:transparent)    ;; instantiation
+  (define s (structName 'a 'b 'c))
+  ;; accessing fields of the structure instance via the dash '-'
+  ;; structName-item1 is the structure accessor
+  (structName-item1 s) ;; => 'b
+
+  ;; difference between `print`, `write` and `display`
+  ;; https://docs.racket-lang.org/guide/read-write.html
+  (printf "~a as a string is ~s.\n" '(3 4) "(3 4)")
+
+  ;; count
+  (length '(1 2 3))
+  (hash-count #hash((foo . 41)))
+  (hash-count #hasheq((foo . 41)))
+
+  ;; function composition: compose, compose1
+  (define (inc n) (+ n 1))
+  ((compose str inc length) '(1 2 3))
+
+  ;; info.rkt: collection of dependecies
+
+  ;; show doc in browser using local copy.
+  ;; C-c d / M-x racket-doc
+  ;; C-c . / M-x racket-describe
+
+  ;; sexp comment #;single-sexp
+  ;; block comment #| sexp-1 sexp-2 ... |#
+
+  ;; rhs - right hand side
+
+  ;; https://stackoverflow.com/a/5406423
+  ;; difference between `define` and `let` is in the scope:
+  ;; correct:
+  (define (f x)
+    (let ((a 1))
+      (+ a x)))
+  ;; wrong:
+  (define (f x)
+    (let ((a 1)))
+    (+ a x))
+  ;; correct:
+  (define (g x)
+    (define a 1)
+    (+ a x))
+
+  ;; namespace alias
+  (require (prefix-in my: "file.rkt")) ;; see also `rename-in`
+  ;; usage
+  (my:function)
+#+END_SRC
