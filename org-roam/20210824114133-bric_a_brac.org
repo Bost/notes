@@ -1,0 +1,42 @@
+:PROPERTIES:
+:ID:       95ce8c17-8dbb-4ba7-9aac-c5b9f04e7453
+:END:
+#+title: Bric a brac
+
+* Bric a brac
+Five rating emojis / icons
+https://youtu.be/hZJnlxM0c0I?t=162
+
+** second system syndrome / effect
+   small, elegant, and successful systems to be succeeded by over-engineered,
+   bloated systems, due to inflated expectations and overconfidence.
+
+#+BEGIN_SRC sh
+  exit 1 # just in case ...
+  # oracle: execute script.sql
+  @C:\path\to\script.sql
+
+  # solaris:
+  # checksum
+  /usr/bin/digest -a sha1
+  # wget location
+  /usr/sfw/bin/wget
+  # full command line (needs: sudo rootsh -i -u ... )
+  /usr/ucb/ps -auxww
+  # displays information about processors
+  psrinfo
+  # net: ipconfig
+  /usr/sbin/ifconfig -a
+
+  # youtube
+  > / < # :speed 25% faster / slower
+  c / m # toggle captions / mute
+  , / . # move 1 frame forward / backward
+
+  # guile
+  # mit-scheme
+  # racket general-purpose, multi-paradigm programming language based on the Scheme dialect of Lisp.
+
+  # SASL - Simple Authentication and Security Layer
+#+END_SRC
+

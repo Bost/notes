@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       ed2cb25d-a732-4813-a302-324b22ea30a9
+:END:
+#+title: TeX and LaTex
+
+* TeX & LaTeX
+LaTeX is a document preparation system, a package containing a set of macros,
+written by Leslie Lamport, built on top of TeX.
+
+TeX is not just a typesetter, it is a typesetter with an embedded scripting
+language, whose commands configure and control the behaviour of the typesetter.
+LaTeX and Plain TeX are two different customised typesetting environments, with
+their own commands and conventions, based on TeX (TeX is a "formatting system")
+
+AUCTeX - an extensible package for writing and formatting TeX files in Emacs
+
+
