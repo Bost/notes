@@ -3,6 +3,8 @@
 :END:
 #+title: Guix
 
+https://systemcrafters.cc/craft-your-system-with-guix/
+
 * Various commands
   #+begin_src sh
   guix package --list-generations
@@ -42,8 +44,11 @@
 ** On Guix System
   #+begin_src sh
   guix pull
-  # guix system reconfigure - this doesn't work
+  guix upgrade
+  # not working: guix system reconfigure
   sudo herd restart guix-daemon
+  # see also
+  sudo herd status guix-daemon
   #+end_src
 
 * Remove Guix from Ubuntu
@@ -85,7 +90,7 @@
   done
   #+end_src
 
-* SSH https://guix.gnu.org/manual/en/html_node/Running-Guix-in-a-VM.html
+* [[https://guix.gnu.org/manual/en/html_node/Running-Guix-in-a-VM.html][Guix in a VM: SSH access]]
   Edit the /run/current-system/configuration.scm
   #+begin_src guile
   (service openssh-service-type
@@ -103,7 +108,7 @@
   #+end_src
 
 * Sending patches
-  [[Documentation source code][https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi]]
+  [[https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi][Guix Documentation source code]]
   Read info about submitting patches (in the GUIX VM):
   #+begin_src sh
   info "(guix)Submitting Patches"

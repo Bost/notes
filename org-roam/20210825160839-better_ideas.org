@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       f1109efa-e1ea-4605-8850-19b3b11f1cec
+:END:
+#+title: Better Ideas
+
+Some DSL languages are too-limiting as programming languages. See [[https://ambrevar.xyz/guix-advance/index.html][Guix: A most
+advanced operating system]]
+
+Bash, Zsh, Fish (better ideas: Eshell or scsh)
+[[https://ambrevar.xyz/emacs-eshell/index.html][Eshell as a main shell]]
+

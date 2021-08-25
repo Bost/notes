@@ -6,7 +6,7 @@
 [[https://www.slant.co/versus/1145/5880/~gnu-guix_vs_docker][Guix vs. Docker]]
 [[https://www.slant.co/versus/1143/1145/~nix_vs_gnu-guix][Nix vs. Guix]]
 
-https://unix.stackexchange.com/questions/612398/what-are-the-main-differences-between-guixsd-and-nixos
+[[https://unix.stackexchange.com/a/630620][What are the main differences between GuixSD and NixOS?]]
 
 * See also
   [[https://snapcraft.io/][snap]]
