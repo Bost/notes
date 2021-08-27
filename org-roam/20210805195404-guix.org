@@ -19,12 +19,21 @@ https://systemcrafters.cc/craft-your-system-with-guix/
 
   guix package --roll-back
   guix package --remove python --install guile
+  guix package -r       python  -i       guile
+  guix install                           guile
+  # install specific package version
+  guix package                 --install bat@0.18.3
+
+  # guix package -i mycli --with-latest=mycli
+
   guix package --search=hello
 
   # systemctl status guix-daemon # on a foreign host
 
   guix describe --list-formats
   guix describe vim --format=channels
+
+  guix system describe
 
   # lists the currently defined services
   sudo herd status
@@ -34,6 +43,23 @@ https://systemcrafters.cc/craft-your-system-with-guix/
   # so try with sudo -E / --preserve-env
   sudo -E guix system reconfigure configuration.scm
   #+end_src
+
+* [[https://guix.gnu.org/manual/en/html_node/Package-Transformation-Options.html][Package Transformation Options]]
+  #+BEGIN_SRC sh
+  guix package --with-source=source
+  guix package --with-source=package=source
+  guix package --with-source=package@version=source
+  guix package --with-input=package=replacement
+  guix package --with-graft=package=replacement
+  guix package --with-debug-info=package
+  guix package --with-c-toolchain=package=toolchain
+  guix package --with-git-url=package=url
+  guix package --with-branch=package=branch
+  guix package --with-commit=package=commit
+  guix package --with-patch=package=file
+  guix package --with-latest=package
+  guix package --without-tests=package
+  #+END_SRC
 
 * [[https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html][Upgrade Guix]]
 ** On foreign system (e.g. Ubuntu)
@@ -62,6 +88,12 @@ https://systemcrafters.cc/craft-your-system-with-guix/
 * [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
   #+begin_src sh
   guix system describe
+
+  # time-machine - run commands from a different revision
+  # Usage: guix time-machine [OPTION] -- COMMAND ARGS...
+  # Execute COMMAND ARGS... in an older version of Guix.
+
+  # search for existing service type 'console'
   guix system search console
   #+end_src
 
@@ -125,3 +157,7 @@ https://systemcrafters.cc/craft-your-system-with-guix/
   cp guix-system-vm-image-1.3.0.x86_64-linux.qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup
   qemu-img convert -O qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup guix-system-vm-image-1.3.0.x86_64-linux.qcow2
   #+end_src
+
+
+  Guile Script portability across Linux and Guix machines:
+  22.08.2021: [[https://logs.guix.gnu.org/guix/2021-08-22.log#115020][<leoprikler>bost: nope, only reliable shebang still is #!/bin/sh]]
