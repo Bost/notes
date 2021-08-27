@@ -1,0 +1,22 @@
+:PROPERTIES:
+:ID:       7ef4dc6f-f8a3-4cae-a234-c01edc8f18b5
+:END:
+#+title: Guile
+
+https://jeko.frama.io/en/install.html
+
+#+BEGIN_SRC sh
+guix install guile-colorized
+#+END_SRC
+
+
+Then, you can configure your interpreter by modifying the ~/.guile file (create it if it doesn't exist) and put the following lines into it:
+
+#+BEGIN_SRC scheme
+(use-modules (ice-9 readline)
+             (ice-9 colorized))
+
+(activate-readline)
+(activate-colorized)
+#+END_SRC
+
