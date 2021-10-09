@@ -1,0 +1,24 @@
+:PROPERTIES:
+:ID:       69f25a70-c039-488f-9382-91b998b7c0f5
+:END:
+#+title: Guix System Configuration
+
+[[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
+#+BEGIN_SRC sh
+guix system describe # shows e.g.:
+# Generation 1	Aug 23 2021 13:12:32	(current)
+#   file name: /var/guix/profiles/system-1-link
+#   canonical file name: /gnu/store/faa6q3nv57jfvhwbgr6863hdbmr28ma9-system
+#   label: GNU with Linux-Libre 5.12.14
+#   bootloader: grub-efi
+#   root device: UUID: 67ce5d9c-7af1-4435-a2a9-68651ab9a281
+#   kernel: /gnu/store/hbz05ydis72hkzl4s8rr4sh7ladd9xw8-linux-libre-5.12.14/bzImage
+#   configuration file: /gnu/store/d08hv9add3yk1bjb1mjf65ffdgc0fdif-configuration.scm
+
+# time-machine - run commands from a different revision
+# Usage: guix time-machine [OPTION] -- COMMAND ARGS...
+# Execute COMMAND ARGS... in an older version of Guix.
+
+# search for existing service type 'console'
+guix system search console
+#+END_SRC

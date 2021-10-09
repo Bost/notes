@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       8c830d5b-9bac-4aa8-bf8b-1a3d48452bfe
+:END:
+#+title: Tools for thinking
+
+[[https://kinopio.club/][Kinopio]]
+Example: [[https://www.juliendesrosiers.com/2021/08/21/tools-for-thinking.php][For Political Sciences]]
+
+org-roam-graph

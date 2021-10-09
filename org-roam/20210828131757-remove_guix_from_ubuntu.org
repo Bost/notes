@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       e65e2b2a-062b-49f7-8017-68ec4ef20a5f
+:END:
+#+title: Remove Guix from Ubuntu
+
+#+BEGIN_SRC sh
+sudo systemctl stop guix-daemon.service
+sudo rm -rf /gnu
+sudo rm -rf /var/guix/
+sudo rm -rf /etc/guix/
+#+END_SRC
+
