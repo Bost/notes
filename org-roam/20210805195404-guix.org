@@ -4,19 +4,22 @@
 #+title: Guix
 
 https://systemcrafters.cc/craft-your-system-with-guix/
+https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
 * Various commands
   #+begin_src sh
-  guix package --list-generations
+  guix package --list-available=ruby
 
-  # list installed packages
+  # list all installed packages
   guix package --list-installed
 
-  # export list installed packages
+  # export the list installed packages
   guix package --export-manifest > manifest.scm
   # reproduce, i.e. reinstall packages
   guix package --manifest=manifest.scm
 
+  guix package --list-generations
+  guix package --switch-generation=PATTERN
   guix package --roll-back
   guix package --remove python --install guile
   guix package -r       python  -i       guile
@@ -56,23 +59,6 @@ https://systemcrafters.cc/craft-your-system-with-guix/
   cd ~/.cache/guix/checkouts/<...>; guix system image -t iso9660 gnu/system/install.scm
   #+end_src
 
-* [[https://guix.gnu.org/manual/en/html_node/Package-Transformation-Options.html][Package Transformation Options]]
-  #+BEGIN_SRC sh
-  guix package --with-source=source
-  guix package --with-source=package=source
-  guix package --with-source=package@version=source
-  guix package --with-input=package=replacement
-  guix package --with-graft=package=replacement
-  guix package --with-debug-info=package
-  guix package --with-c-toolchain=package=toolchain
-  guix package --with-git-url=package=url
-  guix package --with-branch=package=branch
-  guix package --with-commit=package=commit
-  guix package --with-patch=package=file
-  guix package --with-latest=package
-  guix package --without-tests=package
-  #+END_SRC
-
 * [[https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html][Upgrade Guix]]
 ** On foreign system (e.g. Ubuntu)
   #+begin_src sh
@@ -89,33 +75,9 @@ https://systemcrafters.cc/craft-your-system-with-guix/
   sudo herd status guix-daemon
   #+end_src
 
-* Remove Guix from Ubuntu
-  #+begin_src sh
-  sudo systemctl stop guix-daemon.service
-  sudo rm -rf /gnu
-  sudo rm -rf /var/guix/
-  sudo rm -rf /etc/guix/
-  #+end_src
-
-* [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
-  #+begin_src sh
-  guix system describe # shows e.g.:
-  # Generation 1	Aug 23 2021 13:12:32	(current)
-  #   file name: /var/guix/profiles/system-1-link
-  #   canonical file name: /gnu/store/faa6q3nv57jfvhwbgr6863hdbmr28ma9-system
-  #   label: GNU with Linux-Libre 5.12.14
-  #   bootloader: grub-efi
-  #   root device: UUID: 67ce5d9c-7af1-4435-a2a9-68651ab9a281
-  #   kernel: /gnu/store/hbz05ydis72hkzl4s8rr4sh7ladd9xw8-linux-libre-5.12.14/bzImage
-  #   configuration file: /gnu/store/d08hv9add3yk1bjb1mjf65ffdgc0fdif-configuration.scm
-
-  # time-machine - run commands from a different revision
-  # Usage: guix time-machine [OPTION] -- COMMAND ARGS...
-  # Execute COMMAND ARGS... in an older version of Guix.
-
-  # search for existing service type 'console'
-  guix system search console
-  #+end_src
+[[id:e65e2b2a-062b-49f7-8017-68ec4ef20a5f][Remove Guix from Ubuntu]]
+[[id:717e1406-3651-4136-97b0-7713388e644e][Guix Package Transformation Options]]
+[[id:69f25a70-c039-488f-9382-91b998b7c0f5][Guix System Configuration]]
 
 * [[https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html][Basic setup with manifests]]
   #+begin_src sh

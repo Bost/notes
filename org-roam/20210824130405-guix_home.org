@@ -15,12 +15,15 @@ https://guix-home.trop.in/Home-Configuration.html
 * Setup icecat (firefox):
 ** [[https://issues.guix.gnu.org/45179][IceCat stuck at Cloudflare "Checking your browser before accessing..."]]
    Install 'User-Agent Switcher' in IceCat and switch to Desktop -> 'Linux / Firefox 83'
-   https://addons.mozilla.org/firefox/downloads/file/3816867/ublock_origin-1.37.2-an+fx.xpi
+   https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/
+   https://addons.mozilla.org/en-US/firefox/addon/user-agent-string-switcher/
+   
+   https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
 
-   https://addons.mozilla.org/firefox/downloads/file/3690660/user_agent_switcher-1.4.1-an+fx.xpi
-
-   https://addons.mozilla.org/firefox/downloads/file/3824758/enhancer_for_youtubetm-2.0.105-fx.xpi
+   https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/
    In options activate the "Place controls within the video player"
+
+   Disable GNU LibreJS
 
 ** Open `about:config` and set:
    #+BEGIN_SRC sh
@@ -29,24 +32,30 @@ https://guix-home.trop.in/Home-Configuration.html
    #+END_SRC
    Login to https://accounts.firefox.com/signin and synchronize the account
 
+   Restart IceCat
+   
    #+BEGIN_SRC sh
    ssh-keygen
    cat ~/.ssh/id_rsa.pub
    #+END_SRC
 
 * GitHub, GitLab:
-  Login to https://github.com add SSH Key https://gitlab.com/-/profile/keys
+  Login to https://gitlab.com add SSH Key https://gitlab.com/-/profile/keys
   Login to https://github.com add SSH Key https://github.com/settings/ssh/new
 
 * Clone repos
   #+BEGIN_SRC sh
-  set accountName "..."
+  cd dev
+  set accountName "rostislav.svoboda"
+
   git clone git@github.com:Bost/dotfiles.git
   git remote add gitlab git@gitlab.com:$accountName/dotfiles.git
+
   git clone git@github.com:Bost/cheatsheet.git
-  git remote add gitlab git@gitlab.com:$accountName/dotfiles.git
+  git remote add gitlab git@gitlab.com:$accountName/cheatsheet.git
+  
   git clone git@github.com:Bost/notes.git
-  git remote add gitlab git@gitlab.com:$accountName/dotfiles.git
+  git remote add gitlab git@gitlab.com:$accountName/notes.git
   #+END_SRC
 
 * Copy public keys to the available machines

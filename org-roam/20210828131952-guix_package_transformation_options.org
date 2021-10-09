@@ -1,0 +1,22 @@
+:PROPERTIES:
+:ID:       717e1406-3651-4136-97b0-7713388e644e
+:END:
+#+title: Guix Package Transformation Options
+
+[[https://guix.gnu.org/manual/en/html_node/Package-Transformation-Options.html][Package Transformation Options]]
+#+BEGIN_SRC sh
+guix package --with-source=source
+guix package --with-source=package=source
+guix package --with-source=package@version=source
+guix package --with-input=package=replacement
+guix package --with-graft=package=replacement
+guix package --with-debug-info=package
+guix package --with-c-toolchain=package=toolchain
+guix package --with-git-url=package=url
+guix package --with-branch=package=branch
+guix package --with-commit=package=commit
+guix package --with-patch=package=file
+guix package --with-latest=package
+guix package --without-tests=package
+#+END_SRC
+
