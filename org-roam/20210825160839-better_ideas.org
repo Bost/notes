@@ -6,6 +6,15 @@
 Some DSL languages are too-limiting as programming languages. See [[https://ambrevar.xyz/guix-advance/index.html][Guix: A most
 advanced operating system]]
 
-Bash, Zsh, Fish (better ideas: Eshell or scsh)
-[[https://ambrevar.xyz/emacs-eshell/index.html][Eshell as a main shell]]
+* Bash, Zsh, Fish (better ideas: Eshell or scsh)
+  [[https://ambrevar.xyz/emacs-eshell/index.html][Eshell as a main shell]]
 
+* Octave, R, PARI/GP, most scientific programs (better ideas: Common Lisp, Racket and other Schemes)
+
+* Regular expressions (better ideas: Emacs’ rx, Racket’s PEG, etc.)
+
+* Most init system configurations, including systemd (better idea: GNU Shepherd)
+
+* cron (better idea: mcron)
+
+* TeX, LaTeX (and all the derivatives), Asymptote (better ideas: scribble, skribilo)

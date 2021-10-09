@@ -30,6 +30,13 @@ https://systemcrafters.cc/craft-your-system-with-guix/
 
   # systemctl status guix-daemon # on a foreign host
 
+  guix describe # shows e.g.:
+  # Generation 9	Oct 09 2021 10:21:38	(current)
+  #   guix 2a273e9
+  #     repository URL: https://git.savannah.gnu.org/git/guix.git
+  #     branch: master
+  #     commit: 2a273e9e2268c24b67620574fe34cc20bce7e5c8
+
   guix describe --list-formats
   guix describe vim --format=channels
 
@@ -42,6 +49,11 @@ https://systemcrafters.cc/craft-your-system-with-guix/
   #   guix system: error: symlink: Permission denied: "/var/guix/profiles/system-2-link.new"
   # so try with sudo -E / --preserve-env
   sudo -E guix system reconfigure configuration.scm
+
+  # find operating system declaration:
+  find ~/.cache/guix/checkouts -name install.scm
+  # instantiate operating system declaration:
+  cd ~/.cache/guix/checkouts/<...>; guix system image -t iso9660 gnu/system/install.scm
   #+end_src
 
 * [[https://guix.gnu.org/manual/en/html_node/Package-Transformation-Options.html][Package Transformation Options]]
@@ -87,7 +99,15 @@ https://systemcrafters.cc/craft-your-system-with-guix/
 
 * [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
   #+begin_src sh
-  guix system describe
+  guix system describe # shows e.g.:
+  # Generation 1	Aug 23 2021 13:12:32	(current)
+  #   file name: /var/guix/profiles/system-1-link
+  #   canonical file name: /gnu/store/faa6q3nv57jfvhwbgr6863hdbmr28ma9-system
+  #   label: GNU with Linux-Libre 5.12.14
+  #   bootloader: grub-efi
+  #   root device: UUID: 67ce5d9c-7af1-4435-a2a9-68651ab9a281
+  #   kernel: /gnu/store/hbz05ydis72hkzl4s8rr4sh7ladd9xw8-linux-libre-5.12.14/bzImage
+  #   configuration file: /gnu/store/d08hv9add3yk1bjb1mjf65ffdgc0fdif-configuration.scm
 
   # time-machine - run commands from a different revision
   # Usage: guix time-machine [OPTION] -- COMMAND ARGS...
@@ -158,6 +178,5 @@ https://systemcrafters.cc/craft-your-system-with-guix/
   qemu-img convert -O qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup guix-system-vm-image-1.3.0.x86_64-linux.qcow2
   #+end_src
 
-
-  Guile Script portability across Linux and Guix machines:
+* Guile Script portability across Linux and Guix machines:
   22.08.2021: [[https://logs.guix.gnu.org/guix/2021-08-22.log#115020][<leoprikler>bost: nope, only reliable shebang still is #!/bin/sh]]
