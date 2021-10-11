@@ -12,7 +12,8 @@ https://stackoverflow.com/a/54165633
 The Scheme standard uses only the term procedure.
 In Racket function is a procedure with no side effects.
 
-#+BEGIN_SRC sh
+* Command line snippets
+  #+BEGIN_SRC sh
   # package management
   raco pkg install <package>
   raco pkg remove <package>
@@ -23,12 +24,10 @@ In Racket function is a procedure with no side effects.
   # 'Hello World' from the command line
   racket -e    '(printf "Hello World\n")'
   racket -eval '(printf "Hello World\n")'
-#+END_SRC
+  #+END_SRC
 
-#+BEGIN_SRC racket
-  ;; pwd; print working directory
-  (current-directory)
-
+* Structures
+  #+BEGIN_SRC racket
   ;; structures definition
   (struct structName (item0
                       item1
@@ -39,6 +38,30 @@ In Racket function is a procedure with no side effects.
   ;; accessing fields of the structure instance via the dash '-'
   ;; structName-item1 is the structure accessor
   (structName-item1 s) ;; => 'b
+  #+END_SRC
+
+* define vs let
+  #+BEGIN_SRC racket
+  ;; https://stackoverflow.com/a/5406423
+  ;; difference between `define` and `let` is in the scope:
+  ;; correct:
+  (define (f x)
+    (let ((a 1))
+      (+ a x)))
+  ;; wrong:
+  (define (f x)
+    (let ((a 1)))
+    (+ a x))
+  ;; correct:
+  (define (g x)
+    (define a 1)
+    (+ a x))
+  #+END_SRC
+
+* Various racket snippets
+  #+BEGIN_SRC racket
+  ;; pwd; print working directory
+  (current-directory)
 
   ;; difference between `print`, `write` and `display`
   ;; https://docs.racket-lang.org/guide/read-write.html
@@ -64,23 +87,34 @@ In Racket function is a procedure with no side effects.
 
   ;; rhs - right hand side
 
-  ;; https://stackoverflow.com/a/5406423
-  ;; difference between `define` and `let` is in the scope:
-  ;; correct:
-  (define (f x)
-    (let ((a 1))
-      (+ a x)))
-  ;; wrong:
-  (define (f x)
-    (let ((a 1)))
-    (+ a x))
-  ;; correct:
-  (define (g x)
-    (define a 1)
-    (+ a x))
-
   ;; namespace alias
   (require (prefix-in my: "file.rkt")) ;; see also `rename-in`
   ;; usage
   (my:function)
+
+  ;; filter list https://stackoverflow.com/a/57814082
+  (define lst '(("Ben" 2 "dog") ("Kath" 1 "cat") ("Matt" 6 "dog")))
+  (filter (lambda (e) (equal? (caddr e) "dog")) lst)
+  ;; => '(("Ben" 2 "dog") ("Matt" 6 "dog"))
 #+END_SRC
+
+* Macros: quotes, syntax, etc.
+  '     adds quote
+  `     adds quasiquote - see notes
+  ,     adds unquote
+  ,@    adds unquote-splicing
+  #'    adds syntax
+
+  quote-syntax - similar to syntax. Unlike syntax (#'), quote-syntax does not
+  substitute pattern variables bound by with-syntax, syntax-parse, or syntax-case.
+
+  #`    adds quasisyntax
+  #,    adds unsyntax
+  #,@   adds unsyntax-splicing
+  (quote-syntax (1 2 3))
+
+  #""   byte-string; predicate `bytes?`
+
+  ;; (: v t)     `v` has a type `t`
+  ;; (: v : t)   `v` has a type `t`
+
