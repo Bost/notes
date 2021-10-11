@@ -206,8 +206,8 @@ s-expression / sexpr or sexp - symbolic expression is:
 2. an expression of the form (x . y) where x and y are s-expressions.
 
 * Quasiquote
-
-more general mechanism than quote for creating nested list structure without using constructors explicitly
+More general mechanism than quote for creating nested list structure without
+using constructors explicitly
 
 * Variable scope within a certain function
 ** static / lexical

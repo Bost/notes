@@ -3,7 +3,8 @@
 :END:
 #+title: Linux
 
-#+BEGIN_SRC sh
+* Various commands
+  #+BEGIN_SRC sh
   # see also:
   # https://github.com/tldr-pages/tldr
   # https://github.com/cheat/cheat
@@ -173,8 +174,10 @@
   # :usb :drive gnome userspace virtual fs
   mount | grep gvfs; cd ...
 
-  # view file.pdf
+  # view PDF documents / files
   evince file.pdf
+  libre file.pdf
+  # gv, the PostScript and PDF viewer using Ghostscript as a back-end doesn't work
 
   # centos update
   su -c 'yum update'
@@ -299,7 +302,11 @@
   # duplicate files in a given set of directories
   fdupes -r .
 
-  # :clipboard - show normal clipboard content
+  # xfce-panel plugins:
+  xfce4-clipman-plugin  # clipboard manager
+  xfce4-screenshooter
+
+  # show normal clipboard content in/on the terminal / command line
   xsel --clipboard
 
   # pipe to clipboard - doesn't work
@@ -317,6 +324,7 @@
   echo "test" | xclip / xclip -o > file.ext
 
   # run a cmd only when load average is below a certain threshold (default is 0.8)
+
   echo "rm -rf /unwanted-large/folder" | batch
 
   # change file mode bits of file according to reference-file
@@ -1249,21 +1257,26 @@
   # YAML: YAML Ain't Markup Language
   # human-readable data-serialization language. Python style indentation
   # [] lists, {} maps
+  #+END_SRC
 
-  # ubuntu: bash:
-  # Which version of GTK+ is installed?
-  # https://stackoverflow.com/a/126193/5151982
-  dpkg -l libgtk* | grep -e '^i' | grep -e 'libgtk-*[0-9]'
-  # or even better
-  pkg-config --modversion gtk+-3.0
-  pkg-config --modversion gtk+-2.0
-  # Which version of Qt is installed?
-  # https://stackoverflow.com/a/39901086/5151982
-  # https://stackoverflow.com/a/40112592/5151982
-  qmake-qt5 --version
-  qmake --version
-  qtdiag
-#+END_SRC
+* Which version is installed?
+** GTK+
+   https://stackoverflow.com/a/126193/5151982
+   #+BEGIN_SRC sh
+   # ubuntu: bash:
+   dpkg -l libgtk* | grep -e '^i' | grep -e 'libgtk-*[0-9]'
+   # or even better
+   pkg-config --modversion gtk+-3.0
+   pkg-config --modversion gtk+-2.0
+   #+END_SRC
+** Qt
+   https://stackoverflow.com/a/39901086/5151982
+   https://stackoverflow.com/a/40112592/5151982
+   #+BEGIN_SRC sh
+   qmake-qt5 --version
+   qmake --version
+   qtdiag
+   #+END_SRC
 
 * Find zombie process
   https://vitux.com/how-to-create-a-dummy-zombie-process-in-ubuntu/
@@ -1274,12 +1287,12 @@
   #+BEGIN_SRC C
   // https://vitux.com/how-to-create-a-dummy-zombie-process-in-ubuntu/
   // compile: cc zombie.c -o zombie
-  
+
   #include <stdlib.h>
   #include <sys/types.h>
   #include <unistd.h>
   #include <stdio.h>
-  
+
   int main () {
     pid_t child_pid;child_pid = fork();
     if (child_pid > 0) {

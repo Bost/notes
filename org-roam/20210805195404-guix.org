@@ -141,4 +141,4 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   #+end_src
 
 * Guile Script portability across Linux and Guix machines:
-  22.08.2021: [[https://logs.guix.gnu.org/guix/2021-08-22.log#115020][<leoprikler>bost: nope, only reliable shebang still is #!/bin/sh]]
+  2021-08-22: [[https://logs.guix.gnu.org/guix/2021-08-22.log#115020][<leoprikler>bost: nope, only reliable shebang still is #!/bin/sh]]
