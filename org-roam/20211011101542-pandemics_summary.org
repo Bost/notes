@@ -63,7 +63,7 @@
 
 ** Other pandemics/epidemics
 *** Data collections WHO all: https://www.who.int/data/collections
-*** Influenza Europe: https://flunewseurope.org/
+*** Influenza Europe - weekly overview: https://flunewseurope.org/
 *** Influenza WHO: https://www.who.int/influenza/resources/charts/en/
 *** RKI https://www.rki.de/DE/Content/InfAZ/InfAZ_marginal_node.html;jsessionid=0A12AD63CDD5C3F2F53221C6FED82A99.internet061
 *** European Centre for Disease Prevention and Control (ECDC):
@@ -82,6 +82,8 @@
 *** WHO:
     https://covid19.who.int/table
     https://www.who.int/emergencies/diseases/novel-coronavirus-2019
+
+*** ICU Free Beds (Intensive Care Unit) https://en.wikipedia.org/wiki/List_of_countries_by_hospital_beds
 
 * EU
 ** Covid response coordination:
