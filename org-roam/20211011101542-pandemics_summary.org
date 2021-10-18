@@ -62,9 +62,8 @@
     Epidemic Datasets: https://datarepository.wolframcloud.com/search/?i=epidemic
 
 ** Other pandemics/epidemics
-*** Data collections WHO all: https://www.who.int/data/collections
-*** Influenza Europe - weekly overview: https://flunewseurope.org/
-*** Influenza WHO: https://www.who.int/influenza/resources/charts/en/
+*** [[https://www.who.int/data/collections][Data collections WHO all]]
+*** [[id:be9f0fc9-4b3e-4660-afa0-63f7b85c634b][Influenza]]
 *** RKI https://www.rki.de/DE/Content/InfAZ/InfAZ_marginal_node.html;jsessionid=0A12AD63CDD5C3F2F53221C6FED82A99.internet061
 *** European Centre for Disease Prevention and Control (ECDC):
 **** Tools

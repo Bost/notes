@@ -118,3 +118,9 @@ In Racket function is a procedure with no side effects.
   ;; (: v t)     `v` has a type `t`
   ;; (: v : t)   `v` has a type `t`
 
+* REPL
+  The `enter!` form both loads the code and switches the evaluation context to
+  the inside of the module, just like DrRacket’s Run button.
+  #+BEGIN_SRC racket
+  (enter "mymodule.rkt")
+  #+END_SRC
