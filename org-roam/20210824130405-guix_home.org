@@ -3,6 +3,9 @@
 :END:
 #+title: Guix Home
 
+[[https://youtu.be/R5cdtSfTpE0][YouTube: System Crafters Live! - A First Look at Guix Home]]
+[[https://systemcrafters.net/live-streams/october-01-2021/][Notes: System Crafters Live! - A First Look at Guix Home]]
+
 https://guix-home.trop.in/Home-Configuration.html
 * Create ISO image
   Two /boot/efi entries in the
@@ -12,7 +15,7 @@ https://guix-home.trop.in/Home-Configuration.html
   guix package -m manifest.scm
   #+END_SRC
 
-* Setup icecat (firefox):
+* Setup IceCat web browser:
 ** [[https://issues.guix.gnu.org/45179][IceCat stuck at Cloudflare "Checking your browser before accessing..."]]
    Install 'User-Agent Switcher' in IceCat and switch to Desktop -> 'Linux / Firefox 83'
    https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/

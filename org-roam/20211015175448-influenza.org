@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       be9f0fc9-4b3e-4660-afa0-63f7b85c634b
+:END:
+#+title: Influenza
+
+** Influenza
+   Commonly called "the flu"
+
+   [[http://www.influenzanet.info/][Influenzanet Analytics]] - no raw data to be found there
+   [[https://influenzanet.github.io/][InfluenzaNet Github]] - a couple of source code repos with nothing relevant
+   [[https://flunewseurope.org/][Flu new Europe]] - provides "Export to Excel"
+   [[https://www.who.int/influenza/resources/charts/en/][Influenza WHO]] - old
+   [[https://www.who.int/teams/global-influenza-programme][Influenza WHO]]
+   [[https://apps.who.int/flumart/Default?ReportNo=12][WHO Flunet]] - Downloadable data, Microsoft Ajax
+
+   https://apps.who.int/flumart/Default?ReportNo=12
+

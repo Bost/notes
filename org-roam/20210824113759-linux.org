@@ -254,10 +254,13 @@
   # :ubuntu - change default www-browser
   sudo update-alternatives --config x-www-browser
   sudo update-alternatives --config gnome-www-browser
-  # xfce4-settings-manager -> Preferred Applications
+  # xfce4-settings-manager -> Preferred Applications # on ubuntu
   # see ~/.local/share/xfce4/helpers
   # test by opening file / URL in the user's preferred / default application
   xdg-open www.wikipedia.org # /usr/bin/browse is symlinked to xdg-open
+
+  # on guix (requires logout and login):
+  # xfce4-settings-manager -> Default Applications
 
   # display file or file system status; alternative to ls
   stat -c "%y %s %n" *

@@ -168,7 +168,7 @@ Proposition = ???
         - monad laws are proof-equalities
 * PT 3 - Proof Search & Sequent Calculus
 
-* Chomsky hierarchy
+* Chomsky hierarchy of formal grammars
   | Grammar | Languages              | Automaton                                       | Production rules (constraints)* | Examples[3]                                                     |
   | Type-0  | Recursively enumerable | Turing machine                                  | α A β -> β                      | L = {w \vertical-line w describes a terminating Turing machine} |
   | Type-1  | Context-sensitive      | Linear-bounded non-deterministic Turing machine | α A β -> α γ β                  | L = {a^n b^n c^n \vertical-line n > 0}                          |
