@@ -57,6 +57,10 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   find ~/.cache/guix/checkouts -name install.scm
   # instantiate operating system declaration:
   cd ~/.cache/guix/checkouts/<...>; guix system image -t iso9660 gnu/system/install.scm
+
+  # Build an environment with PACKAGE-dependencies, and execute there the COMMAND
+  COMMAND or an interactive shell in that environment
+  guix environment [OPTION]... PACKAGE... [-- COMMAND...]
   #+end_src
 
 * [[https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html][Upgrade Guix]]
