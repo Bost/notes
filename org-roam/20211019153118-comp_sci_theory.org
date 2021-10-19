@@ -1,3 +1,8 @@
+:PROPERTIES:
+:ID:       800cb5b7-6af4-4114-9e56-24c148931b52
+:END:
+#+title: Comp-Sci Theory
+
 # generate pdf: M-x org-latex-export-to-pdf
 
 #+LATEX_HEADER: \usepackage{cat-7-sketches}
