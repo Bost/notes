@@ -1,0 +1,20 @@
+:PROPERTIES:
+:ID:       d92412bc-2da4-4cff-b4c0-01ce9590eccb
+:END:
+#+title: code_aster
+
+
+* code_aster
+  Structures and Thermomechanics Analysis for Studies and Research
+  [[https://www.code-aster.org/forum2/viewtopic.php?id=23453][Forum post: Code_Aster inside a Docker container]]
+
+* MPI - [[https://de.wikipedia.org/wiki/Message_Passing_Interface][Message Passing Interface]]
+  for parallel computing on distributed systems
+
+* Singularity
+  Container System for HPC Systems, "Docker for HPC"
+
+* HPC - High Performance Computing
+
+* [[https://singularity.hpcng.org/][Singularity]]
+  Container System for HPC
