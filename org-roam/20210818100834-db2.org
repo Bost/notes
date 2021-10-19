@@ -12,7 +12,7 @@
   DB2 IMPORT FROM <file.ixf> OF IXF create into <schema>.<table>
   DB2 IMPORT FROM <file.ixf> OF IXF insert into <schema>.<table>
 
-  # init environment
+  # init db2 environment
   db2cmd -i -w db2clpsetcp
 
   # license info / add license

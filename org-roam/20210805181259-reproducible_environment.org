@@ -3,7 +3,13 @@
 :END:
 #+title: Reproducible Environment
 
-Tools for managing reproducible development environments. Mirror of https://sr.ht/abcdw/rde/
+Tools for managing reproducible development environments. Mirror of
+https://sr.ht/abcdw/rde/ (Andrew Tropin)
 
+home-environment
+guix-home
 
-??? home-environment / guix-home ???
+See also the [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][guix-lemp-container]]
+#+BEGIN_SRC sh
+guix environment ...
+#+END_SRC
