@@ -4,21 +4,48 @@
 #+title: Guix System Configuration
 
 [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
-#+BEGIN_SRC sh
-guix system describe # shows e.g.:
-# Generation 1	Aug 23 2021 13:12:32	(current)
-#   file name: /var/guix/profiles/system-1-link
-#   canonical file name: /gnu/store/faa6q3nv57jfvhwbgr6863hdbmr28ma9-system
-#   label: GNU with Linux-Libre 5.12.14
-#   bootloader: grub-efi
-#   root device: UUID: 67ce5d9c-7af1-4435-a2a9-68651ab9a281
-#   kernel: /gnu/store/hbz05ydis72hkzl4s8rr4sh7ladd9xw8-linux-libre-5.12.14/bzImage
-#   configuration file: /gnu/store/d08hv9add3yk1bjb1mjf65ffdgc0fdif-configuration.scm
-
+#+BEGIN_SRC sh :results output
+guix system describe
 # time-machine - run commands from a different revision
 # Usage: guix time-machine [OPTION] -- COMMAND ARGS...
 # Execute COMMAND ARGS... in an older version of Guix.
 
 # search for existing service type 'console'
-guix system search console
+# guix system search console
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Generation 3	Oct 17 2021 15:49:49	(current)
+  file name: /var/guix/profiles/system-3-link
+  canonical file name: /gnu/store/fglmbrfnhs68cqymi7a3wdhiwki7h82a-system
+  label: GNU with Linux-Libre 5.14.12
+  bootloader: grub-efi
+  root device: UUID: 67ce5d9c-7af1-4435-a2a9-68651ab9a281
+  kernel: /gnu/store/kv0qyiiii50lipga5fgzl1jw3158ah83-linux-libre-5.14.12/bzImage
+  channels:
+    nonguix:
+      repository URL: https://gitlab.com/nonguix/nonguix.git
+      branch: master
+      commit: 3246eac4fe6d7cab88ea21d9de902caf4aa6e522
+    giuliano108-guix-packages:
+      repository URL: https://github.com/giuliano108/guix-packages
+      branch: master
+      commit: 5bb057baf290455b11ab4a748e15c8293d086146
+    guix:
+      repository URL: https://git.savannah.gnu.org/git/guix.git
+      branch: master
+      commit: 64e58296530df8cf7a106fa5797789bc8daf1243
+  configuration file: /gnu/store/3xs6hd3ydv951ydbp603nw907qrx25m0-configuration.scm
+#+end_example
+
+* Time Machine
+  Provides access to other Guix revisions, i.e. commands from a different revision
+
+#+BEGIN_SRC sh :results output
+# Usage: guix time-machine [OPTION] -- COMMAND ARGS...
+# Execute COMMAND ARGS... in an older version of Guix.
+
+# search for existing service type 'console'
+# guix system search console
 #+END_SRC
