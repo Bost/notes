@@ -124,3 +124,13 @@ In Racket function is a procedure with no side effects.
   #+BEGIN_SRC racket
   (enter "mymodule.rkt")
   #+END_SRC
+
+* Cons and List
+  `list` is an abbreviation for a series of `cons`:
+  #+BEGIN_SRC racket
+  (equal? (list 1 2 3)
+          (cons 1 (cons 2 (cons 3 null))))
+  #+END_SRC
+
+  #+RESULTS:
+  : #t
