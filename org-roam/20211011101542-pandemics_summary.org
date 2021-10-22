@@ -90,7 +90,8 @@
    https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response_en
 ** Covid Overview: https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/overview-commissions-response_en
 ** European Centre for Disease Prevention and Control (ECDC): https://europa.eu/european-union/about-eu/agencies/ecdc_en
-** European Medicines Agency: https://www.ema.europa.eu/en TODO insert the picture
+** European Medicines Agency: https://www.ema.europa.eu/en
+   See picture: [[./eu-bureaucracy-sturcture.png][EU Bureaucracy Structure]]
 
 
 * Disinformation in the media
