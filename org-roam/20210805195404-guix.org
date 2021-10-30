@@ -7,30 +7,7 @@ https://systemcrafters.cc/craft-your-system-with-guix/
 https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
 * Various commands
-  #+begin_src sh
-  guix package --list-available=ruby
-
-  # list all installed packages
-  guix package --list-installed
-
-  # export the list installed packages
-  guix package --export-manifest > manifest.scm
-  # reproduce, i.e. reinstall packages
-  guix package --manifest=manifest.scm
-
-  guix package --list-generations
-  guix package --switch-generation=PATTERN
-  guix package --roll-back
-  guix package --remove python --install guile
-  guix package -r       python  -i       guile
-  guix install                           guile
-  # install specific package version
-  guix package                 --install bat@0.18.3
-
-  # guix package -i mycli --with-latest=mycli
-
-  guix package --search=hello
-
+  #+BEGIN_SRC sh
   # systemctl status guix-daemon # on a foreign host
 
   guix describe # shows e.g.:
@@ -61,24 +38,24 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   # Build an environment with PACKAGE-dependencies, and execute there the COMMAND
   COMMAND or an interactive shell in that environment
   guix environment [OPTION]... PACKAGE... [-- COMMAND...]
-  #+end_src
+  #+END_SRC
 
 * Upgrade GuixOS
   [[https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html][Upgrade Guix]]
 ** On foreign system (e.g. Ubuntu)
-  #+begin_src sh
+  #+BEGIN_SRC sh
   sudo --login guix pull
   systemctl restart guix-daemon.service
-  #+end_src
+  #+END_SRC
 ** On Guix System
-  #+begin_src sh
+  #+BEGIN_SRC sh
   guix pull
   guix upgrade
   # not working: guix system reconfigure
   sudo herd restart guix-daemon
   # see also
   sudo herd status guix-daemon
-  #+end_src
+  #+END_SRC
 
 [[id:e65e2b2a-062b-49f7-8017-68ec4ef20a5f][Remove Guix from Ubuntu]]
 [[id:717e1406-3651-4136-97b0-7713388e644e][Guix Package Transformation Options]]
@@ -86,7 +63,7 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
 * Basic GuixOS system setup with manifest files
   [[https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html][Basic setup with manifests]]
-  #+begin_src sh
+  #+BEGIN_SRC sh
   # see also guix package --export-manifest
   guix package --list-profiles
   GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
@@ -95,10 +72,10 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
                --profile="$GUIX_EXTRA_PROFILES"/my-project/my-project
 
   guix package -p "$GUIX_EXTRA_PROFILES"/my-project/my-project --list-installed
-  #+end_src
+  #+END_SRC
 
   Add to ~/.bashrc (adding to ~/.bash_profile doesn't work):
-  #+begin_src sh
+  #+BEGIN_SRC sh
   GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
   for i in $GUIX_EXTRA_PROFILES/*; do
     profile=$i/$(basename "$i")
@@ -108,36 +85,36 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
     fi
     unset profile
   done
-  #+end_src
+  #+END_SRC
 
 * Guix in a VM: SSH access
   [[https://guix.gnu.org/manual/en/html_node/Running-Guix-in-a-VM.html][Guix in a VM: SSH access]]
   Edit the /run/current-system/configuration.scm
-  #+begin_src guile
+  #+BEGIN_SRC guile
   (service openssh-service-type
   (openssh-configuration
   (permit-root-login 'without-password)))
-  #+end_src
+  #+END_SRC
 
-  #+begin_src sh
+  #+BEGIN_SRC sh
   guix system reconfigure /path/to/configuration.scm
   ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022 guest@localhost
-  #+end_src
+  #+END_SRC
 
-  #+begin_src sh
+  #+BEGIN_SRC sh
   guix deploy /path/to/some/file.scm
-  #+end_src
+  #+END_SRC
 
-* Sending patches
+* Contributing & sending patches
   [[https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi][Guix Documentation source code]]
-  Read info about submitting patches (in the GUIX VM):
-  #+begin_src sh
+  [[https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html][Submitting Patches]]
+  #+BEGIN_SRC sh
   info "(guix)Submitting Patches"
-  #+end_src
+  #+END_SRC
 
 * QEMU shrink disk size - doesn't work
   https://pve.proxmox.com/wiki/Shrink_Qcow2_Disk_Files
-  #+begin_src sh
+  #+BEGIN_SRC sh
   dd if=/dev/zero of=mytempfile
   # that could take a some time
   sync
@@ -145,7 +122,7 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
   cp guix-system-vm-image-1.3.0.x86_64-linux.qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup
   qemu-img convert -O qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup guix-system-vm-image-1.3.0.x86_64-linux.qcow2
-  #+end_src
+  #+END_SRC
 
 * Guile Script environment portability across Linux and Guix machines:
   <leoprikler>bost: nope, only reliable shebang still is #!/bin/sh
