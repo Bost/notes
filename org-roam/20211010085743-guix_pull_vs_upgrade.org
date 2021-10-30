@@ -6,6 +6,7 @@
 * guix pull
   Update Guix OS distribution & Guix tools: download the latest Guix source code
   and package descriptions, and deploys it.
+  See ~/.cache/guix/checkouts
 
 * guix upgrade
   Alias for guix package --upgrade

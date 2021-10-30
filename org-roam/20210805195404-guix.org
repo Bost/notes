@@ -63,7 +63,8 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   guix environment [OPTION]... PACKAGE... [-- COMMAND...]
   #+end_src
 
-* [[https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html][Upgrade Guix]]
+* Upgrade GuixOS
+  [[https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html][Upgrade Guix]]
 ** On foreign system (e.g. Ubuntu)
   #+begin_src sh
   sudo --login guix pull
@@ -83,7 +84,8 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 [[id:717e1406-3651-4136-97b0-7713388e644e][Guix Package Transformation Options]]
 [[id:69f25a70-c039-488f-9382-91b998b7c0f5][Guix System Configuration]]
 
-* [[https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html][Basic setup with manifests]]
+* Basic GuixOS system setup with manifest files
+  [[https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html][Basic setup with manifests]]
   #+begin_src sh
   # see also guix package --export-manifest
   guix package --list-profiles
@@ -108,7 +110,8 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   done
   #+end_src
 
-* [[https://guix.gnu.org/manual/en/html_node/Running-Guix-in-a-VM.html][Guix in a VM: SSH access]]
+* Guix in a VM: SSH access
+  [[https://guix.gnu.org/manual/en/html_node/Running-Guix-in-a-VM.html][Guix in a VM: SSH access]]
   Edit the /run/current-system/configuration.scm
   #+begin_src guile
   (service openssh-service-type
@@ -144,5 +147,21 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   qemu-img convert -O qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup guix-system-vm-image-1.3.0.x86_64-linux.qcow2
   #+end_src
 
-* Guile Script portability across Linux and Guix machines:
-  2021-08-22: [[https://logs.guix.gnu.org/guix/2021-08-22.log#115020][<leoprikler>bost: nope, only reliable shebang still is #!/bin/sh]]
+* Guile Script environment portability across Linux and Guix machines:
+  <leoprikler>bost: nope, only reliable shebang still is #!/bin/sh
+  [[https://logs.guix.gnu.org/guix/2021-08-22.log#115020][2021-08-22: IRC #guix channel log]]
+
+* Org mode, Pdf, LaTex
+  - `guix install texlive-bin` is not enough. It leads to: "I can't find the
+    format file `pdflatex.fmt'!" where `sudo texconfig rehash` doesn't help (See
+    [[http://tex.stackexchange.com/questions/64894/ddg#64895]])
+  - Installing everything with `guix install texlive` (2.6 GB)
+  - viewing pdf in the spacemacs:
+  1. install pdf layer
+  2. `guix install gwl` for the `autoreconf` program
+  3. TODO fix `pdf-info-epdfinfo-program is not executable`
+
+ M-x org-odt-export-to-odt needs
+ guix install zip
+ M-x org-roam-graph needs
+ guix install graphviz
