@@ -24,7 +24,7 @@
   ;; unreachable repositories: use http instead of https
   emacs --insecure
 
-  ;; e.g. visualisatin; for log analysis
+  ;; e.g. visualization; for log analysis
   M-x highlight-symbol-at-point
 
   ;; paredit: wrap square brackets around sexp
@@ -143,8 +143,10 @@
   ;; packages grouped by keyword
   M-x finder-by-keyword
 
-  ;; delete word / line from cursor
-  M-d / C-k
+  ;; delete word
+  ~M-d~
+  ;; delete line from cursor
+  ~C-k~
 
   M-x goto-line
 
@@ -225,7 +227,7 @@
   ;; yasnippet - yet another snippets. Example
   ;; `defn' `M-/' type in the defn-name, then `TAB' to complete ...
   ;; hippie-expand (dabbrev-expand?) (code completition)
-  M-/
+  ~M-/~
 
   ;; delete 1 whole line
   M-x kill-whole-line
@@ -272,44 +274,44 @@
   | ~C-f C-_~      | redo                    |
 
   ;; next-buffer / previous-buffer
-  <XF86Forward>, C-x <C-right>, C-x <right> / <XF86Back>, C-x <C-left>, C-x <left>
+  ~<XF86Forward>~, ~C-x <C-right>~, ~C-x <right>~ / ~<XF86Back>~, ~C-x <C-left>~, ~C-x <left>~
 
   ;; forward / backward one sentence
-  M-a / M-e
+  ~M-a~ / ~M-e~
 
   ;; mark / hilite / highlight whole buffer / mark paragraph
-  C-x h / M-h
+  ~C-x h~ / ~M-h~
 
   ;; M-x forward-paragraph / backward-paragraph
-  M-} / <C-down> / M-{ / <C-up>
+  ~M-}~ / ~<C-down>~ / ~M-{~ / ~<C-up>~
 
   ;; jump to the next (compilation error(s), grep results etc.)
-  C-x `
+  ~C-x `~
 
   ;; files: writte buffer to a different file
-  C-x C-w
+  ~C-x C-w~
 
   ;; files: next-buffer / previous-buffer
-  C-x left / right
+  ~C-x <left>~ / ~C-x <right>~
 
   ;; copy-paste: kill line / kill sentence / yank
-  C-k / M-k
+  ~C-k~ / ~M-k~
 
   ;; copy-paste: kill region (cut)
-  C-w
+  ~C-w~
 
   ;; copy-paste: kill ring save (copy) / yank (paste last killed entry)
-  M-w / C-y
+  ~M-w~ / ~C-y~
 
-* Git & Magit  
+* Git & Magit
   ;; magit: (magit-copy-section-value) i.e. current sha1 to clipboard
-  y s
+  ~y s~
 
   ;; magit: (magit-copy-buffer-revision) i.e. top sha1 to clipboard
-  M-w
+  ~M-w~
 
   ;; copy-paste: cycle back through previous entries in the kill ring
-  M-y
+  ~M-y~
 
   ;; magit: spin-off / spinoff
   git branch --track <new-branch-name>
@@ -327,7 +329,7 @@
   | ~M->~ | end of buffer |
 
   ;; page up/down
-  M-v / C-v
+  ~M-v~ / ~C-v~
 
   | ~C-t~         | transpose chars         |
   | ~M-t~         | transpose words         |
@@ -390,13 +392,13 @@
   M-o M-s
 
   ;; isearch-forward-regexp
-  C-M-s
+  C-M-s~
 
   ;; incremental search forward / backward
-  C-s / C-r
+  ~C-s~ / ~C-r~
 
   ;; query-replace-regexp
-  C-M-%
+  ~C-M-%~
 
   ;;
   M-x dbg / ediff / compile / man / erc
@@ -411,23 +413,23 @@
   M-x linum-relative-toggle / global-linum-mode
 
   ;; M-x eval-expression
-  M-:
+  ~M-:~
 
   ;; documentation reader
-  M-g g
+  ~M-g g~
 
   ;; move forward 4 lines
-  C-u C-n
+  ~C-u C-n~
 
   ;; increase / decrease font size
-  C-x C-+ / C-x C--
+  ~C-x C-+~ / ~C-x C--~
 
   ;; problem: emacs does not uses fonts from /usr/share/fonts
   sudo apt install --yes libgtk2.0-dev
   ./configure --with-x-toolkit=gtk
 
   ;; slime: reprint last command to the REPL
-  M-p
+  ~M-p~
 
   ;; gui: toggle vertical scroll bar (vertical scroll bar does not exist in emacs)
   M-x toggle-scroll-bar
@@ -439,19 +441,19 @@
   M-x align-regexp
 
   ;; auto completition
-  C-n
+  ~C-n~
 
   ;; region: set mark (start region)
-  C-SPC
+  ~C-SPC~
 
   ;; region: kill selected region
-  C-x r k
+  ~C-x r k~
 
   ;; save region to a file
   M-x write-region
 
   ;; splits: close / only one buffer / horizontal / vertical
-  C-x 0 / C-x 1 / C-x 2 / C-x 3
+  ~C-x 0~ / ~C-x 1~ / ~C-x 2~ / ~C-x 3~
 
   ;; does not work
   M-x clean-buffer-list
@@ -461,13 +463,13 @@
   M-x byte-recompile-directory
 
   ;; helm: minibuffer: minibuffer-force-complete
-  C-M-i
+  ~C-M-i~
 
   ;; Helm: toggle horizontal / vertical listing 
-  M-x C-t
+  ~M-x C-t~
 
   ;; M-x helm-toggle-visible-mark / M-x helm-copy-to-buffer
-  C-SPC / C-c C-i
+  ~C-SPC~ / ~C-c C-i~
 
   ;; helm: htop: top: linux:
   M-x helm-top / M-x proced
@@ -492,10 +494,10 @@
 
   ;; magit: http://magit.github.io/master/magit.html
   ;; M-x magit-commit
-  C-c C-c
+  ~C-c C-c~
 
   ;; magit: cancel (abandon) commit
-  M-x with-editor-cancel / C-c C-k / C-x k
+  M-x with-editor-cancel / ~C-c C-k~ / ~C-x k~
 
   ;; M-x magit-status;
   ;; inc / dec / reset hunk size / split hunk / add to .gitignore /
@@ -504,34 +506,34 @@
 
   ;; M-x magit-status; remoting / log / branching / bisecting / diff / fetch /
   ;; merge / rewrite
-  M / l / b / B / d / f / m / r
+  ~M~ / ~l~ / ~b~ / ~B~ / ~d~ / ~f~ / ~m~ / ~r~
 
   ;; M-x magit-log; show commit details and stay in log / jump to details /
   ;; put sha1 to clipboard / reset HEAD to given commit
-  SPC / RET / C-w / x
+  ~SPC~ / ~RET~ / ~C-w~ / ~x~
 
   ;; M-x magit-status: section visibility
   (M-)1 / (M-)2 / (M-)3 / (M-)4
 
   ;; M-x magit-status: section visibility: hide (all) / show (all)
-  M-h (H) / M-s (S)
+  ~M-h~ (H) / ~M-s~ (S)
 
   ;; M-x magit-commit: log-edit-commit-ring / Kill commit / Tested / Signed-off by
-  M-p / M-n / C-c C-k / C-c C-t / C-c C-s
+  ~M-p~ / ~M-n~ / ~C-c C-k~ / ~C-c C-t~ / ~C-c C-s~
 
   ;; M-x magit-status: rebase / ineractive-rebase
-  R / E
+  ~R~ / ~E~
 
   ;; M-x magit-reset-quickly - press:
-  o
+  ~o~
   ;; then type: "HEAD~"
 
   ;; M-x magit-ineractive-rebase: squash / pick / reword
-  s / c / r
+  ~s~ / ~c~ / ~r~
 
   ;; M-x magit-status: reset (discard all uncommited) changes
   ;; working tree unchanged
-  x (X)
+  ~x~ (X)
 
   ;; info: manual:
   M-x info / info-apropos / info-emacs-manual / info-display-manual
@@ -545,15 +547,15 @@
   emacs --eval '(message "ufo")' / emacs -e configuration-layer/update-packages
 
   ;; M-x shell-command; execute
-  M-! / SPC !
+  ~M-!~ / ~SPC !~
 
   ;; execute shell command and read-in / capture its output (in the current buffer
   ;; if in evil-insert mode)
-  C-u M-! <cmd>
-  C-u SPC ! <cmd>
+  ~C-u M-! <cmd>~
+  ~C-u SPC ! <cmd>~
 
   ;; M-x shell-command: top: capture top output from stdout
-  M-! RET top -c -n -1 -b -w 200
+  ~M-! RET top -c -n -1 -b -w 200~
 
   ;; M-x git-timemachine git:
   p prev / n next / w Copy abbreviated hash / W Copy full hash / g Goto nth rev /
@@ -604,17 +606,17 @@
   emacs -Q -L . -l yasnippet-tests.el -f ert &
 
   ;; helm-locate - see 'man locate'
-  SPC f L
+  ~SPC f L~
 
   ;; window transient mode - window management w/o using key binding - for layouts
-  SPC w .
+  ~SPC w .~
 
   ;; workspaces and layouts
   ;; layout 1. contains all buffers;
   ;; layouts 2., 3., ... contain only selected buffers
-  SPC l 0..9 ; create new layout
-  SPC l s    ; save layout to a file
-  SPC l L    ; load layout from a file
+  ~SPC l 0..9~ ; create new layout
+  ~SPC l s~    ; save layout to a file
+  ~SPC l L~    ; load layout from a file
 
   ;; M-s h l hilite lines e.g. log file evaluation; see:
   ;; https://www.masteringemacs.org/article/highlighting-by-word-line-regexp
@@ -625,11 +627,11 @@
 
   ;; edit as a root / super user
   M-x spacemacs/sudo-edit
-  s-SPC f E
-  SPC f E
+  ~s-SPC f E~
+  ~SPC f E~
 
   ;; toggle neotree
-  SPC f T
+  ~SPC f T~
 
   ;; Collapse every form of it when first opened - put the following block in the
   ;; bottom of init.el:
@@ -639,7 +641,7 @@
 
   ;; vertical line indicating too long lines; spacemacs-light / -dark themes
   ;; don't show contrasting background - use the default theme
-  M-x fill-column-indicator / SPC t f
+  M-x fill-column-indicator / ~SPC t f~
   M-x whitespace-toggle-options
 
   ;; emacs current directory
@@ -669,7 +671,7 @@
 
   ;; Toggle preview of the LaTeX fragment at point.
   M-x org-latex-preview
-  C-c C-x C-l
+  ~C-c C-x C-l~
 
   ;; TODO latex-preview-pane
 

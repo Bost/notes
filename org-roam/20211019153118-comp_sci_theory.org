@@ -186,11 +186,14 @@ Proposition = ???
    α, β = maybe empty
    γ = never empty
 
-* Indirect left recursion https://en.wikipedia.org/wiki/Left_recursion
-  Indirect left recursion occurs when the definition of left recursion is satisfied via several substitutions. It entails a set of rules following the pattern
-  [e "A0 -> β0 A1 α"]
-  [e "A1 -> β1 A2 α"]
-  [e "An -> βn A0 α"]
+* Indirect [[https://en.wikipedia.org/wiki/Left_recursion][left recursion]]
+  Occurs when the definition of LR is satisfied via several substitutions. It
+  entails a set of rules following the pattern:
+
+  | A0 -> β0 A1 α |
+  | A1 -> β1 A2 α |
+  | An -> βn A0 α |
+
   where [e "β0,β1, ... ,βn"] are sequences that can each yield the empty string,
   while [e "α0,α1, ... ,αn"] may be any sequences of terminal and nonterminal
   symbols at all. Note that these sequences may be empty. The derivation

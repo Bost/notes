@@ -134,3 +134,13 @@ In Racket function is a procedure with no side effects.
 
   #+RESULTS:
   : #t
+
+* Read and evaluate code from string
+  #+BEGIN_SRC racket
+  (eval (read (open-input-string "(+ 1 2)")))
+  ;; or
+  (with-input-from-string "(+ 1 2)"
+    (lambda () (eval (read))))
+  ;; or
+  (eval (call-with-input-string "(+ 1 2)" read)) ;; string port is auto-closed
+  #+END_SRC
