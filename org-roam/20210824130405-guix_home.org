@@ -3,6 +3,14 @@
 :END:
 #+title: Guix Home
 
+Manage reproducible development environments.
+https://sr.ht/abcdw/rde/ (Andrew Tropin)
+
+See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][guix-lemp-container]] - LEMP WordPress Reproducible Environment
+#+BEGIN_SRC sh
+guix environment ...
+#+END_SRC
+
 [[https://youtu.be/R5cdtSfTpE0][YouTube: System Crafters Live! - A First Look at Guix Home]]
 [[https://systemcrafters.net/live-streams/october-01-2021/][Notes: System Crafters Live! - A First Look at Guix Home]]
 
