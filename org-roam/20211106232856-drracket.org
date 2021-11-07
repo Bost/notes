@@ -1,0 +1,16 @@
+:PROPERTIES:
+:ID:       7e9198b0-4deb-48d0-96c2-7417aadab478
+:END:
+#+title: DrRacket
+
+
+[[https://plt.cs.northwestern.edu/snapshots/current/pdf-doc/tools.pdf][DrRacket Plugins]]
+Descriptions of DrRacket’s plugins interface.
+
+The simplest and best way to extend DrRacket with support for a new language is
+to implement the language via #lang
+
+
+# IDE
+raco pkg install --auto sauron
+raco pkg install https://github.com/tuirgin/drracket-spacemacs-schemes.git
