@@ -700,32 +700,6 @@
 
   # remove old kernels - see dotfiles/bin/remove-old-kernels
 
-  # for tabular data
-  awk
-
-  # cut huge file: content between lines 10 and 20 / print 5th line
-  sed -n "10,20p" /pth/to/file / sed -n 5p /pth/to/file
-
-  # cut huge file: content between lines 10 and 20
-  # see https://unix.stackexchange.com/a/47423
-  awk 'NR >= 10 && NR <= 20' /pth/to/file > /pth/to/cut-file
-
-  # replace 1 occurence
-  sed --in-place "s/foo/FOO/" /pth/to/file
-
-  # replace all occurences of "foo" (globally)
-  sed --in-place "s/foo/FOO/g" /pth/to/file
-
-  # remove empty lines (globally)
-  sed --in-place '/^\s*$/d' /pth/to/file
-
-  # replace newlines with space
-  sed ':a;N;$!ba;s/\n/ /g'
-
-  # :sed :ascii :ebcdic fix new lines and empty chars; \x85 - hexadecimal char
-  sed "s/\x85/\n/g" <log.txt >log.nl.txt; \
-      sed "s/\x85/\n/g" <log.nl.txt >log.nl.00.txt
-
   # read SHA sums from the SHA256SUMS.asc file and check / verify them
   sha256sum -c      SHA256SUMS.asc | grep OK
   sha256sum --check SHA256SUMS.asc | grep OK
@@ -1311,4 +1285,35 @@
     }
     return 0;
   }
+  #+END_SRC
+
+* sed & awk
+  sed - stream editor
+  awk - written by Alfred V. Aho, Peter J. Weinberger, Brian W. Kernighan
+  #+BEGIN_SRC sh
+  # for tabular data
+  awk
+
+  # cut huge file: content between lines 10 and 20 / print 5th line
+  sed -n "10,20p" /pth/to/file / sed -n 5p /pth/to/file
+
+  # cut huge file: content between lines 10 and 20
+  # see https://unix.stackexchange.com/a/47423
+  awk 'NR >= 10 && NR <= 20' /pth/to/file > /pth/to/cut-file
+
+  # replace 1 occurence
+  sed --in-place "s/foo/FOO/" /pth/to/file
+
+  # replace all occurences of "foo" (globally)
+  sed --in-place "s/foo/FOO/g" /pth/to/file
+
+  # remove empty lines (globally)
+  sed --in-place '/^\s*$/d' /pth/to/file
+
+  # replace newlines with space
+  sed ':a;N;$!ba;s/\n/ /g'
+
+  # :sed :ascii :ebcdic fix new lines and empty chars; \x85 - hexadecimal char
+  sed "s/\x85/\n/g" <log.txt >log.nl.txt; \
+  sed "s/\x85/\n/g" <log.nl.txt >log.nl.00.txt
   #+END_SRC
