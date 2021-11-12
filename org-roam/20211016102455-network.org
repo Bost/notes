@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       88015f64-c9fc-4fd7-afdb-eeb3fa3558de
+:END:
+#+title: Network
+
+
+[[https://youtu.be/-wMU8vmfaYo][YouTube: Why was Facebook down for five hours?]]
+
+BGP Border Gateway Protocol
