@@ -32,7 +32,7 @@ echo "Hello World from sh" # evaluate: C-c
 #+END_SRC
 
 #+RESULTS:
-: Hello World
+: Hello World from sh
 
 #+begin_src clojure :results silent
 ;; ":results silent" causes result to be displayed in the mini-buffer

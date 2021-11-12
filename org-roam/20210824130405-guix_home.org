@@ -6,9 +6,28 @@
 Manage reproducible development environments.
 https://sr.ht/abcdw/rde/ (Andrew Tropin)
 
+In the Terminal -> Preferences: switch on "Run command as login shell"
+(Otherwise ~/.bash_profile is not sourced)
+
+#+BEGIN_SRC sh :results output
+info Guix Home
+#+END_SRC
+
+#+BEGIN_SRC sh :results output
+# guix home reconfigure
+# search in / loot at all existing guix home services
+# guix home search .
+# printf "HOME_ENVIRONMENT: %s\n" $HOME_ENVIRONMENT
+# printf "HOME: %s\n" $HOME
+# guix home describe
+# guix home --help
+guix home import ~/guix-home-config
+#+END_SRC
+
 See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][guix-lemp-container]] - LEMP WordPress Reproducible Environment
+
 #+BEGIN_SRC sh
-guix environment ...
+guix shell ...
 #+END_SRC
 
 [[https://youtu.be/R5cdtSfTpE0][YouTube: System Crafters Live! - A First Look at Guix Home]]

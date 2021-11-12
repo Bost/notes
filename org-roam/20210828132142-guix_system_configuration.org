@@ -3,7 +3,8 @@
 :END:
 #+title: Guix System Configuration
 
-[[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
+* System Configuration
+  [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
 #+BEGIN_SRC sh :results output
 guix system describe
 # time-machine - run commands from a different revision
@@ -15,7 +16,7 @@ guix system describe
 #+END_SRC
 
 #+RESULTS:
-#+begin_example
+#+BEGIN_EXAMPLE
 Generation 3	Oct 17 2021 15:49:49	(current)
   file name: /var/guix/profiles/system-3-link
   canonical file name: /gnu/store/fglmbrfnhs68cqymi7a3wdhiwki7h82a-system
@@ -37,7 +38,19 @@ Generation 3	Oct 17 2021 15:49:49	(current)
       branch: master
       commit: 64e58296530df8cf7a106fa5797789bc8daf1243
   configuration file: /gnu/store/3xs6hd3ydv951ydbp603nw907qrx25m0-configuration.scm
-#+end_example
+#+END_EXAMPLE
+** Services
+   One-shot services stop immediately after their start action has completed.
+
+*** term-auto
+   - Q: What's the term-auto service? It seems to be my only stopped service
+   - A1: "term-auto" is mainly for serial consoles that might need a log-in
+     prompt. The regular (VT) ttys use mingetty instead. It's basically always
+     stopped - that it could be presented in a less misleading way.
+     See [[https://logs.guix.gnu.org/guix/2020-09-23.log#174932][IRC #guix channel log]]
+   - A2: There is no ‘term-auto’ service (it's similar to a systemd term@auto
+     instance). See [[https://logs.guix.gnu.org/guix/2020-03-23.log#213842][IRC #guix channel log]]
+
 
 * Time Machine
   Provides access to other Guix revisions, i.e. commands from a different revision
