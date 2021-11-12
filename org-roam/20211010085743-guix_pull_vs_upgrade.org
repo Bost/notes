@@ -8,13 +8,16 @@
   and package descriptions, and deploys it.
   See ~/.cache/guix/checkouts
   #+BEGIN_SRC sh
-  guix pull --verbosity=LEVEL
+  guix pull --cores=12 --verbosity=3
+  guix pull      -c 12          -v 3
   #+END_SRC
 
 * guix upgrade
   Alias for guix package --upgrade
   Upgrade all installed packages to the latest version of packages found in the
   distribution currently installed.
+  - Examples:
   #+BEGIN_SRC sh
-  guix upgrade --verbosity=LEVEL
+  guix upgrade --cores=12 --verbosity=3
+  guix upgrade      -c 12          -v 3
   #+END_SRC
