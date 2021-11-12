@@ -5,6 +5,27 @@
 
 [[https://github.com/jlevy/the-art-of-command-line][the-art-of-command-line]]
 
+* Swap
+  [[https://averagelinuxuser.com/linux-swap/][Linux swap: what it is and how to use it]]
+  New installations of Ubuntu 18.04 use a swap file instead of swap partition
+  8 * 1024 * 1048576 MB = 8 * 1073741824 B = 8589934592 B = 8GB
+  TODO create swap file using fallocate: see https://www.tecmint.com/add-swap-space-on-ubuntu/
+  /proc/sys/vm/swappiness
+  /proc/sys/vm/vfs_cache_pressure
+  See [[http://www.pqxx.org/development/swapspace/][swapspace]] - the swap file manager
+  #+BEGIN_SRC sh
+  set swapfile /swapfile
+  sudo dd status=progress if=/dev/zero of=$swapfile count=8388608 bs=1024
+  # sudo fallocate --length 8G $swapfile
+  sync   # synchronize cached writes to persistent storage
+  # permissions should be: -rw------- 1 root root
+  sudo chmod 0600 $swapfile # ls -la $swapfile
+  sudo mkswap $swapfile
+  sudo swapon $swapfile
+  swapon --summary
+  free -h
+  #+END_SRC
+
 * Various commands
   #+BEGIN_SRC sh
   # see also:
@@ -143,22 +164,9 @@
   parted /dev/sda resize 3 100%
   # manipulate (given) partition
   fdisk
+  #+END_SRC
 
-  # New installations of Ubuntu 18.04 use a swap file instead of swap partition
-  # 8 * 1024 * 1048576 MB = 8 * 1073741824 B = 8589934592 B = 8GB
-  # TODO fallocate: see https://www.tecmint.com/add-swap-space-on-ubuntu/
-  # /proc/sys/vm/swappiness
-  # /proc/sys/vm/vfs_cache_pressure
-  sudo dd status=progress if=/dev/zero of=/sdb1/swap.img count=8388608 bs=1024
-  sync   # synchronize cached writes to persistent storage
-  # sudo chmod 600 /sdb1/swap.img  # should not be needed
-  # make sure we have: -rw------- 1 root root 8,0G
-  ls -la /sdb1/swap.img
-  sudo mkswap /sdb1/swap.img
-  sudo swapon /sdb1/swap.img
-  swapon --summary
-  # see also: swapspace
-
+  #+BEGIN_SRC sh
   # flush file system buffers
   sync
 
