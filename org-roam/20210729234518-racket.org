@@ -144,3 +144,9 @@ In Racket function is a procedure with no side effects.
   ;; or
   (eval (call-with-input-string "(+ 1 2)" read)) ;; string port is auto-closed
   #+END_SRC
+
+* RacketConf 2021
+  - https://racket.discourse.group
+  - [[https://github.com/soegaard/remacs][Emacs style editor written in Racket]]
+  - [[https://youtu.be/73dDj_z66qo?t=3578][Matthias Felleisen - Every language has a slogan]]
+
