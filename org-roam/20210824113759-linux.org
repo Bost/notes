@@ -403,8 +403,9 @@
   # create directory tree with multiple subdirs
   mkdir -p ./pth/{sub1,sub2}/{1..100}/{src,bin,bak}
 
-  # auto-create "./pth" and do --preserve=mode,ownership,timestamps
-  cp --parents -p ./pth/src.ext ./pth/dst.ext
+  # auto-create partent dir "./pth" and do --preserve=mode,ownership,timestamps
+  cp --parents -p                                   ./pth/src.ext ./pth/dst.ext
+  cp --parents --preserve=mode,ownership,timestamps ./pth/src.ext ./pth/dst.ext
 
   # mv README.text README.txt ; cp file file.bak
   mv README.{text,txt} ; cp file{,.bak}
