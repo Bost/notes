@@ -5,6 +5,27 @@
 
 [[https://github.com/jlevy/the-art-of-command-line][the-art-of-command-line]]
 
+* Grub
+  templates: /etc/grub.d
+  settings: /etc/default/grub
+
+  grub-mkconfig generates a grub config file. update-grub is an alias for
+  grub-mkconfig:
+  #+BEGIN_SRC sh :results output
+  cat /usr/sbin/update-grub
+  #+END_SRC
+
+  #+RESULTS:
+  : #!/bin/sh
+  : set -e
+  : exec grub-mkconfig -o /boot/grub/grub.cfg "$@"
+
+  On Ubuntu when "you may need to re-run your boot" appears:
+  #+BEGIN_SRC sh
+  sudo update-grub
+  #+END_SRC
+
+
 * Swap
   [[https://averagelinuxuser.com/linux-swap/][Linux swap: what it is and how to use it]]
   New installations of Ubuntu 18.04 use a swap file instead of swap partition
@@ -172,14 +193,6 @@
 
   # dynamic device management - the /dev directory
   udev
-
-  # usb mtp android
-  # mtp - Media Transfer Protocol
-  cd /run/user/$UID/gvfs         # bash
-  cd "/run/user/"(id -u)"/gvfs"  # fish
-  jmtpfs --listDevices
-  # SP Flash Tool
-  # Smart Phone Flash Tool
 
   # :usb :drive gnome userspace virtual fs
   mount | grep gvfs; cd ...
@@ -698,9 +711,6 @@
   lsb_release -a
   cat /etc/issue
 
-  # :ubuntu when "you may need to re-run your boot" appears
-  sudo update-grub
-
   # :ubuntu after update / upgrade see
   /usr/share/update-notifier/notify-reboot-required
 
@@ -1033,13 +1043,6 @@
 
   # root login / console / prompt
   sudo -i
-
-  # :android
-  sudo aptitude install android-tools-adb android-tools-fastboot
-  # check plugdev membership
-  groups
-  adb devices; dmesg; adb logcat; adb shell
-  adb push src dst
 
   # unsupported / obsolete packages
   ubuntu-support-status --show-unsupported
