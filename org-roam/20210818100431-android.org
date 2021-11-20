@@ -37,3 +37,51 @@ https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android
 
 http://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_N_9003_signed.zip
 
+#+BEGIN_SRC shell
+  exit 1 # just in case ...
+
+  set cmd "ip address"
+  eval $cmd
+  #...
+
+  set host $USER@<ip address>
+  set src $host:/home/$USER
+  $src/dev/navig/Osmand
+  $src/dev/navig/osmand-api-demo
+
+  rsync -azv gradle-4.6-bin.zip $src/dev/navig/osmand-api-demo/gradle/wrapper
+  rsync -azv $src/.gradle ~/.gradle/
+  rsync -azv $src/.m2 ~/.m2/
+
+  # edit gradle-wrapper.properties
+  distributionUrl=gradle-4.6-bin.zip
+
+  inst android-sdk
+  $HOME/Downloads/android
+  # unzip and then
+  tools/bin/sdkmanager --licenses
+  sudo rsync -azv licenses/ $ANDROID_HOME/licenses/
+  sudo chown -R $USER:$USER /usr/lib/android-sdk/
+  rsync -azv $host:/usr/lib/android-sdk/ /usr/lib/
+#+END_SRC
+
+* Androind: USB transfer with Media Transfer Protocol
+  mtp - Media Transfer Protocol
+#+BEGIN_SRC shell
+  cd /run/user/$UID/gvfs         # bash
+  cd "/run/user/"(id -u)"/gvfs"  # fish
+  jmtpfs --listDevices
+  # SP Flash Tool
+  # Smart Phone Flash Tool
+#+END_SRC
+
+#+BEGIN_SRC shell
+# :android
+  sudo aptitude install android-tools-adb android-tools-fastboot
+  # check plugdev membership
+  groups
+  adb devices; dmesg; adb logcat; adb shell
+  adb push src dst
+#+END_SRC
+
+

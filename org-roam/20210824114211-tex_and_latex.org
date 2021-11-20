@@ -54,3 +54,27 @@ Examples
   # latex macros https://youtu.be/j--6zhiWDJ8
 #+END_SRC
 
+#+begin_example
+
+#+BEGIN_SRC latex
+#+LATEX: % generate pdf: M-x org-latex-export-to-pdf
+
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage{float}      % fixed table position
+#+LATEX_HEADER: \usepackage{parskip}    % paragraphs
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}   % unicode chars
+#+LATEX_HEADER: \usepackage{minted}     % syntax coloring
+
+\begin{minted}[style=solarized-dark]{clojure}
+  (defn foo [] (println "foo"))
+\end{minted}
+
+\begin{minted}[style=solarized-dark]{bash}
+  #!/usr/bin/bash
+  for (( i=0; i != 10; i=i+1)); do
+    echo $i
+  done
+\end{minted}
+#+END_SRC

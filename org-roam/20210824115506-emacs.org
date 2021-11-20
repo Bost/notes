@@ -679,12 +679,4 @@
   ;; increment numbers in visual vertical block selection in emacs evil:
   ;; select e.g. 3 lines of visual block ~C-v 3~ then ~C-x r N~
 
-* [[https://orgmode.org/manual/Structure-of-Code-Blocks.html][Structure of Code Blocks]]
-  #+NAME: <name>
-  #+BEGIN_SRC <language> <switches> <header arguments>
-    <body>
-  #+END_SRC
-
-  [[https://orgmode.org/manual/Languages.html#Languages][List of Code Block Languages]]
-  
 * emacsclient in Guix is in the emacs-with-editor package
