@@ -25,7 +25,7 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   # lists the currently defined services
   sudo herd status
 
-  # `guix system reconfigure configuration.scm` may produce:
+  # `sudo guix system reconfigure configuration.scm` may produce:
   #   guix system: error: symlink: Permission denied: "/var/guix/profiles/system-2-link.new"
   # so try with sudo -E / --preserve-env
   sudo -E guix system reconfigure configuration.scm
@@ -51,8 +51,8 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   #+BEGIN_SRC sh
   guix pull
   guix upgrade
-  # not working: guix system reconfigure
-  sudo herd restart guix-daemon
+  sudo guix system reconfigure # /run/current-system/configuration.scm
+  # sudo herd restart guix-daemon # is probably not needed
   # see also
   sudo herd status guix-daemon
   #+END_SRC
