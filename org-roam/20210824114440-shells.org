@@ -103,14 +103,21 @@
     $argv[3..-1]
 
     # :fish :existence-tests
-    test (string escape -- $argv) = "--switch" # string equality
-    test -e /path/to/file.txt                 # file exists
+    test (string escape -- $argv) = "--switch" # string equality / compare
+    test -e /path/to/file.txt                  # file exists
     test -d /path/to/dir                       # directory exists
     # true if the length of $myvar is non-zero i.e. non-empty string
     # https://stackoverflow.com/a/47743269; always use "" around the myvar
     test -n "$myvar"; and echo "true == defined"; or echo "false == undefined"
     # true if the length of $myvar is zero i.e. empty string
     test -z "$myvar"; and echo "true == undefined"; or echo "false == defined"
+
+    # bash string equality / compare
+    # See https://tldp.org/LDP/abs/html/comparison-ops.html
+    [[ $a == z* ]]   # True if $a starts with an "z" (pattern matching).
+    [[ $a == "z*" ]] # True if $a is equal to z* (literal matching).
+    [ $a == z* ]     # File globbing and word splitting take place.
+    [ "$a" == "z*" ] # True if $a is equal to z* (literal matching).
 
     # :calculate :fish
     # examples https://nicolas-van.github.io/programming-with-fish-shell
@@ -120,16 +127,16 @@
 * Key bindings
   #+BEGIN_SRC sh
     exit 1 # just in case ...
-    # show fish key bindings in the console
+    # show fish shell key bindings in the console
     bind
-    # show fish key bindings in a web browser
+    # show fish shell key bindings in the web browser
     help bind
     # list of available shell commands
     /etc/inputrc
 
     # :bash display shortcuts including Ctrl+L, Ctrl+R; \e - ESC, \C-y - Ctrl+y
     # see fzf
-    bind -P
+    bind -P    # -P List function names and bindings
     help bind
 
     # :bash undo & yank

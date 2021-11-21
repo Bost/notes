@@ -149,6 +149,6 @@ In Racket function is a procedure with no side effects.
 
 * RacketConf 2021
   - https://racket.discourse.group
-  - [[https://github.com/soegaard/remacs][Emacs style editor written in Racket]]
+  - [[https://github.com/soegaard/remacs][remacs - the Emacs style editor written in Racket]]
   - [[https://youtu.be/73dDj_z66qo?t=3578][Matthias Felleisen - Every language has a slogan]]
 
