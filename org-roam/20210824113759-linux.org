@@ -719,9 +719,12 @@
 
   # remove old kernels - see dotfiles/bin/remove-old-kernels
 
-  # read SHA sums from the SHA256SUMS.asc file and check / verify them
-  sha256sum -c      SHA256SUMS.asc | grep OK
+  # create a SHA checksum file containing checksums
+  sha256sum file1.ext file2.txt > SHA256SUMS.asc
+  # read SHA checksums from the SHA256SUMS.asc file and check / verify them against the
+  # SHA checksums of the files in the current directory
   sha256sum --check SHA256SUMS.asc | grep OK
+  sha256sum -c      SHA256SUMS.asc | grep OK
 
   # :ps full command line; command is separated by the \0 byte
   tr '\0' ' ' < /proc/<pid>/cmdline
