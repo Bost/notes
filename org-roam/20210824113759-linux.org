@@ -11,7 +11,7 @@
 
   grub-mkconfig generates a grub config file. update-grub is an alias for
   grub-mkconfig:
-  #+BEGIN_SRC sh :results output
+  #+BEGIN_SRC bash :results output
   cat /usr/sbin/update-grub
   #+END_SRC
 
@@ -21,7 +21,7 @@
   : exec grub-mkconfig -o /boot/grub/grub.cfg "$@"
 
   On Ubuntu when "you may need to re-run your boot" appears:
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   sudo update-grub
   #+END_SRC
 
@@ -34,7 +34,7 @@
   /proc/sys/vm/swappiness
   /proc/sys/vm/vfs_cache_pressure
   See [[http://www.pqxx.org/development/swapspace/][swapspace]] - the swap file manager
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   set swapfile /swapfile
   sudo dd status=progress if=/dev/zero of=$swapfile count=8388608 bs=1024
   # sudo fallocate --length 8G $swapfile
@@ -48,7 +48,7 @@
   #+END_SRC
 
 * Various commands
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   # see also:
   # https://github.com/tldr-pages/tldr
   # https://github.com/cheat/cheat
@@ -187,7 +187,7 @@
   fdisk
   #+END_SRC
 
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   # flush file system buffers
   sync
 
@@ -1256,7 +1256,7 @@
 * Which version is installed?
 ** GTK+
    https://stackoverflow.com/a/126193/5151982
-   #+BEGIN_SRC sh
+   #+BEGIN_SRC bash :results output
    # ubuntu: bash:
    dpkg -l libgtk* | grep -e '^i' | grep -e 'libgtk-*[0-9]'
    # or even better
@@ -1266,7 +1266,7 @@
 ** Qt
    https://stackoverflow.com/a/39901086/5151982
    https://stackoverflow.com/a/40112592/5151982
-   #+BEGIN_SRC sh
+   #+BEGIN_SRC bash :results output
    qmake-qt5 --version
    qmake --version
    qtdiag
@@ -1274,7 +1274,7 @@
 
 * Find zombie process
   https://vitux.com/how-to-create-a-dummy-zombie-process-in-ubuntu/
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   ps axo stat,ppid,pid,comm | grep -w defunct
   #+END_SRC
 
@@ -1305,7 +1305,7 @@
 * sed & awk
   sed - stream editor
   awk - written by Alfred V. Aho, Peter J. Weinberger, Brian W. Kernighan
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   # for tabular data
   awk
 

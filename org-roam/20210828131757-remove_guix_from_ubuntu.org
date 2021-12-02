@@ -3,7 +3,7 @@
 :END:
 #+title: Remove Guix from Ubuntu
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
 sudo systemctl stop guix-daemon.service
 sudo rm -rf /gnu
 sudo rm -rf /var/guix/

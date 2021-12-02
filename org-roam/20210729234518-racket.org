@@ -15,7 +15,7 @@ In Racket function is a procedure with no side effects.
 [[https://racket-news.com/2021/11/racket-news-issue-55.html][Racket News]]
 
 * Command line snippets
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   # package management
   raco pkg install <package>
   raco pkg remove <package>

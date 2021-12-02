@@ -5,7 +5,7 @@
 
 * Package Transformation Options
   [[https://guix.gnu.org/manual/en/html_node/Package-Transformation-Options.html][Package Transformation Options]]
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   guix package --with-source=source
   guix package --with-source=package=source
   guix package --with-source=package@version=source
@@ -22,7 +22,7 @@
   #+END_SRC
 
 * Various commands
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   guix package --list-available=ruby
 
   # list all installed packages
@@ -46,7 +46,7 @@
   #+END_SRC
 
   [[https://logs.guix.gnu.org/guix/2021-10-30.log#111758][IRC discussion: How to find out from which package a binary comes from?]]
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   guix package --search=hello
   guix search hello
   # see also availability of substitutes:

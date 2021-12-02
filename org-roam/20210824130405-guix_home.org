@@ -9,25 +9,42 @@ https://sr.ht/abcdw/rde/ (Andrew Tropin)
 In the Terminal -> Preferences: switch on "Run command as login shell"
 (Otherwise ~/.bash_profile is not sourced)
 
-#+BEGIN_SRC sh :results output
+#+BEGIN_SRC bash :results output
 info Guix Home
 #+END_SRC
 
-#+BEGIN_SRC sh :results output
-# guix home reconfigure
-# search in / loot at all existing guix home services
-# guix home search .
+#+BEGIN_SRC bash :results output
+
+guix home reconfigure
+
+# list / search through all existing guix home services
+guix home search .
+
 # printf "HOME_ENVIRONMENT: %s\n" $HOME_ENVIRONMENT
 # printf "HOME: %s\n" $HOME
+
 # guix home describe
 # guix home --help
-guix home import ~/guix-home-config
+
+# alter / edit current configuration:
+cp ~/.guix-home/configuration.scm /tmp
+# edit /tmp/configuration.scm
+guix home import <config-dir>
+
 #+END_SRC
 
 See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][guix-lemp-container]] - LEMP WordPress Reproducible Environment
 
-#+BEGIN_SRC sh
+
+#+BEGIN_SRC bash :results output
 guix shell ...
+#+END_SRC
+
+* Installed packages
+#+BEGIN_SRC bash :results output
+ghdir=$(guix home describe | grep "canonical file name:" | \
+        grep --only-matching "/gnu/store/.*")
+ls -lA $ghdir/profile/bin
 #+END_SRC
 
 [[https://youtu.be/R5cdtSfTpE0][YouTube: System Crafters Live! - A First Look at Guix Home]]
@@ -38,16 +55,17 @@ https://guix-home.trop.in/Home-Configuration.html
   Two /boot/efi entries in the
 
 * Install packages
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   guix package -m manifest.scm
   #+END_SRC
 
 * Setup IceCat web browser:
 ** [[https://issues.guix.gnu.org/45179][IceCat stuck at Cloudflare "Checking your browser before accessing..."]]
-   Install 'User-Agent Switcher' in IceCat and switch to Desktop -> 'Linux / Firefox 83'
+   Install 'User-Agent Switcher' in IceCat and switch to
+     Desktop -> 'Linux / Firefox 83'
    https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/
    https://addons.mozilla.org/en-US/firefox/addon/user-agent-string-switcher/
-   
+
    https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
 
    https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/
@@ -56,15 +74,15 @@ https://guix-home.trop.in/Home-Configuration.html
    Disable GNU LibreJS
 
 ** Open `about:config` and set:
-   #+BEGIN_SRC sh
+   #+BEGIN_SRC bash :results output
    privacy.resistFingerprinting = false
    identity.fxaccounts.enabled = true
    #+END_SRC
    Login to https://accounts.firefox.com/signin and synchronize the account
 
    Restart IceCat
-   
-   #+BEGIN_SRC sh
+
+   #+BEGIN_SRC bash :results output
    ssh-keygen
    cat ~/.ssh/id_rsa.pub
    #+END_SRC
@@ -74,7 +92,7 @@ https://guix-home.trop.in/Home-Configuration.html
   Login to https://github.com add SSH Key https://github.com/settings/ssh/new
 
 * Clone repos
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   cd dev
   set accountName "rostislav.svoboda"
 
@@ -83,7 +101,7 @@ https://guix-home.trop.in/Home-Configuration.html
 
   git clone git@github.com:Bost/cheatsheet.git
   git remote add gitlab git@gitlab.com:$accountName/cheatsheet.git
-  
+
   git clone git@github.com:Bost/notes.git
   git remote add gitlab git@gitlab.com:$accountName/notes.git
   #+END_SRC
@@ -92,9 +110,10 @@ https://guix-home.trop.in/Home-Configuration.html
 
 * Setup xfce keybindings and shortcuts
   http://docs.xfce.org/xfce/xfconf/xfconf-query
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   xfconf-query --channel xfce4-keyboard-shortcuts -lv
-  xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/custom/<Super>Tab" --reset
+  xfconf-query --channel xfce4-keyboard-shortcuts \
+               --property "/xfwm4/custom/<Super>Tab" --reset
   #+END_SRC
 
 * Setup Displays

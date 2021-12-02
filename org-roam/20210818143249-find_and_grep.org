@@ -3,7 +3,7 @@
 :END:
 #+title: Find and Grep
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
   # bash: find: redirect: separate / combine sdterr and stdout; does not work with
   # the tee command
   ./cmd.sh 1>str.out 2>str.err / ./cmd.sh &>combined.out

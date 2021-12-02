@@ -5,7 +5,7 @@
 
 nvm - Node Version Manager https://github.com/nvm-sh/nvm
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
   ## install nodejs with (behind) or without proxy:
   ## 1.
   set nodeJsVer 16

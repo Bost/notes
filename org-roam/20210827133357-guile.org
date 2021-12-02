@@ -5,7 +5,7 @@
 
 https://jeko.frama.io/en/install.html
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
 guix install guile-colorized
 #+END_SRC
 
