@@ -680,3 +680,10 @@
   ;; select e.g. 3 lines of visual block ~C-v 3~ then ~C-x r N~
 
 * emacsclient in Guix is in the emacs-with-editor package
+
+* Source Code Pro font
+#+BEGIN_SRC shell
+guix install font-adobe-source-code-pro
+# clean font cache
+fc-cache --verbose --force
+#+END_SRC

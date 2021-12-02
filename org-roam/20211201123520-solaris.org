@@ -4,7 +4,7 @@
 #+title: Solaris
 
 * Solaris
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   # checksum
   /usr/bin/digest -a sha1
   # wget location

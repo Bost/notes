@@ -13,7 +13,7 @@ http://ehneilsen.net/notebook/orgExamples/org-examples.html
 #+RESULTS:
 : Yeah from emacs-lisp!
 
-#+BEGIN_SRC sh :exports both
+#+BEGIN_SRC bash :exports both
 echo "Hello World from sh" # evaluate: ~C-c C-C~
 #+END_SRC
 

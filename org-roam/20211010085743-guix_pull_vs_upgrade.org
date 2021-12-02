@@ -7,7 +7,7 @@
   Update Guix OS distribution & Guix tools: download the latest Guix source code
   and package descriptions, and deploys it.
   See ~/.cache/guix/checkouts
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   guix pull --cores=12 --verbosity=3
   guix pull      -c 12          -v 3
   #+END_SRC
@@ -17,7 +17,7 @@
   Upgrade all installed packages to the latest version of packages found in the
   distribution currently installed.
   - Examples:
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   guix upgrade --cores=12 --verbosity=3
   guix upgrade      -c 12          -v 3
   #+END_SRC

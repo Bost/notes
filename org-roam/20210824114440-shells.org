@@ -125,7 +125,7 @@
   #+END_SRC
 
 * Key bindings
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
     exit 1 # just in case ...
     # show fish shell key bindings in the console
     bind
@@ -160,7 +160,7 @@
     \\\[command\]
   #+END_SRC
 
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
     # :bash set vi bindings
     set -o vi
     # :bash disable pathname expansion - globbing
@@ -220,7 +220,7 @@
 * Shebang
   https://rosettacode.org/wiki/Native_shebang
   https://rosettacode.org/wiki/Multiline_shebang
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
     # bash: shebang: stop the script after any error
     #!/bin/bash -e
 
@@ -228,7 +228,7 @@
     #!/usr/bin/env fish
   #+END_SRC
 
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
     # bash: debug script
     bash -x script
 

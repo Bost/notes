@@ -3,7 +3,7 @@
 :END:
 #+title: Eclipse
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
   .metadata/.plugins/org.eclipse.team.cvs.ui/repositoriesView.xml
   #
   METADA_CORE=.metadata/.plugins/org.eclipse.jdt.core;

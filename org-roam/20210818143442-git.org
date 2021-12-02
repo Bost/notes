@@ -3,7 +3,7 @@
 :END:
 #+title: Git
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
   # compute sha1 for any file
   git hash-object path/to/file.ext
 

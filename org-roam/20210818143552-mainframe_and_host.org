@@ -1208,7 +1208,7 @@ cp –X source_pgm "//'hlq.desti(nation)'"
 # Reliability, Availability and Serviceability
 RAS
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
   # SDSF from java
   java -Djava.library.path=/usr/lib/java_runtime64 -jar /usr/include/java_classes/isfjcall.jar
 #+END_SRC

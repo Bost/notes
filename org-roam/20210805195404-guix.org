@@ -7,7 +7,7 @@ https://systemcrafters.cc/craft-your-system-with-guix/
 https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
 * Various commands
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   # systemctl status guix-daemon # on a foreign host
 
   guix describe # shows e.g.:
@@ -43,12 +43,12 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 * Upgrade GuixOS
   [[https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html][Upgrade Guix]]
 ** On foreign system (e.g. Ubuntu)
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   sudo --login guix pull
   systemctl restart guix-daemon.service
   #+END_SRC
 ** On Guix System
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   guix pull
   guix upgrade
   sudo guix system reconfigure # /run/current-system/configuration.scm
@@ -63,7 +63,7 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
 * Basic GuixOS system setup with manifest files
   [[https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html][Basic setup with manifests]]
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   # see also guix package --export-manifest
   guix package --list-profiles
   GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
@@ -75,7 +75,7 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   #+END_SRC
 
   Add to ~/.bashrc (adding to ~/.bash_profile doesn't work):
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
   for i in $GUIX_EXTRA_PROFILES/*; do
     profile=$i/$(basename "$i")
@@ -96,25 +96,25 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   (permit-root-login 'without-password)))
   #+END_SRC
 
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   guix system reconfigure /path/to/configuration.scm
   ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022 guest@localhost
   #+END_SRC
 
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   guix deploy /path/to/some/file.scm
   #+END_SRC
 
 * Contributing & sending patches
   [[https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi][Guix Documentation source code]]
   [[https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html][Submitting Patches]]
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   info "(guix)Submitting Patches"
   #+END_SRC
 
 * QEMU shrink disk size - doesn't work
   https://pve.proxmox.com/wiki/Shrink_Qcow2_Disk_Files
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC bash :results output
   dd if=/dev/zero of=mytempfile
   # that could take a some time
   sync
@@ -124,9 +124,14 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   qemu-img convert -O qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup guix-system-vm-image-1.3.0.x86_64-linux.qcow2
   #+END_SRC
 
-* Guile Script environment portability across Linux and Guix machines:
+* Guile Script environment portability across Linux and Guix machines
   <leoprikler>bost: nope, only reliable shebang still is #!/bin/sh
   [[https://logs.guix.gnu.org/guix/2021-08-22.log#115020][2021-08-22: IRC #guix channel log]]
+
+* Local repository clone
+  <muradm>if one ever did guix pull, gnu/system/install.scm can be found in ~/.cache/guix/checkouts/....../gnu/system/install.scm
+  <muradm>no need to clone guix again
+  [[https://logs.guix.gnu.org/guix/2021-08-22.log#181402][2021-08-22: IRC #guix channel log]]
 
 * Org mode, Pdf, LaTex
   - `guix install texlive-bin` is not enough. It leads to: "I can't find the

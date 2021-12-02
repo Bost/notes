@@ -11,7 +11,7 @@ https://youtu.be/hZJnlxM0c0I?t=162
    small, elegant, and successful systems to be succeeded by over-engineered,
    bloated systems, due to inflated expectations and overconfidence.
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
   exit 1 # just in case ...
   # oracle: execute script.sql
   @C:\path\to\script.sql

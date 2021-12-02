@@ -5,7 +5,7 @@
 
 * System Configuration
   [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
-#+BEGIN_SRC sh :results output
+#+BEGIN_SRC bash :results output
 guix system describe
 # time-machine - run commands from a different revision
 # Usage: guix time-machine [OPTION] -- COMMAND ARGS...
@@ -55,7 +55,7 @@ Generation 3	Oct 17 2021 15:49:49	(current)
 * Time Machine
   Provides access to other Guix revisions, i.e. commands from a different revision
 
-#+BEGIN_SRC sh :results output
+#+BEGIN_SRC bash :results output
 # Usage: guix time-machine [OPTION] -- COMMAND ARGS...
 # Execute COMMAND ARGS... in an older version of Guix.
 

@@ -131,7 +131,7 @@ Instaparse: parsers in clojure: context-free grammars as easy to use as regexs
    [[https://github.com/borkdude/babashka][Babashka]]
    [[https://github.com/dundalek/closh][Closh - Bash-like shell based on Clojure]]
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
 # see config.fish
 set cljjar ~/.m2/repository/org/clojure/clojure/1.10.0/clojure-1.10.0.jar
 set cljsjar ~/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar
@@ -148,7 +148,7 @@ rlwrap java -cp $cljjar:$cljsjar clojure.main
   (printf "arg='%s'\n" arg))
 #+END_SRC
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
 # start REPL:
 set clj_home $dec/clojure.org/clojure
 cd $clj_home
@@ -169,7 +169,7 @@ echo -e "(clojure.core/+ 1 2)\n:repl/quit" | nc localhost 5555
 #+END_SRC
 
 ** Rest
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
 # HelloWorld: compile and run class file then create jar file and run it
 set basedir ./javasrc
 set classdir org/domain
@@ -239,7 +239,7 @@ set -x JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 #+END_SRC
 
 ** Leiningen
-#+BEGIN_SRC sh
+#+BEGIN_SRC bash :results output
 # leiningen:
 lein deps :tree                  # dependency tree
 lein classpath | sed 's/:/\n/g'  # classpath
