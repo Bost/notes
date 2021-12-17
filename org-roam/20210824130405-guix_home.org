@@ -126,3 +126,7 @@ https://guix-home.trop.in/Home-Configuration.html
 * Fish: setup `systemBinDir` in the `~/.config/fish/config.fish`
 
 * Setup hashbang in the `~/bin/l` according to the output of `which guile`
+
+* direnv
+  Utility; updates environment variables for the current shell
+  [[https://www.youtube.com/watch?v=pS9JBKdAy4Q&t=795s][Per-Project Dev Environment: direnv]]
