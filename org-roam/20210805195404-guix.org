@@ -6,19 +6,17 @@
 https://systemcrafters.cc/craft-your-system-with-guix/
 https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
+* Display information about the channels currently in use.
+  #+BEGIN_SRC bash :results output
+  guix describe --list-formats
+  guix describe
+  guix describe --format=channels
+  guix describe --format=human
+  #+END_SRC
+
 * Various commands
   #+BEGIN_SRC bash :results output
   # systemctl status guix-daemon # on a foreign host
-
-  guix describe # shows e.g.:
-  # Generation 9	Oct 09 2021 10:21:38	(current)
-  #   guix 2a273e9
-  #     repository URL: https://git.savannah.gnu.org/git/guix.git
-  #     branch: master
-  #     commit: 2a273e9e2268c24b67620574fe34cc20bce7e5c8
-
-  guix describe --list-formats
-  guix describe vim --format=channels
 
   guix system describe
 
