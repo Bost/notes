@@ -47,15 +47,30 @@
   free -h
   #+END_SRC
 
+* Internet Control Message Protocol
+  ICMP
+  Send error messages & operational information
+
+* Dynamic Host Configuration Protocol
+  DHCP
+  Network management protocol used on TCP/IP networks
+
+* Lightweight Directory Access Protocol
+  LDAP
+  Accessing and maintaining distributed directory information services over an
+  Internet Protocol (IP) network.
+  Client authentication is a part of LDAP.
+
 * Various commands
+  see also:
+  https://github.com/tldr-pages/tldr
+  https://github.com/cheat/cheat
+
+  [[https://github.com/adtac/climate][Climate]] - the ultimate command line tool for Linux
+
+  [[https://htmlpreview.github.io/?https://raw.githubusercontent.com/michaelmacinnis/oh/master/doc/comparison.html][compare shells]]
+
   #+BEGIN_SRC bash :results output
-  # see also:
-  # https://github.com/tldr-pages/tldr
-  # https://github.com/cheat/cheat
-
-  # compare shells
-  # https://htmlpreview.github.io/?https://raw.githubusercontent.com/michaelmacinnis/oh/master/doc/comparison.html
-
   # web server, reverse proxy, load balancer, mail proxy, HTTP cache
   nginx
 
@@ -88,14 +103,6 @@
 
   # :net - Capture Cookies from Server and from Client
   sudo tcpdump -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
-
-  # :net :Internet-Control-Message-Protocol
-  # send error messages & operational information
-  ICMP
-
-  # :net :Dynamic-Host-Configuration-Protocol
-  # network management protocol used on TCP/IP networks
-  DHCP
 
   # :net :Address-Resolution-Protocol
   # MAC address of a network neighbour for a given IPv4 Address
@@ -185,9 +192,7 @@
   parted /dev/sda resize 3 100%
   # manipulate (given) partition
   fdisk
-  #+END_SRC
 
-  #+BEGIN_SRC bash :results output
   # flush file system buffers
   sync
 
