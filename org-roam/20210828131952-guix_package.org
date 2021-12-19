@@ -37,7 +37,7 @@
   guix package --switch-generation=PATTERN
   guix package --roll-back
   guix package --remove python --install guile
-  guix package -r       python  -i       guile
+  guix package  -r      python  -i       guile
   guix install                           guile
   # install specific package version
   guix package                 --install bat@0.18.3

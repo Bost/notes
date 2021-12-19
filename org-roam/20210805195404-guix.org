@@ -6,13 +6,18 @@
 https://systemcrafters.cc/craft-your-system-with-guix/
 https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
-* Display information about the channels currently in use.
+* Channels
+** Display information about the channels currently in use.
   #+BEGIN_SRC bash :results output
   guix describe --list-formats
   guix describe
   guix describe --format=channels
   guix describe --format=human
   #+END_SRC
+
+** Specifying Additional Channels
+   [[https://guix.gnu.org/manual/en/html_node/Specifying-Additional-Channels.html][Specifying Additional Channels]]
+   edit `~/.config/guix/channels.scm` and run `guix pull`
 
 * Various commands
   #+BEGIN_SRC bash :results output
