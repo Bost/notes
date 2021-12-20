@@ -4,6 +4,12 @@
 #+title: Emacs
 
 * Diverse
+
+  [[https://emacsconf.org/2021/talks/imaginary/][Imaginary Programming]] IP
+  - based on / an abstraction over Prompt Engineering and Language Models
+
+  Notable users: [[https://www.youtube.com/c/ProtesilaosStavrou/][Protesilaos]], Karthik / [[https://karthinks.com/][Karthinks]]
+
   | ~SPC h d~           | spacemacs: help-describe                |
   | ~SPC s~             | spacemacs: search                       |
   | ~SPC t g~           | spacemacs: windows: toggle golden ratio |
@@ -12,8 +18,8 @@
   | ~SPC f e v~         | spacemacs: version                      |
   | ~SPC w p m~         | spacemacs: popup \*Messages\*           |
 
-  ;; Shift-Tab
-  <s-tab> / <backtab>
+  Shift-Tab
+  ~<s-tab>~ / ~<backtab>~
 
   ;;
   M-x narrow-to-defun ~s-n~ / M-x widen ~s-N~
@@ -150,14 +156,14 @@
 
   M-x goto-line
 
-  ;; menu
+  ;; menu bar
   ~M-`~ / ~F10~
 
   ;; jump back to the last mark (there is a mark-ring)
   ~C-u C-SPC~
 
   ;; enlarge-window, shrink-window horizontally / vertically
-  ~C-x ^~ 
+  ~C-x ^~
   ~C-x {~
   ~C-x }~
 
@@ -250,7 +256,7 @@
   ;; M-x query-replace
   ~M-%~
 
-  ;; 
+  ;;
   | ~M-u~ | M-x upcase-word     |
   | ~M-l~ | M-x downcase-word   |
   | ~M-c~ | M-x capitalize-word |
@@ -259,7 +265,7 @@
   M-x ispell-region
   M-x ispell-buffer
 
-  ;; 
+  ;;
   | ~C-x (~               | macro: start                       |
   | ~C-x )~               | macro: stop                        |
   | ~C-x e~ or ~<f4>~     | macro: execute (e - execute again) |
@@ -268,7 +274,7 @@
   ;; repeat n times following command
   ~C-u n~
 
-  ;; 
+  ;;
   | ~C-x u~        | M-x undo-tree-visualize |
   | ~C-_~ or ~C-/~ | undo                    |
   | ~C-f C-_~      | redo                    |
@@ -465,7 +471,7 @@
   ;; helm: minibuffer: minibuffer-force-complete
   ~C-M-i~
 
-  ;; Helm: toggle horizontal / vertical listing 
+  ;; Helm: toggle horizontal / vertical listing
   ~M-x C-t~
 
   ;; M-x helm-toggle-visible-mark / M-x helm-copy-to-buffer
