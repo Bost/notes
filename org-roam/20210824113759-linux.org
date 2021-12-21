@@ -26,6 +26,42 @@
   #+END_SRC
 
 
+* Bluetooth
+  #+BEGIN_SRC bash :results output
+  apt search bluetooth
+  sudo apt install bluez blueman pulseaudio-module-bluetooth
+  systemctl      status bluetooth
+  sudo systemctl enable bluetooth
+  sudo systemctl start  bluetooth
+
+  bluetoothctl
+  help # list of available commands of bluetoothctl
+
+  # rfkill - Tool for enabling and disabling wireless devices.
+  sudo rfkill list
+  sudo hciconfig hci0 up
+  hcitool scan
+
+  # xfce applet; See Settings-> Session and Startup->Applicatin Autostart
+  blueman-manager
+
+  # send file to /storage/emulated/0/bluetooth
+  bluetooth-sendto --device=XX:XX:XX:XX:XX:XX local-fname
+  # See https://ubuntu-users.livejournal.com/439582.html
+  # search for the appropriate channel for file transfers
+  sdptool search FTP
+  obexfs -bXX:XX:XX:XX:XX:XX -B<channel> ~
+  sdptool browse XX:XX:XX:XX:XX:XX
+  # Browse your cellular's files. List the tree of directories.
+  obexftp -b XX:XX:XX:XX:XX:XX -l /
+  # use the '@'
+  ussp-push XX:XX:XX:XX:XX:XX@ local-fname remote-fname
+  # upload / push
+  obexftp -b XX:XX:XX:XX:XX:XX -c /Download -p local-fname
+  # download
+  obexftp -b XX:XX:XX:XX:XX:XX -c /Download -d remote-fname
+  #+END_SRC
+
 * Swap
   [[https://averagelinuxuser.com/linux-swap/][Linux swap: what it is and how to use it]]
   New installations of Ubuntu 18.04 use a swap file instead of swap partition
@@ -1144,33 +1180,6 @@
   -r, --recursive
   -n, --dry-run
   -p, --perms                # preserve permissions
-
-  # :bluetooth bluez:
-  systemctl      status bluetooth
-  sudo systemctl enable bluetooth
-  sudo systemctl start  bluetooth
-  bluetoothctl
-  help # list of available commands of bluetoothctl
-
-  # :bluetooth :bluez - this actually works
-  # send file to /storage/emulated/0/bluetooth
-  bluetooth-sendto --device=XX:XX:XX:XX:XX:XX local-fname
-
-  # :bluetooth :bluez see https://ubuntu-users.livejournal.com/439582.html
-  # search for the appropriate channel for file transfers
-  sdptool search FTP
-  obexfs -bXX:XX:XX:XX:XX:XX -B<channel> ~
-  sdptool browse XX:XX:XX:XX:XX:XX
-  # Browse your cellular's files. List the tree of directories.
-  obexftp -b XX:XX:XX:XX:XX:XX -l /
-  # use the '@'
-  ussp-push XX:XX:XX:XX:XX:XX@ local-fname remote-fname
-
-  # :bluetooth :bluez upload / push
-  obexftp -b XX:XX:XX:XX:XX:XX -c /Download -p local-fname
-
-  # :bluetooth :bluez download
-  obexftp -b XX:XX:XX:XX:XX:XX -c /Download -d remote-fname
 
   # super fast ram disk
   sudo mkdir -p /mnt/ram
