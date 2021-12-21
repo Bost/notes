@@ -77,3 +77,8 @@ A set of objects/object-types and a set of morphism/actions between the objects/
 * Morphism/Action composition
   the two actions: one-step-forward immediately followed by another
   one-step-forward can be composed to a single action: two-steps-forward
+
+* Environment context = game-states
+** Example
+  "Jim dots, Jack 100" makes no sense w/o context
+  - automatons: Mealy / Moore
