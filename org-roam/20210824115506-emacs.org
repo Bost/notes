@@ -6,7 +6,7 @@
 * Diverse
 
   [[https://emacsconf.org/2021/talks/imaginary/][Imaginary Programming]] IP
-  - based on / an abstraction over Prompt Engineering and Language Models
+  - based on / an abstraction over Prompt Engineering and Language Models (LMs)
 
   Notable users: [[https://www.youtube.com/c/ProtesilaosStavrou/][Protesilaos]], Karthik / [[https://karthinks.com/][Karthinks]]
 
