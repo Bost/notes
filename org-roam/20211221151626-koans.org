@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       5826acba-f96e-4a54-9206-0b3ec2dfef53
+:END:
+#+title: Koans
+
+[[https://github.com/google/lisp-koans][Common Lisp Koans]]
+[[https://github.com/zyrolasting/racket-koans][Racket Koans]]
+[[https://github.com/Bost/monad_koans][Monad Koans]] in Clojure
