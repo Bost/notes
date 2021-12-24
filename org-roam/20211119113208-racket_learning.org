@@ -3,7 +3,20 @@
 :END:
 #+title: Racket Learning
 
-* Learning
-  Tiago Cogumbreiro - [[https://cogumbreiro.github.io/teaching/cs450/s21/][YouTube channel]]
-  Michael Sperber - [[https://media.ccc.de/v/rc3-257534-all_programming_language_suck_just_build_your_own_language_oriented_programming_with_racket][All Programming Language Suck? Just Build Your Own!]]
-  Jesse Alama - The Racket Weekend
+* Learning Sources
+Tiago Cogumbreiro - [[https://cogumbreiro.github.io/teaching/cs450/s21/][YouTube channel]]
+Michael Sperber - [[https://media.ccc.de/v/rc3-257534-all_programming_language_suck_just_build_your_own_language_oriented_programming_with_racket][All Programming Language Suck? Just Build Your Own!]]
+Jesse Alama - The Racket Weekend
+
+* Server Racket
+** Servlet:
+(HTTP Server) function: input HTTP request -> output HTTP response
+
+Signature: request? → response?
+
+Web App = Single large servlet
+
+struts-copy for rewriting HTTP requests / responses
+
+HTTP HEAD request - like a GET request but it returns no body
+- used to determine how big a resource would be with a real GET request
