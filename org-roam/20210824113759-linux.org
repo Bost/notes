@@ -1088,9 +1088,6 @@
   # root login / console / prompt
   sudo -i
 
-  # unsupported / obsolete packages
-  ubuntu-support-status --show-unsupported
-
   # user management
   sudo adduser <user>
   sudo deluser --remove-home <user>             # userdel is a low level utility

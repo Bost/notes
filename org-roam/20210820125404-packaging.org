@@ -85,8 +85,8 @@ sudo apt update; and sudo apt upgrade
 sudo do-release-upgrade # may require: `--devel-release` - see
                         # https://wiki.ubuntu.com/FocalFossa/ReleaseNotes WTF?
 #
-# 4. check for unsupported packages
-ubuntu-support-status --show-unsupported
+# 4. check for unsupported / unavailable / obsolete packages
+ubuntu-security-status --unavailable
 
 # :apt :aptitude show installed packages
 dpkg --get-selections
