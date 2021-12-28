@@ -255,7 +255,7 @@ lein deploy clojars
 lein repl :headless :host 0.0.0.0 :port <portNr>
 
 # deps.edn ~ lein ancient
-clojure -M:project/outdated
+clojure -M:outdated --upgrade # --force
 #+END_SRC
 
 * Reference types

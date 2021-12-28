@@ -76,3 +76,8 @@ Communication w-/wo- Letters
 # |---------+---------------|
 # | content | other content |
 # :end:
+
+* Simulation and Emulation
+[[https://www.tutorialspoint.com/what-is-the-difference-between-a-simulator-and-an-emulator][What is the difference between a simulator and an emulator?]]
+
+Simulator mimics while Emulator performs

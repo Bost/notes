@@ -74,6 +74,12 @@ In Racket function is a procedure with no side effects.
   (hash-count #hash((foo . 41)))
   (hash-count #hasheq((foo . 41)))
 
+  ;; (: flexible-length (-> (U String (Listof Any)) Integer))
+  (define (flexible-length str-or-lst)
+  (if (string? str-or-lst)
+      (string-length str-or-lst)
+      (length str-or-lst)))
+
   ;; function composition: compose, compose1
   (define (inc n) (+ n 1))
   ((compose str inc length) '(1 2 3))
@@ -134,9 +140,6 @@ In Racket function is a procedure with no side effects.
           (cons 1 (cons 2 (cons 3 null))))
   #+END_SRC
 
-  #+RESULTS:
-  : #t
-
 * Read and evaluate code from string
   #+BEGIN_SRC racket
   (eval (read (open-input-string "(+ 1 2)")))
@@ -152,3 +155,14 @@ In Racket function is a procedure with no side effects.
   - [[https://github.com/soegaard/remacs][remacs - the Emacs style editor written in Racket]]
   - [[https://youtu.be/73dDj_z66qo?t=3578][Matthias Felleisen - Every language has a slogan]]
 
+* Empty string predicate
+See [[https://rosettacode.org/][Rosetta Code]]
+#+BEGIN_SRC racket
+(define empty-string "")
+(define (string-null? s) (string=? "" s))
+(define (string-not-null? s) (string<? "" s))
+#+END_SRC
+
+* Hunt the Wumpus
+[[https://en.wikipedia.org/wiki/Hunt_the_Wumpus][Wikipedia: Hunt the Wumpus]]
+[[https://rosettacode.org/wiki/Hunt_the_Wumpus#Racket][Racket: Hunt the Wumpus]]
