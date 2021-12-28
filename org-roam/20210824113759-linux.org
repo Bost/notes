@@ -5,6 +5,10 @@
 
 [[https://github.com/jlevy/the-art-of-command-line][the-art-of-command-line]]
 
+* Udev
+[[https://en.wikipedia.org/wiki/Udev][Wikipedia: Udev]] - userspace /dev; device manager for linux kernel; manages nodes
+in the /dev directory
+
 * Grub
   templates: /etc/grub.d
   settings: /etc/default/grub
@@ -231,9 +235,6 @@
 
   # flush file system buffers
   sync
-
-  # dynamic device management - the /dev directory
-  udev
 
   # :usb :drive gnome userspace virtual fs
   mount | grep gvfs; cd ...
@@ -535,6 +536,9 @@
   # in bash: (doesn't work in fish)
   curl --request GET \
    "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=test"
+
+  curl --request POST -H 'Content-Type: application/json' -d '{"x":"1", "y":"2"}' <url>
+  curl --request POST --form variable=value <url>
 
   # :iproute2 :net - like ifconfig. State of network interfaces
   ip address

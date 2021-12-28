@@ -20,3 +20,14 @@ struts-copy for rewriting HTTP requests / responses
 
 HTTP HEAD request - like a GET request but it returns no body
 - used to determine how big a resource would be with a real GET request
+
+* Object-relational mapping
+[[https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping][Wikipedia: Object–relational mapping]] ORM
+
+** ORM in Racket with Racquel
+[[https://docs.racket-lang.org/racquel/index.html][Racket Docs: Racquel]]
+[[https://github.com/brown131/racquel][Github: Racquel]]
+
+[[https://craftinginterpreters.com/][Book: Crafting Interpreters]]
+
+[[https://www.micahcantor.com/blog/thoughts-typed-racket/][Typed Racket: the good and the bad]]
