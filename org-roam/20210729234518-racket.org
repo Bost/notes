@@ -104,6 +104,10 @@ In Racket function is a procedure with no side effects.
   (define lst '(("Ben" 2 "dog") ("Kath" 1 "cat") ("Matt" 6 "dog")))
   (filter (lambda (e) (equal? (caddr e) "dog")) lst)
   ;; => '(("Ben" 2 "dog") ("Matt" 6 "dog"))
+
+  (map string? '(1 "a" 3))  ;; => '(#f #t #f)
+
+  (andmap number? '(1 2 3)) ;; => #t
 #+END_SRC
 
 * Macros: quotes, syntax, etc.
@@ -166,3 +170,13 @@ See [[https://rosettacode.org/][Rosetta Code]]
 * Hunt the Wumpus
 [[https://en.wikipedia.org/wiki/Hunt_the_Wumpus][Wikipedia: Hunt the Wumpus]]
 [[https://rosettacode.org/wiki/Hunt_the_Wumpus#Racket][Racket: Hunt the Wumpus]]
+
+* Heresy
+The Heresy Programming Language https://github.com/jarcane/heresy
+
+The Heresy language is a functional Lisp/Scheme dialect implemented in Racket,
+with syntax inspired by the BASIC family of programming languages. Its principle
+goals are to provide a simple core language for BASIC and other programmers to
+experiment with and learn how to program functionally. This document will detail
+the general philosophy of the Heresy language, such as exists, as well as the
+language syntax and functions.

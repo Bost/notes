@@ -693,3 +693,32 @@ guix install font-adobe-source-code-pro
 # clean font cache
 fc-cache --verbose --force
 #+END_SRC
+
+* Mapping Functions
+[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html][Mapping Functions]]
+#+BEGIN_SRC emacs-lisp
+mapconcat
+(mapcar 'string "abc")
+(mapcar 'list '(a b c d)) ; => ((a) (b) (c) (d))
+(mapcan 'list '(a b c d)) ; => (a b c d)  ;; i.e. with reduction
+mapc ;; like mapcar; used for side-effects only
+
+;; mapconcat is like joins result list into a string with a separator:
+(mapconcat 'symbol-name '(The cat in the hat) "-") ; => "The-cat-in-the-hat"
+#+END_SRC
+
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Sequences-Arrays-Vectors.html
+
+
+#+BEGIN_SRC emacs-lisp
+(split-string "[  aaa
+ bbb   ]" (or split-string-default-separators (rx (or "[" "]"))))
+;; => ("[" "aaa" "bbb" "]")
+#+END_SRC
+
+Filter list:
+#+BEGIN_SRC emacs-lisp
+(remove-if (lambda (e) (eq e 1)) '(1 2))
+;; https://www.reddit.com/r/emacs/comments/7dp6oa/comment/dpzi5hz/?utm_source=share&utm_medium=web2x&context=3
+(seq-filter (apply-partially #'< 3) '(1 2 3 4 5 6))
+#+END_SRC
