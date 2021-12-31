@@ -8,7 +8,7 @@ Five rating emojis / icons
 https://youtu.be/hZJnlxM0c0I?t=162
 
 ** second system syndrome / effect
-   small, elegant, and successful systems to be succeeded by over-engineered,
+   small, elegant, and successful systems to be succeeded by an over-engineered,
    bloated systems, due to inflated expectations and overconfidence.
 
 #+BEGIN_SRC bash :results output
@@ -21,27 +21,33 @@ https://youtu.be/hZJnlxM0c0I?t=162
   c / m # toggle captions / mute
   , / . # move 1 frame forward / backward
 
-  # guile
-  # mit-scheme
-  # racket general-purpose, multi-paradigm programming language based on the Scheme dialect of Lisp.
-
   # SASL - Simple Authentication and Security Layer
 #+END_SRC
 
-Solution of a Differential Equations (DE) is a function, not value \\
-[[https://youtu.be/czL0ZSscbsM?t=II709][National Renewable Energy Laboratory: Energy-Cell Efficiencies]] \\
-[[http://blog.sciencevsmagic.net/science/fractal-machine/][Fractals]] \\
-Go over the book from the Prof. from Karlsruhe \\
+guile
+mit-scheme
 
-Why Do Nigerian Scammers Say They are From Nigeria? \\
+racket general-purpose, multi-paradigm programming language based on the Scheme
+dialect of Lisp.
+
+Solution of a Differential Equations (DE) is a function, not value
+[[https://youtu.be/czL0ZSscbsM?t=II709][National Renewable Energy Laboratory: Energy-Cell Efficiencies]]
+[[http://blog.sciencevsmagic.net/science/fractal-machine/][Fractals]]
+Go over the book from the Prof. from Karlsruhe
+
+Why Do Nigerian Scammers Say They are From Nigeria?
 It works like a filter. If you believe them, you passed it. And you're likely
-stupid enough to do anything they ask you for. IOW send them money. \\
+stupid enough to do anything they ask you for. IOW send them money.
 If you don't pass it then it's probably not worth effort to flirt with you.
 
 http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/
-Sequence of QR Codes/ graphical elements (pyramide, cube, sphere, toroid, etc.)
+Sequence of QR Codes / graphical elements (pyramid, cube, sphere, toroid, etc.)
+
 Open Source Ecology: https://en.wikipedia.org/wiki/Open_Source_Ecology
-Smart the collective brain http://www.ted.com/talks/matt_ridley_when_ideas_have_sex.html
+
+Smart the collective brain
+http://www.ted.com/talks/matt_ridley_when_ideas_have_sex.html
+
 time bank
 dokaz identity bez udania mena
 google lab tags http://www.chromeweblab.com/en-GB/lab-tag-explorer
@@ -52,16 +58,20 @@ Pure vs. mostly harmless functions
 # A terminal for a more modern age
 https://github.com/Eugeny/terminus
 
-# electron-app terminal
+
+# electron-app terminal; scriter - electron alternative
 https://github.com/zeit/hyper
 :end:
 
 :Lang:
 http://www.ted.com/talks/patricia_kuhl_the_linguistic_genius_of_babies.html?fb_ref=talk
 Learning pronounciation
-How much of a language is silent? What does it look like when you take the silence out? (Video 2 Min)
+
+How much of a language is silent? What does it look like when you take the
+silence out? (Video 2 Min)
 http://www.theverge.com/2012/7/1/3129227/silenc-project-silent-letters
 http://golancourses.net/ciid/19/silenc/
+
 idioms, link sur FB, idioms - traduction + correcture
 spelling glyphs
 Comprehension - facile, s'exprimer - difficile
