@@ -182,6 +182,11 @@ in the /dev directory
   google-chrome --headless --disable-gpu --print-to-pdf https://www.eff.or
   google-chrome --headless --screenshot --window-size=1280,169 https://www.eff.or
 
+  # install google-chrome-stable from PPA
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+  sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+  sudo apt update
+  sudo apt install google-chrome-stable
   # google-chrome extras
   chrome://version
   chrome://flags
@@ -203,6 +208,24 @@ in the /dev directory
   # :net :ipv4 - CIDR notation
   # 192.168.100.14/24 represents the IPv4 address 192.168.100.14 and its
   # associated routing prefix 192.168.100.0
+
+  # find active computers on a local network with nmap (may be prefixed with sudo)
+  # Standard ICMP ping
+  nmap -sn 192.168.1.0/24
+  # TCP SYN Ping
+  nmap -sn -PS 192.168.1.0/24
+  # TCP ACK Ping
+  nmap -sn -PA 192.168.1.0/24
+  # UDP Ping
+  nmap -sn -PU 192.168.1.0/24
+  # IP Protocol Ping
+  nmap -sn -PO 192.168.1.0/24
+  # ARP Ping
+  nmap -sn -PR 192.168.1.0/24
+
+  # find active computers on a local network with ping
+  # works only in bash
+  echo 192.168.1.{0..255} | xargs -n1 -P0 ping -c1 | grep "bytes from"
 
   # search for a file named exactly NAME (not *NAME*)
   locate -b '\NAME'
@@ -1086,7 +1109,7 @@ in the /dev directory
   # general status and operations
   nmcli --ask general
 
-  # :rpm display installed packages
+  # display installed packages
   rpm -qa
 
   # root login / console / prompt
@@ -1102,17 +1125,18 @@ in the /dev directory
   # run a program in a new session
   setsid
 
+  # Ultimate Plumber: Linux pipes with instant live preview
+  https://github.com/akavel/up
   # monitor the progress of data through a pipe
   pv
 
-  # Ultimate Plumber: Linux pipes with instant live preview
-  https://github.com/akavel/up
-
-  # :maven :mvn :proxy
+  # maven
   mvn package
   mvn install / mvn clean # mvn install seems not to be needed
   # https://www.mkyong.com/maven/how-to-enable-proxy-setting-in-maven/
   {M2_HOME}/settings.xml
+  # Cleanup local maven repository. It removes all snapshot from more than
+  # 6 months: https://gist.github.com/cescoffier/1582615
 
   # :sftp / :ftp - SSH File Transfer from the OpenSSH / FTP over SSL
   # FTPS - FTP over SSL
