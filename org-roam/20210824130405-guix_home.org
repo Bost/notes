@@ -29,8 +29,9 @@ guix home search .
 # alter / edit current configuration:
 cp ~/.guix-home/configuration.scm /tmp
 # edit /tmp/configuration.scm
-guix home import <config-dir>
 
+# generate a home environment definition from dotfiles:
+guix home import <config-dir>
 #+END_SRC
 
 See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][guix-lemp-container]] - LEMP WordPress Reproducible Environment

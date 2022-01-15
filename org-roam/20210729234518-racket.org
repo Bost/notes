@@ -8,12 +8,6 @@
   :ID:       e538b9e0-6f63-420b-aba1-5815caae4566
   :END:
 
-https://stackoverflow.com/a/54165633
-The Scheme standard uses only the term procedure.
-In Racket function is a procedure with no side effects.
-
-[[https://racket-news.com/2021/11/racket-news-issue-55.html][Racket News]]
-
 * Command line snippets
   #+BEGIN_SRC bash :results output
   # package management
@@ -111,24 +105,25 @@ In Racket function is a procedure with no side effects.
 #+END_SRC
 
 * Macros: quotes, syntax, etc.
-  '     adds quote
-  `     adds quasiquote - see notes
-  ,     adds unquote
-  ,@    adds unquote-splicing
-  #'    adds syntax
+  #+BEGIN_SRC racket
+  (quote-syntax (1 2 3))
+  #+END_SRC
 
   quote-syntax - similar to syntax. Unlike syntax (#'), quote-syntax does not
   substitute pattern variables bound by with-syntax, syntax-parse, or syntax-case.
 
-  #`    adds quasisyntax
-  #,    adds unsyntax
-  #,@   adds unsyntax-splicing
-  (quote-syntax (1 2 3))
+  | '   | quote                  |
+  | `   | quasiquote - see notes |
+  | ,   | unquote                |
+  | ,@  | unquote-splicing       |
+  | #'  | syntax                 |
+  | #`  | quasisyntax            |
+  | #,  | unsyntax               |
+  | #,@ | unsyntax-splicing      |
 
-  #""   byte-string; predicate `bytes?`
-
-  ;; (: v t)     `v` has a type `t`
-  ;; (: v : t)   `v` has a type `t`
+  | #""       | byte-string; predicate `bytes?` |
+  | (: v t)   | `v` has a type `t`              |
+  | (: v : t) | `v` has a type `t`              |
 
 * REPL
   The `enter!` form both loads the code and switches the evaluation context to

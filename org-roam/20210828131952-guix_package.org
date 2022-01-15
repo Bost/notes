@@ -48,9 +48,16 @@
   [[https://logs.guix.gnu.org/guix/2021-10-30.log#111758][IRC discussion: How to find out from which package a binary comes from?]]
   #+BEGIN_SRC bash :results output
   guix package --search=hello
-  guix search hello
+  guix           search hello
+  # package details
+  guix package --show=hello
+  guix           show hello
   # see also availability of substitutes:
+  # TODO what is 'substitutes' - update the 'guix help wheather'
   guix weather 
+
+  # export/import package(s) from/to the store
+  guix archive
   #+END_SRC
 
   https://guix.gnu.org/manual/en/html_node/Invoking-guix-weather.html

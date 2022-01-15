@@ -10,7 +10,12 @@ Descriptions of DrRacket’s plugins interface.
 The simplest and best way to extend DrRacket with support for a new language is
 to implement the language via #lang
 
+* IDE
+  #+BEGIN_SRC bash :results output
+  raco pkg install --auto sauron
+  raco pkg install https://github.com/tuirgin/drracket-spacemacs-schemes.git
+  #+END_SRC
 
-# IDE
-raco pkg install --auto sauron
-raco pkg install https://github.com/tuirgin/drracket-spacemacs-schemes.git
+
+* Scripting
+  https://github.com/Metaxal/quickscript

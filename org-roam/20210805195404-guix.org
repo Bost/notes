@@ -20,7 +20,7 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
    edit `~/.config/guix/channels.scm` and run `guix pull`
 
 * Various commands
-  #+BEGIN_SRC bash :results output
+  #+BEGIN_SRC fish :results output
   # systemctl status guix-daemon # on a foreign host
 
   guix system describe
@@ -35,8 +35,11 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
   # find operating system declaration:
   find ~/.cache/guix/checkouts -name install.scm
+
   # instantiate operating system declaration:
-  cd ~/.cache/guix/checkouts/<...>; guix system image -t iso9660 gnu/system/install.scm
+  set latest (ls --sort=time --almost-all ~/.cache/guix/checkouts/ | head -1)
+  cd ~/.cache/guix/checkouts/$latest
+  guix system image -t iso9660 gnu/system/install.scm
 
   # Build an environment with PACKAGE-dependencies, and execute there the COMMAND
   COMMAND or an interactive shell in that environment
@@ -135,6 +138,10 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   <muradm>if one ever did guix pull, gnu/system/install.scm can be found in ~/.cache/guix/checkouts/....../gnu/system/install.scm
   <muradm>no need to clone guix again
   [[https://logs.guix.gnu.org/guix/2021-08-22.log#181402][2021-08-22: IRC #guix channel log]]
+  #+BEGIN_SRC fish :results output
+  set latest (ls --sort=time --almost-all ~/.cache/guix/checkouts/ | head -1)
+  cd ~/.cache/guix/checkouts/$latest
+  #+END_SRC
 
 * Org mode, Pdf, LaTex
   - `guix install texlive-bin` is not enough. It leads to: "I can't find the
@@ -150,3 +157,22 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
  guix install zip
  M-x org-roam-graph needs
  guix install graphviz
+
+* GNU GPG
+  https://youtu.be/4-Ks_f8rQFA YouTube: Andrew Tropin - GPG Explained
+
+** TODOs
+   - `gpg key` instead of `ssh` and `gpg-agent` instead of `ssh-agent`
+   - see also private.el
+   - auth info - gpg secrects
+
+  https://anonymousplanet.org/guide.html
+
+  Set up secret environment variable
+  #+BEGIN_SRC bash :results output
+  guix install gnupg
+  export SECRET_VAR=`gpg --decrypt /path/to/somekeyfile.gpg 2>/dev/null`
+
+  gpg --keyserver keyserver.ubuntu.com --search-keys email@address.com
+  gpg --list-keys
+  #+END_SRC

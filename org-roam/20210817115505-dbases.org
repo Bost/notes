@@ -23,3 +23,10 @@ set of software design patterns used to determine and track the data that has ch
 ** Triggers on tables
 ** Event programming
 ** Log scanners
+
+#+BEGIN_SRC bash :results output
+exit 1 # just in case ...
+# oracle: execute script.sql
+@C:\path\to\script.sql
+#+END_SRC
+
