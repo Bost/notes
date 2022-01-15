@@ -49,12 +49,10 @@ print("Hello from Python") # evaluate: ~C-c C-c~
   ,#+END_EXAMPLE
 #+end_src
 
-
 * BEGIN_SRC Code Blocks
   [[https://orgmode.org/manual/Structure-of-Code-Blocks.html][Structure of Code Blocks]]
   #+NAME: <name>
   #+BEGIN_SRC <language> <switches> <header arguments>
     <body>
   #+END_SRC
-
-  [[https://orgmode.org/manual/Languages.html#Languages][List of Code Block Languages]]
+  [[https://orgmode.org/worg/org-contrib/babel/languages/index.html][List of Code Block Languages supported by Babel]]

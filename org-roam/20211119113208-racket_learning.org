@@ -28,6 +28,14 @@ HTTP HEAD request - like a GET request but it returns no body
 [[https://docs.racket-lang.org/racquel/index.html][Racket Docs: Racquel]]
 [[https://github.com/brown131/racquel][Github: Racquel]]
 
+* Various sources
 [[https://craftinginterpreters.com/][Book: Crafting Interpreters]]
 
 [[https://www.micahcantor.com/blog/thoughts-typed-racket/][Typed Racket: the good and the bad]]
+
+[[https://stackoverflow.com/a/54165633][Are "procedure" and "function" synonymous in Racket?]]
+The Scheme standard uses only the term procedure.
+In Racket function is a procedure with no side effects.
+
+[[https://racket-news.com/][Blog: Racket News]]
+

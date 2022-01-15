@@ -278,3 +278,52 @@ O(log n) {\displaystyle {\text{O}}(\log n)} {\displaystyle {\text{O}}(\log n)}
 for basic operations
 - AVL-Tree (Adelson-Velsky-Landis)
 - RB-Tree (Red-Black) [[https://en.wikipedia.org/wiki/Red%E2%80%93black_tree][Wikipedia: Red-Black Tree]]
+
+* Endophora - Linguistics
+  [[https://en.wikipedia.org/wiki/Endophora][Wikipedia: Endophora]]
+** Subcategories of Endophoras: φέρω (phérō, "I carry")
+*** Anaphora "carrying back" ἀνά (aná, "up")
+    [[https://en.wikipedia.org/wiki/Anaphora_(linguistics)][Wikipedia: Anaphora (linguistics)]]
+    - Usage of an expression that depends upon an antecedent (previous)
+      expression.
+    - "Sally arrived, but nobody saw her" - 'her' is an anaphor (= anaphoric
+      term)
+*** Cataphora "carrying forward" κατά (kata, "downwards")
+    [[https://en.wikipedia.org/wiki/Cataphora][Wikipedia: Cataphora]]
+    - Usage of an expression that depends upon a postcedent (later) expression.
+    - "If you want some, there are cookies in the kitchen" - 'some' is a
+      cataphor (= cataphoric expression)
+*** Self-reference
+    [[https://en.wikipedia.org/wiki/Self-reference][Wikipedia: Self-reference]]
+
+* Anaphoric Macro
+  [[https://en.wikipedia.org/wiki/Anaphoric_macro][Wikipedia: Anaphoric Macro]]
+  - captures some form supplied to the macro which may be referred to by an
+    anaphor (i.e. expression that depends on a previous expression)
+
+  - Example (ANSI Common Lisp; works also in sbcl - Steel Bank Common Lisp ):
+    Sum the value of non-nil elements, where 'it' refers to the values of
+    elements that do not equal nil:
+    #+BEGIN_SRC lisp
+    (loop for element in '(nil 1 nil 2 nil nil 3 4 6)
+          when element sum it)
+    ;; ⇒ 16
+    #+END_SRC
+
+    #+BEGIN_SRC lisp
+    (defmacro aif (test-form then-form &optional else-form)
+      `(let ((it ,test-form))
+             (if it ,then-form ,else-form)))
+
+    (aif (+ 2 7)
+      (format nil "~A does not equal NIL." it)
+      (format nil "~A does equal NIL." it))
+    #+END_SRC
+
+* Method Chaining
+  #+BEGIN_SRC javascript
+  somethings
+    .filter(x => x.count > 10)
+    .sort((a, b) => a.count - b.count)
+    .map(x => x.name)
+  #+END_SRC

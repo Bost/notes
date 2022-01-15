@@ -120,11 +120,11 @@
   ;; help: ? emacs manual?
   ~C-h i m emacs~
 
-  | ~C-h m~ | M-x describe-mode     |
-  | ~C-h k~ | M-x describe-key      |
-  | ~C-h f~ | M-x describe-function |
-  | ~C-h v~ | M-x describe-variable |
-  | ~C-h b~ | M-x describe-bindings |
+  | ~C-h m~ | M-x describe-mode     |                            |
+  | ~C-h k~ | M-x describe-key      |                            |
+  | ~C-h f~ | M-x describe-function |                            |
+  | ~C-h v~ | M-x describe-variable |                            |
+  | ~C-h b~ | M-x describe-bindings | available keybindings     |
 
   ;; dynamic vs. lexical binding: https://www.emacswiki.org/emacs/LexicalBinding
   (setq lexical-binding t)
@@ -589,6 +589,9 @@
   ;; local keymaps
   ;; Major modes customize Emacs by providing their own key bindings in local keymaps
 
+  ;; buffer's major mode:
+  (message "%s" major-mode)
+
   (defun enable-hyper-super-modifiers-linux-x ()
   ;; on nowadays linux, <windows> key is usually configured to Super
 
@@ -722,3 +725,9 @@ Filter list:
 ;; https://www.reddit.com/r/emacs/comments/7dp6oa/comment/dpzi5hz/?utm_source=share&utm_medium=web2x&context=3
 (seq-filter (apply-partially #'< 3) '(1 2 3 4 5 6))
 #+END_SRC
+
+* TODOs
+  Comment buffer ??? See [[https://www.youtube.com/watch?v=NlP3EDS6WGE][System Crafters: Planning the New Emacs From Scratch]] (towards the end of the stream)
+  crdt.el is a real-time collaborative editing environment for Emacs using Conflict-free Replicated Data Types.
+
+[[https://www.youtube.com/watch?v=wqdT0xKMQT8][System Crafters: The Hidden Value of the Tab Bar]]

@@ -5,23 +5,22 @@
 
 * On Ubuntu
   Error log: /var/log/mysql/error.log
+  #+BEGIN_SRC bash :results output
+  sudo apt install mysql-server mysql-client
 
-  #+begin_src sh
-    sudo apt install mysql-server mysql-client
+  # configure dbase after installation
+  sudo mysql_secure_installation
+  #+END_SRC
 
-    # configure dbase after installation
-    sudo mysql_secure_installation
-   #+end_src
-
-   #+begin_src mysql
-     -- DROP USER IF EXISTS '<username>'
-     CREATE DATABASE Test;
-     CREATE USER '<username>'@'localhost' IDENTIFIED BY '<password>';
-     GRANT ALL PRIVILEGES ON *.* TO '<username>'@'localhost' WITH GRANT OPTION;
-   #+end_src
+  #+BEGIN_SRC mysql :results output
+  -- DROP USER IF EXISTS '<username>'
+  CREATE DATABASE Test;
+  CREATE USER '<username>'@'localhost' IDENTIFIED BY '<password>';
+  GRANT ALL PRIVILEGES ON *.* TO '<username>'@'localhost' WITH GRANT OPTION;
+  #+END_SRC
 
 * Various commands
-#+begin_src sh
+  #+BEGIN_SRC bash :results output
   # Finally!!!
   # Can’t log into phpMyAdmin: mysqli_real_connect(): (HY000/1698): Access denied for user ‘root’@’localhost’
   # https://devanswers.co/phpmyadmin-access-denied-for-user-root-localhost/
@@ -76,6 +75,6 @@
 
   # server start
   /usr/bin/mysqld_safe &
-#+end_src
+  #+END_SRC
 
 

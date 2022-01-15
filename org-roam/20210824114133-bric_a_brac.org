@@ -7,28 +7,9 @@
 Five rating emojis / icons
 https://youtu.be/hZJnlxM0c0I?t=162
 
-** second system syndrome / effect
-   small, elegant, and successful systems to be succeeded by an over-engineered,
-   bloated systems, due to inflated expectations and overconfidence.
-
-#+BEGIN_SRC bash :results output
-  exit 1 # just in case ...
-  # oracle: execute script.sql
-  @C:\path\to\script.sql
-
-  # youtube
-  > / < # :speed 25% faster / slower
-  c / m # toggle captions / mute
-  , / . # move 1 frame forward / backward
-
-  # SASL - Simple Authentication and Security Layer
-#+END_SRC
-
-guile
-mit-scheme
-
-racket general-purpose, multi-paradigm programming language based on the Scheme
-dialect of Lisp.
+Second system syndrome / effect:
+small, elegant, and successful systems to be succeeded by an over-engineered,
+bloated systems, due to inflated expectations and overconfidence.
 
 Solution of a Differential Equations (DE) is a function, not value
 [[https://youtu.be/czL0ZSscbsM?t=II709][National Renewable Energy Laboratory: Energy-Cell Efficiencies]]
@@ -58,7 +39,6 @@ Pure vs. mostly harmless functions
 # A terminal for a more modern age
 https://github.com/Eugeny/terminus
 
-
 # electron-app terminal; scriter - electron alternative
 https://github.com/zeit/hyper
 :end:
@@ -74,7 +54,7 @@ http://golancourses.net/ciid/19/silenc/
 
 idioms, link sur FB, idioms - traduction + correcture
 spelling glyphs
-Comprehension - facile, s'exprimer - difficile
+Comprehension (facile) vs S'exprimer (difficile)
 linguee.com - eu-texts
 le Svejk, l'Etrangeur - examples
 Communication w-/wo- Letters
@@ -87,7 +67,15 @@ Communication w-/wo- Letters
 # | content | other content |
 # :end:
 
-* Simulation and Emulation
+
+Simulation and Emulation
 [[https://www.tutorialspoint.com/what-is-the-difference-between-a-simulator-and-an-emulator][What is the difference between a simulator and an emulator?]]
 
 Simulator mimics while Emulator performs
+
+YouTube
+~>~ / ~<~ speed 25% faster / slower
+~c~ toggle captions
+~m~ toggle mute
+~,~ / ~.~ move 1 frame forward / backward
+

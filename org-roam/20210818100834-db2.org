@@ -3,7 +3,7 @@
 :END:
 #+title: DB2
 
-#+begin_src sh
+#+BEGIN_SRC bash :results output
   # ???
   db2init
 
@@ -43,5 +43,5 @@
 
   # get db2cc version
   java -cp ./path/to/db2jcc.jar com.ibm.db2.jcc.DB2Jcc -version
-#+end_src
+#+END_SRC
 

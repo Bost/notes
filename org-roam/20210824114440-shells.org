@@ -4,7 +4,7 @@
 #+title: Shells
 
 * Shells: Bash & Fish-shell
-  #+BEGIN_SRC fish
+  #+BEGIN_SRC fish :results output
     exit 1 # just in case ...
     # check if a file contains only binary zeros
     # https://stackoverflow.com/a/20226139/5151982
@@ -108,9 +108,9 @@
     test -d /path/to/dir                       # directory exists
     # true if the length of $myvar is non-zero i.e. non-empty string
     # https://stackoverflow.com/a/47743269; always use "" around the myvar
-    test -n "$myvar"; and echo "true == defined"; or echo "false == undefined"
+    test -n "$myvar"; and echo "true: defined-and-non-empty"; or echo "false: undef-or-empty"
     # true if the length of $myvar is zero i.e. empty string
-    test -z "$myvar"; and echo "true == undefined"; or echo "false == defined"
+    test -z "$myvar"; and echo "true: undef-or-empty"; or echo "false: defined-and-non-empty"
 
     # bash string equality / compare
     # See https://tldp.org/LDP/abs/html/comparison-ops.html
@@ -124,17 +124,17 @@
     math "1 + 2"
   #+END_SRC
 
-* Key bindings
+* Key bindings / shortcuts
   #+BEGIN_SRC bash :results output
     exit 1 # just in case ...
-    # show fish shell key bindings in the console
-    bind
-    # show fish shell key bindings in the web browser
-    help bind
+    # fish shell key bindings / shortcuts in the...
+    bind       # ... console
+    help bind  # ... web browser
     # list of available shell commands
     /etc/inputrc
 
-    # :bash display shortcuts including Ctrl+L, Ctrl+R; \e - ESC, \C-y - Ctrl+y
+    # bash key bindings / shortcuts including
+    # Ctrl+L, Ctrl+R; \e - ESC, \C-y - Ctrl+y
     # see fzf
     bind -P    # -P List function names and bindings
     help bind
@@ -145,7 +145,7 @@
     C-u ... C-y / Ctrl-u ... Ctrl-y
 
     # :bash history
-    C-r / Ctrl-g
+    C-r / Ctrl-r
     # :bash abort history
     C-g / Ctrl-g
 
@@ -312,3 +312,24 @@
     #        -w FILE:  FILE exists and write permission is granted
     #        -x FILE:  FILE exists and execute (or search) permission is granted
   #+END_SRC
+
+* Bash Startup Files
+  #+BEGIN_SRC bash :results output
+  info "(bash) Bash Startup Files"
+  #+END_SRC
+
+** Invoked as an interactive login shell, or with '--login'
+Execution order:
+/etc/profile
+~/.bash_profile (typically does `. ~/.bashrc`)
+~/.bash_login
+~/.profile
+
+** Invoked as an interactive non-login shell
+~/.bashrc
+
+** Invoked non-interactively
+** Invoked with name 'sh'
+** Invoked in POSIX mode
+** Invoked by remote shell daemon
+** Invoked with unequal effective and real UID/GIDs
