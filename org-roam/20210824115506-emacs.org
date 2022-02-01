@@ -541,8 +541,12 @@
   ;; working tree unchanged
   ~x~ (X)
 
-  ;; info: manual:
-  M-x info / info-apropos / info-emacs-manual / info-display-manual
+  ;; manual
+  emacs -q -e 'info' & disown
+  M-x info
+  M-x info-apropos
+  M-x info-emacs-manual
+  M-x info-display-manual
 
   ;; macros
   M-x kmacro-name-last-macro  ;; 1.

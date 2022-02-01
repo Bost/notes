@@ -106,3 +106,21 @@ Then, you can configure your interpreter by modifying the ~/.guile file (create 
  (list
   "git" "config" "--local" "--list")))
 #+END_SRC
+
+* Keywords
+  #+BEGIN_SRC scheme
+  (keyword? #:foo) ; => #t
+  ;; (keyword? :foo) ; => error
+  ;; (keyword? foo:) ; => error
+  (read-set! keywords 'prefix)
+  (keyword? :foo) ; => #t
+  (read-set! keywords 'postfix)
+  (keyword? foo:) ; => #t
+  #+END_SRC
+  The `(keyword? :foo:)` will work if any of the `(read-set! ...)` is evaluated.
+
+* Formatted output
+  like fprintf. See [[https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html][Formatted Output]]
+  #+BEGIN_SRC scheme
+  (format #t "\n~a\n\n" s)
+  #+END_SRC
