@@ -31,6 +31,7 @@ in the /dev directory
 
 
 * Bluetooth
+  BLE Bluetooth Low-Energy
   #+BEGIN_SRC bash :results output
   apt search bluetooth
   sudo apt install bluez blueman pulseaudio-module-bluetooth
@@ -211,9 +212,10 @@ in the /dev directory
   # show open ports
   nmap www.google.com | grep -i open
 
-  # :net :ipv4 - CIDR notation
+  # :net IPv4 - CIDR notation
   # 192.168.100.14/24 represents the IPv4 address 192.168.100.14 and its
   # associated routing prefix 192.168.100.0
+  # TODO what is the /24 - address range?
 
   # find active computers on a local network with nmap (may be prefixed with sudo)
   # Standard ICMP ping
@@ -580,8 +582,10 @@ in the /dev directory
   # Address Resolution Protocol table
   ip neighbour
 
-  # :net what is my IP
+  # :net what is my IP address
   curl ifconfig.me
+  # See also
+  https://resolve.rs/
 
   # exec disc usage command on a remote host and sort results
   ssh <HostAlias> du -h --max-depth=1 /pth/to/dir | sort -h
@@ -877,7 +881,7 @@ in the /dev directory
   # remote login using different / specific shell
   ssh -t <user>@<server> "bash -l"
 
-  # :net ipv6:
+  # :net
   # responds with 'ssh: connect to host <ipv6-address> port 22: Invalid argument'
   ssh -6 <ipv6-address>
   ping6 -I wlan0 -c 4 <ipv6-address> # responds with 'ping: unknown iface wlan0'
@@ -1148,7 +1152,7 @@ in the /dev directory
   # 6 months: https://gist.github.com/cescoffier/1582615
 
   # :sftp / :ftp - SSH File Transfer from the OpenSSH / FTP over SSL
-  # FTPS - FTP over SSL
+  # FTPS - FTP over SSL (SSL is deprecated)
   lftp
 
   # :HPKP HTTP Public Key Pinning; Similair to HSTS header
@@ -1382,6 +1386,98 @@ in the /dev directory
   #+END_SRC
 
 * tail vs less
-  Instead of `tail -f ...` try to use `less +F ...`. However `tail -f ...` is better when watching multiple
-  files at the same time.
-  See [[https://www.brianstorti.com/stop-using-tail/][Stop using tail -f (mostly)]]
+  Instead of `tail -f ...` try to use `less +F ...`. `tail -f ...` is better
+  when watching multiple files at the same time. See [[https://www.brianstorti.com/stop-using-tail/][Stop using tail -f (mostly)]]
+
+* DNS leak
+  When using an anonymity or privacy service:
+  All traffic originating from your computer must be routed through the
+  anonymity network. If any traffic leaks outside of the secure connection to
+  the network, any adversary monitoring your traffic will be able to log your
+  activity.
+
+* DNS and IP requests
+  The browser will send a clear text unencrypted DNS request to some DNS servers
+  asking basically "So what’s the IP address of www.someserver.com?".
+
+  Even in an incognito Window, using HTTPS and using a private or your own DNS
+  service
+
+  The ISP can tamper with the DNS responses even if you are using a private DNS.
+  (Man-in-the-middle) Rendering the use of a private DNS service useless.
+
+  Many devices and apps (Smart TVs 70%, Game Consoles 46%) will use hardcoded
+  DNS servers bypassing any system setting you could set. For these devices,
+  you will have to force them to stop using their hardcoded DNS service which
+  could make them stop working properly.
+
+  A solution: encrypted DNS using DoH (DNS over HTTPS38), DoT (DNS over TLS39)
+  with a private DNS server (this can be self-hosted locally with a solution
+  like pi-hole, remotely hosted with a solution like nextdns.io or using the
+  solutions provider by your VPN provider or the Tor network). This should
+  prevent your ISP or some go-between from snooping on your requests... except
+  it might not help.
+
+* TLS Transport Layer Security 
+  protocol; successor of deprecated SSL Secure Sockets Layer
+
+* DNS Domain Name System
+
+* SNI Server Name Indication
+
+* ECH Encrypted Client Hello
+  - previously eSNI
+  - only Firefox-based browsers supports ECH (Jan 2022); not enabled by default
+    ECH and eSNI are not supported (Jan 2022) by:
+    Amazon (including AWS, Twitch, ...)
+    Microsoft (including Azure, OneDrive, Outlook, Office 365, ...)
+    Google (including Gmail, Google Cloud, ...)
+    Apple (including iCloud, iMessage, ...)
+    Reddit YouTube Facebook Instagram Twitter GitHub
+  - encrypt everything end to end (in addition to using a secure private DNS
+    over TLS/HTTPS) and hide your DNS requests from a 3rd party.
+
+    OCSP https://en.wikipedia.org/wiki/Online_Certificate_Status_Protocol Part
+    of the HTTPS TLS validation, used by Firefox-based browsers.
+
+    OCSP leaks serial number of the certificate of the visited website.
+    (Mitigiation - see OCSP stapling)
+    
+    CRLSets in Chromium-based browsers is arguably better than OCSP.
+
+ - Brave browser supports all Chrome extensions and offers much better privacy
+   than Chrome.
+
+* Secure DNS
+  Traditionally, DNS queries are sent in plaintext. Use a resolver that supports
+  secure DNS transport. E.g. DNS over HTTPS (DoH), DNS over TLS (DoT).
+
+* RFID Radio-frequency identification
+  Shopping stores will effectively scan (and log) all RFID chips passing through the
+  door. (They might be looking for their loyalty cards)
+
+If you have an Android smartphone, Google probably knows where it is no matter
+what you do. You cannot really trust the settings. The whole operating system is
+built by a company that wants your data. Remember that if it is free then you
+are the product.
+
+Movement tracking bases on radio interferences from Wi-Fi access points inside
+buildings.
+
+IMEI International Mobile Equipment Identity
+unique, tied to the phone. It is possible but difficult to change it.
+
+IMSI International Mobile Subscriber Identity
+unique, tied to the phone number. Directly hardcoded on the SIM card, cannot be
+changed.
+
+* in the CPUs
+  Intel Management Engine, AMD Platform Security Processor
+  Small operating systems running directly on the CPU
+
+
+How to Hack a Turned-Off Computer, or Running Unsigned Code in Intel Management Engine https://www.youtube.com/watch?v=mYsTBPqbya8
+
+* Metadata
+  Knowing that you had a call from an oncologist before then calling your family
+  and friends successively.

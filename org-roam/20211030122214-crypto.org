@@ -3,10 +3,10 @@
 :END:
 #+title: Crypto
 
-;; hyperleddger: open-source project developed by the Linux foundation. It uses
-;; a modular approach to building blockchains collective of open-source
-;; blockchains and tools that anyone can use to create their own distributed
-;; ledgers.
+* hyperleddger
+open-source project developed by the Linux foundation. It uses a modular
+approach to building blockchains collective of open-source blockchains and tools
+that anyone can use to create their own distributed ledgers.
 
 https://developers.ripple.com/xrp-ledger-overview.html
 Ripple XRP: real-time gross settlement system (RTGS)
@@ -130,7 +130,11 @@ Macaroon authentication key
 LND - lightning network daemon
 CND -
 
-Monero XMR
+* Monero XMR
+  privacy-enhancing technologies that obfuscate transactions to achieve
+  anonymity and fungibility. Observers cannot decipher addresses trading monero,
+  transaction amounts, address balances, or transaction histories.
+
 Blue Wallet
 
 PC on Ethereum - Payment Channel on Ethereum
@@ -160,3 +164,22 @@ Post Quantum Commitment Schemes
 Schnorr signature
 EdDSA - Edwards-Curve Digital Signature Algorithm
 
+* Ethereum
+  [[https://youtu.be/jxLkbJozKbY][YouTube: What is Ethereum? A Beginner's Explanation in Plain English]]
+  Ether - Ethereum currency
+  DAO Decentralized Autonomous Organization "reverted" the money - see below
+  Ethereum protocol
+** Smart Contract SC
+   The contract "knows" if the money has been sent
+   Immutable;
+   "Code is Law"
+   - SC Deployment to Ethereum Platform - must be payed with Ether
+*** Aspects
+    enforcement
+    management
+    performance
+    payment
+
+* Ethereum Classic
+  ETC; The "original" Ethereum
+  Created when the original ETH community decided that "code is no longer the law" and "reverted" the money

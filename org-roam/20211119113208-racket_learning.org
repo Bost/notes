@@ -4,7 +4,7 @@
 #+title: Racket Learning
 
 * Learning Sources
-Tiago Cogumbreiro - [[https://cogumbreiro.github.io/teaching/cs450/s21/][YouTube channel]]
+Tiago Cogumbreiro - [[https://cogumbreiro.github.io/teaching/cs450/s21/][GitHub]]
 Michael Sperber - [[https://media.ccc.de/v/rc3-257534-all_programming_language_suck_just_build_your_own_language_oriented_programming_with_racket][All Programming Language Suck? Just Build Your Own!]]
 Jesse Alama - The Racket Weekend
 
@@ -22,20 +22,34 @@ HTTP HEAD request - like a GET request but it returns no body
 - used to determine how big a resource would be with a real GET request
 
 * Object-relational mapping
-[[https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping][Wikipedia: Object–relational mapping]] ORM
-
+  [[https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping][Wikipedia: Object–relational mapping]] ORM
 ** ORM in Racket with Racquel
-[[https://docs.racket-lang.org/racquel/index.html][Racket Docs: Racquel]]
-[[https://github.com/brown131/racquel][Github: Racquel]]
+   [[https://docs.racket-lang.org/racquel/index.html][Racket Docs: Racquel]]
+   [[https://github.com/brown131/racquel][Github: Racquel]]
 
 * Various sources
-[[https://craftinginterpreters.com/][Book: Crafting Interpreters]]
+  [[https://racket-news.com/][Blog: Racket News]]
+  [[https://craftinginterpreters.com/][Book: Crafting Interpreters]]
+  [[https://www.micahcantor.com/blog/thoughts-typed-racket/][Typed Racket: the good and the bad]]
+** Procedures and functions
+   [[https://stackoverflow.com/a/54165633][Are "procedure" and "function" synonymous in Racket?]]
+   The Scheme standard uses only the term procedure.
+   In Racket function is a procedure with no side effects.
 
-[[https://www.micahcantor.com/blog/thoughts-typed-racket/][Typed Racket: the good and the bad]]
+** Hunt the Wumpus
+   [[https://en.wikipedia.org/wiki/Hunt_the_Wumpus][Wikipedia: Hunt the Wumpus]]
+   [[https://rosettacode.org/wiki/Hunt_the_Wumpus#Racket][Racket: Hunt the Wumpus]]
 
-[[https://stackoverflow.com/a/54165633][Are "procedure" and "function" synonymous in Racket?]]
-The Scheme standard uses only the term procedure.
-In Racket function is a procedure with no side effects.
+* RacketConf 2021
+  - https://racket.discourse.group
+  - [[https://github.com/soegaard/remacs][remacs - the Emacs style editor written in Racket]]
+  - [[https://youtu.be/73dDj_z66qo?t=3578][Matthias Felleisen - Every language has a slogan]]
 
-[[https://racket-news.com/][Blog: Racket News]]
-
+* Heresy
+  The Heresy Programming Language https://github.com/jarcane/heresy
+  Functional Lisp/Scheme dialect implemented in Racket, with syntax inspired by
+  the BASIC family of programming languages. Its principle goals are to provide
+  a simple core language for BASIC and other programmers to experiment with and
+  learn how to program functionally. This document will detail the general
+  philosophy of the Heresy language, such as exists, as well as the language
+  syntax and functions.

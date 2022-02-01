@@ -14,7 +14,6 @@ info Guix Home
 #+END_SRC
 
 #+BEGIN_SRC bash :results output
-
 guix home reconfigure
 
 # list / search through all existing guix home services
@@ -36,22 +35,16 @@ guix home import <config-dir>
 
 See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][guix-lemp-container]] - LEMP WordPress Reproducible Environment
 
-
-#+BEGIN_SRC bash :results output
-guix shell ...
-#+END_SRC
-
 * Installed packages
-#+BEGIN_SRC bash :results output
-ghdir=$(guix home describe | grep "canonical file name:" | \
-        grep --only-matching "/gnu/store/.*")
-ls -lA $ghdir/profile/bin
-#+END_SRC
+  #+BEGIN_SRC bash :results output
+  ghdir=$(guix home describe | grep "canonical file name:" | \
+          grep --only-matching "/gnu/store/.*")
+  ls -lA $ghdir/profile/bin
+  #+END_SRC
+  [[https://youtu.be/R5cdtSfTpE0][YouTube: System Crafters Live! - A First Look at Guix Home]]
+  [[https://systemcrafters.net/live-streams/october-01-2021/][Notes: System Crafters Live! - A First Look at Guix Home]]
+  https://guix-home.trop.in/Home-Configuration.html
 
-[[https://youtu.be/R5cdtSfTpE0][YouTube: System Crafters Live! - A First Look at Guix Home]]
-[[https://systemcrafters.net/live-streams/october-01-2021/][Notes: System Crafters Live! - A First Look at Guix Home]]
-
-https://guix-home.trop.in/Home-Configuration.html
 * Create ISO image
   Two /boot/efi entries in the
 

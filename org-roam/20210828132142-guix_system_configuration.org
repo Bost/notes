@@ -5,15 +5,9 @@
 
 * System Configuration
   [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
-#+BEGIN_SRC bash :results output
-guix system describe
-# time-machine - run commands from a different revision
-# Usage: guix time-machine [OPTION] -- COMMAND ARGS...
-# Execute COMMAND ARGS... in an older version of Guix.
-
-# search for existing service type 'console'
-# guix system search console
-#+END_SRC
+  #+BEGIN_SRC bash :results output
+  guix system describe
+  #+END_SRC
 
 #+RESULTS:
 #+BEGIN_EXAMPLE
@@ -51,14 +45,6 @@ Generation 3	Oct 17 2021 15:49:49	(current)
    - A2: There is no ‘term-auto’ service (it's similar to a systemd term@auto
      instance). See [[https://logs.guix.gnu.org/guix/2020-03-23.log#213842][IRC #guix channel log]]
 
-
 * Time Machine
-  Provides access to other Guix revisions, i.e. commands from a different revision
-
-#+BEGIN_SRC bash :results output
-# Usage: guix time-machine [OPTION] -- COMMAND ARGS...
-# Execute COMMAND ARGS... in an older version of Guix.
-
-# search for existing service type 'console'
-# guix system search console
-#+END_SRC
+  Provides access to other Guix revisions. Run commands from a different
+  revision / older version.

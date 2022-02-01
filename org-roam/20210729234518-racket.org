@@ -102,16 +102,14 @@
   (map string? '(1 "a" 3))  ;; => '(#f #t #f)
 
   (andmap number? '(1 2 3)) ;; => #t
-#+END_SRC
+  #+END_SRC
 
 * Macros: quotes, syntax, etc.
   #+BEGIN_SRC racket
   (quote-syntax (1 2 3))
   #+END_SRC
-
   quote-syntax - similar to syntax. Unlike syntax (#'), quote-syntax does not
   substitute pattern variables bound by with-syntax, syntax-parse, or syntax-case.
-
   | '   | quote                  |
   | `   | quasiquote - see notes |
   | ,   | unquote                |
@@ -121,6 +119,7 @@
   | #,  | unsyntax               |
   | #,@ | unsyntax-splicing      |
 
+  Other
   | #""       | byte-string; predicate `bytes?` |
   | (: v t)   | `v` has a type `t`              |
   | (: v : t) | `v` has a type `t`              |
@@ -149,29 +148,21 @@
   (eval (call-with-input-string "(+ 1 2)" read)) ;; string port is auto-closed
   #+END_SRC
 
-* RacketConf 2021
-  - https://racket.discourse.group
-  - [[https://github.com/soegaard/remacs][remacs - the Emacs style editor written in Racket]]
-  - [[https://youtu.be/73dDj_z66qo?t=3578][Matthias Felleisen - Every language has a slogan]]
-
 * Empty string predicate
-See [[https://rosettacode.org/][Rosetta Code]]
-#+BEGIN_SRC racket
-(define empty-string "")
-(define (string-null? s) (string=? "" s))
-(define (string-not-null? s) (string<? "" s))
-#+END_SRC
+  See [[https://rosettacode.org/][Rosetta Code]]
+  #+BEGIN_SRC racket
+  (define empty-string "")
+  (define (string-null? s) (string=? "" s))
+  (define (string-not-null? s) (string<? "" s))
+  #+END_SRC
 
-* Hunt the Wumpus
-[[https://en.wikipedia.org/wiki/Hunt_the_Wumpus][Wikipedia: Hunt the Wumpus]]
-[[https://rosettacode.org/wiki/Hunt_the_Wumpus#Racket][Racket: Hunt the Wumpus]]
-
-* Heresy
-The Heresy Programming Language https://github.com/jarcane/heresy
-
-The Heresy language is a functional Lisp/Scheme dialect implemented in Racket,
-with syntax inspired by the BASIC family of programming languages. Its principle
-goals are to provide a simple core language for BASIC and other programmers to
-experiment with and learn how to program functionally. This document will detail
-the general philosophy of the Heresy language, such as exists, as well as the
-language syntax and functions.
+* Converting Values to Strings
+  [[https://docs.racket-lang.org/reference/strings.html#%28part._format%29][Converting Values to Strings]]
+  #+BEGIN_SRC racket
+  (require racket/format)
+  (~a "Hi" 1 2 'People)                 ; => "Hi12People"
+  (~a "Hi" 1 2 'People '(Around))       ; => "Hi12People(Around)"
+  (~a #:separator "-" "Hi" 1 2 'People) ; => "Hi-1-2-People"
+  ;; See
+  ;; ~a ~v ~s ~e ~r ~.a ~.v ~.s
+  #+END_SRC
