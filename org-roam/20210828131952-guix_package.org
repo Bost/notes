@@ -22,6 +22,12 @@
   #+END_SRC
 
 * Various commands
+  --verbosity=LEVEL
+  0 - no output
+  1 - quiet
+  2 - like 1 with download URLs
+  3 - shows all the build log output on standard error
+
   #+BEGIN_SRC bash :results output
   guix package --list-available=ruby
 
@@ -54,7 +60,7 @@
   guix           show hello
   # see also availability of substitutes:
   # TODO what is 'substitutes' - update the 'guix help wheather'
-  guix weather 
+  guix weather
 
   # export/import package(s) from/to the store
   guix archive

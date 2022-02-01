@@ -3,8 +3,8 @@
 :END:
 #+title: Lisp
 
-guile
-mit-scheme
+Guile Scheme
+MIT Scheme
 
 Racket: general-purpose, multi-paradigm programming language based on the Scheme.
 

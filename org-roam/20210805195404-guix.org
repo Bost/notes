@@ -43,7 +43,7 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
   # Build an environment with PACKAGE-dependencies, and execute there the COMMAND
   COMMAND or an interactive shell in that environment
-  guix environment [OPTION]... PACKAGE... [-- COMMAND...]
+  guix shell [OPTION]... PACKAGE... [-- COMMAND...]
   #+END_SRC
 
 * Upgrade GuixOS

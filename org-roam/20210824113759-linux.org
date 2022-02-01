@@ -635,13 +635,16 @@ in the /dev directory
 
   # recursive copy `dotfiles` and `cheat` to server:~/dev/
   # i.e. create `server:~/dev/dotfiles/` and `server:~/dev/cheat/`
-  rsync -ravz dotfiles cheat server:~/dev/
+  rsync -avz dotfiles cheat server:~/dev/
   # recursive copy of only the content of `dotfiles` and `cheat`.
   # i.e. create only the `server:~/dev/`
-  rsync -ravz dotfiles/ cheat/ server:~/dev
+  rsync -avz dotfiles/ cheat/ server:~/dev
 
-  # copy only certain types of files using include option
-  rsync -havzr --include="*/" --include="*.sh" --exclude="*" "$src" "$dst"
+  # recursive copy only certain types of files using include option
+  rsync -havz --include="*/" --include="*.sh" --exclude="*" "$src" "$dst"
+
+  # copy multiple files from remote machine to a local machine
+  rsync -a login@machine:/remote/path/file1 :/remote/path/file2 /local/path
 
   # :cvs copy files from src to dst excluding everything in CVS directories
   # -n --dry-run
@@ -1201,16 +1204,16 @@ in the /dev directory
   # update all packages
   apm update
   # restore / synchronise settings
-  rsync -zarv --include="*/" --include="*.cson" --exclude="*" ~/.atom/* ~/dev/dotfiles/.atom
+  rsync -avz --include="*/" --include="*.cson" --exclude="*" ~/.atom/* ~/dev/dotfiles/.atom
 
   # :rsync - options short / long versions
   -h, --human-readable
-  -a, --archive             # archive mode; equals -rlptgoD (no -H,-A,-X)
+  -a, --archive # -rlptgoD (no -H,-A,-X); recursive & preserve almost everything
   -v, --verbose
   -z, --compress
   -r, --recursive
   -n, --dry-run
-  -p, --perms                # preserve permissions
+  -p, --perms   # preserve permissions
 
   # super fast ram disk
   sudo mkdir -p /mnt/ram
