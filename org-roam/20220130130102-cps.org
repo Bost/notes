@@ -1,0 +1,29 @@
+:PROPERTIES:
+:ID:       8defdc14-43a5-4ea2-9198-c29b46de2527
+:END:
+#+title: CPS
+
+* Continuation Passing Style
+  [[https://youtu.be/c-7AW4yFXNs][YouTube: Tiago Cogumbreiro - Continuation passing style intro]]
+  [[https://cogumbreiro.github.io/teaching/cs450/s21/lecture32.html][Tiago Cogumbreiro - Lecture 32: Monadic continuations]]
+  CPS is a form of inversion of control.
+  CPS: "Control the Control-Flow"
+  CPS: computation abstracted with function
+
+  Returning a value is a function call
+  try-catch is dual to bind
+  #+BEGIN_SRC racket
+  (+ 1 2 (call/cc f) 4 5)
+  ;; becomes:
+  (f (lambda (x) (+ 1 2 x 4 5)))
+  #+END_SRC
+
+  [[https://github.com/lix4/CSSE304-Programming-Language-Concept-Code/blob/master/more-callcc-examples.ss][More call/cc examples]]
+
+  #+BEGIN_SRC racket
+  (let ([f 0] [i 0])
+    (call/cc (lambda (k) (set! f k)))
+    (printf "~a~n" i)
+    (set! i (+ i 1))
+    (if (< i 10) (f "ignore") 'else))
+  #+END_SRC

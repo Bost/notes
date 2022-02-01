@@ -15,9 +15,8 @@ Ports are the way that Guile performs input and output
 guix install guile-colorized
 #+END_SRC
 
-
-Then, you can configure your interpreter by modifying the ~/.guile file (create it if it doesn't exist) and put the following lines into it:
-
+Then, you can configure your interpreter by modifying the ~/.guile file (create
+it if it doesn't exist) and put the following lines into it:
 #+BEGIN_SRC scheme
 (use-modules (ice-9 readline)
              (ice-9 colorized))
@@ -124,3 +123,16 @@ Then, you can configure your interpreter by modifying the ~/.guile file (create 
   #+BEGIN_SRC scheme
   (format #t "\n~a\n\n" s)
   #+END_SRC
+
+* G-expressions
+  'gexp' is a form of S-expressions adapted to build expressions. It can contain
+  a package record or any file-like object which will be replaced by its '/gnu/'
+
+  Syntactic forms:
+  | #~  | gexp            | quasiquote       |
+  | #$  | ungexp          | unquote          |
+  | #$@ | ungexp-splicing | unquote-splicing |
+
+  A 'gexp' can contain a package record or any other "file-like object" and,
+  when that 'gexp' is serialized for eventual execution, the package is replaced
+  by its /gnu/store/... file name

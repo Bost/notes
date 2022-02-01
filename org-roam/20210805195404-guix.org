@@ -13,6 +13,10 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   guix describe
   guix describe --format=channels
   guix describe --format=human
+
+  # lock packages to the versions defined in ./channels from current directory
+  guix time-machine --channels=./channels.scm -- \
+       describe --format=channels > channels-lock.scm
   #+END_SRC
 
 ** Specifying Additional Channels
@@ -22,6 +26,10 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 * Various commands
   #+BEGIN_SRC fish :results output
   # systemctl status guix-daemon # on a foreign host
+
+  guix time-machine --commit=HEAD --disable-authentication -- describe
+  #
+  guix time-machine --commit=<sha1> --disable-authentication -- describe
 
   guix system describe
 
@@ -40,10 +48,6 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   set latest (ls --sort=time --almost-all ~/.cache/guix/checkouts/ | head -1)
   cd ~/.cache/guix/checkouts/$latest
   guix system image -t iso9660 gnu/system/install.scm
-
-  # Build an environment with PACKAGE-dependencies, and execute there the COMMAND
-  COMMAND or an interactive shell in that environment
-  guix shell [OPTION]... PACKAGE... [-- COMMAND...]
   #+END_SRC
 
 * Upgrade GuixOS
@@ -161,11 +165,64 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 * GNU GPG
   https://youtu.be/4-Ks_f8rQFA YouTube: Andrew Tropin - GPG Explained
 
-** TODOs
-   - `gpg key` instead of `ssh` and `gpg-agent` instead of `ssh-agent`
-   - see also private.el
-   - auth info - gpg secrects
+* main commands
+  #+BEGIN_SRC bash
+  guix deploy        # deploy operating systems on a set of machines
+  guix describe      # describe the channel revisions currently used
+  guix gc            # invoke the garbage collector
+  guix home          # build and deploy home environments
+  guix install       # install packages
+  guix package       # manage packages and profiles
+  guix pull          # pull the latest revision of Guix
+  guix remove        # remove installed packages
+  guix search        # search for packages
+  guix show          # show information about packages
+  guix system        # build and deploy full operating systems
+  guix time-machine  # run commands from a different revision
+  guix upgrade       # upgrade packages to their latest version
 
+  # Assess substitute availability. report on the availability of pre-built
+  # package binaries
+  guix weather
+  #+END_SRC
+
+* software development commands
+  #+BEGIN_SRC bash
+  guix container    # process isolation / run code in 'guix shell -C' containers
+  guix pack         # create application bundles
+  guix shell        # spawn one-off software environments
+  #+END_SRC
+
+* packaging commands
+  #+BEGIN_SRC bash
+  guix build      # build packages or derivations without installing them
+  guix challenge  # challenge substitute servers, comparing their binaries
+  guix download   # download a file to the store and print its hash
+  guix edit       # view and edit package definitions
+  guix graph      # visualize, view and query package dependency graphs
+  guix hash       # compute the cryptographic hash of a file
+  guix import     # import a package definition from an external repository
+  guix lint       # find errors and validate package definitions
+  guix publish    # share substitutes / publish build results over HTTP
+  guix refresh    # update existing package definitions
+  guix size       # profile disk usage, i.e. the on-disk size of packages
+  guix style      # update the style of package definitions
+  #+END_SRC
+
+* plumbing commands
+  #+BEGIN_SRC bash
+  guix archive    # manipulate, export, import normalized archives (nars)
+  guix copy       # copy items to and from a remote store over SSH
+  guix git        # operate on Git repositories
+  guix offload    # set up and operate build offloading
+  guix processes  # list client processes / currently running sessions
+  guix repl       # interactive programming of Guix in Guile
+  #+END_SRC
+
+* TODO
+  - `gpg key` instead of `ssh` and `gpg-agent` instead of `ssh-agent`
+  - see also private.el
+  - auth info - gpg secrets
   https://anonymousplanet.org/guide.html
 
   Set up secret environment variable
@@ -175,4 +232,23 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
   gpg --keyserver keyserver.ubuntu.com --search-keys email@address.com
   gpg --list-keys
+
+  # add a package to the distribution
+  guix import
+
+  # Update package definitions to the latest style
+  guix style
+  # TODO update my own package definitions
+  guix style -L /path/to/channel my-package1 my-package2 ...
+  guix style -L ~/dev/guix-packages ...
+
+  # edit package defition
+  guix edit PACKAGE
+
+  # search for existing service type 'console'
+  guix system search console
+
+  # Build an environment with PACKAGE-dependencies, and execute there the
+  # COMMAND or an interactive shell in that environment
+  guix shell [OPTION]... PACKAGE... [-- COMMAND...]
   #+END_SRC

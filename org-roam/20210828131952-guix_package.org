@@ -58,13 +58,14 @@
   # package details
   guix package --show=hello
   guix           show hello
-  # see also availability of substitutes:
-  # TODO what is 'substitutes' - update the 'guix help wheather'
-  guix weather
-
-  # export/import package(s) from/to the store
-  guix archive
+  guix weather   # see also availability of substitutes:
+  guix archive   # export / import package(s) from / to the store
   #+END_SRC
 
   https://guix.gnu.org/manual/en/html_node/Invoking-guix-weather.html
   `guix weather` nars: size of the compressed archives
+
+* Substitutes
+  TODO what is 'substitutes' - update 'guix help wheather'
+  Typically pre-built package binaries.
+  Can be also e.g. source tarballs, which also result from derivation builds
