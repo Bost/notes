@@ -327,3 +327,6 @@ for basic operations
     .sort((a, b) => a.count - b.count)
     .map(x => x.name)
   #+END_SRC
+
+* Typing
+  Gradual Typing, Occurrence Typing

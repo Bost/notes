@@ -319,17 +319,29 @@
   #+END_SRC
 
 ** Invoked as an interactive login shell, or with '--login'
-Execution order:
-/etc/profile
-~/.bash_profile (typically does `. ~/.bashrc`)
-~/.bash_login
-~/.profile
+   Execution order:
+   /etc/profile
+   ~/.bash_profile (typically does `. ~/.bashrc`)
+   ~/.bash_login
+   ~/.profile
 
 ** Invoked as an interactive non-login shell
-~/.bashrc
+   ~/.bashrc
 
 ** Invoked non-interactively
 ** Invoked with name 'sh'
 ** Invoked in POSIX mode
 ** Invoked by remote shell daemon
 ** Invoked with unequal effective and real UID/GIDs
+
+* Other shells
+** Racket-Rash
+   [[https://willghatch.net/publications/rash-gpce-2018-preprint.pdf][PDF: Rash: From Reckless Interactions to Reliable Programs]]
+
+** TODO globbing
+   [[https://github.com/willghatch/racket-rash/issues/64][Github Issue: Question mark '?' char in a string #64]]
+   [[https://github.com/willghatch/racket-rash/issues/67][Github Issue: Regexes in grep #67]]
+   globbing vs. PEG expressions https://docs.racket-lang.org/peg/index.html
+
+** scsh Scheme Shell
+   latest release May 16 2006, ver0.6.7; https://scsh.net/

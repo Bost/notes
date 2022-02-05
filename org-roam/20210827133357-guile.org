@@ -5,6 +5,8 @@
 
 Guile is an implementation of the Scheme programming language.
 
+See `info "(guile)Concept Index"`
+
 [[https://srfi.schemers.org/][SRFI]] - Scheme Requests for Implementation
 
 https://jeko.frama.io/en/install.html
@@ -25,6 +27,18 @@ it if it doesn't exist) and put the following lines into it:
 (activate-colorized)
 #+END_SRC
 
+* Partial function application.
+  See [[https://srfi.schemers.org/srfi-26/srfi-26.html][Notation for Specializing Parameters without Currying]]
+  #+BEGIN_SRC scheme
+  (use-modules (srfi srfi-26))
+  (map (cut * 2 <>) (1 2 3 4))
+  ;; also
+  (define (partial fun . args)
+    (lambda x (apply fun (append args x))))
+  #+END_SRC
+
+
+* Various code snippets
 #+BEGIN_SRC scheme
 (use-modules (ice-9 rdelim)
              (ice-9 popen)
@@ -136,3 +150,6 @@ it if it doesn't exist) and put the following lines into it:
   A 'gexp' can contain a package record or any other "file-like object" and,
   when that 'gexp' is serialized for eventual execution, the package is replaced
   by its /gnu/store/... file name
+
+* Module installation
+  see `info "(guile)Installing Site Packages"`

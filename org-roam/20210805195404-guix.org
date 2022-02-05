@@ -6,6 +6,23 @@
 https://systemcrafters.cc/craft-your-system-with-guix/
 https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
+* RDE Reproducible Development Environment
+  [[https://github.com/abcdw/notes/blob/master/notes/20211111141408-guix_shell_overview.org][Andrew Torpin: guix shell: Overview - Notes]]
+
+  Build an environment with PACKAGE-dependencies, and execute there the
+  COMMAND or an interactive shell in that environment
+  #+BEGIN_SRC bash :results output
+  guix shell [OPTION]... PACKAGE... [-- COMMAND...]
+  #+END_SRC
+
+** RDE channel lock / channel freeze
+   [[https://youtu.be/UMCHuHSlVWk?t=1622][YouTube: Andrew Torpin: guix shell: Overview]]
+   Full freeze of Guix channels to the versions defined in 'channels.scm'
+   #+BEGIN_SRC bash :results output
+   guix describe -f channels > ./channels.scm
+   guix time-machine --channels=./channels.scm -- shell REST-OF-GUIX-SHELL-ARGS
+   #+END_SRC
+
 * Channels
 ** Display information about the channels currently in use.
   #+BEGIN_SRC bash :results output
@@ -13,10 +30,6 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   guix describe
   guix describe --format=channels
   guix describe --format=human
-
-  # lock packages to the versions defined in ./channels from current directory
-  guix time-machine --channels=./channels.scm -- \
-       describe --format=channels > channels-lock.scm
   #+END_SRC
 
 ** Specifying Additional Channels
@@ -247,8 +260,10 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
   # search for existing service type 'console'
   guix system search console
-
-  # Build an environment with PACKAGE-dependencies, and execute there the
-  # COMMAND or an interactive shell in that environment
-  guix shell [OPTION]... PACKAGE... [-- COMMAND...]
   #+END_SRC
+
+* GNUnet
+  Replace the old insecure Internet protocol stack.
+
+  Alternative network stack for building secure, decentralized and
+  privacy-preserving distributed applications.
