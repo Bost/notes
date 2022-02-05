@@ -4,22 +4,22 @@
 #+title: Racket Learning
 
 * Learning Sources
-Tiago Cogumbreiro - [[https://cogumbreiro.github.io/teaching/cs450/s21/][GitHub]]
-Michael Sperber - [[https://media.ccc.de/v/rc3-257534-all_programming_language_suck_just_build_your_own_language_oriented_programming_with_racket][All Programming Language Suck? Just Build Your Own!]]
-Jesse Alama - The Racket Weekend
+  Tiago Cogumbreiro - [[https://cogumbreiro.github.io/teaching/cs450/s21/][GitHub]]
+  Michael Sperber - [[https://media.ccc.de/v/rc3-257534-all_programming_language_suck_just_build_your_own_language_oriented_programming_with_racket][All Programming Language Suck? Just Build Your Own!]]
+  Jesse Alama - The Racket Weekend
 
 * Server Racket
 ** Servlet:
-(HTTP Server) function: input HTTP request -> output HTTP response
+   (HTTP Server) function: input HTTP request -> output HTTP response
 
-Signature: request? → response?
+   Signature: request? → response?
 
-Web App = Single large servlet
+   Web App = Single large servlet
 
-struts-copy for rewriting HTTP requests / responses
+   struts-copy for rewriting HTTP requests / responses
 
-HTTP HEAD request - like a GET request but it returns no body
-- used to determine how big a resource would be with a real GET request
+   HTTP HEAD request - like a GET request but it returns no body
+   - used to determine how big a resource would be with a real GET request
 
 * Object-relational mapping
   [[https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping][Wikipedia: Object–relational mapping]] ORM
@@ -45,8 +45,8 @@ HTTP HEAD request - like a GET request but it returns no body
   - [[https://github.com/soegaard/remacs][remacs - the Emacs style editor written in Racket]]
   - [[https://youtu.be/73dDj_z66qo?t=3578][Matthias Felleisen - Every language has a slogan]]
 
-* Heresy
-  The Heresy Programming Language https://github.com/jarcane/heresy
+* The Heresy Programming Language
+  https://github.com/jarcane/heresy
   Functional Lisp/Scheme dialect implemented in Racket, with syntax inspired by
   the BASIC family of programming languages. Its principle goals are to provide
   a simple core language for BASIC and other programmers to experiment with and

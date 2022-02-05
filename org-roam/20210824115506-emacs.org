@@ -3,6 +3,10 @@
 :END:
 #+title: Emacs
 
+* The Emacs thesis
+  composite programs in a high-level extension language running on a kernel in a
+  low-level language.
+
 * Diverse
 
   [[https://emacsconf.org/2021/talks/imaginary/][Imaginary Programming]] IP

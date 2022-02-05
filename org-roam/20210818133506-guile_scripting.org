@@ -25,16 +25,22 @@ On Guix (see `which guile`):
 ;; https://www.draketo.de/software/guile-capture-stdout-stderr.html
 (use-modules (ice-9 rdelim)
              (ice-9 popen))
+;;
+(define (read-all port)
+  "Return a list of all lines from the PORT."
+  (let loop ((res '())
+             (str (read-line port)))
+    (if (and str (not (eof-object? str)))
+        (loop (append res (list str))
+              (read-line port))
+        res)))
+;;
 (define (exec command)
-"The command must have only one line output. TODO improve it"
+  "The command must have only one line output. TODO improve it"
   (let* ((port (open-input-pipe command)) ; from (ice-9 rdelim)
-         (str  (read-line port))) ; from (ice-9 popen)
-    (close-pipe port)
-    str))
+         (result (read-line port))) ; from (ice-9 popen)
+    (cons
+     (status:exit-val (close-pipe port))
+     result)))
 
-
-;; Partial function application.
-;; See https://srfi.schemers.org/srfi-26/srfi-26.html
-(use-modules (srfi srfi-26))
-(map (cut * 2 <>) (1 2 3 4))
-#+END_SRC
+ #+END_SRC

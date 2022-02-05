@@ -3,11 +3,6 @@
 :END:
 #+title: Racket
 
-* Resources
-  :PROPERTIES:
-  :ID:       e538b9e0-6f63-420b-aba1-5815caae4566
-  :END:
-
 * Command line snippets
   #+BEGIN_SRC bash :results output
   # package management
@@ -62,6 +57,10 @@
   ;; difference between `print`, `write` and `display`
   ;; https://docs.racket-lang.org/guide/read-write.html
   (printf "~a as a string is ~s.\n" '(3 4) "(3 4)")
+
+  ;; followind printf-lines do the same
+  (eprintf form v ...)
+  (fprintf (current-error-port) form v ...)
 
   ;; count
   (length '(1 2 3))
@@ -166,3 +165,17 @@
   ;; See
   ;; ~a ~v ~s ~e ~r ~.a ~.v ~.s
   #+END_SRC
+
+* commands
+  #+BEGIN_SRC racket
+  ;; return code
+  (system/exit-code "ls")
+  #+END_SRC
+
+* PLT PLaneT
+  Racket's deprecated, old package system. Racket was originally created by the
+  PLT research group.
+
+* PEG - advance over regex
+  Matches more languages (e.g. balanced brackets) and can be paired with
+  semantic actions to produce structured results from a parse.

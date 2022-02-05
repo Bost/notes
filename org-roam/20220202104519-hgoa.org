@@ -81,10 +81,10 @@
   buildings.
 
 * IMEI International Mobile Equipment Identity
-  unique, tied to the phone. It is possible but difficult to change it.
+  Unique, tied to the phone. It is possible but difficult to change it.
 
 * IMSI International Mobile Subscriber Identity
-  unique, tied to the phone number. Directly hardcoded on the SIM card, cannot
+  Unique, tied to the phone number. Directly hardcoded on the SIM card, cannot
   be changed.
 
 * in the CPUs
@@ -99,9 +99,18 @@ Engine https://www.youtube.com/watch?v=mYsTBPqbya8
   and friends successively.
 
 * SPF Sender Policy Framework
-  an email authentication method designed to detect forging sender addresses
+  Email authentication method designed to detect forging sender addresses
   during the delivery of the email.
 
 * DKIM DomainKeys Identified Mail
-  an email authentication method designed to detect forged sender addresses in
+  Email authentication method designed to detect forged sender addresses in
   email (email spoofing), a technique often used in phishing and email spam.
+
+* Whonix
+  Security focused, based on Kicksecure (= hardened Debian with anonymity
+  packages). Contains two virtual machines: Workstation, Tor-Gateway. All
+  communication goes through Tor.
+
+* Tails
+  live OS with optional persistence, installable on external drives, e.g. DVD,
+  USB.

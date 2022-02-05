@@ -3,79 +3,158 @@
 :END:
 #+title: Bric a brac
 
+* OSE Open Source Ecology
+  [[https://en.wikipedia.org/wiki/Open_Source_Ecology][Wikipedia: Open Source Ecology]]
+  Network of farmers, engineers, architects and supporters, whose main goal is
+  the eventual manufacturing of the Global Village Construction Set (GVCS)
+
+* Smart the collective brain
+  [[https://www.ted.com/talks/matt_ridley_when_ideas_have_sex][TED Talk: When ideas have sex]]
+  The engine of human progress has been the meeting and mating of ideas to make
+  new ideas. It's not important how clever individuals are, what really matters
+  is how smart the collective brain is.
+  No one knows how to make a pencil. The person who chops the trees doesn't know
+  how to mine graphite.
+  We created the ability to make things we don't even understand.
+  It's not the same with language. With language we have to transfer ideas we
+  understand.
+  It's completely irrelevant if some groups have higher IQ than other groups.
+  Relevant is how well people are communicating their ideas and how well they
+  are cooperating. Not how clever the individuals are.
+
+* Better Ideas
+  Some DSL languages are too-limiting as programming languages.
+  See [[https://ambrevar.xyz/guix-advance/index.html][Guix: A most advanced operating system]]
+  |                                                 | better ideas                          |
+  |-------------------------------------------------+---------------------------------------|
+  | Bash, Zsh, Fish                                 | Eshell, Scheme Shell (scsh)           |
+  | Octave, R, PARI/GP, most scientific SW          | Common Lisp, Racket and other Schemes |
+  | Regular expressions                             | Emacs’ rx, Racket’s PEG, etc.         |
+  | Most init system configurations, incl. systemd  | GNU Shepherd                          |
+  | cron                                            | mcron                                 |
+  | TeX, LaTeX (and all the derivatives), Asymptote | scribble, skribilo                    |
+
+  [[https://ambrevar.bitbucket.io/emacs-eshell/][Eshell as a main shell]] Link rotted
+
+
+* Second system syndrome / effect
+  small, elegant, and successful systems to be succeeded by an over-engineered,
+  bloated systems, due to inflated expectations and overconfidence.
+
+* Why Do Nigerian Scammers Say They are From Nigeria?
+  It works like a filter. If you believe them, you passed it. And you're likely
+  stupid enough to do anything they ask you for. IOW send them money. If you
+  don't pass it then it's probably not worth effort to flirt with you.
+
+* Terminals
+  [[https://github.com/Eugeny/terminus][A terminal for a more modern age]]
+
+  Electron-app terminal; scriter - electron alternative
+  https://github.com/zeit/hyper
+
 * Bric a brac
-Five rating emojis / icons
-https://youtu.be/hZJnlxM0c0I?t=162
+  Five rating emojis / icons
+  https://youtu.be/hZJnlxM0c0I?t=162
 
-Second system syndrome / effect:
-small, elegant, and successful systems to be succeeded by an over-engineered,
-bloated systems, due to inflated expectations and overconfidence.
+  Solution of a Differential Equations (DE) is a function, not value
+  [[https://youtu.be/czL0ZSscbsM?t=II709][National Renewable Energy Laboratory: Energy-Cell Efficiencies]]
+  [[http://blog.sciencevsmagic.net/science/fractal-machine/][Fractals]]
+  Go over the book from the Prof. from Karlsruhe
 
-Solution of a Differential Equations (DE) is a function, not value
-[[https://youtu.be/czL0ZSscbsM?t=II709][National Renewable Energy Laboratory: Energy-Cell Efficiencies]]
-[[http://blog.sciencevsmagic.net/science/fractal-machine/][Fractals]]
-Go over the book from the Prof. from Karlsruhe
+  http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/
+  Sequence of QR Codes / graphical elements (pyramid, cube, sphere, toroid, etc.)
 
-Why Do Nigerian Scammers Say They are From Nigeria?
-It works like a filter. If you believe them, you passed it. And you're likely
-stupid enough to do anything they ask you for. IOW send them money.
-If you don't pass it then it's probably not worth effort to flirt with you.
+  time bank
+  dokaz identity bez udania mena
+  google lab tags http://www.chromeweblab.com/en-GB/lab-tag-explorer
 
-http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/
-Sequence of QR Codes / graphical elements (pyramid, cube, sphere, toroid, etc.)
+  Pure vs. mostly harmless functions
 
-Open Source Ecology: https://en.wikipedia.org/wiki/Open_Source_Ecology
+  :Lang:
+  http://www.ted.com/talks/patricia_kuhl_the_linguistic_genius_of_babies.html?fb_ref=talk
+  Learning pronounciation
 
-Smart the collective brain
-http://www.ted.com/talks/matt_ridley_when_ideas_have_sex.html
+  How much of a language is silent? What does it look like when you take the
+  silence out? (Video 2 Min)
+  http://www.theverge.com/2012/7/1/3129227/silenc-project-silent-letters
+  http://golancourses.net/ciid/19/silenc/
 
-time bank
-dokaz identity bez udania mena
-google lab tags http://www.chromeweblab.com/en-GB/lab-tag-explorer
+  idioms, link sur FB, idioms - traduction + correcture
+  spelling glyphs
+  Comprehension (facile) vs S'exprimer (difficile)
+  linguee.com - eu-texts
+  le Svejk, l'Etrangeur - examples
+  Communication w-/wo- Letters
+  :END:
 
-Pure vs. mostly harmless functions
+  # TODO org-mode-tagging; following doesn't work
+  # :org-mode-tagging:                                                      :org:
+  # | col1    | col2          |
+  # |---------+---------------|
+  # | content | other content |
+  # :end:
 
-:terminals:
-# A terminal for a more modern age
-https://github.com/Eugeny/terminus
+* Simulation and Emulation
+  [[https://www.tutorialspoint.com/what-is-the-difference-between-a-simulator-and-an-emulator][What is the difference between a simulator and an emulator?]]
+  Simulator mimics while Emulator performs
 
-# electron-app terminal; scriter - electron alternative
-https://github.com/zeit/hyper
-:end:
-
-:Lang:
-http://www.ted.com/talks/patricia_kuhl_the_linguistic_genius_of_babies.html?fb_ref=talk
-Learning pronounciation
-
-How much of a language is silent? What does it look like when you take the
-silence out? (Video 2 Min)
-http://www.theverge.com/2012/7/1/3129227/silenc-project-silent-letters
-http://golancourses.net/ciid/19/silenc/
-
-idioms, link sur FB, idioms - traduction + correcture
-spelling glyphs
-Comprehension (facile) vs S'exprimer (difficile)
-linguee.com - eu-texts
-le Svejk, l'Etrangeur - examples
-Communication w-/wo- Letters
-:END:
-
-# TODO org-mode-tagging; following doesn't work
-# :org-mode-tagging:                                                      :org:
-# | col1    | col2          |
-# |---------+---------------|
-# | content | other content |
-# :end:
+* YouTube
+  | ~>~ | speed 25% faster      |
+  | ~<~ | speed 25% slower      |
+  | ~c~ | toggle captions       |
+  | ~m~ | toggle mute           |
+  | ~,~ | move 1 frame forward  |
+  | ~.~ | move 1 frame backward |
 
 
-Simulation and Emulation
-[[https://www.tutorialspoint.com/what-is-the-difference-between-a-simulator-and-an-emulator][What is the difference between a simulator and an emulator?]]
+[[https://www.youtube.com/watch?v=v96LTfmtDPU&t=626s][YouTube: Making a bolt with double threads]]
 
-Simulator mimics while Emulator performs
+* code_aster
+  Finite-Elemente-Method and Numerical Simulation Software
+  Structures and Thermomechanics Analysis for Studies and Research
+  [[https://www.code-aster.org/forum2/viewtopic.php?id=23453][Forum post: Code_Aster inside a Docker container]]
 
-YouTube
-~>~ / ~<~ speed 25% faster / slower
-~c~ toggle captions
-~m~ toggle mute
-~,~ / ~.~ move 1 frame forward / backward
+** MPI - [[https://de.wikipedia.org/wiki/Message_Passing_Interface][Message Passing Interface]]
+   for parallel computing on distributed systems
 
+** Singularity
+   Container System for HPC Systems, "Docker for HPC"
+
+** HPC - High Performance Computing
+
+** [[https://singularity.hpcng.org/][Singularity]]
+   Container System for HPC
+
+* Bike
+  Prepare routes: [[https://my.viewranger.com/user/routes/myroutes][View Ranger]]
+** Weather
+  [[https://www.wetter.com/deutschland/stuttgart/DE0010287.html][Stuttgart]] [[https://www.wetter.com/deutschland/muenchen/DE0006515.html][München]]
+
+** Cafe Fietsen
+  Ask about service
+  True the wheels
+
+** Repair and Prepare
+  Switch tires
+  Baumarkt - Socket for the Nigrin Reifen Dicht (Buy Bildschirmreiniger)
+  Cut plasters
+*** Chain
+   [[https://youtu.be/gXd-3UnqoaM?t=37][YouTube: When to replace chain]]
+
+   | stretch | nr-of-gears | verdict |
+   |---------+-------------+---------|
+   |    0.5% | >= 11       | replace |
+   |   0.75% | <= 10       | replace |
+   |      1% | any         | replace |
+
+   [[https://youtu.be/FzyRCcjRuu0?t=98][YouTube: Measure Chain Wear]]
+
+
+   [[https://youtu.be/a0xdsTQaFtg][YouTube - GCN Show: Measure Chain Wear]]
+   [[https://youtu.be/rWchudX-Tqs][YouTube - GCN Show: Replace A Bicycle Chain]]
+   Buy
+   Chain length - number of speeds
+   Chain tools - ask: Is mine the right one?
+*** Videos
+   How to replace chain - chain tool
+   How to adjust speeds

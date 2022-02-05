@@ -4,18 +4,22 @@
 #+title: DrRacket
 
 
+* DrRacket
 [[https://plt.cs.northwestern.edu/snapshots/current/pdf-doc/tools.pdf][DrRacket Plugins]]
 Descriptions of DrRacket’s plugins interface.
 
 The simplest and best way to extend DrRacket with support for a new language is
 to implement the language via #lang
 
-* IDE
+** IDE
   #+BEGIN_SRC bash :results output
   raco pkg install --auto sauron
   raco pkg install https://github.com/tuirgin/drracket-spacemacs-schemes.git
   #+END_SRC
 
-
-* Scripting
+** Scripting
   https://github.com/Metaxal/quickscript
+
+* GRacket
+  GUI-application variant of Racket / GUI Racket implementation
+  Just a simple window for evaluating Racket expressions. Use DrRacket instead of GRacket.
