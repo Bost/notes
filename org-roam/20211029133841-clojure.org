@@ -426,7 +426,36 @@ clojure -M:outdated --upgrade # --force
      (def ~(vary-meta (read-string (clojure.string/lower-case c))
                       assoc :const true :tag `String) ~c)))
 #+END_SRC
- 
+
+* comp, partial, threading macros
+threading macros create intermediate collections in every step.
+replace them with transducers
+https://groups.google.com/g/clojure/c/BhkUEoJBpKA
+#+BEGIN_SRC clojure
+(= (conj {:a 2} {:a 1}) (->> {:a 1} (conj {:a 2})))
+(= (conj {:a 1} {:a 2}) (-> {:a 1} (conj {:a 2})))
+(as-> [:foo :bar] $ (map name $) (first $) (.substring $ 1))
+;; swiss-arrows: diamond wand; see also harpoons
+(-<> 2 (* <> 5) (vector 1 2 <> 3 4)) ;; => [1 2 10 3 4]
+
+;; threading macros: "short-circuit out" of a series of steps; the nil case is
+;; handled only once, at the end. See also `some->>` and `cond->>`
+(-> {:a 1} :b inc)
+;; => NPE ;; i.e. Null Pointer Exception
+(some-> {:a 1} :b inc)
+;; => nil
+;; use CIDER debugger to investigate
+(cond-> 1        ; we start with 1
+  true inc       ; the condition is true so (inc 1) => 2
+  false (* 42)   ; the condition is false so the operation is skipped
+  (= 2 2) (* 3)) ; (= 2 2) is true so (* 2 3) => 6
+;;
+(cond
+  (< n 0) "negative"
+  (> n 0) "positive"
+  :else "zero")
+#+END_SRC
+
 * Rest
 #+BEGIN_SRC clojure
 ;; a spaceholder - one-liners don't get matched
@@ -652,31 +681,6 @@ gulp
 ;; - suitable for enumeration values
 'milkshake
 
-;; threading macros create intermediate collections in every step.
-;; replace them with transducers
-(= (conj {:a 2} {:a 1}) (->> {:a 1} (conj {:a 2})))
-(= (conj {:a 1} {:a 2}) (-> {:a 1} (conj {:a 2})))
-(as-> [:foo :bar] $ (map name $) (first $) (.substring $ 1))
-;; swiss-arrows: diamond wand; see also harpoons
-(-<> 2 (* <> 5) (vector 1 2 <> 3 4)) ;; => [1 2 10 3 4]
-
-;; threading macros: "short-circuit out" of a series of steps; the nil case is
-;; handled only once, at the end. See also `some->>` and `cond->>`
-(-> {:a 1} :b inc)
-;; => NPE ;; i.e. Null Pointer Exception
-(some-> {:a 1} :b inc)
-;; => nil
-;; use CIDER debugger to investigate
-(cond-> 1        ; we start with 1
-  true inc       ; the condition is true so (inc 1) => 2
-  false (* 42)   ; the condition is false so the operation is skipped
-  (= 2 2) (* 3)) ; (= 2 2) is true so (* 2 3) => 6
-;;
-(cond
-  (< n 0) "negative"
-  (> n 0) "positive"
-  :else "zero")
-;;
 (condp = value
   ;; (= test-expr expr) are evaluated
   1 "one"
@@ -1006,4 +1010,3 @@ timeit.timeit(sum_numpy, number=1)
 #+END_SRC
 
 And the winner is [[https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF][Wikipedia 1 + 2 + 3 + 4 + ⋯]]
-

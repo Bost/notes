@@ -48,6 +48,10 @@
   # install specific package version
   guix package                 --install bat@0.18.3
 
+  guix package  -u
+  guix package --upgrade
+  guix           upgrade --dry-run
+  guix           upgrade --do-not-upgrade="(openjdk.*|postgres.*)"
   # guix package -i mycli --with-latest=mycli
   #+END_SRC
 

@@ -125,6 +125,16 @@
 ** [[https://singularity.hpcng.org/][Singularity]]
    Container System for HPC
 
+* Terminal / Video Recorder / Screen Casting
+  https://github.com/phw/peek
+  Simple animated GIF screen recorder with an easy to use interface
+
+  https://github.com/asciinema/asciinema
+  Terminal session recorder
+
+  https://github.com/faressoft/terminalizer
+  Record your terminal and generate animated gif images or share a web player
+
 * Bike
   Prepare routes: [[https://my.viewranger.com/user/routes/myroutes][View Ranger]]
 ** Weather

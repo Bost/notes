@@ -748,7 +748,8 @@ CT looks nicer: no numbers, it's about ideas
 
 * Semantics: TODO rewatch Bartosz Milewski
 Designing computer language - Semantics must be provided; done by providing operational semantics
-Programming - understanding the meaning i.e. semantics: what does it mean (+ 1 2)
+
+Programming - understanding the meaning i.e. semantics: what does it mean: (+ 1 2)?
 None of the main prog. languages have (operational semantics) only partially provided.
 
 ** Operational semantics: "if state === stateX then state = stateY"
