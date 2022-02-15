@@ -330,3 +330,14 @@ for basic operations
 
 * Typing
   Gradual Typing, Occurrence Typing
+
+* Semantics
+** Denotational Semantics
+** Operational Semantics
+  https://en.wikipedia.org/wiki/Operational_semantics
+
+  formal programming language semantics
+
+  correctness, safety, security, etc. are verified by constructing proofs from
+  logical statements about its execution and procedures, rather than by
+  attaching mathematical meanings to its terms (denotational semantics).

@@ -53,3 +53,15 @@
   learn how to program functionally. This document will detail the general
   philosophy of the Heresy language, such as exists, as well as the language
   syntax and functions.
+
+* Racket: Why I Think It’s a Great Language, and Why I’m Not Using It Anymore
+  [[https://youtu.be/_wY7FBtr7_c][YouTube: Leandro Facchinetti]]
+
+  Programs should communicate ideas to other people
+  Creating a new language doesn't help - it's a new language nobody knows it.
+
+  Better Idea:
+  communicate using known ways, notably via GUIs, spreadsheets, etc.
+
+* Playing the Game with PLT Redex
+  https://youtu.be/NszLQNROdw0?t=306
