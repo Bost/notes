@@ -65,3 +65,15 @@
 
 * Playing the Game with PLT Redex
   https://youtu.be/NszLQNROdw0?t=306
+
+
+* Education
+  https://www.bootstrapworld.org/
+  FREE, research-based, integrated Computer Science and Data Science modules for
+  Math, Science, Business and Social Studies classes grades 5-12.
+
+** Pyret
+   Panguage for programming education. Explore confluence of scripting and
+   functional programming. https://www.pyret.org/
+
+   https://www.wescheme.org/openEditor

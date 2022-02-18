@@ -8,10 +8,10 @@
     exit 1 # just in case ...
     # check if a file contains only binary zeros
     # https://stackoverflow.com/a/20226139/5151982
-    # :bash
+    # bash
     <file.ext      tr -d '\0' | read -n 1 || echo "All zeroes."
     cat file.ext | tr -d '\0' | read -n 1 || echo "All zeroes."
-    # :fish
+    # fish-shell
     cat file.ext | tr -d '\0' | read -n 1; \
     and echo -e "\nHas content."; or echo "All zeroes."
 
@@ -25,7 +25,7 @@
     # webconfig.py
     fish_config
 
-    # :fish - reload function / alias
+    # fish-shell - reload function / alias
     type myfunc
 
     # shell types; see
@@ -54,36 +54,41 @@
     # available shells; current shell; change shell
     cat /etc/shells; echo $SHELL; chsh --shell /usr/bin/fish
 
-    # :bash :fish - sequence from 0 to 10 (both included) increment by 2
+    # bash fish-shell - sequence from 0 to 10 (both included) increment by 2
     seq 0 2 10
 
-    # :bash remove a line from shell history (i.e. password) see also ~/.bash_history
+    # bash
+    # remove line from shell history (i.e. password) see also ~/.bash_history
     history -d
 
-    # :fish see also ~/.config/fish/fish_history
+    # fish-shell see also ~/.config/fish/fish_history
     history delete --contains <substring>
     history delete --contains delete
 
-    # :shell :bash :fish - see what the shell does with the various types of quoting
+    # bash fish-shell
+    # see what the shell does with the various types of quoting
     # https://unix.stackexchange.com/a/417408
     printf '<%s>\n' G "G" 'G' \G "\G" '\G' \\G "\\G" '\\G'
 
-    # :bash - secure (password) prompt; doesn't work in fish
+    # bash
+    # secure (password) prompt; doesn't work in fish
     read -s
 
-    # :fish :retval :retcode :return code :exit-code (in bash $?)
+    # fish-shell retval retcode return-code exit-code (in bash $?)
     $status
 
     # indicate how a command would be interpreted
     type --all <cmd> # all of possible definitions of <cmd>
 
-    # :fish - show content of foo fn / list fns
+    # fish-shell
+    # show content of foo fn / list fns
     type foo / functions foo / functions -n
 
-    # :fish - copy 'foo' fn to a new fn 'bar' / erase the 'bar'
+    # fish-shell
+    # copy 'foo' fn to a new fn 'bar' / erase the 'bar'
     functions -c foo bar / functions -e bar
 
-    # :fish :variables
+    # fish-shell variables
     # unset a shell var
     set --erase myvar        # set -e  myvar
     # var scope is local to the current block
@@ -99,10 +104,10 @@
     # show info about all vars
     set --show               # set -S
 
-    # :fish - all function arguments from 3rd to the last
+    # fish-shell - all function arguments from 3rd to the last
     $argv[3..-1]
 
-    # :fish :existence-tests
+    # fish-shell existence-tests
     test (string escape -- $argv) = "--switch" # string equality / compare
     test -e /path/to/file.txt                  # file exists
     test -d /path/to/dir                       # directory exists
@@ -119,9 +124,31 @@
     [ $a == z* ]     # File globbing and word splitting take place.
     [ "$a" == "z*" ] # True if $a is equal to z* (literal matching).
 
-    # :calculate :fish
+    # compute calculate fish-shell
     # examples https://nicolas-van.github.io/programming-with-fish-shell
     math "1 + 2"
+  #+END_SRC
+
+* Bash double brackets
+  https://stackoverflow.com/a/3427931/5151982
+  bash extension. In sh-compatible scripts only the single bracket must be used
+  (i.e. use the #!/bin/bash shebang line if using use double brackets)
+
+  #+BEGIN_SRC bash :results output
+    # correctly handle empty strings or file names with spaces in them:
+    [ -f "$file" ] && printf "is a regular file\n" || printf "else ...\n"
+    [[ -f $file ]] && printf "is a regular file\n" || printf "else ...\n"
+
+    # double brackets lets you use && and || operators for boolean tests and < and >
+    # for string comparisons. single bracket cannot do this.
+
+    # =~ does regular expression matches
+    [ "$answer" = y -o "$answer" = yes ] && printf "then...\n" || printf "else...\n"
+    [[ $answer =~ ^y(es)?$ ]]            && printf "then...\n" || printf "else...\n"
+
+    # pattern matching aka globbing for free. Maybe you're less strict about how to
+    # type yes. Maybe you're okay if the user types y-anything:
+    [[ $ANSWER = y* ]] && printf "then...\n" || printf "else...\n"
   #+END_SRC
 
 * Key bindings / shortcuts
@@ -139,46 +166,46 @@
     bind -P    # -P List function names and bindings
     help bind
 
-    # :bash undo & yank
+    # bash undo & yank
     # type partial cmd, kill this cmd, check something you forgot, yank the cmd,
     # resume typing
     C-u ... C-y / Ctrl-u ... Ctrl-y
 
-    # :bash history
+    # bash history
     C-r / Ctrl-r
-    # :bash abort history
+    # bash abort history
     C-g / Ctrl-g
 
     # get the parameter / argument of the last command. see bind -P
     M-. / Alt-.
     Esc-.
 
-    # :bash swap words
+    # bash swap words
     M-t / Alt-t
 
-    # :alias escape command aliases
+    # alias escape command aliases
     \\\[command\]
   #+END_SRC
 
   #+BEGIN_SRC bash :results output
-    # :bash set vi bindings
+    # bash set vi bindings
     set -o vi
-    # :bash disable pathname expansion - globbing
+    # bash disable pathname expansion - pattern matching aka globbing
     set -f
     set -o noglob
 
-    # :bash shell writes its input to standard error as it is read
+    # bash shell writes its input to standard error as it is read
     set -v
     set -o verbose
 
-    # :bash shell writes standard error a trace for each command
+    # bash shell writes standard error a trace for each command
     set -x
     set -o xtrace
 
-    # :scripting loc_variable - visible only within given code block
+    # scripting loc_variable - visible only within given code block
     local loc_variable=value
 
-    # :bash args
+    # bash args
     $*   # function arguments
     $@   # all arguments
     !*   # all arguments of the last command
@@ -201,19 +228,19 @@
     echo $[22 + 33]
     expr 11 + 22
 
-    # bash: insert contents of file.txt into input of tr and output results to
+    # bash insert contents of file.txt into input of tr and output results to
     # fileNew.txt
     tr '[A-Z]' '[a-z]' < file.txt > fileNew.txt
 
-    # bash: mass move/copy/rename
+    # bash mass move / copy / rename
     mmv \*.JPG \#1.jpc
     mmv \* \#1.rexx
 
-    # bash: visual calender for...
+    # bash visual calender for...
     cal 2 2004   # ... februar 2004
     cal -y 2004  # ... the whole year 2004
 
-    # bash: ? define function in bash ?
+    # bash ? define function in bash ?
     foo() { date; }
   #+END_SRC
 
@@ -221,28 +248,30 @@
   https://rosettacode.org/wiki/Native_shebang
   https://rosettacode.org/wiki/Multiline_shebang
   #+BEGIN_SRC bash :results output
-    # bash: shebang: stop the script after any error
+    # bash shebang
+    # stop the script after any error
     #!/bin/bash -e
-
-    # bash: shebang: debugging: set -x; stop on error: set -e
+    # bash shebang debugging
+    # set -x; stop on error: set -e
     #!/usr/bin/env fish
   #+END_SRC
 
   #+BEGIN_SRC bash :results output
-    # bash: debug script
+    # bash debug script
     bash -x script
 
-    # bash: redirect stderr (2) to stdout (1) and save it to command.log
+    # bash redirect stderr (2) to stdout (1) and save it to command.log
     ./command.sh 2>&1 | tee command.log
 
     # suppress stderr messagess
     ./script.sh 2> /dev/null
 
-    # bash: find: redirect: separate / combine sdterr and stdout; doesn't work with
+    # bash find: redirect: separate / combine sdterr and stdout; doesn't work with
     # the tee command
     ./command.sh 1>str.out 2>str.err / ./command.sh &>combined.out
 
-    # bash: redirect: type in stuff and wait unit EOF gets typed
+    # bash redirect
+    # type in stuff and wait unit EOF gets typed
     cat >>EOF
 
     # avoid backticks
@@ -266,24 +295,30 @@
     # following command
     bash -i -c ./pth/to/emacs
 
-    # fish: bash: locate command
+    # fish-shell bash locate command
     command -v <command>  # fish buildin
     which      <command>  # debian
 
-    # cygwin: bash: print windows form of filename
+    # cygwin bash
+    # print windows form of filename
     cygpath -w filename
 
     # bash eval string
     eval "${cmd}"
 
-    # :bash - bugs in bash/sh scripts http://www.shellcheck.net/
+    # bash
+    # bugs in bash/sh scripts http://www.shellcheck.net/
     sudo apt install shellcheck
 
-    # :bash :fish - help text that matches each argument
+    # bash fish-shell
+    # help text that matches each argument
     http://explainshell.com/
 
     # Show numerical values for each of the 256 colors in bash
     for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; done
+
+    # iterate / loop through files in a directory
+    for file in /path/to/dir/*.ext; do echo $file; done
 
     # syntax - single / double brackets; variables
     https://unix.stackexchange.com/a/416716
