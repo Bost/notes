@@ -29,7 +29,6 @@ in the /dev directory
   sudo update-grub
   #+END_SRC
 
-
 * Bluetooth
   BLE Bluetooth Low-Energy
   #+BEGIN_SRC bash :results output
@@ -88,25 +87,43 @@ in the /dev directory
   free -h
   #+END_SRC
 
-* Internet Control Message Protocol
-  ICMP
+* ICMP Internet Control Message Protocol
   Send error messages & operational information
 
-* Dynamic Host Configuration Protocol
-  DHCP
+* DHCP Dynamic Host Configuration Protocol
   Network management protocol used on TCP/IP networks
 
-* Lightweight Directory Access Protocol
-  LDAP
+* LDAP Lightweight Directory Access Protocol
   Accessing and maintaining distributed directory information services over an
   Internet Protocol (IP) network.
   Client authentication is a part of LDAP.
 
-* Pluggable Authentication Module
+* PAM Pluggable Authentication Module
   PAM
 
-* Simple Authentication and Security Layer
+* SASL Simple Authentication and Security Layer
   SASL
+
+* tcpdump
+  https://www.tcpdump.org/
+  tcpdump - command-line packet analyzer
+  libpcap - portable C/C++ library for network traffic capture
+
+  #+BEGIN_SRC bash :results output
+    # net
+    # troubleshooting and security testing
+    sudo tcpdump
+    # Extract HTTP user agents
+    sudo tcpdump -nn -A -s1500 -l | egrep -i 'User-Agent:|Host:'
+    # Capture all the plaintext passwords
+    sudo tcpdump port http or port ftp or port smtp or port imap or port pop3 or \
+         port telnet -l -A | egrep -i -B5 \
+         'pass=|pwd=|log=|login=|user=|username=|pw=|passw=|passwd=|password=|pass:|user:|username:|password:|login:|pass |user '
+    # Extract HTTP passwords in POST requests
+    sudo tcpdump -s 0 -A -n -l | egrep -i "POST /|pwd=|passwd=|password=|Host:"
+    # Capture cookies from server and from client
+    sudo tcpdump -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
+  #+END_SRC
 
 * Various commands
   see also:
@@ -118,6 +135,10 @@ in the /dev directory
   [[https://htmlpreview.github.io/?https://raw.githubusercontent.com/michaelmacinnis/oh/master/doc/comparison.html][compare shells]]
 
   #+BEGIN_SRC bash :results output
+  # bat - A cat(1) clone with syntax highlighting and Git integration.
+  bat --pager=never README.md
+  bat      -P       README.md
+
   # web server, reverse proxy, load balancer, mail proxy, HTTP cache
   nginx
 
@@ -134,35 +155,15 @@ in the /dev directory
   sudo lshw
   cpu-x
 
-  # :net - troubleshooting and security testing
-  sudo tcpdump
-
-  # :net - Extract HTTP User Agents
-  sudo tcpdump -nn -A -s1500 -l | egrep -i 'User-Agent:|Host:'
-
-  # :net - Capture all the plaintext passwords
-  sudo tcpdump port http or port ftp or port smtp or port imap or port pop3 or \
-       port telnet -l -A | egrep -i -B5 \
-       'pass=|pwd=|log=|login=|user=|username=|pw=|passw=|passwd=|password=|pass:|user:|username:|password:|login:|pass |user '
-
-  # :net - Extract HTTP Passwords in POST Requests
-  sudo tcpdump -s 0 -A -n -l | egrep -i "POST /|pwd=|passwd=|password=|Host:"
-
-  # :net - Capture Cookies from Server and from Client
-  sudo tcpdump -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
-
-  # :net :Address-Resolution-Protocol
+  # net Address-Resolution-Protocol
   # MAC address of a network neighbour for a given IPv4 Address
-  # :net display / modify the IP-to-Physical address translation tables for ARP
+  # display / modify the IP-to-Physical address translation tables for ARP
   arp -a
-
-  # :net - send ARP REQUEST to a neighbour host
+  # send ARP REQUEST to a neighbour host
   arping
-
-  # :net - the arp scanner
+  # the arp scanner
   arp-scan
-
-  # :net - keep track of ethernet/ip address pairings
+  # keep track of ethernet/ip address pairings
   arpwatch
 
   # :net - Network exploration tool and security / port scanner
@@ -520,7 +521,7 @@ in the /dev directory
   #  Birth: 2022-01-14 01:22:15.702395911 +0100
   stat /dev/sda1
   #  File: /dev/sda1
-  #  Size: 0         	Blocks: 0          IO Block: 4096   block special file
+  #  Size: 0          Blocks: 0          IO Block: 4096   block special file
   #Device: 5h/5d	Inode: 192         Links: 1     Device type: 8,1
   #Access: (0660/brw-rw----)  Uid: (    0/    root)   Gid: (  988/    disk)
   #Access: 2022-02-04 13:41:32.711999884 +0100
@@ -1376,6 +1377,8 @@ in the /dev directory
 * sed & awk
   sed - stream editor
   awk - written by Alfred V. Aho, Peter J. Weinberger, Brian W. Kernighan
+  text processing, data extraction, reporting tool
+
   #+BEGIN_SRC bash :results output
   # for tabular data
   awk

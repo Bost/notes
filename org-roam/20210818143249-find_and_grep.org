@@ -125,11 +125,12 @@
   # Save output to a file
   find ~/test/ -type f -fprint output.txt
 
-  # Execute any command on each matched file from the find command.
+  # Run / Execute any command on each matched file from the find command.
   # e.g. find all regular files in the ~/test/ and copy them into the /var/tmp/
   # {} - placeholder where the results of the find command are put
   # \; - denotes the end of command
   find ~/test/ -type f -exec cp -v {} /var/tmp/ \;
+  # see also https://www.baeldung.com/linux/find-exec-command
 
   # -execdir runs the command from the subdirectory of the matched file.
   find ~/test/ -maxdepth 1 -type f -execdir cp -v {} mydir/ \;
@@ -142,6 +143,14 @@
   find -name "*.rkt"
 
   # ripgrep
-  rg -t clojure --word-regexp <searchText>
-#+END_SRC
+  rg --type racket  --word-regexp SearchText
+  rg --type clojure --word-regexp SearchText
+  rg -t racket  --word-regexp SearchText
+  rg -t clojure --word-regexp SearchText
 
+  # fish-shell, ripgrep and sed the stream editor
+  # fish-shell arrays start with 1
+  set oldNew "oldText" "newText"
+  set sFiles (rg --files-with-matches --type racket $oldNew[1])
+  sed --in-place "s/$oldNew[1]/$oldNew[2]/g" $sFiles
+#+END_SRC

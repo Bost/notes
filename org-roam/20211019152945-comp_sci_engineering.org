@@ -80,20 +80,27 @@
   System Crafters Live! - Lisp Compiler Progress • Live Lisp Hacking • Q&A
   https://youtu.be/E-g3Ls1GRz4
 
-* LAMP stack
-  Linux Apache, MySQL, PHP
-  
-* LEMP (container stack)
-  Linux, (E)Nginx, MariaDB (MySQL drop-in replacement), PHP
+* Stacks
+** LAMP Linux Apache, MySQL, PHP
+** LEMP (container stack) Linux, (E)Nginx, MariaDB (MySQL replacement), PHP
   - open source web platform
   - to run dynamic web sites and servers.
-
-* LEPP (container stack)
-  Linux, (E)Nginx, PostgreSQL, PHP
+** LEPP (container stack) Linux, (E)Nginx, PostgreSQL, PHP
 
 * BusyBox
-  [[https://git.busybox.net/busybox][Git Repo]]
-  [[https://www.busybox.net/][Home page]]
-  BusyBox is a software suite that provides several Unix utilities in a single executable file.
-  Size	2.1 MB (compressed "tar.bz2")
+  [[https://git.busybox.net/busybox][Git Repo]] [[https://www.busybox.net/][Home page]]
+  BusyBox is a software suite that provides several Unix utilities in a single
+  executable file. Size 2.1 MB (compressed "tar.bz2")
 
+* Wasm - WebAssembly
+  https://webassembly.org
+  WebAssembly is a binary instruction format for a stack-based virtual machine.
+
+* bind mount
+  replicates existing directory tree under a different point.
+** bindfs
+  FUSE file system for mounting a directory to another location, similar to
+  `mount --bind'. It can (among others) create a view of a directory tree:
+  #+BEGIN_SRC bash :results output
+    bindfs /some/where /else/where
+  #+END_SRC

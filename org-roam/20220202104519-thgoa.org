@@ -5,6 +5,14 @@
 
 [[https://anonymousplanet.org/guide.html][The Hitchhiker’s Guide to Online Anonymity]]
 
+* ROP Return-oriented programming
+  Exploit technique that allows an attacker to execute code in
+  the presence of security defenses such as executable space protection and code
+  signing.
+
+  Gain control of the call stack to hijack program control flow and then execute
+  instructions already present in the machine's memory, called "gadgets"
+
 * DNS leak
   When using an anonymity or privacy service:
   All traffic originating from your computer must be routed through the
@@ -88,11 +96,11 @@
   be changed.
 
 * in the CPUs
-  Intel Management Engine, AMD Platform Security Processor
+  IME Intel Management Engine, AMD Platform Security Processor
   Small operating systems running directly on the CPU
 
-How to Hack a Turned-Off Computer, or Running Unsigned Code in Intel Management
-Engine https://www.youtube.com/watch?v=mYsTBPqbya8
+  How to Hack a Turned-Off Computer, or Running Unsigned Code in Intel
+  Management Engine https://www.youtube.com/watch?v=9fhNokIgBMU
 
 * Metadata
   Knowing that you had a call from an oncologist before then calling your family

@@ -51,7 +51,7 @@
   guix package  -u
   guix package --upgrade
   guix           upgrade --dry-run
-  guix           upgrade --do-not-upgrade="(openjdk.*|postgres.*)"
+  guix           upgrade --do-not-upgrade="(openjdk|postgres|fish).*"
   # guix package -i mycli --with-latest=mycli
   #+END_SRC
 
