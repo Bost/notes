@@ -73,3 +73,13 @@
   TODO what is 'substitutes' - update 'guix help wheather'
   Typically pre-built package binaries.
   Can be also e.g. source tarballs, which also result from derivation builds
+
+* Creating package
+  #+BEGIN_SRC bash :results output
+    # download a file from the URI, add it to the store, and print both its file
+    # name in the store and its SHA256 hash
+    guix download URI
+
+    # compute the hash of any (already downloaded) file
+    guix hash file
+  #+END_SRC

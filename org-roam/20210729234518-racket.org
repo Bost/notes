@@ -104,6 +104,7 @@
   #+END_SRC
 
 * Macros: quotes, syntax, etc.
+  https://docs.racket-lang.org/syntax-parse-example/
   #+BEGIN_SRC racket
   (quote-syntax (1 2 3))
   #+END_SRC
