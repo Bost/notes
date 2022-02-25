@@ -770,29 +770,32 @@ programs can be translated to math - math is a better lang for humans
 
 * HoTT: functions, types and proofs
 
-A type is an abstraction about a set of vals; it's its construction, i.e. about
-"what" (function declaration). It consists of: \\
+A type is an abstraction about a set of vals; it is its construction, i.e. it is
+about "what" (function declaration). It consists of: \\
 Constructor: how to create an element of this type \\
 Induction: how to use elements of this type \\
 
 \\
 
-For mathematicians Set Theory is a low level assembly lang of maths - recenty started to be avoided. \\
+For mathematicians the Set Theory is a low level assembly lang of mathematics
+(recently started to be avoided). \\
 
 \\
 
-Difference between a type and a set - See \href{https://youtu.be/ba4E6EMagj0?t=283}{La théorie des types | Infini 24}: \\
+Difference between a type and a set - See
+\href{https://youtu.be/ba4E6EMagj0?t=283}{La théorie des types | Infini 24}: \\
 A type provides tools for creation of funtions using this type. A set doesn't
 provide such tools. I.e. a type has more stucture than a set.\\
 
 \\
 
-A (pure) function: mapping between sets. It's about "how" (function body) - ? contrary of abstraction ? \\
+A (pure) function: mapping between sets. It's about "how" (function body) - ?
+contrary of abstraction ? \\
 
-
-A proof is an object to be constructed analogically as an object of a certain type. \\
-$x = y$ is an equality-type. To proove this equality means to create an
-object of the equality-type \\
+A proof is an object to be constructed analogically as an object of a certain
+type. \\
+$x = y$ is an equality-type. To proove this equality means to create an object
+of the equality-type. \\
 
 \\
 
@@ -827,17 +830,20 @@ Simplified Categorical view of functions and types:
 - Functions: arrows between objects
 - Types: objects whose properties are defined by arrows
 - Composition, associativity, identity: see Group-like structures
-Composition $\comp$: Usually read as "this-fn after that-fn" \\
-No deeper specification of what the funtions and objects are Mapping between
-Category Theory and Functional Programming:
+Composition $\comp$: read as "this function after that function" \\
+No deeper specification of what the functions and objects are.
+
+Mapping between Category Theory and Functional Programming:
 
 Views \to Change of perspective \\
-- Set-theoretical: props of sets defined by elems of sets
+- Set-theoretical: properties of sets defined by elems of sets
 - Categorical: Shrink the set to a point "I can't look at the structure of a set"
-Describe different kinds of sets by their interraction with other sets i.e. by arrows. \\
-Tell me who your friends are and I tell you who you are \\
+Describe different kinds of sets by their interraction with other sets, i.e. by
+arrows. \\
+Tell me who your friends are and I tell you who you are. \\
 
-Phenomenons of Introduction and Elimination \\
+Phenomenons of Introduction / Construction and Elimination \\
+Constructors build values, eliminators take apart values (build by constructors).
 
 Data types:
 - Void (empty set): we don't know that it has no elems; describe/define the props
