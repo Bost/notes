@@ -42,7 +42,7 @@
   prevent your ISP or some go-between from snooping on your requests... except
   it might not help.
 
-* TLS Transport Layer Security 
+* TLS Transport Layer Security
   protocol; successor of deprecated SSL Secure Sockets Layer
 
 * DNS Domain Name System
@@ -66,7 +66,7 @@
 
     OCSP leaks serial number of the certificate of the visited website.
     (Mitigiation - see OCSP stapling)
-    
+
     CRLSets in Chromium-based browsers is arguably better than OCSP.
 
  - Brave browser supports all Chrome extensions and offers much better privacy
@@ -122,3 +122,60 @@
 * Tails
   live OS with optional persistence, installable on external drives, e.g. DVD,
   USB.
+
+* Qubes OS
+  https://www.qubes-os.org/
+  Chat: https://app.element.io/#/room/#cybersec-qubes_os:matrix.org
+
+** GNU GPG - GNU Privacy Guard
+   https://youtu.be/1vVIpIvboSg
+
+*** Message / File authentication:
+  #+BEGIN_SRC bash
+    # On Guix
+    guix install pinentry # needed for GnuPG's interface to passphrase input
+
+    # Create a qube without networking. If 'split-gpg' is needed see
+    # https://www.qubes-os.org/doc/split-gpg/ (E.g. The 'qubes-gpg-split' is needed
+    # in the vault of the Qube OS).
+
+    # key creation:
+    gpg --expert --full-generate-key
+
+    # creating a key for signing and encrypting is the easiest. Choose:
+    # - "9": "can do all" key with ECC.
+    # - "1": curve 25519 (this probably annoys the NSA the most :-)
+
+    gpg --armor --export > /path/to/pub_key.gpg
+
+    # create <file>.asc
+    gpg --clear-sign <file>
+    # Enter your name and email. Comment is usually left empty.
+
+    gpg --import pub_key.asc
+    # check the signature. It may produce several warnings!
+    gpg --verify <file>.asc | grep --ignore-case "good\|bad"
+
+    # suppress warnings - not recommended
+    gpg --edit-key KEYID trust
+  #+END_SRC
+
+*** Message example
+    #+BEGIN_SRC bash
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+[... Text of the message ...]
+
+=============================
+Message verification steps:
+1. Obtain the public key:
+  gpg --keyserver DNS_SERVER_OR_IP --recv-key KEYID
+2. Save the this whole message to a file: <received-file.txt>
+3. Verify the message authenticity:
+  gpg --verify <received-file.txt>
+
+-----BEGIN PGP SIGNATURE-----
+[...]
+-----END PGP SIGNATURE-----
+    #+END_SRC
