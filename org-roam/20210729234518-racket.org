@@ -167,7 +167,7 @@
   ;; ~a ~v ~s ~e ~r ~.a ~.v ~.s
   #+END_SRC
 
-* commands
+* External commands
   #+BEGIN_SRC racket
   ;; return code
   (system/exit-code "ls")

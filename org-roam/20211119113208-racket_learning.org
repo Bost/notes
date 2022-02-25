@@ -77,3 +77,7 @@
    functional programming. https://www.pyret.org/
 
    https://www.wescheme.org/openEditor
+
+* Modules
+  https://felleisen.org/matthias/Thoughts/Modular_Programming.html
+  Requiring a module does not require its submodules and requiring a submodule loads only as much of the surrounding module as required.

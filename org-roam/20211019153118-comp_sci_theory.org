@@ -330,6 +330,26 @@ for basic operations
 
 * Typing
   Gradual Typing, Occurrence Typing
+** The Little Typer
+   Atom is a type.
+   
+   Judgment is an attitude taken towards an expression. E.g. "Something is an Atom".
+
+   Four forms of Judgment
+   1. ___ is a ___. (declaration)
+   2. ___ is the same ___ as ___. (value comparison)
+   3. ___ is a type. (type declaration)
+   4. ___ and ___ are the same types. (type comparison)
+
+   Pre-supposition "Some forms of judgment only make sense after an earlier judgment."
+
+   Normal Form of an expression described by a type - the most direct way of
+   writing the form.
+
+   Normal Form of '(+ 0 26)' is '26'. An expression with '+' at the top is a
+   value, a.k.a canonical expression.
+   
+   'define' associates a name with an expression.
 
 * Semantics
 ** Denotational Semantics
