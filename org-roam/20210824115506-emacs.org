@@ -9,6 +9,9 @@
 
 * Diverse
 
+  ;; broken icons in the *spacemacs* buffer
+  M-x all-the-icons-install-fonts
+
   [[https://emacsconf.org/2021/talks/imaginary/][Imaginary Programming]] IP
   - based on / an abstraction over Prompt Engineering and Language Models (LMs)
 
