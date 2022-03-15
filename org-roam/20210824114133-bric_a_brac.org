@@ -168,3 +168,9 @@
 *** Videos
    How to replace chain - chain tool
    How to adjust speeds
+
+* Firefox - How to allow a restricted port?
+  https://support.mozilla.org/en-US/questions/1083282
+  about:config
+  network.security.ports.banned.override
+  enter the port number as a string

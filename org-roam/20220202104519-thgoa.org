@@ -3,6 +3,7 @@
 :END:
 #+title: The Hitchhiker’s Guide to Online Anonymity
 
+[[https://youtu.be/-wMU8vmfaYo][YouTube: Why was Facebook down for five hours?]]
 [[https://anonymousplanet.org/guide.html][The Hitchhiker’s Guide to Online Anonymity]]
 
 * ROP Return-oriented programming
@@ -46,6 +47,21 @@
   protocol; successor of deprecated SSL Secure Sockets Layer
 
 * DNS Domain Name System
+
+* BGP Border Gateway Protocol
+  Exchange routing and reachability information among autonomous systems (AS) on
+  the Internet.
+
+  Routing decisions are based on paths, network policies, or rule-sets
+  configured by a network administrator.
+
+* RPKI Resource Public Key Infrastructure
+  a.k.a Resource Certification
+
+* IRR Internet Routing Registry
+  database of Internet route objects for determining, and sharing route and
+  related information used for configuring routers, with a view to avoiding
+  problematic issues between Internet service providers.
 
 * SNI Server Name Indication
 
@@ -179,3 +195,11 @@ Message verification steps:
 [...]
 -----END PGP SIGNATURE-----
     #+END_SRC
+
+* Distributed Denial of Secrets
+  https://www.ddosecrets.com/
+  Successor of WikiLeaks
+  https://en.wikipedia.org/wiki/Distributed_Denial_of_Secrets
+
+* JSON hijacking
+  haacked.com/archive/2009/06/25/json-hijacking.aspx/

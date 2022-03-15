@@ -38,6 +38,9 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
 
 * Various commands
   #+BEGIN_SRC fish :results output
+  # install the clear command
+  guix install ncurses
+
   # systemctl status guix-daemon # on a foreign host
 
   guix time-machine --commit=HEAD --disable-authentication -- describe
@@ -185,6 +188,9 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   guix gc            # invoke the garbage collector
   guix home          # build and deploy home environments
   guix install       # install packages
+  # also a package may be split into different outputs, and the dig is in the
+  # 'utils' output
+  guix install bind:utils
   guix package       # manage packages and profiles
   guix pull          # pull the latest revision of Guix
   guix remove        # remove installed packages

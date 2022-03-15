@@ -260,17 +260,22 @@
     # bash debug script
     bash -x script
 
+    # fish redirect with grep - see also psub
+    # example: transfer /tmp/foo to a virtual machine
+    set remoteShell "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022"
+    set noWarn "Permanently added '\[localhost\]:10022'"
+    rsync -avz --rsh="$remoteShell" /tmp/foo $USER@localhost:/tmp/ 2>&1 | grep -v "$noWarn"
+    # or alternatively, suppress all warnings
+    set remoteShell "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022"
+    set noWarn "Permanently added '\[localhost\]:10022'"
+    rsync -avz --rsh="$remoteShell" /tmp/foo $USER@localhost:/tmp/
+
     # bash redirect stderr (2) to stdout (1) and save it to command.log
     ./command.sh 2>&1 | tee command.log
-
     # suppress stderr messagess
     ./script.sh 2> /dev/null
-
-    # bash find: redirect: separate / combine sdterr and stdout; doesn't work with
-    # the tee command
+    # separate / combine sdterr and stdout; doesn't work with the tee command
     ./command.sh 1>str.out 2>str.err / ./command.sh &>combined.out
-
-    # bash redirect
     # type in stuff and wait unit EOF gets typed
     cat >>EOF
 
@@ -380,3 +385,25 @@
 
 ** scsh Scheme Shell
    latest release May 16 2006, ver0.6.7; https://scsh.net/
+
+* Iterate over array/list
+  /bin/sh portability: ubuntu dash vs. guix /bin/sh
+  #+BEGIN_SRC sh :results output
+  export elems="aaa:bbb:ccc"
+  LIST=$(awk 'BEGIN { split( ENVIRON["elems"], array, ":"); for (i=1;i<=length(array);i++) { print array[i]; } }')
+  for elem in $LIST; do
+      printf "elem: $elem\n"
+  done
+  #+END_SRC
+  or even better:
+  #+BEGIN_SRC sh :results output
+  for prjd in \
+          "aaa" \
+          "bbb" \
+          "ccc" \
+          ;
+    do
+      printf "elem: $elem\n"
+  done
+  #+END_SRC
+

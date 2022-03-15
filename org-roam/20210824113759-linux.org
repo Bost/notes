@@ -6,8 +6,8 @@
 [[https://github.com/jlevy/the-art-of-command-line][the-art-of-command-line]]
 
 * Udev
-[[https://en.wikipedia.org/wiki/Udev][Wikipedia: Udev]] - userspace /dev; device manager for linux kernel; manages nodes
-in the /dev directory
+  [[https://en.wikipedia.org/wiki/Udev][Wikipedia: Udev]] - userspace /dev; device manager for linux kernel; manages
+  nodes in the /dev directory
 
 * Grub
   templates: /etc/grub.d
@@ -70,7 +70,8 @@ in the /dev directory
   [[https://averagelinuxuser.com/linux-swap/][Linux swap: what it is and how to use it]]
   New installations of Ubuntu 18.04 use a swap file instead of swap partition
   8 * 1024 * 1048576 MB = 8 * 1073741824 B = 8589934592 B = 8GB
-  TODO create swap file using fallocate: see https://www.tecmint.com/add-swap-space-on-ubuntu/
+  TODO create swap file using fallocate;
+  see https://www.tecmint.com/add-swap-space-on-ubuntu/
   /proc/sys/vm/swappiness
   /proc/sys/vm/vfs_cache_pressure
   See [[http://www.pqxx.org/development/swapspace/][swapspace]] - the swap file manager
@@ -137,6 +138,10 @@ in the /dev directory
   find / search in terminal Shift + Ctrl + F
 
   #+BEGIN_SRC bash :results output
+  basenc --base64
+  # "Hello world!" == "SGVsbG8gd29ybGQh"
+  https://stackoverflow.com/a/62017480/5151982
+
   # bat - A cat(1) clone with syntax highlighting and Git integration.
   bat --pager=never README.md
   bat      -P       README.md
@@ -152,6 +157,8 @@ in the /dev directory
        > ernst.json; and cat ernst.json | jq '.'
 
   # :cpu :mem :hdd :hardware - system information in a GTK+ window
+  hwinfo
+  inxi -Fxz
   hardinfo
   sudo dmidecode
   sudo lshw
@@ -220,7 +227,7 @@ in the /dev directory
   # associated routing prefix 192.168.100.0
   # TODO what is the /24 - address range?
 
-  # find active computers on a local network with nmap (may be prefixed with sudo)
+  # find active computers on a local network with nmap
   # Standard ICMP ping
   nmap -sn 192.168.1.0/24
   # TCP SYN Ping
@@ -276,7 +283,8 @@ in the /dev directory
   # view PDF documents / files
   evince file.pdf
   libre file.pdf
-  # gv, the PostScript and PDF viewer using Ghostscript as a back-end doesn't work
+  # gv, the PostScript and PDF viewer using Ghostscript as a back-end doesn't
+  # work
 
   # centos update
   su -c 'yum update'
@@ -298,11 +306,11 @@ in the /dev directory
   top -b -n 1
 
   # load average explained
-  curl -s https://raw.githubusercontent.com/torvalds/linux/v5.1/kernel/sched/loadavg.c | head -n 8
+  curl --silent https://raw.githubusercontent.com/torvalds/linux/v5.1/kernel/sched/loadavg.c | head -n 8
   # process queuing: load-average > nr-of-processors * cores-per-processor
   uptime               # load average from /proc/uptime
   top -b -n 1 | grep load
-  cat /proc/loadavg    # columns: 4th: processes running/total; 5th: last used pid
+  cat /proc/loadavg    # 4. column: processes running/total; 5.: last used pid
   # :nr-of-processors
   lscpu | grep "^CPU"
   # :cores-per-processor
@@ -425,8 +433,8 @@ in the /dev directory
   # put "test" to x-clipboard / put x-clipboard content to file.ext
   echo "test" | xclip / xclip -o > file.ext
 
-  # run a cmd only when load average is below a certain threshold (default is 0.8)
-
+  # run command only when load average is below a certain threshold
+  # (default is 0.8)
   echo "rm -rf /unwanted-large/folder" | batch
 
   # change file mode bits of file according to reference-file
@@ -641,7 +649,8 @@ in the /dev directory
   # commit log since ...
   svn log -r \{2017-01-01\}:HEAD REPO_URL/MODULE > svn.log
 
-  # search in commit logs since ... and show changed / affected files (--verbose)
+  # search in commit logs since ... and show changed / affected files
+  # (--verbose)
   svn log --revision \{2017-01-01\}:HEAD --no-auth-cache --non-interactive \
       --verbose --username '...' --password '...' \
       --search STR1 --search STR2 REPO_URL/MODULE
@@ -658,35 +667,6 @@ in the /dev directory
   # when: svnrdump: E000022: Couldn't get lock on destination repos after 10
   # attempts
   svn propdel --revprop -r0 svn:rdump-lock URL
-
-  # recursive copy `dotfiles` and `cheat` to server:~/dev/
-  # i.e. create `server:~/dev/dotfiles/` and `server:~/dev/cheat/`
-  rsync -avz dotfiles cheat server:~/dev/
-  # recursive copy of only the content of `dotfiles` and `cheat`.
-  # i.e. create only the `server:~/dev/`
-  rsync -avz dotfiles/ cheat/ server:~/dev
-
-  # recursive copy only certain types of files using include option
-  rsync -havz --include="*/" --include="*.sh" --exclude="*" "$src" "$dst"
-
-  # copy multiple files from remote machine to a local machine
-  rsync -a USER@HOST:/remote/path/file1 :/remote/path/file2 /local/path
-
-  # :cvs copy files from src to dst excluding everything in CVS directories
-  # -n --dry-run
-  rsync -nhavz          --exclude='CVS'                   src/ dst
-  rsync -nhavz --delete --exclude='CVS'                   src/ dst | grep deleting
-  rsync -nhavz          --exclude='dir' --exclude='*.jpg' src/ dst
-  rsync -nhavz --delete --exclude='dir' --exclude='*.jpg' src/ dst | grep deleting
-
-  # :cvs copy files from src to dst excluding everything in CVS directories (showing progress)
-  # exclude hidden files and directories
-  rsync -nhav          --exclude=".*" --exclude=".*/" src/ dst
-  rsync -nhav --delete --exclude=".*" --exclude=".*/" src/ dst | grep deleting
-
-  # :mv move content of a directory within another directory with the same folders
-  rsync -nha          --remove-source-files backup/ backupArchives
-  rsync -nha --delete --remove-source-files backup/ backupArchives | grep deleting
 
   # restart cvs daemon
   sudo /etc/init.d/cvsd restart / start / stop / status
@@ -777,7 +757,8 @@ in the /dev directory
   # Report processors related statistics
   mpstat
   mpstat -P ALL
-  # Display five reports of statistics for all processors at two second intervals
+  # Display five reports of statistics for all processors at two second
+  # intervals
   mpstat -P ALL 2 5
 
   # :processor :cpu :mem :hdd :hardware system information for console & IRC
@@ -788,7 +769,8 @@ in the /dev directory
   # :nice :cpulimit find and delete *.jar and *.class when idling
   ionice -c3 find . -name "*.jar" -or -name "*.class" -delete
 
-  # :nice :cpulimit change the priority of process 2222 to minimum (-19 max, +19 min prio)
+  # :nice :cpulimit change the priority of process 2222 to minimum
+  # (-19 max, +19 min prio)
   renice +19 2222
 
   # :nice :cpulimit launch process with lowest priority
@@ -822,10 +804,21 @@ in the /dev directory
 
   # remove old kernels - see dotfiles/bin/remove-old-kernels
 
+
+  # checksum current directory; "-print0" and "-0" handle filenames with spaces
+  # ... with filenames, i.e. renaming detection
+  find . -type f -print0 | xargs -0 sha1sum   | sha1sum | awk '{print $1}'
+  # alternative
+  find . -type f | xargs -I "{}" sha1sum "{}" | sha1sum | awk '{print $1}'
+  # ... without filenames, i.e. no renaming detection
+  find . -type f -print0 | xargs -0 sha1sum   | awk '{print $1}' | sha1sum | awk '{print $1}'
+  # alternative
+  find . -type f | xargs -I "{}" sha1sum "{}" | awk '{print $1}' | sha1sum | awk '{print $1}'
+
   # create a SHA checksum file containing checksums
   sha256sum file1.ext file2.txt > SHA256SUMS.asc
-  # read SHA checksums from the SHA256SUMS.asc file and check / verify them against the
-  # SHA checksums of the files in the current directory
+  # read SHA checksums from the SHA256SUMS.asc file and check / verify them
+  #  against the SHA checksums of the files in the current directory
   sha256sum --check SHA256SUMS.asc | grep OK
   sha256sum -c      SHA256SUMS.asc | grep OK
 
@@ -841,9 +834,23 @@ in the /dev directory
   # :xfce :ubuntu :popup :message desktop notification
   notify-send "Hello World"
 
+  # modify keymaps and pointer button mappings in X
+  xmodmap -pm
+  # See https://unix.stackexchange.com/a/126795
+  # shift       Shift_L (0x32),  Shift_R (0x3e)
+  # lock        Caps_Lock (0x42)
+  # control     Control_L (0x25),  Control_R (0x69)
+  # mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+  # mod2        Num_Lock (0x4d)
+  # mod3
+  # mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+  # mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+  # keyboard: print contents of X events
+  xev
+
   # :shortcuts
   xfce4-keyboard-settings
-  https://forum.manjaro.org/t/cant-switch-windows-with-super-tab/2406/4
+  # https://forum.manjaro.org/t/cant-switch-windows-with-super-tab/2406/4
 
   # :shortcuts http://docs.xfce.org/xfce/xfconf/xfconf-query
   xfconf-query --channel xfce4-keyboard-shortcuts -lv
@@ -853,26 +860,30 @@ in the /dev directory
   xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/custom/<Super>Tab" --create --type string --set "empty"
   xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/default/<Super>Tab" --create --type string --set "empty"
 
-  # changes in the xml don't work, use xfce4-settings-editor
+  # if changes in the xml don't work, use xfce4-settings-editor
   locate xfce4-keyboard-shortcuts.xml
+  find ~ -name xfce4-keyboard-shortcuts.xml
+  # ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 
-  # :xfce :gnome :logout
-  gnome-session-quit / xfce4-session-logout
+  #
+  gnome-session-quit
+  xfce4-session-logout
 
-  # difference between nohup, disown and & https://unix.stackexchange.com/a/148698
-  # - puts the job in the background, that is, makes it block on attempting to read
-  # input, and makes the shell not wait for its completion.
+  # difference between nohup, disown, & https://unix.stackexchange.com/a/148698
+  # - puts the job in the background, that is, makes it block on attempting to
+  # read input, and makes the shell not wait for its completion.
   &
   # - removes the process from the shell's job control, but it still leaves
-  # it connected to the terminal. One of the results is that the shell won't send it
-  # a SIGHUP. Obviously, it can only be applied to background jobs, because you
-  # cannot enter it when a foreground job is running.
+  # it connected to the terminal. One of the results is that the shell won't
+  # send it a SIGHUP. Obviously, it can only be applied to background jobs,
+  # because you cannot enter it when a foreground job is running.
   disown
-  # - disconnects the process from the terminal, redirects its output to nohup.out
-  # and shields it from SIGHUP. One of the effects (the naming one) is that the
-  # process won't receive any sent SIGHUP. It is completely independent from job
-  # control and could in principle be used also for foreground jobs (although
-  # that's not very useful).
+
+  # - disconnects the process from the terminal, redirects its output to
+  # nohup.out and shields it from SIGHUP. One of the effects (the naming one)
+  # is that the process won't receive any sent SIGHUP. It is completely
+  # independent from job control and could in principle be used also for
+  # foreground jobs (although that's not very useful).
   nohup
 
   # doesn't create nohup.out
@@ -916,7 +927,8 @@ in the /dev directory
   ssh-copy-id USER@HOST
 
   # :ssh mount folder/filesystem through SSH. Install SSHFS from
-  # http://fuse.sourceforge.net/sshfs.html. Mount a folder securely over a network
+  # http://fuse.sourceforge.net/sshfs.html.
+  # Mount a folder securely over a network
   sshfs USER@HOST:/path/to/dir ./path/to/mount/point
 
   # mound windows shares under linux
@@ -932,7 +944,8 @@ in the /dev directory
   # mounted filesystems - table layout
   mount | column -t
 
-  # error: Requested formats are incompatible for merge and will be merged into mkv.
+  # error: Requested formats are incompatible for merge and will be merged into
+  # mkv.
   youtube-dl -f bestvideo[ext=mp4]+bestaudio[ext=m4a] URL
 
   # align csv file
@@ -957,8 +970,9 @@ in the /dev directory
   # :cygwin print unix form of filename
   cygpath -u filename
 
-  # :zip zip content of ./path/to/dir to ./path/to/file.zip; --recurse-paths is -r
+  # zip content of ./path/to/dir to ./path/to/file.zip
   zip --recurse-paths --encrypt ./path/to/file.zip ./path/to/dir
+  zip  -r              -e       ./path/to/file.zip ./path/to/dir
 
   # :zip :unzip
   unzip ./path/to/file.zip -d ./path/to/extract-dir
@@ -1011,7 +1025,8 @@ in the /dev directory
   # view / list entries
   crontab -l
 
-  # show everything (battery info etc); Advanced Configuration and Power Interface
+  # show everything (battery info etc)
+  # Advanced Configuration and Power Interface
   acpi -V
   climate battery
 
@@ -1112,8 +1127,8 @@ in the /dev directory
   ecryptfs
 
   # :debian-goodies
-  # display all the dependencies of the given package and when each dependency was
-  # installed
+  # display all the dependencies of the given package and when each dependency
+  # was installed
   which-pkg-broke vim
   # list the enhancements for all installed packages
   check-enhancements --installed-packages
@@ -1122,7 +1137,7 @@ in the /dev directory
   # search all files in specified packages
   sudo dgrep "text" vim
 
-  # :debian-goodies - check which processes need to be restarted after an upgrade
+  # debian-goodies - check which processes need to be restarted after an upgrade
   sudo needrestart   # replaces & inspired by checkrestart
   # check if the /var/run/reboot-required exists
   ls /var/run/reboot-required
@@ -1147,13 +1162,17 @@ in the /dev directory
   # display installed packages
   rpm -qa
 
-  # root login / console / prompt
+  # root login shell / console / prompt
+  # run login shell as the target user; a command may also be specified
+  sudo --login
   sudo -i
 
   # user management
+  groups USER                                 # print the groups a user is in
+  cat /etc/group                              # list available groups
   sudo adduser USER
   sudo deluser --remove-home USER             # userdel is a low level utility
-  sudo usermod --append --groups vboxsf USER  # modify account
+  sudo usermod --groups GROUP --append USER   # app USER to the GROUP
   # euid - effective user id: number or id; see whoami
   sudo pkill -KILL --euid USER                # logout / logoff different user
 
@@ -1231,15 +1250,6 @@ in the /dev directory
   apm update
   # restore / synchronise settings
   rsync -avz --include="*/" --include="*.cson" --exclude="*" ~/.atom/* ~/dev/dotfiles/.atom
-
-  # :rsync - options short / long versions
-  -h, --human-readable
-  -a, --archive # -rlptgoD (no -H,-A,-X); recursive & preserve almost everything
-  -v, --verbose
-  -z, --compress
-  -r, --recursive
-  -n, --dry-run
-  -p, --perms   # preserve permissions
 
   # super fast ram disk
   sudo mkdir -p /mnt/ram
@@ -1411,4 +1421,48 @@ in the /dev directory
 
 * tail vs less
   Instead of `tail -f ...` try to use `less +F ...`. `tail -f ...` is better
-  when watching multiple files at the same time. See [[https://www.brianstorti.com/stop-using-tail/][Stop using tail -f (mostly)]]
+  when watching multiple files at the same time.
+  See [[https://www.brianstorti.com/stop-using-tail/][Stop using tail -f (mostly)]]
+
+* rsync
+  March 2022: the scp Secure Copy Protocol is obsolete! Use sftp or rsync
+  #+BEGIN_SRC bash :results output
+    # recursive copy `dotfiles` and `cheat` to server:~/dev/
+    # i.e. create `server:~/dev/dotfiles/` and `server:~/dev/cheat/`
+    rsync -avz dotfiles cheat server:~/dev/
+    # recursive copy of only the content of `dotfiles` and `cheat`.
+    # i.e. create only the `server:~/dev/`
+    rsync -avz dotfiles/ cheat/ server:~/dev
+
+    # recursive copy only certain types of files using include option
+    rsync -havz --include="*/" --include="*.sh" --exclude="*" "$src" "$dst"
+
+    # copy multiple files from remote machine to a local machine
+    rsync -a USER@HOST:/remote/path/file1 :/remote/path/file2 /local/path
+
+    # :cvs copy files from src to dst excluding everything in CVS directories
+    # -n --dry-run
+    rsync -nhavz          --exclude='CVS'                   src/ dst
+    rsync -nhavz --delete --exclude='CVS'                   src/ dst | grep deleting
+    rsync -nhavz          --exclude='dir' --exclude='*.jpg' src/ dst
+    rsync -nhavz --delete --exclude='dir' --exclude='*.jpg' src/ dst | grep deleting
+
+    # :cvs copy files from src to dst excluding everything in CVS directories
+    # (showing progress)
+    # exclude hidden files and directories
+    rsync -nhav          --exclude=".*" --exclude=".*/" src/ dst
+    rsync -nhav --delete --exclude=".*" --exclude=".*/" src/ dst | grep deleting
+
+    # :mv move content of a directory within another directory with the same folders
+    rsync -nha          --remove-source-files backup/ backupArchives
+    rsync -nha --delete --remove-source-files backup/ backupArchives | grep deleting
+
+    # rsync - options short / long versions
+    -h, --human-readable
+    -a, --archive # -rlptgoD (no -H,-A,-X); recursive & preserve almost everything
+    -v, --verbose
+    -z, --compress
+    -r, --recursive
+    -n, --dry-run
+    -p, --perms   # preserve permissions
+   #+END_SRC
