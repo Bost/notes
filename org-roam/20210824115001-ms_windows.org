@@ -31,7 +31,7 @@ net use P: /delete
 net user <username> /domain
 
 # open ports
-netstat -a | find "LISTENING"
+netstat -a | find "LISTENING" # on linux `netstat` is obsolete, use `ss`
 
 # set system variable system-wide
 setx NAME value /m

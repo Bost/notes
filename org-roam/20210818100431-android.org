@@ -49,9 +49,9 @@ http://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_
   $src/dev/navig/Osmand
   $src/dev/navig/osmand-api-demo
 
-  rsync -azv gradle-4.6-bin.zip $src/dev/navig/osmand-api-demo/gradle/wrapper
-  rsync -azv $src/.gradle ~/.gradle/
-  rsync -azv $src/.m2 ~/.m2/
+  rsync -avz gradle-4.6-bin.zip $src/dev/navig/osmand-api-demo/gradle/wrapper
+  rsync -avz $src/.gradle ~/.gradle/
+  rsync -avz $src/.m2 ~/.m2/
 
   # edit gradle-wrapper.properties
   distributionUrl=gradle-4.6-bin.zip
@@ -60,9 +60,9 @@ http://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_
   $HOME/Downloads/android
   # unzip and then
   tools/bin/sdkmanager --licenses
-  sudo rsync -azv licenses/ $ANDROID_HOME/licenses/
+  sudo rsync -avz licenses/ $ANDROID_HOME/licenses/
   sudo chown -R $USER:$USER /usr/lib/android-sdk/
-  rsync -azv $host:/usr/lib/android-sdk/ /usr/lib/
+  rsync -avz $host:/usr/lib/android-sdk/ /usr/lib/
 #+END_SRC
 
 * Androind: USB transfer with Media Transfer Protocol
