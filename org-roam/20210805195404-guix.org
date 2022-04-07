@@ -135,8 +135,19 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   [[https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi][Guix Documentation source code]]
   [[https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html][Submitting Patches]]
   #+BEGIN_SRC bash :results output
+  git format-patch origin
+  git send-email --to=guix-patches@gnu.org *.patch
   info "(guix)Submitting Patches"
   #+END_SRC
+
+  When package definition obtained using git-fetch
+  #+BEGIN_SRC bash :results output
+  git clone http://example.org/foo.git
+  cd foo
+  git checkout <tag-or-branch>
+  guix hash -x --serializer=nar .
+  #+END_SRC
+  See https://guix.gnu.org/manual/en/html_node/Invoking-guix-hash.html
 
 * QEMU shrink disk size - doesn't work
   https://pve.proxmox.com/wiki/Shrink_Qcow2_Disk_Files

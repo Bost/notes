@@ -136,6 +136,7 @@ it if it doesn't exist) and put the following lines into it:
   like fprintf. See [[https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html][Formatted Output]]
   #+BEGIN_SRC scheme
   (format #t "\n~a\n\n" s)
+  (format #f "\n~a\n\n" s) ;; print to string
   #+END_SRC
 
 * G-expressions

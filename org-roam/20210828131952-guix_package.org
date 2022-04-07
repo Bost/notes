@@ -75,6 +75,7 @@
   Can be also e.g. source tarballs, which also result from derivation builds
 
 * Creating package
+  https://guix.gnu.org/cookbook/en/guix-cookbook.html#Packaging-Tutorial
   #+BEGIN_SRC bash :results output
     # download a file from the URI, add it to the store, and print both its file
     # name in the store and its SHA256 hash
@@ -82,4 +83,12 @@
 
     # compute the hash of any (already downloaded) file
     guix hash file
+
+    #
+    guix build --load-path=./gnu/packages --keep-failed <package>
+    cd $GUIX_CHECKOUT
+    ./pre-inst-env guix build --keep-failed ruby@2.1
+
+    # or
+    guix package --install-from-file=my-hello.scm
   #+END_SRC
