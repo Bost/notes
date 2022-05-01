@@ -96,15 +96,15 @@
   # zgrep: search possibly compressed files for a regular expression
   zgrep "Pattern" myfile.gz / zgrep 'GET /blog' access_log.gz
 
-  # find images
-  find . -type f -exec file {} \; | grep --only-matching --perl-regexp '^.+: \w+ image'
+  # find images; -o --only-matching; -P --perl-regexp
+  find . -type f -exec file {} \; | grep -oP '^.+: \w+ image'
 
   # between: older: newer:
   find ~/Pictures -type f -newer
   find ~/Pictures -type f -not -newermt "2016-02-01"
 
   # find all files recursively newer than given time
-  find /directory -newermt $(date +%Y-%m-%d -d '1 day ago') -type f -print
+  find ./ -newermt $(date +%Y-%m-%d -d '1 day ago') -type f -print
 
   # substitute / replace all occurences of ... with ...
   find ./ -type f -name "*.fish" -print0 | xargs -0 sed --in-place "s/apt-get/apt/g"
@@ -115,11 +115,16 @@
   #  recursively count LOC (lines of code) in all source files (python & sql)
   find ./ -name "*.py" -or -name "*.sql" | xargs wc -l
 
-  # search for IPv4 addresses
-  grep -nir -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" --exclude-dir={.git} --include=\*.{el,clj,cljs,cljc,py,md} ./
+  # search for IPv4 addresses; -E --extended-regexp, -o --only-matching
+  grep -nir -E -o "([0-9]{1,3}\.){3}[0-9]{1,3}" --exclude-dir={.git} --include=\*.{el,clj,cljs,cljc,py,md} ./
 
-  # match integer / floating point number
-  echo "aaa 123 0.0 bbb" | grep --only-matching '\([[:digit:]]*\.[[:digit:]]*\|[[:digit:]]*\)'
+  # match integer and floating point numbers
+  # -o --only-matching, -P --perl-regexp - grep capture group with \K
+  echo "aaa 123 0.0 bbb" | grep -o  "\([[:digit:]]*\.[[:digit:]]*\|[[:digit:]]*\)"
+  echo "aaa 123 0.0 bbb" | grep -oP "\K([0-9]+\.[0-9]+|[0-9]+)"
+  echo "aaa 123 0.0 bbb" | grep -o  "\([[:digit:]]*\.[[:digit:]]*\|[[:digit:]]*\)"
+  echo "aaa 123 0.0 bbb" | grep -oP "\K([0-9]*\.[0-9]*|[0-9]*)"
+  echo "aaa 123 0.0 bbb" | grep -oP "\K([[:digit:]]*\.[[:digit:]]*|[[:digit:]]*)"
 
   # grep
   # \Z  matches the EOF end-of-file

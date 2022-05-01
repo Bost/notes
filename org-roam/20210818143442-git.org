@@ -210,7 +210,7 @@ OID - Object Identifier
   # show commit messages matching <pattern>
   git log --oneline --grep="<pattern>"
 
-  # find / list all commits for a specific file
+  # find / list all commits changing / touching specific file
   git log --follow --name-only --format='%H' -- path/to/file
 
   # set git base directory and working tree
