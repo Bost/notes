@@ -1329,6 +1329,9 @@
   # or try:
   sudo dd bs=4M if=$isoFile of=$usbDevice status=progress conv=fdatasync && sync
 
+  # create temporary file
+  mktemp
+
   # printer: Command-Line Printing and Options
   http://localhost:631/help/options.html
 
@@ -1413,6 +1416,10 @@
 
   # replace newlines with space
   sed ':a;N;$!ba;s/\n/ /g'
+
+  # ignore lines between marker1 and marker2
+  # see https://stackoverflow.com/a/40433880/5151982
+  mysql_install_db 2>&1 | sed '/^$marker1/,/$marker2$/d'
 
   # :sed :ascii :ebcdic fix new lines and empty chars; \x85 - hexadecimal char
   sed "s/\x85/\n/g" <log.txt >log.nl.txt; \
