@@ -407,3 +407,16 @@
   done
   #+END_SRC
 
+* Multiline Comments
+  The shell will elide the empty output from the process substitution.
+  See:
+  https://stackoverflow.com/a/12797512
+  https://stackoverflow.com/a/47374030/5353461
+  Works also allows commenting part of a line, which can be useful.
+  #+BEGIN_SRC bash :results output
+  # the \ is line continuation char
+  echo "foo" \
+      `# this line is comment` \
+      ;
+  echo "bar"
+  #+END_SRC

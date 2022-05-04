@@ -160,7 +160,7 @@ OID - Object Identifier
   # workLocation must not be a bare (empty) repo
   git add --work-tree=workLocation --git-dir=<dir>
 
-  # list contributors / committers
+  # list contributors / committers / developers
   git shortlog --summary --numbered --email
   git shortlog -sne
 

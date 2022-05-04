@@ -92,3 +92,14 @@
     # or
     guix package --install-from-file=my-hello.scm
   #+END_SRC
+
+* Garbage collection
+  #+BEGIN_SRC bash :results output
+    # delete generations older than 45 days and free space until at least 10 GiB
+    # are available
+    guix gc --delete-generations=45d --free-space=10GiB
+
+    # delete generations older than 2 months days and collect at least 10 GiB of
+    # garbage
+    guix gc --delete-generations=2m  --collect-garbage=10GiB
+  #+END_SRC

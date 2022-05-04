@@ -441,6 +441,11 @@
   sudo apt install --yes libgtk2.0-dev
   ./configure --with-x-toolkit=gtk
 
+  ;; compiling emacs on the GuixOS
+  guix install gtk dconf udiskie makeinfo autoconf \
+               libxaw3d gnutls libtiff libungif libjpe libxpm
+  unset EMACSLOADPATH
+
   ;; slime: reprint last command to the REPL
   ~M-p~
 
@@ -510,7 +515,9 @@
   ~C-c C-c~
 
   ;; magit: cancel (abandon) commit
-  M-x with-editor-cancel / ~C-c C-k~ / ~C-x k~
+  M-x with-editor-cancel
+  ~C-c C-k~
+  ~C-x k~
 
   ;; M-x magit-status;
   ;; inc / dec / reset hunk size / split hunk / add to .gitignore /
@@ -548,7 +555,7 @@
   ;; working tree unchanged
   ~x~ (X)
 
-  ;; manual
+  ;; The info manual
   emacs -q -e 'info' & disown
   M-x info
   M-x info-apropos
