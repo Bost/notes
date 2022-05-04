@@ -29,6 +29,7 @@ nvm - Node Version Manager https://github.com/nvm-sh/nvm
     /usr/local/share/man/man1/node.1
 
   # :npm :nodejs :javascript dependency management
+  # -L, --location      Follow redirects
   curl -o- -L https://yarnpkg.com/install.sh | bash  # also update
   yarn add                  # add package to use in your current package
   yarn global add <package>
@@ -38,10 +39,15 @@ nvm - Node Version Manager https://github.com/nvm-sh/nvm
   yarn remove               # remove unused package from your current package
   yarn upgrade
 
-  # :nodejs - alias to the node command
+  # nodejs is an alias to the node command
   npm install --global <package>
   npm outdated
   npm update --global
+  npm list
+
+  # install the package and save is inside of the dependencies the package.json
+  npm install --save <package>
+
   # install the electron package
   npm install --global --unsafe-perm=true electron
   npm search electron\*

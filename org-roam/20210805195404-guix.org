@@ -64,6 +64,27 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   set latest (ls --sort=time --almost-all ~/.cache/guix/checkouts/ | head -1)
   cd ~/.cache/guix/checkouts/$latest
   guix system image -t iso9660 gnu/system/install.scm
+
+  # create a VM in which the user’s home directory is accessible read-only, and
+  # where the ‘/exchange’ directory is a read-write mapping of ‘$HOME/tmp’ on
+  # the host and return a script to run that VM
+  guix system vm /run/current-system/configuration.scm \
+       --expose=$HOME --share=$HOME/tmp=/exchange
+  # list scripts for running available / built Guix VMs
+  ls --format=single-column /gnu/store/*-run-vm.sh
+
+  guix pull --list-generations=20d’ lists
+
+  # news for last 20 days
+  guix pull --news --dry-run --list-generations=20d
+  # news from generation range: 200 onwards
+  guix pull --news --dry-run --list-generations=200..
+  # news for generation range: 200 to 210
+  guix pull --news --dry-run --list-generations=200..210
+
+  # list available linux-libre kernels
+  ls --format=single-column /gnu/store/*-linux-libre-*/bzImage
+  guix show linux-libre | grep version
   #+END_SRC
 
 * Upgrade GuixOS
