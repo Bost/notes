@@ -54,6 +54,12 @@
 
 * Various racket snippets
   #+BEGIN_SRC racket
+  ;; code block
+  ;; https://docs.racket-lang.org/reference/begin.html
+  (begin
+    (printf "hi\n")
+    2)
+
   ;; pwd; print working directory
   (current-directory)
 

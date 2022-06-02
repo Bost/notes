@@ -89,6 +89,9 @@ OID - Object Identifier
   # count of files changed in the since the <tag>
   git log --format=oneline --patch <tag>..HEAD | wc -l
 
+  # count of commits on a branch
+  git rev-list --count <branch-name>
+
   # search through the gitlog
   git show :/query
 
@@ -123,6 +126,14 @@ OID - Object Identifier
   git add --patch
   git add -p
 
+  # How to apply a patch generated with git format-patch?
+  # https://stackoverflow.com/a/2250170
+  git apply --stat a_file.patch
+  # dry run to detect errors:
+  git apply --check a_file.patch
+  # apply the patch as a commit. It also allows to sign off an applied patch.
+  git am --signoff < a_file.patch
+
   # amend commit; reuse commit message
   git commit --amend --no-edit
 
@@ -136,11 +147,11 @@ OID - Object Identifier
   git init <dir>
   git init       # ...current dir
 
-  # recursivelly add all *.txt files from src/ to a repo located in <path/to/dir>
-  git --git-dir=<path/to/dir> add "src/**/*.txt"
+  # recursivelly add all *.txt files from src/ to a repo located in path/to/dir
+  git --git-dir=path/to/dir add "src/**/*.txt"
 
   # commit to a repo located in gitDir under given Name
-  git --git-dir=<dir> commit --author="Name <noreply@example.com>" -m "commitMsg"
+  git --git-dir=<dir> commit --author="Name <noreply@domain.com>" -m "commitMsg"
 
   # clone a repo from <origRepo> to an (empty) <bareRepoDir>
   git clone --bare <origRepo> <bareRepoDir>
@@ -161,8 +172,13 @@ OID - Object Identifier
   git add --work-tree=workLocation --git-dir=<dir>
 
   # list contributors / committers / developers
+  # git log --pretty=short | git shortlog [<options>]
   git shortlog --summary --numbered --email
   git shortlog -sne
+
+  # list all commits for a specific day
+  git log --after="2013-11-12 00:00" --before="2013-11-13 00:00"
+  gitk    --since="2013-11-12 00:00"  --until="2013-11-13 00:00" & disown
 
   # show settings
   git config --global --list
@@ -288,4 +304,3 @@ OID - Object Identifier
   # annotated, signed tag or tags with a message will be pushed by `git push ...`
   git tag --annotate <tagname>
 #+END_SRC
-

@@ -66,28 +66,6 @@
   obexftp -b XX:XX:XX:XX:XX:XX -c /Download -d remote-fname
   #+END_SRC
 
-* Swap
-  [[https://averagelinuxuser.com/linux-swap/][Linux swap: what it is and how to use it]]
-  New installations of Ubuntu 18.04 use a swap file instead of swap partition
-  8 * 1024 * 1048576 MB = 8 * 1073741824 B = 8589934592 B = 8GB
-  TODO create swap file using fallocate;
-  see https://www.tecmint.com/add-swap-space-on-ubuntu/
-  /proc/sys/vm/swappiness
-  /proc/sys/vm/vfs_cache_pressure
-  See [[http://www.pqxx.org/development/swapspace/][swapspace]] - the swap file manager
-  #+BEGIN_SRC bash :results output
-  set swapfile /swapfile
-  sudo dd status=progress if=/dev/zero of=$swapfile count=8388608 bs=1024
-  # sudo fallocate --length 8G $swapfile
-  sync   # synchronize cached writes to persistent storage
-  # permissions should be: -rw------- 1 root root
-  sudo chmod 0600 $swapfile # ls -la $swapfile
-  sudo mkswap $swapfile
-  sudo swapon $swapfile
-  swapon --summary
-  free -h
-  #+END_SRC
-
 * ICMP Internet Control Message Protocol
   Send error messages & operational information
 
@@ -250,35 +228,6 @@
 
   # split a file into pieces (with '.' at the end)
   split --bytes 1M --numeric-suffixes --suffix-length=3 foo.txt foo.
-
-  # :usb :drive :drives :disk - list block devices
-  lsblk
-  lsblk --nodeps
-
-  # Format disk / usb drive
-  # 1. erase everything on the device
-  # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
-  set --local deviceFile /dev/sd<?>    # see lsblk
-  sudo dd status=progress if=/dev/zero of=$deviceFile bs=4k; and sync
-  # 2. make a new partition on the device
-  sudo fdisk     $deviceFile
-  sudo mkfs.ext4 $deviceFile
-  sudo eject     $deviceFile
-
-  # partition manipulation: resize / create / delete partitions
-  parted                 # from the command line
-  sudo gparted & disown  # GUI
-  # TODO see partprobe: https://opensource.com/article/18/9/swap-space-linux-systems
-  # e.g. resize 3rd partition and use all free / available space
-  parted /dev/sda resize 3 100%
-  # manipulate (given) partition
-  fdisk
-
-  # flush file system buffers
-  sync
-
-  # :usb :drive gnome userspace virtual fs
-  mount | grep gvfs; cd ...
 
   # view PDF documents / files
   evince file.pdf
@@ -1273,25 +1222,6 @@
   # intercept stdout to a log file
   cat file | tee -a file.log | cat /dev/null
 
-  # sound audio music jack jackd supercollider overtone
-  sudo alsa force-reload
-  speaker-test
-  arecord / aplay
-  # 1. verify iterface in:
-  qjackctl
-  # then A) "pause" pulseaudio while qjackctl runs and "respawn" pulseaudio when
-  # qjackctl is terminated.
-  pasuspender qjackctl
-  # or alternatively to A):
-  # B) kill the existing pulseaudio process, start the jack_control process and
-  # re-start the pulseaudio process.
-  pulseaudio --kill
-  jack_control start; and jack_control exit
-  pulseaudio --start
-  # see also jack active ports & some extra info
-  jack_lsp
-  jack_lsp --connections  # list connections to/from each port
-
   # find 20 biggest files
   du -a ~ 2>/dev/null | sort -n -r | head -n 20
 
@@ -1340,7 +1270,8 @@
   # [] lists, {} maps
   #+END_SRC
 
-* Which version is installed?
+* Cross-platform widget toolkit for creating GUIs
+Which version is installed?
 ** GTK+
    https://stackoverflow.com/a/126193/5151982
    #+BEGIN_SRC bash :results output
@@ -1473,3 +1404,94 @@
     -n, --dry-run
     -p, --perms   # preserve permissions
    #+END_SRC
+
+* Disk Devices
+  #+BEGIN_SRC bash :results output
+  # :usb :drive :drives :disk - list block devices
+  # :fdisk :mount :udevadm :udiskie :udisksctl :block-device :boot
+  lsblk
+  lsblk --nodeps
+
+  # Format disk / usb drive
+  # 1. erase everything on the device
+  # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
+  set --local deviceFile /dev/sd<?>    # see lsblk
+  sudo dd status=progress if=/dev/zero of=$deviceFile bs=4k; and sync
+  # 2. make a new partition on the device
+  sudo fdisk     $deviceFile
+  sudo mkfs.ext4 $deviceFile
+  sudo eject     $deviceFile
+
+  # partition manipulation: resize / create / delete partitions
+  parted                 # from the command line
+  sudo gparted & disown  # GUI; requires `parted` on Guix
+  cfdisk # basic partitioning functionality with a user-friendly interface
+  fdisk  # advanced partitioning functionality
+  # TODO see partprobe: https://opensource.com/article/18/9/swap-space-linux-systems
+  # e.g. resize 3rd partition and use all free / available space
+  parted /dev/sda resize 3 100%
+
+  # flush file system buffers
+  sync
+
+  # :usb :drive gnome userspace virtual fs
+  mount | grep gvfs; cd ...
+  #+END_SRC
+
+** Swap
+  [[https://averagelinuxuser.com/linux-swap/][Linux swap: what it is and how to use it]]
+  New installations of Ubuntu 18.04 use a swap file instead of swap partition
+  8 * 1024 * 1048576 MB = 8 * 1073741824 B = 8589934592 B = 8GB
+  TODO create swap file using fallocate;
+  see https://www.tecmint.com/add-swap-space-on-ubuntu/
+  /proc/sys/vm/swappiness
+  /proc/sys/vm/vfs_cache_pressure
+  See [[http://www.pqxx.org/development/swapspace/][swapspace]] - the swap file manager
+  #+BEGIN_SRC bash :results output
+  set swapfile /swapfile
+  sudo dd status=progress if=/dev/zero of=$swapfile count=8388608 bs=1024
+  # sudo fallocate --length 8G $swapfile
+  sync   # synchronize cached writes to persistent storage
+  # permissions should be: -rw------- 1 root root
+  sudo chmod 0600 $swapfile # ls -la $swapfile
+  sudo mkswap $swapfile
+  sudo swapon $swapfile
+  swapon --summary
+  free -h
+  #+END_SRC
+
+* Sound
+  #+BEGIN_SRC bash :results output
+  # sound audio music jack jackd supercollider overtone
+  # https://webcamtests.com/
+  # https://mictests.com/
+  # https://askubuntu.com/questions/1128694/logitech-c920-microphone-not-working-in-ubuntu-18-04
+  sudo alsa force-reload
+  speaker-test
+  arecord / aplay
+  pacmd list-sources
+  # 1. verify iterface in:
+  qjackctl
+  # then A) "pause" pulseaudio while qjackctl runs and "respawn" pulseaudio when
+  # qjackctl is terminated.
+  pasuspender qjackctl
+  # or alternatively to A):
+  # B) kill the existing pulseaudio process, start the jack_control process and
+  # re-start the pulseaudio process.
+  pulseaudio --kill
+  jack_control start; and jack_control exit
+  pulseaudio --start
+  # see also jack active ports & some extra info
+  jack_lsp
+  jack_lsp --connections  # list connections to/from each port
+  #+END_SRC
+
+* Sway
+https://swaywm.org/
+Tiling Wayland compositor and a drop-in replacement for the i3 window manager
+for X11. It works with your existing i3 configuration and supports most of i3's
+features, plus a few extras.
+
+Allows to arrange application windows logically, rather than spatially. Windows
+are arranged into a grid by default which maximizes the efficiency of your
+screen and can be quickly manipulated using only the keyboard.
