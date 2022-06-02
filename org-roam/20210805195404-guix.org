@@ -24,17 +24,29 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
    #+END_SRC
 
 * Channels
-** Display information about the channels currently in use.
-  #+BEGIN_SRC bash :results output
-  guix describe --list-formats
+[[https://guix.gnu.org/manual/en/html_node/Specifying-Additional-Channels.html][Specifying Additional Channels]]
+edit `~/.config/guix/channels.scm` and run `guix pull`.
+To fetch a package from a previous guix revision see [[https://guix.gnu.org/manual/devel/en/html_node/Inferiors.html][Inferiors]].
+
+Display information about the channels currently in use.
+#+BEGIN_SRC bash :results output
   guix describe
+  guix describe --list-formats
   guix describe --format=channels
   guix describe --format=human
-  #+END_SRC
-
-** Specifying Additional Channels
-   [[https://guix.gnu.org/manual/en/html_node/Specifying-Additional-Channels.html][Specifying Additional Channels]]
-   edit `~/.config/guix/channels.scm` and run `guix pull`
+#+END_SRC
+#+BEGIN_SRC bash :results output
+  guix repl << EOF
+    (use-modules (guix channels)) %default-channels
+EOF
+#+END_SRC
+#+BEGIN_SRC bash :results output
+  guix repl << EOF
+     %load-path           ; guile module load-path
+     %load-compiled-path
+     (%site-dir)
+EOF
+#+END_SRC
 
 * Various commands
   #+BEGIN_SRC fish :results output

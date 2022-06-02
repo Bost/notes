@@ -8,6 +8,7 @@
   low-level language.
 
 * Diverse
+  ;; emacsclient in Guix is in the emacs-with-editor package
 
   ;; broken icons in the *spacemacs* buffer
   M-x all-the-icons-install-fonts
@@ -25,7 +26,7 @@
   | ~SPC f e v~         | spacemacs: version                      |
   | ~SPC w p m~         | spacemacs: popup \*Messages\*           |
 
-  Shift-Tab
+  ;; Shift-Tab
   ~<s-tab>~ / ~<backtab>~
 
   ;;
@@ -127,11 +128,12 @@
   ;; help: ? emacs manual?
   ~C-h i m emacs~
 
-  | ~C-h m~ | M-x describe-mode     |                            |
-  | ~C-h k~ | M-x describe-key      |                            |
-  | ~C-h f~ | M-x describe-function |                            |
-  | ~C-h v~ | M-x describe-variable |                            |
-  | ~C-h b~ | M-x describe-bindings | available keybindings     |
+  | ~C-h m~ | M-x describe-mode     |                       |
+  | ~C-h k~ | M-x describe-key      |                       |
+  | ~C-h f~ | M-x describe-function |                       |
+  | ~C-h v~ | M-x describe-variable |                       |
+  | ~C-h b~ | M-x describe-bindings | available keybindings |
+  ;; package command-log-mode - show pressed keybindings (when screen casting)
 
   ;; dynamic vs. lexical binding: https://www.emacswiki.org/emacs/LexicalBinding
   (setq lexical-binding t)
@@ -694,8 +696,6 @@
   ;; increment numbers in visual vertical block selection in emacs evil:
   ;; select e.g. 3 lines of visual block ~C-v 3~ then ~C-x r N~
 
-* emacsclient in Guix is in the emacs-with-editor package
-
 * Source Code Pro font
 #+BEGIN_SRC shell
 guix install font-adobe-source-code-pro
@@ -718,7 +718,6 @@ mapc ;; like mapcar; used for side-effects only
 
 https://www.gnu.org/software/emacs/manual/html_node/elisp/Sequences-Arrays-Vectors.html
 
-
 #+BEGIN_SRC emacs-lisp
 (split-string "[  aaa
  bbb   ]" (or split-string-default-separators (rx (or "[" "]"))))
@@ -733,7 +732,8 @@ Filter list:
 #+END_SRC
 
 * TODOs
-  Comment buffer ??? See [[https://www.youtube.com/watch?v=NlP3EDS6WGE][System Crafters: Planning the New Emacs From Scratch]] (towards the end of the stream)
-  crdt.el is a real-time collaborative editing environment for Emacs using Conflict-free Replicated Data Types.
+  Comment buffer ??? See [[https://www.youtube.com/watch?v=NlP3EDS6WGE][System Crafters: Planning the New Emacs From Scratch]]
+  (towards the end of the stream) crdt.el is a real-time collaborative editing
+  environment for Emacs using Conflict-free Replicated Data Types.
 
 [[https://www.youtube.com/watch?v=wqdT0xKMQT8][System Crafters: The Hidden Value of the Tab Bar]]

@@ -93,7 +93,7 @@ JavaFX - SW platform to build GUI apps & Rich Internet applications (RIAs)
 standard GUI library for Java SE; Swing replacement
 
 Instaparse: parsers in clojure: context-free grammars as easy to use as regexs
-  
+
 * lisp-1 vs. lisp-2
   lisp-2: allows the same name for both function and variable
   lisp-1: single-value-name languages: Scheme, Clojure, etc.
@@ -122,7 +122,7 @@ Instaparse: parsers in clojure: context-free grammars as easy to use as regexs
    hierarchies. That is, Clojure allows you to define a *hierarchy* on
    *keywords*. This was a huge wtf for me, because to me, keywords are just
    static entities that are unrelated to each other.
-   
+
    When you realise how Clojure keywords can be namespaced, it makes slightly
    more sense: this gives them some separation.
 
@@ -454,6 +454,19 @@ https://groups.google.com/g/clojure/c/BhkUEoJBpKA
   (< n 0) "negative"
   (> n 0) "positive"
   :else "zero")
+;;
+(condp = value
+  ;; (= test-expr expr) are evaluated
+  1 "one"
+  2 "two"
+  (str "unexpected value:" value))
+;;
+(case n
+  ;; The test-constants (i.e. 0, 1) are not evaluated. They must be compile-time
+  ;; literals, and need not be quoted
+  0 "zero"
+  1 "one"
+  "other")
 #+END_SRC
 
 * Rest
@@ -680,19 +693,6 @@ gulp
 ;; - atomic value with fast equality check and fast hashing
 ;; - suitable for enumeration values
 'milkshake
-
-(condp = value
-  ;; (= test-expr expr) are evaluated
-  1 "one"
-  2 "two"
-  (str "unexpected value:" value))
-;;
-(case n
-  ;; The test-constants (i.e. 0, 1) are not evaluated. They must be compile-time
-  ;; literals, and need not be quoted
-  0 "zero"
-  1 "one"
-  "other")
 
 clojure.core.async/<!! [port]
 ;; [async/<!!] takes a val from port. Will return nil if closed. Will block if

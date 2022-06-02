@@ -106,3 +106,23 @@
   #+END_SRC
 
 * GLSL OpenGL Shading Language
+
+* JavaScript 2014
+  event loop https://www.youtube.com/watch?v=8aGhZQkoFbQ
+  V8 Runtime
+  WebAPIs:
+  - extra things provided by the browser: DOM, ajax, setTimeout, ...
+  - effectively threads; one can make calls to these things
+  - on the backend (i.e. nodejs) instead of WebAPIs there are C++ APIs
+
+  event loop, callback queue
+  - looks at the stack and the task queue, if the stack is empty, it takes the 1st thing on the queue and pushes it onto the stack (that effectively runs it)
+  javascript is single threaded, 1 thread, i.e. 1 callstack, i.e. 1 thing at a time
+  blocking - asynchronous callbacks
+
+  - setTimeout(<callback function>, 0) - set to 0 means deferring the callback function to the end of the stack (i.e. until the stack is clear, i.e. until everything is executed)
+  - timeout time is the minimum timeout of execution
+
+  - rendering every 16ms for a screen (60 FPS?)
+  - render has higher prio than a callback
+    23:12
