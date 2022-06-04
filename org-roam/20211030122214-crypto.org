@@ -26,11 +26,13 @@ DLT supply chain
 Byzantine Fault Tolerances / Consensus methods:
 https://link.medium.com/V2dglrC5UU
 - distributed systems with imperfect information if a component failed
-Proof of Work         Bitcoin
-Proof of Stake        Cardano
-Proof of Activity     mix of PoW & PoS
-Proof of Burn         proof of coins "burned". I.e. sent to unspendable addresses
-Proof of Capacity     i.e. Proof of Space. Allocate lots of memory or disk space. Similar to PoW. Instead of computation storage is used
+| Proof-of-Work           | Bitcoin                                                                                                                    |
+| Proof-of-Stake          | Cardano                                                                                                                    |
+| Proof-of-Activity       | mix of PoW & PoS                                                                                                           |
+| Proof-of-Burn           | proof of coins "burned". I.e. sent to unspendable addresses                                                                |
+| Proof-of-Space          | i.e. Proof-of-Capacity. Allocate memory or (plots offering) disk space. Similar to PoW. Use storage instead of computation |
+| Proof-of-Time           |                                                                                                                            |
+| Proof-of-Space-and-Time |                                                                                                                            |
 
 BGP - The Byzantine Generals Problem:
 A groupf generals have to come to a common agreement on whether to attack or

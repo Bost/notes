@@ -50,6 +50,14 @@ EOF
 
 * Various commands
   #+BEGIN_SRC fish :results output
+
+  # WARNING: loading compiled file /run/current-system/profile/lib/guile/3.0/site-ccache/guix/i18n.go failed:
+  # TODO diff /gnu/store/phynqakkjshw8dnjmx3123k7nv92pqm0-configuration.scm /etc/config.scm
+  # try:
+  # sudo guix system reconfigure /etc/config.scm
+  # instead of:
+  # sudo guix system reconfigure /run/current-system/configuration.scm
+
   # install the clear command
   guix install ncurses
 
