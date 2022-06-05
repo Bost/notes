@@ -189,3 +189,75 @@
 * PEG - advance over regex
   Matches more languages (e.g. balanced brackets) and can be paired with
   semantic actions to produce structured results from a parse.
+
+* Scribble and Pollen
+Scribble - collection of tools for creating prose documents—papers, books,
+library documentation, etc.—in HTML or PDF (via Latex) form.
+#+BEGIN_SRC bash :results output
+echo \
+"#lang scribble/base
+
+@title{On the Cookie-Eating Habits of Mice}
+
+If you give a mouse a cookie, he's going to ask for a
+glass of milk.
+" > /tmp/mouse.scrbl
+ls -la /tmp/mouse.scrbl
+# scribble         /tmp/mouse.scrbl  # creates "mouse.html"
+# scribble --htmls /tmp/mouse.scrbl  # creates "mouse/index.html" for Sub-sections
+scribble --pdf   /tmp/mouse.scrbl  # creates "mouse.pdf". Requires `guix install texlive` (2.6 GB)
+# scribble --latex /tmp/mouse.scrbl  # creates "mouse.tex"
+#+END_SRC
+
+Pollen - publishing system for writing functional digital web-based books. It
+can also be used as a dynamic preview server for Scribble files.
+
+#+BEGIN_SRC bash :results output
+# raco pkg install pollen
+# cd /tmp && raco pollen start
+echo \
+"#lang pollen
+Hello world
+" > /tmp/hello.txt.pp
+ls -la /tmp/hello.txt.pp
+# racket /tmp/hello.txt.pp
+# raco pollen render hello.txt.pp # created hello.txt
+# in the browser open
+#   http://localhost:8080/index.ptree
+# or
+#   http://localhost:8080/hello.txt
+#+END_SRC
+
+#+BEGIN_SRC bash :results output
+# raco pkg install pollen
+# cd /tmp && raco pollen start
+echo \
+"#lang pollen
+◊(define metal \"Plutonium\")
+ 
+Markdown & Pollen + ◊metal
+---------------
+ 
++ You **wanted** ◊metal — you _got_ it.
+ 
++ [search for ◊metal](https://google.com/search?q=◊metal)
+" > /tmp/downtown.html.pmd
+#+END_SRC
+
+#+BEGIN_SRC bash :results output
+# raco pkg install pollen
+# cd /tmp && raco pollen start
+echo \
+"#lang pollen
+ 
+◊headline{Pollen markup}
+ 
+◊items{
+  ◊item{You ◊strong{wanted} it — you ◊em{got} it.}
+  ◊item{◊link[\"https://google.com/search?q=racket\"]{search for Racket}}
+}
+" > /tmp/uptown.html.pm
+#+END_SRC
+#+RESULTS:
+
+arcade package - writing arcade games

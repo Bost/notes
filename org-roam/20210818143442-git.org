@@ -6,6 +6,8 @@
 OID - Object Identifier
 
 #+BEGIN_SRC bash :results output
+  # gitlab: create pull request: '+' -> 'New merge request'
+
   # compute sha1 for any file
   git hash-object path/to/file.ext
 

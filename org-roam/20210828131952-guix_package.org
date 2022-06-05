@@ -29,27 +29,26 @@
   3 - shows all the build log output on standard error
 
   #+BEGIN_SRC bash :results output
-  guix package --list-available=ruby
-
-  # list all installed packages
-  guix package --list-installed
+  # list all installed / available packages...
+  guix package --list-available # -I
+  guix package --list-installed # -A
+  # ... matching '.*ema.*'
+  guix package --list-installed=ema # -I ema
+  guix package --list-available=ema # -A ema
 
   # export the list installed packages
   guix package --export-manifest > manifest.scm
   # reproduce, i.e. reinstall packages
-  guix package --manifest=manifest.scm
+  guix package --manifest=manifest.scm # -m manifest.scm
 
   guix package --list-generations
   guix package --switch-generation=PATTERN
   guix package --roll-back
-  guix package --remove python --install guile
-  guix package  -r      python  -i       guile
+  guix package --remove python --install guile # -r python -i guile
   guix install                           guile
-  # install specific package version
-  guix package                 --install bat@0.18.3
+  guix install bat@0.18.3  # install specific package version
 
-  guix package  -u
-  guix package --upgrade
+  guix package --upgrade # -u
   guix           upgrade --dry-run
   guix           upgrade --do-not-upgrade="(openjdk|postgres|fish).*"
   # guix package -i mycli --with-latest=mycli
@@ -75,23 +74,24 @@
   Can be also e.g. source tarballs, which also result from derivation builds
 
 * Creating package
-  https://guix.gnu.org/cookbook/en/guix-cookbook.html#Packaging-Tutorial
-  #+BEGIN_SRC bash :results output
-    # download a file from the URI, add it to the store, and print both its file
-    # name in the store and its SHA256 hash
-    guix download URI
+https://guix.gnu.org/cookbook/en/guix-cookbook.html#Packaging-Tutorial
+#+BEGIN_SRC bash :results output
+  # download a file from the URI, add it to the store, and print both its file
+  # name in the store and its SHA256 hash
+  guix download URI
+  # compute the hash of any (already downloaded) file
+  guix hash file
 
-    # compute the hash of any (already downloaded) file
-    guix hash file
-
-    #
-    guix build --load-path=./gnu/packages --keep-failed <package>
-    cd $GUIX_CHECKOUT
-    ./pre-inst-env guix build --keep-failed ruby@2.1
-
-    # or
-    guix package --install-from-file=my-hello.scm
-  #+END_SRC
+  #
+  guix build --load-path=./gnu/packages --keep-failed <package>
+  cd $GUIX_CHECKOUT
+  ./pre-inst-env guix build --keep-failed ruby@2.1
+  # or
+  guix package --install-from-file=my-hello.scm
+  # or
+  guix package --load-path=./ --manifest=./games/packages/factorio.scm --list-available=factorio
+  guix package --load-path=./ --install=factorio
+#+END_SRC
 
 * Garbage collection
   #+BEGIN_SRC bash :results output
