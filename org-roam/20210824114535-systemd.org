@@ -56,9 +56,7 @@
   logger "Enter messages into the system log: Hello Logs"
   journalctl --since "1m ago" | grep Hello
 
-  # access kernel logs...
-  dmesg
-  # ... with human-readable timestamps
-  dmesg -T
-  dmesg --ctime
+  # access kernel logs / system logs
+  dmesg -T        # human-readable timestamps
+  dmesg --ctime   # human-readable timestamps
   #+END_SRC

@@ -3,6 +3,17 @@
 :END:
 #+title: Racket
 
+* Factorio Mods
+** Rampant
+Last change May 2022; Lua 97.0% Racket 3.0%
+https://github.com/veden/Rampant
+https://mods.factorio.com/mod/Rampant
+
+** Planning
+Last change June 2020; Racket 100.0%
+https://github.com/jackfirth/planning.git
+https://pkgs.racket-lang.org/package/planning
+
 * Command line snippets
   #+BEGIN_SRC bash :results output
   # package management
@@ -234,24 +245,26 @@ ls -la /tmp/hello.txt.pp
 echo \
 "#lang pollen
 ◊(define metal \"Plutonium\")
- 
+
 Markdown & Pollen + ◊metal
 ---------------
- 
+
 + You **wanted** ◊metal — you _got_ it.
- 
+
 + [search for ◊metal](https://google.com/search?q=◊metal)
 " > /tmp/downtown.html.pmd
 #+END_SRC
+
+#+RESULTS:
 
 #+BEGIN_SRC bash :results output
 # raco pkg install pollen
 # cd /tmp && raco pollen start
 echo \
 "#lang pollen
- 
+
 ◊headline{Pollen markup}
- 
+
 ◊items{
   ◊item{You ◊strong{wanted} it — you ◊em{got} it.}
   ◊item{◊link[\"https://google.com/search?q=racket\"]{search for Racket}}

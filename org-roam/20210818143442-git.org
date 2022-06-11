@@ -1,11 +1,12 @@
 :PROPERTIES:
 :ID:       0c0dfeb4-c488-4444-aeaa-088c6ce1c9df
 :END:
-#+title: Git
+#+title: Git and Mercurial
 
 OID - Object Identifier
 
-#+BEGIN_SRC bash :results output
+* Git
+#+BEGIN_SRC fish :results output
   # gitlab: create pull request: '+' -> 'New merge request'
 
   # compute sha1 for any file
@@ -73,13 +74,14 @@ OID - Object Identifier
   # no plus minus signs
   git diff --color <sha1> <sha1> | sed -r "s/^([^-+ ]*)[-+ ]/\\1/" | less -r
 
-  # number of lines changed between two commits
+  # stats/statistics: number of lines changed between two commits
   git diff --stat <commit-ish> <commit-ish>
+  git diff --stat cmt..cmt~                  # commit vs.its parent/predecessor
 
-  # files changed
+  # files changed between two...
   git diff --name-only HEAD~1                # in last commit
-  git diff --name-only <branch1> <branch2>   # between two branches
-  git diff --name-only <branch1>..<branch2>  # between two branches
+  git diff --name-only <branch1> <branch2>   # between 2 branches
+  git diff --name-only <branch1>..<branch2>  # between 2 branches
   git diff --name-only <branch>              # between <branch> and the HEAD
   git diff --name-only 5890e37..ebbf4c0      # between 2 commits
   git diff --name-status <branch1> <branch2> # show status D-deleted M-modified
@@ -305,4 +307,10 @@ OID - Object Identifier
   git tag <tagname>
   # annotated, signed tag or tags with a message will be pushed by `git push ...`
   git tag --annotate <tagname>
+#+END_SRC
+
+* Mercurial
+#+BEGIN_SRC fish :results output
+  guix install mercurial
+  hg clone https://hg.sr.ht/~yoctocell/guixrc
 #+END_SRC

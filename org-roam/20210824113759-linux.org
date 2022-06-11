@@ -875,9 +875,9 @@
   # i.e. login to remote host using authorized public key
   ssh-copy-id USER@HOST
 
-  # :ssh mount folder/filesystem through SSH. Install SSHFS from
-  # http://fuse.sourceforge.net/sshfs.html.
-  # Mount a folder securely over a network
+  # sshfs - network filesystem client to connect to SSH servers
+  # See http://fuse.sourceforge.net/sshfs.html.
+  # mount a folder/filesystem securely over a network
   sshfs USER@HOST:/path/to/dir ./path/to/mount/point
 
   # mound windows shares under linux
@@ -1117,8 +1117,10 @@
   sudo -i
 
   # user management
-  groups USER                                 # print the groups a user is in
-  cat /etc/group                              # list available groups
+  groups USER             # groups a user is in
+  id                      # real and effective user and group IDs
+  cat /etc/group          # available groups
+  gpasswd                 # administer /etc/group and /etc/gshadow
   sudo adduser USER
   sudo deluser --remove-home USER             # userdel is a low level utility
   sudo usermod --groups GROUP --append USER   # app USER to the GROUP
@@ -1183,6 +1185,8 @@
 
   # Add and remove modules from the Linux Kernel
   modprobe -a vboxguest vboxsf vboxvideo
+  # list(?) linux kernel modules
+  modprobe --show-config
 
   # :vbox
   sudo aptitude install virtualbox-guest-additions-iso
@@ -1407,10 +1411,13 @@ Which version is installed?
 
 * Disk Devices
   #+BEGIN_SRC bash :results output
-  # :usb :drive :drives :disk - list block devices
+  # :usb :drive :drives :dis
   # :fdisk :mount :udevadm :udiskie :udisksctl :block-device :boot
-  lsblk
+  lsblk         # list block devices
   lsblk --nodeps
+  findmnt       # find mounted filesystem
+  blkid         # locate/print block device attributes; show the UUIDs
+  ls -la /dev/usb
 
   # Format disk / usb drive
   # 1. erase everything on the device
