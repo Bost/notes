@@ -18,7 +18,7 @@ OS for smartphones, tablets, and set-top boxes, based on Android; mostly free an
 Successor to CyanogenMod
 
 
-#+begin_src sh
+#+BEGIN_SRC bash :results output
 wget https://spflashtool.com/download/SP_Flash_Tool-5.1916_Linux.zip
 
 sudo add-apt-repository ppa:linuxuprising/libpng12
@@ -26,7 +26,7 @@ sudo apt update
 sudo apt install libpng12-0
 
 bash -c ./flash_tool.sh
-#+end_src
+#+END_SRC
 
 
 https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300M/Z300M_UnlockTool_Android_N_9003_signed.zip

@@ -3,11 +3,17 @@
 :END:
 #+title: Guix Home
 
+Almost the like `guix system` but for dotfiles.
+Achieved by composing services (service extension mechanism)
+
 Manage reproducible development environments.
 https://sr.ht/abcdw/rde/ (Andrew Tropin)
 
 In Terminal -> Preferences -> General: switch on "Run command as login shell"
 (Otherwise ~/.bash_profile is not sourced)
+
+On Guix, the “plugdev” group does not exist and eudev is used instead of udev.
+Thus the suggestion was to use the following rule instead:
 
 #+BEGIN_SRC shell :results output
 info Guix Home

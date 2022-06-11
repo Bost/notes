@@ -3,6 +3,10 @@
 :END:
 #+title: Guile
 
+* Guile vs. guix repl
+Compared to just launching the guile command, `guix repl` guarantees that all the
+Guix modules and all its dependencies are available in the search path.
+
 Guile is an implementation of the Scheme programming language.
 
 See `info "(guile)Concept Index"`
