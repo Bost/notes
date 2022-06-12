@@ -7,13 +7,15 @@ TWRP
 Team Win Recovery Project
 https://www.mojandroid.sk/twrp-recovery-android-aplikacia/
 
-ADB
-Android Debug Bridge
+* Android Debug Bridge ADB
+Can be used to connect an android device with a computer using an USB cable or a
+wireless connection. It can be used to execute commands on the phone or transfer
+data between the device and the computer.
+See also chrome://inspect/#devices
 
-APK
-Android Package Kit
+* Android Package Kit APK
 
-LineageOS
+* LineageOS
 OS for smartphones, tablets, and set-top boxes, based on Android; mostly free and open-source
 Successor to CyanogenMod
 
@@ -38,8 +40,6 @@ https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android
 http://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_N_9003_signed.zip
 
 #+BEGIN_SRC shell
-  exit 1 # just in case ...
-
   set cmd "ip address"
   eval $cmd
   #...
@@ -68,20 +68,85 @@ http://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_
 * Androind: USB transfer with Media Transfer Protocol
   mtp - Media Transfer Protocol
 #+BEGIN_SRC shell
-  cd /run/user/$UID/gvfs         # bash
-  cd "/run/user/"(id -u)"/gvfs"  # fish
+  ls -la /dev/usb
+  ls -la /dev/bus/usb/
+  cd /run/user/$UID/gvfs             # in bash
+  # id --user  - print only the effective user ID
+  cd "/run/user/"(id --user)"/gvfs"  # in fish-shell
   jmtpfs --listDevices
+  mtp-detect
+  fusermount
+  # Filesystem in Userspace (FUSE)
   # SP Flash Tool
   # Smart Phone Flash Tool
+
+  # see
+  # http://reactivated.net/writing_udev_rules.html
+  # https://framagit.org/tyreunom/guix-android
+  # https://github.com/whoozle/android-file-transfer-linux/issues/301
+
+  cd /media/bost/elements/Pictures
+  ~/dev/android-file-transfer-linux/build/cli/aft-mtp-cli
+  Phone> cd DCIM/Camera/
+  Phone> ls
+  Phone> get filename.ext # download / transfer: phone    -> computer
+  Phone> put filename.ext #  upload  / transfer: computer -> phone
+
+  # On Ubuntu:
+  # mtp://SAMSUNG_SAMSUNG_Android_R58N10C71EM/
+  #
+  # ❯ lsusb
+  # ...
+  # Bus 005 Device 003: ID 04e8:6860 Samsung Electronics Co., Ltd Galaxy A5 (MTP)
+  # ...
+  # ❯ findmnt | grep fuse
+  # │ ├─/sys/fs/fuse/connections                       fusectl                fusectl         rw,nosuid,nodev,noexec,relatime
+  # │ │ ├─/run/user/1000/gvfs                          gvfsd-fuse             fuse.gvfsd-fuse rw,nosuid,nodev,relatime,user_id=1000,group_id=1000
+  # │ │ └─/run/user/1000/doc                           portal                 fuse.portal     rw,nosuid,nodev,relatime,user_id=1000,group_id=1000
+  # ❯ jmtpfs --listDevices
+  # Device 0 (VID=04e8 and PID=6860) is a Samsung Galaxy models (MTP).
+  # Available devices (busLocation, devNum, productId, vendorId, product, vendor):
+  # 5, 3, 0x6860, 0x04e8, Galaxy models (MTP), Samsung
+  # ❯ lsmod | grep -i fuse # shows nothing, i.e. no fuse kernel module is loaded
+  # ❯ id   # user groups
+  # uid=1000(bost) gid=1000(bost) groups=1000(bost),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),121(lpadmin),132(lxd),133(sambashare),138(libvirt),998(docker)
+  # ❯ mount | rg fuse
+  # fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+  # gvfsd-fuse on /run/user/1000/gvfs type fuse.gvfsd-fuse (rw,nosuid,nodev,relatime,user_id=1000,group_id=1000)
+  # portal on /run/user/1000/doc type fuse.portal (rw,nosuid,nodev,relatime,user_id=1000,group_id=1000)
 #+END_SRC
 
 #+BEGIN_SRC shell
-# :android
+  # on Ubuntu
   sudo aptitude install android-tools-adb android-tools-fastboot
-  # check plugdev membership
-  groups
-  adb devices; dmesg; adb logcat; adb shell
+  groups # check plugdev membership
+
+  adb devices
+  dmesg --ctime | grep usb # --ctime  - human-readable timestamps
+  # [...] usb 5-3: new high-speed USB device number 4 using xhci_hcd
+  # [...] usb 5-3: New USB device found, idVendor=04e8, idProduct=6860, bcdDevice= 4.00
+  # [...] usb 5-3: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+  # [...] usb 5-3: Product: SAMSUNG_Android
+  # [...] usb 5-3: Manufacturer: SAMSUNG
+  # [...] usb 5-3: SerialNumber: R58N10C71EM
+  adb logcat      # view device log
+  adb shell
   adb push src dst
+
+  # on GuixOS
+  guix install android-udev-rules
+  # android-udev-rules provides a set of udev rules to allow using Android
+  # devices with tools such as `adb' and `fastboot' without root privileges.
+  # Need to create `udev-service-type' the `operating-system' configuration.
+  # Additionally, an `adbusers' group must be defined and your user added to it.
+  # _Simply installing this package will not have any effect._ It is meant to be
+  # passed to the `udev' service.
 #+END_SRC
 
-
+* Extensible Host Controller Interface XHCI
+computer interface specification that defines a register-level description of a
+host controller for Universal Serial Bus (USB), which is capable of interfacing
+with USB 1.x, 2.0, and 3.x compatible devices. The specification is also
+referred to as the USB 3.0 host controller specification. It improves on the
+pre-existing Open Host Controller Interface (OHCI) and the Universal Host
+Controller Interface (UHCI)

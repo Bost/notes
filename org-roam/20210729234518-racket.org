@@ -55,7 +55,7 @@ https://pkgs.racket-lang.org/package/planning
       (+ a x)))
   ;; wrong:
   (define (f x)
-    (let ((a 1)))
+    (let ((a 1))) ; `a` is outside of `let`
     (+ a x))
   ;; correct:
   (define (g x)
@@ -63,7 +63,9 @@ https://pkgs.racket-lang.org/package/planning
     (+ a x))
   #+END_SRC
 
-* Various racket snippets
+* Various, racket snippets, etc.
+  arcade package - writing arcade games
+
   #+BEGIN_SRC racket
   ;; code block
   ;; https://docs.racket-lang.org/reference/begin.html
@@ -161,10 +163,10 @@ https://pkgs.racket-lang.org/package/planning
 * Read and evaluate code from string
   #+BEGIN_SRC racket
   (eval (read (open-input-string "(+ 1 2)")))
-  ;; or
+  ;; or:
   (with-input-from-string "(+ 1 2)"
     (lambda () (eval (read))))
-  ;; or
+  ;; or:
   (eval (call-with-input-string "(+ 1 2)" read)) ;; string port is auto-closed
   #+END_SRC
 
@@ -189,8 +191,7 @@ https://pkgs.racket-lang.org/package/planning
 
 * External commands
   #+BEGIN_SRC racket
-  ;; return code
-  (system/exit-code "ls")
+  (system/exit-code "ls")   ;; terminate (REPL) with return code
   #+END_SRC
 
 * PLT PLaneT
@@ -204,6 +205,7 @@ https://pkgs.racket-lang.org/package/planning
 * Scribble and Pollen
 Scribble - collection of tools for creating prose documents—papers, books,
 library documentation, etc.—in HTML or PDF (via Latex) form.
+
 #+BEGIN_SRC bash :results output
 echo \
 "#lang scribble/base
@@ -218,6 +220,34 @@ ls -la /tmp/mouse.scrbl
 # scribble --htmls /tmp/mouse.scrbl  # creates "mouse/index.html" for Sub-sections
 scribble --pdf   /tmp/mouse.scrbl  # creates "mouse.pdf". Requires `guix install texlive` (2.6 GB)
 # scribble --latex /tmp/mouse.scrbl  # creates "mouse.tex"
+#+END_SRC
+
+
+#+BEGIN_SRC bash :results output
+echo \
+"#lang scribble/report
+
+@; scribble --pdf crypto_mining.scrbl   # compile
+@; evince crypto_mining.pdf & disown    # view / verify
+
+@(require scribble/core scribble/manual)
+
+@(define some-constant \"foo\")
+
+@; the dot '.' means variable number of arguments
+@(define (block name . items)
+  (make-element
+   (make-style #f null)
+                (cons name items)))
+
+@(define (block-name name)
+   (string-append name \"\n\"))
+" > /tmp/report.scrbl
+ls -la /tmp/report.scrbl
+# scribble         /tmp/report.scrbl  # creates "report.html"
+# scribble --htmls /tmp/report.scrbl  # creates "report/index.html" for Sub-sections
+scribble --pdf   /tmp/report.scrbl  # creates "report.pdf". Requires `guix install texlive` (2.6 GB)
+# scribble --latex /tmp/report.scrbl  # creates "report.tex"
 #+END_SRC
 
 Pollen - publishing system for writing functional digital web-based books. It
@@ -255,8 +285,6 @@ Markdown & Pollen + ◊metal
 " > /tmp/downtown.html.pmd
 #+END_SRC
 
-#+RESULTS:
-
 #+BEGIN_SRC bash :results output
 # raco pkg install pollen
 # cd /tmp && raco pollen start
@@ -271,6 +299,22 @@ echo \
 }
 " > /tmp/uptown.html.pm
 #+END_SRC
-#+RESULTS:
 
-arcade package - writing arcade games
+* Source code documentation, docstrings
+Write in-source documentation by using scribble/srcdoc
+See https://stackoverflow.com/a/53991442
+
+When using define/doc then examples can also be used as unit tests.
+https://github.com/greghendershott/frog/blob/master/frog/private/define-doc.rkt
+
+#+BEGIN_SRC racket
+(require (for-syntax racket/syntax))
+
+(define-syntax (define/doc stx)
+(syntax-case stx ()
+  [(_ id doc-string expr)
+   (with-syntax
+       ([name (format-id #'id "~a-doc" #'id)])
+     #'(begin (define id expr)
+              (define name doc-string)))]))
+#+END_SRC

@@ -737,3 +737,12 @@ Filter list:
   environment for Emacs using Conflict-free Replicated Data Types.
 
 [[https://www.youtube.com/watch?v=wqdT0xKMQT8][System Crafters: The Hidden Value of the Tab Bar]]
+
+* Startup / Loading process
+[[https://youtu.be/74zOY-vgkyw?t=432][Emacs From Scratch #1 - Getting Started with a Basic Usable Configuration]]
+`(require ...)` looks in the directories defined by `load-path` variable
+#+BEGIN_SRC fish :results output
+mkdir emacs-from-scratch && cd emacs-from-scratch
+touch init.el
+emacs --no-init-file --load init.el & disown
+#+END_SRC
