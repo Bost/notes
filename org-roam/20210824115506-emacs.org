@@ -44,7 +44,7 @@
   ;; paredit: wrap square brackets around sexp
   M-x paredit-wrap-square
 
-  ;; paredid
+  ;; paredit
   | ~C-k~       | kill the rest in the sexp           |
   | ~M-(~       | insert-parentheses                  |
   | ~M-)~       | move-past-close-and-reindent        |
@@ -54,28 +54,22 @@
   ;; indent: move text left by four spaces (M-x indent-rigidly ~C-x TAB~)
   ~C-u -4 C-x TAB~
 
-  ;; :regexp https://www.emacswiki.org/emacs/RegularExpression#regexp
-  | \\#                | increment the number found             |
-  | \\s-               | increment the whitespace               |
-  | %s#\(.\{2\}\)#aa#g | substitute / find exactly 2 occurences |
-  | \(.*?\)            | lazy match                             |
+  ;; https://www.emacswiki.org/emacs/RegularExpression#regexp
+  | \\#                | increment the number found         |
+  | \\s-               | increment the whitespace           |
+  | %s#\(.\{2\}\)#aa#g | match / find exactly 2 occurrences |
+  | \(.*?\)            | lazy match                         |
+  | \(.\{2\}\)         | match / find exactly 2 occurrences |
+  | \(http[[:print:]]*\)/  | match / find url                   |
 
-  ;; :regexp whitespace character, as defined by the syntax table, typically
-  ;; [\t\r\n\v\f]
-  [:space:]
-  \\s-
+  ;; regexp - syntax classes must be used within square brackets
+  | [[:space:]] | whitespace character, as defined by the syntax table, typically [\t\r\n\v\f] |
+  | \\s-    | whitespace character, as defined by the syntax table, typically [\t\r\n\v\f] |
+  | [[:blank:]] | a space or tab character                                                     |
 
-  ;; :regex a space or tab character
-  [:blank:]
-
-  ;; :regexp substiture / find exactly 2 occurences
-  %s/\(.\{2\}\)/aa/g
-
-  ;; utf8; unicode: describe char at the point
-  M-x describe-char
-
-  ;; utf8; unicode: insert unicode char upper-case sigma U+2211 ∑
-  M-x ucs-insert RET 2211
+  ;; utf8 unicode
+  M-x describe-char       ;; describe char at the point
+  M-x ucs-insert RET 2211 ;; insert unicode char upper-case sigma U+2211 ∑
 
   hide: show: folding: enable folding M-x hs-minor-mode
   | ~C-c @ C-c~ | toggle hiding: fold / unfold |
