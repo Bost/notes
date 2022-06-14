@@ -1330,35 +1330,33 @@ Which version is installed?
   text processing, data extraction, reporting tool
 
   #+BEGIN_SRC bash :results output
-  # for tabular data
-  awk
-
   # cut huge file: content between lines 10 and 20 / print 5th line
   sed -n "10,20p" /path/to/file / sed -n 5p /path/to/file
-
   # cut huge file: content between lines 10 and 20
   # see https://unix.stackexchange.com/a/47423
   awk 'NR >= 10 && NR <= 20' /path/to/file > /path/to/cut-file
+  # awk is for tabular data
 
-  # replace 1 occurence
+  # append two lines at the end of the file / EOF
+  sed --in-place '$ aline3\nline4' /path/to/file  # doesnt work
+  # add curry bracket behind the 1st occurence of '#+title: something'
+  sed --in-place "s/\(#+title:.*\)/\1\n{/" /path/to/file
+  # replace / substitute 1st occurence
   sed --in-place "s/foo/FOO/" /path/to/file
-
   # replace all occurences of "foo" (globally)
   sed --in-place "s/foo/FOO/g" /path/to/file
-
-  # remove empty lines (globally)
+  # remove / delete empty lines (globally)
   sed --in-place '/^\s*$/d' /path/to/file
-
+  # remove / delete line
+  sed --in-place "/foo/d" /path/to/file
   # replace newlines with space
   sed ':a;N;$!ba;s/\n/ /g'
-
+  # :ascii :ebcdic fix new lines and empty chars; \x85 - hexadecimal char
+  sed "s/\x85/\n/g" <log.txt >log.nl.txt; \
+  sed "s/\x85/\n/g" <log.nl.txt >log.nl.00.txt
   # ignore lines between marker1 and marker2
   # see https://stackoverflow.com/a/40433880/5151982
   mysql_install_db 2>&1 | sed '/^$marker1/,/$marker2$/d'
-
-  # :sed :ascii :ebcdic fix new lines and empty chars; \x85 - hexadecimal char
-  sed "s/\x85/\n/g" <log.txt >log.nl.txt; \
-  sed "s/\x85/\n/g" <log.nl.txt >log.nl.00.txt
   #+END_SRC
 
 * tail vs less
