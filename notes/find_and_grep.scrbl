@@ -137,15 +137,19 @@
 
   # Prompt for Approval Before Executing Commands
 
-  # find files with extension; fdfind is aliased to `f`
-  fdfind -e rkt
+  # find files with extension; fdfind (Ubuntu) / fd (Guix) is aliased to `f`
+  fd --extension rkt
+  fd          -e rkt
   find -name "*.rkt"
+  # regex:
+  fd --hidden --full-path '.envrc$' /path/to/dir
+  f  --hidden --full-path '.envrc$' ~
 
   # ripgrep
   rg --type racket  --word-regexp SearchText
+  rg     -t racket  --word-regexp SearchText
   rg --type clojure --word-regexp SearchText
-  rg -t racket  --word-regexp SearchText
-  rg -t clojure --word-regexp SearchText
+  rg     -t clojure --word-regexp SearchText
 
   # fish-shell, ripgrep and sed the stream editor
   # fish-shell arrays start with 1

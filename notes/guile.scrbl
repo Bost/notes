@@ -3,8 +3,8 @@
 #+title: Guile
 
 @block{@block-name{Guile vs. guix repl}
-  Compared to just launching the guile command, `guix repl` guarantees that all the
-  Guix modules and all its dependencies are available in the search path.
+  `guix repl` guarantees that all the Guix modules and all its dependencies are
+  available in the search path. `guile` doesn't give such guarantees
 
   Guile is an implementation of the Scheme programming language.
 
@@ -146,9 +146,12 @@
   #+END_SRC
 }
 
-@block{@block-name{G-expressions}
-  'gexp' is a form of S-expressions adapted to build expressions. It can contain
-  a package record or any file-like object which will be replaced by its '/gnu/'
+@block{@block-name{G-expression - gexp}
+  - a form of S-expression adapted to build expressions. It can contain a
+    package record or any file-like object which will be replaced by its '/gnu/'
+  - a way of staging code to run as a derivation.
+  - make it really easy to do complicated things, mostly by providing an easy
+    way to handle the representation of things that can end up as store items.
 
   Syntactic forms:
   | #~  | gexp            | quasiquote       |

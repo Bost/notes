@@ -13,21 +13,15 @@
   templates: /etc/grub.d
   settings: /etc/default/grub
 
-  grub-mkconfig generates a grub config file. update-grub is an alias for
-  grub-mkconfig:
-  #+BEGIN_SRC bash :results output
-  cat /usr/sbin/update-grub
-  #+END_SRC
+  # of guix
+  guix install grub
+  grub-mkconfig   # generate a grub config file.
+  grub-mkimage    # make a bootable image of GRUB.
+  sudo grub-mkconfig # --output=/boot/grub/grub.cfg
 
-  #+RESULTS:
-  : #!/bin/sh
-  : set -e
-  : exec grub-mkconfig -o /boot/grub/grub.cfg "$@"@""
-
-  On Ubuntu when "you may need to re-run your boot" appears:
-  #+BEGIN_SRC bash :results output
+  update-grub     # alias for grub-mkconfig: cat /usr/sbin/update-grub
+  # On Ubuntu when "you may need to re-run your boot" appears:
   sudo update-grub
-  #+END_SRC
 }
 
 @block{@block-name{Bluetooth}
@@ -1459,31 +1453,29 @@
   # :usb :drive gnome userspace virtual fs
   mount | grep gvfs; cd ...
   #+END_SRC
-
 }
 
-  @block{@block-name{Swap}
-    [[https://averagelinuxuser.com/linux-swap/][Linux swap: what it is and how to use it]]
-    New installations of Ubuntu 18.04 use a swap file instead of swap partition
-    8 * 1024 * 1048576 MB = 8 * 1073741824 B = 8589934592 B = 8GB
-    TODO create swap file using fallocate;
-    see https://www.tecmint.com/add-swap-space-on-ubuntu/
-    /proc/sys/vm/swappiness
-    /proc/sys/vm/vfs_cache_pressure
-    See [[http://www.pqxx.org/development/swapspace/][swapspace]] - the swap file manager
-    #+BEGIN_SRC bash :results output
-    set swapfile /swapfile
-    sudo dd status=progress if=/dev/zero of=$swapfile count=8388608 bs=1024
-    # sudo fallocate --length 8G $swapfile
-    sync   # synchronize cached writes to persistent storage
-    # permissions should be: -rw------- 1 root root
-    sudo chmod 0600 $swapfile # ls -la $swapfile
-    sudo mkswap $swapfile
-    sudo swapon $swapfile
-    swapon --summary
-    free -h
-    #+END_SRC
-  }
+@block{@block-name{Swap}
+  [[https://averagelinuxuser.com/linux-swap/][Linux swap: what it is and how to use it]]
+  New installations of Ubuntu 18.04 use a swap file instead of swap partition
+  8 * 1024 * 1048576 MB = 8 * 1073741824 B = 8589934592 B = 8GB
+  TODO create swap file using fallocate;
+  see https://www.tecmint.com/add-swap-space-on-ubuntu/
+  /proc/sys/vm/swappiness
+  /proc/sys/vm/vfs_cache_pressure
+  See [[http://www.pqxx.org/development/swapspace/][swapspace]] - the swap file manager
+  #+BEGIN_SRC bash :results output
+  set swapfile /swapfile
+  sudo dd status=progress if=/dev/zero of=$swapfile count=8388608 bs=1024
+  # sudo fallocate --length 8G $swapfile
+  sync   # synchronize cached writes to persistent storage
+  # permissions should be: -rw------- 1 root root
+  sudo chmod 0600 $swapfile # ls -la $swapfile
+  sudo mkswap $swapfile
+  sudo swapon $swapfile
+  swapon --summary
+  free -h
+  #+END_SRC
 }
 
 @block{@block-name{Sound}
@@ -1498,11 +1490,11 @@
   pacmd list-sources
   # 1. verify iterface in:
   qjackctl
-  # then A) "pause" pulseaudio while qjackctl runs and "respawn" pulseaudio when
+  # then A. "pause" pulseaudio while qjackctl runs and "respawn" pulseaudio when
   # qjackctl is terminated.
   pasuspender qjackctl
-  # or alternatively to A):
-  # B) kill the existing pulseaudio process, start the jack_control process and
+  # or alternatively to A.:
+  # B. kill the existing pulseaudio process, start the jack_control process and
   # re-start the pulseaudio process.
   pulseaudio --kill
   jack_control start; and jack_control exit
