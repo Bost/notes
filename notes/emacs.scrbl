@@ -91,8 +91,11 @@
   ;; files: file format
   ~C-x RET f~
 
-  ;; nrepl: M-x nrepl-jack-in
+  ;; nrepl: M-x nrepl-jack-in - ??? this is probably for clojure
   ~C-c M-j~
+
+   ;; repl: M-x ielm ELISP>
+  ~M-m m'~
 
   ;; testing: startup: skip ~/.emacs (if messed up) / don't load the init file
   emacs --no-init-file     ;; also: emacs -q

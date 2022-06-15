@@ -2,8 +2,23 @@
 
 #+title: Guix
 
-https://systemcrafters.cc/craft-your-system-with-guix/
-https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
+@block{@block-name{Various links}
+  https://github.com/pjotrp/guix-notes/blob/master/HACKING.org
+  ;; Brainiarc7/guix-notes is 1 commit ahead, 279 commits behind pjotrp:master
+  https://github.com/Brainiarc7/guix-notes/blob/master/HACKING.org
+  ;; spoelstraethan/guix-notes is 6 commits ahead, 6 commits behind pjotrp:master
+  https://github.com/spoelstraethan/guix-notes/blob/master/HACKING.org
+  https://systemcrafters.cc/craft-your-system-with-guix/
+}
+
+@block{@block-name{Chris Baines / GNU Guix Presentation}
+  https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
+  2004 Nix announced
+  2012 Guix announced
+
+  GNU Guix - GNU+Linux distribution, with declarative configuration for the
+             system and services
+}
 
 @block{@block-name{RDE Reproducible Development Environment}
   [[https://github.com/abcdw/notes/blob/master/notes/20211111141408-guix_shell_overview.org][Andrew Torpin: guix shell: Overview - Notes]]
@@ -11,15 +26,15 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   Build an environment with PACKAGE-dependencies, and execute there the
   COMMAND or an interactive shell in that environment
   #+BEGIN_SRC bash :results output
-  guix shell [OPTION]... PACKAGE... [-- COMMAND...]
+    guix shell [OPTION]... PACKAGE... [-- COMMAND...]
   #+END_SRC
 
   @block{@block-name{RDE channel lock / channel freeze}
      [[https://youtu.be/UMCHuHSlVWk?t=1622][YouTube: Andrew Torpin: guix shell: Overview]]
      Full freeze of Guix channels to the versions defined in 'channels.scm'
      #+BEGIN_SRC bash :results output
-     guix describe -f channels > ./channels.scm
-     guix time-machine --channels=./channels.scm -- shell REST-OF-GUIX-SHELL-ARGS
+       guix describe -f channels > ./channels.scm
+       guix time-machine --channels=./channels.scm -- shell REST-OF-GUIX-SHELL-ARGS
      #+END_SRC
    }
 }
@@ -29,27 +44,44 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   edit `~/.config/guix/channels.scm` and run `guix pull`.
   To fetch a package from a previous guix revision see [[https://guix.gnu.org/manual/devel/en/html_node/Inferiors.html][Inferiors]].
 
-  Display information about the channels currently in use.
+  https://www.gnu.org/software/guile/manual/guile.html#REPL-Commands
+  ;; REPL debugging:
+  ;; displays the call stack (aka backtrace) at the point where the debugger was
+  ;; entered
+  scheme@"@"(guile-user) [1]> ,bt
+  ;; change the stackframe
+  scheme@"@"(guile-user) [1]> ,up
+  scheme@"@"(guile-user) [1]> ,frame 3
+  scheme@"@"(guile-user) [1]> ,down
+  ;; local variables
+  scheme@"@"(guile-user) [1]> ,locals
+
+  # Run command-line scripts provided by GNU Guile and related programs.
+  guild
+  guild disassemble         # Disassemble a compiled .go file.
+
+  # Hall is a command-line application and a set of Guile libraries that allow you
+  # to quickly create and publish Guile projects. It allows you to transparently
+  # support the GNU build system, manage a project hierarchy & provides tight
+  # coupling to Guix.
+  guile-hall
+
   #+BEGIN_SRC bash :results output
     guix describe
     guix describe --list-formats
+    # Display information about the channels currently in use.
     guix describe --format=channels
     guix describe --format=human
-  #+END_SRC
-  #+BEGIN_SRC bash :results output
 
     guix repl --load-path=.
-
     guix repl << EOF
-      (use-modules (guix channels)) %default-channels
+      ;; this won't work - %default-system-profile is not exported
+      ;; (use-modules (guix scripts home))       %default-system-profile
+      (use-modules (guix channels))           %default-channels
       (use-modules (gnu system file-systems)) %fuse-control-file-system
-  EOF
-  #+END_SRC
-  #+BEGIN_SRC bash :results output
-    guix repl << EOF
-       %load-path           ; guile module load-path
-       %load-compiled-path
-       (%site-dir)
+      %load-path           ; guile module load-path
+      %load-compiled-path
+      (%site-dir)
   EOF
   #+END_SRC
 }
@@ -71,7 +103,7 @@ https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   #+END_SRC
 
   #+BEGIN_SRC bash :results output
-  guix system reconfigure /path/to/configuration.scm
+  sudo guix system reconfigure /path/to/configuration.scm
   ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022 guest@"@"localhost
   #+END_SRC
 

@@ -33,8 +33,13 @@ guix home search .
 # guix home configuration file:
 $HOME_ENVIRONMENT/configuration.scm
 
-# generate a home environment definition from dotfiles:
-guix home import <config-dir>
+# generate a home environment definition from dotfiles and put it under /dst/dir
+guix home import /dst/dir
+
+# build some configuration without installing anything
+guix home build /path/to/configuration.scm
+# try out some configuration without installing anything
+guix home container /path/to/configuration.scm
 #+END_SRC
 
 See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][guix-lemp-container]] - LEMP WordPress Reproducible Environment
