@@ -10,45 +10,43 @@
 
   See `info "(guile)Concept Index"`
 
-  [[https://srfi.schemers.org/][SRFI]] - Scheme Requests for Implementation
+  [[https://srfi.schemers.org/][Scheme Requests for Implementation SRFI]]
 
   https://jeko.frama.io/en/install.html
 
   Ports are the way that Guile performs input and output
 
   #+BEGIN_SRC bash :results output
-  guix install guile-colorized
   #+END_SRC
 
   Then, you can configure your interpreter by modifying the ~/.guile file (create
   it if it doesn't exist) and put the following lines into it:
-  #+BEGIN_SRC scheme
+
   (use-modules (ice-9 readline)
+               ;; requires `guix install guile-colorized`
                (ice-9 colorized))
 
   (activate-readline)
   (activate-colorized)
-  #+END_SRC
 }
 
 @block{@block-name{Partial function application.}
   See [[https://srfi.schemers.org/srfi-26/srfi-26.html][Notation for Specializing Parameters without Currying]]
-  #+BEGIN_SRC scheme
+
   (use-modules (srfi srfi-26))
   (map (cut * 2 <>) (1 2 3 4))
   ;; also
   (define (partial fun . args)
     (lambda x (apply fun (append args x))))
-  #+END_SRC
 }
 
 @block{@block-name{Various code snippets}
-  #+BEGIN_SRC scheme
   (use-modules (ice-9 rdelim)
                (ice-9 popen)
                (ice-9 regex)
                (srfi srfi-1) ;; fold
-               #;(language cps intmap))
+               ;; (language cps intmap)
+               )
 
   (define (get-type o)
     "TODO implement: 1 is a number and an integer in the same type"
@@ -122,7 +120,6 @@
     (lambda (cmd) (string-join cmd " ")))
    (list
     "git" "config" "--local" "--list")))
-  #+END_SRC
 }
 
 @block{@block-name{Keywords}
@@ -147,20 +144,23 @@
 }
 
 @block{@block-name{G-expression - gexp}
+  - can expand paths in the store and act similar to backquote and comma for
+    list expansion - but use ‘#~’ and ‘#$’ instead. It can be used to
+    generate derivations.
   - a form of S-expression adapted to build expressions. It can contain a
     package record or any file-like object which will be replaced by its '/gnu/'
   - a way of staging code to run as a derivation.
   - make it really easy to do complicated things, mostly by providing an easy
     way to handle the representation of things that can end up as store items.
+  - can contain a package record or any other "file-like object" and, when that
+    'gexp' is serialized for eventual execution, the package is replaced by its
+    /gnu/store/... file name.
 
   Syntactic forms:
   | #~  | gexp            | quasiquote       |
   | #$  | ungexp          | unquote          |
   | #$@"@" | ungexp-splicing | unquote-splicing |
 
-  A 'gexp' can contain a package record or any other "file-like object" and,
-  when that 'gexp' is serialized for eventual execution, the package is replaced
-  by its /gnu/store/... file name
 }
 
 @block{@block-name{Module installation}

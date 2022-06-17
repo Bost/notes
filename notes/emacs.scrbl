@@ -51,9 +51,6 @@
   | ~M-s-right~ | paredit-forward-slurp-sexp (vcucni) |
   | ~M-s-left~  | paredit-forward-barf-sexp (vygrcaj) |
 
-  ;; indent: move text left by four spaces (M-x indent-rigidly ~C-x TAB~)
-  ~C-u -4 C-x TAB~
-
   ;; https://www.emacswiki.org/emacs/RegularExpression#regexp
   | \\#                | increment the number found         |
   | \\s-               | increment the whitespace           |
@@ -248,10 +245,9 @@
   ;; M-x evilnc-comment-or-uncomment-lines
   ~M-x ;~
 
-  ;; jump forward / backward to matching brace
-  ;; cursor may need to be behind closing ')'
-  ~C-M-f~
-  ~C-M-b~
+  | ~C-M-f~ | jump forward to matching brace  |
+  | ~C-M-b~ | jump backward to matching brace |
+  ;; cursor may need to be behind closing parenthesis ')'
 
   ;; immediate eval
   ~C-M-x~
@@ -262,7 +258,6 @@
   ;; M-x query-replace
   ~M-%~
 
-  ;;
   | ~M-u~ | M-x upcase-word     |
   | ~M-l~ | M-x downcase-word   |
   | ~M-c~ | M-x capitalize-word |
@@ -271,14 +266,17 @@
   M-x ispell-region
   M-x ispell-buffer
 
-  ;;
   | ~C-x (~               | macro: start                       |
   | ~C-x )~               | macro: stop                        |
   | ~C-x e~ or ~<f4>~     | macro: execute (e - execute again) |
   | ~M-5 <f4>~ or ~C-x e~ | macro: execute 5 times             |
 
-  ;; repeat n times following command
-  ~C-u n~
+  ;; repeat 4 times following command
+  ~C-u n <some-command>~
+  ;; indent: move text left by four spaces (M-x indent-rigidly ~C-x TAB~)
+  ~C-u -4 C-x TAB~
+  ;; move forward 4 lines
+  ~C-u 4 C-n~
 
   ;;
   | ~C-x u~        | M-x undo-tree-visualize |
@@ -306,32 +304,26 @@
   ;; files: next-buffer / previous-buffer
   ~C-x <left>~ / ~C-x <right>~
 
-  ;; copy-paste: kill line / kill sentence / yank
-  ~C-k~ / ~M-k~
-
-  ;; copy-paste: kill region (cut)
-  ~C-w~
-
-  ;; copy-paste: kill ring save (copy) / yank (paste last killed entry)
-  ~M-w~ / ~C-y~
+  | ~C-k~ | copy-paste: kill line                      |
+  | ~M-k~ | copy-paste: kill sentence - yank           |
+  | ~C-w~ | copy-paste: kill region - cut              |
+  | ~M-w~ | copy-paste: kill ring save - copy          |
+  | ~C-y~ | copy-paste: yank - paste last killed entry |
 }
 
 @block{@block-name{Git & Magit}
-  ;; magit: (magit-copy-section-value) i.e. current sha1 to clipboard
+  ;; (magit-copy-section-value) i.e. current sha1 to clipboard
   ~y s~
-
-  ;; magit: (magit-copy-buffer-revision) i.e. top sha1 to clipboard
+  ;; (magit-copy-buffer-revision) i.e. top sha1 to clipboard
   ~M-w~
+  ;; magit: spin-off / spinoff
+  git branch --track <new-branch-name>
 
   ;; copy-paste: cycle back through previous entries in the kill ring
   ~M-y~
 
-  ;; magit: spin-off / spinoff
-  git branch --track <new-branch-name>
-
   ;; check word
   M-x spell
-
   ;; ? check all document ?
   M-x flyspell-mode
 
@@ -391,24 +383,26 @@
   | ~t~ | mark / unmark (all) / toggle marking   |
 
   ;; fill / reflow text - see also auto-fill-mode
-  ;; spacemacs/toggle-auto-fill-mode SPC t F
-  M-x fill-paragraph (M-q)
+  ;; spacemacs/toggle-auto-fill-mode ~SPC t F~
+  ~M-q~
+  M-x fill-paragraph
   M-x fill-region ;; reflow all the paragraphs in the area
 
-  ;; parameter key
-  C-u
+  ;; parameter key / (universal-argument)
+  ~C-u~
 
   ;; sets the line wrap to 40 characters, M-q # activate the wrap
-  C-u 40 C-x f
+  ~C-u 40 C-x f~
 
   ;; center for given line width
   M-o M-s
 
   ;; isearch-forward-regexp
   C-M-s~
-
-  ;; incremental search forward / backward
-  ~C-s~ / ~C-r~
+  ;; incremental search forward
+  ~C-s~
+  ;; incremental search backward
+  ~C-r~
 
   ;; query-replace-regexp
   ~C-M-%~
@@ -422,20 +416,25 @@
   M-x grep
   M-x speedbar
 
-  ;; line numbers: relative / absolute
-  M-x linum-relative-toggle / global-linum-mode
+  ;; line numbers: relative
+  M-x linum-relative-toggle
+  ;; line numbers: absolute
+  M-x global-linum-mode
 
   ;; M-x eval-expression
   ~M-:~
 
+  ;; M-x eval-last-sexp and insert the result in the buffer; works only in the
+  ;; evil-insert-mode
+  ~C-U C-x C-e~
+
   ;; documentation reader
   ~M-g g~
 
-  ;; move forward 4 lines
-  ~C-u C-n~
-
-  ;; increase / decrease font size
-  ~C-x C-+~ / ~C-x C--~
+  ;; increase font size
+  ~C-x C-+~
+  ;; decrease font size
+  ~C-x C--~
 
   ;; problem: emacs does not uses fonts from /usr/share/fonts
   sudo apt install --yes libgtk2.0-dev

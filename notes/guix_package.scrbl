@@ -19,7 +19,6 @@
   guix package --with-latest=package
   guix package --without-tests=package
   #+END_SRC
-
 }
 
 @block{@block-name{Various commands}
@@ -68,19 +67,19 @@
 
   https://guix.gnu.org/manual/en/html_node/Invoking-guix-weather.html
   `guix weather` nars: size of the compressed archives
-
 }
 
 @block{@block-name{Substitutes}
   TODO what is 'substitutes' - update 'guix help wheather'
   Typically pre-built package binaries.
   Can be also e.g. source tarballs, which also result from derivation builds
-
 }
 
 @block{@block-name{Creating package}
-https://guix.gnu.org/cookbook/en/guix-cookbook.html#Packaging-Tutorial
-#+BEGIN_SRC bash :results output
+  https://guix.gnu.org/cookbook/en/guix-cookbook.html#Packaging-Tutorial
+
+  bag - as an intermediate form between package and derivation.
+
   # download a file from the URI, add it to the store, and print both its file
   # name in the store and its SHA256 hash
   guix download URI
@@ -96,17 +95,14 @@ https://guix.gnu.org/cookbook/en/guix-cookbook.html#Packaging-Tutorial
   # or
   guix package --load-path=./ --manifest=./games/packages/factorio.scm --list-available=factorio
   guix package --load-path=./ --install=factorio
-#+END_SRC
 }
 
 @block{@block-name{Garbage collection}
-  #+BEGIN_SRC bash :results output
-    # delete generations older than 45 days and free space until at least 10 GiB
-    # are available
-    guix gc --delete-generations=45d --free-space=10GiB
+  # delete generations older than 45 days and free space until at least 10 GiB
+  # are available
+  guix gc --delete-generations=45d --free-space=10GiB
 
-    # delete generations older than 2 months days and collect at least 10 GiB of
-    # garbage
-    guix gc --delete-generations=2m  --collect-garbage=10GiB
-  #+END_SRC
+  # delete generations older than 2 months days and collect at least 10 GiB of
+  # garbage
+  guix gc --delete-generations=2m  --collect-garbage=10GiB
 }

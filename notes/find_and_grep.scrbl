@@ -145,6 +145,10 @@
   fd --hidden --full-path '.envrc$' /path/to/dir
   f  --hidden --full-path '.envrc$' ~
 
+  # combine fdfind and ripgrep; show full files paths for the mathes
+  rg "<search-regex>" (f '<file-extention>$' /path/to/dir)
+  rg "define.*\(operating-system\b" (f 'scm$' ~/dev/guix/)
+
   # ripgrep
   rg --type racket  --word-regexp SearchText
   rg     -t racket  --word-regexp SearchText
