@@ -1,17 +1,12 @@
 #lang notes
 
 #+title: Find and Grep
-{
-}
 
 @block{@block-name{Find and Grep}
-#+BEGIN_SRC fish :results output
   # redirect; skip the "Permission denied" and "Invalid argument" errors
   find ./ -name file.ext 2>&1 | grep -v "Permission denied\|Invalid argument"
   # see also psub
-#+END_SRC
 
-#+BEGIN_SRC bash :results output
   # bash: find: redirect: separate / combine sdterr and stdout; does not work with
   # the tee command
   ./cmd.sh 1>std.out 2>std.err / ./cmd.sh &>combined.out
@@ -147,7 +142,11 @@
 
   # combine fdfind and ripgrep; show full files paths for the mathes
   rg "<search-regex>" (f '<file-extention>$' /path/to/dir)
+  rg 'dotspacemacs/layers' (f 'el$' ~/.emacs.d/)
   rg "define.*\(operating-system\b" (f 'scm$' ~/dev/guix/)
+
+  grep 'Spacemacs is ready.' (find ~/.emacs.d/ -type f -name '*.el')
+  find ~/.emacs.d/ -type f -name "*.el" -print0 | xargs -0 grep --files-with-matches "Spacemacs is ready."
 
   # ripgrep
   rg --type racket  --word-regexp SearchText
@@ -160,5 +159,4 @@
   set oldNew "oldText" "newText"
   set sFiles (rg --files-with-matches --type racket $oldNew[1])
   sed --in-place "s/$oldNew[1]/$oldNew[2]/g" $sFiles
-#+END_SRC
 }

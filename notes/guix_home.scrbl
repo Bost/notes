@@ -14,11 +14,7 @@ In Terminal -> Preferences -> General: switch on "Run command as login shell"
 On Guix, the “plugdev” group does not exist and eudev is used instead of udev.
 Thus the suggestion was to use the following rule instead:
 
-#+BEGIN_SRC shell :results output
-info Guix Home
-#+END_SRC
-
-#+BEGIN_SRC bash :results output
+info 'Guix Home'
 guix home reconfigure
 
 # list / search through all existing guix home services
@@ -40,14 +36,12 @@ guix home import /dst/dir
 guix home build /path/to/configuration.scm
 # try out some configuration without installing anything
 guix home container /path/to/configuration.scm
-#+END_SRC
 
 See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][guix-lemp-container]] - LEMP WordPress Reproducible Environment
 
 @block{@block-name{Packages in the current guix home profile}
-  #+BEGIN_SRC shell :results output
   ls -lA $HOME_ENVIRONMENT/profile/bin
-  #+END_SRC
+
   [[https://youtu.be/R5cdtSfTpE0][YouTube: System Crafters Live! - A First Look at Guix Home]]
   [[https://systemcrafters.net/live-streams/october-01-2021/][Notes: System Crafters Live! - A First Look at Guix Home]]
   https://guix-home.trop.in/Home-Configuration.html
@@ -57,42 +51,34 @@ See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][
   Two /boot/efi entries in the
 }
 
-@block{@block-name{Install packages}
-  #+BEGIN_SRC bash :results output
-  guix package -m manifest.scm
-  #+END_SRC
-}
+# Install packages
+guix package -m manifest.scm
 
 @block{@block-name{Setup IceCat web browser:}
-@block{@block-name{IceCat stuck at Cloudflare "Checking your browser before accessing..."}
-   [[https://issues.guix.gnu.org/45179][IceCat stuck at Cloudflare "Checking your browser before accessing..."]]
-   Install 'User-Agent Switcher' in IceCat and switch to
-     Desktop -> 'Linux / Firefox 83'
-   https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/
-   https://addons.mozilla.org/en-US/firefox/addon/user-agent-string-switcher/
+  @block{@block-name{IceCat stuck at Cloudflare "Checking your browser before accessing..."}
+     [[https://issues.guix.gnu.org/45179][IceCat stuck at Cloudflare "Checking your browser before accessing..."]]
+     Install 'User-Agent Switcher' in IceCat and switch to
+       Desktop -> 'Linux / Firefox 83'
+     https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/
+     https://addons.mozilla.org/en-US/firefox/addon/user-agent-string-switcher/
 
-   https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
+     https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
 
-   https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/
-   In options activate the "Place controls within the video player"
+     https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/
+     In options activate the "Place controls within the video player"
 
-   Disable GNU LibreJS
-}
+     Disable GNU LibreJS
+  }
 
-@block{@block-name{Open `about:config` and set:}
-   #+BEGIN_SRC bash :results output
-   privacy.resistFingerprinting = false
-   identity.fxaccounts.enabled = true
-   #+END_SRC
-   Login to https://accounts.firefox.com/signin and synchronize the account
-
-   Restart IceCat
-
-   #+BEGIN_SRC bash :results output
-   ssh-keygen
-   cat ~/.ssh/id_rsa.pub
-   #+END_SRC
-   }
+  # Open `about:config` and set:
+  privacy.resistFingerprinting = false
+  identity.fxaccounts.enabled = true
+  #
+  # Login to https://accounts.firefox.com/signin and synchronize the account
+  # Restart IceCat
+  #
+  ssh-keygen
+  cat ~/.ssh/id_rsa.pub
 }
 
 @block{@block-name{GitHub, GitLab:}
@@ -101,7 +87,6 @@ See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][
 }
 
 @block{@block-name{Clone repos}
-  #+BEGIN_SRC bash :results output
   cd dev
   set accountName "rostislav.svoboda"
 
@@ -113,19 +98,16 @@ See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][
 
   git clone git@"@"github.com:Bost/notes.git
   git remote add gitlab git@"@"gitlab.com:$accountName/notes.git
-  #+END_SRC
 }
 
 @block{@block-name{Copy public keys to the available machines}
 }
 
 @block{@block-name{Setup xfce keybindings and shortcuts}
-  http://docs.xfce.org/xfce/xfconf/xfconf-query
-  #+BEGIN_SRC bash :results output
+  # See http://docs.xfce.org/xfce/xfconf/xfconf-query
   xfconf-query --channel xfce4-keyboard-shortcuts -lv
   xfconf-query --channel xfce4-keyboard-shortcuts \
                --property "/xfwm4/custom/<Super>Tab" --reset
-  #+END_SRC
 }
 
 @block{@block-name{Setup Displays}

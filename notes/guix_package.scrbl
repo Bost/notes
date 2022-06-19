@@ -4,7 +4,6 @@
 
 @block{@block-name{Package Transformation Options}
   [[https://guix.gnu.org/manual/en/html_node/Package-Transformation-Options.html][Package Transformation Options]]
-  #+BEGIN_SRC bash :results output
   guix package --with-source=source
   guix package --with-source=package=source
   guix package --with-source=package@"@"version=source
@@ -18,7 +17,6 @@
   guix package --with-patch=package=file
   guix package --with-latest=package
   guix package --without-tests=package
-  #+END_SRC
 }
 
 @block{@block-name{Various commands}
@@ -28,7 +26,6 @@
   2 - like 1 with download URLs
   3 - shows all the build log output on standard error
 
-  #+BEGIN_SRC bash :results output
   # list all installed / available packages...
   guix package --list-available # -I
   guix package --list-installed # -A
@@ -41,7 +38,7 @@
   # reproduce, i.e. reinstall packages
   guix package --manifest=manifest.scm # -m manifest.scm
 
-  guix package --list-generations
+  guix package --list-generations              # see profile
   guix package --switch-generation=PATTERN
   guix package --roll-back
   guix package --remove python --install guile # -r python -i guile
@@ -52,10 +49,8 @@
   guix           upgrade --dry-run
   guix           upgrade --do-not-upgrade="(openjdk|postgres|fish).*"
   # guix package -i mycli --with-latest=mycli
-  #+END_SRC
 
   [[https://logs.guix.gnu.org/guix/2021-10-30.log#111758][IRC discussion: How to find out from which package a binary comes from?]]
-  #+BEGIN_SRC bash :results output
   guix package --search=hello
   guix           search hello
   # package details
@@ -63,7 +58,6 @@
   guix           show hello
   guix weather   # see also availability of substitutes:
   guix archive   # export / import package(s) from / to the store
-  #+END_SRC
 
   https://guix.gnu.org/manual/en/html_node/Invoking-guix-weather.html
   `guix weather` nars: size of the compressed archives
