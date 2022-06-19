@@ -4,10 +4,8 @@
 
 @block{@block-name{Guile Scripting}
   https://www.gnu.org/software/guile/manual/html_node/Guile-Scripting.html
-
   On Guix (see `which guile`):
 
-  #+BEGIN_SRC scheme
   #!/run/current-system/profile/bin/guile -s
   !#
 
@@ -20,7 +18,6 @@
   (format #t "~a\n" (getenv "HOME"))
   ;; ~a outputs an argument like `write`
   (format #t "~s\n" (getenv "HOME"))
-
 
   ;; https://www.draketo.de/software/guile-capture-stdout-stderr.html
   (use-modules (ice-9 rdelim)
@@ -42,6 +39,4 @@
       (cons
        (status:exit-val (close-pipe port))
        result)))
-
-   #+END_SRC
 }

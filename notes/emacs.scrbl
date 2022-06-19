@@ -2,12 +2,18 @@
 
 #+title: Emacs
 
-@block{@block-name{The Emacs thesis}
-  composite programs in a high-level extension language running on a kernel in a
-  low-level language.
-}
-
 @block{@block-name{Diverse}
+  (funcall (-compose #'number-to-string #'1+) 1) => "2"
+  conversion number-to-string
+  inc function: 1+
+
+  # The Emacs thesis:
+  # Composite programs in a high-level extension language running on a kernel in
+  # a low-level language.
+
+  | (boundp 'my=variable)     | test if symbol is defined   |
+  | (functionp 'dbg=function) | test if function is defined |
+
   ;; emacsclient in Guix is in the emacs-with-editor package
 
   ;; broken icons in the *spacemacs* buffer
@@ -16,15 +22,21 @@
   [[https://emacsconf.org/2021/talks/imaginary/][Imaginary Programming]] IP
   - based on / an abstraction over Prompt Engineering and Language Models (LMs)
 
-  Notable users: [[https://www.youtube.com/c/ProtesilaosStavrou/][Protesilaos]], Karthik / [[https://karthinks.com/][Karthinks]]
+  Notable emacs users:
+  [[https://www.youtube.com/c/ProtesilaosStavrou/][Protesilaos]]
+  [[https://karthinks.com/][Karthinks]]
 
   | ~SPC h d~           | spacemacs: help-describe                |
-  | ~SPC s~             | spacemacs: search                       |
   | ~SPC t g~           | spacemacs: windows: toggle golden ratio |
   | ~SPC h SPC <topic>~ | spacemacs: helm-spacemacs-help          |
   | ~SPC SPC~           | spacemacs: ~M-x~ emulation              |
   | ~SPC f e v~         | spacemacs: version                      |
   | ~SPC w p m~         | spacemacs: popup \*Messages\*           |
+
+  | ~SPC s~ | spacemacs: search           |
+  | ~C-M-s~ | isearch-forward-regexp      |
+  | ~C-s~   | incremental search forward  |
+  | ~C-r~   | incremental search backward |
 
   ;; Shift-Tab
   ~<s-tab>~ / ~<backtab>~
@@ -240,7 +252,7 @@
 
   ;; delete 1 whole line
   M-x kill-whole-line
-  C-S-Backspace
+  ~C-S-Backspace~
 
   ;; M-x evilnc-comment-or-uncomment-lines
   ~M-x ;~
@@ -278,7 +290,6 @@
   ;; move forward 4 lines
   ~C-u 4 C-n~
 
-  ;;
   | ~C-x u~        | M-x undo-tree-visualize |
   | ~C-_~ or ~C-/~ | undo                    |
   | ~C-f C-_~      | redo                    |
@@ -292,17 +303,25 @@
   ;; mark / hilite / highlight whole buffer / mark paragraph
   ~C-x h~ / ~M-h~
 
-  ;; M-x forward-paragraph / backward-paragraph
-  ~M-}~ / ~<C-down>~ / ~M-{~ / ~<C-up>~
+  | ~M-}~ / ~}~ | forward-paragraph  |
+  | ~M-{~ / ~{~ | backward-paragraph |
+  ;; fill / reflow text - see also auto-fill-mode
+  ;; spacemacs/toggle-auto-fill-mode ~SPC t F~
+  ~M-q~
+  M-x fill-paragraph
+  M-x fill-region ;; reflow all the paragraphs in the area
+
+  | ~<C-down>~ | M-x scroll-left  |
+  | ~<C-up>~   | M-x scroll-right |
 
   ;; jump to the next (compilation error(s), grep results etc.)
   ~C-x `~
 
-  ;; files: writte buffer to a different file
-  ~C-x C-w~
+  | ~C-x C-w~ | write-file (buffer) to a different file |
+  | ~M-m f c~ | spacemacs/save-as                       |
 
-  ;; files: next-buffer / previous-buffer
-  ~C-x <left>~ / ~C-x <right>~
+  | ~C-x <left>~  | next-buffer     |
+  | ~C-x <right>~ | previous-buffer |
 
   | ~C-k~ | copy-paste: kill line                      |
   | ~M-k~ | copy-paste: kill sentence - yank           |
@@ -382,12 +401,6 @@
   | ~U~ | mark all / unmark all / toggle marking |
   | ~t~ | mark / unmark (all) / toggle marking   |
 
-  ;; fill / reflow text - see also auto-fill-mode
-  ;; spacemacs/toggle-auto-fill-mode ~SPC t F~
-  ~M-q~
-  M-x fill-paragraph
-  M-x fill-region ;; reflow all the paragraphs in the area
-
   ;; parameter key / (universal-argument)
   ~C-u~
 
@@ -396,13 +409,6 @@
 
   ;; center for given line width
   M-o M-s
-
-  ;; isearch-forward-regexp
-  C-M-s~
-  ;; incremental search forward
-  ~C-s~
-  ;; incremental search backward
-  ~C-r~
 
   ;; query-replace-regexp
   ~C-M-%~
@@ -416,13 +422,10 @@
   M-x grep
   M-x speedbar
 
-  ;; line numbers: relative
-  M-x linum-relative-toggle
-  ;; line numbers: absolute
-  M-x global-linum-mode
+  | M-x linum-relative-toggle | line numbers: relative |
+  | M-x global-linum-mode     | line numbers: absolute |
 
-  ;; M-x eval-expression
-  ~M-:~
+  ~M-:~ ;; M-x eval-expression
 
   ;; M-x eval-last-sexp and insert the result in the buffer; works only in the
   ;; evil-insert-mode
@@ -431,10 +434,8 @@
   ;; documentation reader
   ~M-g g~
 
-  ;; increase font size
-  ~C-x C-+~
-  ;; decrease font size
-  ~C-x C--~
+  | ~C-x C-+~ | increase font size |
+  | ~C-x C--~ | decrease font size |
 
   ;; problem: emacs does not uses fonts from /usr/share/fonts
   sudo apt install --yes libgtk2.0-dev

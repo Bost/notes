@@ -4,6 +4,7 @@
 
 @block{@block-name{Various links}
   https://gitlab.com/pjotrp/guix-notes
+  ;; TODO fix search-notes - HACKING.org must be in capital letter; otherwise the link doesn't work!
   https://github.com/pjotrp/guix-notes/blob/master/HACKING.org
   ;; Brainiarc7/guix-notes is 1 commit ahead, 279 commits behind pjotrp:master
   https://github.com/Brainiarc7/guix-notes/blob/master/HACKING.org
@@ -11,7 +12,20 @@
   https://github.com/spoelstraethan/guix-notes/blob/master/HACKING.org
   https://systemcrafters.cc/craft-your-system-with-guix/
 
-  https://guix.gnu.org/manual/devel/en/html_node/Running-Guix-Before-It-Is-Installed.html
+  https://guix.gnu.org/en/manual/devel/en/guix.html#Running-Guix-Before-It-Is-Installed
+
+  cd ~/dev/guix/
+  # guix shell -D guix --pure
+  # guix shell --development guix --pure
+  # guix shell -D guix help2man git strace --pure
+  guix shell --development guix help2man git strace --pure
+  ./bootstrap
+  ./configure --localstatedir=/var
+  make          # make j22  # first run takes a couple of minutes
+  # make check  # optional
+  # authenticate all the commits included in your checkout by running:
+  make authenticate
+  make clean-go  # make j22 clean-go
 }
 
 @block{@block-name{Chris Baines / GNU Guix Presentation}
