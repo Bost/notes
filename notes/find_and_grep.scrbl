@@ -144,6 +144,7 @@
   rg "<search-regex>" (f '<file-extention>$' /path/to/dir)
   rg 'dotspacemacs/layers' (f 'el$' ~/.emacs.d/)
   rg "define.*\(operating-system\b" (f 'scm$' ~/dev/guix/)
+  rg "instrumented" (f 'scm$' ~/dev/guix/ ~/dev/guile/)
 
   grep 'Spacemacs is ready.' (find ~/.emacs.d/ -type f -name '*.el')
   find ~/.emacs.d/ -type f -name "*.el" -print0 | xargs -0 grep --files-with-matches "Spacemacs is ready."
