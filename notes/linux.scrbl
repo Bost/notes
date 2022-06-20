@@ -5,8 +5,9 @@
 [[https://github.com/jlevy/the-art-of-command-line][the-art-of-command-line]]
 
 @block{@block-name{Udev}
-  [[https://en.wikipedia.org/wiki/Udev][Wikipedia: Udev]] - userspace /dev; device manager for linux kernel; manages
-  nodes in the /dev directory
+  Userspace Device udev
+  [[https://en.wikipedia.org/wiki/Udev][Wikipedia: Udev]]
+  device manager for linux kernel; manages nodes in the /dev directory
 }
 
 @block{@block-name{Grub}

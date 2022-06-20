@@ -41,8 +41,8 @@
   ;; Shift-Tab
   ~<s-tab>~ / ~<backtab>~
 
-  ;;
-  M-x narrow-to-defun ~s-n~ / M-x widen ~s-N~
+  | ~s-n~ | M-x narrow-to-defun
+  | ~s-N~ | M-x widen
 
   ;; open file and jump to / start on a line:column
   emacs +line:column path/to/file
@@ -77,68 +77,53 @@
   | [[:blank:]] | a space or tab character                                                     |
 
   ;; utf8 unicode
-  M-x describe-char       ;; describe char at the point
-  M-x ucs-insert RET 2211 ;; insert unicode char upper-case sigma U+2211 ∑
+  | M-x describe-char       | describe char at the point                    |
+  | M-x ucs-insert RET 2211 | insert unicode char upper-case sigma U+2211 ∑ |
 
   hide: show: folding: enable folding M-x hs-minor-mode
   | ~C-c @"@" C-c~ | toggle hiding: fold / unfold |
 
   ;; hide: show: folding: (also see origami folding in .spacemacs)
-  | ~z o~ | evil open fold             |
-  | ~z z~ | evil close fold            |
-  | ~z a~ | evil toggle fold           |
-  | ~z r~ | evil open (all) folds      |
-  | ~z m~ | evil close (all) folds     |
-  | ~z t~ | evil-scroll-line-to-top    |
-  | ~z b~ | evil-scroll-line-to-bottom |
+  | ~z o~                 | evil open fold                                 |
+  | ~z z~                 | evil close fold                                |
+  | ~z a~                 | evil toggle fold                               |
+  | ~z r~                 | evil open (all) folds                          |
+  | ~z m~                 | evil close (all) folds                         |
+  | ~z t~ or ~z <return>~ | M-x evil-scroll-line-to-top                    |
+  | ~z b~                 | M-x evil-scroll-line-to-bottom                 |
+  | ~5z<Right>~           | move view 5 chars to the right                 |
+  | ~M-x ;~               | M-x evilnc-comment-or-uncomment-lines          |
+  | ~C-z~                 | M-x evil-mode - toggle emacs / evil            |
+  | ~M-e~                 | M-x isearch-edit-string                        |
+  |                       | evil: Edit the search string in the minibuffer |
 
-  z RET ;; evil keyboard macro ???
-
-  ;; evil: move view 5 chars to the right
-  ~5z<Right>~
-
-  ;; files: file format
-  ~C-x RET f~
-
-  ;; nrepl: M-x nrepl-jack-in - ??? this is probably for clojure
-  ~C-c M-j~
-
-   ;; repl: M-x ielm ELISP>
-  ~M-m m'~
+  | ~C-x <return> f~ | M-x set-buffer-file-coding-system i.e. file format
+  | ~C-c M-j~ | nrepl: M-x nrepl-jack-in - ? for Clojure ?  |
+  | ~M-m m'~  | repl: M-x ielm ELISP>                       |
 
   ;; testing: startup: skip ~/.emacs (if messed up) / don't load the init file
-  emacs --no-init-file     ;; also: emacs -q
-  emacs --no-window-system ;; also: emacs -nw
+  | emacs --no-init-file     | also: emacs -q  |
+  | emacs --no-window-system | also: emacs -nw |
 
   | M-x browse-url-at-point | open web browser of the OS |
   | M-x eww                 | emacs web browser          |
 
-  ;; byte-compile an *.el file
-  M-x byte-compile-file
+  | M-x byte-compile-file | byte-compile an emacs-lisp / elisp / *.el file |
 
-  ;; keyboard: does not work on cygwin
-  M-x quail-set-keyboard-layout
-
-  ;; keyboard: show layout
-  M-x quail-show-keyboar-layout
+  | M-x quail-set-keyboard-layout | doesn't work in cygwin |
+  | M-x quail-show-keyboar-layout |                        |
 
   | ~C-x <~ | scroll left  |
   | ~C-x >~ | scroll right |
 
-  ;; evil: Edit the search string in the minibuffer. (isearch-edit-string)
-  ~M-e~
-
-  ;; evil: toggle (evil-mode 0) / (evil-mode 1)
-  ~C-z~
-
   ;; help: ? emacs manual?
   ~C-h i m emacs~
 
-  | ~C-h m~ | M-x describe-mode     |                       |
-  | ~C-h k~ | M-x describe-key      |                       |
-  | ~C-h f~ | M-x describe-function |                       |
-  | ~C-h v~ | M-x describe-variable |                       |
-  | ~C-h b~ | M-x describe-bindings | available keybindings |
+  | ~C-h m~ | M-x describe-mode     |                            |
+  | ~C-h k~ | M-x describe-key      |                            |
+  | ~C-h f~ | M-x describe-function |                            |
+  | ~C-h v~ | M-x describe-variable |                            |
+  | ~C-h b~ | M-x describe-bindings | show available keybindings |
   ;; package command-log-mode - show pressed keybindings (when screen casting)
 
   ;; dynamic vs. lexical binding: https://www.emacswiki.org/emacs/LexicalBinding
@@ -164,10 +149,8 @@
   ;; packages grouped by keyword
   M-x finder-by-keyword
 
-  ;; delete word
-  ~M-d~
-  ;; delete line from cursor
-  ~C-k~
+  | ~M-d~ | delete word             |
+  | ~C-k~ | delete line from cursor |
 
   M-x goto-line
 
@@ -177,32 +160,16 @@
   ;; jump back to the last mark (there is a mark-ring)
   ~C-u C-SPC~
 
-  ;; enlarge-window, shrink-window horizontally / vertically
-  ~C-x ^~
-  ~C-x {~
-  ~C-x }~
+  | ~C-x ^~ | enlarge-window             |
+  | ~C-x {~ | shrink-window horizontally |
+  | ~C-x }~ | shrink-window vertically   |
 
-  ;; diff against any chosen revision
-  ~C-u C-x v =~
-
-  ;; discard changes
-  ~C-x v u~
-
-  ;; checkout any version: master~3 - last 3th version
-  ~C-x v \~~
-
-  ;; commit log: f - view revision; d - view diff
-  ~C-x v l~
-
-  ;; switch window / frame (o = other)
-  ~C-x o~
-
-  ;; add to version control system
-  ~C-x v i~
-
-  ;; files: find file / find alternate file (reload / refresh file)
-  ~C-x C-f~
-  ~C-x C-v~
+  ;; version control vc
+  | ~C-u C-x v =~ | diff against any chosen revision                  |
+  | ~C-x v u~     | discard changes                                   |
+  | ~C-x v \~~    | checkout any version: master~3 - last 3th version |
+  | ~C-x v l~     | commit log: f - view revision; d - view diff      |
+  | ~C-x v i~     | add to version control system                     |
 
   ;; Transparent Remote (file) Access / Editing, Multiple Protocol (TRAMP)
   ;; method can be: ssh if anything doesn't work:
@@ -211,15 +178,17 @@
   ~C-x C-f~ /method:user@"@"remotehost#port:filename
   ~C-x C-f~ /ssh:test@"@"host#2222:/tmp
 
-  ;; files / buffers
-  | ~C-x k~   | M-x kill-buffer               |                |
-  | ~C-x C-b~ | M-x list-buffers              |                |
-  | ~C-x b~   | M-x ido-switch-buffer         |                |
-  | ~C-x 4 f~ | find-file-other window        | ctl-x-4-prefix |
-  | ~C-x 4 b~ | switch-to-buffer-other-window | ctl-x-4-prefix |
-  | ~C-x C-s~ | M-x save-buffer               | save file      |
-  | ~C-x s~   | M-x save-some-buffers         | save all files |
-  | ~C-x C-w~ | M-x write-file                | save as        |
+  | ~C-x C-f~ | find file                                            |                |
+  | ~C-x C-v~ | find alternate file (reload / refresh file)          |                |
+  | ~C-x k~   | M-x kill-buffer                                      |                |
+  | ~C-x C-b~ | M-x list-buffers                                     |                |
+  | ~C-x b~   | M-x ido-switch-buffer                                |                |
+  | ~C-x 4 f~ | M-x ido-find-file-other-window                       | ctl-x-4-prefix |
+  | ~C-x 4 b~ | M-x switch-to-buffer-other-window                    | ctl-x-4-prefix |
+  | ~C-x o~   | M-x other-window - switch window / frame (o = other) |                |
+  | ~C-x C-s~ | M-x save-buffer                                      | save file      |
+  | ~C-x s~   | M-x save-some-buffers                                | save all files |
+  | ~C-x C-w~ | M-x write-file                                       | save as        |
 
   ;; eshell: ifconfig > #<buffer interfaces>
 
@@ -250,25 +219,15 @@
   ;; hippie-expand (dabbrev-expand?) (code completition)
   ~M-/~
 
-  ;; delete 1 whole line
-  M-x kill-whole-line
-  ~C-S-Backspace~
-
-  ;; M-x evilnc-comment-or-uncomment-lines
-  ~M-x ;~
+  | ~C-S-Backspace~ | M-x kill-whole-line - delete whole line |
 
   | ~C-M-f~ | jump forward to matching brace  |
   | ~C-M-b~ | jump backward to matching brace |
   ;; cursor may need to be behind closing parenthesis ')'
 
-  ;; immediate eval
-  ~C-M-x~
-
-  ;; auto indent block
-  ~C-M-'~
-
-  ;; M-x query-replace
-  ~M-%~
+  | ~C-M-x~ | M-x eval-defun    |
+  | ~C-M-'~ | auto indent block |
+  | ~M-%~   | M-x query-replace |
 
   | ~M-u~ | M-x upcase-word     |
   | ~M-l~ | M-x downcase-word   |
@@ -278,8 +237,8 @@
   M-x ispell-region
   M-x ispell-buffer
 
-  | ~C-x (~               | macro: start                       |
-  | ~C-x )~               | macro: stop                        |
+  | ~C-x (~               | M-x kmacro-start-macro             |
+  | ~C-x )~               | M-x kmacro-end-macro i.e. stop     |
   | ~C-x e~ or ~<f4>~     | macro: execute (e - execute again) |
   | ~M-5 <f4>~ or ~C-x e~ | macro: execute 5 times             |
 
@@ -291,69 +250,58 @@
   ~C-u 4 C-n~
 
   | ~C-x u~        | M-x undo-tree-visualize |
-  | ~C-_~ or ~C-/~ | undo                    |
-  | ~C-f C-_~      | redo                    |
+  | ~C-_~ or ~C-/~ | M-x undo-tree-undo      |
+  | ~M-_~ or ~C-?~ | M-x undo-tree-redo      |
 
   ;; next-buffer / previous-buffer
   ~<XF86Forward>~, ~C-x <C-right>~, ~C-x <right>~ / ~<XF86Back>~, ~C-x <C-left>~, ~C-x <left>~
 
-  ;; forward / backward one sentence
-  ~M-a~ / ~M-e~
-
   ;; mark / hilite / highlight whole buffer / mark paragraph
   ~C-x h~ / ~M-h~
 
-  | ~M-}~ / ~}~ | forward-paragraph  |
-  | ~M-{~ / ~{~ | backward-paragraph |
+  | ~C-x <left>~  or ~SPC b n~  | M-x next-buffer        |
+  | ~C-x <right>~ or ~SPC b p~  | M-x previous-buffer    |
+  | ~<C-down>~                  | M-x scroll-left        |
+  | ~<C-up>~                    | M-x scroll-right       |
+  | ~M-e~                       | M-x forward-sentence   |
+  | ~M-a~                       | M-x backward-sentence  |
+  | ~M-}~ or ~}~                | M-x forward-paragraph  |
+  | ~M-{~ or ~{~                | M-x backward-paragraph |
   ;; fill / reflow text - see also auto-fill-mode
   ;; spacemacs/toggle-auto-fill-mode ~SPC t F~
   ~M-q~
   M-x fill-paragraph
   M-x fill-region ;; reflow all the paragraphs in the area
 
-  | ~<C-down>~ | M-x scroll-left  |
-  | ~<C-up>~   | M-x scroll-right |
-
   ;; jump to the next (compilation error(s), grep results etc.)
   ~C-x `~
 
-  | ~C-x C-w~ | write-file (buffer) to a different file |
-  | ~M-m f c~ | spacemacs/save-as                       |
+  | ~C-x C-w~ | M-x write-file (buffer) to a different file |
+  | ~M-m f c~ | M-x spacemacs/save-as                       |
 
-  | ~C-x <left>~  | next-buffer     |
-  | ~C-x <right>~ | previous-buffer |
-
-  | ~C-k~ | copy-paste: kill line                      |
-  | ~M-k~ | copy-paste: kill sentence - yank           |
-  | ~C-w~ | copy-paste: kill region - cut              |
-  | ~M-w~ | copy-paste: kill ring save - copy          |
-  | ~C-y~ | copy-paste: yank - paste last killed entry |
+  | ~C-k~ | copy-paste: kill line                                            |
+  | ~M-k~ | copy-paste: kill sentence - yank                                 |
+  | ~C-w~ | copy-paste: kill region - cut                                    |
+  | ~M-w~ | copy-paste: kill ring save - copy                                |
+  | ~C-y~ | copy-paste: yank - paste last killed entry                       |
+  | ~M-y~ | copy-paste: cycle back through previous entries in the kill ring |
 }
 
 @block{@block-name{Git & Magit}
-  ;; (magit-copy-section-value) i.e. current sha1 to clipboard
-  ~y s~
-  ;; (magit-copy-buffer-revision) i.e. top sha1 to clipboard
-  ~M-w~
+  | ~y s~ | M-x magit-copy-section-value i.e. current sha1 to clipboard |
+  | ~M-w~ | M-x magit-copy-buffer-revision i.e. top sha1 to clipboard   |
+
   ;; magit: spin-off / spinoff
   git branch --track <new-branch-name>
 
-  ;; copy-paste: cycle back through previous entries in the kill ring
-  ~M-y~
-
-  ;; check word
-  M-x spell
-  ;; ? check all document ?
-  M-x flyspell-mode
+  | M-x spell         | check word             |
+  | M-x flyspell-mode | ? check all document ? |
 
   ;; Error enabling Flyspell mode: No word lists can be found for the language "en_US"
   ;; sudo apt install --yes aspell-en
 
   | ~M-<~ | beginning of buffer |
-  | ~M->~ | end of buffer |
-
-  ;; page up/down
-  ~M-v~ / ~C-v~
+  | ~M->~ | end of buffer       |
 
   | ~C-t~         | transpose chars         |
   | ~M-t~         | transpose words         |
@@ -391,8 +339,8 @@
   | ~C-x C-q~     | perform operations by editing dired buffer |
   | ~C-x C-q~     | M-x dired-toggle-read-only                 |
   |               | M-x wdired-finish-edit                     |
-  ;; start dired and create newfile
-  ~C-x C-f <ENTER>~ / <newfile>
+
+  | ~C-x C-f [type in something] <return>~ | dired - create newfile |
 
   ;; dired: TODO check this
   | ~m~ | mark / unmark / toggle marking         |
@@ -449,26 +397,18 @@
   ;; slime: reprint last command to the REPL
   ~M-p~
 
-  ;; gui: toggle vertical scroll bar (vertical scroll bar does not exist in emacs)
-  M-x toggle-scroll-bar
+  ;; gui
+  | M-x toggle-scroll-bar | toggle vertical scroll bar; horizontal scroll bar does not exist in emacs |
+  | M-x menu-bar-mode     | toggle menu-bar                                                           |
 
-  ;; gui: toggle menu-bar
-  M-x menu-bar-mode
-
-  ;; align at the given regexp
-  M-x align-regexp
+  | M-x align-regexp | align at the given regexp |
 
   ;; auto completition
   ~C-n~
 
-  ;; region: set mark (start region)
-  ~C-SPC~
-
-  ;; region: kill selected region
-  ~C-x r k~
-
-  ;; save region to a file
-  M-x write-region
+  | ~C-SPC~          | region: set mark (start region) |
+  | ~C-x r k~        | region: kill selected region    |
+  | M-x write-region | save region to a file           |
 
   ;; splits: close / only one buffer / horizontal / vertical
   ~C-x 0~ / ~C-x 1~ / ~C-x 2~ / ~C-x 3~

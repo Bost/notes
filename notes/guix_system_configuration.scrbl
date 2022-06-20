@@ -8,6 +8,10 @@
   guix system describe
   guix system list-generations
 
+  guix install xdot
+  guix system extension-graph /path/to/configuration.scm | xdot -
+  guix home extension-graph /path/to/home-configuration.scm | xdot -
+
   # instantiate operating system declaration:
   set latest (ls --sort=time --almost-all ~/.cache/guix/checkouts/ | head -1)
   cd ~/.cache/guix/checkouts/$latest
@@ -57,9 +61,37 @@
   guix show linux-libre | grep version
 
   @block{@block-name{Services}
-    Service is a building block the operating system.
-    Service (broadly speaking) extends the functionality of the operating system
+    Service:
+    - building block the operating system.
+    - (broadly speaking) extends the functionality of the operating system.
+    - can be extensible or non-extensible.
     One-shot services stop immediately after their start action has completed.
+
+    Extensions - connect system services. A service-extension gets the command line
+    from the service it is extending.
+    Service types - define extension relations.
+
+   (service-extension TARGET COMPUTE DEFAULT-VAL)
+
+    TARGET - "arrow target" in the graph, i.e. name of service which is going to
+    be extended.
+
+    COMPUTE - a procedure that, given the parameters of the service, returns a
+    list of objects to extend the service of that type.
+
+    DEFAULT-VAL - default value for instances of this service-extension.
+
+    Servive instantiation examples:
+      (service guix-service-type   ;; name of the service to start
+               ;; initial service
+               (guix-configuration
+                 (build-accounts 5)
+                 (extra-options '("--gc-keep-derivations"))))
+      ;;
+      (service guix-service-type)  ;; uses the DEFAULT-VAL
+
+    Every '...-service-type' has at least one extension. The only exception is
+    the boot service type, which is the ultimate service.
 
     @block{@block-name{term-auto}
       - Q: What's the term-auto service? It seems to be my only stopped service
