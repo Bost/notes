@@ -133,6 +133,7 @@
   # Prompt for Approval Before Executing Commands
 
   # find files with extension; fdfind (Ubuntu) / fd (Guix) is aliased to `f`
+  # https://github.com/sharkdp/fd
   fd --extension rkt
   fd          -e rkt
   find -name "*.rkt"
@@ -142,6 +143,7 @@
 
   # combine fdfind and ripgrep; show full files paths for the mathes
   rg "<search-regex>" (f '<file-extention>$' /path/to/dir)
+  rg "<search-regex>" (f '<file-extention>$' (pwd))
   rg 'dotspacemacs/layers' (f 'el$' ~/.emacs.d/)
   rg "define.*\(operating-system\b" (f 'scm$' ~/dev/guix/)
   rg "instrumented" (f 'scm$' ~/dev/guix/ ~/dev/guile/)

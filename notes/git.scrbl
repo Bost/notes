@@ -2,10 +2,12 @@
 
 #+title: Git and Mercurial
 
-OID - Object Identifier
 
 @block{@block-name{Git}
-#+BEGIN_SRC fish :results output
+  # Git Annex - sync large files: https://youtu.be/p0eVyhv2rbk
+
+  # OID - Object Identifier
+
   # gitlab: create pull request: '+' -> 'New merge request'
 
   # compute sha1 for any file
@@ -304,12 +306,9 @@ OID - Object Identifier
   git tag <tagname>
   # annotated, signed tag or tags with a message will be pushed by `git push ...`
   git tag --annotate <tagname>
-#+END_SRC
 }
 
 @block{@block-name{Mercurial}
-  #+BEGIN_SRC fish :results output
     guix install mercurial
     hg clone https://hg.sr.ht/~yoctocell/guixrc
-  #+END_SRC
 }

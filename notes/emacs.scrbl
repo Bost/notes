@@ -97,9 +97,9 @@
   | ~M-e~                 | M-x isearch-edit-string                        |
   |                       | evil: Edit the search string in the minibuffer |
 
-  | ~C-x <return> f~ | M-x set-buffer-file-coding-system i.e. file format
-  | ~C-c M-j~ | nrepl: M-x nrepl-jack-in - ? for Clojure ?  |
-  | ~M-m m'~  | repl: M-x ielm ELISP>                       |
+  | ~C-x <return> f~            | M-x set-buffer-file-coding-system i.e. file format |
+  | ~C-c M-j~                   | nrepl: M-x nrepl-jack-in - ? for Clojure ?         |
+  | ~SPC m '~ from elisp buffer | repl: M-x ielm ELISP>                              |
 
   ;; testing: startup: skip ~/.emacs (if messed up) / don't load the init file
   | emacs --no-init-file     | also: emacs -q  |
@@ -190,25 +190,33 @@
   | ~C-x s~   | M-x save-some-buffers                                | save all files |
   | ~C-x C-w~ | M-x write-file                                       | save as        |
 
-  ;; eshell: ifconfig > #<buffer interfaces>
+  ;; Introduction to EShell: https://youtu.be/RhYNu6i_uY4
+  ;; Video transscript: http://howardism.org/Technical/Emacs/eshell-present.html
+  ;; open command output in a buffer
+  ifconfig > #<buffer interfaces>
+  ;; combing elisp functions (message) with OS programs
+  ;; (/usr/bin/cut) in eshell
+  message "Hello world" | cut -f 1 -d ' '
+  ;; Open stuff in
+  ;; eshell/egrep is a compiled Lisp function in ‘em-unix.el’.
+  egrep --recursive 'something' *
+  rg --color=always 'population' {pwd}
+  l --color=always
+  exa -abghHliS --color=always --time-style=long-iso
 
-  ;; cli: batch: noninteractive run
+  ;; cli: noninteractive run
   emacs --batch --eval '(message "Hello world")'
+  ;; noninteractive run of an eslip script
+  #!/usr/bin/emacs --script
+  (message "Hello world")
 
-  ;; cli: batch: run emacs lisp file from command line:
+  ;; run elisp file from command line
   ;; chmod +x ./hello.el; ./hello.el
   #!/bin/sh
   ":"; exec emacs --script "$0" "$@"@""
   ;; # -*- mode: emacs-lisp; lexical-binding: t; -*-
   (message "Hello world")
 
-  ;; cli: batch: noninteractive run
-  #!/usr/bin/emacs --script
-  (message "Hello world")
-
-  ;; eshell: combing elisp functions (message) with OS programs
-  ;; (/usr/bin/cut) in eshell
-  message "Hello world" | cut -f 1 -d ' '
 
   ;; cssh ? ssh shell ? (somehow strange)
 
@@ -226,7 +234,6 @@
   ;; cursor may need to be behind closing parenthesis ')'
 
   | ~C-M-x~ | M-x eval-defun    |
-  | ~C-M-'~ | auto indent block |
   | ~M-%~   | M-x query-replace |
 
   | ~M-u~ | M-x upcase-word     |
@@ -259,25 +266,30 @@
   ;; mark / hilite / highlight whole buffer / mark paragraph
   ~C-x h~ / ~M-h~
 
-  | ~C-x <left>~  or ~SPC b n~  | M-x next-buffer        |
-  | ~C-x <right>~ or ~SPC b p~  | M-x previous-buffer    |
-  | ~<C-down>~                  | M-x scroll-left        |
-  | ~<C-up>~                    | M-x scroll-right       |
-  | ~M-e~                       | M-x forward-sentence   |
-  | ~M-a~                       | M-x backward-sentence  |
-  | ~M-}~ or ~}~                | M-x forward-paragraph  |
-  | ~M-{~ or ~{~                | M-x backward-paragraph |
+  | ~C-x <left>~  or ~SPC b n~ | M-x next-buffer         |
+  | ~C-x <right>~ or ~SPC b p~ | M-x previous-buffer     |
+  | ~<C-down>~                 | M-x scroll-left         |
+  | ~<C-up>~                   | M-x scroll-right        |
+  | ~M-e~                      | M-x forward-sentence    |
+  | ~M-a~                      | M-x backward-sentence   |
+  | ~M-}~ or ~}~               | M-x forward-paragraph   |
+  | ~M-{~ or ~{~               | M-x backward-paragraph  |
+  | ~M-<~                      | M-x beginning-of-buffer |
+  | ~M->~                      | M-x end-of-buffer       |
+
   ;; fill / reflow text - see also auto-fill-mode
-  ;; spacemacs/toggle-auto-fill-mode ~SPC t F~
-  ~M-q~
-  M-x fill-paragraph
-  M-x fill-region ;; reflow all the paragraphs in the area
+  | ~SPC t F~ | M-x spacemacs/toggle-auto-fill-mode                  |
+  | ~M-q~     | M-x fill-paragraph                                   |
+  |           | M-x fill-region  - reflow all paragraphs in the area |
 
   ;; jump to the next (compilation error(s), grep results etc.)
   ~C-x `~
 
+  ;; It seems like ~SPC~ and ~M-m~ offer the same sub-menus, however ~SPC~ shows
+  ;; textual description defined by `spacemacs|spacebind`
+
   | ~C-x C-w~ | M-x write-file (buffer) to a different file |
-  | ~M-m f c~ | M-x spacemacs/save-as                       |
+  | ~SPC f c~ | M-x spacemacs/save-as                       |
 
   | ~C-k~ | copy-paste: kill line                                            |
   | ~M-k~ | copy-paste: kill sentence - yank                                 |
@@ -285,23 +297,16 @@
   | ~M-w~ | copy-paste: kill ring save - copy                                |
   | ~C-y~ | copy-paste: yank - paste last killed entry                       |
   | ~M-y~ | copy-paste: cycle back through previous entries in the kill ring |
-}
 
-@block{@block-name{Git & Magit}
-  | ~y s~ | M-x magit-copy-section-value i.e. current sha1 to clipboard |
-  | ~M-w~ | M-x magit-copy-buffer-revision i.e. top sha1 to clipboard   |
-
+  | ~y s~ | M-x magit-copy-section-value - current sha1 to clipboard |
+  | ~M-w~ | M-x magit-copy-buffer-revision - top sha1 to clipboard   |
   ;; magit: spin-off / spinoff
   git branch --track <new-branch-name>
 
   | M-x spell         | check word             |
   | M-x flyspell-mode | ? check all document ? |
-
   ;; Error enabling Flyspell mode: No word lists can be found for the language "en_US"
   ;; sudo apt install --yes aspell-en
-
-  | ~M-<~ | beginning of buffer |
-  | ~M->~ | end of buffer       |
 
   | ~C-t~         | transpose chars         |
   | ~M-t~         | transpose words         |
@@ -309,10 +314,7 @@
   | ~C-l~ or ~zz~ | center the screen lines |
 
   ;; start a bash command line
-  M-x shell / M-x term / eshell
-
-  ;; eshell: example
-  egrep -r 'something' *
+  M-x shell / M-x term / M-x eshell
 
   ;; Dired Refecene Card / Cheatsheet
   http://www.gnu.org/software/emacs/refcards/pdf/dired-ref.pdf
@@ -361,14 +363,18 @@
   ;; query-replace-regexp
   ~C-M-%~
 
-  ;;
-  M-x dbg / ediff / compile / man / erc
+  ;; slime - Superior Lisp Interaction Mode for Emacs
+  ;; M-x gnus - read news, email, rss
+  ;; M-x grep
+  ;; M-x dbg
+  ;; M-x ediff
+  ;; M-x compile
+  ;; M-x man
+  ;; M-x erc/default-servers or M-x erc
 
-  ;; read news, email, rss / grep / speedbar /
-  ;; Superior Lisp Interaction Mode for Emacs
-  M-x gnus
-  M-x grep
-  M-x speedbar
+  ;; M-x speedbar
+  ;; Summarize information related to the current buffer. Its original inspiration
+  ;; is the “explorer”
 
   | M-x linum-relative-toggle | line numbers: relative |
   | M-x global-linum-mode     | line numbers: absolute |
@@ -378,9 +384,6 @@
   ;; M-x eval-last-sexp and insert the result in the buffer; works only in the
   ;; evil-insert-mode
   ~C-U C-x C-e~
-
-  ;; documentation reader
-  ~M-g g~
 
   | ~C-x C-+~ | increase font size |
   | ~C-x C--~ | decrease font size |
@@ -442,7 +445,7 @@
   M-x evil-show-registers
 
   ;; paste from register
-  ;; "<register>p
+  ;; \"<register>p
 
   ;; locate:
   M-x locate
@@ -459,10 +462,12 @@
   ~C-c C-k~
   ~C-x k~
 
-  ;; M-x magit-status;
-  ;; inc / dec / reset hunk size / split hunk / add to .gitignore /
-  ;; add to .git/info/exclude
-  + / - / 0 / select hunk / i / I
+  ;; after M-x magit-status
+  | ~+~            | M-x magit-diff-more-context    | increase chunk size                   |
+  | ~=~            | M-x magit-diff-less-context    | decrease chunk size                   |
+  | ~0~            | M-x magit-diff-default-context | reset chunk size                      |
+  | "select chunk" |                                | split chunk                           |
+  | ~i~            | M-x magit-gitignore            | add to .gitignore / .git/info/exclude |
 
   ;; M-x magit-status; remoting / log / branching / bisecting / diff / fetch /
   ;; merge / rewrite
@@ -506,6 +511,10 @@
   M-x kmacro-name-last-macro  ;; 1.
   M-x insert-kbd-macro        ;; 2.
   M-x kmacro-bind-to-key      ;; 3.
+  easier kmacro counter https://youtu.be/CvmDtnnrYDo
+
+  ;; Customize / extend keyboard functionality https://github.com/kmonad
+  ;; emacs package https://github.com/kmonad/kbd-mode
 
   ;; launch emacs and eval string
   emacs --eval '(message "ufo")' / emacs -e configuration-layer/update-packages
@@ -636,7 +645,6 @@
 }
 
 @block{@block-name{Source Code Pro font}
-  #+BEGIN_SRC shell
   guix install font-adobe-source-code-pro
   # clean font cache
   fc-cache --verbose --force
@@ -644,7 +652,6 @@
 
 @block{@block-name{Mapping Functions}
   [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html][Mapping Functions]]
-  #+BEGIN_SRC emacs-lisp
   mapconcat
   (mapcar 'string "abc")
   (mapcar 'list '(a b c d)) ; => ((a) (b) (c) (d))
@@ -653,22 +660,17 @@
 
   ;; mapconcat is like joins result list into a string with a separator:
   (mapconcat 'symbol-name '(The cat in the hat) "-") ; => "The-cat-in-the-hat"
-  #+END_SRC
 
   https://www.gnu.org/software/emacs/manual/html_node/elisp/Sequences-Arrays-Vectors.html
 
-  #+BEGIN_SRC emacs-lisp
   (split-string "[  aaa
    bbb   ]" (or split-string-default-separators (rx (or "[" "]"))))
   ;; => ("[" "aaa" "bbb" "]")
-  #+END_SRC
 
   Filter list:
-  #+BEGIN_SRC emacs-lisp
   (remove-if (lambda (e) (eq e 1)) '(1 2))
   ;; https://www.reddit.com/r/emacs/comments/7dp6oa/comment/dpzi5hz/?utm_source=share&utm_medium=web2x&context=3
   (seq-filter (apply-partially #'< 3) '(1 2 3 4 5 6))
-  #+END_SRC
 }
 
 @block{@block-name{TODOs}
@@ -682,9 +684,7 @@
 @block{@block-name{Startup / Loading process}
   [[https://youtu.be/74zOY-vgkyw?t=432][Emacs From Scratch #1 - Getting Started with a Basic Usable Configuration]]
   `(require ...)` looks in the directories defined by `load-path` variable
-  #+BEGIN_SRC fish :results output
   mkdir emacs-from-scratch && cd emacs-from-scratch
   touch init.el
   emacs --no-init-file --load init.el & disown
-  #+END_SRC
 }
