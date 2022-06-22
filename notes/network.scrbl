@@ -15,7 +15,7 @@
   https://howto.yggno.de/start
 
   Network protocol and a computer network organized using it with end-to-end
-  encryption and automatic routing. Modes of operation
+  encryption and automatic routing. Modes of operation:
   - mesh mode
   - overlay mode
 
@@ -29,19 +29,17 @@
   connect as a server directly, which means you can put Socks5 even on a
   computer that is behind NAT.
 
-  Alternative to VPN.
-  @block{@block-name{TODO clarify anonymity:}
-     Yggdrasil can be compared to a torus. It can also work through Tor and any Socks5.
+  Alternative to VPN? TODO clarify anonymity:
+  Yggdrasil can be compared to a torus. It can also work through Tor and any Socks5.
 
-     From Yggdrasil FAQs:
-     Q: [[https://yggdrasil-network.github.io/faq.html#is-yggdrasil-anonymous][Is Yggdrasil anonymous?]]
-     A: No, it is not a goal of the Yggdrasil project to provide anonymity. Direct
-     peers over the Internet will be able to see your IP address and may be able
-     to use this information to determine your location or identity.
-     Multicast-discovered peerings on the same network will typically expose your
-     device MAC address. Other nodes on the network may be able to discern some
-     information about which nodes you are peered with.
-   }
+  From Yggdrasil FAQs:
+  Q: [[https://yggdrasil-network.github.io/faq.html#is-yggdrasil-anonymous][Is Yggdrasil anonymous?]]
+  A: No, it is not a goal of the Yggdrasil project to provide anonymity. Direct
+  peers over the Internet will be able to see your IP address and may be able to
+  use this information to determine your location or identity.
+  Multicast-discovered peerings on the same network will typically expose your
+  device MAC address. Other nodes on the network may be able to discern some
+  information about which nodes you are peered with.
 }
 
 @block{@block-name{SOCKS}

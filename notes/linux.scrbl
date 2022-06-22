@@ -857,6 +857,18 @@
   killall -SIGUSR2 emacs
   killall -HUP emacs
 
+  # restart or halt machine using the keyboard:
+  # https://youtu.be/BdRIhFcf4Do
+  # 1. check the priviledges - `1` means all priviledges for sysrq. `0` means no
+  # priviledges.
+  cat /proc/sys/kernel/sysrq
+  # how to obtain priviledges:
+  echo "1" | sudo tee /proc/sys/kernel/sysrq
+  # Press ~Alt + sysrq~ buttons (i.e. the ~Alt+PrintScreen~ / ~M-<print>~) and
+  # type "reisub" for restart / "reisuo" for halting the machine.
+  # Note: On Guix when unter tty (i.e. ~C-M-<f1>~) ~M-<print>~ swichtes to the
+  # last tty (tty switching is also possible by ~M-'some-f-key'>~)
+
   # search man pages for "topic"
   man -k topic / apropos -r topic
 

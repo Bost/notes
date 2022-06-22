@@ -5,6 +5,8 @@
 @block{@block-name{System Configuration}
   [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
 
+  TODO see elisp-configuration-service
+
   guix system describe
   guix system list-generations
 
