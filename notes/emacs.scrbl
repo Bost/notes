@@ -101,10 +101,6 @@
   | ~C-c M-j~                   | nrepl: M-x nrepl-jack-in - ? for Clojure ?         |
   | ~SPC m '~ from elisp buffer | repl: M-x ielm ELISP>                              |
 
-  ;; testing: startup: skip ~/.emacs (if messed up) / don't load the init file
-  | emacs --no-init-file     | also: emacs -q  |
-  | emacs --no-window-system | also: emacs -nw |
-
   | M-x browse-url-at-point | open web browser of the OS |
   | M-x eww                 | emacs web browser          |
 
@@ -191,7 +187,7 @@
   | ~C-x C-w~ | M-x write-file                                       | save as        |
 
   ;; Introduction to EShell: https://youtu.be/RhYNu6i_uY4
-  ;; Video transscript: http://howardism.org/Technical/Emacs/eshell-present.html
+  ;; Video ransscript: http://howardism.org/Technical/Emacs/eshell-present.html
   ;; open command output in a buffer
   ifconfig > #<buffer interfaces>
   ;; combing elisp functions (message) with OS programs
@@ -682,9 +678,44 @@
 }
 
 @block{@block-name{Startup / Loading process}
-  [[https://youtu.be/74zOY-vgkyw?t=432][Emacs From Scratch #1 - Getting Started with a Basic Usable Configuration]]
-  `(require ...)` looks in the directories defined by `load-path` variable
+  ;; Emacs From Scratch #1 - Getting Started with a Basic Usable Configuration
+  ;; https://youtu.be/74zOY-vgkyw?t=432
+  `(require ...)` looks in the directories defined by `load-path` /
+  EMACSLOADPATH variable
+  echo $EMACSLOADPATH
+
+  ;; testing: startup: skip ~/.emacs (if messed up) / don't load the init file
+  | emacs --no-init-file     | also: emacs -q  |
+  | emacs --no-window-system | also: emacs -nw |
+
   mkdir emacs-from-scratch && cd emacs-from-scratch
   touch init.el
   emacs --no-init-file --load init.el & disown
+
+
+  Andrew Tropin: GNU Guix as Emacs package manager
+  https://youtu.be/gqmZjovuomc?t=90
+  init.el
+  default.el      ;; may be located in '/usr/local/share/emacs/site-lisp'
+  ;; may be located in '/usr/local/share/emacs/site-lisp'; loaded before init.el?
+  site-start.el
+
+  autoload:
+  - code should be evaluated even if a package itself is NOT loaded
+  - it's for lazy loading mechanism. E.g. you can provide here a function signature
+  M-x list-packages
+  M-x find-library
+
+  ;; Guix channel for automatically generated emacs packages
+  https://github.com/babariviere/guix-emacs
+  ;; No external dependecies are captured in this channel - good only for pure
+  ;; elisp packages, which don't depend on any binaries like ripgrep etc.
+
+  emacs-tree-sitter
+
+  spacemacs package load process should use the mechanism provided by Guix
+
+  ;; package descriptor; It the file doesn't exit the package will not appear in
+  ;; the M-x list-packages
+  <package-name>-pkg.el
 }

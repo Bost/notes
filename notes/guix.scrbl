@@ -14,6 +14,8 @@
 
   https://guix.gnu.org/en/manual/devel/en/guix.html#Running-Guix-Before-It-Is-Installed
 
+  # guix shell --search-paths    # display needed environment variable definitions
+
   cd ~/dev/guix/
   # guix shell -D guix --pure
   # guix shell --development guix --pure
