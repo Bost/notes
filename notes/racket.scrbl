@@ -17,7 +17,6 @@
 }
 
 @block{@block-name{Command line snippets}
-  #+BEGIN_SRC bash :results output
   # package management
   # install local package
   raco pkg install
@@ -31,11 +30,9 @@
   # 'Hello World' from the command line
   racket -e    '(printf "Hello World\n")'
   racket -eval '(printf "Hello World\n")'
-  #+END_SRC
 }
 
 @block{@block-name{Structures}
-  #+BEGIN_SRC racket
   ;; structures definition
   (struct structName (item0
                       item1
@@ -46,11 +43,9 @@
   ;; accessing fields of the structure instance via the dash '-'
   ;; structName-item1 is the structure accessor
   (structName-item1 s) ;; => 'b
-  #+END_SRC
 }
 
 @block{@block-name{define vs let}
-  #+BEGIN_SRC racket
   ;; @url{https://stackoverflow.com/a/5406423}
   ;; difference between `define` and `let` is in the scope:
   ;; correct:
@@ -65,13 +60,11 @@
   (define (g x)
     (define a 1)
     (+ a x))
-  #+END_SRC
 }
 
 @block{@block-name{Various, racket snippets, etc.}
   arcade package - writing arcade games
 
-  #+BEGIN_SRC racket
   ;; code block
   ;; @url{https://docs.racket-lang.org/reference/begin.html}
   (begin
@@ -128,14 +121,11 @@
   (map string? '(1 "a" 3))  ;; => '(#f #t #f)
 
   (andmap number? '(1 2 3)) ;; => #t
-  #+END_SRC
 }
 
 @block{@block-name{Macros: quotes, syntax, etc.}
   @url{https://docs.racket-lang.org/syntax-parse-example/}
-  #+BEGIN_SRC racket
   (quote-syntax (1 2 3))
-  #+END_SRC
   quote-syntax - similar to syntax. Unlike syntax (#'), quote-syntax does not
   substitute pattern variables bound by with-syntax, syntax-parse, or syntax-case.
   | '   | quote                  |
@@ -156,55 +146,43 @@
 @block{@block-name{REPL}
   The `enter!` form both loads the code and switches the evaluation context to
   the inside of the module, just like DrRacket’s Run button.
-  #+BEGIN_SRC racket
   (enter "mymodule.rkt")
-  #+END_SRC
 }
 
 @block{@block-name{Cons and List}
   `list` is an abbreviation for a series of `cons`:
-  #+BEGIN_SRC racket
   (equal? (list 1 2 3)
           (cons 1 (cons 2 (cons 3 null))))
-  #+END_SRC
 }
 
 @block{@block-name{Read and evaluate code from string}
-  #+BEGIN_SRC racket
   (eval (read (open-input-string "(+ 1 2)")))
   ;; or:
   (with-input-from-string "(+ 1 2)"
     (lambda () (eval (read))))
   ;; or:
   (eval (call-with-input-string "(+ 1 2)" read)) ;; string port is auto-closed
-  #+END_SRC
 }
 
 @block{@block-name{Empty string predicate}
   See [[https://rosettacode.org/][Rosetta Code]]
-  #+BEGIN_SRC racket
   (define empty-string "")
   (define (string-null? s) (string=? "" s))
   (define (string-not-null? s) (string<? "" s))
-  #+END_SRC
 }
 
 @block{@block-name{Converting Values to Strings}
   [[https://docs.racket-lang.org/reference/strings.html#%28part._format%29][Converting Values to Strings]]
-  #+BEGIN_SRC racket
   (require racket/format)
   (~a "Hi" 1 2 'People)                 ; => "Hi12People"
   (~a "Hi" 1 2 'People '(Around))       ; => "Hi12People(Around)"
   (~a #:separator "-" "Hi" 1 2 'People) ; => "Hi-1-2-People"
   ;; See
   ;; ~a ~v ~s ~e ~r ~.a ~.v ~.s
-  #+END_SRC
 }
 
 @block{@block-name{External commands}
-  #+BEGIN_SRC racket
   (system/exit-code "ls")   ;; terminate (REPL) with return code
-  #+END_SRC
 }
 
 @block{@block-name{PLT PLaneT}
@@ -221,7 +199,6 @@
   Scribble - collection of tools for creating prose documents—papers, books,
   library documentation, etc.—in HTML or PDF (via Latex) form.
 
-  #+BEGIN_SRC bash :results output
   echo \
   "#lang scribble/base
 
@@ -235,10 +212,8 @@ glass of milk.
   # scribble --htmls /tmp/mouse.scrbl  # creates "mouse/index.html" for Sub-sections
   scribble --pdf   /tmp/mouse.scrbl  # creates "mouse.pdf". Requires `guix install texlive` (2.6 GB)
   # scribble --latex /tmp/mouse.scrbl  # creates "mouse.tex"
-  #+END_SRC
 
 
-  #+BEGIN_SRC bash :results output
   echo \
   "#lang scribble/report
 
@@ -263,12 +238,10 @@ glass of milk.
   # scribble --htmls /tmp/report.scrbl  # creates "report/index.html" for Sub-sections
   scribble --pdf   /tmp/report.scrbl  # creates "report.pdf". Requires `guix install texlive` (2.6 GB)
   # scribble --latex /tmp/report.scrbl  # creates "report.tex"
-  #+END_SRC
 
   Pollen - publishing system for writing functional digital web-based books. It
   can also be used as a dynamic preview server for Scribble files.
 
-  #+BEGIN_SRC bash :results output
   # raco pkg install pollen
   # cd /tmp && raco pollen start
   echo \
@@ -282,9 +255,7 @@ Hello world
   #   @url{http://localhost:8080/index.ptree}
   # or
   #   @url{http://localhost:8080/hello.txt}
-  #+END_SRC
 
-  #+BEGIN_SRC bash :results output
   # raco pkg install pollen
   # cd /tmp && raco pollen start
   echo \
@@ -298,9 +269,7 @@ Markdown & Pollen + ◊metal
 
 + [search for ◊metal](https://google.com/search?q=◊metal)
 " > /tmp/downtown.html.pmd
-  #+END_SRC
 
-  #+BEGIN_SRC bash :results output
   # raco pkg install pollen
   # cd /tmp && raco pollen start
   echo \
@@ -313,7 +282,6 @@ Markdown & Pollen + ◊metal
   ◊item{◊link[\"https://google.com/search?q=racket\"]{search for Racket}}
 }
 " > /tmp/uptown.html.pm
-  #+END_SRC
 }
 
 @block{@block-name{Source code documentation, docstrings}
@@ -323,7 +291,6 @@ Markdown & Pollen + ◊metal
   When using define/doc then examples can also be used as unit tests.
   @url{https://github.com/greghendershott/frog/blob/master/frog/private/define-doc.rkt}
 
-  #+BEGIN_SRC racket
   (require (for-syntax racket/syntax))
 
   (define-syntax (define/doc stx)
@@ -333,5 +300,4 @@ Markdown & Pollen + ◊metal
          ([name (format-id #'id "~a-doc" #'id)])
        #'(begin (define id expr)
                 (define name doc-string)))]))
-  #+END_SRC
 }

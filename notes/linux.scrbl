@@ -1138,6 +1138,7 @@
   gpasswd                 # administer /etc/group and /etc/gshadow
   sudo adduser USER
   sudo deluser --remove-home USER             # userdel is a low level utility
+  sudo passwd USER        # set / change password for the USER
   sudo usermod --groups GROUP --append USER   # app USER to the GROUP
   # euid - effective user id: number or id; see whoami
   sudo pkill -KILL --euid USER                # logout / logoff different user
