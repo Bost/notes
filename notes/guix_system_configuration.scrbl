@@ -130,8 +130,15 @@
   [[id:69f25a70-c039-488f-9382-91b998b7c0f5][Guix System Configuration]]
 }
 
-@block{@block-name{Basic GuixOS system setup with manifest files}
+@block{@block-name{Advanced package management}
   [[https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html][Basic setup with manifests]]
+  [[https://guix.gnu.org/cookbook/en/guix-cookbook.html#Guix-Profiles-in-Practice]][[Guix Profiles in Practice]]
+
+  # hint: After setting `PATH', run `hash guix' to make sure your shell refers to `...'.
+  hash guix                       # creates '/home/bost/.config/guix/current'
+  guix package --list-profiles    # prints:
+  # /home/bost/.config/guix/current
+  # /home/bost/.guix-profile
 
   # see also guix package --export-manifest
   guix package --list-profiles

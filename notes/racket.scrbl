@@ -2,6 +2,21 @@
 
 #+title: Racket
 
+#lang video
+
+In Ubuntu VM
+sudo apt update && sudo apt upgrade
+
+sudo apt install openssh-server
+
+sudo apt install racket ffmpeg pulseaudio libssl-dev libportaudio2
+
+raco pkg install video-testing
+
+# sudo systemctl restart gdm
+
+
+
 @block{@block-name{Factorio Mods}
   @block{@block-name{Rampant}
     Last change May 2022; Lua 97.0% Racket 3.0%
@@ -22,7 +37,8 @@
   raco pkg install
   # install 3rd party package from package repository
   raco pkg install <package>
-  raco pkg remove <package>
+  raco pkg install --auto <package>  # auto-install required dependecies
+  raco pkg remove  <package>
 
   # how to run a Racket program
   racket program.rkt
