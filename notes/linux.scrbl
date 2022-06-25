@@ -853,6 +853,9 @@
   # ~/.cache/sessions
   pkill -KILL -u $USER
 
+  sudo systemctl | grep dm
+  sudo systemctl restart <dm service>
+
   # anti-freeze / WD40
   killall -SIGUSR2 emacs
   killall -HUP emacs

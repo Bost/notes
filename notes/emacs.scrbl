@@ -156,9 +156,9 @@
   ;; jump back to the last mark (there is a mark-ring)
   ~C-u C-SPC~
 
-  | ~C-x ^~ | enlarge-window             |
-  | ~C-x {~ | shrink-window horizontally |
-  | ~C-x }~ | shrink-window vertically   |
+  | ~C-x ^~              | M-x enlarge-window              |
+  | ~C-x {~ or ~SPC w [~ | M-x shrink-window-horizontally  |
+  | ~C-x }~ or ~SPC w ]~ | M-x enlarge-window-horizontally |
 
   ;; version control vc
   | ~C-u C-x v =~ | diff against any chosen revision                  |
@@ -174,17 +174,19 @@
   ~C-x C-f~ /method:user@"@"remotehost#port:filename
   ~C-x C-f~ /ssh:test@"@"host#2222:/tmp
 
-  | ~C-x C-f~ | find file                                            |                |
-  | ~C-x C-v~ | find alternate file (reload / refresh file)          |                |
-  | ~C-x k~   | M-x kill-buffer                                      |                |
-  | ~C-x C-b~ | M-x list-buffers                                     |                |
-  | ~C-x b~   | M-x ido-switch-buffer                                |                |
-  | ~C-x 4 f~ | M-x ido-find-file-other-window                       | ctl-x-4-prefix |
-  | ~C-x 4 b~ | M-x switch-to-buffer-other-window                    | ctl-x-4-prefix |
-  | ~C-x o~   | M-x other-window - switch window / frame (o = other) |                |
-  | ~C-x C-s~ | M-x save-buffer                                      | save file      |
-  | ~C-x s~   | M-x save-some-buffers                                | save all files |
-  | ~C-x C-w~ | M-x write-file                                       | save as        |
+  | ~C-x C-f~ | M-x spacemacs/helm-find-files     | open file                        |
+  | ~SPC b R~ | M-x spacemacs/safe-revert-buffer  | reload / refresh file            |
+  | ~C-x x g~ | M-x revert-buffer-quick           | force reload / refresh file      |
+  | ~C-x k~   | M-x kill-buffer                   | close file                       |
+  | ~C-x C-b~ | M-x list-buffers                  |                                  |
+  | ~C-x b~   | M-x ido-switch-buffer             |                                  |
+  | ~C-x 4 f~ | M-x ido-find-file-other-window    | ctl-x-4-prefix                   |
+  | ~C-x 4 b~ | M-x switch-to-buffer-other-window | ctl-x-4-prefix                   |
+  | ~C-x o~   | M-x other-window                  | switch window / frame; o = other |
+  | ~C-x C-s~ | M-x save-buffer                   | save file                        |
+  | ~C-x s~   | M-x save-some-buffers             | save all files                   |
+  | ~SPC f c~ | M-x spacemacs/save-as             |                                  |
+  | ~C-x C-w~ | M-x write-file                    | save as                          |
 
   ;; Introduction to EShell: https://youtu.be/RhYNu6i_uY4
   ;; Video ransscript: http://howardism.org/Technical/Emacs/eshell-present.html
@@ -294,8 +296,9 @@
   | ~C-y~ | copy-paste: yank - paste last killed entry                       |
   | ~M-y~ | copy-paste: cycle back through previous entries in the kill ring |
 
-  | ~y s~ | M-x magit-copy-section-value - current sha1 to clipboard |
-  | ~M-w~ | M-x magit-copy-buffer-revision - top sha1 to clipboard   |
+  | ~y s~ | M-x magit-copy-section-value   | copy current sha1 to clipboard |
+  | ~y y~ | M-x magit-show-refs            | list branches                  |
+  | ~M-w~ | M-x magit-copy-buffer-revision | top sha1 to clipboard          |
   ;; magit: spin-off / spinoff
   git branch --track <new-branch-name>
 
@@ -412,8 +415,8 @@
   ;; splits: close / only one buffer / horizontal / vertical
   ~C-x 0~ / ~C-x 1~ / ~C-x 2~ / ~C-x 3~
 
-  ;; does not work
-  M-x clean-buffer-list
+  | ~s-K~ | M-x my=kill-buffers--unwanted                  |
+  |       | M-x clean-buffer-list doesn't work as expected |
 
   ;; remedy against "newer than byte-compiled file" try also:
   ;; cd $dev/emacs/lisp; and make autoloads
@@ -450,13 +453,8 @@
   M-x hi-lock-mode / highlight-regexp
 
   ;; magit: http://magit.github.io/master/magit.html
-  ;; M-x magit-commit
-  ~C-c C-c~
-
-  ;; magit: cancel (abandon) commit
-  M-x with-editor-cancel
-  ~C-c C-k~
-  ~C-x k~
+  | ~C-c C-c~            | M-x magit-commit       |                                |
+  | ~C-c C-k~ or ~C-x k~ | M-x with-editor-cancel | cancel / abandon / kill commit |
 
   ;; after M-x magit-status
   | ~+~            | M-x magit-diff-more-context    | increase chunk size                   |

@@ -3,6 +3,12 @@
 #+title: Guix
 
 @block{@block-name{Various links}
+  wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso
+  wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso.sig
+  # If encountered "gpg: Can't check signature: No public key" then import the signatures:
+  # wget https://sv.gnu.org/people/viewgpg.php?user_id=127547 -qO - | gpg --import -
+  gpg --verify guix-system-install-1.3.0.x86_64-linux.iso.sig
+
   https://gitlab.com/pjotrp/guix-notes
   ;; TODO fix search-notes - HACKING.org must be in capital letter; otherwise the link doesn't work!
   https://github.com/pjotrp/guix-notes/blob/master/HACKING.org

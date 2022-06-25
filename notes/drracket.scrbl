@@ -10,10 +10,8 @@
   to implement the language via #lang
 
   @block{@block-name{IDE}
-    #+BEGIN_SRC bash :results output
     raco pkg install --auto sauron
-    raco pkg install @url{https://github.com/tuirgin/drracket-spacemacs-schemes.git}
-    #+END_SRC
+    raco pkg install https://github.com/tuirgin/drracket-spacemacs-schemes.git
   }
 
   @block{@block-name{Scripting}
