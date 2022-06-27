@@ -3,9 +3,14 @@
 #+title: Clojure
 
 @block{@block-name{General}
-  HotSpot - old JIT (Just-In-Time) Compiler; in C++
-  GraalVM: JVM Compiler Interface: Plugin own JIT Compiler into VM
-  Graal - a compiler written in java, replacement for HotSpot
+  | HotSpot | Virtual Machine for OpenJDK.                            |
+  |         | old JIT (Just-In-Time) Compiler. Written in C++         |
+  | GraalVM | JVM Compiler Interface: Plugin own JIT Compiler into VM |
+  |         | Compiler written in Java, replacement for HotSpot       |
+
+  Class libraries + JVM make a Java Runtime Environment (JRE) or Java Developers
+  Kit (JDK).
+
   When JVM starts Graal begins to compile itself
   JVMCI protocol: between JMV and Graal -> {Truffle, TruffleRuby}
   Truffle language framework

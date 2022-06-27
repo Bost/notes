@@ -14,7 +14,7 @@
   templates: /etc/grub.d
   settings: /etc/default/grub
 
-  # of guix
+  # on Guix
   guix install grub
   grub-mkconfig   # generate a grub config file.
   grub-mkimage    # make a bootable image of GRUB.
@@ -26,8 +26,7 @@
 }
 
 @block{@block-name{Bluetooth}
-  BLE Bluetooth Low-Energy
-  #+BEGIN_SRC bash :results output
+  # BLE Bluetooth Low-Energy
   apt search bluetooth
   sudo apt install bluez blueman pulseaudio-module-bluetooth
   systemctl      status bluetooth
@@ -60,7 +59,6 @@
   obexftp -b XX:XX:XX:XX:XX:XX -c /Download -p local-fname
   # download
   obexftp -b XX:XX:XX:XX:XX:XX -c /Download -d remote-fname
-  #+END_SRC
 }
 
 @block{@block-name{ICMP Internet Control Message Protocol}
@@ -90,7 +88,6 @@
   tcpdump - command-line packet analyzer
   libpcap - portable C/C++ library for network traffic capture
 
-  #+BEGIN_SRC bash :results output
     # net
     # troubleshooting and security testing
     sudo tcpdump
@@ -104,7 +101,6 @@
     sudo tcpdump -s 0 -A -n -l | egrep -i "POST /|pwd=|passwd=|password=|Host:"
     # Capture cookies from server and from client
     sudo tcpdump -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
-  #+END_SRC
 }
 
 @block{@block-name{Various commands}
@@ -118,7 +114,6 @@
 
   find / search in terminal Shift + Ctrl + F
 
-  #+BEGIN_SRC bash :results output
   basenc --base64
   # "Hello world!" == "SGVsbG8gd29ybGQh"
   https://stackoverflow.com/a/62017480/5151982
@@ -1291,40 +1286,32 @@
   # YAML: YAML Ain't Markup Language
   # human-readable data-serialization language. Python style indentation
   # [] lists, {} maps
-  #+END_SRC
 }
 
 @block{@block-name{Cross-platform widget toolkit for creating GUIs}
   Which version is installed?
   @block{@block-name{GTK+}
-     https://stackoverflow.com/a/126193/5151982
-     #+BEGIN_SRC bash :results output
+     # https://stackoverflow.com/a/126193/5151982
      # ubuntu: bash:
      dpkg -l libgtk* | grep -e '^i' | grep -e 'libgtk-*[0-9]'
      # or even better
      pkg-config --modversion gtk+-3.0
      pkg-config --modversion gtk+-2.0
-     #+END_SRC
   }
 
   @block{@block-name{Qt}
      https://stackoverflow.com/a/39901086/5151982
      https://stackoverflow.com/a/40112592/5151982
-     #+BEGIN_SRC bash :results output
      qmake-qt5 --version
      qmake --version
      qtdiag
-     #+END_SRC
    }
 }
 
 @block{@block-name{Find zombie process}
-  https://vitux.com/how-to-create-a-dummy-zombie-process-in-ubuntu/
-  #+BEGIN_SRC bash :results output
+  # https://vitux.com/how-to-create-a-dummy-zombie-process-in-ubuntu/
   ps axo stat,ppid,pid,comm | grep -w defunct
-  #+END_SRC
 
-  #+BEGIN_SRC C
   // https://vitux.com/how-to-create-a-dummy-zombie-process-in-ubuntu/
   // compile: cc zombie.c -o zombie
 
@@ -1346,7 +1333,6 @@
     }
     return 0;
   }
-  #+END_SRC
 }
 
 @block{@block-name{sed & awk}
@@ -1354,7 +1340,6 @@
   awk - written by Alfred V. Aho, Peter J. Weinberger, Brian W. Kernighan
   text processing, data extraction, reporting tool
 
-  #+BEGIN_SRC bash :results output
   # cut huge file: content between lines 10 and 20 / print 5th line
   sed -n "10,20p" /path/to/file / sed -n 5p /path/to/file
   # cut huge file: content between lines 10 and 20
@@ -1382,7 +1367,6 @@
   # ignore lines between marker1 and marker2
   # see https://stackoverflow.com/a/40433880/5151982
   mysql_install_db 2>&1 | sed '/^$marker1/,/$marker2$/d'
-  #+END_SRC
 }
 
 @block{@block-name{tail vs less}
@@ -1393,7 +1377,6 @@
 
 @block{@block-name{rsync}
   March 2022: the scp Secure Copy Protocol is obsolete! Use sftp or rsync
-  #+BEGIN_SRC bash :results output
     # recursive copy `dotfiles` and `cheat` to server:~/dev/
     # i.e. create `server:~/dev/dotfiles/` and `server:~/dev/cheat/`
     rsync -avz dotfiles cheat server:~/dev/
@@ -1432,11 +1415,9 @@
     -r, --recursive
     -n, --dry-run
     -p, --perms   # preserve permissions
-   #+END_SRC
 }
 
 @block{@block-name{Disk Devices}
-  #+BEGIN_SRC bash :results output
   # :usb :drive :drives :dis
   # :fdisk :mount :udevadm :udiskie :udisksctl :block-device :boot
   lsblk         # list block devices
@@ -1469,7 +1450,6 @@
 
   # :usb :drive gnome userspace virtual fs
   mount | grep gvfs; cd ...
-  #+END_SRC
 }
 
 @block{@block-name{Swap}
@@ -1481,7 +1461,6 @@
   /proc/sys/vm/swappiness
   /proc/sys/vm/vfs_cache_pressure
   See [[http://www.pqxx.org/development/swapspace/][swapspace]] - the swap file manager
-  #+BEGIN_SRC bash :results output
   set swapfile /swapfile
   sudo dd status=progress if=/dev/zero of=$swapfile count=8388608 bs=1024
   # sudo fallocate --length 8G $swapfile
@@ -1492,11 +1471,9 @@
   sudo swapon $swapfile
   swapon --summary
   free -h
-  #+END_SRC
 }
 
 @block{@block-name{Sound}
-  #+BEGIN_SRC bash :results output
   # sound audio music jack jackd supercollider overtone
   # https://webcamtests.com/
   # https://mictests.com/
@@ -1519,7 +1496,6 @@
   # see also jack active ports & some extra info
   jack_lsp
   jack_lsp --connections  # list connections to/from each port
-  #+END_SRC
 }
 
 @block{@block-name{Sway}

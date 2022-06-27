@@ -1,26 +1,17 @@
-#+LATEX: % generate pdf: M-x org-latex-export-to-pdf
+#lang notes
 
-#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
-#+LATEX_HEADER: \usepackage{float}      % fixed table position
-#+LATEX_HEADER: \usepackage{parskip}    % paragraphs
-#+LATEX_HEADER: \usepackage{hyperref}
-#+LATEX_HEADER: \usepackage{syntax}     % grammar rules
-#+LATEX_HEADER: \usepackage{cmll}       % logic symbols; sudo snap install texlive-fonts-extra; http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf
-#+LATEX_HEADER: \usepackage{proof}      % inference rules
-#+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue}
-#+LATEX_HEADER: \usepackage[utf8]{inputenc}   % unicode chars
-#+LATEX_HEADER: \usepackage{minted}     % syntax coloring
+@block{@block-name{Logic}
+  Study of the principles of inference and reasoning. It's not about "what is
+  true".
 
-* Logic
-  Study of the principles of inference and reasoning. It's not about "what is true".
+  Inductive inference:
+  We try to inference something about a phenomenon we don't understand. What
+  properties it might have?
 
-  Inductive inference: \\
-  We try to inference something about a phenomenon we don't understand. What properties it might have?
-
-  Deductive inference: \\
+  Deductive inference:
   Something is true. What else can we derive from it?
 
-  Inference rules:\\
+  Inference rules:
   $$ \infer{Conclusion}{Premise} $$
 
   From the fact(s) / premise above the line we can deduce / assert / derive the
@@ -40,10 +31,14 @@
   |                     |                      | Different modes of truth                                    |
 
   TODO difference between branches of logic
+}
 
-* Intuitionistic logic
-  [[https://homepages.inf.ed.ac.uk/wadler/papers/lineartaste/lineartaste-revised.pdf][Philip Wadler: A taste of linear logic]] - based on Girard’s Logic of Unity ([[https://news.ycombinator.com/item?id=17641476][discussion]]) \\
-  In logic: terms encode proofs, In programming: terms are programming language \\
+@block{@block-name{Intuitionistic logic}
+  Philip Wadler: A taste of linear logic
+  [https://homepages.inf.ed.ac.uk/wadler/papers/lineartaste/lineartaste-revised.pdf]
+  based on Girard’s Logic of Unity ([[https://news.ycombinator.com/item?id=17641476][discussion]])
+
+  In logic: terms encode proofs, In programming: terms are programming language
   a.k.a Traditional a.k.a Constructive Logic: endless resources, no need for construction / destruction
 
   Expressions:
@@ -62,23 +57,25 @@
   Grammar    \hspace{7em} \= $A, B, C ::= X \mid A \rightarrow B \mid A \times B \mid A + B$ \\
   Rules                   \> Exchange, Contraction, Weakening, etc.                          \\
   \end{tabbing}
+}
 
-* Intuitionistic terms
+@block{@block-name{Intuitionistic terms}
   Expressions:
   | Expression  | Name / Logical Connective |
   |-------------+---------------------------+
   | $s,t,u,v,w$ | terms                     |
   | $x,y,z$     | variables for terms       |
+}
 
-* Linear logic
+@block{@block-name{Linear logic}
   notions of:
-  - state 
+  - state
   - limited resources: construction / descruction
 
   ? Unique pointers in C\texttt{++} ?
   "Stuff moved from place to place and it cannot be used twice, only once"\\
 
-  Grammar: 
+  Grammar:
   \begin{tabbing}
   Grammar    \hspace{7em} \= $A, B, C ::= X \mid A \multimap B \mid A \otimes B \mid A \with B \mid A \oplus B \mid \with A$ \\
   Rules                   \> ???                          \\
@@ -103,39 +100,77 @@
   $A \rightarrow B = \oc A \vdash B$ \\
   $A \times B = A \with B$ alternativelly $A \times B = \oc A \otimes \oc B$ \\
   $A + B = \oc A \oplus \oc B$
- 
-  Propositional Logic: AND, OR, NOT, IF-THEN, IS-EQUIVALENT-TO \\
-  Predicate Logic: dependence on free variables, has Universal quantifiers, variables, functions \\
-  Higher order logic
+}
 
-* Temporal logic
-  Temporal Logic of Actions TLA^{+} developed by Leslie Lamport: \\
-  It combines temporal logic with a logic of actions and describes behaviours of concurrent systems
-  [[https://www.youtube.com/watch?v=-4Yp3j_jk8Q&t][Thinking Above the Code]] [[http://lamport.azurewebsites.net/video/videos.html][The TLA^{+} Video Course]]
+@block{@block-name{Propositional Logic:}
+  AND, OR, NOT, IF-THEN, IS-EQUIVALENT-TO
+
+  A Pamphlet against R
+  https://github.com/panicz/pamphlet
+  Atomic formulas - simplest units of propositional logic. I.e propositions that
+  aren’t analyzed in simpler terms, and that can only be asserted or rejected.
+
+  Propositional variables: p, q, r, ... standing for atomic formulas.
+  Junctions of expressions: φ ∨ ψ, φ∧ψ, φ ⇒ ψ, φ ≡ ψ, ¬φ. (Compound expressions)
+
+  | Disjunction | φ or ψ                    |
+  | Conjunction | φ and ψ                   |
+  | Implication | if φ then ψ               |
+  | Equivalence | φ if and only if ψ        |
+  | Negation    | it is not the case that φ |
+
+  The semantics of propositional logic determines the logical value (i.e.
+  truth or falsehood) of each formula with respect to some given valuation,
+  i.e. a mapping from propositional variables to logical values.
+
+  A formula is satisfiable if there exists a valuation under which it is true.
+}
+
+@block{@block-name{Predicate Logic}
+  Dependence on free variables, has Universal quantifiers, variables, functions
+}
+
+@block{@block-name{Higher order logic}
+}
+
+@block{@block-name{Temporal logic}
+  Temporal Logic of Actions TLA^{+} developed by Leslie Lamport:
+  It combines temporal logic with a logic of actions and describes behaviours of
+  concurrent systems.
+  Thinking Above the Code
+  [https://www.youtube.com/watch?v=-4Yp3j_jk8Q&t]
+  The TLA^{+} Video Course
+  [http://lamport.azurewebsites.net/video/videos.html]
 
   Usefull models:
-  Functions: \\
-  map input to output; set of ordered pairs; Operating System - not an in/out mapping; runs forever (see sequence of states) \\
-  sequence of states == behavior \\
-  state: assignment of values to variables \\
+  - Function map input to output, can be represented as a set of ordered pairs
+    thus runs in no-time.
+  - Operating System runs forever (see sequence of states) does no in/out
+    mapping
+
+  sequence of states == behavior
+  state: assignment of values to variables
   programm is modeled by a set of behaviors representing all possible executions
 
-  Theorem: \\
-  intersection of behaviors satisfying properties: \\
-  Liveness L: a complete behavior is needed \\
-  Safety S: e.g. partial correctness \\
+  Theorem:
+  intersection of behaviors satisfying properties:
+  Liveness L: a complete behavior is needed
+  Safety S: e.g. partial correctness
 
-  Specification: \\
+  Specification:
   a set of possible init states (described using math!): uprimed variables
-  next state relation: describes all possible successor states using math(!): primed variables
+  next state relation: describes all possible successor states using math(!):
+  primed variables
 
-  Nondeterminism: \\
+  Nondeterminism:
   multiple next states possible
 
-  Formal specification: \\
-  needed only to apply tools: TLA^{+}: Temporal Logic is for liveness \\
+  Formal specification:
+  needed only to apply tools: TLA^{+}: Temporal Logic is for liveness
   Model checking of TLA^{+} spec
 
-  Informal Specification: \\
-  e.g. pretty-printing can't be exactly specified \\
-  Set of rules/requiremens/axioms is usually a bad spec: consequesces of rules are hard to understand
+  Informal Specification:
+  e.g. pretty-printing can't be exactly specified
+  Set of rules/requiremens/axioms is usually a bad spec: consequesces of rules
+  are hard to understand
+  }

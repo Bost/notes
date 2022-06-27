@@ -2,20 +2,15 @@
 
 #+title: Racket
 
-#lang video
+@block{@block-name{#lang video}
+  # In an Ubuntu VM
+  sudo apt update && sudo apt upgrade
+  sudo apt install openssh-server
+  sudo apt install racket ffmpeg pulseaudio libssl-dev libportaudio2
+  raco pkg install video-testing
 
-In Ubuntu VM
-sudo apt update && sudo apt upgrade
-
-sudo apt install openssh-server
-
-sudo apt install racket ffmpeg pulseaudio libssl-dev libportaudio2
-
-raco pkg install video-testing
-
-# sudo systemctl restart gdm
-
-
+  # sudo systemctl restart gdm
+}
 
 @block{@block-name{Factorio Mods}
   @block{@block-name{Rampant}
@@ -79,6 +74,17 @@ raco pkg install video-testing
 }
 
 @block{@block-name{Various, racket snippets, etc.}
+
+  ;; The 'case' conditions are not evaluated
+  (let ((pattern (string-append "f" "f")))
+    (case "ff" [((string-append "f" "f")) #t] [else #f]) #| => #f |#
+    (case "ff" [("ff") #t] [else #f])                    #| => #t |#
+    (case "ff" [(pattern) #t] [else #f])                 #| => #f |#
+    ;; (case "ff" [pattern #t] [else #f])                #| => syntax error |#
+    (equal? "ff" pattern)                                #| => #t |#
+    (case "ff" [((formatf "~a~a""f" "f")) #t] [else #f]) #| => #f |#)
+  ;; See also 'cond'.
+
   arcade package - writing arcade games
 
   ;; code block

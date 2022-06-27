@@ -2,7 +2,7 @@
 
 #+title: Guix
 
-@block{@block-name{Various links}
+@block{@block-name{Various}
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso.sig
   # If encountered "gpg: Can't check signature: No public key" then import the signatures:
@@ -22,6 +22,7 @@
 
   # guix shell --search-paths    # display needed environment variable definitions
 
+  # building Guix
   cd ~/dev/guix/
   # guix shell -D guix --pure
   # guix shell --development guix --pure
@@ -29,11 +30,12 @@
   guix shell --development guix help2man git strace --pure
   ./bootstrap
   ./configure --localstatedir=/var
-  make          # make j22  # first run takes a couple of minutes
+  make          # make -j22  # first run takes a couple of minutes
   # make check  # optional
   # authenticate all the commits included in your checkout by running:
   make authenticate
-  make clean-go  # make j22 clean-go
+  make clean-go  # make -j22 clean-go # delete the *.go files
+  ./pre-inst-env guix home --fallback -L ~/dev/dotfiles/guix/home/ container ~/dev/dotfiles/guix/home/home-configuration.scm
 }
 
 @block{@block-name{Chris Baines / GNU Guix Presentation}
@@ -46,7 +48,11 @@
 }
 
 @block{@block-name{RDE Reproducible Development Environment}
-  [[https://github.com/abcdw/notes/blob/master/notes/20211111141408-guix_shell_overview.org][Andrew Torpin: guix shell: Overview - Notes]]
+  Andrew Torpin: guix shell: Overview - Notes
+  [https://github.com/abcdw/notes/blob/master/notes/20211111141408-guix_shell_overview.org]
+
+  feature-emacs-eglot ;; lsp-interface for emacs
+  feature-clojure     ;;
 
   # Build an environment with PACKAGE-dependencies, and execute there the
   # COMMAND or an interactive shell in that environment
@@ -67,7 +73,8 @@
   Inferiors - fetch a package from a previous guix revision:
   [[https://guix.gnu.org/manual/devel/en/html_node/Inferiors.html][Inferiors]]
 
-  https://www.gnu.org/software/guile/manual/guile.html#REPL-Commands
+  Meta-commands
+  [https://www.gnu.org/software/guile/manual/guile.html#REPL-Commands]
   ;; REPL debugging:
   ;; displays the call stack (aka backtrace) at the point where the debugger was
   ;; entered
@@ -78,6 +85,13 @@
   scheme@"@"(guile-user) [1]> ,down
   ;; local variables
   scheme@"@"(guile-user) [1]> ,locals
+  ;;  / List procedures provided by the REPL:
+  scheme@(guile-user)> ,module (srfi srfi-1)
+  scheme@(srfi srfi-1)> ,help module
+  ...
+  scheme@(srfi srfi-1)> ,binding
+  ;; <list of procedures>
+  scheme@(guile-user)> ,pretty-print '(eval-when (expand load eval) ...)
 
   # Run command-line scripts provided by GNU Guile and related programs.
   guild
@@ -121,14 +135,22 @@
 }
 
 @block{@block-name{Contributing & sending patches}
-  [[https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi][Guix Documentation source code]]
-  [[https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html][Submitting Patches]]
+  Documentation changes:
+  # compile...
+  make doc/guix.info
+  # ...and view it with the info viewer:
+  info -f doc/guix.info
+
+  Guix Documentation source code
+  [https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi]
+  Submitting Patches
+  [https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html]
 
   git format-patch origin
   git send-email --to=guix-patches@"@"gnu.org *.patch
   info "(guix)Submitting Patches"
 
-  # when package definition obtained using git-fetch
+  # sha256; base32: when package definition obtained using git-fetch
   git clone http://example.org/foo.git
   cd foo
   git checkout <tag-or-branch>
@@ -137,7 +159,7 @@
 }
 
 @block{@block-name{QEMU shrink disk size - doesn't work}
-  https://pve.proxmox.com/wiki/Shrink_Qcow2_Disk_Files
+  [https://pve.proxmox.com/wiki/Shrink_Qcow2_Disk_Files]
 
   dd if=/dev/zero of=mytempfile
   # that could take a some time
@@ -239,7 +261,7 @@
   - `gpg key` instead of `ssh` and `gpg-agent` instead of `ssh-agent`
   - see also private.el
   - auth info - gpg secrets
-  https://anonymousplanet.org/guide.html
+  [https://anonymousplanet.org/guide.html]
 
   # Set up secret environment variable
   guix install gnupg

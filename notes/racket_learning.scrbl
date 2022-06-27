@@ -6,7 +6,6 @@
   Tiago Cogumbreiro - [[https://cogumbreiro.github.io/teaching/cs450/s21/][GitHub]]
   Michael Sperber - [[https://media.ccc.de/v/rc3-257534-all_programming_language_suck_just_build_your_own_language_oriented_programming_with_racket][All Programming Language Suck? Just Build Your Own!]]
   Jesse Alama - The Racket Weekend
-
 }
 
 @block{@block-name{Server Racket}

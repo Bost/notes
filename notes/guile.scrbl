@@ -2,26 +2,50 @@
 
 #+title: Guile
 
+
+https://www.gnu.org/software/guile/manual/html_node/Dynamic-Types.html
+Guile Scheme is dynamically-typed. Types only become apparent at run time.
+
+In Guile, this uniform representation of all Scheme values is the C type SCM.
+This is an opaque type and its size is typically equivalent to that of a pointer
+to void. Thus, SCM values can be passed around efficiently and they take up
+reasonably little storage on their own.
+
+The most important rule is: You never access a SCM value directly; you only pass
+it to functions or macros defined in libguile.
+
+As an obvious example, although a SCM variable can contain integers, you can of
+course not compute the sum of two SCM values by adding them with the C +
+operator. You must use the libguile function scm_sum.
+
+TO embed the Guile Scheme interpreter into your program or library, you need to
+link it against the libguile.
+
+@block{@block-name{SXML}
+  alternative syntax for writing XML data (more precisely, XML Infosets[1]) as
+  S-expressions, to facilitate working with XML data in Lisp and Scheme. An
+  associated suite of tools[which?] implements XPath, SAX and XSLT for SXML in
+  Scheme[2][3] and are available in the GNU Guile implementation of that
+  language.
+}
+
 @block{@block-name{Guile vs. guix repl}
   `guix repl` guarantees that all the Guix modules and all its dependencies are
   available in the search path. `guile` doesn't give such guarantees
 
   Guile is an implementation of the Scheme programming language.
-
   See `info "(guile)Concept Index"`
 
-  [[https://srfi.schemers.org/][Scheme Requests for Implementation SRFI]]
+  Scheme Requests for Implementation SRFI
+  [https://srfi.schemers.org/]
 
-  https://jeko.frama.io/en/install.html
+  Installing Guile Scheme:
+  [https://jeko.frama.io/en/install.html]
 
   Ports are the way that Guile performs input and output
 
-  #+BEGIN_SRC bash :results output
-  #+END_SRC
-
-  Then, you can configure your interpreter by modifying the ~/.guile file (create
-  it if it doesn't exist) and put the following lines into it:
-
+  ;; Configure interpreter by modifying the ~/.guile file
+  ;; (create it if it doesn't exist) and put the following lines into it:
   (use-modules (ice-9 readline)
                ;; requires `guix install guile-colorized`
                (ice-9 colorized))
@@ -31,23 +55,54 @@
 }
 
 @block{@block-name{Partial function application.}
-  See [[https://srfi.schemers.org/srfi-26/srfi-26.html][Notation for Specializing Parameters without Currying]]
+  Notation for Specializing Parameters without Currying
+  [https://srfi.schemers.org/srfi-26/srfi-26.html]
 
   (use-modules (srfi srfi-26))
   (map (cut * 2 <>) (1 2 3 4))
-  ;; also
+  ;; also variadic function arguments
   (define (partial fun . args)
     (lambda x (apply fun (append args x))))
+  ;; or
+  (define* (partial fun #:rest args)
+    (lambda x (apply fun (append args x))))
+  ;; '#:rest' is a synonym for the dotted syntax rest argument.
 }
 
 @block{@block-name{Various code snippets}
+  ;; check for empty list:
+  (null? '())  ; => #t
+  (null? '(1)) ; => #f
+  ;; check for empty string
+  (string-null? "")  ; => #t
+  (string-null? "1") ; => #f
+
+
+  ;; in clojure: (some pred coll); or `some->` etc.
+  ;; find pred lst
+  ,use (srfi srfi-1)
+  (find (lambda (s) (string? "abc" s)) '("a" "b" "abc" "d"))
+
+  ;; Pattern matching with let*:
+  (define mapping (list ...))
+  ;;
+  (define d-this (car mapping))
+  (define d-remaining (cdr mapping))
+  (define d-name (car this))
+  (define d-value (cdr this))
+  ;;
+  (let* ((((l-name . l-value) . l-remaining) mapping))
+  (format #t "~a\n" (equal? l-name      d-name))
+  (format #t "~a\n" (equal? l-value     d-value))
+  (format #t "~a\n" (equal? l-remaining d-remaining)))
+
+
   (use-modules (ice-9 rdelim)
                (ice-9 popen)
                (ice-9 regex)
                (srfi srfi-1) ;; fold
-               ;; (language cps intmap)
-               )
-
+               #| (language cps intmap) |#)
+  ;;
   (define (get-type o)
     "TODO implement: 1 is a number and an integer in the same type"
     (cond
@@ -123,7 +178,6 @@
 }
 
 @block{@block-name{Keywords}
-  #+BEGIN_SRC scheme
   (keyword? #:foo) ; => #t
   ;; (keyword? :foo) ; => error
   ;; (keyword? foo:) ; => error
@@ -131,16 +185,13 @@
   (keyword? :foo) ; => #t
   (read-set! keywords 'postfix)
   (keyword? foo:) ; => #t
-  #+END_SRC
   The `(keyword? :foo:)` will work if any of the `(read-set! ...)` is evaluated.
 }
 
 @block{@block-name{Formatted output}
   like fprintf. See [[https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html][Formatted Output]]
-  #+BEGIN_SRC scheme
   (format #t "\n~a\n\n" s)
   (format #f "\n~a\n\n" s) ;; print to string
-  #+END_SRC
 }
 
 @block{@block-name{G-expression - gexp}
@@ -157,12 +208,26 @@
     /gnu/store/... file name.
 
   Syntactic forms:
-  | #~  | gexp            | quasiquote       |
-  | #$  | ungexp          | unquote          |
-  | #$@"@" | ungexp-splicing | unquote-splicing |
-
+  | #~     | gexp            | quasiquote                |
+  | #$     | ungexp          | unquote                   |
+  | #$@"@" | ungexp-splicing | unquote-splicing / splice |
 }
 
 @block{@block-name{Module installation}
   see `info "(guile)Installing Site Packages"`
+}
+
+@block{@block-name{begin}
+  (begin
+    ...)
+  A begin form in a definition context splices(! not sequences) its subforms
+  into its place.
+
+  Splicing and sequencing are different. It can make sense to splice zero forms,
+  because it can make sense to have zero internal definitions before the
+  expressions in a procedure or lexical binding form. However it does not make
+  sense to have a sequence of zero expressions, because in that case it would
+  not be clear what the value of the sequence would be, because in a sequence of
+  zero expressions, there can be no last value. Sequencing zero expressions is
+  an error.
 }
