@@ -180,9 +180,11 @@
   git shortlog --summary --numbered --email
   git shortlog -sne
 
-  # list all commits for a specific day
-  git log --after="2013-11-12 00:00" --before="2013-11-13 00:00"
+  # list all commits for a specific day / date / timestamp
+  git log --after="2013-12-11 00:00" --before="2013-12-11 23:57"
   gitk    --since="2013-11-12 00:00"  --until="2013-11-13 00:00" & disown
+  # list all commits for a specific commiter / user / author
+  git log --author=John
 
   # show settings
   git config --global --list

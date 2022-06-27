@@ -142,11 +142,13 @@
   f  --hidden --full-path '.envrc$' ~
 
   # combine fdfind and ripgrep; show full files paths for the mathes
-  rg "<search-regex>" (f '<file-extention>$' /path/to/dir)
-  rg "<search-regex>" (f '<file-extention>$' (pwd))
-  rg 'dotspacemacs/layers' (f 'el$' ~/.emacs.d/)
-  rg "define.*\(operating-system\b" (f 'scm$' ~/dev/guix/)
-  rg "instrumented" (f 'scm$' ~/dev/guix/ ~/dev/guile/)
+  rg '<search-regex>' (f '<file-extention>$' /path/to/dir)
+  rg '<search-regex>' (f '<file-extention>$' (pwd))
+  rg 'dotspacemacs/layers' (f 'el|c|h$' ~/.emacs.d/)
+
+  # -e, --extension
+  rg 'define.*\(operating-system\b' (f -e scm -e c -e h '.*' ~/dev/guix)
+  rg 'instrumented' (f 'scm|c|h$' ~/dev/guix/ ~/dev/guile/)
 
   grep 'Spacemacs is ready.' (find ~/.emacs.d/ -type f -name '*.el')
   find ~/.emacs.d/ -type f -name "*.el" -print0 | xargs -0 grep --files-with-matches "Spacemacs is ready."

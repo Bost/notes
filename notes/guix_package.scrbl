@@ -64,9 +64,11 @@
 }
 
 @block{@block-name{Substitutes}
+  https://guix.gnu.org/manual/en/html_node/Substitutes.html
   TODO what is 'substitutes' - update 'guix help wheather'
-  Typically pre-built package binaries.
-  Can be also e.g. source tarballs, which also result from derivation builds
+
+  Substitute can be anything resulting from a derivation build. Typically
+  pre-built package binaries. Can be also e.g. source tarballs.
 }
 
 @block{@block-name{Creating package}
@@ -83,7 +85,9 @@
   #
   guix build --load-path=./gnu/packages --keep-failed <package>
   cd $GUIX_CHECKOUT
-  ./pre-inst-env guix build --keep-failed ruby@"@"2.1
+  guix shell -D guix
+  ./pre-inst-env guix build --keep-failed <package>@"@"<version>
+  ./pre-inst-env guix install <package>@"@"<version>
   # or
   guix package --install-from-file=my-hello.scm
   # or

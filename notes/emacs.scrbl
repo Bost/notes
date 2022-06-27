@@ -3,6 +3,15 @@
 #+title: Emacs
 
 @block{@block-name{Diverse}
+  Dedicated window - doesn't display any other buffer.
+
+  Emacs extension language: Emacs Lisp
+  Any extension is restricted to the functionality provided by Emacs’s built-in
+  set of primitive operations.
+  Guile also supports the loading of extension libraries written in C. This
+  enables user code to add new primitive operations to Guile, and so to bypass
+  the limitation present in Emacs Lisp.
+
   (funcall (-compose #'number-to-string #'1+) 1) => "2"
   conversion number-to-string
   inc function: 1+

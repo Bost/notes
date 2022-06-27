@@ -38,6 +38,17 @@
   Business Process Modeling
 }
 
+@block{@block-name{Lambda λ-Calculus Notation history / development}
+  John Harrison Introduction to Functional Programming
+  [http://www.cl.cam.ac.uk/teaching/Lectures/funprog-jrh-1996/all.pdf]
+
+  Bertrand Russell and Alfred North Whitehead, Principia Mathematica, where they
+  used the notation f(xˆ) [^ above x] to mean a function of x, rather than the
+  value of f in the point x. Alonzo Church modified the notation by taking the
+  xˆ before the function application, i.e. xˆ.f(x). A typesetter wrote that as
+  Λx.f(x), someone read that as the Greek letter lambda.
+}
+
 @block{@block-name{Untyped Lambda λ-Calculus}
   I.e. Formal calculus for manipulating functions; Turing-complete (can simulate any Turing machine)
   e ::= x | λx.e | e e'
@@ -219,7 +230,7 @@
   judge, jury, religion, boss, conviction "No bugs in my code!"
   "I don't see why not": psycho (the oposing party must find argument)
   A mathematical proof:
-    - an argument that convinces other mathematicians :)
+    - an argument that convinces other mathematicians
     - verification of a proposition by a chain of logical deductions from a set of axioms
     - deduction from hypotheses to conclusion in which each step is justified by one of a finite list of rules of inference
       https://home.sandiego.edu/~shulman/papers/rabbithole.pdf
@@ -303,23 +314,29 @@
   2. an expression of the form (x . y) where x and y are s-expressions.
 }
 
-@block{@block-name{Quasiquote}
-  More general mechanism than quote for creating nested list structure without
-  using constructors explicitly
+@block{@block-name{Quotation}
+  Quotation:
+  To refer to certain expressions of the language whose meanings we were trying
+  to paraphrase, put the expression in quotes, i.e. quote the expression.
+
+  Quasiquote:
+  - Allows to quote only a part of a list
+  - More general mechanism than quote for creating nested list structure without
+    using constructors explicitly.
 }
 
 @block{@block-name{Variable scope within a certain function}
   @block{@block-name{static / lexical}
-  scope of a variable v is the program block (e.g. a function): within that block,
-  the variable name exists, and is bound to the variable's value, but outside that
-  block, the variable name does not exist.
+    Scope of a variable v is the program block (e.g. a function): within that
+    block, the variable name exists, and is bound to the variable's value, but
+    outside that block, the variable name does not exist.
   }
 
   @block{@block-name{dynamic}
-  scope of a variable v is the time-period during which the program block (e.g. a
-  function) is executing: while the function is running, the variable name exists,
-  and is bound to its value, but after the function returns, the variable name
-  does not exist.
+    Scope of a variable v is the time-period during which the program block
+    (e.g. a function) is executing: while the function is running, the variable
+    name exists, and is bound to its value, but after the function returns, the
+    variable name does not exist.
   }
 }
 
@@ -453,3 +470,27 @@
     attaching mathematical meanings to its terms (denotational semantics).
   }
 }
+
+@block{@block-name{A Pamphlet against R}
+  Programmers write code which gets in the way to understanding, rather than
+  facilitate it. Apparently even excellent programmers and great erudites have
+  been failing at this task. One of the most extreme examples is the code from
+  Donald Knuth’s The Art of Computer Programming. Written in the MIX assembly,
+  the code only hides the conceptual structure of presented solutions from the
+  reader.
+}
+
+Scheme as a meta-language for itself – this technique, called meta-circular
+evaluation, has been explored in the grand book Structure and Interpretation of
+Computer Programs. This idea was at the heart of the seminal paper Recursive
+Functions of Symbolic Expressions and their Computation by Machine by John
+McCarthy, which gave birth to the predecessor of Scheme called Lisp.
+
+A nesting of pairs whose last right value is not the empty list is called
+improper list
+
+Each occurrence of the (random n) expression can be replaced with a value
+randomly chosen from the range 0 to n − 1. That's nondeterminism - i.e. reason
+prefer the term expression-based programming to functional programming.
+Disallowing such nondeterministic expressions would make many simple things
+complex.
