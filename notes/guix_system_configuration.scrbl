@@ -131,8 +131,10 @@
 }
 
 @block{@block-name{Advanced package management}
-  [[https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html][Basic setup with manifests]]
-  [[https://guix.gnu.org/cookbook/en/guix-cookbook.html#Guix-Profiles-in-Practice]][[Guix Profiles in Practice]]
+  Basic setup with manifests
+  [https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html]
+  Guix Profiles in Practice
+  [https://guix.gnu.org/cookbook/en/guix-cookbook.html#Guix-Profiles-in-Practice]
 
   # hint: After setting `PATH', run `hash guix' to make sure your shell refers to `...'.
   hash guix                       # creates '/home/bost/.config/guix/current'

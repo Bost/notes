@@ -82,6 +82,8 @@
 
   " open / write all buffers at once
   :ba / :ball / :wa / :wall
+  :edit /path/to/file
+  :e    /path/to/file
 
   " edit macro
   C-x C-k e

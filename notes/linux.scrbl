@@ -6,7 +6,7 @@
 
 @block{@block-name{Udev}
   Userspace Device udev
-  [[https://en.wikipedia.org/wiki/Udev][Wikipedia: Udev]]
+  [https://en.wikipedia.org/wiki/Udev]
   device manager for linux kernel; manages nodes in the /dev directory
 }
 
@@ -88,19 +88,19 @@
   tcpdump - command-line packet analyzer
   libpcap - portable C/C++ library for network traffic capture
 
-    # net
-    # troubleshooting and security testing
-    sudo tcpdump
-    # Extract HTTP user agents
-    sudo tcpdump -nn -A -s1500 -l | egrep -i 'User-Agent:|Host:'
-    # Capture all the plaintext passwords
-    sudo tcpdump port http or port ftp or port smtp or port imap or port pop3 or \
-         port telnet -l -A | egrep -i -B5 \
-         'pass=|pwd=|log=|login=|user=|username=|pw=|passw=|passwd=|password=|pass:|user:|username:|password:|login:|pass |user '
-    # Extract HTTP passwords in POST requests
-    sudo tcpdump -s 0 -A -n -l | egrep -i "POST /|pwd=|passwd=|password=|Host:"
-    # Capture cookies from server and from client
-    sudo tcpdump -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
+  # net
+  # troubleshooting and security testing
+  sudo tcpdump
+  # Extract HTTP user agents
+  sudo tcpdump -nn -A -s1500 -l | egrep -i 'User-Agent:|Host:'
+  # Capture all the plaintext passwords
+  sudo tcpdump port http or port ftp or port smtp or port imap or port pop3 or \
+       port telnet -l -A | egrep -i -B5 \
+       'pass=|pwd=|log=|login=|user=|username=|pw=|passw=|passwd=|password=|pass:|user:|username:|password:|login:|pass |user '
+  # Extract HTTP passwords in POST requests
+  sudo tcpdump -s 0 -A -n -l | egrep -i "POST /|pwd=|passwd=|password=|Host:"
+  # Capture cookies from server and from client
+  sudo tcpdump -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
 }
 
 @block{@block-name{Various commands}
@@ -108,9 +108,11 @@
   https://github.com/tldr-pages/tldr
   https://github.com/cheat/cheat
 
-  [[https://github.com/adtac/climate][Climate]] - the ultimate command line tool for Linux
+  Climate - the ultimate command line tool for Linux
+  [https://github.com/adtac/climate]
 
-  [[https://htmlpreview.github.io/?https://raw.githubusercontent.com/michaelmacinnis/oh/master/doc/comparison.html][compare shells]]
+  Compare shells
+  [https://htmlpreview.github.io/?https://raw.githubusercontent.com/michaelmacinnis/oh/master/doc/comparison.html]
 
   find / search in terminal Shift + Ctrl + F
 
@@ -204,18 +206,12 @@
   # TODO what is the /24 - address range?
 
   # find active computers on a local network with nmap
-  # Standard ICMP ping
-  nmap -sn 192.168.1.0/24
-  # TCP SYN Ping
-  nmap -sn -PS 192.168.1.0/24
-  # TCP ACK Ping
-  nmap -sn -PA 192.168.1.0/24
-  # UDP Ping
-  nmap -sn -PU 192.168.1.0/24
-  # IP Protocol Ping
-  nmap -sn -PO 192.168.1.0/24
-  # ARP Ping
-  nmap -sn -PR 192.168.1.0/24
+  | Standard ICMP ping | nmap -sn     192.168.1.0/24 |
+  | TCP SYN Ping       | nmap -sn -PS 192.168.1.0/24 |
+  | TCP ACK Ping       | nmap -sn -PA 192.168.1.0/24 |
+  | UDP Ping           | nmap -sn -PU 192.168.1.0/24 |
+  | IP Protocol Ping   | nmap -sn -PO 192.168.1.0/24 |
+  | ARP Ping           | nmap -sn -PR 192.168.1.0/24 |
 
   # find active computers on a local network with ping
   # works only in bash
@@ -389,7 +385,7 @@
 
   # change file mode bits - verbose example(s)
   chmod --recursive u=rwx,g=rwx,o=rwx /path/to/dir
-  chmod -R u=rwx,g=rwx,o=rwx /path/to/dir
+  chmod          -R u=rwx,g=rwx,o=rwx /path/to/dir
 
   # remove all files except survivor.txt
   rm -f !(survivor.txt)
@@ -454,9 +450,8 @@
   # mv README.text README.txt ; cp file file.bak
   mv README.{text,txt} ; cp file{,.bak}
 
-  # fist / last 5 lines from file
-  head -n 5 file
-  tail -n 5 file
+  | fist 5 lines from file | head -n 5 file |
+  | last 5 lines from file | tail -n 5 file |
 
   # get date (timestamp) in a given format
   date +"%Y-%m-%d_%H-%M-%S"
@@ -728,12 +723,12 @@
 
   # :nice :cpulimit :ps show statistics for a process nr. 7695
   ps -o pid,user,command,nice -p 7695
-  ps f         # process tree
-  ps fx        # process tree of all processes
-  ps u         # user's processes ; ps -aux / ps aux - are different
-  ps -e        # every process on the system: standard syntax
-  ps ax        # every process on the system: BSD syntax
-  ps --windows # show windows as well as cygwin processes (-W)
+  | ps f         | process tree                                        |
+  | ps fx        | process tree of all processes                       |
+  | ps u         | user's processes ; ps -aux / ps aux - are different |
+  | ps -e        | every process on the system: standard syntax        |
+  | ps ax        | every process on the system: BSD syntax             |
+  | ps --windows | show windows as well as cygwin processes (-W)       |
 
   # distro name and ver
   cat /etc/*-release
@@ -750,7 +745,6 @@
   sudo touch /forcefsck
 
   # remove old kernels - see dotfiles/bin/remove-old-kernels
-
 
   # checksum current directory; "-print0" and "-0" handle filenames with spaces
   # ... with filenames, i.e. renaming detection
@@ -1019,15 +1013,23 @@
   # remove sections from each line of files
   cut
 
-  # list open files / what is currently using file
+  # list open files / what is currently using a file
   lsof
   # open files whose inet address matches ADDR; -t: terse output
   lsof -i:[ADDR] -t
   # fish: process listening on the PORT_NUMBER
   ps (lsof -i:PORT_NUMBER -t)
 
+  | strace | trace system calls and signals |
+  | ltrace | library call tracer            |
+  | ftrace | TODO                           |
+  | ptrace | trace process                  |
   # what is currently using file / files opened by a running command
   strace COMMAND 2>&1 | grep openat
+  # monitor file and network activities of a PROCESS
+  # max printed string size 10000
+  # *.strace file should be handled correctly by strace-mode emacs plugin
+  strace -f -e trace=file,network -s 10000 -o outfile.strace PROCESS ARGS
 
   # check file types and compare values
   test
@@ -1042,35 +1044,20 @@
   zenity, whiptail
 
   # :metric :monitor
-  collectd # system statistics collection daemon
-  telegraf # plugin-driven server agent for collecting & reporting metrics
+  | collectd | system statistics collection daemon                           |
+  | telegraf | plugin-driven server agent for collecting & reporting metrics |
 
-  # monitor file and network activities of a PROCESS
-  # max printed string size 10000
-  strace -f -e trace=file,network -s 10000 -o outfile.log PROCESS ARGS
+  | Simple Network Management Protocol | snmp      |
+  | packet analyzer                    | wireshark |
+  | trivial file transfer program      | tftp      |
 
-  # trace process / library
-  ptrace / ltrace
-
-  # :net Simple Network Management Protocol
-  snmp
-
-  # :net packet analyser
-  wireshark
-
-  # :net :ftp trivial file transfer program
-  tftp
-
-  # :ftp toggle bash / ftp
+  # toggle bash / ftp
   ! / exit
-
-  # :ftp connect to ipaddress and login with username
+  # connect to ipaddress and login with username
   open ipaddress ENTER user username
-
-  # :ftp get file from remote computer
+  # get file from remote computer
   get file / mget file
-
-  # :ftp sends site specific commands to remote server
+  # sends site specific commands to remote server
   site
 
   # System Information Extraction Program:
@@ -1157,7 +1144,7 @@
   # Cleanup local maven repository. It removes all snapshot from more than
   # 6 months: https://gist.github.com/cescoffier/1582615
 
-  # :sftp / :ftp - SSH File Transfer from the OpenSSH / FTP over SSL
+  # :sftp - SSH File Transfer from the OpenSSH / FTP over SSL
   # FTPS - FTP over SSL (SSL is deprecated)
   lftp
 

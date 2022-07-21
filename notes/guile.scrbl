@@ -58,6 +58,9 @@ link it against the libguile.
   Notation for Specializing Parameters without Currying
   [https://srfi.schemers.org/srfi-26/srfi-26.html]
 
+  ;; ‘lambda*’ is ‘lambda’, with allowed optional and keyword arguments
+  ;; ‘define*’ is syntactic sugar for defining procedures using ‘lambda*’
+
   (use-modules (srfi srfi-26))
   (map (cut * 2 <>) (1 2 3 4))
   ;; also variadic function arguments
