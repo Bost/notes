@@ -27,15 +27,17 @@
 }
 
 @block{@block-name{Command line snippets}
-  # package management
-  # install local package
-  raco pkg install
-  # install 3rd party package from package repository
-  raco pkg install <package>
-  raco pkg install --auto <package>  # auto-install required dependecies
-  raco pkg remove  <package>
+  # package / project management:
+  raco pkg new <package>             # start new project
 
-  # how to run a Racket program
+  raco pkg install                   # local package
+  raco pkg install        <package>  # 3rd party package from package repository
+  raco pkg install --auto <package>  # auto-install required dependecies
+
+  # remove any installed  (3rd party or local) package from package repository
+  raco pkg remove <package>
+
+  # run a Racket program
   racket program.rkt
 
   # 'Hello World' from the command line
@@ -118,6 +120,8 @@
   ;; function composition: compose, compose1
   (define (inc n) (+ n 1))
   ((compose str inc length) '(1 2 3))
+  ;; see also Threading macros https://docs.racket-lang.org/threading/index.html
+  ;; ~> ~>> curry rackjure/partial etc
 
   ;; info.rkt: collection of dependecies
 

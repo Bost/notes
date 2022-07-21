@@ -142,13 +142,20 @@
   f  --hidden --full-path '.envrc$' ~
 
   # combine fdfind and ripgrep; show full files paths for the mathes
-  rg '<search-regex>' (f '<file-extention>$' /path/to/dir)
-  rg '<search-regex>' (f '<file-extention>$' (pwd))
-  rg 'dotspacemacs/layers' (f 'el|c|h$' ~/.emacs.d/)
+  rg "<search-regex>" (f "<file-extention>$" /path/to/dir)
+  rg "<search-regex>" (f "<file-extention>$" (pwd))
+  rg "dotspacemacs/layers" (f -e scm -e c -e h '.*' ~/.emacs.d)
+  # word boundaries
+  rg "\bword\b" (f -e scm -e c -e h '.*' ~/.emacs.d)
+  rg -w "word" (f -e scm -e c -e h '.*' ~/.emacs.d)
+  rg -g '*.{el}' -w "deleted" ~/.emacs.d
 
-  # -e, --extension
-  rg 'define.*\(operating-system\b' (f -e scm -e c -e h '.*' ~/dev/guix)
-  rg 'instrumented' (f 'scm|c|h$' ~/dev/guix/ ~/dev/guile/)
+  # rg manual file types / extensions (globing)
+  rg -g '*.{scm,c,h}' -w "operating-system" ~/dev/guix ~/dev/guile
+  # fdfind manual file types / -e, --extension
+  rg -w "operating-system" (f -e scm -e c -e h '.*' ~/dev/guix ~/dev/guile)
+
+  rg "instrumented" (f -e scm -e c -e h '.*'  ~/dev/guix/ ~/dev/guile/)
 
   grep 'Spacemacs is ready.' (find ~/.emacs.d/ -type f -name '*.el')
   find ~/.emacs.d/ -type f -name "*.el" -print0 | xargs -0 grep --files-with-matches "Spacemacs is ready."

@@ -10,7 +10,6 @@
   gpg --verify guix-system-install-1.3.0.x86_64-linux.iso.sig
 
   https://gitlab.com/pjotrp/guix-notes
-  ;; TODO fix search-notes - HACKING.org must be in capital letter; otherwise the link doesn't work!
   https://github.com/pjotrp/guix-notes/blob/master/HACKING.org
   ;; Brainiarc7/guix-notes is 1 commit ahead, 279 commits behind pjotrp:master
   https://github.com/Brainiarc7/guix-notes/blob/master/HACKING.org
