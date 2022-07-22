@@ -3,7 +3,6 @@
 #+title: Solaris
 
 @block{@block-name{Solaris}
-  #+BEGIN_SRC bash :results output
   # checksum
   /usr/bin/digest -a sha1
   # wget location
@@ -14,5 +13,4 @@
   psrinfo
   # net: ipconfig
   /usr/sbin/ifconfig -a
-  #+END_SRC
 }

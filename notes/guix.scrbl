@@ -85,12 +85,12 @@
   ;; local variables
   scheme@"@"(guile-user) [1]> ,locals
   ;;  / List procedures provided by the REPL:
-  scheme@(guile-user)> ,module (srfi srfi-1)
-  scheme@(srfi srfi-1)> ,help module
+  scheme@"@"(guile-user)> ,module (srfi srfi-1)
+  scheme@"@"(srfi srfi-1)> ,help module
   ...
-  scheme@(srfi srfi-1)> ,binding
+  scheme@"@"(srfi srfi-1)> ,binding
   ;; <list of procedures>
-  scheme@(guile-user)> ,pretty-print '(eval-when (expand load eval) ...)
+  scheme@"@"(guile-user)> ,pretty-print '(eval-when (expand load eval) ...)
 
   # Run command-line scripts provided by GNU Guile and related programs.
   guild
@@ -299,18 +299,14 @@
 
 @block{@block-name{Flatpack}
   @block{@block-name{Zoom}
-     #+BEGIN_SRC bash :results output
      sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
      sudo flatpak install flathub us.zoom.Zoom
      flatpak run us.zoom.Zoom & disown
-     #+END_SRC
   }
 
   @block{@block-name{Discord}
-     #+BEGIN_SRC bash :results output
      sudo flatpak remote-add --if-not-exists flathub https://flathub.org/apps/details/com.discordapp.Discord
      sudo flatpak install flathub com.discordapp.Discord
      flatpak run com.discordapp.Discord & disown
-     #+END_SRC
    }
 }

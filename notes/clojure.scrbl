@@ -139,24 +139,19 @@
     [[https://github.com/borkdude/babashka][Babashka]]
     [[https://github.com/dundalek/closh][Closh - Bash-like shell based on Clojure]]
 
-    #+BEGIN_SRC bash :results output
     # see config.fish
     set cljjar ~/.m2/repository/org/clojure/clojure/1.10.0/clojure-1.10.0.jar
     set cljsjar ~/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar
     rlwrap java -cp $cljjar:$cljsjar clojure.main
-    #+END_SRC
 
     cli: run as a script: ./hello.clj
-    #+BEGIN_SRC
     #!/usr/bin/env boot
     (println "Hello world script via bash and boot - this is slow!")
     ;; cli: run as a script: clojure ./hello.clj
     (println "Hello world script: clj script.clj aaa bbb")
     (doseq [arg *command-line-args*]
       (printf "arg='%s'\n" arg))
-    #+END_SRC
 
-    #+BEGIN_SRC bash :results output
     # start REPL:
     set clj_home $dec/clojure.org/clojure
     cd $clj_home
@@ -174,10 +169,8 @@
     boot socket-server --port 5555 --accept clojure.core.server/io-prepl wait &; disown
     # execute (+ 1 2) and quit
     echo -e "(clojure.core/+ 1 2)\n:repl/quit" | nc localhost 5555
-    #+END_SRC
   }
   @block{@block-name{Rest}
-    #+BEGIN_SRC bash :results output
     # HelloWorld: compile and run class file then create jar file and run it
     set basedir ./javasrc
     set classdir org/domain
@@ -244,11 +237,9 @@
     # changes require logout and login
     set -x JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
     set -x JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
-    #+END_SRC
   }
 
   @block{@block-name{Leiningen}
-    #+BEGIN_SRC bash :results output
     # leiningen:
     lein deps :tree                  # dependency tree
     lein classpath | sed 's/:/\n/g'  # classpath
@@ -265,7 +256,6 @@
 
     # deps.edn ~ lein ancient
     clojure -M:outdated --upgrade # --force
-    #+END_SRC
   }
 }
 
@@ -331,7 +321,6 @@
 }
 
 @block{@block-name{Namespace}
-  #+BEGIN_SRC clojure
   (ns ^{:doc "
   - Namespace as a Type: ns contains fns returning values of the same type. I.e.
     it is a set of proofs of a given proposition (i.e. of a given type).
@@ -343,11 +332,9 @@
           :author "<Author's name>" :last-update "<the-date>"}
         foo-bar.core)
   ;; (meta *ns*) ; should print the whole metadata hash-map
-  #+END_SRC
 }
 
 @block{@block-name{Macros}
-  #+BEGIN_SRC clojure
   ;; ` backtick - syntax-quote
   ;; ' apostrophe - quote
   ;; ~ tilda - unquote within a syntax-quote block
@@ -441,14 +428,12 @@
 
        (def ~(vary-meta (read-string (clojure.string/lower-case c))
                         assoc :const true :tag `String) ~c)))
-  #+END_SRC
 }
 
 @block{@block-name{comp, partial, threading macros}
   threading macros create intermediate collections in every step.
   replace them with transducers
   https://groups.google.com/g/clojure/c/BhkUEoJBpKA
-  #+BEGIN_SRC clojure
   (= (conj {:a 2} {:a 1}) (->> {:a 1} (conj {:a 2})))
   (= (conj {:a 1} {:a 2}) (-> {:a 1} (conj {:a 2})))
   (as-> [:foo :bar] $ (map name $) (first $) (.substring $ 1))
@@ -484,11 +469,9 @@
     0 "zero"
     1 "one"
     "other")
-  #+END_SRC
 }
 
 @block{@block-name{Rest}
-  #+BEGIN_SRC clojure
   ;; a spaceholder - one-liners don't get matched
   (ns clj.cheat
     "The docstring")
@@ -987,21 +970,17 @@
   ;; => 9223372036854775808N
   (* 1N 1) ; but small BigInts aren't normalized to Java Longs
   ;; => 1N
-  #+END_SRC
 }
 
 @block{@block-name{The Computer Language Benchmarks Game}
   [[https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html][The Computer Language Benchmarks Game]]
-  #+BEGIN_SRC clojure
   ;; `reduce` can be faster than `apply`...
   (time (reduce + (range 1e9))) ;; 6824.592024 msecs
   (time (apply + (range 1e9)))  ;; 8740.237518 msecs
   ;; ... but not always:
   (time (reduce + (filter odd? (map inc (range 1e8))))) ;; 2421.542711 msecs
   (time (apply + (filter odd? (map inc (range 1e8)))))  ;; 2418.872182 msecs
-  #+END_SRC
 
-  #+BEGIN_SRC racket
   #lang racket
   (require racket/sequence)
   (let* [(beg (current-inexact-milliseconds))
@@ -1010,9 +989,7 @@
          (end (current-inexact-milliseconds))]
     (printf "Elapsed time: ~a msecs\n~a\n" (- end beg) expr-val))
   ;; Elapsed time: 11946.357177734375 msecs
-  #+END_SRC
 
-  #+BEGIN_SRC python
   import numpy
   import timeit
 
@@ -1027,7 +1004,6 @@
 
   timeit.timeit(sum_numpy, number=1)
   # 1.7422158059998765 # seconds
-  #+END_SRC
 
   And the winner is [[https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF][Wikipedia 1 + 2 + 3 + 4 + ⋯]]
 }
