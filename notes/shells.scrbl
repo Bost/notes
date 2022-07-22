@@ -365,9 +365,7 @@
 }
 
 @block{@block-name{Bash Startup Files}
-  #+BEGIN_SRC bash :results output
   info "(bash) Bash Startup Files"
-  #+END_SRC
 
   @block{@block-name{Invoked as an interactive login shell, or with '--login'}
      Execution order:
@@ -415,14 +413,11 @@
 
 @block{@block-name{Iterate over array/list}
   /bin/sh portability: ubuntu dash vs. guix /bin/sh
-  #+BEGIN_SRC sh :results output
   export elems="aaa:bbb:ccc"
   for elem in $LIST; do
       printf "elem: $elem\n"
   done
-  #+END_SRC
   or even better:
-  #+BEGIN_SRC sh :results output
   for prjd in \
           "aaa" \
           "bbb" \
@@ -431,7 +426,6 @@
     do
       printf "elem: $elem\n"
   done
-  #+END_SRC
 }
 
 @block{@block-name{Multiline Comments}
@@ -440,11 +434,9 @@
   https://stackoverflow.com/a/12797512
   https://stackoverflow.com/a/47374030/5353461
   Works also allows commenting part of a line, which can be useful.
-  #+BEGIN_SRC bash :results output
   # the \ is line continuation char
   echo "foo" \
       `# this line is comment` \
       ;
   echo "bar"
-  #+END_SRC
 }

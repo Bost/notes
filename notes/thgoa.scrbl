@@ -166,38 +166,35 @@
   @block{@block-name{GNU GPG - GNU Privacy Guard}
     https://youtu.be/1vVIpIvboSg
     @block{@block-name{Message / File authentication:}
-      #+BEGIN_SRC bash
-        # On Guix
-        guix install pinentry # needed for GnuPG's interface to passphrase input
+      # On Guix
+      guix install pinentry # needed for GnuPG's interface to passphrase input
 
-        # Create a qube without networking. If 'split-gpg' is needed see
-        # https://www.qubes-os.org/doc/split-gpg/ (E.g. The 'qubes-gpg-split' is needed
-        # in the vault of the Qube OS).
+      # Create a qube without networking. If 'split-gpg' is needed see
+      # https://www.qubes-os.org/doc/split-gpg/ (E.g. The 'qubes-gpg-split' is needed
+      # in the vault of the Qube OS).
 
-        # key creation:
-        gpg --expert --full-generate-key
+      # key creation:
+      gpg --expert --full-generate-key
 
-        # creating a key for signing and encrypting is the easiest. Choose:
-        # - "9": "can do all" key with ECC.
-        # - "1": curve 25519 (this probably annoys the NSA the most :-)
+      # creating a key for signing and encrypting is the easiest. Choose:
+      # - "9": "can do all" key with ECC.
+      # - "1": curve 25519 (this probably annoys the NSA the most :-)
 
-        gpg --armor --export > /path/to/pub_key.gpg
+      gpg --armor --export > /path/to/pub_key.gpg
 
-        # create <file>.asc
-        gpg --clear-sign <file>
-        # Enter your name and email. Comment is usually left empty.
+      # create <file>.asc
+      gpg --clear-sign <file>
+      # Enter your name and email. Comment is usually left empty.
 
-        gpg --import pub_key.asc
-        # check the signature. It may produce several warnings!
-        gpg --verify <file>.asc | grep --ignore-case "good\|bad"
+      gpg --import pub_key.asc
+      # check the signature. It may produce several warnings!
+      gpg --verify <file>.asc | grep --ignore-case "good\|bad"
 
-        # suppress warnings - not recommended
-        gpg --edit-key KEYID trust
-      #+END_SRC
+      # suppress warnings - not recommended
+      gpg --edit-key KEYID trust
     }
 
     @block{@block-name{Message example}
-      #+BEGIN_SRC bash
       -----BEGIN PGP SIGNED MESSAGE-----
       Hash: SHA256
 
@@ -214,7 +211,6 @@
       -----BEGIN PGP SIGNATURE-----
       [...]
       -----END PGP SIGNATURE-----
-      #+END_SRC
     }
   }
 }

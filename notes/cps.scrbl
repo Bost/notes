@@ -11,21 +11,17 @@
 
   Returning a value is a function call
   try-catch is dual to bind
-  #+BEGIN_SRC racket
   (+ 1 2 (call/cc f) 4 5)
   ;; becomes:
   (f (lambda (x) (+ 1 2 x 4 5)))
-  #+END_SRC
 
   [[https://github.com/lix4/CSSE304-Programming-Language-Concept-Code/blob/master/more-callcc-examples.ss][More call/cc examples]]
 
-  #+BEGIN_SRC racket
   (let ([f 0] [i 0])
     (call/cc (lambda (k) (set! f k)))
     (printf "~a~n" i)
     (set! i (+ i 1))
     (if (< i 10) (f "ignore") 'else))
-  #+END_SRC
 }
 
 @block{@block-name{Teaching Optics through Conspiracy Theories by Bartosz Milewski #FnConf 2022}
@@ -33,7 +29,6 @@ https://youtu.be/GjTP-nozuns?t=540
 Continuation is a functor
 Continuation function is a handler
 
-  #+BEGIN_SRC haskell :results output
   -- in the source code use: {-# LANGUAGE RankNTypes #-}
   :set -XRankNTypes
   p1 :: Int -> Int; p1 x = 1 + x
@@ -55,9 +50,7 @@ Continuation function is a handler
   -- multiple line input end :}
   (mkCont 3) p1
   runCont (mkCont 5)
-  #+END_SRC
 
-  #+BEGIN_SRC haskell :results output
   :set -XRankNTypes
   -- in the source code use: {-# LANGUAGE RankNTypes #-}
   -- multiple line input begin :{
@@ -77,7 +70,6 @@ Continuation function is a handler
   (mkYo [1]) p1
   runYo (mkYo [1])
   -- multiple line input end :}
-  #+END_SRC
 
   #+RESULTS:
 }

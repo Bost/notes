@@ -54,7 +54,6 @@
 @include-section{remove_guix_from_ubuntu.scrbl}
 @include-section{shells.scrbl}
 @include-section{solaris.scrbl}
-@include-section{stalin_scheme.scrbl}
 @include-section{systemd.scrbl}
 @include-section{tex_and_latex.scrbl}
 @include-section{thgoa.scrbl}
