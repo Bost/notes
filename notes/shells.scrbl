@@ -370,7 +370,7 @@
   @block{@block-name{Invoked as an interactive login shell, or with '--login'}
      Execution order:
      /etc/profile
-     ~/.bash_profile (typically does `. ~/.bashrc`)
+     ~/.bash_profile (typically sources ~/.bashrc by the command `. ~/.bashrc`)
      ~/.bash_login
      ~/.profile
   }

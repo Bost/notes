@@ -1258,10 +1258,11 @@
   ln --force --symbolic --no-dereference TARGET LINKNAME
 
   # Create bootable usb drive https://askubuntu.com/q/372607
+  # (like with usb-creator)
+  lsblk --nodeps --output PATH,MODEL,TRAN,LABEL
   set --local isoFile     /path/to/file.iso
-  # TODO blockDevice with or without the last <?>
-  set --local blockDevice /dev/sd<?><?> # see lsblk
-  set --local usbDevice   /dev/sd<?>    # see lsblk, as above
+  set --local blockDevice /dev/sd<?><?>   # see above the lsblk output
+  set --local usbDevice   /dev/sd<?>      # see above the lsblk output
   udisksctl unmount --block-device=$blockDevice
   sudo dd bs=4M if=$isoFile of=$usbDevice status=progress oflag=sync && sync
   # or try:
