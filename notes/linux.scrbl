@@ -267,17 +267,20 @@
   wget --limit-rate=20k URL
 
   # download & verify / check bitcoin core wallet
-  set btcVer  0.19.1
-  set url     https://bitcoin.org/bin/bitcoin-core-$btcVer
-  set shaFile SHA256SUMS.asc
-  set shaUrl  $url/$shafile
-  set tgzUrl  $url/bitcoin-$btcVer-x86_64-linux-gnu.tar.gz
-  sha256sum --check $shaFile | grep OK
-
-  # download and print file / url only to stdout / standard output
-  set file https://bitcoin.org/bin/bitcoin-core-0.19.0.1/SHA256SUMS.asc
-  wget -O                - $file
-  wget --output-document - $file
+  set --local btcVer        22.0
+  set --local btcUrl        https://bitcoin.org/bin/bitcoin-core-$btcVer
+  set --local fChecksums    SHA256SUMS
+  set --local fSignatures   $fChecksums.asc
+  set --local fTarGz        bitcoin-$btcVer-x86_64-linux-gnu.tar.gz
+  #
+  set --local uChecksums    $btcUrl/$fChecksums
+  set --local uSignatures   $btcUrl/$fSignatures
+  set --local uTarGz        $btcUrl/$fTarGz
+  #
+  gpg --keyserver hkps://keys.opengpg.org --refresh-keys
+  wget $uChecksums $uSignatures $uTarGz
+  sha256sum --ignore-missing --check $fChecksums
+  tar xvf $fTarGz
 
   # :gpg :sig - verify file
   gpg --verify file.sig file
