@@ -198,6 +198,7 @@
   sudo nmap -sn IP_RANGE
 
   # show open ports
+  nmap localhost | grep -i open # 631/tcp  open  ipp - Internet Printing Protocol
   nmap www.google.com | grep -i open
 
   # :net IPv4 - CIDR notation
@@ -432,6 +433,7 @@
 
   # :net :networking :DNS-lookup convert names <-> IP addresses
   host www.google.com
+  # www.google.com has address 172.217.23.196 (142.250.74.195) ; IPv6 2a00:1450:4014:80e::2004
 
   # :net get ip address from domain
   nslookup www.google.com | tail -2 | head -1 | awk "{print $2}"
