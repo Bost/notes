@@ -37,6 +37,11 @@
   [[https://craftinginterpreters.com/][Book: Crafting Interpreters]]
   [[https://www.micahcantor.com/blog/thoughts-typed-racket/][Typed Racket: the good and the bad]]
 
+  redex - reducible expression
+  Playing the Game with PLT Redex
+  https://youtu.be/NszLQNROdw0?t=306
+  continuation - evaluation context surrounding a redex
+
   @block{@block-name{Procedures and functions}
     [[https://stackoverflow.com/a/54165633][Are "procedure" and "function" synonymous in Racket?]]
     The Scheme standard uses only the term procedure.
@@ -76,10 +81,6 @@
   communicate using known ways, notably via GUIs, spreadsheets, etc.
 }
 
-@block{@block-name{Playing the Game with PLT Redex}
-  https://youtu.be/NszLQNROdw0?t=306
-}
-
 @block{@block-name{Education}
   https://www.bootstrapworld.org/
   FREE, research-based, integrated Computer Science and Data Science modules for
@@ -95,5 +96,18 @@
 
 @block{@block-name{Modules}
   https://felleisen.org/matthias/Thoughts/Modular_Programming.html
-  Requiring a module does not require its submodules and requiring a submodule loads only as much of the surrounding module as required.
+
+  Requiring a module does not require its submodules and requiring a submodule
+  loads only as much of the surrounding module as required.
+
+  In terms of evaluation, a module is essentially a prefix on a defined name, so
+  that different modules can define the same name.
+
+  TODO where the following belongs to?
+  The purpose of phases is to address the necessary separation of names defined at
+  execution time versus names defined at expansion time.
+
+  A module can be instantiated in multiple phases. A phase is an integer that,
+  like a module name, is effectively a prefix on the names of module-level
+  definitions. Phase 0 is the execution-time phase.
 }

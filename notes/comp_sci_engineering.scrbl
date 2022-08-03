@@ -48,20 +48,30 @@
 TODO delimited continuations
 TODO module system / OCaml
 TODO hygienic macros
-TODO multiple values
 TODO threads
+
+@block{@block-name{Multiple Values}
+  An expression can evaluate to multiple values
+
+  Symmetry to a procedure accepting multiple arguments
+
+  The continuation '(let-values ([(x y) []]) expr)' expects two result values
+
+  The continuation (begin [] (+ 1 2)) accepts any number of result values,
+  because it ignores the result(s).
+}
 
 @block{@block-name{WSL}
   Windows Subsystem for Linux 2 (WSL 2)
 }
 
 @block{@block-name{Data structures (are / do):}
-- static (Algorithms - dynamic)
-- reasoning by an induction: consider the base case(s) and the general.
-- remove the notion of time. Change over time is one of the major sources of
-  program complexity.
-- declarative. Most of the algorithms are imperative. Under declarative approach
-  you don't have to trace the flow of time through a data structure.
+  - static (Algorithms - dynamic)
+  - reasoning by an induction: consider the base case(s) and the general.
+  - remove the notion of time. Change over time is one of the major sources of
+    program complexity.
+  - declarative. Most of the algorithms are imperative. Under declarative approach
+    you don't have to trace the flow of time through a data structure.
 }
 
 @block{@block-name{Database}
