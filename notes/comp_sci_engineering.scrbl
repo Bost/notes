@@ -82,9 +82,8 @@ TODO threads
 
 @block{@block-name{Mixin in OOP}
   A class with methods for use by another classes without having to be the
-  parent class of these other classes.
-
-  Mixin class is being "included" rather than "Inherited".
+  parent class of these other classes. A Mixin class is being "included" rather
+  than "Inherited".
 }
 
 @block{@block-name{Lisp / Minimal Scheme Implementation for use as an Extension Language}
@@ -118,15 +117,43 @@ TODO threads
 
 @block{@block-name{bind mount}
   replicates existing directory tree under a different point.
-** bindfs
-  FUSE file system for mounting a directory to another location, similar to
-  `mount --bind'. It can (among others) create a view of a directory tree:
-  #+BEGIN_SRC bash :results output
-    bindfs /some/where /else/where
-  #+END_SRC
+
+  # FUSE file system for mounting a directory to another location, similar to
+  # `mount --bind'. It can (among others) create a view of a directory tree:
+  bindfs /some/where /else/where
 }
 
-@block{@block-name{GLSL OpenGL Shading Language}
+@block{@block-name{Various}
+  GLSL - OpenGL Shading Language
+
+  IOPS - [eye-ops] input/output operations per second
+  FLOPS - floating-point operations per second
+
+  QPS - Queries-per-second: how much traffic a particular query server is
+  handling at a given time
+
+  Correlated hardware failures:
+  If one hard drive HDD / SSD disk fails, it is more likely to see a second
+  failure before getting back up if the disks are from the same manufacturing
+  batch
+
+  Network provisioning:
+  The process of setting up a network so that authorized users, devices, and
+  servers can access it. In practice, it primarily concerns connectivity and
+  security, which means a heavy focus on device and identity management.
+
+  Cloud architecture:
+  The way technology components combine to build a cloud, in which resources are
+  pooled through virtualization technology and shared across a network.
+
+  Sharding:
+  A type of database partitioning that separates large databases into smaller,
+  faster, more easily managed parts
+  https://www.techtarget.com/searchoracle/definition/sharding
+  Horizontal sharding - each new table has the same schema but unique rows
+  Vertical sharding - each new table has a schema that is a faithful subset of
+  the original table's schema
+
 }
 
 @block{@block-name{JavaScript 2014}
@@ -138,11 +165,16 @@ TODO threads
   - on the backend (i.e. nodejs) instead of WebAPIs there are C++ APIs
 
   event loop, callback queue
-  - looks at the stack and the task queue, if the stack is empty, it takes the 1st thing on the queue and pushes it onto the stack (that effectively runs it)
+  - looks at the stack and the task queue, if the stack is empty, it takes the
+    1st thing on the queue and pushes it onto the stack (that effectively runs
+    it)
   javascript is single threaded, 1 thread, i.e. 1 callstack, i.e. 1 thing at a time
   blocking - asynchronous callbacks
 
-  - setTimeout(<callback function>, 0) - set to 0 means deferring the callback function to the end of the stack (i.e. until the stack is clear, i.e. until everything is executed)
+  - setTimeout(<callback function>, 0) - set to 0 means deferring the callback
+    function to the end of the stack (i.e. until the stack is clear, i.e. until
+    everything is executed)
+
   - timeout time is the minimum timeout of execution
 
   - rendering every 16ms for a screen (60 FPS?)
