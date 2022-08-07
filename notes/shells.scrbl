@@ -9,8 +9,7 @@
   <file.ext      tr -d '\0' | read -n 1 || echo "All zeroes."
   cat file.ext | tr -d '\0' | read -n 1 || echo "All zeroes."
   # fish-shell
-  cat file.ext | tr -d '\0' | read -n 1; \
-  and echo -e "\nHas content."; or echo "All zeroes."
+  cat file.ext | tr -d '\0' | read -n 1 && echo -e "\nHas some content." || echo "All zeroes."
 
   # include other script; also in bash
   source /pth/to/script
@@ -132,9 +131,9 @@
   test -d /path/to/dir                       # directory exists
   # true if the length of $myvar is non-zero i.e. non-empty string
   # https://stackoverflow.com/a/47743269; always use "" around the myvar
-  test -n "$myvar"; and echo "true: defined-and-non-empty"; or echo "false: undef-or-empty"
+  test -n "$myvar" && echo "true: defined-and-non-empty" || echo "false: undef-or-empty"
   # true if the length of $myvar is zero i.e. empty string
-  test -z "$myvar"; and echo "true: undef-or-empty"; or echo "false: defined-and-non-empty"
+  test -z "$myvar" && echo "true: undef-or-empty" || echo "false: defined-and-non-empty"
 
   # bash string equality / compare
   # See https://tldp.org/LDP/abs/html/comparison-ops.html

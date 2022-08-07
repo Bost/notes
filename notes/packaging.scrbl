@@ -3,6 +3,10 @@
 #+title: Packaging
 
 @block{@block-name{Packaging}
+  sudo snap install <package>
+  sudo snap help --all
+  sudo snap refresh # i.e. update / upgrade
+
   # install additional ubuntu software
   gnome-software
 
@@ -72,14 +76,17 @@
   # Advanced Package Tool; apt is a replacement for apt-get
   sudo apt install --reinstall <package>
 
+  # When "The following packages have been kept back: ...",
+  # see https://askubuntu.com/a/602
+
   # :ubuntu CLI OS upgrade (GUI upgrade - see `update-manager`)
   # 1. set `Prompt=normal`
   /etc/update-manager/release-upgrades
   Prompt=normal
   #
   # 2. `download package information`; and `install available upgrades`.
-  # See also full-upgrade / dist-upgrade
-  sudo apt update; and sudo apt upgrade
+  # See also full-upgrade / dist-upgrade / `apt list --upgradable -a`
+  sudo apt update && sudo apt upgrade
   #
   # 3. remove / install / upgrade of packages updates and upgrades the OS
   sudo do-release-upgrade # may require: `--devel-release` - see
@@ -156,6 +163,6 @@
 
   # select fastest / best ubuntu mirror
   sudo pip3 install apt-select
-  sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup; and \
-  apt-select; and sudo mv sources.list /etc/apt/
+  sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup && \
+  apt-select && sudo mv sources.list /etc/apt/
 }

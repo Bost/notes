@@ -200,7 +200,7 @@
     jar tf file.jar
 
     # java: extract inside.txt from file.jar + show content. File stays extracted
-    jar xf file.jar ./path/inside.txt; and cat ./path/inside.txt
+    jar xf file.jar ./path/inside.txt && cat ./path/inside.txt
 
     # java: jar: unzip: show content of a file inside a file.jar
     unzip -p file.jar ./path/inside.txt
