@@ -39,7 +39,7 @@
           " > hello-world.tex
   #
   # 3. compile to pdf and view
-  pdflatex hello-world.tex; and evince hello-world.pdf
+  pdflatex hello-world.tex && evince hello-world.pdf
   #
   # install own latex package (sty-file) locally
   mkdir -p ~/texmf/tex/latex/<package>

@@ -35,9 +35,9 @@
 
   # remove / delete / uninstall
   set subMod relative/path/to/submodule
-  git submodule deinit $subMod; and \
-  git rm $subMod; and \
-  git commit -m "Removed submodule" $subMod; and \
+  git submodule deinit $subMod && \
+  git rm $subMod && \
+  git commit -m "Removed submodule" $subMod && \
   rm -rf .git/modules/$subMod
 
   # change the name and email in all commits
@@ -237,7 +237,7 @@
   git --git-dir=path/to/.git --work-tree=path/to/ ...
 
   # ignore previously tracked path/to/file
-  git rm --cached path/to/file; and echo "path/to/file" >> .gitignore
+  git rm --cached path/to/file && echo "path/to/file" >> .gitignore
 
   # Use it in case of "You asked me to pull without telling me which branch ..."
   git config branch.master.remote origin

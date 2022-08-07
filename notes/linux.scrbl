@@ -132,7 +132,7 @@
 
   # json formatting
   curl 'http://stash.compciv.org/congress-twitter/json/joni-ernst.json' \
-       > ernst.json; and cat ernst.json | jq '.'
+       > ernst.json && cat ernst.json | jq '.'
 
   # :cpu :mem :hdd :hardware - system information in a GTK+ window
   hwinfo
@@ -261,8 +261,8 @@
   cat /proc/cpuinfo | grep cores
 
   # :gpg :sig - download and import gnu-keyring
-  wget http://ftp.heanet.ie/mirrors/gnu/gnu-keyring.gpg; and \
-           gpg --import gnu-keyring.gpg
+  wget http://ftp.heanet.ie/mirrors/gnu/gnu-keyring.gpg && \
+  gpg --import gnu-keyring.gpg
 
   # :wget - limit the download speed to amount bytes per second
   wget --limit-rate=20k URL
@@ -606,7 +606,7 @@
   svn co --username SVN_LOGIN svn://IP:PORT/path
 
   # error: E120106: ra_serf: The server sent a truncated HTTP response body.
-  svn cleanup; and svn update
+  svn cleanup && svn update
 
   # last revision number
   svn info REPO_URL/MODULE
@@ -841,11 +841,27 @@
   man signal
 
   # :virtualbox restart clipboard
-  killall VBoxClient; and VBoxClient --clipboard & disown
+  killall VBoxClient && VBoxClient --clipboard & disown
 
-  # restart xfce when the title bar dissapears from xfwm4; or rm -r
-  # ~/.cache/sessions
+  # restart xfce when the title bar dissapears from xfwm4 or execute
+  #   rm -r ~/.cache/sessions
   pkill -KILL -u $USER
+
+  # reset / remove xfce user settings
+  rm -rf \
+    ~/.local/share/xfce4/ \
+    ~/.cache/sessions/ \
+    ~/.cache/xfce4/ \
+    ~/.cache/xfce4-indicator-plugin.log \
+    ~/.config/xfce4/ \
+    ~/.config/xfce4-session/ \
+    ~/.config/xubuntu/
+
+  # also:
+  xfce4-panel --quit
+  pkill xfconfd
+  rm -rf ~/.config/xfce4/panel ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+  xfce4-panel
 
   sudo systemctl | grep dm
   sudo systemctl restart <dm service>
@@ -1157,7 +1173,7 @@
   # Create your HPKP hash: https://report-uri.io/home/pkp_hash
 
   # :net - data transfered today / per month
-  sudo vnstat -u -i wlan0; and vnstat
+  sudo vnstat -u -i wlan0 && vnstat
 
   # :net - managing a netfilter firewall; ufw - uncomplicated firewall
   sudo ufw status numbered
@@ -1199,7 +1215,7 @@
   sudo /etc/init.d/virtualbox restart
   sudo /etc/init.d/virtualbox-guest-utils start
 
-  # :atom - delete all environment states
+  # atom editor - delete all environment states
   atom --clear-window-state
   # list / backup installed packages to a file
   apm list --installed --bare > ~/dev/dotfiles/.atom/package.list
@@ -1221,7 +1237,8 @@
   udisksctl info    --block-device /dev/sdc1 | rg MountPoints: | rg /
   udisksctl mount   --block-device=/dev/sdc1
   udisksctl unmount --block-device=/dev/sdc1
-  # make file accessible as a block-device
+
+  # make file acting as / accessible as a pseudo ("fake") block-based device.
   udisksctl loop-setup  -f disk.img
   udisksctl unmount     -b /dev/loop8
   udisksctl loop-delete -b /dev/loop8
@@ -1260,15 +1277,19 @@
   ln --force --symbolic --no-dereference TARGET LINKNAME
 
   # Create bootable usb drive https://askubuntu.com/q/372607
-  # (like with usb-creator)
-  lsblk --nodeps --output PATH,MODEL,TRAN,LABEL
+  # (like with usb-creator-gtk)
+  # '--exclude 7' means 'exclude loop devices' https://askubuntu.com/a/1142405
+  lsblk --exclude 7 --output MAJ:MIN,PATH,MODEL,TRAN,LABEL,SIZE
   set --local isoFile     /path/to/file.iso
   set --local blockDevice /dev/sd<?><?>   # see above the lsblk output
   set --local usbDevice   /dev/sd<?>      # see above the lsblk output
   udisksctl unmount --block-device=$blockDevice
-  sudo dd bs=4M if=$isoFile of=$usbDevice status=progress oflag=sync && sync
+  # TODO check if the size $usbDevice is large enough for the $isoFile
+  echo \
+       sudo dd bs=4M if=$isoFile of=$usbDevice status=progress oflag=sync && sync
   # or try:
-  sudo dd bs=4M if=$isoFile of=$usbDevice status=progress conv=fdatasync && sync
+  echo \
+       sudo dd bs=4M if=$isoFile of=$usbDevice status=progress conv=fdatasync && sync
 
   # create temporary file
   mktemp
@@ -1423,7 +1444,7 @@
   # 1. erase everything on the device
   # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
   set --local deviceFile /dev/sd<?>    # see lsblk
-  sudo dd status=progress if=/dev/zero of=$deviceFile bs=4k; and sync
+  sudo dd status=progress if=/dev/zero of=$deviceFile bs=4k && sync
   # 2. make a new partition on the device
   sudo fdisk     $deviceFile
   sudo mkfs.ext4 $deviceFile
@@ -1484,7 +1505,7 @@
   # B. kill the existing pulseaudio process, start the jack_control process and
   # re-start the pulseaudio process.
   pulseaudio --kill
-  jack_control start; and jack_control exit
+  jack_control start && jack_control exit
   pulseaudio --start
   # see also jack active ports & some extra info
   jack_lsp

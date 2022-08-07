@@ -428,7 +428,7 @@
   |       | M-x clean-buffer-list doesn't work as expected |
 
   ;; remedy against "newer than byte-compiled file" try also:
-  ;; cd $dev/emacs/lisp; and make autoloads
+  ;; cd $dev/emacs/lisp && make autoloads
   M-x byte-recompile-directory
 
   ;; helm: minibuffer: minibuffer-force-complete
