@@ -1149,6 +1149,12 @@
   # euid - effective user id: number or id; see whoami
   sudo pkill -KILL --euid USER                # logout / logoff different user
 
+  # rename user and his home directory
+  # https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-rename-linux-users-and-their-home-directory/
+  sudo groupmod -n newuser olduser
+  sudo usermod -d /home/newuser -m newuser
+  sudo usermod -l newuser olduser
+
   # run a program in a new session
   setsid
 

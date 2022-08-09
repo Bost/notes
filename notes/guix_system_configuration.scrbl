@@ -137,10 +137,17 @@
   [https://guix.gnu.org/cookbook/en/guix-cookbook.html#Guix-Profiles-in-Practice]
 
   # hint: After setting `PATH', run `hash guix' to make sure your shell refers to `...'.
-  hash guix                       # creates '/home/bost/.config/guix/current'
+  # Add to ~/.bash_profile
+  GUIX_PROFILE="$HOME/.config/guix/current"
+  . "$GUIX_PROFILE/etc/profile"
+  # run:
+  hash guix
+  # to instruct your shell to point to this new guix. It creates
+  # '$HOME/.config/guix/current'
+
   guix package --list-profiles    # prints:
-  # /home/bost/.config/guix/current
-  # /home/bost/.guix-profile
+  # $HOME/.config/guix/current
+  # $HOME/.guix-profile
 
   # see also guix package --export-manifest
   guix package --list-profiles

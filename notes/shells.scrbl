@@ -245,7 +245,7 @@
   # fileNew.txt
   tr '[A-Z]' '[a-z]' < file.txt > fileNew.txt
 
-  # bash mass move / copy / rename
+  # bash mass file move / copy / rename
   mmv \*.JPG \#1.jpc
   mmv \* \#1.rexx
 
