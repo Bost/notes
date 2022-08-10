@@ -1155,6 +1155,16 @@
   sudo usermod -d /home/newuser -m newuser
   sudo usermod -l newuser olduser
 
+  # Run command as another user
+  sudo --set-home --user=otheruser bash -c 'echo "I am $USER, with uid $UID"'
+  sudo         -H     -u otheruser bash -c 'echo "I am $USER, with uid $UID"'
+  #
+  # get the prompt of a different user
+  su --login otheruser
+  # get the root prompt
+  sudo su --login root
+  sudo su -
+
   # run a program in a new session
   setsid
 
