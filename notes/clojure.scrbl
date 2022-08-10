@@ -3,6 +3,9 @@
 #+title: Clojure
 
 @block{@block-name{General}
+  What's the difference between a "sequence" and a "seq"?
+  http://www.brainonfire.net/files/seqs-and-colls/main.html
+
   | HotSpot | Virtual Machine for OpenJDK.                            |
   |         | old JIT (Just-In-Time) Compiler. Written in C++         |
   | GraalVM | JVM Compiler Interface: Plugin own JIT Compiler into VM |
