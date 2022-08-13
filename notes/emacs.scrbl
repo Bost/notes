@@ -518,6 +518,7 @@
 
   ;; Customize / extend keyboard functionality https://github.com/kmonad
   ;; emacs package https://github.com/kmonad/kbd-mode
+  ;; https://github.com/jtroo/kanata#similar-projects
 
   ;; launch emacs and eval string
   emacs --eval '(message "ufo")' / emacs -e configuration-layer/update-packages

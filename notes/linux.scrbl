@@ -268,6 +268,7 @@
   wget --limit-rate=20k URL
 
   # download & verify / check bitcoin core wallet
+  # https://bitcoincore.org/en/download/
   set --local btcVer        22.0
   set --local btcUrl        https://bitcoin.org/bin/bitcoin-core-$btcVer
   set --local fChecksums    SHA256SUMS

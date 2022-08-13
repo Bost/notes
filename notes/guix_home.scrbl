@@ -2,6 +2,9 @@
 
 #+title: Guix Home
 
+@block{@block-name{Guix Home}
+info 'Guix Home'
+
 Almost the like `guix system` but for dotfiles.
 Achieved by composing services (service extension mechanism)
 
@@ -11,23 +14,18 @@ https://sr.ht/abcdw/rde/ (Andrew Tropin)
 In Terminal -> Preferences -> General: switch on "Run command as login shell"
 (Otherwise ~/.bash_profile is not sourced)
 
-On Guix, the “plugdev” group does not exist and eudev is used instead of udev.
+On Guix, the "plugdev" group does not exist and eudev is used instead of udev.
 Thus the suggestion was to use the following rule instead:
-
-info 'Guix Home'
-guix home reconfigure
 
 # list / search through all existing guix home services
 guix home search .
 
-# printf "HOME_ENVIRONMENT: %s\n" $HOME_ENVIRONMENT
-# printf "HOME: %s\n" $HOME
-
-# guix home describe
-# guix home --help
-
-# guix home configuration file:
-$HOME_ENVIRONMENT/configuration.scm
+# guix home configuration:
+printf "HOME_ENVIRONMENT: %s\n" $HOME_ENVIRONMENT
+cat $HOME_ENVIRONMENT/configuration.scm
+# see also 'guix home describe'
+guix home reconfigure
+guix home --keep-failed -L ~/dev/dotfiles/guix/home reconfigure ~/dev/dotfiles/guix/home/home-configuration.scm
 
 # generate a home environment definition from dotfiles and put it under /dst/dir
 guix home import /dst/dir
@@ -36,8 +34,11 @@ guix home import /dst/dir
 guix home build /path/to/configuration.scm
 # try out some configuration without installing anything
 guix home container /path/to/configuration.scm
+guix home --keep-failed -L ~/dev/dotfiles/guix/home container ~/dev/dotfiles/guix/home/home-configuration.scm
 
-See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][guix-lemp-container]] - LEMP WordPress Reproducible Environment
+See also guix-lemp-container [https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh]
+LEMP WordPress Reproducible Environment
+}
 
 @block{@block-name{Packages in the current guix home profile}
   ls -lA $HOME_ENVIRONMENT/profile/bin
@@ -46,13 +47,6 @@ See also [[https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh][
   [[https://systemcrafters.net/live-streams/october-01-2021/][Notes: System Crafters Live! - A First Look at Guix Home]]
   https://guix-home.trop.in/Home-Configuration.html
 }
-
-@block{@block-name{Create ISO image}
-  Two /boot/efi entries in the
-}
-
-# Install packages
-guix package -m manifest.scm
 
 @block{@block-name{Setup IceCat web browser:}
   @block{@block-name{IceCat stuck at Cloudflare "Checking your browser before accessing..."}
@@ -87,17 +81,7 @@ guix package -m manifest.scm
 }
 
 @block{@block-name{Clone repos}
-  cd dev
-  set accountName "rostislav.svoboda"
-
-  git clone git@"@"github.com:Bost/dotfiles.git
-  git remote add gitlab git@"@"gitlab.com:$accountName/dotfiles.git
-
-  git clone git@"@"github.com:Bost/cheatsheet.git
-  git remote add gitlab git@"@"gitlab.com:$accountName/cheatsheet.git
-
-  git clone git@"@"github.com:Bost/notes.git
-  git remote add gitlab git@"@"gitlab.com:$accountName/notes.git
+ See home-configuration.scm
 }
 
 @block{@block-name{Copy public keys to the available machines}

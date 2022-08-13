@@ -27,8 +27,6 @@
   3 - shows all the build log output on standard error
 
   # list all installed / available packages...
-  guix package --list-available # -I
-  guix package --list-installed # -A
   # ... matching '.*ema.*'
   guix package --list-installed=ema # -I ema
   guix package --list-available=ema # -A ema
@@ -38,8 +36,8 @@
   # reproduce, i.e. reinstall packages
   guix package --manifest=manifest.scm # -m manifest.scm
 
-  guix package --list-generations              # see profile
-  guix package --switch-generation=PATTERN
+  guix package --list-generations            # -l   # see profile
+  guix package --switch-generation=PATTERN   # -S
   guix package --roll-back
   guix package --remove python --install guile # -r python -i guile
   guix install                           guile
