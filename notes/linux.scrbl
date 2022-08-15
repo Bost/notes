@@ -678,9 +678,7 @@
   # -n redirects stdin from /dev/null
   ssh -n user@"@"hostname "tail -f /path/to/file" &
 
-  # :github :ssh
   ssh-keygen
-
   # :github now copy-paste the ~/.ssh/id_rsa.pub to github under
   # "Account settings / SSH keys / Add another public key"
   cat ~/.ssh/id_rsa.pub
@@ -900,8 +898,12 @@
   # compare a remote file with a local file
   ssh user@"@"host cat ./path/to/remotefile | diff ./path/to/localfile -
 
-  # :ssh copy ssh keys to user@"@"host to enable password-less ssh logins
-  # i.e. login to remote host using authorized public key
+  # enable remote access / login...
+  sudo apt install openssh-server
+  sudo systemctl status ssh
+  sudo ufw allow ssh
+  # ... and copy ssh keys to user@"@"host to enable password-less login, i.e.
+  # login to remote host using authorized public key
   ssh-copy-id USER@"@"HOST
 
   # sshfs - network filesystem client to connect to SSH servers
