@@ -23,14 +23,30 @@
 
   # guix shell --search-paths    # display needed environment variable definitions
 
-  # building Guix
+  # building Guix:
+  # on error: 'configure: error: C compiler cannot create executables'
+  guix install gcc-toolchain
   cd ~/dev/guix/
-  # guix shell -D guix --pure
-  # guix shell --development guix --pure
-  # guix shell -D guix help2man git strace --pure
+  git fetch --tags origin && git rebase
+  # on error:
+  #   fatal: unable to access 'https://git.savannah.gnu.org/git/guix.git/': server certificate verification failed. CAfile: none CRLfile: none
+  # do:
+  #   guix install nss-certs
+  #   export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
+  #   export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+  #   export GIT_SSL_CAINFO="$SSL_CERT_FILE"
+  #
   guix shell --development guix help2man git strace --pure
+  # Alternatives:
+  #   guix shell -D guix --pure
+  #   guix shell --development guix --pure
+  #   guix shell -D guix help2man git strace --pure
   ./bootstrap
   ./configure --localstatedir=/var
+  # on error:
+  #  configure: error: 'guild' binary not found; please check your Guile installation.
+  # do:
+  #   ./configure GUILE=$(which guile) --localstatedir=/var
   make          # make -j22  # first run takes a couple of minutes
   # make check  # optional
   # authenticate all the commits included in your checkout by running:
