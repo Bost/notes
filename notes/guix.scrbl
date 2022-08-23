@@ -44,7 +44,7 @@
   ./bootstrap
   ./configure --localstatedir=/var
   # on error:
-  #  configure: error: 'guild' binary not found; please check your Guile installation.
+  #   configure: error: 'guild' binary not found; please check your Guile installation.
   # do:
   #   ./configure GUILE=$(which guile) --localstatedir=/var
   make          # make -j22  # first run takes a couple of minutes
