@@ -55,7 +55,7 @@
 
 @block{@block-name{Sources}
   @block{@block-name{Data collections WHO all https://www.who.int/data/collections}
-     Explanation (CVS tables) https://covid19.who.int/info/
+     Explanation (CSV tables) https://covid19.who.int/info/
      Weekly updates https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports#
      Dashboard: https://covid19.who.int/table?tableChartType=heat
   }

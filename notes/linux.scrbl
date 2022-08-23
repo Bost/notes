@@ -116,6 +116,10 @@
 
   find / search in terminal Shift + Ctrl + F
 
+  sudo apt install --yes ubuntu-restricted-extras # multimedia / video codecs
+  sudo apt install --yes vlc                      # video player
+  sudo dpkg-reconfigure libdvd-pkg
+
   basenc --base64
   # "Hello world!" == "SGVsbG8gd29ybGQh"
   https://stackoverflow.com/a/62017480/5151982
@@ -134,7 +138,7 @@
   curl 'http://stash.compciv.org/congress-twitter/json/joni-ernst.json' \
        > ernst.json && cat ernst.json | jq '.'
 
-  # :cpu :mem :hdd :hardware - system information in a GTK+ window
+  # cpu mem hdd hardware: system information in a GTK+ window
   hwinfo
   inxi -Fxz
   hardinfo
@@ -615,59 +619,6 @@
   # when: svnrdump: E000022: Couldn't get lock on destination repos after 10
   # attempts
   svn propdel --revprop -r0 svn:rdump-lock URL
-
-  # restart cvs daemon
-  sudo /etc/init.d/cvsd restart / start / stop / status
-
-  # diff tagX tagY
-  cvs diff -r tagX -r tagY
-
-  # get clean copy
-  cvs update -C ./path/to/file.ext
-
-  # :cvs get revision 1.11
-  cvs update -P -C -r 1.11 ./path/to/file.ext
-
-  # checkout module from branch or tag
-  cvs checkout -r branchOrTag module
-
-  # commit file with multi-line commit message
-  cvs commit -m "fst-comment-line\nsnd-comment-line" path/to/file.ext
-
-  # update file
-  cvs log    -P -d ./path/to/file.ext
-
-  # reminder to leave in 15 minutes / at 13:55
-  leave +15 / leave 1355
-
-  # delete NormalTag from file.ext in version 1.17
-  cvs tag    -d -r 1.17 NormalTag ./path/to/file.ext
-
-  # delete BranchTag from file.ext in version 1.17
-  cvs tag -B -d -r 1.17 BranchTag ./path/to/file.ext
-
-  # move   BranchTag to   file.ext in version 1.19
-  cvs tag -B -F -r 1.19 BranchTag ./path/to/file.ext
-
-  # create BranchTag on   file.ext in version 1.19
-  cvs tag -b    -r 1.19 BranchTag ./path/to/file.ext
-
-  # move   NormalTag to   file.ext in version 1.63
-  cvs tag    -F -r 1.63 NormalTag ./path/to/file.ext
-
-  # version and tags
-  cvs log file.ext
-  cvs status -v file.ext
-
-  # list files associated with a tag; (no blank between -r and TAGNAME)
-  cvs -q rlog -R -N -S -rTAGNAME MODULENAME
-
-  # debug and trace info
-  cvs -d cvs -t -d :pserver:faizal@"@"localhost:/myrepos \
-      ci -m "test" -l "src/foo/Foo.ext"
-
-  #
-  cvs add file.ext
 
   # system information (kernel version etc.)
   uname -a
@@ -1409,45 +1360,42 @@
 }
 
 @block{@block-name{rsync}
-  March 2022: the scp Secure Copy Protocol is obsolete! Use sftp or rsync
-    # recursive copy `dotfiles` and `cheat` to server:~/dev/
-    # i.e. create `server:~/dev/dotfiles/` and `server:~/dev/cheat/`
-    rsync -avz dotfiles cheat server:~/dev/
-    # recursive copy of only the content of `dotfiles` and `cheat`.
-    # i.e. create only the `server:~/dev/`
-    rsync -avz dotfiles/ cheat/ server:~/dev
+  # March 2022: the scp Secure Copy Protocol is obsolete! Use sftp or rsync
 
-    # recursive copy only certain types of files using include option
-    rsync -havz --include="*/" --include="*.sh" --exclude="*" "$src" "$dst"
+  # recursive copy `dotfiles` and `cheat` to server:~/dev/
+  # i.e. create `server:~/dev/dotfiles/` and `server:~/dev/cheat/`
+  rsync -avz dotfiles cheat server:~/dev/
+  # recursive copy of only the content of `dotfiles` and `cheat`.
+  # i.e. create only the `server:~/dev/`
+  rsync -avz dotfiles/ cheat/ server:~/dev
 
-    # copy multiple files from remote machine to a local machine
-    rsync -a USER@"@"HOST:/remote/path/file1 :/remote/path/file2 /local/path
+  # recursive copy only certain types of files using include option
+  rsync -havz --include="*/" --include="*.sh" --exclude="*" "$src" "$dst"
 
-    # :cvs copy files from src to dst excluding everything in CVS directories
-    # -n --dry-run
-    rsync -nhavz          --exclude='CVS'                   src/ dst
-    rsync -nhavz --delete --exclude='CVS'                   src/ dst | grep deleting
-    rsync -nhavz          --exclude='dir' --exclude='*.jpg' src/ dst
-    rsync -nhavz --delete --exclude='dir' --exclude='*.jpg' src/ dst | grep deleting
+  # copy multiple files from remote machine to a local machine
+  rsync -a USER@"@"HOST:/remote/path/file1 :/remote/path/file2 /local/path
 
-    # :cvs copy files from src to dst excluding everything in CVS directories
-    # (showing progress)
-    # exclude hidden files and directories
-    rsync -nhav          --exclude=".*" --exclude=".*/" src/ dst
-    rsync -nhav --delete --exclude=".*" --exclude=".*/" src/ dst | grep deleting
+  # copy files from 'src' to 'dst' excluding everything in 'dir' directories
+  # --dry-run -n --human-readable -h --archive -a --verbose -v --compress -z
+  rsync -nhavz          --exclude='dir' --exclude='*.jpg' src/ dst
+  rsync -nhavz --delete --exclude='dir' --exclude='*.jpg' src/ dst | grep deleting
+  # copy files from 'src' to 'dst' excluding everything in 'dir' directories
+  # exclude hidden files and directories
+  rsync -nhav          --exclude=".*" --exclude=".*/" src/ dst
+  rsync -nhav --delete --exclude=".*" --exclude=".*/" src/ dst | grep deleting
 
-    # :mv move content of a directory within another directory with the same folders
-    rsync -nha          --remove-source-files backup/ backupArchives
-    rsync -nha --delete --remove-source-files backup/ backupArchives | grep deleting
+  # move content of a directory within another directory with the same folders
+  rsync -nha          --remove-source-files backup/ backupArchives
+  rsync -nha --delete --remove-source-files backup/ backupArchives | grep deleting
 
-    # rsync - options short / long versions
-    -h, --human-readable
-    -a, --archive # -rlptgoD (no -H,-A,-X); recursive & preserve almost everything
-    -v, --verbose
-    -z, --compress
-    -r, --recursive
-    -n, --dry-run
-    -p, --perms   # preserve permissions
+  # rsync options: short / long versions
+  # -h --human-readable
+  # -a --archive # -rlptgoD (no -H,-A,-X); recursive & preserve almost everything
+  # -v --verbose
+  # -z --compress
+  # -r --recursive
+  # -n --dry-run
+  # -p --perms   # preserve permissions
 }
 
 @block{@block-name{Disk Devices}
@@ -1532,12 +1480,67 @@
 }
 
 @block{@block-name{Sway}
-https://swaywm.org/
-Tiling Wayland compositor and a drop-in replacement for the i3 window manager
-for X11. It works with your existing i3 configuration and supports most of i3's
-features, plus a few extras.
+  https://swaywm.org/
+  Tiling Wayland compositor and a drop-in replacement for the i3 window manager
+  for X11. It works with your existing i3 configuration and supports most of i3's
+  features, plus a few extras.
 
-Allows to arrange application windows logically, rather than spatially. Windows
-are arranged into a grid by default which maximizes the efficiency of your
-screen and can be quickly manipulated using only the keyboard.
+  Allows to arrange application windows logically, rather than spatially. Windows
+  are arranged into a grid by default which maximizes the efficiency of your
+  screen and can be quickly manipulated using only the keyboard.
+}
+
+@block{@block-name{Concurrent Versions System}
+  # restart cvs daemon
+  sudo /etc/init.d/cvsd restart / start / stop / status
+
+  # diff tagX tagY
+  cvs diff -r tagX -r tagY
+
+  # get clean copy
+  cvs update -C ./path/to/file.ext
+
+  # :cvs get revision 1.11
+  cvs update -P -C -r 1.11 ./path/to/file.ext
+
+  # checkout module from branch or tag
+  cvs checkout -r branchOrTag module
+
+  # commit file with multi-line commit message
+  cvs commit -m "fst-comment-line\nsnd-comment-line" path/to/file.ext
+
+  # update file
+  cvs log    -P -d ./path/to/file.ext
+
+  # reminder to leave in 15 minutes / at 13:55
+  leave +15 / leave 1355
+
+  # delete NormalTag from file.ext in version 1.17
+  cvs tag    -d -r 1.17 NormalTag ./path/to/file.ext
+
+  # delete BranchTag from file.ext in version 1.17
+  cvs tag -B -d -r 1.17 BranchTag ./path/to/file.ext
+
+  # move   BranchTag to   file.ext in version 1.19
+  cvs tag -B -F -r 1.19 BranchTag ./path/to/file.ext
+
+  # create BranchTag on   file.ext in version 1.19
+  cvs tag -b    -r 1.19 BranchTag ./path/to/file.ext
+
+  # move   NormalTag to   file.ext in version 1.63
+  cvs tag    -F -r 1.63 NormalTag ./path/to/file.ext
+
+  # version and tags
+  cvs log file.ext
+  cvs status -v file.ext
+
+  # list files associated with a tag; (no blank between -r and TAGNAME)
+  cvs -q rlog -R -N -S -rTAGNAME MODULENAME
+
+  # debug and trace info
+  cvs -d cvs -t -d :pserver:faizal@"@"localhost:/myrepos \
+      ci -m "test" -l "src/foo/Foo.ext"
+
+  #
+  cvs add file.ext
 }
