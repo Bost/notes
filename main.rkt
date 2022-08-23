@@ -48,6 +48,7 @@
    ;; (prefix-in com: "common.rkt")
    "notes.rkt" ;; is used indeed
    "notes-reader.rkt"
+   racket/runtime-path #| for define-runtime-path |#
    ansi-color)
 
   (define pattern-param (make-parameter ""))
@@ -106,11 +107,18 @@ directory to search in."
   ;; Thanks to https://stackoverflow.com/q/16266934 for a hint
   (define namespace (namespace-anchor->namespace a))
 
-  ;; this is the default location of the org-roam directory
-  ;; ~/org-roam is a symbolic link at the moment:
-  ;; $ ls -l ~/org-roam
-  ;; [...] /home/bost/org-roam -> /home/bost/dev/notes/notes
-  (define dir (format "~a/org-roam/" (getenv "HOME")))
+  (define-runtime-path runtime-dir
+    (build-path
+     ;; 1.
+     ;; (find-user-pkgs-dir) ;; can't be found even after (require setup/dirs)
+
+     ;; 2. this is not needed:
+     ;; (find-system-path 'addon-dir) (version)
+
+     ;; 3. only this is needed:
+     "notes"))
+
+  (define dir (path->string runtime-dir))
 
   (define add-src-location-info #f)
 
