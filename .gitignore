@@ -1,18 +1,3 @@
-.lein-repl-history
-.nrepl-port
-/target
-/*-init.clj
-/resources/public/js/compiled
-out
-/node_modules
-/.cpcache/
-/.ipynb_checkpoints/
-/clojupyter-standalone.jar
-# *.pdf
-/auto/
-/ltximg/
-/_minted-math/
-
 # 7-sketches/7-sketches.pdf
 # 7-sketches/template.pdf
 /7-sketches/auto/
@@ -80,6 +65,5 @@ math-structures.tex
 math-structures.pdf
 *.pdf
 *.tex
-*.ipynb
 /_minted-test/
 /_minted-category-theory/
