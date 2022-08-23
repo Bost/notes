@@ -296,8 +296,8 @@
   git remote set-url origin https://github.com/<user_name>/<repo_name>.git
   git remote add origin ssh://user@"@"host:1234/srv/git/example
 
-  # Run as if started in <path> instead of the current working directory. See `man
-  # git` when multiple -C given.
+  # Run as if started in <path> instead of the current working directory.
+  # See `man git` when multiple -C given.
   git -C ~/.SpaceVim pull    # update SpaceVim
 
   # this pushes only tags not the code
@@ -305,11 +305,19 @@
 
   # create lightweight tag - it won't be pushed by `git push ...`
   git tag <tagname>
-  # annotated, signed tag or tags with a message will be pushed by `git push ...`
+  # annotated, signed tag(s) with a message will be pushed by `git push ...`
   git tag --annotate <tagname>
+
+  # merge srcProj into dstProj
+  cd path/to/dstProj
+  git remote add srcProj /path/to/srcProj
+  git fetch srcProj --tags
+  git merge --allow-unrelated-histories srcProj/master # or whichever branch you want to merge
+  # git merge --continue      # in case any conflicts; after resolving them
+  git remote remove srcProj
 }
 
 @block{@block-name{Mercurial}
-    guix install mercurial
-    hg clone https://hg.sr.ht/~yoctocell/guixrc
+  guix install mercurial
+  hg clone https://hg.sr.ht/~yoctocell/guixrc
 }
