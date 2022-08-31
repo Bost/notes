@@ -162,21 +162,35 @@
   Chat: https://app.element.io/#/room/#cybersec-qubes_os:matrix.org
 
   @block{@block-name{GNU GPG - GNU Privacy Guard}
+    Nov 17, 2020: Creating and Managing a GPG Key Pair
     https://youtu.be/1vVIpIvboSg
+
+    Feb 17, 2018: Basic File Encryption with GPG key pairs!
+    https://youtu.be/DMGIlj7u7Eo
+
     @block{@block-name{Message / File authentication:}
-      # On Guix
+      M-x helm-info-gnupg
+      # see also:
+      #   directory: $HOME/.gnupg/
+      #   keybox:    $HOME/.gnupg/pubring.kbx
+
+      # On GuixOS:
       guix install pinentry # needed for GnuPG's interface to passphrase input
 
+      # On QubeOS:
       # Create a qube without networking. If 'split-gpg' is needed see
-      # https://www.qubes-os.org/doc/split-gpg/ (E.g. The 'qubes-gpg-split' is needed
-      # in the vault of the Qube OS).
+      # https://www.qubes-os.org/doc/split-gpg/ (E.g. The 'qubes-gpg-split' is
+      # needed in the vault of the Qube OS).
 
       # key creation:
       gpg --expert --full-generate-key
+      # gpg --batch --generate-key ... # see (bottom of the page):
+      # https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html#Unattended-GPG-key-generation
 
       # creating a key for signing and encrypting is the easiest. Choose:
-      # - "9": "can do all" key with ECC.
-      # - "1": curve 25519 (this probably annoys the NSA the most :-)
+      # "(9) ECC and ECC" - "can do all" key with Elliptic Curve Cryptography.
+      #                   (i.e. ECC primary key and ECC encryption subkey).
+      # "(1) Curve 25519" - (this probably annoys the NSA the most :-)
 
       gpg --armor --export > /path/to/pub_key.gpg
 
@@ -190,6 +204,12 @@
 
       # suppress warnings - not recommended
       gpg --edit-key KEYID trust
+
+      # delete keys (add '--with-colons' when writing scripts)
+      gpg --list-secret-keys
+      gpg --list-keys          # See: gpg --list-secret-keys | grep uid
+      gpg --delete-secret-keys [uid1] [uid2]
+      gpg --delete-keys        [uid1] [uid2]
     }
 
     @block{@block-name{Message example}
