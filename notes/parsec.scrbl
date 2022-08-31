@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Parsec
-
 @block{@block-name{Parsing stages}
   (sometimes divided into two) stages:
   - lexical analysis; see [[https://cobweb.cs.uga.edu/~kochut/teaching/x570/tools/flex.pdf][flex]] - the tool for generating scanners; recognition

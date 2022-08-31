@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: The Hitchhiker’s Guide to Online Anonymity
-
 [[https://youtu.be/-wMU8vmfaYo][YouTube: Why was Facebook down for five hours?]]
 [[https://anonymousplanet.org/guide.html][The Hitchhiker’s Guide to Online Anonymity]]
 

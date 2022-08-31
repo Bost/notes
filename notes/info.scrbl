@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Info
-
 @block{@block-name{Info}
   info - read Info documents
   Read documentation in Info format.

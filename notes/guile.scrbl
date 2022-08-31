@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Guile
-
 
 https://www.gnu.org/software/guile/manual/html_node/Dynamic-Types.html
 Guile Scheme is dynamically-typed. Types only become apparent at run time.

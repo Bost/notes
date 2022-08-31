@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Xen
-
 @block{@block-name{Xen}
   Type-1 hypervisor
 

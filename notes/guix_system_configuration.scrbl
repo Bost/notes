@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Guix System Configuration
-
 @block{@block-name{System Configuration}
   [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
 

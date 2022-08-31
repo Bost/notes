@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Guix Features
-
 [[https://ambrevar.xyz/guix-advance/]]
 
 @block{@block-name{Multiple Outputs}

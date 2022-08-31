@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Pandemics Data Sources
-
 @block{@block-name{Current:}
   https://ourworldindata.org/covid-vaccinations
   https://github.com/owid/covid-19-data/tree/master/public/data

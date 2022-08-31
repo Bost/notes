@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: MS Windows
-
 @block{@block-name{MS Windows}
   # Microsoft Management Console
   mmc

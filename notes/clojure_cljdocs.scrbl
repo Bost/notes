@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Clojure cljdocs
-
 @block{@block-name{Quickref for Clojure Core}
   copy-pasted from Quickref for Clojure Core https://clojuredocs.org/quickref
 

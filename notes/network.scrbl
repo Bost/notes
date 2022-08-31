@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Network
-
 @block{@block-name{NFS - Network File System}
   access files over a computer network much like local storage is accessed
 }

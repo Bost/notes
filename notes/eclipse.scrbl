@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Eclipse
-
 @block{@block-name{Eclipse}
   .metadata/.plugins/org.eclipse.team.cvs.ui/repositoriesView.xml
   #

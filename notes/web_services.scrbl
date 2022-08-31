@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Web Services
-
 @block{@block-name{Communication protocols}
   imply SW architectural style for distributed environments
   REST (Representational State Transfer) accesses data

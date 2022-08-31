@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Lisp
-
 
 @block{@block-name{Common Lisp Implementations}
   abcl

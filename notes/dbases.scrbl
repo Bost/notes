@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Dbases
-
 @block{@block-name{MariaDB}
   [[https://en.wikipedia.org/wiki/MariaDB][MariaDB]] - free, open source, commercially supported MySQL fork.
 }

@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Guix Home
-
 @block{@block-name{Guix Home}
   info 'Guix Home' / M-x helm-info-guix
 

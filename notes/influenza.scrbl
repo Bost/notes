@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Influenza
-
 @block{@block-name{Influenza}
   Commonly called "the flu"
   @block{@block-name{[[http://www.influenzanet.info/][Influenzanet Analytics]]}

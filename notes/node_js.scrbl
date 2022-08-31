@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Node.js
-
 @block{@block-name{NodeJS}
   nvm - Node Version Manager @url{https://github.com/nvm-sh/nvm}
 

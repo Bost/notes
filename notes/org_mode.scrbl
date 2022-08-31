@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Org Mode
-
 @block{@block-name{Org Mode}
   http://ehneilsen.net/notebook/orgExamples/org-examples.html
 

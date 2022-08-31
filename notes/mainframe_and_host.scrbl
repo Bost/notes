@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Mainframe and Host
-
 @block{@block-name{Mainframe and Host}
   # ? Automated testing ?
   OPSS

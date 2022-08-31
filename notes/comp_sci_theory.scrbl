@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Comp-Sci Theory
-
 # generate pdf: M-x org-latex-export-to-pdf
 
 

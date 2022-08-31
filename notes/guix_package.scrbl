@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Guix Package
-
 @block{@block-name{Package Transformation Options}
   [[https://guix.gnu.org/manual/en/html_node/Package-Transformation-Options.html][Package Transformation Options]]
   guix package --with-source=source

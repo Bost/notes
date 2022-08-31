@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Emacs
-
 @block{@block-name{Diverse}
   Dedicated window - doesn't display any other buffer.
 

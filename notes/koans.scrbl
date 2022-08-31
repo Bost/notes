@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Koans
-
 @block{@block-name{Koans}
   [[https://github.com/google/lisp-koans][github: Common Lisp Koans]]
   [[https://github.com/zyrolasting/racket-koans][github: Racket Koans]]

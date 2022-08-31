@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: DB2
-
 @block{@block-name{Various}
   # ???
   db2init

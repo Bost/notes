@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Clojure
-
 @block{@block-name{General}
   What's the difference between a "sequence" and a "seq"?
   http://www.brainonfire.net/files/seqs-and-colls/main.html
