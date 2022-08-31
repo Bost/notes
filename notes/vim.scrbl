@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Vim
-
 @block{@block-name{Vim}
   #+BEGIN_SRC vim
   " Text Object (type :h text-objects in vim for a complete description)

@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Ansible
-
 @block{@block-name{Ansible}
   fictional instantaneous communication systems - Ursula K. Le Guin, 1966, novel Rocannon's World
   IT automation & (app lifecycle) orchestration

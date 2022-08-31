@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Packaging
-
 @block{@block-name{Packaging}
   sudo snap install <package>
   sudo snap help --all

@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Guix vs. other OSes
-
 [[https://www.slant.co/versus/1145/5880/~gnu-guix_vs_docker][Guix vs. Docker]]
 [[https://www.slant.co/versus/1143/1145/~nix_vs_gnu-guix][Nix vs. Guix]]
 

@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: PostgreSQL
-
 @block{@block-name{PostgreSQL}
   #+BEGIN_SRC bash :results output
   # connect to localhost

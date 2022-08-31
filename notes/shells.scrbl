@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Shells
-
 @block{@block-name{Shells: Bash & Fish-shell}
   # check if a file contains only binary zeros
   # https://stackoverflow.com/a/20226139/5151982

@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: systemd
-
 @block{@block-name{systemd}
   [[https://systemd.io/][systemd]]
   A suite of basic building blocks for a Linux system. It provides a system and

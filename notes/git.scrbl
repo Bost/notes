@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Git and Mercurial
-
 @block{@block-name{Git}
   # Git Annex - sync large files: https://youtu.be/p0eVyhv2rbk
 

@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Guile Scripting
-
 @block{@block-name{Guile Scripting}
   https://www.gnu.org/software/guile/manual/html_node/Guile-Scripting.html
   On Guix (see `which guile`):

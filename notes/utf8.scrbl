@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Utf8
-
 @block{@block-name{Utf8}
   sk diacritics á ä č ď é í ĺ ľ ň ó ô ŕ š ť ú ý ž  Á Ä Č Ď É Í Ĺ Ľ Ň Ó Ô Ŕ Š Ť Ú Ý Ž
   fr diacritics à â ä æ ç è é ê ë î ï ô œ ù û ü    À Â Ä Æ Ç È É Ê Ë Î Ï Ô Œ Ù Û Ü Œ

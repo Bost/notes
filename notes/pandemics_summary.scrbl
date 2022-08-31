@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Pandemics Summary
-
 @block{@block-name{Comparison}
   @block{@block-name{Categories of news portals}
      Medicine/Health

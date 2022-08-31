@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Bric a brac
-
 @block{@block-name{OSE Open Source Ecology}
   @hyperlink["https://en.wikipedia.org/wiki/Open_Source_Ecology"]{Wikipedia: Open Source Ecology}
   Network of farmers, engineers, architects and supporters, whose main goal is

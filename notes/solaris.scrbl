@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Solaris
-
 @block{@block-name{Solaris}
   # checksum
   /usr/bin/digest -a sha1

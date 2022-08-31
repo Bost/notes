@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: MySQL
-
 @block{@block-name{On Ubuntu}
   Error log: /var/log/mysql/error.log
   #+BEGIN_SRC bash :results output

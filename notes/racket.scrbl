@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Racket
-
 @block{@block-name{#lang video}
   # In an Ubuntu VM
   sudo apt update && sudo apt upgrade

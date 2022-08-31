@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Guix pull vs. upgrade
-
 @block{@block-name{guix pull}
   # Update Guix OS distribution & Guix tools: download the latest Guix source code
   # and package descriptions, and deploys it.

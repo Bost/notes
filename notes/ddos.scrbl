@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: DDOS
-
 
 @block{@block-name{VA Volumetric Attacks}
   Most common and most devastating.

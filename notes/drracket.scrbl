@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: DrRacket
-
 @block{@block-name{DrRacket}
   @hyperlink["https://plt.cs.northwestern.edu/snapshots/current/pdf-doc/tools.pdf"]{DrRacket Plugins}
   Descriptions of DrRacket’s plugins interface.

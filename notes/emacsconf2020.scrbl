@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: EmacsConf2020
-
 https://emacsconf.org/2020/talks/
 
 https://emacsconf.org/2020/talks/07/#transcript

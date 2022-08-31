@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Game
-
 A set of objects/object-types and a set of morphism/actions between the objects/object-types
 
 @block{@block-name{Object-types}

@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Guix
-
 @block{@block-name{Various}
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso.sig

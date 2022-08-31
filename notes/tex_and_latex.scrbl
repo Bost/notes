@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: TeX and LaTex
-
 @block{@block-name{TeX and LaTex}
   LaTeX is a document preparation system, a package containing a set of macros,
   written by Leslie Lamport, built on top of TeX.

@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Comp-Sci Engineering
-
 @block{@block-name{TeX, LaTeX and document-processing}
   TeX processes layout. LaTeX processes content. LaTeX has a collection of TeX
   macros and a program to process LaTeX documents, and because the plain TeX

@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Find and Grep
-
 @block{@block-name{Find and Grep}
   # redirect; skip the "Permission denied" and "Invalid argument" errors
   find ./ -name file.ext 2>&1 | grep -v "Permission denied\|Invalid argument"

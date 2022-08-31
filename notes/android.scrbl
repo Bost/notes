@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Android
-
 @block{@block-name{Team Win Recovery Project TWRP}
   @url{https://www.mojandroid.sk/twrp-recovery-android-aplikacia/}
 }

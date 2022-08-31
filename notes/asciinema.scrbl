@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: asciinema
-
 @block{@block-name{Record terminal session}
   @hyperlink["https://asciinema.org/"]{asciinema}
   #+BEGIN_SRC shell

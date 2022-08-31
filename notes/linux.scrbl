@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Linux
-
 [[https://github.com/jlevy/the-art-of-command-line][the-art-of-command-line]]
 
 @block{@block-name{Udev}
