@@ -12,16 +12,26 @@
   enables user code to add new primitive operations to Guile, and so to bypass
   the limitation present in Emacs Lisp.
 
-  (funcall (-compose #'number-to-string #'1+) 1) => "2"
-  conversion number-to-string
-  inc function: 1+
+  ;; https://endlessparentheses.com/get-in-the-habit-of-using-sharp-quote.html
+  ;; It is a good practice to hash / sharp quote every symbol that is the name
+  ;; of a function, whether it's going into a mapcar, an apply, a funcall, or
+  ;; anything else.
+  (funcall (apply-partially #'+ 1) 2)                ;; => 3
+  ;; (defalias 'plus-1 (apply-partially #'+ 1))
+  (defalias #'plus-1 (apply-partially #'+ 1))
+  (plus-1 2)                                         ;; => 3
+  (funcall (-compose #'number-to-string #'1+) 1)     ;; => "2"
+  (funcall (-compose #'number-to-string #'plus-1) 1) ;; => "2"
+  conversion: number-to-string
+  inc / increment function: 1+
 
   # The Emacs thesis:
   # Composite programs in a high-level extension language running on a kernel in
   # a low-level language.
 
-  | (boundp 'my=variable)     | test if symbol is defined   |
-  | (functionp 'dbg=function) | test if function is defined |
+  | (boundp 'my=variable)      | test if symbol is defined   |
+  | (functionp 'dbg=function)  | test if function is defined |
+  | (functionp #'dbg=function) | test if function is defined |
 
   ;; emacsclient in Guix is in the emacs-with-editor package
 

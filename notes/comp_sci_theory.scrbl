@@ -480,17 +480,34 @@
   reader.
 }
 
-Scheme as a meta-language for itself – this technique, called meta-circular
-evaluation, has been explored in the grand book Structure and Interpretation of
-Computer Programs. This idea was at the heart of the seminal paper Recursive
-Functions of Symbolic Expressions and their Computation by Machine by John
-McCarthy, which gave birth to the predecessor of Scheme called Lisp.
+@block{@block-name{Scheme Lisp}
+  Scheme as a meta-language for itself – this technique, called meta-circular
+  evaluation, has been explored in the grand book Structure and Interpretation
+  of Computer Programs. This idea was at the heart of the seminal paper
+  Recursive Functions of Symbolic Expressions and their Computation by Machine
+  by John McCarthy, which gave birth to the predecessor of Scheme called Lisp.
 
-A nesting of pairs whose last right value is not the empty list is called
-improper list
+  A nesting of pairs whose last right value is not the empty list is called
+  improper list
 
-Each occurrence of the (random n) expression can be replaced with a value
-randomly chosen from the range 0 to n − 1. That's nondeterminism - i.e. reason
-prefer the term expression-based programming to functional programming.
-Disallowing such nondeterministic expressions would make many simple things
-complex.
+  Each occurrence of the (random n) expression can be replaced with a value
+  randomly chosen from the range 0 to n − 1. That's nondeterminism - i.e. reason
+  prefer the term expression-based programming to functional programming.
+  Disallowing such nondeterministic expressions would make many simple things
+  complex.
+}
+
+@block{@block-name{Dynamic Dispatching}
+  Tiago Cogumbreiro - CS450 S21 30 01 Dynamic dispatching
+  https://youtu.be/UoWWNVYyJKw
+
+  i.e. Operator Overloading, i.e. the same operation for multiple purposes
+}
+
+@block{@block-name{Dynamic Programming}
+  Dynamic Programming - Learn to Solve Algorithmic Problems & Coding Challenges
+  https://youtu.be/oBt53YbR9Kk
+
+  Memoization
+  Tabulation
+}
