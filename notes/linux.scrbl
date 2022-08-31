@@ -1324,6 +1324,7 @@
 
   # cut huge file: content between lines 10 and 20 / print 5th line
   sed -n "10,20p" /path/to/file / sed -n 5p /path/to/file
+
   # cut huge file: content between lines 10 and 20
   # see https://unix.stackexchange.com/a/47423
   awk 'NR >= 10 && NR <= 20' /path/to/file > /path/to/cut-file
@@ -1331,30 +1332,42 @@
 
   # replace / substitute 1st occurence
   sed --in-place "s/foo/FOO/" /path/to/file
+
   # append two lines at the end of the file / EOF
   sed --in-place '$ aline3\nline4' /path/to/file  # doesnt work
+
   # add 'FOO' behind the 1st occurence of '#+title: something'
   sed --in-place "s/\(foo: .*\)/\1\nFOO/" /path/to/file
+
   # replace all occurences of "foo" (globally)
   sed --in-place "s/foo/FOO/g" /path/to/file
+
   # remove / delete empty lines (globally)
   sed --in-place '/^\s*$/d' /path/to/file
-  # remove / delete line
-  sed --in-place "/foo/d" /path/to/file
+
+  # remove / delete line matching 'pattern'
+  sed --in-place "/pattern/d" /path/to/file
+
+  # remove / delete line matching pattern and one following line
+  # see https://stackoverflow.com/a/4398433/5151982
+  sed --in-place --regexp-extended "/^#\+title:.*/,+1d" *.scrbl
+
   # replace newlines with space
   sed ':a;N;$!ba;s/\n/ /g'
+
   # :ascii :ebcdic fix new lines and empty chars; \x85 - hexadecimal char
   sed "s/\x85/\n/g" <log.txt >log.nl.txt; \
   sed "s/\x85/\n/g" <log.nl.txt >log.nl.00.txt
-  # ignore lines between marker1 and marker2
+
+  # ignore lines between 'marker1' and 'marker2'
   # see https://stackoverflow.com/a/40433880/5151982
   mysql_install_db 2>&1 | sed '/^$marker1/,/$marker2$/d'
 }
 
 @block{@block-name{tail vs less}
-  Instead of `tail -f ...` try to use `less +F ...`. `tail -f ...` is better
-  when watching multiple files at the same time.
-  See [[https://www.brianstorti.com/stop-using-tail/][Stop using tail -f (mostly)]]
+  Instead of `tail -f ...` try to use `less +F ...`.
+  `tail -f ...` is better when watching multiple files at the same time.
+  See https://www.brianstorti.com/stop-using-tail/
 }
 
 @block{@block-name{rsync}

@@ -117,11 +117,4 @@
     Window Buttons context menu (right-click in the middle of the panel)
     -> Properties -> Window grouping: -> Never
   }
-
-  @block{@block-name{Fish: setup `systemBinDir` in the `~/.config/fish/config.fish`}
-  }
-
-  @block{@block-name{Setup hashbang in the `~/bin/l` according to the output of `which guile`}
-  }
-
 }
