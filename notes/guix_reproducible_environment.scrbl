@@ -1,10 +1,25 @@
 #lang notes
 
-#+title: Reproducible Environment
+@block{@block-name{Reproducible Development Environment RDE}
+  Author: Andrew Tropin
+  - GNU/Linux distribution
+  - set of tools for managing:
+      (reproducible) development environments
+      home environments
+      operating systems
+   - set of predefined
+      configurations
+      practices
+      workflows
+   - can be treated as an Emacs distribution
 
-@block{@block-name{RDE}
+  https://sr.ht/abcdw/rde
+  https://github.com/abcdw/rde (Mirror)
+
+  rde feature - a building block of rde configuration.
+
   Consists of
-  1. Configuration framework CF
+  1. Configuration Framework CF
   CF provides Feature, which is a record (a list of key-value pairs) consisting of 3 parts:
   values, home-services, system-services
   the values are shared across the features
