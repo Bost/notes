@@ -1,7 +1,5 @@
 #lang notes
 
-#+title: Scheme Implementations
-
 @block{@block-name{Stalin Scheme}
   Focus on speed
   "Stalin brutally optimizes."

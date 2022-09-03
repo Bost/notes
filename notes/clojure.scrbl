@@ -101,44 +101,46 @@
 }
 
 @block{@block-name{lisp-1 vs. lisp-2}
-  lisp-2: allows the same name for both function and variable
   lisp-1: single-value-name languages: Scheme, Clojure, etc.
   lisp-2: multi-value-name languages: Emacs Lisp, Common Lisp
+          allows the same name for both function and variable
+  http://xahlee.info/emacs/emacs/lisp1_vs_lisp2.html
 
-  [[id:a4004d0d-2273-4d6f-bf96-875e1209bf01][Clojure cljdocs]][[https://www.more-magic.net/posts/thoughts-on-clojure.html][thoughts-on-clojure]]
+  https://www.more-magic.net/posts/thoughts-on-clojure.html
+}
 
-  @block{@block-name{nil-punning}
-    [[https://lispcast.com/nil-punning/][nil-punning]]
-    when you look up something in a map that doesn't exist, nil is returned. In
-    Clojure, many operations (like first or rest) on nil just return nil instead
-    of raising an error. So, when you think you are looking up something in a
-    map, but the "map" is actually nil, it will not give an error, but it will
-    return nil.
+@block{@block-name{nil-punning}
+  https://lispcast.com/nil-punning/
+  Clojure, many operations (like first or rest) on nil just return nil instead
+  when you look up something in a map that doesn't exist, nil is returned. In
+  of raising an error. So, when you think you are looking up something in a map,
+  but the "map" is actually nil, it will not give an error, but it will return
+  nil.
 
-    Now like I said, sometimes you may get an error on nil. It's a bit unclear
-    which operations are nil-punning and which will give a proper error. So when
-    you finally get a nil error, you will have a hell of a time trying to trace
-    back where this nil got generated, as that may have been several function
-    calls ago. This is an example where I really like the strictness of Scheme as
-    compared to some other Lisps, as nil-punning is traditionally a dynamic Lisp
-    thing; it's not unique to Clojure.
+  Now like I said, sometimes you may get an error on nil. It's a bit unclear
+  which operations are nil-punning and which will give a proper error. So when
+  you finally get a nil error, you will have a hell of a time trying to trace
+  compared to some other Lisps, as nil-punning is traditionally a dynamic Lisp
+  back where this nil got generated, as that may have been several function
+  calls ago. This is an example where I really like the strictness of Scheme as
+  thing; it's not unique to Clojure.
 
-    Compared to the insane amount of customizability that e.g. CLOS offers you,
-    the design restraint shown in Clojure multimethods was nice to see, but then
-    I realised this simplicity can be completely defeated by building
-    hierarchies. That is, Clojure allows you to define a *hierarchy* on
-    *keywords*. This was a huge wtf for me, because to me, keywords are just
-    static entities that are unrelated to each other.
+  Compared to the insane amount of customizability that e.g. CLOS offers you,
+  the design restraint shown in Clojure multimethods was nice to see, but then I
+  realised this simplicity can be completely defeated by building hierarchies.
+  That is, Clojure allows you to define a *hierarchy* on *keywords*. This was a
+  huge wtf for me, because to me, keywords are just static entities that are
+  unrelated to each other.
 
-    When you realise how Clojure keywords can be namespaced, it makes slightly
-    more sense: this gives them some separation.
-  }
+  When you realise how Clojure keywords can be namespaced, it makes slightly
+  more sense: this gives them some separation.
 }
 
 @block{@block-name{REPL / In the shell}
   @block{@block-name{cli: script: repl from command line}
-    [[https://github.com/borkdude/babashka][Babashka]]
-    [[https://github.com/dundalek/closh][Closh - Bash-like shell based on Clojure]]
+    https://github.com/borkdude/babashka
+    Closh - Bash-like shell based on Clojure
+    https://github.com/dundalek/closh
 
     # see config.fish
     set cljjar ~/.m2/repository/org/clojure/clojure/1.10.0/clojure-1.10.0.jar

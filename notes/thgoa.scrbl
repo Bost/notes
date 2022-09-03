@@ -1,8 +1,121 @@
 #lang notes
 
-[[https://youtu.be/-wMU8vmfaYo][YouTube: Why was Facebook down for five hours?]]
-[[https://anonymousplanet.org/guide.html][The Hitchhiker’s Guide to Online Anonymity]]
+@block{@block-name{Various CompSec related stuff}
+  The Hitchhiker’s Guide to Online Anonymity
+  https://anonymousplanet.org/guide.html
 
+  Why was Facebook down for five hours?
+  https://youtu.be/-wMU8vmfaYo
+}
+
+@block{@block-name{GNU GPG - GNU Privacy Guard}
+  Nov 17, 2020: Creating and Managing a GPG Key Pair
+  https://youtu.be/1vVIpIvboSg
+
+  Feb 17, 2018: Basic File Encryption with GPG key pairs!
+  https://youtu.be/DMGIlj7u7Eo
+
+  pinentry:
+  collection of dialog programs that allow GnuPG to read passphrases and PIN
+  numbers in a secure manner. There are versions for the common GTK, Qt and the
+  text terminal (Curses).
+}
+
+@block{@block-name{Message / File authentication with GPG}
+  M-x helm-info-gnupg
+  # see also:
+  #   directory: $HOME/.gnupg/
+  #   keybox:    $HOME/.gnupg/pubring.kbx
+
+  # On GuixOS:
+  guix install pinentry # needed for GnuPG's interface to passphrase input
+
+  # On QubeOS:
+  # Create a qube without networking. If 'split-gpg' is needed see
+  # https://www.qubes-os.org/doc/split-gpg/ (E.g. The 'qubes-gpg-split' is
+  # needed in the vault of the Qube OS).
+
+  # key creation:
+  gpg --expert --full-generate-key
+  # gpg --batch --generate-key ... # see bottom of the webpage:
+  # https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html#Unattended-GPG-key-generation
+
+  # creating a key for signing and encrypting is the easiest. Choose:
+  # "(9) ECC and ECC" - "can do all" key with Elliptic Curve Cryptography.
+  #                   (i.e. ECC primary key and ECC encryption subkey).
+  # "(1) Curve 25519" - (this probably annoys the NSA the most :-)
+
+  gpg --armor --export > /path/to/pub_key.gpg
+
+  # create <my-secret-file>.asc
+  gpg --clear-sign <my-secret-file>
+  # Enter your name and email. Comment is usually left empty.
+
+  gpg --import pub_key.asc
+  # check the signature. It may produce several warnings!
+  gpg --verify <my-secret-file>.asc | grep --ignore-case "good\|bad"
+
+  # suppress warnings - not recommended
+  gpg          --edit-key KEYID trust
+  gpg --expert --edit-key KEYID trust
+  # can be used to generate subkeys; each of them can have only one purpose.
+
+  # delete keys (add '--with-colons' when writing scripts)
+  gpg --list-keys          # add: --keyid-format LONG
+  gpg --list-secret-keys   # add: --keyid-format LONG
+  gpg --list-keys          # See: gpg --list-secret-keys | grep uid
+  gpg --delete-secret-keys [uid1] [uid2] # or keyid1 keyid2
+  gpg --delete-keys        [uid1] [uid2] # or keyid1 keyid2
+
+  ASC file is an armored ASCII file contains a digitally signed message
+  encoded as plain-text. ASC file includes a key as clear-signed text
+  verifiable with gpg.
+
+  @block{@block-name{Message example}
+    -----BEGIN PGP SIGNED MESSAGE-----
+    Hash: SHA256
+
+    [... Text of the message ...]
+
+    =============================
+    Message verification steps:
+    1. Obtain the public key:
+      gpg --keyserver DNS_SERVER_OR_IP --recv-key KEYID
+    2. Save the this whole message to a file: <received-file.txt>
+    3. Verify the message authenticity:
+      gpg --verify <received-file.txt>
+
+    -----BEGIN PGP SIGNATURE-----
+    [...]
+    -----END PGP SIGNATURE-----
+  }
+}
+
+@block{@block-name{Andrew Tropin}
+  @block{@block-name{gpg explained}
+    `gpg key (structure)` is better than `ssh` and `gpg-agent` is better than
+    `ssh-agent` GPG key structure: https://youtu.be/4-Ks_f8rQFA?t=370
+
+    Prefer using gpg keys (over ssh keys) for github-related tasks, i.e. signing
+    commits and tags, encrypting passwords and authenticating on remote servers.
+    It is easier to maintain only one gpg key.
+
+    gpg-agent:
+    Secret key management for GnuPG, can emulate ssh-agent
+    ~/.gnupg/gpg-agent.conf
+    content - see https://youtu.be/4-Ks_f8rQFA?t=2064
+
+    ~/.gnupg/sshcontrol
+    ssh git@gihub.com
+
+    TODO `sudo herd status | rg gpg-agent` is empty???
+    See https://youtu.be/4lJaVzxO_Bs?t=1466
+    Google-search 'add-home-gnupg-agent-to-shepherd'
+  }
+
+  Dev Team Secrets with gpg, git and gopass
+  https://www.youtube.com/watch?v=EB9cW9RjiSs&list=PLZmotIJq3yOJab8-of7gMYrXkZyAjWPOw&index=48
+}
 
 @block{@block-name{ROP Return-oriented programming}
   Exploit technique that allows an attacker to execute code in
@@ -160,77 +273,6 @@
 @block{@block-name{Qubes OS}
   https://www.qubes-os.org/
   Chat: https://app.element.io/#/room/#cybersec-qubes_os:matrix.org
-
-  @block{@block-name{GNU GPG - GNU Privacy Guard}
-    Nov 17, 2020: Creating and Managing a GPG Key Pair
-    https://youtu.be/1vVIpIvboSg
-
-    Feb 17, 2018: Basic File Encryption with GPG key pairs!
-    https://youtu.be/DMGIlj7u7Eo
-
-    @block{@block-name{Message / File authentication:}
-      M-x helm-info-gnupg
-      # see also:
-      #   directory: $HOME/.gnupg/
-      #   keybox:    $HOME/.gnupg/pubring.kbx
-
-      # On GuixOS:
-      guix install pinentry # needed for GnuPG's interface to passphrase input
-
-      # On QubeOS:
-      # Create a qube without networking. If 'split-gpg' is needed see
-      # https://www.qubes-os.org/doc/split-gpg/ (E.g. The 'qubes-gpg-split' is
-      # needed in the vault of the Qube OS).
-
-      # key creation:
-      gpg --expert --full-generate-key
-      # gpg --batch --generate-key ... # see (bottom of the page):
-      # https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html#Unattended-GPG-key-generation
-
-      # creating a key for signing and encrypting is the easiest. Choose:
-      # "(9) ECC and ECC" - "can do all" key with Elliptic Curve Cryptography.
-      #                   (i.e. ECC primary key and ECC encryption subkey).
-      # "(1) Curve 25519" - (this probably annoys the NSA the most :-)
-
-      gpg --armor --export > /path/to/pub_key.gpg
-
-      # create <file>.asc
-      gpg --clear-sign <file>
-      # Enter your name and email. Comment is usually left empty.
-
-      gpg --import pub_key.asc
-      # check the signature. It may produce several warnings!
-      gpg --verify <file>.asc | grep --ignore-case "good\|bad"
-
-      # suppress warnings - not recommended
-      gpg --edit-key KEYID trust
-
-      # delete keys (add '--with-colons' when writing scripts)
-      gpg --list-secret-keys
-      gpg --list-keys          # See: gpg --list-secret-keys | grep uid
-      gpg --delete-secret-keys [uid1] [uid2]
-      gpg --delete-keys        [uid1] [uid2]
-    }
-
-    @block{@block-name{Message example}
-      -----BEGIN PGP SIGNED MESSAGE-----
-      Hash: SHA256
-
-      [... Text of the message ...]
-
-      =============================
-      Message verification steps:
-      1. Obtain the public key:
-        gpg --keyserver DNS_SERVER_OR_IP --recv-key KEYID
-      2. Save the this whole message to a file: <received-file.txt>
-      3. Verify the message authenticity:
-        gpg --verify <received-file.txt>
-
-      -----BEGIN PGP SIGNATURE-----
-      [...]
-      -----END PGP SIGNATURE-----
-    }
-  }
 }
 
 @block{@block-name{Distributed Denial of Secrets}

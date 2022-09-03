@@ -509,3 +509,24 @@
   Memoization
   Tabulation
 }
+
+@block{@block-name{Authentication AuthN vs. Authorization AuthZ}
+  (1.) AuthN process verifies identity, then (2.) AuthZ process verifies access
+  rights.
+  https://www.onelogin.com/learn/authentication-vs-authorization
+
+  Authentication AuthN process verifies that someone / something is who they say
+  they are. "Is that thing authentic, i.e. real / original? Or a fake?"
+  AuthN nechanisms:
+  - username / password
+  - USB security tokens / mobile tokens
+  - One Time Pin OTP via SMS / App, etc
+  - Biometric
+
+  Authorization AuthZ process determines a user or service's level of access.
+  AuthZ defines policies. And Access Control AC is part of AuthZ that enforces
+  policies.
+  AuthZ mechanisms:
+  - Access Control List ACL: allow / deny rules
+  - Public / Protected / Private / etc. access levels
+}

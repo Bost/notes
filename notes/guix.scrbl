@@ -164,13 +164,6 @@
   git format-patch origin
   git send-email --to=guix-patches@"@"gnu.org *.patch
   info "(guix)Submitting Patches"
-
-  # sha256; base32: when package definition obtained using git-fetch
-  git clone http://example.org/foo.git
-  cd foo
-  git checkout <tag-or-branch>
-  # https://guix.gnu.org/manual/en/html_node/Invoking-guix-hash.html
-  guix hash -x --serializer=nar .   # with the dot at the end!
 }
 
 @block{@block-name{QEMU shrink disk size - doesn't work}
@@ -236,10 +229,7 @@
   guix system        # build and deploy full operating systems
   guix time-machine  # run commands from a different revision
   guix upgrade       # upgrade packages to their latest version
-
-  # Assess substitute availability. report on the availability of pre-built
-  # package binaries
-  guix weather
+  guix weather       # report on the availability of pre-built package binaries
 }
 
 @block{@block-name{software development commands}
@@ -297,21 +287,55 @@
 }
 
 @block{@block-name{TODO}
-  `gpg key (structure)` better than `ssh` and `gpg-agent` better than `ssh-agent`
-  GPG key structure: https://youtu.be/4-Ks_f8rQFA?t=370
+  https://guix.gnu.org/manual/devel/en/html_node/Using-Guix-Interactively.html
 
-  pinentry:
-  collection of dialog programs that allow GnuPG to read passphrases and PIN
-  numbers in a secure manner. There are versions for the common GTK, Qt and the
-  text terminal (Curses).
+  Protesilaos Stavrou
+  https://protesilaos.com/emacs/dotemacs
 
-  - see also private.el
-  - auth info - gpg secrets
-  [https://anonymousplanet.org/guide.html]
+  Auxiliary modules for programming in GNU guile
+  https://luis-felipe.gitlab.io/guile-aux/
+
+  guix install ublock-origin-chromium
+  Block unwanted content from web sites
+  uBlock Origin is a wide spectrum blocker for IceCat and ungoogled-chromium.
+
+  https://guix.gnu.org/manual/devel/en/html_node/Secure-Shell.html
+  (service home-openssh-service-type
+  (home-openssh-configuration
+  (hosts
+  (list (openssh-host (name "ci.guix.gnu.org")
+  (user "charlie"))
+  (openssh-host (name "chbouib")
+  (host-name "chbouib.example.org")
+  (user "supercharlie")
+  (port 10022))))
+  (authorized-keys (list (local-file "alice.pub")))))
+
+  use rde as a Channel
+  Some advanced users may prefer to use only parts of rde they are interested: features, services, or just packages.
+  In that case you can add the following channel to channels.scm.
+  (cons*
+  (channel
+  (name 'rde)
+  (url "https://git.sr.ht/~abcdw/rde")
+  (introduction
+  (make-channel-introduction
+  "257cebd587b66e4d865b3537a9a88cccd7107c95"
+  (openpgp-fingerprint
+  "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+  %default-channels)
+
+  see also private.el
+  auth info - gpg secrets
+  EasyPG / epa - Emacs’s native support for GnuPG
+  https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources
 
   # Set up secret environment variable
   guix install gnupg
   export SECRET_VAR=`gpg --decrypt /path/to/somekeyfile.gpg 2>/dev/null`
+  # see also `guix install git-crypt`
+  # Dev Team Secrets with gpg, git and gopass
+  #https://www.youtube.com/watch?v=EB9cW9RjiSs&list=PLZmotIJq3yOJab8-of7gMYrXkZyAjWPOw&index=48
 
   gpg --keyserver keyserver.ubuntu.com --search-keys email@"@"address.com
   gpg --list-keys
