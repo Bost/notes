@@ -46,25 +46,28 @@
   guix           upgrade --do-not-upgrade="(openjdk|postgres|fish).*"
   # guix package -i mycli --with-latest=mycli
 
-  [[https://logs.guix.gnu.org/guix/2021-10-30.log#111758][IRC discussion: How to find out from which package a binary comes from?]]
+  IRC discussion: How to find out from which package a binary comes from?
+  https://logs.guix.gnu.org/guix/2021-10-30.log#111758
+
   guix package --search=hello
   guix           search hello
   # package details
   guix package --show=hello
   guix           show hello
-  guix weather   # see also availability of substitutes:
   guix archive   # export / import package(s) from / to the store
-
-  https://guix.gnu.org/manual/en/html_node/Invoking-guix-weather.html
-  `guix weather` nars: size of the compressed archives
 }
 
 @block{@block-name{Substitutes}
   https://guix.gnu.org/manual/en/html_node/Substitutes.html
-  TODO what is 'substitutes' - update 'guix help wheather'
+  guix weather       # report on the availability of pre-built package binaries
 
-  Substitute can be anything resulting from a derivation build. Typically
-  pre-built package binaries. Can be also e.g. source tarballs.
+  Substitute is a pre-built item which can be downloaded from a server, i.e. a
+  substitute for local build result. It can be anything resulting from a
+  derivation build. It can be a pre-built package binary (typically), source
+  tarball, etc.
+
+  https://guix.gnu.org/manual/en/html_node/Invoking-guix-weather.html
+  `guix weather` nars: size of the compressed archives
 }
 
 @block{@block-name{Creating package}
@@ -72,21 +75,30 @@
 
   bag - as an intermediate form between package and derivation.
 
-  # download a file from the URI, add it to the store, and print both its file
-  # name in the store and its SHA256 hash
+  # sha256; base32; either (A):
+  # package definition is obtained using git-fetch
+  git clone http://example.org/foo.git
+  cd foo
+  git checkout <tag-or-branch>
+  # https://guix.gnu.org/manual/en/html_node/Invoking-guix-hash.html
+  guix hash -x --serializer=nar .   # with the dot at the end!
+
+  # sha256; base32; or (A):
+  # package is a file downloaded from an the URI - add it to the store, and
+  # print both its file name in the store and its SHA256 hash
   guix download URI
   # compute the hash of any (already downloaded) file
   guix hash file
 
-  #
+  # either (A):
   guix build --load-path=./gnu/packages --keep-failed <package>
   cd $GUIX_CHECKOUT
   guix shell -D guix
   ./pre-inst-env guix build --keep-failed <package>@"@"<version>
   ./pre-inst-env guix install <package>@"@"<version>
-  # or
+  # or (B):
   guix package --install-from-file=my-hello.scm
-  # or
+  # or (C):
   guix package --load-path=./ --manifest=./games/packages/factorio.scm --list-available=factorio
   guix package --load-path=./ --install=factorio
 }

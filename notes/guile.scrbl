@@ -35,10 +35,11 @@ link it against the libguile.
   See `info "(guile)Concept Index"`
 
   Scheme Requests for Implementation SRFI
-  [https://srfi.schemers.org/]
+  https://srfi.schemers.org/
+  https://small.r7rs.org/attachment/r7rs.pdf
 
   Installing Guile Scheme:
-  [https://jeko.frama.io/en/install.html]
+  https://jeko.frama.io/en/install.html
 
   Ports are the way that Guile performs input and output
 
@@ -47,7 +48,7 @@ link it against the libguile.
   (use-modules (ice-9 readline)
                ;; requires `guix install guile-colorized`
                (ice-9 colorized))
-
+  ;;
   (activate-readline)
   (activate-colorized)
 }
@@ -71,13 +72,18 @@ link it against the libguile.
 }
 
 @block{@block-name{Various code snippets}
+  ;; https://stackoverflow.com/a/38397019/5151982
+  ;; console as input and output
+  (use-modules (ice-9 textual-ports))
+  ;; TODO check this:
+  (display (get-string-n (current-input-port) 6))
+
   ;; check for empty list:
   (null? '())  ; => #t
   (null? '(1)) ; => #f
   ;; check for empty string
   (string-null? "")  ; => #t
   (string-null? "1") ; => #f
-
 
   ;; in clojure: (some pred coll); or `some->` etc.
   ;; find pred lst
@@ -231,4 +237,19 @@ link it against the libguile.
   not be clear what the value of the sequence would be, because in a sequence of
   zero expressions, there can be no last value. Sequencing zero expressions is
   an error.
+}
+
+@block{@block-name{Equality}
+  |        | returns `#t' if X and Y are:                         |
+  | equal? | the same type, and their contents or value are equal |
+  | eq?    | the same object, except for numbers and characters   |
+  | =      | numerically equal                                    |
+}
+
+@block{@block-name{SXML}
+  Alternative syntax for writing XML data (more precisely, XML Infosets[1]) as
+  S-expressions, to facilitate working with XML data in Lisp and Scheme. An
+  associated suite of tools[which?] implements XPath, SAX and XSLT for SXML in
+  Scheme[2][3] and are available in the GNU Guile implementation of that
+  language.
 }
