@@ -28,7 +28,6 @@
 @include-section{guile_scripting.scrbl}
 @include-section{guix.scrbl}
 @include-section{guix_compared.scrbl}
-@include-section{guix_features.scrbl}
 @include-section{guix_home.scrbl}
 @include-section{guix_package.scrbl}
 @include-section{guix_pull_vs_upgrade.scrbl}

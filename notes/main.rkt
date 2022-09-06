@@ -13,6 +13,9 @@
   tobe
   block
   block-name
+  javascript
+  lisp
+  lnk
 )
 
 (require
@@ -35,5 +38,20 @@
 (define (block-name name)
    (string-append name "\n"))
 
-(define tobe "ToBe") ; this is a constant
+(define (javascript . items)
+  (make-element
+   (make-style #f null)
+   items))
 
+(define (lisp . items)
+  (make-element
+   (make-style #f null)
+   items))
+
+(define (lnk title new-line url)
+  #;(printf "############ title: '~a'; url: '~a'\n" title url)
+  (make-element
+   (make-style #f null)
+   (list title url)))
+
+(define tobe "ToBe") ; this is a constant
