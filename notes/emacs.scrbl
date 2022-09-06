@@ -150,9 +150,6 @@
   ;; dynamic vs. lexical binding:
   EmacsLisp: dynamic; Scheme, CommonLisp: lexical
 
-  ;; CLOS: Common Lisp Object System (CLOS)
-  differs from OOP facilities found in C++ or Java
-
   ;; help: show content of the variable containing installed packages
   C-h v package-activated-list
 

@@ -1,5 +1,12 @@
 #lang notes
 
+@block{@block-name{TODOs}
+  delimited continuations
+  module system / OCaml
+  hygienic macros
+  threads
+}
+
 @block{@block-name{TeX, LaTeX and document-processing}
   TeX processes layout. LaTeX processes content. LaTeX has a collection of TeX
   macros and a program to process LaTeX documents, and because the plain TeX
@@ -34,19 +41,10 @@
 - examine and name data simultaneously
 }
 
-@block{@block-name{CLOS-based object orientation}
-  CommonLisp Object System
-}
-
 @block{@block-name{Foreign Function Interface FFI a.k.a. Language bindings}
   Usage of different languages in one program;
   e.g. Java Native Interface JNI / Java Native Access JNA; extern "C"
 }
-
-TODO delimited continuations
-TODO module system / OCaml
-TODO hygienic macros
-TODO threads
 
 @block{@block-name{Multiple Values}
   An expression can evaluate to multiple values

@@ -34,7 +34,6 @@
 @include-section{guix_reproducible_environment.scrbl}
 @include-section{guix_system_configuration.scrbl}
 @include-section{influenza.scrbl}
-@include-section{koans.scrbl}
 @include-section{linux.scrbl}
 @include-section{lisp.scrbl}
 @include-section{mainframe_and_host.scrbl}

@@ -100,15 +100,6 @@
   Instaparse: parsers in clojure: context-free grammars as easy to use as regexs
 }
 
-@block{@block-name{lisp-1 vs. lisp-2}
-  lisp-1: single-value-name languages: Scheme, Clojure, etc.
-  lisp-2: multi-value-name languages: Emacs Lisp, Common Lisp
-          allows the same name for both function and variable
-  http://xahlee.info/emacs/emacs/lisp1_vs_lisp2.html
-
-  https://www.more-magic.net/posts/thoughts-on-clojure.html
-}
-
 @block{@block-name{nil-punning}
   https://lispcast.com/nil-punning/
   Clojure, many operations (like first or rest) on nil just return nil instead
