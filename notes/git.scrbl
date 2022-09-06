@@ -294,11 +294,11 @@
   git remote set-url origin https://github.com/<user_name>/<repo_name>.git
   git remote add origin ssh://user@"@"host:1234/srv/git/example
 
-  # Run as if started in <path> instead of the current working directory.
-  # See `man git` when multiple -C given.
+  # run as if started in <path> instead of the cwd current working directory.
+  # See `man git` when multiple -C given
   git -C ~/.SpaceVim pull    # update SpaceVim
 
-  # this pushes only tags not the code
+  # push only tags, not the code
   git push --tags origin
 
   # create lightweight tag - it won't be pushed by `git push ...`

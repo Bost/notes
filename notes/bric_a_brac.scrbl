@@ -1,5 +1,13 @@
 #lang notes
 
+@block{@block-name{Various}
+  Nikita Voloboev: Everything I Know
+  https://wiki.nikiv.dev/
+
+  I want to learn / Learn anything
+  https://learn-anything.xyz/
+}
+
 @block{@block-name{OSE Open Source Ecology}
   @hyperlink["https://en.wikipedia.org/wiki/Open_Source_Ecology"]{Wikipedia: Open Source Ecology}
   Network of farmers, engineers, architects and supporters, whose main goal is
@@ -32,6 +40,8 @@
   | Most init system configurations, incl. systemd  | GNU Shepherd                          |
   | cron                                            | mcron                                 |
   | TeX, LaTeX (and all the derivatives), Asymptote | scribble, skribilo                    |
+
+  mcron - see also https://github.com/leahneukirchen/snooze
 
   @hyperlink["https://ambrevar.bitbucket.io/emacs-eshell/"]{Eshell as a main shell} Link rotted
 }
@@ -133,7 +143,7 @@
 
 @block{@block-name{Singularity}
   @hyperlink["https://singularity.hpcng.org/"]{Singularity}
-  Container System for HPC
+  Container System for HPC High Performance Computing
 }
 
 @block{@block-name{Terminal / Video Recorder / Screen Casting}
@@ -161,11 +171,11 @@
   }
 
   @block{@block-name{Repair and Prepare}
-    Switch tires
+    Swap normal for tubeless tires
     Baumarkt - Socket for the Nigrin Reifen Dicht (Buy Bildschirmreiniger)
     Cut plasters
 
-    @block{@block-name{Chain}
+    @block{@block-name{Bicycle chain}
        @hyperlink["https://youtu.be/gXd-3UnqoaM?t=37"]{YouTube: When to replace chain}
 
        | stretch | nr-of-gears | verdict |
