@@ -118,7 +118,7 @@
     content - see https://youtu.be/4-Ks_f8rQFA?t=2064
 
     ~/.gnupg/sshcontrol
-    ssh git@gihub.com
+    ssh git@"@"github.com
 
     TODO `sudo herd status | rg gpg-agent` is empty???
     See https://youtu.be/4lJaVzxO_Bs?t=1466

@@ -76,3 +76,9 @@ math-structures.pdf
 *.tex
 /_minted-test/
 /_minted-category-theory/
+notes/compiled/info_rkt.dep
+notes/compiled/info_rkt.zo
+notes/compiled/main_rkt.dep
+notes/compiled/main_rkt.zo
+notes/lang/compiled/reader_rkt.dep
+notes/lang/compiled/reader_rkt.zo

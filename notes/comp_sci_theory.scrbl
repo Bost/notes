@@ -1,15 +1,7 @@
 #lang notes
 
-# generate pdf: M-x org-latex-export-to-pdf
-
-
-# https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
-# latexpreview / nolatexpreview C-c C-x C-l
-# #+STARTUP: nolatexpreview
-#+STARTUP: showeverything inlineimages nolatexpreview
-
 @block{@block-name{Complexity classes & Complexity Zoo}
-  [[https://complexityzoo.uwaterloo.ca/Complexity_Zoo][Complexity Zoo]]
+  https://complexityzoo.uwaterloo.ca/Complexity_Zoo
   NP      - decision problems solvable by non-deterministic TM (Turing Machine) in polynomial time
   PSPACE  - decision problems solvable by     deterministic TM                  in polynomial space
 
@@ -38,7 +30,7 @@
 
 @block{@block-name{Lambda λ-Calculus Notation history / development}
   John Harrison Introduction to Functional Programming
-  [http://www.cl.cam.ac.uk/teaching/Lectures/funprog-jrh-1996/all.pdf]
+  http://www.cl.cam.ac.uk/teaching/Lectures/funprog-jrh-1996/all.pdf
 
   Bertrand Russell and Alfred North Whitehead, Principia Mathematica, where they
   used the notation f(xˆ) [^ above x] to mean a function of x, rather than the
@@ -275,7 +267,9 @@
 }
 
 @block{@block-name{Indirect left recursion}
-  [[https://en.wikipedia.org/wiki/Left_recursion][Wikipedia: Left Recursion]]
+  Wikipedia: Left Recursion
+  https://en.wikipedia.org/wiki/Left_recursion
+
   Occurs when the definition of LR is satisfied via several substitutions. It
   entails a set of rules following the pattern:
 
@@ -340,9 +334,11 @@
 
 @block{@block-name{Fixed-point combinator / Y-combinator}
   "implement recursion in a language without recursion"
-  [[https://youtu.be/9T8A89jgeTI][Essentials: Functional Programming's Y Combinator - Computerphile]]
+  Essentials: Functional Programming's Y Combinator - Computerphile
+  https://youtu.be/9T8A89jgeTI
 
-  [[https://en.wikipedia.org/wiki/Fixed-point_combinator#Fixed-point_combinators_in_lambda_calculus][Fixed-point combinators in lambda calculus]]
+  Fixed-point combinators in lambda calculus
+  https://en.wikipedia.org/wiki/Fixed-point_combinator#Fixed-point_combinators_in_lambda_calculus
   Definition:
   Y = λf.(λx.f(x x) λx.f(x x))
 
@@ -351,30 +347,38 @@
       = g(λx.g(x x) λx.g(x x))        (by β-reduction of λx: applied left function to right function)
       = g(Y g)                        (by second equality)
       = g(g(Y g))
-      = g(g(g(Y g))
-      = g(...(g(Y g)...)
+      = g(g(g(Y g)))
+      = g(...(g(Y g))...)
 
-  [[https://youtu.be/9T8A89jgeTI?t=217][YouTube: Encoding of Boolean values]]
+  YouTube: Encoding of Boolean values
+  https://youtu.be/9T8A89jgeTI?t=217
   One is opposite of the other:
   TRUE  = λx.λy.x
   FALSE = λx.λy.y
 
-  TODO [[https://en.wikipedia.org/wiki/SKI_combinator_calculus][Wikipedia: SKI combinator calculus]]
-  [[https://bartoszmilewski.com/2020/09/06/the-fall-of-the-ski-civilization/][Bartosz Milewski: The Fall of the SKI Civilization]]
+  TODO Wikipedia: SKI combinator calculus
+  https://en.wikipedia.org/wiki/SKI_combinator_calculus
+
+  Bartosz Milewski: The Fall of the SKI Civilization
+  https://bartoszmilewski.com/2020/09/06/the-fall-of-the-ski-civilization/
 }
 
 @block{@block-name{Self-balancing binary search trees}
  for basic operations
  - AVL-Tree (Adelson-Velsky-Landis)
- - RB-Tree (Red-Black) [[https://en.wikipedia.org/wiki/Red%E2%80%93black_tree][Wikipedia: Red-Black Tree]]
+ - RB-Tree (Red-Black):
+   Wikipedia: Red-Black Tree
+   https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
 }
 
 @block{@block-name{Endophora - Linguistics}
-  [[https://en.wikipedia.org/wiki/Endophora][Wikipedia: Endophora]]
+  Wikipedia: Endophora
+  https://en.wikipedia.org/wiki/Endophora
 
   @block{@block-name{Subcategories of Endophoras: φέρω (phérō, "I carry")}
     @block{@block-name{Anaphora "carrying back" ἀνά (aná, "up")}
-      [[https://en.wikipedia.org/wiki/Anaphora_(linguistics)][Wikipedia: Anaphora (linguistics)]]
+      Wikipedia: Anaphora (linguistics)
+      https://en.wikipedia.org/wiki/Anaphora_(linguistics)
       - Usage of an expression that depends upon an antecedent (previous)
         expression.
       - "Sally arrived, but nobody saw her" - 'her' is an anaphor (= anaphoric
@@ -382,50 +386,51 @@
     }
 
     @block{@block-name{Cataphora "carrying forward" κατά (kata, "downwards")}
-      [[https://en.wikipedia.org/wiki/Cataphora][Wikipedia: Cataphora]]
+      Wikipedia: Cataphora
+      https://en.wikipedia.org/wiki/Cataphora
       - Usage of an expression that depends upon a postcedent (later) expression.
       - "If you want some, there are cookies in the kitchen" - 'some' is a
         cataphor (= cataphoric expression)
     }
 
     @block{@block-name{Self-reference}
-      [[https://en.wikipedia.org/wiki/Self-reference][Wikipedia: Self-reference]]
+      Wikipedia: Self-reference
+      https://en.wikipedia.org/wiki/Self-reference
     }
   }
 }
 
 @block{@block-name{Anaphoric Macro}
-  [[https://en.wikipedia.org/wiki/Anaphoric_macro][Wikipedia: Anaphoric Macro]]
+  Wikipedia: Anaphoric Macro
+  https://en.wikipedia.org/wiki/Anaphoric_macro
   - captures some form supplied to the macro which may be referred to by an
     anaphor (i.e. expression that depends on a previous expression)
 
   - Example (ANSI Common Lisp; works also in sbcl - Steel Bank Common Lisp ):
     Sum the value of non-nil elements, where 'it' refers to the values of
     elements that do not equal nil:
-    #+BEGIN_SRC lisp
-    (loop for element in '(nil 1 nil 2 nil nil 3 4 6)
-          when element sum it)
-    ;; ⇒ 16
-    #+END_SRC
+    @lisp{
+      (loop for element in '(nil 1 nil 2 nil nil 3 4 6)
+            when element sum it)
+      ;; >= 16
+      ;;
+      (defmacro aif (test-form then-form &optional else-form)
+        `(let ((it ,test-form))
+               (if it ,then-form ,else-form)))
 
-    #+BEGIN_SRC lisp
-    (defmacro aif (test-form then-form &optional else-form)
-      `(let ((it ,test-form))
-             (if it ,then-form ,else-form)))
-
-    (aif (+ 2 7)
-      (format nil "~A does not equal NIL." it)
-      (format nil "~A does equal NIL." it))
-    #+END_SRC
+      (aif (+ 2 7)
+        (format nil "~A does not equal NIL." it)
+        (format nil "~A does equal NIL." it))
+   }
 }
 
 @block{@block-name{Method Chaining}
-  #+BEGIN_SRC javascript
-  somethings
-    .filter(x => x.count > 10)
-    .sort((a, b) => a.count - b.count)
-    .map(x => x.name)
-  #+END_SRC
+  @javascript{
+   somethings
+     .filter(x => x.count > 10)
+     .sort((a, b) => a.count - b.count)
+     .map(x => x.name)
+     }
 }
 
 @block{@block-name{Typing}

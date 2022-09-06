@@ -58,7 +58,8 @@
 }
 
 @block{@block-name{Terminals}
-  @hyperlink["https://github.com/Eugeny/terminus"]{A terminal for a more modern age}
+  @lnk{A terminal for a more modern age
+  https://github.com/Eugeny/terminus}
 
   Electron-app terminal; scriter - electron alternative
   @url{https://github.com/zeit/hyper}
