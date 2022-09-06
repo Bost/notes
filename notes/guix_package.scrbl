@@ -1,7 +1,7 @@
 #lang notes
 
 @block{@block-name{Package Transformation Options}
-  [[https://guix.gnu.org/manual/en/html_node/Package-Transformation-Options.html][Package Transformation Options]]
+  https://guix.gnu.org/manual/en/html_node/Package-Transformation-Options.html
   guix package --with-source=source
   guix package --with-source=package=source
   guix package --with-source=package@"@"version=source
@@ -73,7 +73,10 @@
 @block{@block-name{Creating package}
   https://guix.gnu.org/cookbook/en/guix-cookbook.html#Packaging-Tutorial
 
-  bag - as an intermediate form between package and derivation.
+  Bag:
+  - an intermediate form between package and derivation.
+  - low-level package representation. Later it will be translated to a package
+    derivation, which will be built by the build-daemon
 
   # sha256; base32; either (A):
   # package definition is obtained using git-fetch
@@ -111,4 +114,75 @@
   # delete generations older than 2 months days and collect at least 10 GiB of
   # garbage
   guix gc --delete-generations=2m  --collect-garbage=10GiB
+}
+
+@block{@block-name{Package Inputs / Outputs}
+  A package can have multiple "Outputs" that serves as a mean to separate
+  various component of a program (libraries, extra tools, documentation, etc.).
+
+  Inputs ~ package dependencies.
+  The user profile & environment only contains the packages the user explicitly
+  installed and not necessarily the dependencies of those packages.
+  * (basic) inputs
+    Built for target architecture. Can be referenced by the package. Will be in
+    the resulting binary file
+  * native
+    Built for host architecture (the build machine), e.g. built-time utils not
+    needed during run-time
+  * propagated
+    Will be added to profile along with the package
+  * direct
+    All of the above
+  * implicit
+    Added by build system
+  * development
+    All of the above. Needed for e.g. `guix shell`
+}
+
+@block{@block-name{Package Build Systems}
+  trivial-build-system
+  copy-build-system
+  gnu-build-system
+  emacs-build-system
+  cargo / go / clojure / maven / ant / r / etc.
+
+  Build Phases:
+  Sequentially executed list; Some build phases can provide
+  implicit inputs
+
+  Arguments:
+  Customize build process w/o modifying it
+  #:modules `((guix build utils)) ;; available for the builder below
+  #:builder
+  - a list of expressions which will be evaluated by the build-daemon to build
+    the package during the build-phase
+  - can be a g-expression
+  - Example:
+  (mlet %store-monad ;; ? monadic let? TODO see mlambda
+        (#;(...)
+         (builder -> (if (pair? builder)
+                         (sexp->gexp builder)
+                         builder)))
+        (gexp->derivation name (with-build-variables inputs outputs builder)
+                          ...))
+
+  Dependencies:
+  ...
+
+  Utilities:
+  E.g. Emacs build System provides some wrappers which allow execution of
+  s-expressions using Emacs
+}
+
+@block{@block-name{Guix Build Utils}
+  guix/build/utils.scm
+  - Doesn't have dependencies
+  - Content:
+      copy-recursively, chdir, mkdir, find-files, etc.
+      substitute*
+      update file content
+      patch-shebang
+      (for-each (lambda (prm) ...) ...)
+      install-file - put file to some location
+      file-is-directory? (? file-exists?)
 }

@@ -1,38 +1,47 @@
 #lang notes
 
+@block{@block-name{Guile Scheme}
+  define-syntax vs. defmacro / defmacro-public
 
-https://www.gnu.org/software/guile/manual/html_node/Dynamic-Types.html
-Guile Scheme is dynamically-typed. Types only become apparent at run time.
+  https://wiki.c2.com/
 
-In Guile, this uniform representation of all Scheme values is the C type SCM.
-This is an opaque type and its size is typically equivalent to that of a pointer
-to void. Thus, SCM values can be passed around efficiently and they take up
-reasonably little storage on their own.
+  Google: daviwil system common
 
-The most important rule is: You never access a SCM value directly; you only pass
-it to functions or macros defined in libguile.
+  (read)
+  (read-line) ;; doesn't exist?
 
-As an obvious example, although a SCM variable can contain integers, you can of
-course not compute the sum of two SCM values by adding them with the C +
-operator. You must use the libguile function scm_sum.
+  - Monads are programmatic representations of stateful
+  computation - which is more powerful than just 'doing' the computation, as
+  it's basically homoiconicity.
 
-TO embed the Guile Scheme interpreter into your program or library, you need to
-link it against the libguile.
+  - The IO Monad is simply applying a function on the world.
 
-@block{@block-name{SXML}
-  alternative syntax for writing XML data (more precisely, XML Infosets[1]) as
-  S-expressions, to facilitate working with XML data in Lisp and Scheme. An
-  associated suite of tools[which?] implements XPath, SAX and XSLT for SXML in
-  Scheme[2][3] and are available in the GNU Guile implementation of that
-  language.
+  https://www.gnu.org/software/guile/manual/html_node/Dynamic-Types.html
+  Guile Scheme is dynamically-typed. Types only become apparent at run time.
+
+  In Guile, this uniform representation of all Scheme values is the C type SCM.
+  This is an opaque type and its size is typically equivalent to that of a
+  pointer to void. Thus, SCM values can be passed around efficiently and they
+  take up reasonably little storage on their own.
+
+  Never access a SCM value directly. Pass it to functions / macros defined in
+  libguile. E.g. the sum of two SCM values can't be computed by adding them with
+  the C + operator. The libguile function scm_sum must be used.
+
+  Embeding Guile interpreter into a program / library - it with libguile.
+
+  #<unspecified>
+  the evaluated expression has no result specified
+
+  Tail Call Optimisation
+  the compiler will rewrite the recursive form into a serialised iterative form.
 }
 
-@block{@block-name{Guile vs. guix repl}
+@block{@block-name{`guile` vs. `guix repl`}
   `guix repl` guarantees that all the Guix modules and all its dependencies are
   available in the search path. `guile` doesn't give such guarantees
 
-  Guile is an implementation of the Scheme programming language.
-  See `info "(guile)Concept Index"`
+  `info "(guile)Concept Index"`
 
   Scheme Requests for Implementation SRFI
   https://srfi.schemers.org/
@@ -72,6 +81,11 @@ link it against the libguile.
 }
 
 @block{@block-name{Various code snippets}
+  ;; Formatted output like fprintf.
+  ;; https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html
+  (format #t "\n~a\n\n" s)
+  (format #f "\n~a\n\n" s) ;; print to string
+
   ;; https://stackoverflow.com/a/38397019/5151982
   ;; console as input and output
   (use-modules (ice-9 textual-ports))
@@ -193,12 +207,6 @@ link it against the libguile.
   (read-set! keywords 'postfix)
   (keyword? foo:) ; => #t
   The `(keyword? :foo:)` will work if any of the `(read-set! ...)` is evaluated.
-}
-
-@block{@block-name{Formatted output}
-  like fprintf. See [[https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html][Formatted Output]]
-  (format #t "\n~a\n\n" s)
-  (format #f "\n~a\n\n" s) ;; print to string
 }
 
 @block{@block-name{G-expression - gexp}

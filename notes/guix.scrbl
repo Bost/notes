@@ -1,6 +1,12 @@
 #lang notes
 
 @block{@block-name{Various}
+  Guix: A most advanced operating system
+  https://ambrevar.xyz/guix-advance/
+  https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix
+
+  https://git.sr.ht/~technomancy/
+
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso.sig
   # If encountered "gpg: Can't check signature: No public key" then import the signatures:
@@ -9,6 +15,7 @@
   # where the warning like "This key is not certified with a trusted signature!"
   # can be ignored.
 
+  https://guix.gnu.org/guix-refcard.pdf
   https://gitlab.com/pjotrp/guix-notes
   https://github.com/pjotrp/guix-notes/blob/master/HACKING.org
   ;; Brainiarc7/guix-notes is 1 commit ahead, 279 commits behind pjotrp:master
@@ -49,7 +56,7 @@
   # make check  # optional
   # authenticate all the commits included in your checkout by running:
   make authenticate
-  make clean-go  # make -j22 clean-go # delete the *.go files
+  make clean-go  # make -j22 clean-go # delete the .go (Guile Object) files
   ./pre-inst-env guix home --fallback -L ~/dev/dotfiles/guix/home/ container ~/dev/dotfiles/guix/home/home-configuration.scm
 }
 
@@ -64,7 +71,7 @@
 
 @block{@block-name{RDE Reproducible Development Environment}
   Andrew Torpin: guix shell: Overview - Notes
-  [https://github.com/abcdw/notes/blob/master/notes/20211111141408-guix_shell_overview.org]
+  https://github.com/abcdw/notes/blob/master/notes/20211111141408-guix_shell_overview.org
 
   feature-emacs-eglot ;; lsp-interface for emacs
   feature-clojure     ;;
@@ -74,7 +81,8 @@
   guix shell [OPTION]... PACKAGE... [-- COMMAND...]
 
   @block{@block-name{RDE channel lock / channel freeze}
-     [[https://youtu.be/UMCHuHSlVWk?t=1622][YouTube: Andrew Torpin: guix shell: Overview]]
+     YouTube: Andrew Torpin: guix shell: Overview
+     https://youtu.be/UMCHuHSlVWk?t=1622
      # full freeze of Guix channels to the versions defined in 'channels.scm'
      guix describe -f channels > ./channels.scm
      guix time-machine --channels=./channels.scm -- shell REST-OF-GUIX-SHELL-ARGS
@@ -82,14 +90,15 @@
 }
 
 @block{@block-name{Channels}
-  [[https://guix.gnu.org/manual/en/html_node/Specifying-Additional-Channels.html][Specifying Additional Channels]]
+  Specifying Additional Channels
+  https://guix.gnu.org/manual/en/html_node/Specifying-Additional-Channels.html
   edit `~/.config/guix/channels.scm` and run `guix pull`.
 
   Inferiors - fetch a package from a previous guix revision:
-  [[https://guix.gnu.org/manual/devel/en/html_node/Inferiors.html][Inferiors]]
+  https://guix.gnu.org/manual/devel/en/html_node/Inferiors.html
 
   Meta-commands
-  [https://www.gnu.org/software/guile/manual/guile.html#REPL-Commands]
+  https://www.gnu.org/software/guile/manual/guile.html#REPL-Commands
   ;; REPL debugging:
   ;; displays the call stack (aka backtrace) at the point where the debugger was
   ;; entered
@@ -103,10 +112,17 @@
   ;;  / List procedures provided by the REPL:
   scheme@"@"(guile-user)> ,module (srfi srfi-1)
   scheme@"@"(srfi srfi-1)> ,help module
-  ...
   scheme@"@"(srfi srfi-1)> ,binding
   ;; <list of procedures>
   scheme@"@"(guile-user)> ,pretty-print '(eval-when (expand load eval) ...)
+  scheme@"@"(srfi srfi-1)> ,pretty-print (module-uses (current-module))
+  $_ = (#<interface (guile) 7ffa54060dc0>
+   #<autoload (system base compile) 7ffa540edb40>
+   #<interface (ice-9 session) 7ffa52cce0a0>
+   #<interface (ice-9 regex) 7ffa54043a00>
+   #<interface (ice-9 threads) 7ffa540a2aa0>
+   #<interface (value-history) 7ffa52cce5a0>
+   #<interface (geiser emacs) 7ffa51539f00>)
 
   # Run command-line scripts provided by GNU Guile and related programs.
   guild
@@ -137,11 +153,12 @@
 }
 
 @block{@block-name{Guix in a VM: SSH access}
-  [[https://guix.gnu.org/manual/en/html_node/Running-Guix-in-a-VM.html][Guix in a VM: SSH access]]
+  Guix in a VM: SSH access
+  https://guix.gnu.org/manual/en/html_node/Running-Guix-in-a-VM.html
   # edit the /run/current-system/configuration.scm
   (service openssh-service-type
-  (openssh-configuration
-  (permit-root-login 'without-password)))
+    (openssh-configuration
+    (permit-root-login 'without-password)))
 
   sudo guix system reconfigure /path/to/configuration.scm
   ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022 guest@"@"localhost
@@ -157,9 +174,9 @@
   info -f doc/guix.info
 
   Guix Documentation source code
-  [https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi]
+  https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi
   Submitting Patches
-  [https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html]
+  https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html
 
   git format-patch origin
   git send-email --to=guix-patches@"@"gnu.org *.patch
@@ -167,7 +184,7 @@
 }
 
 @block{@block-name{QEMU shrink disk size - doesn't work}
-  [https://pve.proxmox.com/wiki/Shrink_Qcow2_Disk_Files]
+  https://pve.proxmox.com/wiki/Shrink_Qcow2_Disk_Files
 
   dd if=/dev/zero of=mytempfile
   # that could take a some time
@@ -180,13 +197,16 @@
 
 @block{@block-name{Guile Script environment portability across Linux and Guix machines}
   <leoprikler>bost: nope, only reliable shebang still is #!/bin/sh
-  [[https://logs.guix.gnu.org/guix/2021-08-22.log#115020][2021-08-22: IRC #guix channel log]]
+  2021-08-22: IRC #guix channel log
+  https://logs.guix.gnu.org/guix/2021-08-22.log#115020
 }
 
 @block{@block-name{Local repository clone}
-  <muradm>if one ever did guix pull, gnu/system/install.scm can be found in ~/.cache/guix/checkouts/....../gnu/system/install.scm
-  <muradm>no need to clone guix again
-  [[https://logs.guix.gnu.org/guix/2021-08-22.log#181402][2021-08-22: IRC #guix channel log]]
+ <muradm>if one ever did guix pull, gnu/system/install.scm can be found in
+         ~/.cache/guix/checkouts/....../gnu/system/install.scm
+ <muradm>no need to clone guix again
+  2021-08-22: IRC #guix channel log
+  https://logs.guix.gnu.org/guix/2021-08-22.log#181402
 
   set latest (ls --sort=time --almost-all ~/.cache/guix/checkouts/ | head -1)
   cd ~/.cache/guix/checkouts/$latest
@@ -194,8 +214,8 @@
 
 @block{@block-name{Org mode, Pdf, LaTex}
   - `guix install texlive-bin` is not enough. It leads to: "I can't find the
-    format file `pdflatex.fmt'!" where `sudo texconfig rehash` doesn't help (See
-    [[http://tex.stackexchange.com/questions/64894/ddg#64895]])
+    format file `pdflatex.fmt'!" where `sudo texconfig rehash` doesn't help.
+    See http://tex.stackexchange.com/questions/64894/ddg#64895
   - Installing everything with `guix install texlive` (2.6 GB)
   - viewing pdf in the spacemacs:
   1. install pdf layer
@@ -208,11 +228,7 @@
  guix install graphviz
 }
 
-@block{@block-name{GNU GPG}
-  https://youtu.be/4-Ks_f8rQFA YouTube: Andrew Tropin - GPG Explained
-}
-
-@block{@block-name{main commands}
+@block{@block-name{Main commands}
   guix deploy        # deploy operating systems on a set of machines
   guix describe      # describe the channel revisions currently used
   guix gc            # invoke the garbage collector
@@ -232,13 +248,13 @@
   guix weather       # report on the availability of pre-built package binaries
 }
 
-@block{@block-name{software development commands}
+@block{@block-name{Software development commands}
   guix container    # process isolation / run code in 'guix shell -C' containers
   guix pack         # create application bundles
   guix shell        # spawn one-off software environments
 }
 
-@block{@block-name{packaging commands}
+@block{@block-name{Packaging commands}
   guix build      # build packages or derivations without installing them
   guix challenge  # challenge substitute servers, comparing their binaries
   guix download   # download a file to the store and print its hash
@@ -253,7 +269,7 @@
   guix style      # update the style of package definitions
 }
 
-@block{@block-name{plumbing commands}
+@block{@block-name{Plumbing commands}
   guix archive    # manipulate, export, import normalized archives (nars)
   guix copy       # copy items to and from a remote store over SSH
   guix git        # operate on Git repositories
@@ -301,29 +317,29 @@
 
   https://guix.gnu.org/manual/devel/en/html_node/Secure-Shell.html
   (service home-openssh-service-type
-  (home-openssh-configuration
-  (hosts
-  (list (openssh-host (name "ci.guix.gnu.org")
-  (user "charlie"))
-  (openssh-host (name "chbouib")
-  (host-name "chbouib.example.org")
-  (user "supercharlie")
-  (port 10022))))
-  (authorized-keys (list (local-file "alice.pub")))))
+    (home-openssh-configuration
+      (hosts
+        (list (openssh-host (name "ci.guix.gnu.org")
+              (user "charlie"))
+              (openssh-host (name "chbouib")
+              (host-name "chbouib.example.org")
+              (user "supercharlie")
+              (port 10022))))
+              (authorized-keys (list (local-file "alice.pub")))))
 
   use rde as a Channel
   Some advanced users may prefer to use only parts of rde they are interested: features, services, or just packages.
   In that case you can add the following channel to channels.scm.
   (cons*
-  (channel
-  (name 'rde)
-  (url "https://git.sr.ht/~abcdw/rde")
-  (introduction
-  (make-channel-introduction
-  "257cebd587b66e4d865b3537a9a88cccd7107c95"
-  (openpgp-fingerprint
-  "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
-  %default-channels)
+    (channel
+    (name 'rde)
+    (url "https://git.sr.ht/~abcdw/rde")
+    (introduction
+    (make-channel-introduction
+    "257cebd587b66e4d865b3537a9a88cccd7107c95"
+    (openpgp-fingerprint
+    "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+    %default-channels)
 
   see also private.el
   auth info - gpg secrets
@@ -333,9 +349,20 @@
   # Set up secret environment variable
   guix install gnupg
   export SECRET_VAR=`gpg --decrypt /path/to/somekeyfile.gpg 2>/dev/null`
-  # see also `guix install git-crypt`
-  # Dev Team Secrets with gpg, git and gopass
-  #https://www.youtube.com/watch?v=EB9cW9RjiSs&list=PLZmotIJq3yOJab8-of7gMYrXkZyAjWPOw&index=48
+  # see also 1.:
+  https://dev.to/heroku/how-to-manage-your-secrets-with-git-crypt-56ih
+  # guix install git-crypt
+
+  2. Andrew Tropin Dev Team Secrets with gpg, git and gopass
+  https://www.youtube.com/watch?v=EB9cW9RjiSs&list=PLZmotIJq3yOJab8-of7gMYrXkZyAjWPOw&index=48
+  gopass:
+  Retrieving a password from user terminal or piped input. Improved `pass`,
+  wrapper aroung gpg & git
+  Deprecated in favor of terminal which is deprecated, too, use golang.org/x/term. See
+  `guix install go-golang-org-x-term`
+
+  personal password management using gopass
+  The encrypted files can be stored in a (separate) github / gitlab repo
 
   gpg --keyserver keyserver.ubuntu.com --search-keys email@"@"address.com
   gpg --list-keys

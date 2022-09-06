@@ -8,7 +8,13 @@
   https://youtu.be/-wMU8vmfaYo
 }
 
-@block{@block-name{GNU GPG - GNU Privacy Guard}
+@block{@block-name{GnuPG GNU Privacy Guard}
+  Origin: PGP Pretty Good Privacy ;
+  GnuPG / GPG - GNU Privacy Guard implements OpenPGP standard
+  GPG primary key pair can: sign / encrypt / authenticate / certify
+  GPG subkey pairs can do everything except one thing ...
+  (TODO https://youtu.be/4-Ks_f8rQFA?t=400)
+
   Nov 17, 2020: Creating and Managing a GPG Key Pair
   https://youtu.be/1vVIpIvboSg
 
@@ -19,6 +25,10 @@
   collection of dialog programs that allow GnuPG to read passphrases and PIN
   numbers in a secure manner. There are versions for the common GTK, Qt and the
   text terminal (Curses).
+
+  # examples
+  gpg --output file.txt.gpg --encrypt --recipient foo@"@"domain.org file.txt
+  gpg --output file.txt --decrypt file.txt.gpg
 }
 
 @block{@block-name{Message / File authentication with GPG}
@@ -33,9 +43,9 @@
   # On QubeOS:
   # Create a qube without networking. If 'split-gpg' is needed see
   # https://www.qubes-os.org/doc/split-gpg/ (E.g. The 'qubes-gpg-split' is
-  # needed in the vault of the Qube OS).
+  # needed in the vault of the QubeOS).
 
-  # key creation:
+  # public & private key pair creation:
   gpg --expert --full-generate-key
   # gpg --batch --generate-key ... # see bottom of the webpage:
   # https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html#Unattended-GPG-key-generation
@@ -92,6 +102,8 @@
 }
 
 @block{@block-name{Andrew Tropin}
+  https://fosstodon.org/@"@"abcdw
+
   @block{@block-name{gpg explained}
     `gpg key (structure)` is better than `ssh` and `gpg-agent` is better than
     `ssh-agent` GPG key structure: https://youtu.be/4-Ks_f8rQFA?t=370
@@ -117,7 +129,7 @@
   https://www.youtube.com/watch?v=EB9cW9RjiSs&list=PLZmotIJq3yOJab8-of7gMYrXkZyAjWPOw&index=48
 }
 
-@block{@block-name{ROP Return-oriented programming}
+@block{@block-name{Return-Oriented Programming ROP }
   Exploit technique that allows an attacker to execute code in
   the presence of security defenses such as executable space protection and code
   signing.

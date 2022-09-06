@@ -1,8 +1,11 @@
 #lang notes
 
 @block{@block-name{Tools for thinking}
-[[https://kinopio.club/][Kinopio]]
-Example: [[https://www.juliendesrosiers.com/2021/08/21/tools-for-thinking.php][For Political Sciences]]
+Kinopio
+https://kinopio.club/
+
+For Political Sciences
+https://www.juliendesrosiers.com/2021/08/21/tools-for-thinking.php
 
 org-roam-graph
 }
