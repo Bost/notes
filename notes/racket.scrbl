@@ -13,14 +13,14 @@
 @block{@block-name{Factorio Mods}
   @block{@block-name{Rampant}
     Last change May 2022; Lua 97.0% Racket 3.0%
-    @url{https://github.com/veden/Rampant}
-    @url{https://mods.factorio.com/mod/Rampant}
+    https://github.com/veden/Rampant
+    https://mods.factorio.com/mod/Rampant
   }
 
   @block{@block-name{Planning}
     Last change June 2020; Racket 100.0%
-    @url{https://github.com/jackfirth/planning.git}
-    @url{https://pkgs.racket-lang.org/package/planning}
+    https://github.com/jackfirth/planning.git
+    https://pkgs.racket-lang.org/package/planning
   }
 }
 
@@ -57,7 +57,7 @@
 }
 
 @block{@block-name{define vs let}
-  ;; @url{https://stackoverflow.com/a/5406423}
+  ;; https://stackoverflow.com/a/5406423
   ;; difference between `define` and `let` is in the scope:
   ;; correct:
   (define (f x)
@@ -88,7 +88,7 @@
   arcade package - writing arcade games
 
   ;; code block
-  ;; @url{https://docs.racket-lang.org/reference/begin.html}
+  ;; https://docs.racket-lang.org/reference/begin.html
   (begin
     (printf "hi\n")
     2)
@@ -97,7 +97,7 @@
   (current-directory)
 
   ;; difference between `print`, `write` and `display`
-  ;; @url{https://docs.racket-lang.org/guide/read-write.html}
+  ;; https://docs.racket-lang.org/guide/read-write.html
   (printf "~a as a string is ~s.\n" '(3 4) "(3 4)")
 
   ;; followind printf-lines do the same
@@ -137,7 +137,7 @@
   ;; usage
   (my:function)
 
-  ;; filter list @url{https://stackoverflow.com/a/57814082}
+  ;; filter list https://stackoverflow.com/a/57814082
   (define lst '(("Ben" 2 "dog") ("Kath" 1 "cat") ("Matt" 6 "dog")))
   (filter (lambda (e) (equal? (caddr e) "dog")) lst)
   ;; => '(("Ben" 2 "dog") ("Matt" 6 "dog"))
@@ -148,7 +148,7 @@
 }
 
 @block{@block-name{Macros: quotes, syntax, etc.}
-  @url{https://docs.racket-lang.org/syntax-parse-example/}
+  https://docs.racket-lang.org/syntax-parse-example/
   (quote-syntax (1 2 3))
   quote-syntax - similar to syntax. Unlike syntax (#'), quote-syntax does not
   substitute pattern variables bound by with-syntax, syntax-parse, or syntax-case.
@@ -276,9 +276,9 @@ Hello world
   # racket /tmp/hello.txt.pp
   # raco pollen render hello.txt.pp # created hello.txt
   # in the browser open
-  #   @url{http://localhost:8080/index.ptree}
+  #   http://localhost:8080/index.ptree
   # or
-  #   @url{http://localhost:8080/hello.txt}
+  #   http://localhost:8080/hello.txt
 
   # raco pkg install pollen
   # cd /tmp && raco pollen start
@@ -310,10 +310,10 @@ Markdown & Pollen + ◊metal
 
 @block{@block-name{Source code documentation, docstrings}
   Write in-source documentation by using scribble/srcdoc
-  See @url{https://stackoverflow.com/a/53991442}
+  https://stackoverflow.com/a/53991442
 
   When using define/doc then examples can also be used as unit tests.
-  @url{https://github.com/greghendershott/frog/blob/master/frog/private/define-doc.rkt}
+  https://github.com/greghendershott/frog/blob/master/frog/private/define-doc.rkt
 
   (require (for-syntax racket/syntax))
 

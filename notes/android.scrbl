@@ -1,26 +1,24 @@
 #lang notes
 
-@block{@block-name{Team Win Recovery Project TWRP}
-  @url{https://www.mojandroid.sk/twrp-recovery-android-aplikacia/}
-}
+@block{@block-name{Various}
+  Team Win Recovery Project TWRP
+  https://www.mojandroid.sk/twrp-recovery-android-aplikacia/
 
-@block{@block-name{Android Debug Bridge ADB}
+  Android Debug Bridge ADB
   Can be used to connect an android device with a computer using an USB cable or a
   wireless connection. It can be used to execute commands on the phone or transfer
   data between the device and the computer.
   See also chrome://inspect/#devices
-}
 
-@block{@block-name{Android Package Kit APK}
+  Android Package Kit APK
 }
 
 @block{@block-name{LineageOS}
   OS for smartphones, tablets, and set-top boxes, based on Android; mostly free and open-source
   Successor to CyanogenMod
 
-
   #+BEGIN_SRC bash :results output
-  wget @url{https://spflashtool.com/download/SP_Flash_Tool-5.1916_Linux.zip}
+  wget https://spflashtool.com/download/SP_Flash_Tool-5.1916_Linux.zip
 
   sudo add-apt-repository ppa:linuxuprising/libpng12
   sudo apt update
@@ -29,14 +27,11 @@
   bash -c ./flash_tool.sh
   #+END_SRC
 
+  https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300M/Z300M_UnlockTool_Android_N_9003_signed.zip
+  https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_P01T_1_signed.zip
+  https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_P01T_signed.zip
 
-  @url{https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300M/Z300M_UnlockTool_Android_N_9003_signed.zip}
-
-  @url{https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_P01T_1_signed.zip}
-  @url{https://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_P01T_signed.zip}
-
-
-  @url{http://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_N_9003_signed.zip}
+  http://dlcdnet.asus.com/pub/ASUS/EeePAD/Zenpad/Z300CL/Z300CL_UnlockTool_Android_N_9003_signed.zip
 
   #+BEGIN_SRC shell
     set cmd "ip address"
@@ -80,10 +75,10 @@
     # SP Flash Tool
     # Smart Phone Flash Tool
 
-    # see
-    # @url{http://reactivated.net/writing_udev_rules.html}
-    # @url{https://framagit.org/tyreunom/guix-android}
-    # @url{https://github.com/whoozle/android-file-transfer-linux/issues/301}
+    # see:
+    # http://reactivated.net/writing_udev_rules.html
+    # https://framagit.org/tyreunom/guix-android
+    # https://github.com/whoozle/android-file-transfer-linux/issues/301
 
     cd /media/bost/elements/Pictures
     ~/dev/android-file-transfer-linux/build/cli/aft-mtp-cli

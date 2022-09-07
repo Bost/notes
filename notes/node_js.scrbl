@@ -1,7 +1,8 @@
 #lang notes
 
 @block{@block-name{NodeJS}
-  nvm - Node Version Manager @url{https://github.com/nvm-sh/nvm}
+  nvm - Node Version Manager
+  https://github.com/nvm-sh/nvm
 
   #+BEGIN_SRC bash :results output
     ## install nodejs with (behind) or without proxy:
