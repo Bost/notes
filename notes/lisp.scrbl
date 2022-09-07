@@ -9,9 +9,22 @@
   https://www.more-magic.net/posts/thoughts-on-clojure.html
 }
 
-@block{@block-name{Various}
+@block{@block-name{Lisp Implementations}
   CLOS Common Lisp Object System / CLOS-based object orientation differs from
   OOP facilities found in C++ or Java
+
+  @lnk{Common Lisp VS Racket - testimonies.md
+  https://gist.github.com/vindarel/c1ef5e043773921e3b11d8f4fe1ca7ac}
+
+  Common Lisp:
+  symbol-based macro system
+  has fairly unique condition system approach to handling errors.
+
+  Guile Scheme, MIT Scheme, Racket Schemes: (TODO verify this)
+  hygienic macros, however Racket does provide non-hygienic macros
+
+  Racket Scheme:
+  general-purpose, multi-paradigm
 }
 
 @block{@block-name{Common Lisp Implementations}
@@ -27,17 +40,11 @@
   ECL Embeddable Common Lisp
   https://en.wikipedia.org/wiki/Embeddable_Common_Lisp
 
-  gitlab: Embeddable Common Lisp Repo
+  gitlab: Embeddable Common Lisp
   https://gitlab.com/embeddable-common-lisp/ecl
 
   SCBL Steel Bank Common Lisp
   https://en.wikipedia.org/wiki/Steel_Bank_Common_Lisp
-}
-
-@block{@block-name{Other Lisp Implementations}
-  Guile Scheme, MIT Scheme
-
-  Racket: general-purpose, multi-paradigm programming language based on the Scheme.
 }
 
 @block{@block-name{Koans}
