@@ -39,9 +39,20 @@
   rm -rf .git/modules/$subMod
 
   # change the name and email in all commits
-  git filter-branch -f --env-filter \
+  # -f, --force : git filter-branch refuses to start with an existing temporary
+  #               directory or when there are already refs starting with
+  #               refs/original/, unless forced.
+  git filter-branch --force --env-filter \
   "GIT_AUTHOR_NAME='Bost'; GIT_AUTHOR_EMAIL='thebost@"@"gmail.com'; GIT_COMMITTER_NAME='Bost'; GIT_COMMITTER_EMAIL='thebost@"@"gmail.com';" \
   HEAD
+
+  # change the name and email in all commits
+  # create & run script file git-author-rename.sh with:
+  git filter-branch --env-filter 'if [ "$GIT_AUTHOR_EMAIL" = "incorrect@email" ]; then
+  GIT_AUTHOR_EMAIL=correct@email;
+  GIT_AUTHOR_NAME="Correct Name"
+  GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL;
+  GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"; fi' -- --all'
 
   # reuse commit message
   git commit --amend --no-edit
