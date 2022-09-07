@@ -5,7 +5,7 @@
   approach to building blockchains collective of open-source blockchains and tools
   that anyone can use to create their own distributed ledgers.
 
-  @url{https://developers.ripple.com/xrp-ledger-overview.html}
+  https://developers.ripple.com/xrp-ledger-overview.html
   Ripple XRP: real-time gross settlement system (RTGS)
   Remittance - transaction of money by foreigners; see SWIFT
   xrp
@@ -21,7 +21,7 @@
   DLT supply chain
 
   Byzantine Fault Tolerances / Consensus methods:
-  @url{https://link.medium.com/V2dglrC5UU}
+  https://link.medium.com/V2dglrC5UU
   - distributed systems with imperfect information if a component failed
   | Proof-of-Work           | Bitcoin                                                                 |
   | Proof-of-Stake          | Cardano                                                                 |
@@ -44,11 +44,13 @@
   - mining pools - decrease randomisation, unwanted centralisation
 
   A generalised solution to distributed consensus:
-  @url{https://blog.acolyer.org/2019/03/08/a-generalised-solution-to-distributed-consensus/}
-  @url{https://en.wikipedia.org/wiki/Consensus_(computer_science)}
-  @url{https://news.ycombinator.com/item?id=19343398}
+  https://blog.acolyer.org/2019/03/08/a-generalised-solution-to-distributed-consensus/
+  https://en.wikipedia.org/wiki/Consensus_(computer_science)
+  https://news.ycombinator.com/item?id=19343398
 
-  IOHK | Philipp Kant, Director of Formal Methods. @url{https://www.youtube.com/watch?v=12nQ4oMhIpQ}
+  IOHK | Philipp Kant, Director of Formal Methods.
+  https://www.youtube.com/watch?v=12nQ4oMhIpQ
+
   Cardano - uses Ouroboros algorith for PoS (Proof of Stake)
   The currency itself is the scare resource
   each time slot, randomly pick one coin, it's owner produces a block
@@ -101,7 +103,7 @@
   SolarCoin - WTF?
 
   ;; Siraj Raval: The Problem with Blockchain
-  @url{https://www.youtube.com/watch?v=U2EYT5P4LvM}
+  https://www.youtube.com/watch?v=U2EYT5P4LvM
   humaniq - identifiable bank account for everyone
   bloom - risk assesement and credit scoring, credit worthiness
   bibliograph BABB - save / transfer / invest wealth creating cycle of wealth generation

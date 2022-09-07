@@ -6,6 +6,12 @@
 
   I want to learn / Learn anything
   https://learn-anything.xyz/
+
+  Firefox - How to allow a restricted port?
+  https://support.mozilla.org/en-US/questions/1083282
+  about:config
+  network.security.ports.banned.override
+  enter the port number as a string
 }
 
 @block{@block-name{OSE Open Source Ecology}
@@ -62,35 +68,36 @@
   https://github.com/Eugeny/terminus
 
   Electron-app terminal; scriter - electron alternative
-  @url{https://github.com/zeit/hyper}
+  https://github.com/zeit/hyper
 }
 
 @block{@block-name{Bric a brac}
   Five rating emojis / icons
-  @url{https://youtu.be/hZJnlxM0c0I?t=162}
+  https://youtu.be/hZJnlxM0c0I?t=162
 
   Solution of a Differential Equations (DE) is a function, not value
   @hyperlink["https://youtu.be/czL0ZSscbsM?t=II709"]{National Renewable Energy Laboratory: Energy-Cell Efficiencies}
   @hyperlink["http://blog.sciencevsmagic.net/science/fractal-machine/"]{Fractals}
   Go over the book from the Prof. from Karlsruhe
 
-  @url{http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/}
+  http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/
   Sequence of QR Codes / graphical elements (pyramid, cube, sphere, toroid, etc.)
 
   time bank
   dokaz identity bez udania mena
-  google lab tags @url{http://www.chromeweblab.com/en-GB/lab-tag-explorer}
+  google lab tags
+  http://www.chromeweblab.com/en-GB/lab-tag-explorer
 
   Pure vs. mostly harmless functions
 
   :Lang:
-  @url{http://www.ted.com/talks/patricia_kuhl_the_linguistic_genius_of_babies.html?fb_ref=talk}
+  http://www.ted.com/talks/patricia_kuhl_the_linguistic_genius_of_babies.html?fb_ref=talk
   Learning pronounciation
 
   How much of a language is silent? What does it look like when you take the
   silence out? (Video 2 Min)
-  @url{http://www.theverge.com/2012/7/1/3129227/silenc-project-silent-letters}
-  @url{http://golancourses.net/ciid/19/silenc/}
+  http://www.theverge.com/2012/7/1/3129227/silenc-project-silent-letters
+  http://golancourses.net/ciid/19/silenc/
 
   idioms, link sur FB, idioms - traduction + correcture
   spelling glyphs
@@ -148,14 +155,14 @@
 }
 
 @block{@block-name{Terminal / Video Recorder / Screen Casting}
-  @url{https://github.com/phw/peek}
   Simple animated GIF screen recorder with an easy to use interface
+  https://github.com/phw/peek
 
-  @url{https://github.com/asciinema/asciinema}
   Terminal session recorder
+  https://github.com/asciinema/asciinema
 
-  @url{https://github.com/faressoft/terminalizer}
   Record your terminal and generate animated gif images or share a web player
+  https://github.com/faressoft/terminalizer
 }
 
 @block{@block-name{Bike}
@@ -199,11 +206,4 @@
        How to adjust speeds
     }
   }
-}
-
-@block{@block-name{Firefox - How to allow a restricted port?}
-  @url{https://support.mozilla.org/en-US/questions/1083282}
-  about:config
-  network.security.ports.banned.override
-  enter the port number as a string
 }

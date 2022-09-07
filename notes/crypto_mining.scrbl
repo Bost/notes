@@ -5,14 +5,16 @@
 
 @block{
   @block-name{Crypto Mining - General}
-  Coin type - @url{https://en.wikipedia.org/wiki/Cryptocurrency#Altcoins}
+  Coin type
+  https://en.wikipedia.org/wiki/Cryptocurrency#Altcoins
 
   Electricity price
 
   Janez
 
-  BTC Mining @url{https://en.wikipedia.org/wiki/Bitcoin_network#Mining}
-  @url{https://en.bitcoin.it/wiki/Pooled_mining}
+  BTC Mining
+  https://en.wikipedia.org/wiki/Bitcoin_network#Mining
+  https://en.bitcoin.it/wiki/Pooled_mining
 
   @hyperlink["https://en.bitcoin.it/wiki/Main_Page"]{Bitcoin Wiki}
 
@@ -27,16 +29,18 @@
   @block{
     @block-name{General}
     CPU vs GPU
-    @url{https://blockmine.de/en}
+    https://blockmine.de/en
+
     Rigs
-    @url{https://www.ebay.de/b/Mining-Rigs/179171/bn_81941746}
+    https://www.ebay.de/b/Mining-Rigs/179171/bn_81941746
+
     Size
     Cooling
     Noise
     Power consumption
 
-    @url{https://blockmine.de/en/collections/hardware-mit-hosting}
     Hosted Hardware
+    https://blockmine.de/en/collections/hardware-mit-hosting
 
     riser board - gives a computer motherboard the option for additional expansion
     cards
@@ -67,16 +71,17 @@
     Graphic cards
     AMD Radeon 6900 XT
 
-    @url{https://whattomine.com/}
-    JSON API @url{https://whattomine.com/coins.json}
+    https://whattomine.com/
+    JSON API
+    https://whattomine.com/coins.json
     Estimate how much a given Video Card will be making
 
     cryptex.com
-    @url{https://mineshop.eu}
+    https://mineshop.eu
 
     scams on alibaba or alixpress
 
-    bots: e.g. stockradar / stockraider - stock monitoring server on @url{https://discord.gg}
+    bots: e.g. stockradar / stockraider - stock monitoring server on https://discord.gg
   }
 
   @block{
@@ -88,7 +93,7 @@
   @block{
     @block-name{Mining pools - MPs}
     take at least 1% of the profit
-    @url{https://en.wikipedia.org/wiki/Mining_pool}
+    https://en.wikipedia.org/wiki/Mining_pool
     @hyperlink["https://youtu.be/0iPrbK1thSw"]{YT video: 2021-02-16: Mining Pools Explained - Dashboard, Payment Structures & More | Ft. Flexpool}
 
     MP Payout Fee Policies
@@ -96,9 +101,9 @@
 
   @block{
     @block-name{Examples}
-    @url{https://flexpool.io}
-    @url{https://ethermine.org/}
-    @url{https://miningpoolstats.stream} - prefer "near" pools due to the latency
+    https://flexpool.io
+    https://ethermine.org/
+    https://miningpoolstats.stream - prefer "near" pools due to the latency
   }
 
   @block{
@@ -173,7 +178,7 @@
 
     fire extinguisher for electronics
 
-    server power supply - @url{https://parallelminer.com}
+    server power supply - https://parallelminer.com
     how many GPUs - see number of PCIE slots on the motherboard, power of power supply
     how to wire
     pin calculations
@@ -191,7 +196,7 @@
 
 @block{
   @block-name{ANTMINER S19XP 140TH}
-  @url{https://blockmine.de/en/products/antminer-s19-xp}
+  https://blockmine.de/en/products/antminer-s19-xp
   ANTMINER S19XP from Bitmain with a max hash rate of 140 TH/s was used for mining
   the SHA-256 algorithm with a power consumption of 3010 W±5% and an energy
   efficiency of 21.5 W/Th developed. The mining servers are easy to deploy and
@@ -216,22 +221,22 @@
 
 @block{
   @block-name{News - from palmabot}
-  @url{https://news.bitcoin.com/}
+  https://news.bitcoin.com/
 
-  @url{https://blockchain.news}
-  @url{https://blockchain.news/tag/mining}
+  https://blockchain.news
+  https://blockchain.news/tag/mining
 
-  @url{https://www.coindesk.com/}
-  @url{https://bitcoinmagazine.com/}
-  @url{https://bitcoinist.com/}
-  @url{https://cryptoslate.com/}
-  @url{https://www.newsbtc.com/}
-  @url{https://www.investing.com/}
-  @url{https://www.reddit.com/r/CryptoCurrency/}
-  @url{https://cointelegraph.com/}
-  @url{https://coingape.com/}
-  @url{https://medium.com/@"@"thecapital}
-  @url{https://cryptobriefing.com/}
-  @url{https://www.cryptoninjas.net/}
-  @url{https://coinpedia.org/}
+  https://www.coindesk.com/
+  https://bitcoinmagazine.com/
+  https://bitcoinist.com/
+  https://cryptoslate.com/
+  https://www.newsbtc.com/
+  https://www.investing.com/
+  https://www.reddit.com/r/CryptoCurrency/
+  https://cointelegraph.com/
+  https://coingape.com/
+  https://medium.com/@"@"thecapital
+  https://cryptobriefing.com/
+  https://www.cryptoninjas.net/
+  https://coinpedia.org/
 }
