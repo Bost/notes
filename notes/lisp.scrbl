@@ -10,26 +10,82 @@
 }
 
 @block{@block-name{Lisp Implementations}
-  CLOS Common Lisp Object System / CLOS-based object orientation differs from
-  OOP facilities found in C++ or Java
 
-  @lnk{Common Lisp VS Racket - testimonies.md
-  https://gist.github.com/vindarel/c1ef5e043773921e3b11d8f4fe1ca7ac}
+  Arguably(!) it is easier to reason about macros than functions, because in the
+  vast majority of cases their expansions are deterministic. Macros can be
+  expanded and inspected at compile-time, before any code has run.
+
+  Reddit - r/lisp
+  https://www.reddit.com/r/lisp/
+
+  Common Lisp VS Racket - testimonies.md
+  https://gist.github.com/vindarel/c1ef5e043773921e3b11d8f4fe1ca7ac
 
   Common Lisp:
-  symbol-based macro system
-  has fairly unique condition system approach to handling errors.
+  - symbol-based macro system
+  - has fairly unique condition system approach to handling errors.
+  - subreddit tends to be heavily oriented towards Common Lisp
+  - more interactive that Racket
+  - has libraries for working with persistent data structures, but the CL
+    community doesn't have a culture of creating by default thread-safe
+    data-structures.
+  - more powerful, flexible language (than Clojure)
+  - CLOS (Common Lisp Object System) based object orientation differs from OOP
+    facilities found in C++ or Java
+  - the CL standard is from 1994, so it doesn't specify concurrency (Clojure was
+    built with concurrency in mind), networking etc.
 
-  Guile Scheme, MIT Scheme, Racket Schemes: (TODO verify this)
-  hygienic macros, however Racket does provide non-hygienic macros
+  Concurrency is easy. Synchronisation is hard. I.e. how do you get the data
+  from your concurrent operations safely back to a single thread?
+
+  Clojure-style concurrency abstractions / operations ported to CL
+  https://github.com/dtenny/clj-con
+
+  Clojure:
+  - provides immutability (or more correctly persistence) by default.
+    (Mind-bending!)
+
+  CLEDE Common Lisp Emacs Development Environment
+  https://emacsconf.org/2021/talks/clede/
+
+  Common Lisp - Concurrent and Parallel Programing tutorial
+  https://docs.google.com/document/d/10MGPC7j4lpGrMlQS4xtQTEGrvpBecgDUnqu1OrjSVxk
+
+  Learn Common Lisp
+  https://github.com/rabbibotton/clog/blob/main/LEARN.md
+
+  CLOG Common Lisp Omnificent GUI
+  https://github.com/rabbibotton/clog
+
+  Learn CLOG
+  https://github.com/rabbibotton/clog/blob/main/LEARN.md
+
+  Guile Scheme, MIT Scheme, Racket Schemes, etc. all have
+  hygienic macros, i.e. you can't modify everything
+  (TODO verify it).
 
   Racket Scheme:
-  general-purpose, multi-paradigm
+  - general-purpose, multi-paradigm
+  - has the most advanced macro system and metaprogramming capabilities of
+    any programming language. It also provides non-hygienic macros
+  - has custodians (custodian ~ manager. TODO what is custodian?).
+    A custodian manages a collection of threads, file-stream ports, TCP ports,
+    TCP listeners, UDP sockets, byte converters, and places. Whenever a thread,
+    etc., is created, it is placed under the management of the current custodian
+    as determined by the current-custodian parameter. Custodians provide a more
+    "pure" approach to state.
+
+  - lisp syntax with Haskell interactivity; REPL is a debug tool; during
+    development Racket process must be restarted and modules must be frequently
+    reloaded
+
+  Gerbil Scheme:
+  - has huilt-in actor model (TODO verify)
 }
 
 @block{@block-name{Common Lisp Implementations}
-  @lnk{YouTube - Baggers: Common Lisp relates stuff
-  https://www.youtube.com/user/CBaggers/featured}
+  YouTube - Baggers: Common Lisp relates stuff
+  https://www.youtube.com/user/CBaggers/featured
 
   abcl ccl clisp
   https://en.wikipedia.org/wiki/CLISP
@@ -48,18 +104,18 @@
 }
 
 @block{@block-name{Koans}
-  @lnk{github: Common Lisp Koans
-  https://github.com/google/lisp-koans}
+  github: Common Lisp Koans
+  https://github.com/google/lisp-koans
 
-  @lnk{github: Racket Koans
-  https://github.com/zyrolasting/racket-koans}
+  github: Racket Koans
+  https://github.com/zyrolasting/racket-koans
 
-  Monad Koans in Clojure:
-  @lnk{github: bost
-  https://github.com/Bost/monad_koans}
-  @lnk{github: benedekfazekas
-  https://github.com/benedekfazekas/monad_koans}
+  github: Monad Koans in Clojure
+  https://github.com/Bost/monad_koans
 
-  @lnk{HN News - List of koans
-  https://news.ycombinator.com/item?id=5802960}
+  github: benedekfazekas
+  https://github.com/benedekfazekas/monad_koans
+
+  HN News - List of koans
+  https://news.ycombinator.com/item?id=5802960
 }
