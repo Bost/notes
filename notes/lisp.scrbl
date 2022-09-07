@@ -104,18 +104,17 @@
 }
 
 @block{@block-name{Koans}
-  github: Common Lisp Koans
+  Common Lisp Koans
   https://github.com/google/lisp-koans
 
   github: Racket Koans
-  https://github.com/zyrolasting/racket-koans
+  https://github.com/Bost/racket-koans
 
   github: Monad Koans in Clojure
   https://github.com/Bost/monad_koans
 
-  github: benedekfazekas
-  https://github.com/benedekfazekas/monad_koans
-
   HN News - List of koans
   https://news.ycombinator.com/item?id=5802960
+
+  https://github.com/Bost/bash_koans
 }

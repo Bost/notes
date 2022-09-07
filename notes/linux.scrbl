@@ -432,18 +432,21 @@
   id user
 
   # google domain / sice specific search
-  keyword site:bartoszmilewski.com
+  SearchText site:bartoszmilewski.com
 
-  # :net :networking :DNS-lookup convert names <-> IP addresses
+  # net, networking, DNS lookup, domain information groper
+  # convert hostname / domainname <-> IP address
   host www.google.com
-  # www.google.com has address 172.217.23.196 (142.250.74.195) ; IPv6 2a00:1450:4014:80e::2004
-
-  # :net get ip address from domain
+  # www.google.com has:
+  #  IPv4 172.217.23.196 (142.250.74.195)
+  #  IPv6 2a00:1450:4014:80e::2004
+  dig -x 172.217.23.196 +short
+  # nslookup is deprecated in favor of dig
   nslookup www.google.com | tail -2 | head -1 | awk "{print $2}"
-
-  # :net DNS lookup utility; domain information groper
   # interrogate DNS name servers
   dig www.google.com
+  # query wikipedia for keyword - doesn't work
+  dig +short txt <keyword>.wp.dg.cx
 
   # make block or character special files
   mknod
@@ -941,9 +944,6 @@
 
   # :net :ping :traceroute check connection
   mtr --report www.google.com
-
-  # query wikipedia for keyword
-  dig +short txt keyword.wp.dg.cx
 
   # :iproute2 :net open / listening ports and PIDs of associated processes.
   # tcp (-t) udp (-u)
