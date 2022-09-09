@@ -111,6 +111,15 @@
   echo "aaa 123 0.0 bbb" | grep -oP "\K([0-9]*\.[0-9]*|[0-9]*)"
   echo "aaa 123 0.0 bbb" | grep -oP "\K([[:digit:]]*\.[[:digit:]]*|[[:digit:]]*)"
 
+  # match a version number
+  # -o --only-matching, -P --perl-regexp - grep capture group with \K
+  echo "version: 01.02.02" | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
+  echo "version: 0.0.0" | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
+  echo "version: 51.19.7" | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
+  echo "version: 5.19.7" | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
+  # match linux-libre version number
+  guix show linux-libre | head | grep version | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
+
   # grep
   # \Z  matches the EOF end-of-file
 

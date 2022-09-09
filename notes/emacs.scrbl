@@ -1,6 +1,18 @@
 #lang notes
 
-@block{@block-name{Diverse}
+@block{@block-name{Various}
+
+  ;; Display last few input keystrokes and the commands run:
+  ~C-h l~ | M-x view-lossage
+  ;; ... and turn the keystrokes to a macro:
+  ~C-x C-k l~ | M-x kmacro-edit-lossage
+
+  M-x org-align-table ;; TODO put align-related stuff together
+
+  ;; surround text with
+  | ~s~ | M-x evil-surround-edit | surround with a single char                            |
+  | ~S~ | M-x evil-Surround-edit | surround with a single char on a line above and bellow |
+
   Dedicated window - doesn't display any other buffer.
 
   Emacs extension language: Emacs Lisp
@@ -23,32 +35,39 @@
   conversion: number-to-string
   inc / increment function: 1+
 
-  # The Emacs thesis:
-  # Composite programs in a high-level extension language running on a kernel in
-  # a low-level language.
+  The Emacs thesis:
+  Composite programs in a high-level extension language running on a kernel in a
+  low-level language.
 
   | (boundp 'my=variable)      | test if symbol is defined   |
   | (functionp 'dbg=function)  | test if function is defined |
   | (functionp #'dbg=function) | test if function is defined |
 
-  ;; emacsclient in Guix is in the emacs-with-editor package
+  # emacsclient in Guix is in the package
+  guix install emacs-with-editor
 
   ;; broken icons in the *spacemacs* buffer
   M-x all-the-icons-install-fonts
 
-  [[https://emacsconf.org/2021/talks/imaginary/][Imaginary Programming]] IP
-  - based on / an abstraction over Prompt Engineering and Language Models (LMs)
+  Imaginary Programming
+  https://emacsconf.org/2021/talks/imaginary/
+  based on / an abstraction over Prompt Engineering and Language Models
 
   Notable emacs users:
-  [[https://www.youtube.com/c/ProtesilaosStavrou/][Protesilaos]]
-  [[https://karthinks.com/][Karthinks]]
+  https://www.youtube.com/c/ProtesilaosStavrou/
+  https://karthinks.com/
 
-  | ~SPC h d~           | spacemacs: help-describe                |
-  | ~SPC t g~           | spacemacs: windows: toggle golden ratio |
-  | ~SPC h SPC <topic>~ | spacemacs: helm-spacemacs-help          |
-  | ~SPC SPC~           | spacemacs: ~M-x~ emulation              |
-  | ~SPC f e v~         | spacemacs: version                      |
-  | ~SPC w p m~         | spacemacs: popup \*Messages\*           |
+  Protesilaos Stavrou - Vlog: Moral lessons from switching to Emacs
+  "I object to the characterization of the free software expert as some sort of a weirdo"
+  https://youtu.be/gwT5PoXrLVs?t=2131
+
+
+  | ~SPC h d~   | M-x help-describe                      |            |
+  | ~SPC t g~   | M-x spacemacs/toggle-golden-ratio      | windows    |
+  | ~SPC h SPC~ | M-x helm-spacemacs-help                | <topic>    |
+  | ~SPC SPC~   | M-x spacemacs/helm-M-x-fuzzy-matching  | as ~M-x~   |
+  | ~SPC f e v~ | M-x spacemacs/display-and-copy-version |            |
+  | ~SPC w p m~ | M-x popwin:messages                    | *Messages* |
 
   | ~SPC s~ | spacemacs: search           |
   | ~C-M-s~ | isearch-forward-regexp      |
@@ -58,8 +77,8 @@
   ;; Shift-Tab
   ~<s-tab>~ / ~<backtab>~
 
-  | ~s-n~ | M-x narrow-to-defun
-  | ~s-N~ | M-x widen
+  | ~s-n~ | M-x narrow-to-defun |
+  | ~s-N~ | M-x widen           |
 
   ;; open file and jump to / start on a line:column
   emacs +line:column path/to/file
@@ -70,23 +89,23 @@
   ;; e.g. visualization; for log analysis
   M-x highlight-symbol-at-point
 
-  ;; paredit: wrap square brackets around sexp
+  ;; wrap square brackets around sexp
   M-x paredit-wrap-square
 
   ;; paredit
   | ~C-k~       | kill the rest in the sexp           |
-  | ~M-(~       | insert-parentheses                  |
-  | ~M-)~       | move-past-close-and-reindent        |
+  | ~M-@"("~    | insert-parentheses                  |
+  | ~M-@")"~    | move-past-close-and-reindent        |
   | ~M-s-right~ | paredit-forward-slurp-sexp (vcucni) |
   | ~M-s-left~  | paredit-forward-barf-sexp (vygrcaj) |
 
   ;; https://www.emacswiki.org/emacs/RegularExpression#regexp
-  | \\#                | increment the number found         |
-  | \\s-               | increment the whitespace           |
-  | %s#\(.\{2\}\)#aa#g | match / find exactly 2 occurrences |
-  | \(.*?\)            | lazy match                         |
-  | \(.\{2\}\)         | match / find exactly 2 occurrences |
-  | \(http[[:print:]]*\)/  | match / find url                   |
+  | \\#                   | increment the number found         |
+  | \\s-                  | increment the whitespace           |
+  | %s#\(.\{2\}\)#aa#g    | match / find exactly 2 occurrences |
+  | \(.*?\)               | lazy match                         |
+  | \(.\{2\}\)            | match / find exactly 2 occurrences |
+  | \(http[[:print:]]*\)/ | match / find url                   |
 
   ;; regexp - syntax classes must be used within square brackets
   | [[:space:]] | whitespace character, as defined by the syntax table, typically [\t\r\n\v\f] |
@@ -170,9 +189,9 @@
   ;; jump back to the last mark (there is a mark-ring)
   ~C-u C-SPC~
 
-  | ~C-x ^~              | M-x enlarge-window              |
-  | ~C-x {~ or ~SPC w [~ | M-x shrink-window-horizontally  |
-  | ~C-x }~ or ~SPC w ]~ | M-x enlarge-window-horizontally |
+  | ~C-x ^~                    | M-x enlarge-window              |
+  | ~C-x @"{"~ or ~SPC w @"["~ | M-x shrink-window-horizontally  |
+  | ~C-x @"}"~ or ~SPC w @"]"~ | M-x enlarge-window-horizontally |
 
   ;; version control vc
   | ~C-u C-x v =~ | diff against any chosen revision                  |
@@ -243,7 +262,7 @@
 
   | ~C-M-f~ | jump forward to matching brace  |
   | ~C-M-b~ | jump backward to matching brace |
-  ;; cursor may need to be behind closing parenthesis ')'
+  ;; cursor may need to be behind closing parenthesis '@")"'
 
   | ~C-M-x~ | M-x eval-defun    |
   | ~M-%~   | M-x query-replace |
@@ -252,7 +271,7 @@
   | ~M-l~ | M-x downcase-word   |
   | ~M-c~ | M-x capitalize-word |
 
-  ;; check a small region
+  ;; check a small region for spelling errors
   M-x ispell-region
   M-x ispell-buffer
 
@@ -284,8 +303,8 @@
   | ~<C-up>~                   | M-x scroll-right        |
   | ~M-e~                      | M-x forward-sentence    |
   | ~M-a~                      | M-x backward-sentence   |
-  | ~M-}~ or ~}~               | M-x forward-paragraph   |
-  | ~M-{~ or ~{~               | M-x backward-paragraph  |
+  | ~M-@"}"~ or ~@"}"~         | M-x forward-paragraph   |
+  | ~M-@"{"~ or ~@"{"~         | M-x backward-paragraph  |
   | ~M-<~                      | M-x beginning-of-buffer |
   | ~M->~                      | M-x end-of-buffer       |
 
@@ -297,8 +316,9 @@
   ;; jump to the next (compilation error(s), grep results etc.)
   ~C-x `~
 
-  ;; It seems like ~SPC~ and ~M-m~ offer the same sub-menus, however ~SPC~ shows
-  ;; textual description defined by `spacemacs|spacebind`
+  ;; dotspacemacs-leader-key ~SPC~ and dotspacemacs-emacs-leader-key ~M-m~ offer
+  ;; the same sub-menus, however ~SPC~ shows textual description defined by
+  ;; `spacemacs|spacebind`
 
   | ~C-x C-w~ | M-x write-file (buffer) to a different file |
   | ~SPC f c~ | M-x spacemacs/save-as                       |
@@ -336,6 +356,10 @@
   https://github.com/jojojames/dired-sidebar
   http://ergoemacs.org/emacs/dired_sort.html
 
+  ;; change file attributes: readonly / writable / executable
+  ~M~ / M-x dired-do-chmod ; then enter e.g. '+x'
+  M-x chmod
+
   ;; dired:
   | ~S~           | symlink                                    |
   | ~Z~           | zip: compress or uncompress (extract) file |
@@ -349,8 +373,8 @@
   | ~g~           | refresh buffer                             |
   | ~+~           | M-x dired-create-directory                 |
   | ~R~           | M-x dired-do-rename                        |
-  | ~(~           | toggle listing details                     |
-  | ~(~           | M-x dired-hide-details-mode                |
+  | ~@"("~        | toggle listing details                     |
+  | ~@")"~        | M-x dired-hide-details-mode                |
   | ~C-x C-q~     | perform operations by editing dired buffer |
   | ~C-x C-q~     | M-x dired-toggle-read-only                 |
   |               | M-x wdired-finish-edit                     |
@@ -569,23 +593,23 @@
   (message "%s" major-mode)
 
   (defun enable-hyper-super-modifiers-linux-x ()
-  ;; on nowadays linux, <windows> key is usually configured to Super
+    ;; on nowadays linux, <windows> key is usually configured to Super
 
-  ;; menu key as hyper (for H-s release <menu> key before pressing 's')
-  (define-key key-translation-map [menu] 'event-apply-hyper-modifier) ;H-
-  (define-key key-translation-map [apps] 'event-apply-hyper-modifier)
+    ;; menu key as hyper (for H-s release <menu> key before pressing 's')
+    (define-key key-translation-map [menu] 'event-apply-hyper-modifier) ;H-
+    (define-key key-translation-map [apps] 'event-apply-hyper-modifier)
 
-  ;; by default, Emacs bind <menu> to execute-extended-command (same as M-x)
-  ;; now <menu> defined as 'hyper, we need to press <menu> twice to get <H-menu>
-  (global-set-key (kbd "<H-menu>") 'execute-extended-command)
-  )
+    ;; by default, Emacs bind <menu> to execute-extended-command (same as M-x)
+    ;; now <menu> defined as 'hyper, we need to press <menu> twice to get <H-menu>
+    (global-set-key (kbd "<H-menu>") 'execute-extended-command))
+
   ;; (global-set-key [(hyper 9)] (lambda () (message "[(hyper 9)]")))
   ;; (global-set-key (kbd "<rwindow>-9")
   ;;                 (lambda () (message "(kbd context-menu-9)")))
   ;; (global-set-key [(hyper 9)] (lambda () (message "[(hyper 9)]")))
 
   ;; M-x delete-horizontal-space - delete whitespaces around point
-  M-\
+  ~M-\~
 
   ;; test yasnippet
   emacs -Q -L . -l yasnippet-tests.el -f ert &
@@ -596,14 +620,14 @@
   ;; window transient mode - window management w/o using key binding - for layouts
   ~SPC w .~
 
-  ;; workspaces and layouts
+  ;; workspaces & layouts / perspectives
   ;; layout 1. contains all buffers;
   ;; layouts 2., 3., ... contain only selected buffers
   ~SPC l 0..9~ ; create new layout
   ~SPC l s~    ; save layout to a file
   ~SPC l L~    ; load layout from a file
 
-  ;; M-s h l hilite lines e.g. log file evaluation; see:
+  ;; ~M-s h l~ hilite lines e.g. log file evaluation; see:
   ;; https://www.masteringemacs.org/article/highlighting-by-word-line-regexp
   M-x highlight-lines-matching-regexp
 
@@ -628,6 +652,9 @@
   ;; don't show contrasting background - use the default theme
   M-x fill-column-indicator / ~SPC t f~
   M-x whitespace-toggle-options
+  (setq fill-column 100)
+  ;; `fill-column` + 1, so that in the magit-diffs everything looks fine
+  (setq whitespace-line-column 101)  ;  M-x set-fill-column
 
   ;; emacs current directory
   (setq default-directory "~/.emacs.d/")
@@ -636,8 +663,8 @@
   M-x toggle-truncate-lines
 
   ;; movement
-  C-M-a / M-x beginning-of-defun
-  C-M-e / M-x end-of-defun
+  ~C-M-a~ / M-x beginning-of-defun
+  ~C-M-e~ / M-x end-of-defun
 
   ;; quit / delete multiple cursors
   M-x evil-mc-undo-all-cursors
@@ -645,6 +672,9 @@
   ;; Toggle preview of the LaTeX fragment at point.
   M-x org-latex-preview
   ~C-c C-x C-l~
+
+  ;; join two lists
+  (append '(1 2) '(3 4)) ; => (1 2 3 4)
 
   ;; TODO latex-preview-pane
 
@@ -704,7 +734,6 @@
   mkdir emacs-from-scratch && cd emacs-from-scratch
   touch init.el
   emacs --no-init-file --load init.el & disown
-
 
   Andrew Tropin: GNU Guix as Emacs package manager
   https://youtu.be/gqmZjovuomc?t=90
