@@ -1,5 +1,16 @@
 #lang notes
 
+@; TODO nesting @codeblock inside @block doesn't work
+@; @block{@block-name{Foo}
+@;   @codeblock|{
+@;     (+ 1 2)
+@;   }|
+@;   TODO what is the difference between {} and |{}| for @codebloc?
+@;   @codeblock{
+@;     (+ 1 2)
+@;   }
+@; }
+
 @block{@block-name{#lang video}
   # In an Ubuntu VM
   sudo apt update && sudo apt upgrade
@@ -56,100 +67,121 @@
   (structName-item1 s) ;; => 'b
 }
 
-@block{@block-name{define vs let}
-  ;; https://stackoverflow.com/a/5406423
-  ;; difference between `define` and `let` is in the scope:
-  ;; correct:
-  (define (f x)
-    (let ((a 1))
-      (+ a x)))
-  ;; wrong:
-  (define (f x)
-    (let ((a 1))) ; `a` is outside of `let`
-    (+ a x))
-  ;; correct:
-  (define (g x)
-    (define a 1)
-    (+ a x))
+@block{@block-name{Various & snippets, etc.}
+  PLT PLaneT
+  Racket's deprecated, old package system. Racket was originally created by the
+  PLT research group.
+
+  PEG - advance over regex
+  Matches more languages (e.g. balanced brackets) and can be paired with
+  semantic actions to produce structured results from a parse.
+
+  @lisp{
+    ;; define vs let - difference is in the scope
+    ;; https://stackoverflow.com/a/5406423
+    ;; correct:
+    (define (f x)
+      (let ((a 1))
+        (+ a x)))
+    ;; wrong:
+    (define (f x)
+      (let ((a 1))) ; `a` is outside of `let`
+      (+ a x))
+    ;; correct:
+    (define (g x)
+      (define a 1)
+      (+ a x))
+
+    ;; The 'case' conditions are not evaluated
+    (let ((pattern (string-append "f" "f")))
+      (case "ff" [((string-append "f" "f")) #t] [else #f]) #| => #f |#
+      (case "ff" [("ff") #t] [else #f])                    #| => #t |#
+      (case "ff" [(pattern) #t] [else #f])                 #| => #f |#
+      ;; (case "ff" [pattern #t] [else #f])                #| => syntax error |#
+      (equal? "ff" pattern)                                #| => #t |#
+      (case "ff" [((formatf "~a~a""f" "f")) #t] [else #f]) #| => #f |#)
+    ;; See also 'cond'.
+
+    arcade package - writing arcade games
+
+    @; @code-examples[#:lang "at-exp racket" #:context #'here]|{
+    @; (+ 1 2)
+    @; @+[1 3]
+    @; }|
+
+    ;; code block
+    ;; https://docs.racket-lang.org/reference/begin.html
+    (begin
+      (printf "hi\n")
+      2)
+
+    ;; pwd; print working directory
+    (current-directory)
+
+    ;; difference between `print`, `write` and `display`
+    ;; https://docs.racket-lang.org/guide/read-write.html
+    (printf "~a as a string is ~s.\n" '(3 4) "(3 4)")
+
+    ;; followind printf-lines do the same
+    (eprintf form v ...)
+    (fprintf (current-error-port) form v ...)
+
+    ;; count
+    (length '(1 2 3))
+    (hash-count #hash((foo . 41)))
+    (hash-count #hasheq((foo . 41)))
+
+    ;; (: flexible-length (-> (U String (Listof Any)) Integer))
+    (define (flexible-length str-or-lst)
+    (if (string? str-or-lst)
+        (string-length str-or-lst)
+        (length str-or-lst)))
+
+    ;; function composition: compose, compose1
+    (define (inc n) (+ n 1))
+    ((compose str inc length) '(1 2 3))
+    ;; see also Threading macros https://docs.racket-lang.org/threading/index.html
+    ;; ~> ~>> curry rackjure/partial etc
+
+    ;; info.rkt: collection of dependecies
+
+    ;; show doc in browser using local copy.
+    ;; C-c d / M-x racket-doc
+    ;; C-c . / M-x racket-describe
+
+    ;; sexp comment #;single-sexp
+    ;; block comment #| sexp-1 sexp-2 ... |#
+
+    ;; rhs - right hand side
+
+    ;; namespace alias
+    (require (prefix-in my: "file.rkt")) ;; see also `rename-in`
+    ;; usage
+    (my:function)
+
+    ;; filter list https://stackoverflow.com/a/57814082
+    (define lst '(("Ben" 2 "dog") ("Kath" 1 "cat") ("Matt" 6 "dog")))
+    (filter (lambda (e) (equal? (caddr e) "dog")) lst)
+    ;; => '(("Ben" 2 "dog") ("Matt" 6 "dog"))
+
+    (map string? '(1 "a" 3))  ;; => '(#f #t #f)
+
+    (andmap number? '(1 2 3)) ;; => #t
+  }|
 }
 
-@block{@block-name{Various, racket snippets, etc.}
-
-  ;; The 'case' conditions are not evaluated
-  (let ((pattern (string-append "f" "f")))
-    (case "ff" [((string-append "f" "f")) #t] [else #f]) #| => #f |#
-    (case "ff" [("ff") #t] [else #f])                    #| => #t |#
-    (case "ff" [(pattern) #t] [else #f])                 #| => #f |#
-    ;; (case "ff" [pattern #t] [else #f])                #| => syntax error |#
-    (equal? "ff" pattern)                                #| => #t |#
-    (case "ff" [((formatf "~a~a""f" "f")) #t] [else #f]) #| => #f |#)
-  ;; See also 'cond'.
-
-  arcade package - writing arcade games
-
-  ;; code block
-  ;; https://docs.racket-lang.org/reference/begin.html
-  (begin
-    (printf "hi\n")
-    2)
-
-  ;; pwd; print working directory
-  (current-directory)
-
-  ;; difference between `print`, `write` and `display`
-  ;; https://docs.racket-lang.org/guide/read-write.html
-  (printf "~a as a string is ~s.\n" '(3 4) "(3 4)")
-
-  ;; followind printf-lines do the same
-  (eprintf form v ...)
-  (fprintf (current-error-port) form v ...)
-
-  ;; count
-  (length '(1 2 3))
-  (hash-count #hash((foo . 41)))
-  (hash-count #hasheq((foo . 41)))
-
-  ;; (: flexible-length (-> (U String (Listof Any)) Integer))
-  (define (flexible-length str-or-lst)
-  (if (string? str-or-lst)
-      (string-length str-or-lst)
-      (length str-or-lst)))
-
-  ;; function composition: compose, compose1
-  (define (inc n) (+ n 1))
-  ((compose str inc length) '(1 2 3))
-  ;; see also Threading macros https://docs.racket-lang.org/threading/index.html
-  ;; ~> ~>> curry rackjure/partial etc
-
-  ;; info.rkt: collection of dependecies
-
-  ;; show doc in browser using local copy.
-  ;; C-c d / M-x racket-doc
-  ;; C-c . / M-x racket-describe
-
-  ;; sexp comment #;single-sexp
-  ;; block comment #| sexp-1 sexp-2 ... |#
-
-  ;; rhs - right hand side
-
-  ;; namespace alias
-  (require (prefix-in my: "file.rkt")) ;; see also `rename-in`
-  ;; usage
-  (my:function)
-
-  ;; filter list https://stackoverflow.com/a/57814082
-  (define lst '(("Ben" 2 "dog") ("Kath" 1 "cat") ("Matt" 6 "dog")))
-  (filter (lambda (e) (equal? (caddr e) "dog")) lst)
-  ;; => '(("Ben" 2 "dog") ("Matt" 6 "dog"))
-
-  (map string? '(1 "a" 3))  ;; => '(#f #t #f)
-
-  (andmap number? '(1 2 3)) ;; => #t
+@block{@block-name{REPL}
+  The `enter!` form both loads the code and switches the evaluation context to
+  the inside of the module, just like DrRacket’s Run button.
+  (enter "mymodule.rkt")
 }
 
-@block{@block-name{Macros: quotes, syntax, etc.}
+@block{@block-name{Various}
+  Macros: quotes, syntax, etc.
   https://docs.racket-lang.org/syntax-parse-example/
-  (quote-syntax (1 2 3))
+  @lisp{
+    (quote-syntax (1 2 3))
+  }
   quote-syntax - similar to syntax. Unlike syntax (#'), quote-syntax does not
   substitute pattern variables bound by with-syntax, syntax-parse, or syntax-case.
   | '   | quote                  |
@@ -165,61 +197,60 @@
   | #""       | byte-string; predicate `bytes?` |
   | (: v t)   | `v` has a type `t`              |
   | (: v : t) | `v` has a type `t`              |
-}
 
-@block{@block-name{REPL}
-  The `enter!` form both loads the code and switches the evaluation context to
-  the inside of the module, just like DrRacket’s Run button.
-  (enter "mymodule.rkt")
-}
+  @lisp{
+    ;; Cons and List
+    `list` is an abbreviation for a series of `cons`:
+    (equal? (list 1 2 3)
+    (cons 1 (cons 2 (cons 3 null))))
 
-@block{@block-name{Cons and List}
-  `list` is an abbreviation for a series of `cons`:
-  (equal? (list 1 2 3)
-          (cons 1 (cons 2 (cons 3 null))))
-}
-
-@block{@block-name{Read and evaluate code from string}
-  (eval (read (open-input-string "(+ 1 2)")))
-  ;; or:
-  (with-input-from-string "(+ 1 2)"
+    ;; Read and evaluate code from string
+    (eval (read (open-input-string "(+ 1 2)")))
+    ;; or:
+    (with-input-from-string "(+ 1 2)"
     (lambda () (eval (read))))
-  ;; or:
-  (eval (call-with-input-string "(+ 1 2)" read)) ;; string port is auto-closed
+    ;; or (string port is auto-closed):
+    (eval (call-with-input-string "(+ 1 2)" read))
+
+    ;; Empty string predicates
+    ;; https://rosettacode.org/
+    (define empty-string "")
+    (define (string-null? s) (string=? "" s))
+    (define (string-not-null? s) (string<? "" s))
+
+    ;; Converting Values to Strings
+    ;; https://docs.racket-lang.org/reference/strings.html#%28part._format%29
+    (require racket/format)
+    (~a "Hi" 1 2 'People)                 ; => "Hi12People"
+    (~a "Hi" 1 2 'People '(Around))       ; => "Hi12People(Around)"
+    (~a #:separator "-" "Hi" 1 2 'People) ; => "Hi-1-2-People"
+    ;; See
+    ;; ~a ~v ~s ~e ~r ~.a ~.v ~.s
+
+    ;; External commands
+    (system/exit-code "ls")   ;; terminate (REPL) with return code
+
+    ;; in-source documentation (docstrings) by using scribble/srcdoc
+    ;; https://stackoverflow.com/a/53991442
+
+    ;; When using define/doc then examples can also be used as unit tests.
+    ;; https://github.com/greghendershott/frog/blob/master/frog/private/define-doc.rkt
+
+    (require (for-syntax racket/syntax))
+
+    (define-syntax (define/doc stx)
+    (syntax-case stx ()
+      [(_ id doc-string expr)
+       (with-syntax
+           ([name (format-id #'id "~a-doc" #'id)])
+         #'(begin (define id expr)
+                  (define name doc-string)))]))
+
+  }
 }
 
-@block{@block-name{Empty string predicate}
-  See [[https://rosettacode.org/][Rosetta Code]]
-  (define empty-string "")
-  (define (string-null? s) (string=? "" s))
-  (define (string-not-null? s) (string<? "" s))
-}
-
-@block{@block-name{Converting Values to Strings}
-  [[https://docs.racket-lang.org/reference/strings.html#%28part._format%29][Converting Values to Strings]]
-  (require racket/format)
-  (~a "Hi" 1 2 'People)                 ; => "Hi12People"
-  (~a "Hi" 1 2 'People '(Around))       ; => "Hi12People(Around)"
-  (~a #:separator "-" "Hi" 1 2 'People) ; => "Hi-1-2-People"
-  ;; See
-  ;; ~a ~v ~s ~e ~r ~.a ~.v ~.s
-}
-
-@block{@block-name{External commands}
-  (system/exit-code "ls")   ;; terminate (REPL) with return code
-}
-
-@block{@block-name{PLT PLaneT}
-  Racket's deprecated, old package system. Racket was originally created by the
-  PLT research group.
-}
-
-@block{@block-name{PEG - advance over regex}
-  Matches more languages (e.g. balanced brackets) and can be paired with
-  semantic actions to produce structured results from a parse.
-}
-
-@block{@block-name{Scribble and Pollen}
+@block{@block-name{Scribble}
+  Scribble and Pollen
   Scribble - collection of tools for creating prose documents—papers, books,
   library documentation, etc.—in HTML or PDF (via Latex) form.
 
@@ -306,22 +337,4 @@ Markdown & Pollen + ◊metal
   ◊item{◊link[\"https://google.com/search?q=racket\"]{search for Racket}}
 }
 " > /tmp/uptown.html.pm
-}
-
-@block{@block-name{Source code documentation, docstrings}
-  Write in-source documentation by using scribble/srcdoc
-  https://stackoverflow.com/a/53991442
-
-  When using define/doc then examples can also be used as unit tests.
-  https://github.com/greghendershott/frog/blob/master/frog/private/define-doc.rkt
-
-  (require (for-syntax racket/syntax))
-
-  (define-syntax (define/doc stx)
-  (syntax-case stx ()
-    [(_ id doc-string expr)
-     (with-syntax
-         ([name (format-id #'id "~a-doc" #'id)])
-       #'(begin (define id expr)
-                (define name doc-string)))]))
 }

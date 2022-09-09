@@ -316,30 +316,33 @@
   uBlock Origin is a wide spectrum blocker for IceCat and ungoogled-chromium.
 
   https://guix.gnu.org/manual/devel/en/html_node/Secure-Shell.html
-  (service home-openssh-service-type
-    (home-openssh-configuration
-      (hosts
-        (list (openssh-host (name "ci.guix.gnu.org")
-              (user "charlie"))
-              (openssh-host (name "chbouib")
-              (host-name "chbouib.example.org")
-              (user "supercharlie")
-              (port 10022))))
-              (authorized-keys (list (local-file "alice.pub")))))
-
+  @lisp{
+    (service home-openssh-service-type
+      (home-openssh-configuration
+        (hosts
+          (list (openssh-host (name "ci.guix.gnu.org")
+                (user "charlie"))
+                (openssh-host (name "chbouib")
+                (host-name "chbouib.example.org")
+                (user "supercharlie")
+                (port 10022))))
+                (authorized-keys (list (local-file "alice.pub")))))
+  }
   use rde as a Channel
   Some advanced users may prefer to use only parts of rde they are interested: features, services, or just packages.
   In that case you can add the following channel to channels.scm.
-  (cons*
-    (channel
-    (name 'rde)
-    (url "https://git.sr.ht/~abcdw/rde")
-    (introduction
-    (make-channel-introduction
-    "257cebd587b66e4d865b3537a9a88cccd7107c95"
-    (openpgp-fingerprint
-    "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
-    %default-channels)
+  @lisp{
+    (cons*
+     (channel
+      (name 'rde)
+      (url "https://git.sr.ht/~abcdw/rde")
+      (introduction
+       (make-channel-introduction
+        "257cebd587b66e4d865b3537a9a88cccd7107c95"
+        (openpgp-fingerprint
+         "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+     %default-channels)
+  }
 
   see also private.el
   auth info - gpg secrets
