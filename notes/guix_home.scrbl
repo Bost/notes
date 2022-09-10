@@ -7,6 +7,9 @@
   Achieved by composing services (service extension mechanism)
   https://guix-home.trop.in/Home-Configuration.html
 
+  Manage reproducible development environments.
+  https://sr.ht/abcdw/rde/ (Andrew Tropin)
+
   In Terminal -> Preferences -> General: switch on "Run command as login shell"
   (Otherwise ~/.bash_profile is not sourced)
 
@@ -31,6 +34,9 @@
   # try out some configuration without installing anything
   guix home container /path/to/configuration.scm
   guix home --keep-failed -L ~/dev/dotfiles/guix/home container ~/dev/dotfiles/guix/home/home-configuration.scm
+
+  See also guix-lemp-container [https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh]
+  LEMP WordPress Reproducible Environment
 
   # generate a home environment definition from dotfiles and put it under /dst/dir
   guix home import /dst/dir
@@ -59,13 +65,11 @@
 }
 
 @block{@block-name{TODOs}
-  @block{@block-name{Create ISO image}
-    Two /boot/efi entries in the
-  }
-
   @block{@block-name{Setup IceCat web browser:}
     @block{@block-name{IceCat stuck at Cloudflare "Checking your browser before accessing..."}
-       [[https://issues.guix.gnu.org/45179][IceCat stuck at Cloudflare "Checking your browser before accessing..."]]
+       IceCat stuck at Cloudflare "Checking your browser before accessing..."
+       https://issues.guix.gnu.org/45179
+
        Install 'User-Agent Switcher' in IceCat and switch to
          Desktop -> 'Linux / Firefox 83'
        https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/
@@ -90,31 +94,20 @@
     cat ~/.ssh/id_rsa.pub
   }
 
-  @block{@block-name{GitHub, GitLab:}
-    Login to https://gitlab.com add SSH Key https://gitlab.com/-/profile/keys
-    Login to https://github.com add SSH Key https://github.com/settings/ssh/new
-  }
+  Copy public keys to the available machines
+  Login to https://gitlab.com add SSH Key https://gitlab.com/-/profile/keys
+  Login to https://github.com add SSH Key https://github.com/settings/ssh/new
 
-  @block{@block-name{Clone repos}
-   See home-configuration.scm
-  }
-
-  @block{@block-name{Copy public keys to the available machines}
-  }
-
-  @block{@block-name{Setup xfce keybindings and shortcuts}
-    # See http://docs.xfce.org/xfce/xfconf/xfconf-query
-    xfconf-query --channel xfce4-keyboard-shortcuts -lv
-    xfconf-query --channel xfce4-keyboard-shortcuts \
+  # Setup xfce keybindings and shortcuts:
+  # See http://docs.xfce.org/xfce/xfconf/xfconf-query
+  xfconf-query --channel xfce4-keyboard-shortcuts -l | rg Super
+  xfconf-query --channel xfce4-keyboard-shortcuts \
                  --property "/xfwm4/custom/<Super>Tab" --reset
-  }
 
-  @block{@block-name{Setup Displays}
-  }
+  Setup Displays
 
-  @block{@block-name{Setup xfce4-pannel: Position, Icons, etc.}
-    Copy the xfce4 configuration from a different machine
-    Window Buttons context menu (right-click in the middle of the panel)
-    -> Properties -> Window grouping: -> Never
-  }
+  Setup xfce4-pannel: Position, Icons, etc.:
+  Copy the xfce4 configuration from a different machine
+  Window Buttons context menu (right-click in the middle of the panel)
+  -> Properties -> Window grouping: -> Never
 }
