@@ -92,6 +92,9 @@
   ;; TODO check this:
   (display (get-string-n (current-input-port) 6))
 
+  (access? some-file F_OK) ;; check if file exists
+  (access? some-file W_OK) ;; check if file is writable
+
   ;; check for empty list:
   (null? '())  ; => #t
   (null? '(1)) ; => #f
