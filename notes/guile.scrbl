@@ -64,141 +64,149 @@
 
 @block{@block-name{Partial function application.}
   Notation for Specializing Parameters without Currying
-  [https://srfi.schemers.org/srfi-26/srfi-26.html]
+  https://srfi.schemers.org/srfi-26/srfi-26.html
 
-  ;; ‘lambda*’ is ‘lambda’, with allowed optional and keyword arguments
-  ;; ‘define*’ is syntactic sugar for defining procedures using ‘lambda*’
+  @lisp{
+    ;; ‘lambda*’ is ‘lambda’, with allowed optional and keyword arguments
+    ;; ‘define*’ is syntactic sugar for defining procedures using ‘lambda*’
 
-  (use-modules (srfi srfi-26))
-  (map (cut * 2 <>) (1 2 3 4))
-  ;; also variadic function arguments
-  (define (partial fun . args)
+    (use-modules (srfi srfi-26))
+    (map (cut * 2 <>) (1 2 3 4))
+    ;; also variadic function arguments
+    (define (partial fun . args)
     (lambda x (apply fun (append args x))))
-  ;; or
-  (define* (partial fun #:rest args)
+    ;; or
+    (define* (partial fun #:rest args)
     (lambda x (apply fun (append args x))))
-  ;; '#:rest' is a synonym for the dotted syntax rest argument.
+    ;; '#:rest' is a synonym for the dotted syntax rest argument.
+  }
 }
 
 @block{@block-name{Various code snippets}
-  ;; Formatted output like fprintf.
-  ;; https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html
-  (format #t "\n~a\n\n" s)
-  (format #f "\n~a\n\n" s) ;; print to string
+  @lisp{
+    ;; Set operations / sets:
+    (use-modules (srfi srfi-1))
+    ,use (srfi srfi-1)
+    ;; (lset-difference eqv? '(3 2 1) '(1 2)) ;; > (3)
 
-  ;; https://stackoverflow.com/a/38397019/5151982
-  ;; console as input and output
-  (use-modules (ice-9 textual-ports))
-  ;; TODO check this:
-  (display (get-string-n (current-input-port) 6))
+    ;; Formatted output like fprintf
+    ;; https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html
+    (format #t "\n~a\n\n" s)
+    (format #f "\n~a\n\n" s) ;; print to string
 
-  (access? some-file F_OK) ;; check if file exists
-  (access? some-file W_OK) ;; check if file is writable
+    ;; https://stackoverflow.com/a/38397019/5151982
+    ;; console as input and output
+    (use-modules (ice-9 textual-ports))
+    ;; TODO check this:
+    (display (get-string-n (current-input-port) 6))
 
-  ;; check for empty list:
-  (null? '())  ; => #t
-  (null? '(1)) ; => #f
-  ;; check for empty string
-  (string-null? "")  ; => #t
-  (string-null? "1") ; => #f
+    (access? some-file F_OK) ;; check if file exists
+    (access? some-file W_OK) ;; check if file is writable
 
-  ;; in clojure: (some pred coll); or `some->` etc.
-  ;; find pred lst
-  ,use (srfi srfi-1)
-  (find (lambda (s) (string? "abc" s)) '("a" "b" "abc" "d"))
+    ;; check for empty list:
+    (null? '())  ; => #t
+    (null? '(1)) ; => #f
+    ;; check for empty string
+    (string-null? "")  ; => #t
+    (string-null? "1") ; => #f
 
-  ;; Pattern matching with let*:
-  (define mapping (list ...))
-  ;;
-  (define d-this (car mapping))
-  (define d-remaining (cdr mapping))
-  (define d-name (car this))
-  (define d-value (cdr this))
-  ;;
-  (let* ((((l-name . l-value) . l-remaining) mapping))
-  (format #t "~a\n" (equal? l-name      d-name))
-  (format #t "~a\n" (equal? l-value     d-value))
-  (format #t "~a\n" (equal? l-remaining d-remaining)))
+    ;; in clojure: (some pred coll); or `some->` etc.
+    ;; find pred lst
+    ,use (srfi srfi-1)
+    (find (lambda (s) (string? "abc" s)) '("a" "b" "abc" "d"))
+
+    ;; Pattern matching with let*:
+    (define mapping (list ...))
+    ;;
+    (define d-this (car mapping))
+    (define d-remaining (cdr mapping))
+    (define d-name (car this))
+    (define d-value (cdr this))
+    ;;
+    (let* ((((l-name . l-value) . l-remaining) mapping))
+    (format #t "~a\n" (equal? l-name      d-name))
+    (format #t "~a\n" (equal? l-value     d-value))
+    (format #t "~a\n" (equal? l-remaining d-remaining)))
 
 
-  (use-modules (ice-9 rdelim)
-               (ice-9 popen)
-               (ice-9 regex)
-               (srfi srfi-1) ;; fold
-               #| (language cps intmap) |#)
-  ;;
-  (define (get-type o)
+    (use-modules (ice-9 rdelim)
+                 (ice-9 popen)
+                 (ice-9 regex)
+                 (srfi srfi-1) ;; fold
+                 #| (language cps intmap) |#)
+    ;;
+    (define (get-type o)
     "TODO implement: 1 is a number and an integer in the same type"
     (cond
-     ((port? o) 'port)
-     ((boolean? o) 'boolean)
-     ((string? o) 'string)
-     ((symbol? o) 'symbol)
-     ((list? o) 'list)
-     ((vector? o) 'vector)
-     ((procedure? o) 'procedure)
-     ((complex? o) 'complex)
-     ((real? o) 'real)
-     ((integer? o) 'integer)
-     ((number? o) 'number)
-     (#t 'unknown-type)))
+      ((port? o) 'port)
+      ((boolean? o) 'boolean)
+      ((string? o) 'string)
+      ((symbol? o) 'symbol)
+      ((list? o) 'list)
+      ((vector? o) 'vector)
+      ((procedure? o) 'procedure)
+      ((complex? o) 'complex)
+      ((real? o) 'real)
+      ((integer? o) 'integer)
+      ((number? o) 'number)
+      (#t 'unknown-type)))
 
-  (define (partial fun . args)
-    (lambda x (apply fun (append args x))))
+    (define (partial fun . args)
+      (lambda x (apply fun (append args x))))
 
-  (define (read-all port)
-    "Return a list of all lines from the PORT."
-    (let loop ((res '())
-               (str (read-line port)))
-      (if (and str (not (eof-object? str)))
-          (loop (append res (list str))
+    (define (read-all port)
+        "Return a list of all lines from the PORT."
+      (let loop ((res '())
+                 (str (read-line port)))
+           (if (and str (not (eof-object? str)))
+               (loop (append res (list str))
                 (read-line port))
-          res)))
+               res)))
 
-  ;; TODO see 'push all branches to all remotes'
-  ;; https://stackoverflow.com/a/18674313/5151982
-
-  (define (main args)
-    ((compose
-    (partial format #t "~a\n")
-    (partial map
-             (compose
-              (lambda (cmd)
-                (let* ((port (open-input-pipe cmd))
-                       (res (read-all port)))
-                  (close-pipe port)
-                  res))
-              (lambda (s)
-                ;; TODO implement pretty-print for bash commands
-                ;; ~a - outputs an argument like display
-                ;; ~s - outputs an argument like write (i.e. print to string)
-                (format #t "\n~a\n\n" s)
-                s)
-              (lambda (cmd) (string-join cmd " "))))
-    (partial map (lambda (remote)
-                   (append
-                    (list "git" "push" "--follow-tags" "--verbose" remote)
-                    (cdr args))))
-    (partial fold-right (lambda (a d) (if (string? a) (cons a d) d)) '())
-    (partial map
-             (compose
-              (lambda (match-structure) (if match-structure
-                                            (match:substring match-structure 1)))
-              (partial string-match "remote\\.(.*?)\\.url")))
-    (lambda (cmd)
-      (let* ((port (open-input-pipe cmd))
-             (res (read-all port)))
-        (close-pipe port)
-        res))
-    (lambda (s)
-      ;; TODO implement pretty-print for bash commands
-      ;; ~a - outputs an argument like display
-      ;; ~s - outputs an argument like write (i.e. print to string)
-      (format #t "\n~a\n\n" s)
-      s)
-    (lambda (cmd) (string-join cmd " ")))
-   (list
-    "git" "config" "--local" "--list")))
+    ;; TODO see 'push all branches to all remotes'
+    ;; https://stackoverflow.com/a/18674313/5151982
+    (define (main args)
+        ((compose
+          (partial format #t "~a\n")
+          (partial map
+                   (compose
+                    (lambda (cmd)
+                      (let* ((port (open-input-pipe cmd))
+                             (res (read-all port)))
+                        (close-pipe port)
+                        res))
+                    (lambda (s)
+                      ;; TODO implement pretty-print for bash commands
+                      ;; ~a - outputs an argument like display
+                      ;; ~s - outputs an argument like write (i.e. print to string)
+                      (format #t "\n~a\n\n" s)
+                      s)
+                    (lambda (cmd) (string-join cmd " "))))
+          (partial map (lambda (remote)
+                         (append
+                          (list "git" "push" "--follow-tags" "--verbose" remote)
+                          (cdr args))))
+          (partial fold-right (lambda (a d) (if (string? a) (cons a d) d)) '())
+          (partial map
+                   (compose
+                    (lambda (match-structure) (if match-structure
+                                                  (match:substring match-structure 1)))
+                    (partial string-match "remote\\.(.*?)\\.url")))
+          (lambda (cmd)
+            (let* ((port (open-input-pipe cmd))
+                   (res (read-all port)))
+              (close-pipe port)
+              res))
+          (lambda (s)
+            ;; TODO implement pretty-print for bash commands
+            ;; ~a - outputs an argument like display
+            ;; ~s - outputs an argument like write (i.e. print to string)
+            (format #t "\n~a\n\n" s)
+            s)
+          (lambda (cmd) (string-join cmd " ")))
+         (list
+          "git" "config" "--local" "--list")))
+  }
 }
 
 @block{@block-name{Keywords}
