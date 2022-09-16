@@ -1,6 +1,10 @@
 #lang notes
 
 @block{@block-name{Various}
+  # error: guile: warning: failed to install locale
+  # solution:
+  guix install glibc-locales
+
   Guix: A most advanced operating system
   https://ambrevar.xyz/guix-advance/
   https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix
@@ -123,6 +127,13 @@
    #<interface (ice-9 threads) 7ffa540a2aa0>
    #<interface (value-history) 7ffa52cce5a0>
    #<interface (geiser emacs) 7ffa51539f00>)
+
+  ;; REPL debugging:
+  scheme@(guile-user) > ,h inspect
+  Inspect Commands [abbrev]:
+  ;;
+  ,inspect EXP                 [,i] - Inspect the result(s) of evaluating EXP.
+  ,pretty-print EXP           [,pp] - Pretty-print the result(s) of evaluating EXP.
 
   # Run command-line scripts provided by GNU Guile and related programs.
   guild

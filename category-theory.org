@@ -564,7 +564,7 @@ represented by any singleton topological space with its unique $e$.
 
 ** Algebra and F-Algebra
 Intuition in programming: Algebra provides a way to combine elements inside a
-container. Algebra is defined for a specific type of elements.\\
+container (i.e. Monad). Algebra is defined for a specific type of elements.\\
 
 \\
 
@@ -1045,3 +1045,17 @@ B                                                  &                            
 A \arrow[uuu, "f"] \arrow[ru, no head, Rightarrow] &                                                                                                                                                                                          & A \arrow[uuu, "f"'] \\
                                                    & A \times A \arrow[ru, "\pi_{2_A}"'] \arrow[lu, "\pi_{1_A}"]                                                                                                                              &
 \end{tikzcd}
+
+
+
+* Effect in Functional Programming
+ An effect is the thing that a monad handles. (Typically an IO operation)
+
+Option is a monad that models the effect of optionality (of something being optional)
+Future is a monad that models latency (oneskorenie, cakacia doba) as an effect
+Try is a monad that models the effect of failures (manages exceptions as effects)
+Reader is a monad that models the effect of composing operations that depend on some input
+Writer is a monad that models logging as an effect
+State is a monad that models the effect of state (composing a series of computations that maintain state)
+
+effectful function is a function that returns F[A] rather than [A]
