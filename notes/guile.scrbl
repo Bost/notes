@@ -1,6 +1,9 @@
 #lang notes
 
 @block{@block-name{Guile Scheme}
+  alist - an association list, i.e. dictionary
+  https://www.gnu.org/software/guile/manual/html_node/Alist-Example.html
+
   define-syntax vs. defmacro / defmacro-public
 
   https://wiki.c2.com/
