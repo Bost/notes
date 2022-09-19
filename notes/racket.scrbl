@@ -68,6 +68,20 @@
 }
 
 @block{@block-name{Various & snippets, etc.}
+  @lisp{
+    ;; `letrec` - like `let`, but enables function definitons which can refer each
+    ;; other
+    (letrec ((even? (lambda (n)
+                     (if (zero? n)
+                         #t
+                         (odd? (- n 1)))))
+            (odd? (lambda (n)
+                    (if (zero? n)
+                        #f
+                        (even? (- n 1))))))
+      (even? 88))
+  }
+
   PLT PLaneT
   Racket's deprecated, old package system. Racket was originally created by the
   PLT research group.

@@ -4,6 +4,9 @@
   alist - an association list, i.e. dictionary
   https://www.gnu.org/software/guile/manual/html_node/Alist-Example.html
 
+  Create and publish Guile projects
+  https://gitlab.com/a-sassmannshausen/guile-hall
+
   define-syntax vs. defmacro / defmacro-public
 
   https://wiki.c2.com/
@@ -19,8 +22,11 @@
 
   - The IO Monad is simply applying a function on the world.
 
-  https://www.gnu.org/software/guile/manual/html_node/Dynamic-Types.html
-  Guile Scheme is dynamically-typed. Types only become apparent at run time.
+  https://www.gnu.org/software/guile/manual/guile.html#Latent-Typing
+  https://www.gnu.org/software/guile/manual/guile.html#Dynamic-Types
+  Guile is dynamically (latent) typed. Types exist only at run time.
+  Haskell types might be used in Guile
+  http://www.haskell.org/haskellwiki/FFI_Introduction
 
   In Guile, this uniform representation of all Scheme values is the C type SCM.
   This is an opaque type and its size is typically equivalent to that of a
@@ -38,6 +44,18 @@
 
   Tail Call Optimisation
   the compiler will rewrite the recursive form into a serialised iterative form.
+
+  Scheme Requests for Implementation SRFI (read surfi):
+  https://srfi.schemers.org/
+  can be done via individual initiative.
+  ;;
+  Revised-n Report on the Algorithmic Language Scheme RnRS:
+  reached by consensus, e.g. https://small.r7rs.org/attachment/r7rs.pdf
+
+  Installing Guile Scheme:
+  https://jeko.frama.io/en/install.html
+
+  Ports are the way that Guile performs input and output
 }
 
 @block{@block-name{`guile` vs. `guix repl`}
@@ -46,14 +64,7 @@
 
   `info "(guile)Concept Index"`
 
-  Scheme Requests for Implementation SRFI
-  https://srfi.schemers.org/
-  https://small.r7rs.org/attachment/r7rs.pdf
-
-  Installing Guile Scheme:
-  https://jeko.frama.io/en/install.html
-
-  Ports are the way that Guile performs input and output
+  https://www.rohleder.de/~mike/guix-workflow/guix-workflow.html
 
   ;; Configure interpreter by modifying the ~/.guile file
   ;; (create it if it doesn't exist) and put the following lines into it:
@@ -70,8 +81,8 @@
   https://srfi.schemers.org/srfi-26/srfi-26.html
 
   @lisp{
-    ;; ‘lambda*’ is ‘lambda’, with allowed optional and keyword arguments
-    ;; ‘define*’ is syntactic sugar for defining procedures using ‘lambda*’
+    ;; 'lambda*' is ‘lambda’ with allowed optional and keyword argument.
+    ;; 'define*' is syntactic sugar for 'lambda*'
 
     (use-modules (srfi srfi-26))
     (map (cut * 2 <>) (1 2 3 4))
@@ -158,57 +169,71 @@
       (lambda x (apply fun (append args x))))
 
     (define (read-all port)
-        "Return a list of all lines from the PORT."
+      "Return a list of all lines from the PORT."
       (let loop ((res '())
                  (str (read-line port)))
-           (if (and str (not (eof-object? str)))
-               (loop (append res (list str))
-                (read-line port))
-               res)))
+        (if (and str (not (eof-object? str)))
+            (loop (append res (list str))
+                  (read-line port))
+            res)))
 
     ;; TODO see 'push all branches to all remotes'
     ;; https://stackoverflow.com/a/18674313/5151982
+
     (define (main args)
-        ((compose
-          (partial format #t "~a\n")
-          (partial map
-                   (compose
-                    (lambda (cmd)
-                      (let* ((port (open-input-pipe cmd))
-                             (res (read-all port)))
-                        (close-pipe port)
-                        res))
-                    (lambda (s)
-                      ;; TODO implement pretty-print for bash commands
-                      ;; ~a - outputs an argument like display
-                      ;; ~s - outputs an argument like write (i.e. print to string)
-                      (format #t "\n~a\n\n" s)
-                      s)
-                    (lambda (cmd) (string-join cmd " "))))
-          (partial map (lambda (remote)
-                         (append
-                          (list "git" "push" "--follow-tags" "--verbose" remote)
-                          (cdr args))))
-          (partial fold-right (lambda (a d) (if (string? a) (cons a d) d)) '())
-          (partial map
-                   (compose
-                    (lambda (match-structure) (if match-structure
-                                                  (match:substring match-structure 1)))
-                    (partial string-match "remote\\.(.*?)\\.url")))
-          (lambda (cmd)
-            (let* ((port (open-input-pipe cmd))
-                   (res (read-all port)))
-              (close-pipe port)
-              res))
-          (lambda (s)
-            ;; TODO implement pretty-print for bash commands
-            ;; ~a - outputs an argument like display
-            ;; ~s - outputs an argument like write (i.e. print to string)
-            (format #t "\n~a\n\n" s)
-            s)
-          (lambda (cmd) (string-join cmd " ")))
-         (list
-          "git" "config" "--local" "--list")))
+      ((compose
+      (partial format #t "~a\n")
+      (partial map
+               (compose
+                (lambda (cmd)
+                  (let* ((port (open-input-pipe cmd))
+                         (res (read-all port)))
+                    (close-pipe port)
+                    res))
+                (lambda (s)
+                  ;; TODO implement pretty-print for bash commands
+                  ;; ~a - outputs an argument like display
+                  ;; ~s - outputs an argument like write (i.e. print to string)
+                  (format #t "\n~a\n\n" s)
+                  s)
+                (lambda (cmd) (string-join cmd " "))))
+      (partial map (lambda (remote)
+                     (append
+                      (list "git" "push" "--follow-tags" "--verbose" remote)
+                      (cdr args))))
+      ;; map-reduce
+      (partial fold-right (lambda (a d) (if (string? a) (cons a d) d)) '())
+      (partial map
+               (compose
+                (lambda (match-structure) (if match-structure
+                                              (match:substring match-structure 1)))
+                (partial string-match "remote\\.(.*?)\\.url")))
+      (lambda (cmd)
+        (let* ((port (open-input-pipe cmd))
+               (res (read-all port)))
+          (close-pipe port)
+          res))
+      (lambda (s)
+        ;; TODO implement pretty-print for bash commands
+        ;; ~a - outputs an argument like display
+        ;; ~s - outputs an argument like write (i.e. print to string)
+        (format #t "\n~a\n\n" s)
+        s)
+      (lambda (cmd) (string-join cmd " ")))
+     (list
+      "git" "config" "--local" "--list")))
+
+    ;; `letrec` - like `let`, but enables function definitons which can refer each
+    ;; other
+    (letrec ((even? (lambda (n)
+                      (if (zero? n)
+                          #t
+                          (odd? (- n 1)))))
+             (odd? (lambda (n)
+                     (if (zero? n)
+                         #f
+                         (even? (- n 1))))))
+      (even? 88))
   }
 }
 
