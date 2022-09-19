@@ -555,10 +555,12 @@
   ;; M-x shell-command; execute
   ~M-!~ / ~SPC !~
 
-  ;; execute shell command and read-in / capture its output (in the current buffer
-  ;; if in evil-insert mode)
+  ;; execute shell command and read-in / capture its output:
+  ;; in evil-insert mode - in the current buffer
+  ;; in evil-normal mode - in the *Shell Command Output* buffer
   ~C-u M-! <cmd>~
   ~C-u SPC ! <cmd>~
+  ~C-u~ M-x shell-command
 
   ;; M-x shell-command: top: capture top output from stdout
   ~M-! RET top -c -n -1 -b -w 200~
