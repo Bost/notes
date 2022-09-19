@@ -46,6 +46,8 @@
   #   export GIT_SSL_CAINFO="$SSL_CERT_FILE"
   #
   guix shell --development guix help2man git strace --pure
+  # --check            check if the shell clobbers environment variables
+  # --pure             unset existing environment variables
   # Alternatives:
   #   guix shell -D guix --pure
   #   guix shell --development guix --pure
