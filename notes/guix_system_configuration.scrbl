@@ -29,7 +29,7 @@
 
   # systemctl status guix-daemon # on a foreign host
 
-  # lists the currently defined services
+  # lists the currently defined GNU Shepherd services
   sudo herd status
 
   # `sudo guix system reconfigure configuration.scm` may produce:

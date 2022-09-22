@@ -10,7 +10,6 @@
 }
 
 @block{@block-name{Lisp Implementations}
-
   Arguably(!) it is easier to reason about macros than functions, because in the
   vast majority of cases their expansions are deterministic. Macros can be
   expanded and inspected at compile-time, before any code has run.
@@ -51,18 +50,14 @@
   Common Lisp - Concurrent and Parallel Programing tutorial
   https://docs.google.com/document/d/10MGPC7j4lpGrMlQS4xtQTEGrvpBecgDUnqu1OrjSVxk
 
-  Learn Common Lisp
+  Learn CLOG - The Common Lisp Omnificent GUI
   https://github.com/rabbibotton/clog/blob/main/LEARN.md
 
-  CLOG Common Lisp Omnificent GUI
-  https://github.com/rabbibotton/clog
+  The Common Lisp Cheat Sheet
+  https://github.com/ashok-khanna/lisp-notes
 
-  Learn CLOG
-  https://github.com/rabbibotton/clog/blob/main/LEARN.md
-
-  Guile Scheme, MIT Scheme, Racket Schemes, etc. all have
-  hygienic macros, i.e. you can't modify everything
-  (TODO verify it).
+  Guile Scheme, MIT Scheme, Racket Schemes, etc. all have hygienic macros, i.e.
+  you can't modify everything (TODO verify it).
 
   Racket Scheme:
   - general-purpose, multi-paradigm
