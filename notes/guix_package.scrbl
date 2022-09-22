@@ -18,6 +18,8 @@
 }
 
 @block{@block-name{Various commands}
+  guix package iproute2 # provides the `ss` socket
+
   --verbosity=LEVEL
   0 - no output
   1 - quiet
@@ -96,7 +98,7 @@
   # either (A):
   guix build --load-path=./gnu/packages --keep-failed <package>
   cd $GUIX_CHECKOUT
-  guix shell -D guix
+  guix shell --development guix         # -D or --development
   ./pre-inst-env guix build --keep-failed <package>@"@"<version>
   ./pre-inst-env guix install <package>@"@"<version>
   # or (B):
