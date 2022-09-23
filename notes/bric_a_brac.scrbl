@@ -1,6 +1,8 @@
 #lang notes
 
 @block{@block-name{Various}
+  shrug ¯\_(ツ)_/¯
+
   Nikita Voloboev: Everything I Know
   https://wiki.nikiv.dev/
 

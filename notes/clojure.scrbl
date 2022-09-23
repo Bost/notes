@@ -624,7 +624,8 @@
 
   ;; write hash-map to an eden file; `print` writes String as clojure.lang.Symbol
   ;; `comp` also prints to REPL - may cause a freeze for large expression
-  (->> {:a 1 :b 2} (pr) (with-out-str) (spit "/tmp/data.edn"))
+  ;; path "/tmp/data.edn" like stuff doesn't work
+  (->> {:a 1 :b 2} (pr) (with-out-str) (spit "data.edn"))
   ;; read hash-map from an eden file
   ((comp read-string slurp) "/tmp/data.edn")
 
