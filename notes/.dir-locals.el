@@ -36,6 +36,7 @@
       ;;    ;; (1 . error)
       ;;    ))
 
+;;; TODO does "font-lock-add-keywords 'scribble-mode" need some `eval-after-load`?
     (font-lock-add-keywords 'scribble-mode
        `(
          (,(rx (group ";; " (+ not-newline)))

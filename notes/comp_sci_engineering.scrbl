@@ -37,8 +37,8 @@
 }
 
 @block{@block-name{Pattern matching}
-- generalize the traditional case analysis construct
-- examine and name data simultaneously
+  - generalize the traditional case analysis construct
+  - examine and name data simultaneously
 }
 
 @block{@block-name{Foreign Function Interface FFI a.k.a. Language bindings}
@@ -93,17 +93,19 @@
 }
 
 @block{@block-name{Stacks}
-** LAMP Linux Apache, MySQL, PHP
-** LEMP (container stack) Linux, (E)Nginx, MariaDB (MySQL replacement), PHP
-  - open source web platform
-  - to run dynamic web sites and servers.
-** LEPP (container stack) Linux, (E)Nginx, PostgreSQL, PHP
+  LAMP Linux Apache, MySQL, PHP
+  LEMP (container stack) Linux, (E)Nginx, MariaDB (MySQL replacement), PHP
+    - open source web platform
+    - to run dynamic web sites and servers.
+  LEPP (container stack) Linux, (E)Nginx, PostgreSQL, PHP
 }
 
 @block{@block-name{BusyBox}
-  [[https://git.busybox.net/busybox][Git Repo]] [[https://www.busybox.net/][Home page]]
-  BusyBox is a software suite that provides several Unix utilities in a single
-  executable file. Size 2.1 MB (compressed "tar.bz2")
+  provides Unix utilities in a single executable file; 2.1 MB in tar.bz2
+  Home page
+  https://www.busybox.net/
+  Git Repo
+  https://git.busybox.net/busybox
 }
 
 @block{@block-name{Wasm - WebAssembly}
@@ -120,6 +122,17 @@
 }
 
 @block{@block-name{Various}
+  Clang - drop-in replacement for the GNU Compiler Collection (GCC)
+
+  Web Content Accessibility Guidelines (WCAG) 2 Level AAA Conformance
+  https://www.w3.org/WAI/WCAG2AAA-Conformance
+
+  Firefox - How to allow a restricted port?
+  https://support.mozilla.org/en-US/questions/1083282
+  about:config
+  network.security.ports.banned.override
+  enter the port number as a string
+
   GLSL - OpenGL Shading Language
 
   IOPS - [eye-ops] input/output operations per second
@@ -150,6 +163,9 @@
   Vertical sharding - each new table has a schema that is a faithful subset of
   the original table's schema
 
+  Model Driven Software Engineering - Computerphile
+  https://youtu.be/3aoLV5i1feo
+  Modeling Language ~ Domain Specific Language
 }
 
 @block{@block-name{JavaScript 2014}

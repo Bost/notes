@@ -277,6 +277,42 @@
   communication goes through Tor.
 }
 
+@block{@block-name{Web types}
+  Dark web - offers Tor hidden services
+  Deep web - "Google doesn't see it. It's not allowed to or can't find it."
+  Examples: Protected by password, dynamic content, exclusion via robots.txt
+  Service web
+}
+
+@block{@block-name{Tor}
+  How TOR Works- Computerphile
+  https://youtu.be/QRYzre4bf7I
+
+  .onion pages
+
+  Anonymization - Tor implements Onion Routing Protocol, which works essentially
+  as a proxy.
+
+  Encrypted connections bounced / hopped around different routers are difficult
+  to track. There are typically 3 hops
+  Intermediate nodes - handle only encrypted messages
+  Exit nodes - handle fully decrypted messages
+  Any node in the tor-network knows only what's before and after them when
+  forwarding connections.
+  Multiple message encryption
+  The client, i.e. the first computer / initial node creates a circuit:
+  Establishes a shared key with the next node and instructed the other nodes to
+  do the say right up to the request destination
+
+  Unsolwable weaknes of Tor:
+  If someone controls the entry and exit node(s) the he or she can see
+  everything, via colerating messages, e.g. their timestamps on the entry and
+  exit nodes.
+
+  A Cell is a Tor message, it has 512 bytes. Any cell must indistinguishable
+  from any other cell.
+}
+
 @block{@block-name{Tails}
   live OS with optional persistence, installable on external drives, e.g. DVD,
   USB.

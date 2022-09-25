@@ -1,17 +1,29 @@
 #lang notes
 
+@block{@block-name{Spacemacs: Windows and Layouts / perspectives}
+  YouTube - CDQuest: Spacemacs: Windows and Layouts (tutorial)
+  https://youtu.be/I2C6QTtxfe8
+  ;; window transient mode - window management for layouts w/o using key binding
+  ~SPC w .~
+
+  Layout 1. contains all buffers, layouts 2., 3., ... contain only selected
+  buffers
+  | ~SPC l 0..9~  | create new layout       |
+  | ~SPC l s~     | save layout to a file   |
+  | ~SPC l L~     | load layout from a file |
+  | ~SPC l <tab>~ | last layout             |
+  | ~SPC p l~     | project layout          |
+}
+
 @block{@block-name{Various}
 
-  ;; Display last few input keystrokes and the commands run:
-  ~C-h l~ | M-x view-lossage
-  ;; ... and turn the keystrokes to a macro:
-  ~C-x C-k l~ | M-x kmacro-edit-lossage
+  | ~C-h l~     | M-x view-lossage        | show last input keystrokes / commands |
+  | ~C-x C-k l~ | M-x kmacro-edit-lossage | ... and turn them to a macro          |
 
   M-x org-align-table ;; TODO put align-related stuff together
 
-  ;; surround text with
-  | ~s~ | M-x evil-surround-edit | surround with a single char                            |
-  | ~S~ | M-x evil-Surround-edit | surround with a single char on a line above and bellow |
+  | ~s~ | M-x evil-surround-edit | surround text with a single char... |
+  | ~S~ | M-x evil-Surround-edit | ... on a line above and bellow      |
 
   Dedicated window - doesn't display any other buffer.
 
@@ -136,6 +148,7 @@
   | ~C-x <return> f~            | M-x set-buffer-file-coding-system i.e. file format |
   | ~C-c M-j~                   | nrepl: M-x nrepl-jack-in - ? for Clojure ?         |
   | ~SPC m '~ from elisp buffer | repl: M-x ielm ELISP>                              |
+  | M-x zprint-mode             | The pretty-printer for Clojure(Script) in Emacs    |
 
   | M-x browse-url-at-point | open web browser of the OS |
   | M-x eww                 | emacs web browser          |
@@ -484,7 +497,7 @@
   ;; paste from register
   ;; \"<register>p
 
-  ;; locate:
+  ;; GNU locate - Finding files in a database
   M-x locate
 
   ;; highlighting
@@ -619,16 +632,6 @@
   ;; helm-locate - see 'man locate'
   ~SPC f L~
 
-  ;; window transient mode - window management w/o using key binding - for layouts
-  ~SPC w .~
-
-  ;; workspaces & layouts / perspectives
-  ;; layout 1. contains all buffers;
-  ;; layouts 2., 3., ... contain only selected buffers
-  ~SPC l 0..9~ ; create new layout
-  ~SPC l s~    ; save layout to a file
-  ~SPC l L~    ; load layout from a file
-
   ;; ~M-s h l~ hilite lines e.g. log file evaluation; see:
   ;; https://www.masteringemacs.org/article/highlighting-by-word-line-regexp
   M-x highlight-lines-matching-regexp
@@ -692,34 +695,40 @@
 }
 
 @block{@block-name{Mapping Functions}
-  [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html][Mapping Functions]]
-  mapconcat
-  (mapcar 'string "abc")
-  (mapcar 'list '(a b c d)) ; => ((a) (b) (c) (d))
-  (mapcan 'list '(a b c d)) ; => (a b c d)  ;; i.e. with reduction
-  mapc ;; like mapcar; used for side-effects only
-
-  ;; mapconcat is like joins result list into a string with a separator:
-  (mapconcat 'symbol-name '(The cat in the hat) "-") ; => "The-cat-in-the-hat"
-
   https://www.gnu.org/software/emacs/manual/html_node/elisp/Sequences-Arrays-Vectors.html
+  https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html
+  @lisp{
+    mapconcat
+    (mapcar 'string "abc")
+    (mapcar 'list '(a b c d)) ; => ((a) (b) (c) (d))
+    (mapcan 'list '(a b c d)) ; => (a b c d)  ;; i.e. with reduction
+    ;; -partial is from dash.el
+    (mapcar (-partial #'apply #'+) '((1 2 3) (4 5 6))) ;; => (6 15)
 
-  (split-string "[  aaa
-   bbb   ]" (or split-string-default-separators (rx (or "[" "]"))))
-  ;; => ("[" "aaa" "bbb" "]")
+    mapc ;; like mapcar; used for side-effects only
 
-  Filter list:
-  (remove-if (lambda (e) (eq e 1)) '(1 2))
-  ;; https://www.reddit.com/r/emacs/comments/7dp6oa/comment/dpzi5hz/?utm_source=share&utm_medium=web2x&context=3
-  (seq-filter (apply-partially #'< 3) '(1 2 3 4 5 6))
+    ;; mapconcat is like joins result list into a string with a separator:
+    (mapconcat 'symbol-name '(The cat in the hat) "-") ; => "The-cat-in-the-hat"
+
+    (split-string "[  aaa
+     bbb   ]" (or split-string-default-separators (rx (or "[" "]"))))
+    ;; => ("[" "aaa" "bbb" "]")
+
+    ;; filter list
+    (remove-if (lambda (e) (eq e 1)) '(1 2))
+    ;; https://www.reddit.com/r/emacs/comments/7dp6oa/comment/dpzi5hz/?utm_source=share&utm_medium=web2x&context=3
+    (seq-filter (apply-partially #'< 3) '(1 2 3 4 5 6))
+  }
 }
 
 @block{@block-name{TODOs}
-  Comment buffer ??? See [[https://www.youtube.com/watch?v=NlP3EDS6WGE][System Crafters: Planning the New Emacs From Scratch]]
+  Comment buffer - see System Crafters: Planning the New Emacs From Scratch
+  https://www.youtube.com/watch?v=NlP3EDS6WGE
   (towards the end of the stream) crdt.el is a real-time collaborative editing
   environment for Emacs using Conflict-free Replicated Data Types.
 
-  [[https://www.youtube.com/watch?v=wqdT0xKMQT8][System Crafters: The Hidden Value of the Tab Bar]]
+  System Crafters: The Hidden Value of the Tab Bar
+  https://www.youtube.com/watch?v=wqdT0xKMQT8
 }
 
 @block{@block-name{Startup / Loading process}
