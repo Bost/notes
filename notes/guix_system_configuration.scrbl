@@ -1,7 +1,43 @@
 #lang notes
 
+@block{@block-name{Bootable ISO-9660 installation image}
+  # Instantiate operating system declaration:
+  set latest (ls --sort=time --almost-all ~/.cache/guix/checkouts/ | head -1)
+  cd ~/.cache/guix/checkouts/$latest
+  # create bootable ISO-9660 installation /gnu/store/...-image.iso
+  guix system image -t iso9660 gnu/system/install.scm
+  # set isoImg /gnu/store/...-image.iso
+  #
+  # Alternatively download pre-build ISO image:
+  set url    https://ftp.gnu.org/gnu/guix
+  # See:
+  # 1. https://guix.gnu.org/en/download/latest/
+  # 2. https://ci.guix.gnu.org/jobset/images - leads to builds containing
+  # '...-image.iso' files for x86_64-linux
+  set version 1.3.0  # or first 7 chars of the commit id from the git repository
+  #
+  # Install Guix binaries on top of other OS:
+  # set tarball guix-binary-$version.x86_64-linux.tar.xz
+  #
+  # Install standalone Guix OS:
+  # set isoImg guix-system-install-1.3.0.x86_64-linux.iso   # TODO emacs: font-facing of numbers overrides comment-face
+  echo wget $url/$isoImg $url/$isoImg.sig
+  # get the public key and import it:
+  #   wget 'https://sv.gnu.org/people/viewgpg.php?user_id=127547' -qO - | gpg --import -
+  #
+  # note: not sure if the output of pgp can be grep-ed. There might be something
+  # about the way gpg outputs text to stdout
+  gpg --verify $isoImg.sig    # look for 'Good signature'
+  # write the iso image to USB (erase / overwrite its content)
+  set blockDevice /dev/sdcX   # see `lsblk --nodeps --output PATH,MODEL,TRAN,LABEL`
+  udisksctl unmount --block-device $blockDevice
+  echo sudo dd if=$isoImg of=$blockDevice status=progress # 'echo' for safety
+  sync
+}
+
 @block{@block-name{System Configuration}
-  [[https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html][System Configuration]]
+  System Configuration
+  https://guix.gnu.org/manual/en/html_node/Using-the-Configuration-System.html
 
   TODO see elisp-configuration-service
 
@@ -11,11 +47,6 @@
   guix install xdot
   guix system extension-graph /path/to/configuration.scm | xdot -
   guix home extension-graph /path/to/home-configuration.scm | xdot -
-
-  # instantiate operating system declaration:
-  set latest (ls --sort=time --almost-all ~/.cache/guix/checkouts/ | head -1)
-  cd ~/.cache/guix/checkouts/$latest
-  guix system image -t iso9660 gnu/system/install.scm
 
   # WARNING: loading compiled file /run/current-system/profile/lib/guile/3.0/site-ccache/guix/i18n.go failed:
   # TODO diff /gnu/store/phynqakkjshw8dnjmx3123k7nv92pqm0-configuration.scm /etc/config.scm
@@ -111,7 +142,8 @@
   guix time-machine --commit=HEAD   --disable-authentication -- describe
   guix time-machine --commit=<sha1> --disable-authentication -- describe
 
-  [[https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html][Upgrade Guix]]
+  Upgrade Guix
+  https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html
   # upgrade GuixOS on a foreign system (e.g. Ubuntu)
   sudo --login guix pull
   systemctl restart guix-daemon.service
@@ -123,16 +155,13 @@
   # sudo herd restart guix-daemon # is probably not needed
   # see also
   sudo herd status guix-daemon
-
-  [[id:e65e2b2a-062b-49f7-8017-68ec4ef20a5f][Remove Guix from Ubuntu]]
-  [[id:69f25a70-c039-488f-9382-91b998b7c0f5][Guix System Configuration]]
 }
 
 @block{@block-name{Advanced package management}
   Basic setup with manifests
-  [https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html]
+  https://guix.gnu.org/cookbook/en/html_node/Basic-setup-with-manifests.html
   Guix Profiles in Practice
-  [https://guix.gnu.org/cookbook/en/guix-cookbook.html#Guix-Profiles-in-Practice]
+  https://guix.gnu.org/cookbook/en/guix-cookbook.html#Guix-Profiles-in-Practice
 
   # hint: After setting `PATH', run `hash guix' to make sure your shell refers to `...'.
   # Add to ~/.bash_profile

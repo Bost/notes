@@ -1,6 +1,10 @@
 #lang notes
 
 @block{@block-name{Guile Scheme}
+  https://sourcegraph.com/search
+  https://sourcehut.org
+  https://codeberg.org
+
   alist - an association list, i.e. dictionary
   https://www.gnu.org/software/guile/manual/html_node/Alist-Example.html
 
@@ -88,6 +92,7 @@
     (map (cut * 2 <>) (1 2 3 4))
     ;; also variadic function arguments
     (define (partial fun . args)
+    ;; Note: 'cons' is a bit faster than 'append'
     (lambda x (apply fun (append args x))))
     ;; or
     (define* (partial fun #:rest args)

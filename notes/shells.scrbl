@@ -258,10 +258,10 @@
   https://rosettacode.org/wiki/Native_shebang
   https://rosettacode.org/wiki/Multiline_shebang
 
-  # bash shebang
-  # stop the script after any error
+  # shebang / hashbang
+  # -e   bash: stop the script after any error
   #!/bin/bash -e
-  # bash shebang debugging
+  # -x   bash: debug / trace execution steps
   # set -x; stop on error: set -e
   #!/usr/bin/env fish
 }

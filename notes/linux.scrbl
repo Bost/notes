@@ -733,7 +733,7 @@
   # https://forum.manjaro.org/t/cant-switch-windows-with-super-tab/2406/4
 
   # :shortcuts http://docs.xfce.org/xfce/xfconf/xfconf-query
-  xfconf-query --channel xfce4-keyboard-shortcuts -lv
+  xfconf-query --list --verbose --channel xfce4-keyboard-shortcuts # -lvc
   xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/custom/<Super>Tab" --reset
   # following might not be needed
   xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/default/<Super>Tab" --reset
@@ -889,10 +889,8 @@
   zip --recurse-paths --encrypt ./path/to/file.zip ./path/to/dir
   zip  -r              -e       ./path/to/file.zip ./path/to/dir
 
-  # :zip :unzip
   unzip ./path/to/file.zip -d ./path/to/extract-dir
-
-  # :unzip :untar in one step / command
+  # unzip and untar in one step / command
   tar -zxvf file.tar.gz
 
   # :listing :compression list file content
@@ -902,8 +900,6 @@
   tar --list --file FILE.tbz2
   tar --list --file FILE.tgz
   tar --list --file FILE.7z
-
-  # :listing content of a zip file
   unzip -l file.zip
 
   # tar / untar
@@ -921,25 +917,20 @@
 
   # :net :ping :traceroute - check connection
   mtr google.com
+  mtr --report www.google.com
   ethtool eth0
   ip neigh show | grep REACHABLE
   ip link show
-
-  # :net :ping :traceroute check connection
-  mtr --report www.google.com
 
   # :iproute2 :net open / listening ports and PIDs of associated processes.
   # tcp (-t) udp (-u)
   ss -tulpn  # ss - socket statistics replaces obsolete netstat
 
-  # edit entries
-  crontab -e
-  # view / list entries
-  crontab -l
+  crontab -e   # edit entries
+  crontab -l   # view / list / show / display entries
 
   # show everything (battery info etc)
-  # Advanced Configuration and Power Interface
-  acpi -V
+  acpi -V              # Advanced Configuration and Power Interface
   climate battery
 
   # set / increase / decrease display brightness
@@ -959,7 +950,7 @@
   # show mime type strings rather than the more traditional human readable ones
   file --mime fileName
 
-  # show first/last 100 bytes
+  # show first / last 100 bytes
   tail -c 100 fileName
   head -c 100 fileName
 
@@ -999,7 +990,6 @@
   # simple GUIs
   zenity, whiptail
 
-  # :metric :monitor
   | collectd | system statistics collection daemon                           |
   | telegraf | plugin-driven server agent for collecting & reporting metrics |
 
@@ -1405,7 +1395,7 @@
   # 1. erase everything on the device
   # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
   set --local deviceFile /dev/sd<?>    # see lsblk
-  sudo dd status=progress if=/dev/zero of=$deviceFile bs=4k && sync
+  sudo dd if=/dev/zero of=$deviceFile bs=4k status=progress && sync
   # 2. make a new partition on the device
   sudo fdisk     $deviceFile
   sudo mkfs.ext4 $deviceFile
@@ -1428,16 +1418,18 @@
 }
 
 @block{@block-name{Swap}
-  [[https://averagelinuxuser.com/linux-swap/][Linux swap: what it is and how to use it]]
-  New installations of Ubuntu 18.04 use a swap file instead of swap partition
-  8 * 1024 * 1048576 MB = 8 * 1073741824 B = 8589934592 B = 8GB
-  TODO create swap file using fallocate;
-  see https://www.tecmint.com/add-swap-space-on-ubuntu/
+  # Linux swap: what it is and how to use it
+  # https://averagelinuxuser.com/linux-swap/
+  # New installations of Ubuntu 18.04 use a swap file instead of swap partition
+  # 8 * 1024 * 1048576 MB = 8 * 1073741824 B = 8589934592 B = 8GB
+  # TODO create swap file using fallocate
+  # see https://www.tecmint.com/add-swap-space-on-ubuntu/
   /proc/sys/vm/swappiness
   /proc/sys/vm/vfs_cache_pressure
-  See [[http://www.pqxx.org/development/swapspace/][swapspace]] - the swap file manager
+  # See swapspace - the swap file manager
+  # http://www.pqxx.org/development/swapspace/
   set swapfile /swapfile
-  sudo dd status=progress if=/dev/zero of=$swapfile count=8388608 bs=1024
+  sudo dd if=/dev/zero of=$swapfile count=8388608 bs=1024 status=progress
   # sudo fallocate --length 8G $swapfile
   sync   # synchronize cached writes to persistent storage
   # permissions should be: -rw------- 1 root root

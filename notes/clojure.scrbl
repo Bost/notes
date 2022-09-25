@@ -16,7 +16,7 @@
   JVMCI protocol: between JMV and Graal -> {Truffle, TruffleRuby}
   Truffle language framework
   spec-provider - creates clojure spec from examples
-  zprint - pretty printer for clojure
+  zprint - pretty printer for clojure; has also an emacs package 'zprint-mode'
   Substrate VM - GraalVM native image generation
 
   dashing: drawing with certain velocity
@@ -227,6 +227,14 @@
     sudo apt install oracle-java8-set-default # may or may not be desired
     sudo update-alternatives --config java / javac
 
+    # On Guix, when following error appears:
+    #   java.lang.ClassNotFoundException: jdk.javadoc.doclet.Doclet
+    guix package -r openjdk -i openjdk:jdk
+    # or if the profile is messed up then:
+    guix package --list-profiles
+    guix package --profile=$HOME/.guix-profile      --remove openjdk --install openjdk:jdk
+    guix package --profile=$HOME/.guix-home/profile --remove openjdk --install openjdk:jdk
+
     # see /etc/profile.d/jdk.sh /etc/environment ~/.config/fish/config.fish
     # changes require logout and login
     set -x JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
@@ -234,7 +242,6 @@
   }
 
   @block{@block-name{Leiningen}
-    # leiningen:
     lein deps :tree                  # dependency tree
     lein classpath | sed 's/:/\n/g'  # classpath
     lein -o                          # run a task offline
@@ -242,13 +249,17 @@
     lein ancient upgrade :all :interactive :check-clojure :no-tests
     lein do clean, repl               # run multiple tasks
     lein cljsbuild test
-    #
+    # On Guix set JAVA_CMD when this error appears:
+    #   Java compiler not found; Be sure to use java from a JDK
+    #   rather than a JRE by modifying PATH or setting JAVA_CMD.
+    # set --export JAVA_CMD $HOME/.guix-profile/bin/java
     lein install
+    lein localrepo install target/virgil-x.y.z.jar lein-virgil x.y.z
     lein deploy clojars
     # create / open remotelly accessible repl (nrepl)
     lein repl :headless :host 0.0.0.0 :port <portNr>
-
-    # deps.edn ~ lein ancient
+    #
+    # deps.edn; clojure -M:outdated corresponds to `lein ancient`
     clojure -M:outdated --upgrade # --force
   }
 }
@@ -603,7 +614,7 @@
   ;; Type Hints: http://clojure.org/reference/java_interop#typehints
   (defn len2 [^String x] (.length x))
   (set! *warn-on-reflection* true)
-  ;; without "^String": call to charAt can't be resolved.
+  ;; Use a type hint '^String' so that the call to charAt can be resolved.
   (defn foo [^String s] (.charAt s 1))
   ;; return vals
   (defn hinted (^String []) (^Integer [a]) (^java.util.List [a & args]))
@@ -622,12 +633,21 @@
   (parser {:state (atom ufo.state/app-state)} '[:list/rec])
   (parser {:state (atom ufo.state/app-state)} '[(ufo.meth/'activate-rec! vms)])
 
-  ;; write hash-map to an eden file; `print` writes String as clojure.lang.Symbol
-  ;; `comp` also prints to REPL - may cause a freeze for large expression
-  ;; path "/tmp/data.edn" like stuff doesn't work
-  (->> {:a 1 :b 2} (pr) (with-out-str) (spit "data.edn"))
+  ;; Write hash-map to an eden file; `print` writes String as clojure.lang.Symbol
+  ;; Writing out under a path e.g. "/tmp/data.edn" doesn't work. File is created
+  ;; in the REPL working directory
+  ((comp (partial spit "data.edn") pr-str) {:a 1 :b 2})
+  (clojure.pprint/pprint *large-map* (clojure.java.io/writer "/tmp/data.edn"))
   ;; read hash-map from an eden file
   ((comp read-string slurp) "/tmp/data.edn")
+
+  ;; difference of sets
+  (clojure.set/difference (set [1 2 3]) (set [1 2 4])) ;; => #{3}
+  ;; Returns a negative number, zero, or a positive number
+  (compare "abc" "def")
+  ;; compare nested complex data structures
+  (require 'clojure.data)
+  (clojure.data/diff {:a 1} {:b 2})
 
   ;; two dots: clojurescript interop
   (.. object -property -property method)

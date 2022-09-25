@@ -5,10 +5,11 @@
 }
 
 @block{@block-name{Yggdrasil}
+  Yggdrasil
   https://yggdrasil-network.github.io/
 
-  Overlay network implementation of a new routing scheme for mesh networks. It is
-  designed to be a future-proof decentralised alternative to the structured
+  Overlay network implementation of a new routing scheme for mesh networks. It
+  is designed to be a future-proof decentralised alternative to the structured
   routing protocols commonly used today on the Internet and other networks.
   https://howto.yggno.de/start
 
@@ -28,10 +29,12 @@
   computer that is behind NAT.
 
   Alternative to VPN? TODO clarify anonymity:
-  Yggdrasil can be compared to a torus. It can also work through Tor and any Socks5.
+  Yggdrasil can be compared to a torus. It can also work through Tor and any
+  Socks5.
 
   From Yggdrasil FAQs:
-  Q: [[https://yggdrasil-network.github.io/faq.html#is-yggdrasil-anonymous][Is Yggdrasil anonymous?]]
+  Q: Is Yggdrasil anonymous?
+     https://yggdrasil-network.github.io/faq.html#is-yggdrasil-anonymous
   A: No, it is not a goal of the Yggdrasil project to provide anonymity. Direct
   peers over the Internet will be able to see your IP address and may be able to
   use this information to determine your location or identity.

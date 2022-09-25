@@ -8,22 +8,33 @@
 
   I want to learn / Learn anything
   https://learn-anything.xyz/
+}
 
-  Firefox - How to allow a restricted port?
-  https://support.mozilla.org/en-US/questions/1083282
-  about:config
-  network.security.ports.banned.override
-  enter the port number as a string
+@block{@block-name{World Wide Web}
+  IPFS InterPlanetary File System
+  powers the Distributed Web A peer-to-peer hypermedia protocol designed to
+  preserve and grow humanity's knowledge by making the web upgradeable,
+  resilient, and more open.
+  Uses content-addressing / CID Content Identifier
+  https://ipfs.tech/#how
+  Content can be pined i.e. saved ("forever") or just cached for some time.
+  IPNS InterPlanetary Name System
+
+  HTTP / HTTPS - Hypertext Transfer Protocol
+  also hypermedia server protocols
+  Location based
 }
 
 @block{@block-name{OSE Open Source Ecology}
-  @hyperlink["https://en.wikipedia.org/wiki/Open_Source_Ecology"]{Wikipedia: Open Source Ecology}
+  Wikipedia: Open Source Ecology
+  https://en.wikipedia.org/wiki/Open_Source_Ecology
   Network of farmers, engineers, architects and supporters, whose main goal is
   the eventual manufacturing of the Global Village Construction Set (GVCS)
 }
 
 @block{@block-name{Smart the collective brain}
-  @hyperlink["https://www.ted.com/talks/matt_ridley_when_ideas_have_sex"]{TED Talk: When ideas have sex}
+  TED Talk: When ideas have sex
+  https://www.ted.com/talks/matt_ridley_when_ideas_have_sex
   The engine of human progress has been the meeting and mating of ideas to make
   new ideas. It's not important how clever individuals are, what really matters
   is how smart the collective brain is.
@@ -39,7 +50,8 @@
 
 @block{@block-name{Better Ideas}
   Some DSL languages are too-limiting as programming languages.
-  See @hyperlink["https://ambrevar.xyz/guix-advance/index.html"]{Guix: A most advanced operating system}
+  Guix: A most advanced operating system
+  https://ambrevar.xyz/guix-advance/index.html
   |                                                 | better ideas                          |
   |-------------------------------------------------+---------------------------------------|
   | Bash, Zsh, Fish                                 | Eshell, Scheme Shell (scsh)           |
@@ -51,7 +63,8 @@
 
   mcron - see also https://github.com/leahneukirchen/snooze
 
-  @hyperlink["https://ambrevar.bitbucket.io/emacs-eshell/"]{Eshell as a main shell} Link rotted
+  Eshell as a main shell
+  https://ambrevar.bitbucket.io/emacs-eshell/  (Link rotted)
 }
 
 @block{@block-name{Second system syndrome / effect}
@@ -78,8 +91,10 @@
   https://youtu.be/hZJnlxM0c0I?t=162
 
   Solution of a Differential Equations (DE) is a function, not value
-  @hyperlink["https://youtu.be/czL0ZSscbsM?t=II709"]{National Renewable Energy Laboratory: Energy-Cell Efficiencies}
-  @hyperlink["http://blog.sciencevsmagic.net/science/fractal-machine/"]{Fractals}
+  National Renewable Energy Laboratory: Energy-Cell Efficiencies
+  https://youtu.be/czL0ZSscbsM?t=II709
+  Fractals
+  http://blog.sciencevsmagic.net/science/fractal-machine/
   Go over the book from the Prof. from Karlsruhe
 
   http://www.zdrojak.cz/clanky/tvorba-moderniho-e-shopu-dokonceni-uzivatelske-casti/
@@ -118,7 +133,8 @@
 }
 
 @block{@block-name{Simulation and Emulation}
-  @hyperlink["https://www.tutorialspoint.com/what-is-the-difference-between-a-simulator-and-an-emulator"]{What is the difference between a simulator and an emulator?}
+  What is the difference between a simulator and an emulator?
+  https://www.tutorialspoint.com/what-is-the-difference-between-a-simulator-and-an-emulator
   Simulator mimics while Emulator performs
 }
 
@@ -130,16 +146,19 @@
   | ~,~ | move 1 frame forward  |
   | ~.~ | move 1 frame backward |
 
-  @hyperlink["https://www.youtube.com/watch?v=v96LTfmtDPU&t=626s"]{YouTube: Making a bolt with double threads}
+  YouTube: Making a bolt with double threads
+  https://www.youtube.com/watch?v=v96LTfmtDPU&t=626s
 }
 
 @block{@block-name{code_aster}
   Finite-Elemente-Method and Numerical Simulation Software
   Structures and Thermomechanics Analysis for Studies and Research
-  @hyperlink["https://www.code-aster.org/forum2/viewtopic.php?id=23453"]{Forum post: Code_Aster inside a Docker container}
+  Forum post: Code_Aster inside a Docker container
+  https://www.code-aster.org/forum2/viewtopic.php?id=23453
 
 @block{@block-name{Message Passing Interface MPI}
-     MPI - @hyperlink["https://de.wikipedia.org/wiki/Message_Passing_Interface"]{Message Passing Interface}
+     MPI Message Passing Interface
+     https://de.wikipedia.org/wiki/Message_Passing_Interface
      for parallel computing on distributed systems
   }
 
@@ -152,7 +171,8 @@
 }
 
 @block{@block-name{Singularity}
-  @hyperlink["https://singularity.hpcng.org/"]{Singularity}
+  Singularity
+  https://singularity.hpcng.org/
   Container System for HPC High Performance Computing
 }
 
@@ -168,11 +188,14 @@
 }
 
 @block{@block-name{Bike}
-  Prepare routes: @hyperlink["https://my.viewranger.com/user/routes/myroutes"]{View Ranger}
+  Prepare routes: View Ranger
+  https://my.viewranger.com/user/routes/myroutes
 
   @block{@block-name{Weather}
-    @hyperlink["https://www.wetter.com/deutschland/stuttgart/DE0010287.html"]{Stuttgart}
-    @hyperlink["https://www.wetter.com/deutschland/muenchen/DE0006515.html"]{München}
+    Stuttgart
+    https://www.wetter.com/deutschland/stuttgart/DE0010287.html
+    München
+    https://www.wetter.com/deutschland/muenchen/DE0006515.html
   }
 
   @block{@block-name{Cafe Fietsen}
@@ -186,21 +209,24 @@
     Cut plasters
 
     @block{@block-name{Bicycle chain}
-       @hyperlink["https://youtu.be/gXd-3UnqoaM?t=37"]{YouTube: When to replace chain}
+      YouTube: When to replace chain
+      https://youtu.be/gXd-3UnqoaM?t=37
 
-       | stretch | nr-of-gears | verdict |
-       |---------+-------------+---------|
-       |    0.5% | >= 11       | replace |
-       |   0.75% | <= 10       | replace |
-       |      1% | any         | replace |
+      | stretch | nr-of-gears | verdict |
+      |---------+-------------+---------|
+      |    0.5% | >= 11       | replace |
+      |   0.75% | <= 10       | replace |
+      |      1% | any         | replace |
 
-       @hyperlink["https://youtu.be/FzyRCcjRuu0?t=98"]{YouTube: Measure Chain Wear}
+      YouTube: Measure Chain Wear
+      https://youtu.be/FzyRCcjRuu0?t=98
+      YouTube - GCN Show: Measure Chain Wear
+      https://youtu.be/a0xdsTQaFtg
+      YouTube - GCN Show: Replace A Bicycle Chain
+      https://youtu.be/rWchudX-Tqs
 
-       @hyperlink["https://youtu.be/a0xdsTQaFtg"]{YouTube - GCN Show: Measure Chain Wear}
-       @hyperlink["https://youtu.be/rWchudX-Tqs"]{YouTube - GCN Show: Replace A Bicycle Chain}
-       Buy
-       Chain length - number of speeds
-       Chain tools - ask: Is mine the right one?
+      Chain length - number of speeds
+      Chain tools - ask: Is mine the right one?
     }
 
     @block{@block-name{Videos}
