@@ -1,7 +1,7 @@
 #lang notes
 
 @block{@block-name{systemd}
-  [[https://systemd.io/][systemd]]
+  https://systemd.io/
   A suite of basic building blocks for a Linux system. It provides a system and
   service manager that runs as PID 1 and starts the rest of the system.
   #+BEGIN_SRC bash :results output
@@ -28,8 +28,11 @@
   systemctl --user enable         <unit>
   systemctl --user disable        <unit>
 
-  # :ubuntu (ubuntu 11.10 or later), gnome or KDE
-  systemctl      status  lightdm     # or: sddm / gdm / kdm
+  # Ubuntu 11.10 or later
+  # See GUI composition https://unix.stackexchange.com/a/464321
+  systemctl      status  lightdm   # Xfce
+  systemctl      status      gdm   # or gdm3 - GNOME
+  systemctl      status      kdm   # KDE
   sudo systemctl restart lightdm
 
   # systemd: reload the systemd manager configuration
