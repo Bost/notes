@@ -622,7 +622,7 @@
   ;; put to build.boot:
   ;; [boot-deps "0.1.9"] ;; boot -d boot-deps ancient
 
-  ;; om-next: inspect app-state
+  ;; om-next inspect app-state pretty print
   (in-ns 'ufo.client)
   (require '[cljs.pprint :as pp])
   (def norm-data (om/tree->db RootView ufo.state/app-state true))
@@ -633,9 +633,9 @@
   (parser {:state (atom ufo.state/app-state)} '[:list/rec])
   (parser {:state (atom ufo.state/app-state)} '[(ufo.meth/'activate-rec! vms)])
 
-  ;; Write hash-map to an eden file; `print` writes String as clojure.lang.Symbol
-  ;; Writing out under a path e.g. "/tmp/data.edn" doesn't work. File is created
-  ;; in the REPL working directory
+  ;; Write / pretty-print hash-map to an eden file; `print` writes String as
+  ;; clojure.lang.Symbol Writing out under a path e.g. "/tmp/data.edn" doesn't
+  ;; work. File is created in the REPL working directory
   ((comp (partial spit "data.edn") pr-str) {:a 1 :b 2})
   (clojure.pprint/pprint *large-map* (clojure.java.io/writer "/tmp/data.edn"))
   ;; read hash-map from an eden file
@@ -646,7 +646,7 @@
   ;; Returns a negative number, zero, or a positive number
   (compare "abc" "def")
   ;; compare nested complex data structures
-  (require 'clojure.data)
+  (require 'clojure.data) ;; the diff won't work without this
   (clojure.data/diff {:a 1} {:b 2})
 
   ;; two dots: clojurescript interop
@@ -840,8 +840,9 @@
   ;; https://github.com/tolitius/mount
   ;; https://github.com/danielsz/system - PostgreSQL included
 
-  (type (array-map :a 10))
-  ;; => clojure.lang.PersistentArrayMap
+  (array-map :a 10)                    ;; => {:a 10}
+  (type (array-map :a 10))             ;; => clojure.lang.PersistentArrayMap
+  ((juxt keys vals) (array-map :a 10)) ;; => [(:a) (10)]
 
   ;;
   (try
