@@ -70,28 +70,6 @@
   obexftp -b XX:XX:XX:XX:XX:XX -c /Download -d remote-fname
 }
 
-@block{@block-name{ICMP Internet Control Message Protocol}
-  Send error messages & operational information
-}
-
-@block{@block-name{DHCP Dynamic Host Configuration Protocol}
-  Network management protocol used on TCP/IP networks
-}
-
-@block{@block-name{LDAP Lightweight Directory Access Protocol}
-  Accessing and maintaining distributed directory information services over an
-  Internet Protocol (IP) network.
-  Client authentication is a part of LDAP.
-}
-
-@block{@block-name{PAM Pluggable Authentication Module}
-  PAM
-}
-
-@block{@block-name{SASL Simple Authentication and Security Layer}
-  SASL
-}
-
 @block{@block-name{tcpdump}
   https://www.tcpdump.org/
   tcpdump - command-line packet analyzer
@@ -116,9 +94,9 @@
   see also:
   https://github.com/tldr-pages/tldr
   https://github.com/cheat/cheat
+
   Master the command line, in one page
   https://github.com/jlevy/the-art-of-command-line
-
 
   Climate - the ultimate command line tool for Linux
   https://github.com/adtac/climate
@@ -271,22 +249,21 @@
   uptime               # load average from /proc/uptime
   top -b -n 1 | grep load
   cat /proc/loadavg    # 4. column: processes running/total; 5.: last used pid
-  # :nr-of-processors
+  # number of processors
   lscpu | grep "^CPU"
-  # :cores-per-processor
+  # cores per processor
   cat /proc/cpuinfo | grep cores
 
-  # :gpg :sig - download and import gnu-keyring
+  # download and import gnu-keyring
   wget http://ftp.heanet.ie/mirrors/gnu/gnu-keyring.gpg && \
   gpg --import gnu-keyring.gpg
 
-  # :wget - limit the download speed to amount bytes per second
+  # wget - limit the download speed to amount bytes per second
   wget --limit-rate=20k URL
 
   # download & verify / check bitcoin core wallet
-  # https://bitcoincore.org/en/download/
-  set --local btcVer        22.0
-  set --local btcUrl        https://bitcoin.org/bin/bitcoin-core-$btcVer
+  set --local btcVer        23.0
+  set --local btcUrl        https://bitcoincore.org/bin/bitcoin-core-$btcVer
   set --local fChecksums    SHA256SUMS
   set --local fSignatures   $fChecksums.asc
   set --local fTarGz        bitcoin-$btcVer-x86_64-linux-gnu.tar.gz
@@ -298,12 +275,14 @@
   gpg --keyserver hkps://keys.opengpg.org --refresh-keys
   wget $uChecksums $uSignatures $uTarGz
   sha256sum --ignore-missing --check $fChecksums
-  tar xvf $fTarGz
+  # unzip and untar
+  # -z --gzip, -x --extract, -v --verbose, -f --file
+  tar --gzip --extract --verbose --file=$fTarGz  # tar zxvf $fTarGz
 
-  # :gpg :sig - verify file
+  # verify file
   gpg --verify file.sig file
 
-  # :fs - number of inodes; every file or directory requires 1 inode
+  # fs / filesystem - number of inodes; every file or directory requires 1 inode
   df -i
   df --inodes
 
@@ -759,18 +738,18 @@
   # keyboard: print contents of X events
   xev
 
-  # :shortcuts
+  # shortcuts keybindings
   xfce4-keyboard-settings
   # https://forum.manjaro.org/t/cant-switch-windows-with-super-tab/2406/4
-
-  # :shortcuts http://docs.xfce.org/xfce/xfconf/xfconf-query
+  #
+  # http://docs.xfce.org/xfce/xfconf/xfconf-query
   xfconf-query --list --verbose --channel xfce4-keyboard-shortcuts # -lvc
   xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/custom/<Super>Tab" --reset
   # following might not be needed
   xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/default/<Super>Tab" --reset
   xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/custom/<Super>Tab" --create --type string --set "empty"
   xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/default/<Super>Tab" --create --type string --set "empty"
-
+  #
   # if changes in the xml don't work, use xfce4-settings-editor
   locate xfce4-keyboard-shortcuts.xml
   find ~ -name xfce4-keyboard-shortcuts.xml
@@ -921,7 +900,8 @@
   zip  -r              -e       ./path/to/file.zip ./path/to/dir
 
   unzip ./path/to/file.zip -d ./path/to/extract-dir
-  # unzip and untar in one step / command
+  # unzip and untar in one step / with one command
+  # -z, --gzip, --gunzip, --ungzip   Filter the archive through gzip
   tar -zxvf file.tar.gz
 
   # :listing :compression list file content
@@ -1375,6 +1355,7 @@
 }
 
 @block{@block-name{rsync}
+  # rsync must be installed on the target machine!
   # March 2022: the scp Secure Copy Protocol is obsolete! Use sftp or rsync
 
   # recursive copy `dotfiles` and `cheat` to server:~/dev/

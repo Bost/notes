@@ -16,6 +16,10 @@
 }
 
 @block{@block-name{Various}
+  ;; drawing, schemes, painting; draw lines, rectangles and ellipses with mouse
+  ;; and/or keyboard.
+  M-x artist-mode   ;; more friendly than picture-mode / edit-picture
+  ;; Use mouse middle-click for context menu
 
   | ~C-h l~     | M-x view-lossage        | show last input keystrokes / commands |
   | ~C-x C-k l~ | M-x kmacro-edit-lossage | ... and turn them to a macro          |

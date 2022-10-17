@@ -1,6 +1,14 @@
 #lang notes
 
-@block{@block-name{TODOs}
+@block{@block-name{Stacks}
+  LAMP Linux Apache, MySQL, PHP
+  LEMP (container stack) Linux, (E)Nginx, MariaDB (MySQL replacement), PHP
+  - open source web platform
+  - to run dynamic web sites and servers.
+  LEPP (container stack) Linux, (E)Nginx, PostgreSQL, PHP
+}
+
+@block{@block-name{TODOs - programming}
   delimited continuations
   module system / OCaml
   hygienic macros
@@ -57,10 +65,6 @@
   because it ignores the result(s).
 }
 
-@block{@block-name{WSL}
-  Windows Subsystem for Linux 2 (WSL 2)
-}
-
 @block{@block-name{Data structures (are / do):}
   - static (Algorithms - dynamic)
   - reasoning by an induction: consider the base case(s) and the general.
@@ -92,27 +96,6 @@
   https://youtu.be/E-g3Ls1GRz4
 }
 
-@block{@block-name{Stacks}
-  LAMP Linux Apache, MySQL, PHP
-  LEMP (container stack) Linux, (E)Nginx, MariaDB (MySQL replacement), PHP
-    - open source web platform
-    - to run dynamic web sites and servers.
-  LEPP (container stack) Linux, (E)Nginx, PostgreSQL, PHP
-}
-
-@block{@block-name{BusyBox}
-  provides Unix utilities in a single executable file; 2.1 MB in tar.bz2
-  Home page
-  https://www.busybox.net/
-  Git Repo
-  https://git.busybox.net/busybox
-}
-
-@block{@block-name{Wasm - WebAssembly}
-  https://webassembly.org
-  WebAssembly is a binary instruction format for a stack-based virtual machine.
-}
-
 @block{@block-name{bind mount}
   replicates existing directory tree under a different point.
 
@@ -122,6 +105,31 @@
 }
 
 @block{@block-name{Various}
+  WSL Windows Subsystem for Linux 2 (WSL 2)
+
+  ICMP Internet Control Message Protocol
+  Send error messages & operational information
+
+  DHCP Dynamic Host Configuration Protocol
+  Network management protocol used on TCP/IP networks
+
+  LDAP Lightweight Directory Access Protocol
+  Accessing and maintaining distributed directory information services over an
+  Internet Protocol (IP) network.
+  Client authentication is a part of LDAP.
+
+  PAM Pluggable Authentication Module
+  SASL Simple Authentication and Security Layer
+
+  BusyBox - Unix utilities in a single executable file; 2.1 MB in tar.bz2
+  https://www.busybox.net/
+  Git Repo
+  https://git.busybox.net/busybox
+
+  Wasm - WebAssembly
+  https://webassembly.org
+  WebAssembly is a binary instruction format for a stack-based virtual machine.
+
   Clang - drop-in replacement for the GNU Compiler Collection (GCC)
 
   Web Content Accessibility Guidelines (WCAG) 2 Level AAA Conformance
