@@ -1,10 +1,21 @@
 #lang notes
 
-[[https://github.com/jlevy/the-art-of-command-line][the-art-of-command-line]]
+@block{@block-name{How to verify your Ubuntu download}
+  # Obtain key(s) 0x46181433FBB75451 and 0xD94AA3F0EFE21092 from the Ubuntu key
+  # server
+  gpg --keyid-format long --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x46181433FBB75451 0xD94AA3F0EFE21092
+  # Inspect the key fingerprints
+  gpg --keyid-format long --list-keys --with-fingerprint 0x46181433FBB75451 0xD94AA3F0EFE21092
+  # Verify the SHA256 checksum file
+  gpg --keyid-format long --verify SHA256SUMS.gpg SHA256SUMS
+  # Verify the ISO file
+  # --ignore-missing  don't fail or report status for missing files
+  sha256sum --ignore-missing --check SHA256SUMS
+}
 
 @block{@block-name{Udev}
   Userspace Device udev
-  [https://en.wikipedia.org/wiki/Udev]
+  https://en.wikipedia.org/wiki/Udev
   device manager for linux kernel; manages nodes in the /dev directory
 }
 
@@ -101,16 +112,19 @@
   sudo tcpdump -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
 }
 
-@block{@block-name{Various commands}
+@block{@block-name{Various}
   see also:
   https://github.com/tldr-pages/tldr
   https://github.com/cheat/cheat
+  Master the command line, in one page
+  https://github.com/jlevy/the-art-of-command-line
+
 
   Climate - the ultimate command line tool for Linux
-  [https://github.com/adtac/climate]
+  https://github.com/adtac/climate
 
   Compare shells
-  [https://htmlpreview.github.io/?https://raw.githubusercontent.com/michaelmacinnis/oh/master/doc/comparison.html]
+  https://htmlpreview.github.io/?https://raw.githubusercontent.com/michaelmacinnis/oh/master/doc/comparison.html
 
   find / search in terminal Shift + Ctrl + F
 
