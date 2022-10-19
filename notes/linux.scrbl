@@ -262,6 +262,7 @@
   wget --limit-rate=20k URL
 
   # download & verify / check bitcoin core wallet
+  # The Qt-client may require `sudo apt install libxcb-xinerama0`
   set --local btcVer        23.0
   set --local btcUrl        https://bitcoincore.org/bin/bitcoin-core-$btcVer
   set --local fChecksums    SHA256SUMS
