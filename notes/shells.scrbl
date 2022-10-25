@@ -393,19 +393,19 @@
 }
 
 @block{@block-name{Other shells}
-  @block{@block-name{Racket-Rash}
-    [[https://willghatch.net/publications/rash-gpce-2018-preprint.pdf][PDF: Rash: From Reckless Interactions to Reliable Programs]]
-  }
+  Rash: From Reckless Interactions to Reliable Programs
+  https://willghatch.net/publications/rash-gpce-2018-preprint.pdf
 
-  @block{@block-name{TODO globbing}
-    [[https://github.com/willghatch/racket-rash/issues/64][Github Issue: Question mark '?' char in a string #64]]
-    [[https://github.com/willghatch/racket-rash/issues/67][Github Issue: Regexes in grep #67]]
-    globbing vs. PEG expressions https://docs.racket-lang.org/peg/index.html
-  }
+  scsh Scheme Shell - latest release May 16 2006, ver0.6.7;
+  https://scsh.net/
 
-  @block{@block-name{scsh Scheme Shell}
-    latest release May 16 2006, ver0.6.7; https://scsh.net/
-  }
+  TODO globbing
+  https://github.com/willghatch/racket-rash/issues/64
+  Github Issue: Question mark '?' char in a string #64
+  https://github.com/willghatch/racket-rash/issues/67
+  Github Issue: Regexes in grep #67
+  https://docs.racket-lang.org/peg/index.html
+  globbing vs. PEG expressions
 }
 
 @block{@block-name{Iterate over array/list}
