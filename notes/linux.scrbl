@@ -316,23 +316,28 @@
   # display file or file system status; alternative to ls
   stat -c "%y %s %n" *
 
-  # :listing sort by size; -l     use a long listing format
+  # :listing - sort by size; -l     use a long listing format
   ls --sort=size -l
   ls --sort=size -l --reverse
 
-  # :listing only one column
+  # :listing - files newer than ...
+  ls -la (find . -type f -newermt "2022-10-01")
+  # listing files older than ...
+  ls -la (find . -type f -not -newermt "2022-10-01")
+
+  # :listing - only one column
   ls --format=single-column
 
-  # :listing only directories, 1 entry per line
+  # :listing - only directories, 1 entry per line
   ls -d1 */
 
-  # :listing count of files in ./path/to/dir
+  # :listing - count of files in ./path/to/dir
   ls -1 ./path/to/dir | wc -l
 
-  # :listing show full paths (alias lff)
+  # :listing - show full paths (alias lff)
   ls -lrt -d -1 $PWD/{*,.*}
 
-  # :listing file all extentions / filetypes in current directory
+  # :listing - file all extentions / filetypes in current directory
   find ./ -type f | perl -ne 'print $1 if m/\.([^.\/]+)$/' | sort -u
 
   # line count, word count
