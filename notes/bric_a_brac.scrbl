@@ -1,15 +1,5 @@
 #lang notes
 
-@block{@block-name{Various}
-  shrug ¯\_(ツ)_/¯
-
-  Nikita Voloboev: Everything I Know
-  https://wiki.nikiv.dev/
-
-  I want to learn / Learn anything
-  https://learn-anything.xyz/
-}
-
 @block{@block-name{World Wide Web}
   IPFS InterPlanetary File System
   powers the Distributed Web A peer-to-peer hypermedia protocol designed to
@@ -86,7 +76,31 @@
   https://github.com/zeit/hyper
 }
 
+@block{@block-name{Google Advanced / Extended Search}
+  guix-home-legacy-configs-backup site:logs.guix.gnu.org
+  # old discussions
+  bost site:logs.guix.gnu.org
+  #
+  guix filetype:pdf
+  define:dictionary
+  (beer OR wine) AND cheese
+  # search for a job but not at Evil Inc
+  job -evil
+  # wildcard - will match any word or phrase
+  anything * between
+  # Return the most recent cached version of a web page
+  cache:guix.gnu.org
+}
+
 @block{@block-name{Bric a brac}
+  shrug ¯\_(ツ)_/¯
+
+  Nikita Voloboev: Everything I Know
+  https://wiki.nikiv.dev/
+
+  I want to learn / Learn anything
+  https://learn-anything.xyz/
+
   Five rating emojis / icons
   https://youtu.be/hZJnlxM0c0I?t=162
 

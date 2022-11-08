@@ -5,12 +5,19 @@
   find ./ -name file.ext 2>&1 | grep -v "Permission denied\|Invalid argument"
   # see also psub
 
-  # bash: find: redirect: separate / combine sdterr and stdout; does not work with
-  # the tee command
+  # grep / ripgrep / rg
+  grep -v, --invert-match # select non-matching lines
+  # in grep -L is the complement / invert / negate of -l
+  grep -l, --files-with-matches  # print only names of FILEs with selected lines
+  grep -L, --files-without-match # only print FILE names containing no match
+  # in ripgrep -L, --follow # follow symbolic links
+
+  # bash: find: redirect: separate / combine sdterr and stdout; does not work
+  # with the tee command
   ./cmd.sh 1>std.out 2>std.err / ./cmd.sh &>combined.out
 
-  # emacs find - exclude backup files; '+' in the '--exec ... +' - the command is
-  # built by appending each selected file name at the end
+  # emacs find - exclude backup files; '+' in the '--exec ... +' - the command
+  # is built by appending each selected file name at the end
 
   # find and delete empty files / dirs
   find . -empty -type f -delete

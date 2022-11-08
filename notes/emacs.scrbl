@@ -16,6 +16,32 @@
 }
 
 @block{@block-name{Various}
+
+  ;; equality
+  (eq 'foo 'foo)                             ;; =>  t
+  (eq ?A ?A)                                 ;; =>  t
+  ;; Equal floats may or may not be the same object.
+  (eq 3.0 3.0)                               ;; =>  t or nil
+  (eq (make-string 3 ?A) (make-string 3 ?A)) ;; =>  nil
+  ;; Equal string constants or may not be the same object.
+  (eq "asdf" "asdf")                         ;; =>  t or nil
+  (string= "abc" "abc")                      ;; =>  t
+  (string= "abc" "ABC")                      ;; =>  nil
+  (string= "ab" "ABC")                       ;; =>  nil
+  ;; unlike equal, if either argument is not a string or symbol, string= signals
+  ;; an error.
+  ;; (string= "abc" 1)                       ;; => error
+  (eq '(1 (2 (3))) '(1 (2 (3))))             ;; =>  nil
+  (setq foo '(1 (2 (3))))                    ;; =>  (1 (2 (3)))
+  (eq foo foo)                               ;; =>  t
+  (eq foo '(1 (2 (3))))                      ;; =>  nil
+  (eq [(1 2) 3] [(1 2) 3])                   ;; =>  nil
+  (eq (point-marker) (point-marker))         ;; =>  nil
+  ;; The make-symbol function returns an uninterned symbol, distinct from the
+  ;; symbol that is used if you write the name in a Lisp expression. Distinct
+  ;; symbols with the same name are not eq. See Creating and Interning Symbols.
+  (eq (make-symbol "foo") 'foo)              ;; =>  nil
+
   ;; drawing, schemes, painting; draw lines, rectangles and ellipses with mouse
   ;; and/or keyboard.
   M-x artist-mode   ;; more friendly than picture-mode / edit-picture
@@ -37,6 +63,13 @@
   Guile also supports the loading of extension libraries written in C. This
   enables user code to add new primitive operations to Guile, and so to bypass
   the limitation present in Emacs Lisp.
+
+  alist - association list
+  plist - property list
+  @lisp{
+    (plist-get (plist-put (list ':host "localhost") ':port 42)  ':port)
+    ;; => 42 (#o52, #x2a, ?*)
+  }
 
   ;; https://endlessparentheses.com/get-in-the-habit-of-using-sharp-quote.html
   ;; It is a good practice to hash / sharp quote every symbol that is the name
@@ -371,7 +404,7 @@
   ;; TODO have a look at dired sorting
   https://www.emacswiki.org/emacs/DiredSortBySizeAndExtension
   https://github.com/jojojames/dired-sidebar
-  http://ergoemacs.org/emacs/dired_sort.html
+  http://xahlee.info/emacs/emacs/dired_sort.html
 
   ;; change file attributes: readonly / writable / executable
   ~M~ / M-x dired-do-chmod ; then enter e.g. '+x'

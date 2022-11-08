@@ -5,8 +5,9 @@
   https://sourcehut.org
   https://codeberg.org
 
-  alist - an association list, i.e. dictionary
+  alist - association list, i.e. dictionary
   https://www.gnu.org/software/guile/manual/html_node/Alist-Example.html
+  plist - property list (see plist in emacs-lisp)
 
   Create and publish Guile projects
   https://gitlab.com/a-sassmannshausen/guile-hall
@@ -17,8 +18,24 @@
 
   Google: daviwil system common
 
+  ;; Read a sexp from the input port PORT, or from the current input
+  ;; port if PORT is not specified
   (read)
+  (+ 1 2)  ;; manually typed-in
+  $7 = 3
   (read-line) ;; doesn't exist?
+  (eval-string "(+ 1 2)" (interaction-environment))
+  (eval '(+ 1 2) (interaction-environment))
+  (cdr (syntax->datum (call-with-input-string "(+ 1 2)" read-syntax)))
+  ;; read a string and turn in to a sexp and evaluate a part of it
+  (eval (cadr (syntax->datum
+             (call-with-input-string
+                 "(foo (+ 1 2))"
+               read-syntax)))
+      (interaction-environment))
+   ;; read a string and show position where the sexp starts
+   (syntax-source (call-with-input-string "  (+ 1 2)" read-syntax))
+   => ((line . 0) (column . 2))
 
   - Monads are programmatic representations of stateful
   computation - which is more powerful than just 'doing' the computation, as

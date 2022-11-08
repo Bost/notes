@@ -1,6 +1,11 @@
 #lang notes
 
 @block{@block-name{Various}
+  # if `guix pull` show a warning:
+  #   channel '...' lacks 'introduction' field but '.guix-authorizations' found
+  # then make sure the channel definition contains:
+  # (introduction (make-channel-introduction "..." (openpgp-fingerprint "...")))
+
   # error: guile: warning: failed to install locale
   # solution:
   guix install glibc-locales
