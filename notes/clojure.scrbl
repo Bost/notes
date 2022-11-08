@@ -1,6 +1,24 @@
 #lang notes
 
 @block{@block-name{General}
+ https://stuartsierra.com/2016/01/09/how-to-name-clojure-functions
+ - A pure function can be replaced with its value - use noun, i.e.
+   preffer `age`, oveer `calculate-age` or `get-age.`
+ - A function with side-effects - use verb, i.e.
+   for constructors:      `create-...`
+   information retrieval: `get-...`, `fetch-...` (e.g. query a web service)
+ - Words which could be either nouns or verbs: assume noun by default then add
+   words to make verb phrases. E.g. `message` constructs a new object
+   representing a message, `send-message` transmits it.
+ - Function returning functions - use suffix '...-fn', or `...-fun`
+ - Function names should not repeat the name of the namespace
+   @lisp{
+     (ns products)
+     (defn product-price [product] ...) ; Bad, the 'product' is redundant
+     (defn price [product] ...)         ; Good
+   }
+
+
   What's the difference between a "sequence" and a "seq"?
   http://www.brainonfire.net/files/seqs-and-colls/main.html
 
@@ -89,10 +107,14 @@
   Problemy tazke pre comp, lahke pre cloveka (arimaa - until 2020, etc.)
   Lang words as a sound: celular automata: cell dyies / is born: play a tone
 
-  [[http://www.ted.com/talks/ayah_bdeir_building_blocks_that_blink_beep_and_teach.html][Code as a Lego Block]] - TED Talk
-  [[https://polylith.gitbook.io/polylith/][Polylith]] - SW architecture that applies functional thinking at the system scale
+  Code as a Lego Block - TED Talk
+  http://www.ted.com/talks/ayah_bdeir_building_blocks_that_blink_beep_and_teach.html
+  Polylit - SW architecture that applies functional thinking at the system scale
+  https://github.com/polyfy/polylith
+  https://polylith.gitbook.io/polylith/
 
-  [[https://github.com/trending/clojure][Trending repositories]]
+  Trending Clojure repositories
+  https://github.com/trending/clojure
 
   JavaFX - SW platform to build GUI apps & Rich Internet applications (RIAs)
   standard GUI library for Java SE; Swing replacement
@@ -989,7 +1011,8 @@
 }
 
 @block{@block-name{The Computer Language Benchmarks Game}
-  [[https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html][The Computer Language Benchmarks Game]]
+  The Computer Language Benchmarks Game
+  https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html
   ;; `reduce` can be faster than `apply`...
   (time (reduce + (range 1e9))) ;; 6824.592024 msecs
   (time (apply + (range 1e9)))  ;; 8740.237518 msecs
@@ -1021,5 +1044,78 @@
   timeit.timeit(sum_numpy, number=1)
   # 1.7422158059998765 # seconds
 
-  And the winner is [[https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF][Wikipedia 1 + 2 + 3 + 4 + ⋯]]
+  And the winner is the math formula for partial sums 1 + 2 + 3 + 4 + ⋯
+  https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF
+}
+
+@block{@block-name{Project Templates}
+  | leiningen         | Build automation and dependency management tool                             |
+  | boot              | Build automation and dependency management tool                             |
+  | mies              | Minimal ClojureScript project template                                      |
+  | chestnut          | Application template for ClojureScript/Om with live reloading               |
+  | figwheel-template | lein template: live coding with figwheel (includes Reagent and Om variants) |
+  | cljs-start        | lein template: ClojureScript lib with batteries included                    |
+  | mala              | lein template: UIs in 100% Clojurescript, with Om, Garden, etc.             |
+  | reagent-template  | lein template: projects using Reagent                                       |
+  | re-frame-template | lein template: reagent web apps on Re-Frame; + figwheel, re-com, secretary  |
+  | descjop           | lein template: Web based desktop apps with Electron(atom-shell), etc.       |
+  | electron-template | lein template: Electron based ClojureScript projects using Reagent          |
+  | Shadow CLJS       | ClojureScript compilation made easy                                         |
+  | create-cljs-app   | Set up a modern CLJS web app by running one command.                        |
+
+
+  Figwheel Main (rewrite of lein-figwheel)
+  build ClojureScript and hot load it
+  603 stars; https://github.com/bhauman/figwheel-main
+  2.9k stars; https://github.com/bhauman/lein-figwheel
+
+  Shadow CLJS
+  ClojureScript compilation made easy
+  2k stars; https://github.com/thheller/shadow-cljs
+  - create-cljs-app - Set up a modern CLJS (react?) web app by running one command.
+    275 stars; https://github.com/filipesilva/create-cljs-app
+}
+
+@block{@block-name{Clojure(Script) & Maps}
+For npm modules in clojurescript apps you need
+1. bundler (e.g. Webpack or Parcel)
+2. npm packages
+3. define how clojurescript should output its compiled javascript bundle so that a bundler can consume it
+
+clojure ->                                 js                             -> browser
+clojure -> webpack js (with included npm modules) -> webpack -> js bundle -> browser
+
+
+Reagent - interface between ClojureScript and React. A wrapper around React.
+Allows to define React components.
+
+GIS Geographic Information System
+database with geographic data
+Examples:
+ArcGIS, ...
+
+OpenStreetMap - a map of the world
+spacial database of geographic data (geodata) of the world.
+
+Leaflet
+36k stars; https://github.com/Leaflet/Leaflet
+Comparable with OpenLayers
+JavaScript library for interactive maps
+Can use openstreetmap
+react-leaflet - React components for Leaflet maps
+                4.3k stars; https://github.com/PaulLeCam/react-leaflet
+
+OpenLayers
+9.5k stars; https://github.com/openlayers/openlayers
+Comparable with Leaflet
+Ajax Library for dynamic maps in any web page
+rlayers - React Components for OpenLayers 6+
+          86 stars; https://github.com/mmomtchev/rlayers
+
+Mapbox        - provider of custom online maps
+
+About PostGIS
+PostGIS is a spatial database extender for PostgreSQL object-relational
+database. It adds support for geographic objects allowing location queries to be
+run in SQL.
 }

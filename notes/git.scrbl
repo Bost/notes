@@ -70,9 +70,10 @@
 
   # remove / delete a remote-tracking branch from local repository
   git branch --remotes --delete <origin/branch>
-  git branch -rd <origin/branch>
+  git branch        -r       -d <origin/branch> # -rd
   # remove / delete a remote branch or tag
-  git push --delete origin <branch-or-tag>
+  git push --delete <origin> <branch-or-tag>
+  git push       -d <origin> <branch-or-tag>
 
   # file changes against remote branch
   git diff <branch1> <branch2> <filepath>

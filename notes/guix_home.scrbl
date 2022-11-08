@@ -1,7 +1,8 @@
 #lang notes
 
 @block{@block-name{Guix Home}
-  info 'Guix Home' / M-x helm-info-guix
+  # M-x helm-info-guix
+  info 'Guix Home'
 
   Almost the like `guix system` but for dotfiles.
   Achieved by composing services (service extension mechanism)
@@ -16,6 +17,12 @@
   On Guix, the "plugdev" group does not exist and eudev is used instead of udev.
   Thus the suggestion was to use the following rule instead:
 
+  # Delete all the home generations...
+  guix home delete-generations 2m    # older than two months
+  guix home delete-generations 45d   # older than 45 days
+  # Works the same as 'guix package --delete-generations'.
+  # Doesn't delete the ~/TIMESTAMP-guix-home-legacy-configs-backup directories
+
   # list / search through all existing guix home services
   guix home search .
 
@@ -26,25 +33,15 @@
   guix home reconfigure
   guix home --keep-failed -L ~/dev/dotfiles/guix/home reconfigure ~/dev/dotfiles/guix/home/home-configuration.scm
 
-  # generate a home environment definition from dotfiles and put it under /dst/dir
+  # generate a home environment definition from dotfiles and put it to /dst/dir
   guix home import /dst/dir
 
   # build some configuration without installing anything
   guix home build /path/to/configuration.scm
+
   # try out some configuration without installing anything
   guix home container /path/to/configuration.scm
   guix home --keep-failed -L ~/dev/dotfiles/guix/home container ~/dev/dotfiles/guix/home/home-configuration.scm
-
-  See also guix-lemp-container [https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh]
-  LEMP WordPress Reproducible Environment
-
-  # generate a home environment definition from dotfiles and put it under /dst/dir
-  guix home import /dst/dir
-
-  # build some configuration without installing anything
-  guix home build /path/to/configuration.scm
-  # try out some configuration without installing anything
-  guix home container /path/to/configuration.scm
 
   LEMP WordPress Reproducible Environment
   guix-lemp-container
