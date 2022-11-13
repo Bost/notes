@@ -106,6 +106,14 @@
   # or (C):
   guix package --load-path=./ --manifest=./games/packages/factorio.scm --list-available=factorio
   guix package --load-path=./ --install=factorio
+
+  cd $dev/guix-packages/packages
+  # guix package --load-path=./ --manifest=./bost/packages/spacemacs.scm --list-available=emacs-spacemacs
+  # guix build --load-path=./ --keep-failed --load=./spacemacs-settings.scm emacs-spacemacs
+  # guix build --load-path=./ --keep-failed --expression='(@ (gnu) %base-packages)' emacs-spacemacs
+  set --export GUIX_PACKAGE_PATH (pwd)/bost/packages/patches
+  guix build --load-path=./ --keep-failed emacs-spacemacs
+
 }
 
 @block{@block-name{Garbage collection}

@@ -1,7 +1,11 @@
 #lang notes
 
 @block{@block-name{Git}
-  # Git Annex - sync large files: https://youtu.be/p0eVyhv2rbk
+  # Idiot proof git
+  # https://softwaredoug.com/blog/2022/11/09/idiot-proof-git-aliases.html
+
+  # Git Annex - sync large files
+  # https://youtu.be/p0eVyhv2rbk
 
   # OID - Object Identifier
 

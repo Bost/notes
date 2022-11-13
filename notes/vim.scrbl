@@ -4,8 +4,8 @@
   #+BEGIN_SRC vim
   " Text Object (type :h text-objects in vim for a complete description)
   " This feature allows to operate on a block of text where the cursor is.
-  " TODO: color commands belonging together
-  " TODO: C-r register, C-r C-o / C-r / C-p
+  " TODO color commands belonging together
+  " TODO C-r register, C-r C-o / C-r / C-p
 
   " substitute (replace) pattern and save changes in all buffers
   ```vim
