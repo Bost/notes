@@ -30,7 +30,7 @@ appear separately in the result.
 In Category Theory, disjoint union is the coproduct of the category of sets.
 
 * Resource Theories: Monoid Preorders and Enrichment
-** TODO V-enrichment
+** V-enrichment TODO
 ** Symmetric Monoidal Preorder
 
 TODO verify definitions of Preorder, Full and Partial Order

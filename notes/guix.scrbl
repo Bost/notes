@@ -164,6 +164,8 @@
     ;; (use-modules (guix scripts home))    %default-system-profile
     (use-modules (guix channels))           %default-channels
     (use-modules (gnu system file-systems)) %fuse-control-file-system
+    (use-modules (gnu packages))
+    (format #t "%patch-path:\n  ~a\n" (string-join (%patch-path) "\n  "))
     %load-path           ; guile module load-path
     %load-compiled-path
     (%site-dir)

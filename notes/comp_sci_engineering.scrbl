@@ -177,7 +177,8 @@
 }
 
 @block{@block-name{JavaScript 2014}
-  event loop https://www.youtube.com/watch?v=8aGhZQkoFbQ
+  What the heck is the event loop anyway? | Philip Roberts | JSConf EU
+  https://youtu.be/8aGhZQkoFbQ
   V8 Runtime
   WebAPIs:
   - extra things provided by the browser: DOM, ajax, setTimeout, ...
@@ -200,4 +201,26 @@
   - rendering every 16ms for a screen (60 FPS?)
   - render has higher prio than a callback
     23:12
+}
+
+@block{@block-name{NTP Network Time Protocol}
+  Network Time Protocol (NTP) - Computerphile
+  https://youtu.be/BAo5C2qbLq8
+
+  Time synchronisation accurate to a millisecond or better. The protocol has it
+  to microseconds.
+
+  32 bin NTP packet containing:
+  - timestamps: t0, t1, t2, t3
+  - stratum: st
+    st = 0 really good clock - such a computer is never talked to
+    st = 1
+    st = 2 - synchronized for st = 1
+    st = 3 - synchronized for st = 2
+    ...
+    st = 15 - not reliable
+  A packet is sent between two computers C1, C2 on a round trip.
+  C1 fills in send out time t0 and receiving time t3.
+  C2 fills in receiving time t1 and send out time t2.
+  Network delay is: (- (- t3 t0) (- t2 t1))
 }
