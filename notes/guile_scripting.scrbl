@@ -39,12 +39,17 @@
     (write (cdr (command-line)))
     (newline)
 
-    ;; `format` is from (use-modules (ice-9 format))
+    ;; Formatted output like fprintf
+    ;; available from (use-modules (ice-9 format))
     ;; Read environment variable and print it:
-    ;; ~a outputs an argument like `display`
+    ;; '#t' 'a:'~ outputs an argument like `display` to the current output port
     (format #t "~a\n" (getenv "HOME"))
-    ;; ~a outputs an argument like `write`
+    ;; '#t' 'a:'~ outputs an argument like `write` to the current output port
     (format #t "~s\n" (getenv "HOME"))
+    ;; https://www.gnu.org/software/guile/manual/html_node/Formatted-Output.html
+    ;; https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html
+    (format #t "~a\n" (getenv "HOME")) ;; => #t print to current output port
+    (string? (format #f "~a\n" (getenv "HOME"))) ;; => #t ;; i.e. print to string
 
     ;; https://www.draketo.de/software/guile-capture-stdout-stderr.html
     (use-modules (ice-9 rdelim)

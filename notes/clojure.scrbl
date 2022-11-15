@@ -1063,7 +1063,6 @@
   | Shadow CLJS       | ClojureScript compilation made easy                                         |
   | create-cljs-app   | Set up a modern CLJS web app by running one command.                        |
 
-
   Figwheel Main (rewrite of lein-figwheel)
   build ClojureScript and hot load it
   603 stars; https://github.com/bhauman/figwheel-main
@@ -1076,46 +1075,89 @@
     275 stars; https://github.com/filipesilva/create-cljs-app
 }
 
-@block{@block-name{Clojure(Script) & Maps}
-For npm modules in clojurescript apps you need
-1. bundler (e.g. Webpack or Parcel)
-2. npm packages
-3. define how clojurescript should output its compiled javascript bundle so that a bundler can consume it
+@block{@block-name{Clojure / ClojureScript & Maps}
+  For npm modules in clojurescript apps you need
+  1. bundler (e.g. Webpack or Parcel)
+  2. npm packages
+  3. define how clojurescript should output its compiled javascript bundle so
+     that a bundler can consume it
 
-clojure ->                                 js                             -> browser
-clojure -> webpack js (with included npm modules) -> webpack -> js bundle -> browser
+  Compilation:
+  clojure ->                                 js                             -> browser
+  clojure -> webpack js (with included npm modules) -> webpack -> js bundle -> browser
 
+  Reagent - interface between ClojureScript and React. A wrapper around React.
+  Allows to define React components.
 
-Reagent - interface between ClojureScript and React. A wrapper around React.
-Allows to define React components.
+  GIS Geographic Information System
+  database with geographic data
+  Examples:
+  ArcGIS, ...
 
-GIS Geographic Information System
-database with geographic data
-Examples:
-ArcGIS, ...
+  OpenStreetMap - a map of the world
+  spacial database of geographic data (geodata) of the world.
 
-OpenStreetMap - a map of the world
-spacial database of geographic data (geodata) of the world.
+  Leaflet
+  36k stars; https://github.com/Leaflet/Leaflet
+  Comparable with OpenLayers
+  JavaScript library for interactive maps
+  Can use openstreetmap
+  react-leaflet - React components for Leaflet maps
+                  4.3k stars; https://github.com/PaulLeCam/react-leaflet
 
-Leaflet
-36k stars; https://github.com/Leaflet/Leaflet
-Comparable with OpenLayers
-JavaScript library for interactive maps
-Can use openstreetmap
-react-leaflet - React components for Leaflet maps
-                4.3k stars; https://github.com/PaulLeCam/react-leaflet
+  OpenLayers
+  9.5k stars; https://github.com/openlayers/openlayers
+  Comparable with Leaflet
+  Ajax Library for dynamic maps in any web page
+  rlayers - React Components for OpenLayers 6+
+            86 stars; https://github.com/mmomtchev/rlayers
 
-OpenLayers
-9.5k stars; https://github.com/openlayers/openlayers
-Comparable with Leaflet
-Ajax Library for dynamic maps in any web page
-rlayers - React Components for OpenLayers 6+
-          86 stars; https://github.com/mmomtchev/rlayers
+  Mapbox  - provider of custom online maps
 
-Mapbox        - provider of custom online maps
+  PostGIS
+  Spatial database extender for PostgreSQL object-relational database. It adds
+  support for geographic objects allowing location queries to be run in SQL.
+}
 
-About PostGIS
-PostGIS is a spatial database extender for PostgreSQL object-relational
-database. It adds support for geographic objects allowing location queries to be
-run in SQL.
+@block{@block-name{Reagent / React tags}
+  React Features
+  https://github.com/reagent-project/reagent/blob/master/doc/ReactFeatures.md
+
+  tags:
+  Context - Embed a React component written in JavaScript in Hiccup:
+  [:> js/nativeJSComponent {:title "Hello" :otherProp "World"}]
+  - Clojure map is converted to JavaScript object
+  - camelCase should be preserved
+
+  Fragments let you group a list of children w/o adding extra nodes to the DOM
+  Fragment short syntax:
+  :<>
+
+  Create function components from Reagent components (functions), where both
+  RAtoms and Hooks work.
+  :f>
+
+  React defines nine different lifecycle methods.
+  https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle
+
+  :display-name "component-name"
+  used by Reagent when printing debugging messages
+
+  :component-did-mount (fn [this-component] ...)
+  called right after the component is added to the DOM. This is the first time
+  you will have access to the actual DOM element connected with this component.
+  The method takes one argument: the component itself. Call
+  reagent.core/dom-node on it to get the DOM node. Implement this method to set
+  up DOM nodes for external components such as HTML canvases.
+
+  :component-did-update
+  called just after re-rendering, i.e. when the DOM nodes have potentially just
+  been recreated by the Virtual DOM algorithm.
+
+  :component-will-unmount
+  called just before the component is unmounted from the DOM. You still have
+  access to the DOM node. This is your last chance to clean up anything you
+  might need to before your component is gone forever. It is rare that you will
+  want to implement this method.
+
 }
