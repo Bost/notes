@@ -105,7 +105,7 @@
 }
 
 @block{@block-name{Various}
-  WSL Windows Subsystem for Linux 2 (WSL 2)
+  WSL1 / WSL2 Windows Subsystem for Linux 1 / 2
 
   ICMP Internet Control Message Protocol
   Send error messages & operational information

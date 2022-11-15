@@ -175,6 +175,8 @@
   guix package --list-profiles    # prints:
   # $HOME/.config/guix/current
   # $HOME/.guix-profile
+  # guix home profile
+  $HOME/.guix-home/profile
 
   # see also guix package --export-manifest
   guix package --list-profiles

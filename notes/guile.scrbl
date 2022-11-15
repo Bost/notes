@@ -125,11 +125,6 @@
     ,use (srfi srfi-1)
     ;; (lset-difference eqv? '(3 2 1) '(1 2)) ;; > (3)
 
-    ;; Formatted output like fprintf
-    ;; https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html
-    (format #t "\n~a\n\n" s)
-    (format #f "\n~a\n\n" s) ;; print to string
-
     ;; https://stackoverflow.com/a/38397019/5151982
     ;; console as input and output
     (use-modules (ice-9 textual-ports))
@@ -282,11 +277,90 @@
   - can contain a package record or any other "file-like object" and, when that
     'gexp' is serialized for eventual execution, the package is replaced by its
     /gnu/store/... file name.
+  - derivation represents a sequence of low-level build actions and the
+    environment in which they are performed to produce an item in the store
 
   Syntactic forms:
-  | #~     | gexp            | quasiquote                |
-  | #$     | ungexp          | unquote                   |
-  | #$@"@" | ungexp-splicing | unquote-splicing / splice |
+  | #~     | gexp            | quasiquote                                                      |
+  | #$     | ungexp          | unquote                                                         |
+  | #+     |                 | same role as #$, but it's a reference to a native package build |
+  | #$@"@" | ungexp-splicing | unquote-splicing / splice                                       |
+
+  Examples:
+  $ guix repl
+  scheme@(guix-user)> ,use (gnu packages shells)
+  scheme@(guix-user)> ,use (guix gexp)
+  scheme@(guix-user)> #~#$fish-foreign-env
+  $1 = #<gexp #<gexp-input #<package fish-foreign-env@0.20190116 gnu/packages/shells.scm:278 7efedecbd0b0>:out> 7efedf25c270>
+
+  $ guix repl
+  scheme@(guix-user)> ,option value-history
+  #t
+  scheme@(guix-user)> ,option value-history #f
+  scheme@(guix-user)> ,option value-history
+  #f
+  scheme@(guix-user)> ,option value-history #t
+  scheme@(guix-user)> ,option
+    compile-options       (#:warnings (shadowed-toplevel use-before-definition arity-mismatch format duplicate-case-datum bad-case-datum non-idempotent-definition))
+    optimization-level    #f
+    warning-level         #f
+    trace                 #f
+    interp                #f
+    prompt                #<procedure generate-colored-prompt (repl)>
+    print                 #<procedure colorized-repl-printer (repl val)>
+    value-history         #t
+    on-error              debug
+  scheme@(guix-user)> ,use (guix monad-repl)
+  scheme@(guix-user)> ,use (guix store)
+  scheme@(guix-user)> (define tf (text-file "foo" "Hello!"))
+  scheme@(guix-user)> tf
+  $3 = #<procedure 7f1daff15fc0 at guix/store.scm:2085:2 (store)>
+  scheme@(guix-user)> ,inspect tf
+  #<procedure 7f1daf…> inspect> disassemble
+  Disassembly of #<procedure 7f1daff15fc0 at guix/store.scm:2085:2 (store)> at #x7f1db7bd6484:
+
+     0    (instrument-entry 128571)                             at guix/store.scm:2085:2
+     2    (assert-nargs-ee/locals 2 8)    ;; 10 slots (1 arg)
+     3    (scm-ref/immediate 7 9 2)
+     4    (scm-ref/immediate 7 7 1)
+     5    (static-ref 3 117116)           ;; #f                 at guix/store.scm:1095:33
+     7    (scm-ref/immediate 2 9 4)
+     8    (handle-interrupts)                                   at guix/store.scm:1095:32
+     9    (call-label 6 2 -17737)         ;; string->utf8@rnrs/bytevectors at #x7f1db7bc4f84
+    12    (receive 3 6 10)
+    14    (scm-ref/immediate 5 9 3)
+    15    (scm-ref/immediate 0 9 5)
+    16    (mov 4 7)                                             at guix/store.scm:1095:2
+    17    (mov 3 8)
+    18    (mov 2 5)
+    19    (mov 1 6)
+    20    (handle-interrupts)
+    21    (call 5 5)
+    23    (receive 0 5 10)
+    25    (reset-frame 2)                 ;; 2 slots            at guix/store.scm:2086:4
+    26    (handle-interrupts)
+    27    (return-values)
+
+  ----------------------------------------
+  Disassembly of string->utf8@rnrs/bytevectors at #x7f1db7bc4f84:
+
+     0    (instrument-entry 134865)                             at guix/store.scm:1095:2
+     2    (immediate-tag=? 1 7 0)         ;; heap-object?
+     4    (je 7)                          ;; -> L1
+     5    (call-scm<-scmn-scmn 1 90486 134852 112)
+     9    (static-set! 1 134840)          ;; #f
+  L1:
+    11    (scm-ref/immediate 1 1 1)
+    12    (handle-interrupts)
+    13    (tail-call)
+  #<procedure 7f1daf…> inspect> quit
+  scheme@(guix-user)> (gexp? #~#$fish-foreign-env)
+  $2 = #t
+  scheme@(guile-user)> ,use (gnu packages base)
+  scheme@(guile-user)> coreutils
+  $3 = #<package coreutils@8.29 gnu/packages/base.scm:327 3e28300>
+  scheme@(guile-user)> (macroexpand '(unquote foo))
+  ...
 }
 
 @block{@block-name{Module installation}
