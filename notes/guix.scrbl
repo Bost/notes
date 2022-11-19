@@ -108,40 +108,6 @@
   Inferiors - fetch a package from a previous guix revision:
   https://guix.gnu.org/manual/devel/en/html_node/Inferiors.html
 
-  Meta-commands
-  https://www.gnu.org/software/guile/manual/guile.html#REPL-Commands
-  ;; REPL debugging:
-  ;; displays the call stack (aka backtrace) at the point where the debugger was
-  ;; entered
-  scheme@"@"(guile-user) [1]> ,bt
-  ;; change the stackframe
-  scheme@"@"(guile-user) [1]> ,up
-  scheme@"@"(guile-user) [1]> ,frame 3
-  scheme@"@"(guile-user) [1]> ,down
-  ;; local variables
-  scheme@"@"(guile-user) [1]> ,locals
-  ;;  / List procedures provided by the REPL:
-  scheme@"@"(guile-user)> ,module (srfi srfi-1)
-  scheme@"@"(srfi srfi-1)> ,help module
-  scheme@"@"(srfi srfi-1)> ,binding
-  ;; <list of procedures>
-  scheme@"@"(guile-user)> ,pretty-print '(eval-when (expand load eval) ...)
-  scheme@"@"(srfi srfi-1)> ,pretty-print (module-uses (current-module))
-  $_ = (#<interface (guile) 7ffa54060dc0>
-   #<autoload (system base compile) 7ffa540edb40>
-   #<interface (ice-9 session) 7ffa52cce0a0>
-   #<interface (ice-9 regex) 7ffa54043a00>
-   #<interface (ice-9 threads) 7ffa540a2aa0>
-   #<interface (value-history) 7ffa52cce5a0>
-   #<interface (geiser emacs) 7ffa51539f00>)
-
-  ;; REPL debugging:
-  scheme@(guile-user) > ,h inspect
-  Inspect Commands [abbrev]:
-  ;;
-  ,inspect EXP                 [,i] - Inspect the result(s) of evaluating EXP.
-  ,pretty-print EXP           [,pp] - Pretty-print the result(s) of evaluating EXP.
-
   # Run command-line scripts provided by GNU Guile and related programs.
   guild
   guild disassemble         # Disassemble a compiled .go file.
@@ -157,19 +123,6 @@
   # Display information about the channels currently in use.
   guix describe --format=channels
   guix describe --format=human
-
-  guix repl --load-path=.
-  guix repl << EOF
-    ;; it won't work - %default-system-profile is not exported
-    ;; (use-modules (guix scripts home))    %default-system-profile
-    (use-modules (guix channels))           %default-channels
-    (use-modules (gnu system file-systems)) %fuse-control-file-system
-    (use-modules (gnu packages))
-    (format #t "%patch-path:\n  ~a\n" (string-join (%patch-path) "\n  "))
-    %load-path           ; guile module load-path
-    %load-compiled-path
-    (%site-dir)
-  EOF
 }
 
 @block{@block-name{Guix in a VM: SSH access}
