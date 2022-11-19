@@ -162,16 +162,24 @@
   # word boundaries
   rg "\bword\b" (f -e scm -e c -e h '.*' ~/.emacs.d)
   rg -w "word" (f -e scm -e c -e h '.*' ~/.emacs.d)
+  # -g, --glob Include or exclude files and directories. Precede a glob with a !
+  #            to exclude it.
   rg -g '*.{el}' -w "deleted" ~/.emacs.d
+  # TODO consider making an alias for this, or a default setting.
+  # See https://github.com/BurntSushi/ripgrep/discussions/2011
+  # ack, ag, git-grep, GNU grep, rg, https://beyondgrep.com/feature-comparison/
+  rg --hidden --glob '!.git'
+  rg --hidden --iglob-regex '^.git$' ...
+  rg --glob-regex '^.gitlab-ci.yml$' ...
 
   # rg manual file types / extensions (globing)
   rg -g '*.{scm,c,h}' -w "operating-system" ~/dev/guix ~/dev/guile
   # fdfind manual file types / -e, --extension
   rg -w "operating-system" (f -e scm -e c -e h '.*' ~/dev/guix ~/dev/guile)
-
   rg "instrumented" (f -e scm -e c -e h '.*'  ~/dev/guix/ ~/dev/guile/)
 
-  grep 'Spacemacs is ready.' (find ~/.emacs.d/ -type f -name '*.el')
+  grep "Spacemacs is ready." (find ~/.emacs.d/ -type f -name '*.el')
+  rg "Spacemacs is ready." (find ~/.emacs.d/ -type f -name '*.el')
   find ~/.emacs.d/ -type f -name "*.el" -print0 | xargs -0 grep --files-with-matches "Spacemacs is ready."
 
   # ripgrep
