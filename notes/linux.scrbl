@@ -91,6 +91,8 @@
 }
 
 @block{@block-name{Various}
+  https://www.wezm.net/technical/2019/10/useful-command-line-tools/
+
   see also:
   https://github.com/tldr-pages/tldr
   https://github.com/cheat/cheat
@@ -872,8 +874,17 @@
   # readonly to readwrite
   sudo mount -o remount,rw /partition/identifier /mount/point
 
-  # mounted filesystems - table layout
+  # mounted filesystems - table layout; -t --table
   mount | column -t
+
+  # filter out some columns, remove table headers, etc. with `columng`:
+  guix package --list-available="emacs-(ace-jump-helm-line|yasnippet).*" \
+  | column --table --table-noheadings --table-columns NAME,VER,OUT,PATH \
+           --table-hide OUT --table-order VER,NAME,PATH \
+           --output-separator ' ║ '
+  # filter out some columns, remove table headers, etc. with `awk`:
+  guix package --list-available="emacs-(ace-jump-helm-line|yasnippet).*" \
+  | awk '{print "("$1, "\""$2"\"", $4")"}'
 
   # error: Requested formats are incompatible for merge and will be merged into
   # mkv.
@@ -1230,9 +1241,11 @@
 
   # fully resolve the link; report errors; see also: realpath
   readlink --canonicalize --verbose LINKNAME
-  # fix broken link
-  ln -sfn                                TARGET LINKNAME
+  # fix broken link: ln -fsn
   ln --force --symbolic --no-dereference TARGET LINKNAME
+  # -L, --dereference  : follow symbolic, i.e. copy content
+  cp --dereference --recursive ~/.guix-home/ /tmp/
+  # -l, --link  : hard link files instead of copying
 
   # Create bootable usb drive https://askubuntu.com/q/372607
   # (like with usb-creator-gtk)

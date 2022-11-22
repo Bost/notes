@@ -16,6 +16,9 @@
 }
 
 @block{@block-name{Various}
+  ;; take first 3 elements from a list
+  (let ((lst '("one" "two" "three" "four" "five")))
+    (butlast lst (- (length lst) 3)))
 
   ;; equality
   (eq 'foo 'foo)                             ;; =>  t
@@ -411,23 +414,24 @@
   M-x chmod
 
   ;; dired:
-  | ~S~           | symlink                                    |
-  | ~Z~           | zip: compress or uncompress (extract) file |
-  | ~* . <ext>~   | mark all: toggle marking                   |
-  | ~* s~         | mark all: executables                      |
-  | ~* *~         | mark all: files (with extention)           |
-  | ~* . <ext> D~ | mark & delete all files with extention     |
-  | ~* c~         | change all marks                           |
-  | ~\~~          | markup: all backup files                   |
-  | ~#~           | markup: auto-save files                    |
-  | ~g~           | refresh buffer                             |
-  | ~+~           | M-x dired-create-directory                 |
-  | ~R~           | M-x dired-do-rename                        |
-  | ~@"("~        | toggle listing details                     |
-  | ~@")"~        | M-x dired-hide-details-mode                |
-  | ~C-x C-q~     | perform operations by editing dired buffer |
-  | ~C-x C-q~     | M-x dired-toggle-read-only                 |
-  |               | M-x wdired-finish-edit                     |
+  | ~<normal-state> S~ | symlink                                    |
+  | ~s~                | sort by ...                                |
+  | ~Z~                | zip: compress / uncompress (extract) file  |
+  | ~* . <ext>~        | mark all: toggle marking                   |
+  | ~* s~              | mark all: executables                      |
+  | ~* *~              | mark all: files (with extention)           |
+  | ~* . <ext> D~      | mark & delete all files with extention     |
+  | ~* c~              | change all marks                           |
+  | ~\~~               | markup: all backup files                   |
+  | ~#~                | markup: auto-save files                    |
+  | ~g~                | refresh buffer                             |
+  | ~+~                | M-x dired-create-directory                 |
+  | ~R~                | M-x dired-do-rename                        |
+  | ~@"("~             | toggle listing details                     |
+  | ~@")"~             | M-x dired-hide-details-mode                |
+  | ~C-x C-q~          | perform operations by editing dired buffer |
+  | ~C-x C-q~          | M-x dired-toggle-read-only                 |
+  |                    | M-x wdired-finish-edit                     |
 
   | ~C-x C-f [type in something] <return>~ | dired - create newfile |
 

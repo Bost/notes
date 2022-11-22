@@ -95,7 +95,7 @@
      YouTube: Andrew Torpin: guix shell: Overview
      https://youtu.be/UMCHuHSlVWk?t=1622
      # full freeze of Guix channels to the versions defined in 'channels.scm'
-     guix describe -f channels > ./channels.scm
+     guix describe --format=channels > ./channels.scm
      guix time-machine --channels=./channels.scm -- shell REST-OF-GUIX-SHELL-ARGS
    }
 }
@@ -103,7 +103,9 @@
 @block{@block-name{Channels}
   Specifying Additional Channels
   https://guix.gnu.org/manual/en/html_node/Specifying-Additional-Channels.html
-  edit `~/.config/guix/channels.scm` and run `guix pull`.
+  Edit `~/.config/guix/channels.scm` and run `guix pull`. The result in
+  `~/.config/guix/current` is the union of Guix and the
+  `~/.config/guix/channels.scm`
 
   Inferiors - fetch a package from a previous guix revision:
   https://guix.gnu.org/manual/devel/en/html_node/Inferiors.html
