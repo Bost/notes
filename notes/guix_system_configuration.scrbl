@@ -41,8 +41,20 @@
 
   TODO see elisp-configuration-service
 
-  guix system describe
-  guix system list-generations
+  ;; analyze system state
+  guix describe profile               # for channels
+  guix system describe                # for current system (OS kernel, etc.)
+  guix home describe                  # for home environment generation
+  guix package --list-profiles
+  ;;
+  guix home list-generations 1d       # no '=' allowed after 'list-generations'
+  guix package --list-generations=1d  # no '(--)describe' parameter exists
+  guix pull --list-generations=1d     # no '(--)describe' parameter exists
+  guix system list-generations 1m     # no '=' allowed after 'list-generations'
+  ;; in Emacs
+  M-x guix-generations
+  M-x guix-last-generations
+  M-x guix-generations-by-time
 
   guix install xdot
   guix system extension-graph /path/to/configuration.scm | xdot -
