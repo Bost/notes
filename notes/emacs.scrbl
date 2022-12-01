@@ -16,6 +16,22 @@
 }
 
 @block{@block-name{Various}
+
+  ;; The command arguments are munched together. Whitespace chars are not
+  ;; escaped, that means arguments can't be reliably separated from each other.
+  ;; E.g. when started with `emacs --eval '(setq variable "value")'`, the `ps`
+  ;; returns the string: "emacs --eval (setq variable \"value\")". Here a
+  ;; heuristics may be applied by trying to apply `read-string` or
+  ;; `read-from-string` at the value of '--eval', assuming it is a valid sexp,
+  ;; i.e. surrounded by parens or alike.
+  (format "%s" (shell-command-to-string
+                 (format "ps -ho command -p %s" (emacs-pid))))
+
+  (f-write-text "write text to a file" 'utf-8 "/path/to/file.ext")
+  (file-name-nondirectory "/home/jim/foo") ;; => "foo" ; `basename` in shell
+
+  ;; CAPF completion-at-point-functions
+
   ;; take first 3 elements from a list
   (let ((lst '("one" "two" "three" "four" "five")))
     (butlast lst (- (length lst) 3)))

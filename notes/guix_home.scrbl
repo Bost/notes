@@ -3,6 +3,7 @@
 @block{@block-name{Guix Home}
   # M-x helm-info-guix
   info 'Guix Home'
+  See also GNU Stow https://www.gnu.org/software/stow/ , dotcrafter
 
   Almost the like `guix system` but for dotfiles.
   Achieved by composing services (service extension mechanism)

@@ -1,6 +1,8 @@
 #lang notes
 
 @block{@block-name{General}
+  https://git.sr.ht/~krevedkokun/dotfiles/tree/master/item/channel/packages/clojure.scm
+
  https://stuartsierra.com/2016/01/09/how-to-name-clojure-functions
  - A pure function can be replaced with its value - use noun, i.e.
    preffer `age`, oveer `calculate-age` or `get-age.`
