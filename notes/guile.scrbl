@@ -124,6 +124,7 @@
   $ guix repl << EOF
     ;; it won't work - %default-system-profile is not exported
     ;; (use-modules (guix scripts home))    %default-system-profile
+    (use-modules (guix download))           %mirrors
     (use-modules (guix channels))           %default-channels
     (use-modules (gnu system file-systems)) %fuse-control-file-system
     (use-modules (gnu packages))
@@ -246,9 +247,10 @@
 @block{@block-name{Various code snippets}
   @lisp{
     ;; Set operations / sets:
-    (use-modules (srfi srfi-1))
-    ,use (srfi srfi-1)
-    ;; (lset-difference eqv? '(3 2 1) '(1 2)) ;; > (3)
+    ,use (srfi srfi-1) ;; or (use-modules (srfi srfi-1))
+    (lset-difference eqv? '(4 3 2 1) '(1) '(2 3))     ;; > (4)
+    (lset-intersection eqv? '(1 2) '(2 3 4) '(2 5 6)) ;; > (2)
+    (lset-union eqv? '(1) '(2))                       ;; > (2 1)
 
     ;; https://stackoverflow.com/a/38397019/5151982
     ;; console as input and output
