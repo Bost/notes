@@ -98,6 +98,9 @@
 
   # find all files recursively newer than given time
   find ./ -newermt $(date +%Y-%m-%d -d '1 day ago') -type f -print
+  # fish: find recent Guix-build logs
+  l (find /var/log/guix/drvs/ -type f -newermt (date +%Y-%m-%d\ %H:%M -d '60 minutes ago') -name "*.drv.gz")
+  l (find /var/log/guix/drvs/ -type f -newermt (date +%Y-%m-%d\ %H:%M -d '30 minutes ago') -name "*.drv.gz")
 
   # substitute / replace all occurences of ... with ...
   find ./ -type f -name "*.fish" -print0 | xargs -0 sed --in-place "s/apt-get/apt/g"
@@ -121,9 +124,9 @@
   # match a version number
   # -o --only-matching, -P --perl-regexp - grep capture group with \K
   echo "version: 01.02.02" | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
-  echo "version: 0.0.0" | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
-  echo "version: 51.19.7" | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
-  echo "version: 5.19.7" | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
+  echo "version: 0.0.0"    | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
+  echo "version: 51.19.7"  | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
+  echo "version: 5.19.7"   | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
   # match linux-libre version number
   guix show linux-libre | head | grep version | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
 

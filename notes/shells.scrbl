@@ -126,6 +126,7 @@
   # fish-shell existence-tests
   test (string escape -- $argv) = "--switch" # string equality / compare
   test -e /path/to/file.txt                  # file exists
+  test -L /path/to/link                      # symbolic link exists
   test -d /path/to/dir                       # directory exists
   # true if the length of $myvar is non-zero i.e. non-empty string
   # https://stackoverflow.com/a/47743269; always use "" around the myvar

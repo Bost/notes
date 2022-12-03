@@ -7,6 +7,15 @@
 
   alist - association list, i.e. dictionary
   https://www.gnu.org/software/guile/manual/html_node/Alist-Example.html
+  @lisp{
+    (define capitals '(("New York" . "Albany")
+                       ("Oregon"   . "Salem")
+                       ("Florida"  . "Miami")))
+    ;; What's the capital of Oregon?
+    (assoc "Oregon" capitals)       ;; ⇒ ("Oregon" . "Salem")
+    ;; Get value stored under the key "Oregon" from the alist `capitals`
+    (assoc-ref capitals "Oregon")   ;; ⇒ "Salem"
+  }
   plist - property list (see plist in emacs-lisp)
 
   Create and publish Guile projects

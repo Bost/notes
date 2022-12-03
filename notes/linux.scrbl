@@ -40,6 +40,13 @@
 
   # Deploy to test / production / etc.
   heroku pipelines:promote --app <APP-NAME>
+
+  # `heroku ...` adds a new environment variable "PORT". Its default value
+  # is 5000 when running `heroku local ...`. It can be changed using the '-p'
+  # parameter. The value of "PORT" is random when the app is running on a
+  # Heroku-server. See `(System/getenv "PORT")`
+  heroku local -p 7000
+
 }
 
 @block{@block-name{How to verify your Ubuntu download}

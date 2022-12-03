@@ -91,9 +91,8 @@
   }
 
   ;; https://endlessparentheses.com/get-in-the-habit-of-using-sharp-quote.html
-  ;; It is a good practice to hash / sharp quote every symbol that is the name
-  ;; of a function, whether it's going into a mapcar, an apply, a funcall, or
-  ;; anything else.
+  ;; Enable byte-compilation by using hash / sharp quote for every symbol that
+  ;; is a function name.
   (funcall (apply-partially #'+ 1) 2)                ;; => 3
   ;; (defalias 'plus-1 (apply-partially #'+ 1))
   (defalias #'plus-1 (apply-partially #'+ 1))
