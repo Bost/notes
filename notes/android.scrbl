@@ -61,8 +61,10 @@
 }
 
 @block{@block-name{Androind: USB transfer with Media Transfer Protocol}
-  mtp - Media Transfer Protocol
-  #+BEGIN_SRC shell
+  PTP Picture Transfer Protocol
+  MTP Media Transfer Protocol
+
+#+BEGIN_SRC shell
     ls -la /dev/usb
     ls -la /dev/bus/usb/
     cd /run/user/$UID/gvfs             # in bash

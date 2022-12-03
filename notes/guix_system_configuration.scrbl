@@ -4,6 +4,7 @@
   # Instantiate operating system declaration:
   set latest (ls --sort=time --almost-all ~/.cache/guix/checkouts/ | head -1)
   cd ~/.cache/guix/checkouts/$latest
+
   # create bootable ISO-9660 installation /gnu/store/...-image.iso
   guix system image -t iso9660 gnu/system/install.scm
   # set isoImg /gnu/store/...-image.iso
