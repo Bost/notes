@@ -387,4 +387,8 @@
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/apps/details/com.discordapp.Discord
   sudo flatpak install flathub com.discordapp.Discord
   flatpak run com.discordapp.Discord & disown
+
+  sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  sudo flatpak install flathub org.telegram.desktop
+  flatpak run org.telegram.desktop & disown
 }
