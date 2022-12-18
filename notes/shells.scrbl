@@ -76,7 +76,7 @@
 
   # fish-shell see also ~/.config/fish/fish_history
   history delete --contains <substring>
-  history delete --contains delete
+  history delete --contains "history delete --contains"
 
   # bash fish-shell
   # see what the shell does with the various types of quoting

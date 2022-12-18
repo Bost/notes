@@ -14,3 +14,7 @@
     | DELETE      | Delete          |
     }
 }
+
+@block{@block-name{CSS Cascade Style Sheets}
+  The @media rule - different styles for different media types/devices.
+}

@@ -35,7 +35,11 @@
 
   https://guix.gnu.org/en/manual/devel/en/guix.html#Running-Guix-Before-It-Is-Installed
 
-  # guix shell --search-paths    # display needed environment variable definitions
+  # Build an environment with PACKAGE-dependencies, and execute there the
+  # COMMAND or an interactive shell in that environment
+  guix shell [OPTION]... PACKAGE... [-- COMMAND...]
+
+  guix shell --search-paths    # display needed environment variable definitions
 
   # building Guix:
   # on error: 'configure: error: C compiler cannot create executables'
@@ -43,7 +47,8 @@
   cd ~/dev/guix/
   git fetch --tags origin && git rebase
   # on error:
-  #   fatal: unable to access 'https://git.savannah.gnu.org/git/guix.git/': server certificate verification failed. CAfile: none CRLfile: none
+  #   fatal: unable to access 'https://git.savannah.gnu.org/git/guix.git/':
+  #   server certificate verification failed. CAfile: none CRLfile: none
   # do:
   #   guix install nss-certs
   #   export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
@@ -68,7 +73,7 @@
   # authenticate all the commits included in your checkout by running:
   make authenticate
   make clean-go  # make -j22 clean-go # delete the .go (Guile Object) files
-  ./pre-inst-env guix home --fallback -L ~/dev/dotfiles/guix/home/ container ~/dev/dotfiles/guix/home/home-configuration.scm
+  ./pre-inst-env guix home --fallback -L $dotf/guix/home/ container $dotf/guix/home/home-configuration.scm
 }
 
 @block{@block-name{Chris Baines / GNU Guix Presentation}
@@ -78,26 +83,6 @@
 
   GNU Guix - GNU+Linux distribution, with declarative configuration for the
              system and services
-}
-
-@block{@block-name{RDE Reproducible Development Environment}
-  Andrew Torpin: guix shell: Overview - Notes
-  https://github.com/abcdw/notes/blob/master/notes/20211111141408-guix_shell_overview.org
-
-  feature-emacs-eglot ;; lsp-interface for emacs
-  feature-clojure     ;;
-
-  # Build an environment with PACKAGE-dependencies, and execute there the
-  # COMMAND or an interactive shell in that environment
-  guix shell [OPTION]... PACKAGE... [-- COMMAND...]
-
-  @block{@block-name{RDE channel lock / channel freeze}
-     YouTube: Andrew Torpin: guix shell: Overview
-     https://youtu.be/UMCHuHSlVWk?t=1622
-     # full freeze of Guix channels to the versions defined in 'channels.scm'
-     guix describe --format=channels > ./channels.scm
-     guix time-machine --channels=./channels.scm -- shell REST-OF-GUIX-SHELL-ARGS
-   }
 }
 
 @block{@block-name{Channels}
@@ -114,10 +99,10 @@
   guild
   guild disassemble         # Disassemble a compiled .go file.
 
-  # Hall is a command-line application and a set of Guile libraries that allow you
-  # to quickly create and publish Guile projects. It allows you to transparently
-  # support the GNU build system, manage a project hierarchy & provides tight
-  # coupling to Guix.
+  # Hall is a command-line application and a set of Guile libraries that allow
+  # you to quickly create and publish Guile projects. It allows you to
+  # transparently support the GNU build system, manage a project hierarchy &
+  # provides tight coupling to Guix.
   guile-hall
 
   guix describe
@@ -170,7 +155,7 @@
   qemu-img convert -O qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup guix-system-vm-image-1.3.0.x86_64-linux.qcow2
 }
 
-@block{@block-name{Guile Script environment portability across Linux and Guix machines}
+@block{@block-name{Guile Script portability across Linux & Guix machines}
   <leoprikler>bost: nope, only reliable shebang still is #!/bin/sh
   2021-08-22: IRC #guix channel log
   https://logs.guix.gnu.org/guix/2021-08-22.log#115020
@@ -268,7 +253,8 @@
   Quality of uncertainty of an outcome. PRNG - dealing the deck of play cards
   to. Randomness either is or is not.
 
-  The better the card shuffling (entropy), the more random the card deal will be. (???)
+  The better the card shuffling (entropy), the more random the card deal will
+  be(???)
 
   $ cat /proc/sys/kernel/random/entropy_avail
   256
@@ -303,21 +289,6 @@
                 (port 10022))))
                 (authorized-keys (list (local-file "alice.pub")))))
   }
-  use rde as a Channel
-  Some advanced users may prefer to use only parts of rde they are interested: features, services, or just packages.
-  In that case you can add the following channel to channels.scm.
-  @lisp{
-    (cons*
-     (channel
-      (name 'rde)
-      (url "https://git.sr.ht/~abcdw/rde")
-      (introduction
-       (make-channel-introduction
-        "257cebd587b66e4d865b3537a9a88cccd7107c95"
-        (openpgp-fingerprint
-         "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
-     %default-channels)
-  }
 
   see also private.el
   auth info - gpg secrets
@@ -336,7 +307,8 @@
   gopass:
   Retrieving a password from user terminal or piped input. Improved `pass`,
   wrapper aroung gpg & git
-  Deprecated in favor of terminal which is deprecated, too, use golang.org/x/term. See
+  Deprecated in favor of terminal which is deprecated, too, use
+  golang.org/x/term. See
   `guix install go-golang-org-x-term`
 
   personal password management using gopass
@@ -348,11 +320,11 @@
   # add a package to the distribution
   guix import
 
-  # Update package definitions to the latest style. `guix style` may not do any change or throw:
-  #   error: mkstemp: Read-only file system
+  # Update package definitions to the latest style. `guix style` may not do any
+  # change or throw: error: mkstemp: Read-only file system
   # in this case use the ./pre-inst-env :
   cd $GUIX_CHECKOUT
-  guix shell --development guix         # -D or --development
+  guix shell --development guix         # -D, --development
   ./pre-inst-env guix style <package>
   # TODO update my own package definitions
   guix style --load-path=/path/to/channel my-package1 my-package2 ...
@@ -383,12 +355,10 @@
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   sudo flatpak install flathub us.zoom.Zoom
   flatpak run us.zoom.Zoom & disown
+  sudo flatpak install flathub org.telegram.desktop
+  flatpak run org.telegram.desktop & disown
 
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/apps/details/com.discordapp.Discord
   sudo flatpak install flathub com.discordapp.Discord
   flatpak run com.discordapp.Discord & disown
-
-  sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-  sudo flatpak install flathub org.telegram.desktop
-  flatpak run org.telegram.desktop & disown
 }

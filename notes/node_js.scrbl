@@ -1,14 +1,22 @@
 #lang notes
 
 @block{@block-name{NodeJS}
+
+  #+BEGIN_SRC bash :results output
+  cd /tmp
+  curl https://nodejs.org/dist/v18.12.1/node-v18.12.1-linux-x64.tar.xz --output node-v18.12.1-linux-x64.tar.xz
+  #+END_SRC
+
   nvm - Node Version Manager
   https://github.com/nvm-sh/nvm
 
   #+BEGIN_SRC bash :results output
-    ## install nodejs with (behind) or without proxy:
+    ## install w/, i.e. behind or w/o proxy on a Debian-based distribution:
     ## 1.
     set nodeJsVer 16
     # 2.1 without proxy
+    # -f, --fail                 Fail fast with no output on HTTP errors
+    # -s, --silent               Silent mode
     curl -fsSL https://deb.nodesource.com/setup_$nodeJsVer.x | sudo -E bash -
     sudo apt install --yes nodejs
     ## 2.2 behind proxy
