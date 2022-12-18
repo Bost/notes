@@ -98,7 +98,7 @@
   # either (A):
   guix build --load-path=./gnu/packages --keep-failed <package>
   cd $GUIX_CHECKOUT
-  guix shell --development guix         # -D or --development
+  guix shell --development guix         # -D, --development
   ./pre-inst-env guix build --keep-failed <package>@"@"<version>
   ./pre-inst-env guix install <package>@"@"<version>
   # or (B):

@@ -21,7 +21,7 @@
   # set tarball guix-binary-$version.x86_64-linux.tar.xz
   #
   # Install standalone Guix OS:
-  # set isoImg guix-system-install-1.3.0.x86_64-linux.iso   # TODO emacs: font-facing of numbers overrides comment-face
+  # set isoImg guix-system-install-1.3.0.x86_64-linux.iso
   echo wget $url/$isoImg $url/$isoImg.sig
   # get the public key and import it:
   #   wget 'https://sv.gnu.org/people/viewgpg.php?user_id=127547' -qO - | gpg --import -

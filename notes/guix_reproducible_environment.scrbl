@@ -21,4 +21,36 @@
 
   features can provide home-service and system-service getters
      (which allows to use:)
+
+  Andrew Torpin: guix shell: Overview - Notes
+  https://github.com/abcdw/notes/blob/master/notes/20211111141408-guix_shell_overview.org
+
+  feature-emacs-eglot ;; lsp-interface for emacs
+  feature-clojure     ;;
+
+  @block{@block-name{RDE channel lock / channel freeze}
+    YouTube: Andrew Torpin: guix shell: Overview
+    https://youtu.be/UMCHuHSlVWk?t=1622
+    # full freeze of Guix channels to the versions defined in 'channels.scm'
+    guix describe --format=channels > ./channels.scm
+    guix time-machine --channels=./channels.scm -- shell REST-OF-GUIX-SHELL-ARGS
+  }
+
+  Use rde as a Channel:
+  Advanced users may prefer to use only parts of rde they are interested:
+  features, services, or just packages. In that case add the following channel
+  to channels.scm.
+  @lisp{
+    (cons*
+     (channel
+      (name 'rde)
+      (url "https://git.sr.ht/~abcdw/rde")
+      (introduction
+       (make-channel-introduction
+        "257cebd587b66e4d865b3537a9a88cccd7107c95"
+        (openpgp-fingerprint
+         "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+     %default-channels)
+  }
+
 }

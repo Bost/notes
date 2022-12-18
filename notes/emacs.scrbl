@@ -1,5 +1,34 @@
 #lang notes
 
+@block{@block-name{debug / edebug}
+  System Crafters: Learning To Use the Emacs Debugger
+  https://youtu.be/LfwSc-lfFxM
+
+  Debugging Lisp Programs
+  https://www.gnu.org/software/emacs/manual/html_node/elisp/Debugging.html
+
+  Two debuggers
+
+  M-x toggle-debug-on-error
+  M-x debug-on-variable-change ;; works also on local override
+  M-x debug-on-entry ;; for a function?
+
+  edebug main function: step through execution of function call
+  (debug can't do it)
+  downside: need to explicitelly instrument a function
+  ?`t` - automatically can execute code?
+}
+
+@block{@block-name{TODOs}
+  Comment buffer - see System Crafters: Planning the New Emacs From Scratch
+  https://www.youtube.com/watch?v=NlP3EDS6WGE
+  (towards the end of the stream) crdt.el is a real-time collaborative editing
+  environment for Emacs using Conflict-free Replicated Data Types.
+
+  System Crafters: The Hidden Value of the Tab Bar
+  https://www.youtube.com/watch?v=wqdT0xKMQT8
+}
+
 @block{@block-name{Spacemacs: Windows and Layouts / perspectives}
   YouTube - CDQuest: Spacemacs: Windows and Layouts (tutorial)
   https://youtu.be/I2C6QTtxfe8
@@ -16,6 +45,11 @@
 }
 
 @block{@block-name{Various}
+
+  emacs-forge: work with Git forges, such as Github and Gitlab
+  Error: forge-db: The Forge database was created with a newer Forge version.
+         You need to update the Forge package.
+  Solution: M-x forge-reset-database
 
   ;; The command arguments are munched together. Whitespace chars are not
   ;; escaped, that means arguments can't be reliably separated from each other.
@@ -775,16 +809,6 @@
     ;; https://www.reddit.com/r/emacs/comments/7dp6oa/comment/dpzi5hz/?utm_source=share&utm_medium=web2x&context=3
     (seq-filter (apply-partially #'< 3) '(1 2 3 4 5 6))
   }
-}
-
-@block{@block-name{TODOs}
-  Comment buffer - see System Crafters: Planning the New Emacs From Scratch
-  https://www.youtube.com/watch?v=NlP3EDS6WGE
-  (towards the end of the stream) crdt.el is a real-time collaborative editing
-  environment for Emacs using Conflict-free Replicated Data Types.
-
-  System Crafters: The Hidden Value of the Tab Bar
-  https://www.youtube.com/watch?v=wqdT0xKMQT8
 }
 
 @block{@block-name{Startup / Loading process}

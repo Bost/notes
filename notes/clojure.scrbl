@@ -834,6 +834,12 @@
   ;;
   ;; nrep unrepl socket repl
 
+  ;; remove any nil, empty, or whitespace-only element
+  (remove clojure.string/blank? ["" "  " false nil "\n" "\n"]) ;; => ()
+
+  ;; clojurescript: print to formated string
+  (goog.string/format "val: '%s'" 'foo)
+
   ;; deeply nested data structure: truncate the output
   (set! *print-level* 3)
   user=> {:a {:b [{:c {:d {:e 42}}}]}}

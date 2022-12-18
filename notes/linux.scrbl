@@ -386,7 +386,12 @@
   ls -1 ./path/to/dir | wc -l
 
   # :listing - show full paths (alias lff)
-  ls -lrt -d -1 $PWD/{*,.*}
+  # '-d, --directory' list directories themselves, not their contents
+  # '-1'              list one file per line
+  ls  -lrt -d -1 $PWD/{*,.*}   # all filepaths w/  their attributes
+  ls       -d -1 $PWD/{*,.*}   # all filepaths w/o their attributes
+  ls       -d -1 $PWD/path/to/file
+  exa      -d -1 $PWD/path/to/file
 
   # :listing - file all extentions / filetypes in current directory
   find ./ -type f | perl -ne 'print $1 if m/\.([^.\/]+)$/' | sort -u

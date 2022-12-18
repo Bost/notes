@@ -32,7 +32,7 @@
   cat $HOME_ENVIRONMENT/configuration.scm
   # see also 'guix home describe'
   guix home reconfigure
-  guix home --keep-failed -L ~/dev/dotfiles/guix/home reconfigure ~/dev/dotfiles/guix/home/home-configuration.scm
+  guix home --keep-failed -L $dotf/guix/home reconfigure $dot/guix/home/home-configuration.scm
 
   # generate a home environment definition from dotfiles and put it to /dst/dir
   guix home import /dst/dir
@@ -42,7 +42,7 @@
 
   # try out some configuration without installing anything
   guix home container /path/to/configuration.scm
-  guix home --keep-failed -L ~/dev/dotfiles/guix/home container ~/dev/dotfiles/guix/home/home-configuration.scm
+  guix home --keep-failed -L $dotf/guix/home container $dotf/guix/home/home-configuration.scm
 
   LEMP WordPress Reproducible Environment
   guix-lemp-container
