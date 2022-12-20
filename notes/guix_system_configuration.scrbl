@@ -1,28 +1,34 @@
 #lang notes
 
 @block{@block-name{Bootable ISO-9660 installation image}
-  # Instantiate operating system declaration:
-  set latest (ls --sort=time --almost-all ~/.cache/guix/checkouts/ | head -1)
-  cd ~/.cache/guix/checkouts/$latest
+  # TODO loop over set checkouts (f -H ^config\$ ~/.cache/guix/checkouts/) and check
+  # git --git-dir=$checkout/.git remote --verbose | rg 'origin.*git.savannah.gnu.org'
 
+  # Instantiate operating system declaration:
+  set --local gxCheckout $HOME/.cache/guix/checkouts/pjmkglp4t7znuugeurpurzikxq3tnlaywmisyr27shj7apsnalwq
+  cd $gxCheckout
   # create bootable ISO-9660 installation /gnu/store/...-image.iso
   guix system image -t iso9660 gnu/system/install.scm
-  # set isoImg /gnu/store/...-image.iso
+  # set --local isoImg /gnu/store/...-image.iso
   #
   # Alternatively download pre-build ISO image:
-  set url    https://ftp.gnu.org/gnu/guix
+  set --local url https://ftp.gnu.org/gnu/guix
   # See:
   # 1. https://guix.gnu.org/en/download/latest/
   # 2. https://ci.guix.gnu.org/jobset/images - leads to builds containing
   # '...-image.iso' files for x86_64-linux
-  set version 1.3.0  # or first 7 chars of the commit id from the git repository
+  set --local gxVer 1.4.0  # or first 7 chars of the commit id from the git repository
   #
   # Install Guix binaries on top of other OS:
-  # set tarball guix-binary-$version.x86_64-linux.tar.xz
+  set --local tarball guix-binary-$gxVer.x86_64-linux.tar.xz
   #
   # Install standalone Guix OS:
-  # set isoImg guix-system-install-1.3.0.x86_64-linux.iso
+  # set --local isoImg guix-system-install-$gxVer.x86_64-linux.iso
   echo wget $url/$isoImg $url/$isoImg.sig
+  # view content of the iso image file
+  mkdir /tmp/iso
+  sudo mount --options loop $isoImg /tmp/iso
+  ls -la /tmp/iso
   # get the public key and import it:
   #   wget 'https://sv.gnu.org/people/viewgpg.php?user_id=127547' -qO - | gpg --import -
   #
@@ -30,10 +36,17 @@
   # about the way gpg outputs text to stdout
   gpg --verify $isoImg.sig    # look for 'Good signature'
   # write the iso image to USB (erase / overwrite its content)
-  set blockDevice /dev/sdcX   # see `lsblk --nodeps --output PATH,MODEL,TRAN,LABEL`
-  udisksctl unmount --block-device $blockDevice
-  echo sudo dd if=$isoImg of=$blockDevice status=progress # 'echo' for safety
-  sync
+  # '--exclude 7' means 'exclude loop devices' https://askubuntu.com/a/1142405
+  lsblk --exclude 7 --nodeps --output MAJ:MIN,PATH,MODEL,TRAN,LABEL,SIZE
+  set --local blkDevice /dev/sd<letter><number>
+  set --local usbDevice /dev/sd<letter>
+  udisksctl unmount --block-device=$blkDevice
+  # 'echo sudo ...' for safety
+  # bs=BYTES - read and write up to BYTES bytes at a time
+  # oflag=sync - use synchronized I/O for data & metadata
+  # `... && sync` is probably not needed if the `dd` is used with 'oflag=sync'
+  echo \
+       sudo dd if=$isoImg of=$usbDevice bs=4M status=progress oflag=sync && sync
 }
 
 @block{@block-name{System Configuration}

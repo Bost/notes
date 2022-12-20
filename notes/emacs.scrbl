@@ -812,8 +812,8 @@
 }
 
 @block{@block-name{Startup / Loading process}
-  ;; Emacs From Scratch #1 - Getting Started with a Basic Usable Configuration
-  ;; https://youtu.be/74zOY-vgkyw?t=432
+  System Crafters: Emacs From Scratch #1
+  https://youtu.be/74zOY-vgkyw?t=432
   `(require ...)` looks in the directories defined by `load-path` /
   EMACSLOADPATH variable
   echo $EMACSLOADPATH
@@ -832,6 +832,9 @@
   default.el      ;; may be located in '/usr/local/share/emacs/site-lisp'
   ;; may be located in '/usr/local/share/emacs/site-lisp'; loaded before init.el?
   site-start.el
+
+  Emacs package change management with quelpa and use-package
+  https://youtu.be/GhItV6dE0Fo
 
   autoload:
   - code should be evaluated even if a package itself is NOT loaded

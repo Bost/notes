@@ -1254,6 +1254,7 @@
   sudo mount -t tmpfs /mnt/ram -o size=8192M
 
   # mount / umount (usb) disk without 'root' as the mount command.
+  udiskie  # a user-level daemon for auto-mounting
   # udisksctl uses udiskds binary launched by udisks2.service.
   # see also udev / udevadm
   # test if /dev/sdc1 is mounted
@@ -1304,17 +1305,18 @@
   # Create bootable usb drive https://askubuntu.com/q/372607
   # (like with usb-creator-gtk)
   # '--exclude 7' means 'exclude loop devices' https://askubuntu.com/a/1142405
-  lsblk --exclude 7 --output MAJ:MIN,PATH,MODEL,TRAN,LABEL,SIZE
-  set --local isoFile     /path/to/file.iso
-  set --local blockDevice /dev/sd<?><?>   # see above the lsblk output
-  set --local usbDevice   /dev/sd<?>      # see above the lsblk output
-  udisksctl unmount --block-device=$blockDevice
-  # TODO check if the size $usbDevice is large enough for the $isoFile
+  lsblk --exclude 7 --nodeps --output MAJ:MIN,PATH,MODEL,TRAN,LABEL,SIZE
+  set --local isoImg      /path/to/file.iso
+  set --local blkDevice /dev/sd<letter><number>
+  set --local usbDevice /dev/sd<letter>
+  udisksctl unmount --block-device=$blkDevice
+  # TODO check if the size $usbDevice is large enough for the $isoImg
+  # oflag=sync - use synchronized I/O for data & metadata
   echo \
-       sudo dd bs=4M if=$isoFile of=$usbDevice status=progress oflag=sync && sync
+       sudo dd bs=4M if=$isoImg of=$usbDevice status=progress oflag=sync && sync
   # or try:
   echo \
-       sudo dd bs=4M if=$isoFile of=$usbDevice status=progress conv=fdatasync && sync
+       sudo dd bs=4M if=$isoImg of=$usbDevice status=progress conv=fdatasync && sync
 
   # create temporary file
   mktemp
