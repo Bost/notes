@@ -1470,7 +1470,7 @@
 }
 
 @block{@block-name{Disk Devices}
-  # :usb :drive :drives :dis
+  # :usb :drive :drives :disk
   # :fdisk :mount :udevadm :udiskie :udisksctl :block-device :boot
   lsblk         # list block devices
   lsblk --nodeps
@@ -1481,7 +1481,7 @@
   # Format disk / usb drive
   # 1. erase everything on the device
   # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
-  set --local deviceFile /dev/sd<?>    # see lsblk
+  set --local deviceFile /dev/sd<letter>    # see lsblk
   sudo dd if=/dev/zero of=$deviceFile bs=4k status=progress && sync
   # 2. make a new partition on the device
   sudo fdisk     $deviceFile
