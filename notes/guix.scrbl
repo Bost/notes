@@ -19,7 +19,8 @@
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso.sig
   # If encountered "gpg: Can't check signature: No public key" then import the signatures:
-  #   wget https://sv.gnu.org/people/viewgpg.php?user_id=127547 -qO - | gpg --import -
+  #   wget 'https://sv.gnu.org/people/viewgpg.php?user_id=127547' -qO - | gpg --import -
+  #   wget 'https://sv.gnu.org/people/viewgpg.php?user_id=15145'  -qO - | gpg --import -
   gpg --verify guix-system-install-1.3.0.x86_64-linux.iso.sig
   # where the warning like "This key is not certified with a trusted signature!"
   # can be ignored.
