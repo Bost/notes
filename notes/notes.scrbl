@@ -5,7 +5,6 @@
 
 @include-section{android.scrbl}
 @include-section{ansible.scrbl}
-@include-section{asciinema.scrbl}
 @include-section{bric_a_brac.scrbl}
 @include-section{clojure.scrbl}
 @include-section{clojure_cljdocs.scrbl}
@@ -18,7 +17,6 @@
 @include-section{dbases.scrbl}
 @include-section{ddos.scrbl}
 @include-section{drracket.scrbl}
-@include-section{eclipse.scrbl}
 @include-section{emacs.scrbl}
 @include-section{emacsconf2020.scrbl}
 @include-section{find_and_grep.scrbl}
@@ -51,13 +49,8 @@
 @include-section{racket_learning.scrbl}
 @include-section{remove_guix_from_ubuntu.scrbl}
 @include-section{shells.scrbl}
-@include-section{solaris.scrbl}
 @include-section{systemd.scrbl}
 @include-section{tex_and_latex.scrbl}
-@include-section{thgoa.scrbl}
-@include-section{tools_for_thinking.scrbl}
+@include-section{thgtoa.scrbl}
 @include-section{utf8.scrbl}
-@include-section{video_editing.scrbl}
 @include-section{vim.scrbl}
-@include-section{web_services.scrbl}
-@include-section{xen.scrbl}

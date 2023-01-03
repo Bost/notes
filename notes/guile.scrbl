@@ -119,15 +119,15 @@
    #<interface (ice-9 threads) 7ffa540a2aa0>
    #<interface (value-history) 7ffa52cce5a0>
    #<interface (geiser emacs) 7ffa51539f00>)
-  scheme@(guile-user) > ,h inspect       ; REPL debugging:
+  scheme@"@"(guile-user) > ,h inspect       ; REPL debugging:
   Inspect Commands [abbrev]:
   ;;
   ,inspect EXP                 [,i] - Inspect the result(s) of evaluating EXP.
   ,pretty-print EXP           [,pp] - Pretty-print the result(s) of evaluating EXP.
-  scheme@(guile-user)> ,use (gnu packages base)
-  scheme@(guile-user)> coreutils
+  scheme@"@"(guile-user)> ,use (gnu packages base)
+  scheme@"@"(guile-user)> coreutils
   ;; quit / terminate the repl with exit / return code 0
-  scheme@(guile-user)> (primitive-exit 0)
+  scheme@"@"(guile-user)> (primitive-exit 0)
 
   $ guix repl --load-path=.
   $ guix repl << EOF
@@ -144,19 +144,19 @@
   EOF
 
   $ guix repl
-  scheme@(guix-user)> ,use (gnu packages shells)
-  scheme@(guix-user)> ,use (guix gexp)
-  scheme@(guix-user)> #~#$fish-foreign-env
+  scheme@"@"(guix-user)> ,use (gnu packages shells)
+  scheme@"@"(guix-user)> ,use (guix gexp)
+  scheme@"@"(guix-user)> #~#$fish-foreign-env
   $1 = #<gexp #<gexp-input #<package fish-foreign-env@0.20190116 gnu/packages/shells.scm:278 7efedecbd0b0>:out> 7efedf25c270>
 
   $ guix repl
-  scheme@(guix-user)> ,option value-history
+  scheme@"@"(guix-user)> ,option value-history
   #t
-  scheme@(guix-user)> ,option value-history #f
-  scheme@(guix-user)> ,option value-history
+  scheme@"@"(guix-user)> ,option value-history #f
+  scheme@"@"(guix-user)> ,option value-history
   #f
-  scheme@(guix-user)> ,option value-history #t
-  scheme@(guix-user)> ,option
+  scheme@"@"(guix-user)> ,option value-history #t
+  scheme@"@"(guix-user)> ,option
     compile-options       (#:warnings (shadowed-toplevel use-before-definition arity-mismatch format duplicate-case-datum bad-case-datum non-idempotent-definition))
     optimization-level    #f
     warning-level         #f
@@ -166,12 +166,12 @@
     print                 #<procedure colorized-repl-printer (repl val)>
     value-history         #t
     on-error              debug
-  scheme@(guix-user)> ,use (guix monad-repl)
-  scheme@(guix-user)> ,use (guix store)
-  scheme@(guix-user)> (define tf (text-file "foo" "Hello!"))
-  scheme@(guix-user)> tf
+  scheme@"@"(guix-user)> ,use (guix monad-repl)
+  scheme@"@"(guix-user)> ,use (guix store)
+  scheme@"@"(guix-user)> (define tf (text-file "foo" "Hello!"))
+  scheme@"@"(guix-user)> tf
   $3 = #<procedure 7f1daff15fc0 at guix/store.scm:2085:2 (store)>
-  scheme@(guix-user)> ,inspect tf
+  scheme@"@"(guix-user)> ,inspect tf
   #<procedure 7f1daf…> inspect> disassemble
   Disassembly of #<procedure 7f1daff15fc0 at guix/store.scm:2085:2 (store)> at #x7f1db7bd6484:
   ;;
@@ -182,7 +182,7 @@
      5    (static-ref 3 117116)           ;; #f                 at guix/store.scm:1095:33
      7    (scm-ref/immediate 2 9 4)
      8    (handle-interrupts)                                   at guix/store.scm:1095:32
-     9    (call-label 6 2 -17737)         ;; string->utf8@rnrs/bytevectors at #x7f1db7bc4f84
+     9    (call-label 6 2 -17737)         ;; string->utf8@"@"rnrs/bytevectors at #x7f1db7bc4f84
     12    (receive 3 6 10)
     14    (scm-ref/immediate 5 9 3)
     15    (scm-ref/immediate 0 9 5)
@@ -198,7 +198,7 @@
     27    (return-values)
   ;;
   ----------------------------------------
-  Disassembly of string->utf8@rnrs/bytevectors at #x7f1db7bc4f84:
+  Disassembly of string->utf8@"@"rnrs/bytevectors at #x7f1db7bc4f84:
   ;;
      0    (instrument-entry 134865)                             at guix/store.scm:1095:2
      2    (immediate-tag=? 1 7 0)         ;; heap-object?
@@ -210,12 +210,12 @@
     12    (handle-interrupts)
     13    (tail-call)
   #<procedure 7f1daf…> inspect> quit
-  scheme@(guix-user)> (gexp? #~#$fish-foreign-env)
+  scheme@"@"(guix-user)> (gexp? #~#$fish-foreign-env)
   $2 = #t
-  scheme@(guile-user)> ,use (gnu packages base)
-  scheme@(guile-user)> coreutils
+  scheme@"@"(guile-user)> ,use (gnu packages base)
+  scheme@"@"(guile-user)> coreutils
   $3 = #<package coreutils@8.29 gnu/packages/base.scm:327 3e28300>
-  scheme@(guile-user)> (macroexpand '(unquote foo))
+  scheme@"@"(guile-user)> (macroexpand '(unquote foo))
   ...
 
   https://www.rohleder.de/~mike/guix-workflow/guix-workflow.html
