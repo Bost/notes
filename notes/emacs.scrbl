@@ -46,6 +46,9 @@
 
 @block{@block-name{Various}
 
+  ;; on Ubuntu, when 'libtool not found.  Please install libtool'
+  sudo apt install --yes libtool-bin
+
   emacs-forge: work with Git forges, such as Github and Gitlab
   Error: forge-db: The Forge database was created with a newer Forge version.
          You need to update the Forge package.
@@ -305,7 +308,7 @@
   ;; Transparent Remote (file) Access / Editing, Multiple Protocol (TRAMP)
   ;; method can be: ssh if anything doesn't work:
   ;; 1. delete ~/.bashrc
-  ;; 2. emacs -q --eval "(setq tramp-verbose 10)" &
+  ;; 2. emacs --no-init-file --eval "(setq tramp-verbose 10)" &
   ~C-x C-f~ /method:user@"@"remotehost#port:filename
   ~C-x C-f~ /ssh:test@"@"host#2222:/tmp
 

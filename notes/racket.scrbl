@@ -36,6 +36,12 @@
 }
 
 @block{@block-name{Command line snippets}
+
+  # install on Ubuntu
+  sudo add-apt-repository ppa:plt/racket
+  sudo apt update
+  sudo apt install --yes racket
+
   # package / project management:
   raco pkg new <package>             # start new project
 
@@ -68,6 +74,17 @@
 }
 
 @block{@block-name{Various & snippets, etc.}
+
+  @lisp{
+    ;; take / fetch n-elements from a list
+    (require racket/list)
+    (take '(1 2 3) 2) ;; '(1 2)
+
+    ;; Set Methods / Operations
+    ;; https://docs.racket-lang.org/reference/sets.html#%28part._set-methods%29
+    (set-subtract '("a" "b" "c") '("a")) ;; '("c" "b")
+  }
+
   @lisp{
     ;; `letrec` - like `let`, but enables function definitons which can refer each
     ;; other
