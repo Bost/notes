@@ -38,7 +38,6 @@
   https://bigbluebutton.org/
 
   @block{@block-name{Record terminal session}
-    @hyperlink["https://asciinema.org/"]{asciinema}
     #+BEGIN_SRC shell
     asciinema rec
     #+END_SRC
