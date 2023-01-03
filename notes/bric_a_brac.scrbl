@@ -1,5 +1,117 @@
 #lang notes
 
+@block{@block-name{Communication protocols}
+  imply SW architectural style for distributed environments
+  REST (Representational State Transfer) accesses data
+  SOAP (Simple Object Access Protocol) performs operations
+
+  @block{@block-name{RESTful API services}
+    | HTTP method | CRUD equivalent |
+    |-------------+-----------------|
+    | GET         | Read            |
+    | POST        | Create          |
+    | PUT         | Update          |
+    | DELETE      | Delete          |
+  }
+}
+
+@block{@block-name{Various}
+  CORS Cross-Origin Resource Sharing
+  chrome://flags/#block-insecure-private-network-requests
+
+  CSS Cascade Style Sheets
+  The @"@"media rule - different styles for different media types/devices.
+
+  Xen Type-1 hypervisor
+  Provides services that allow multiple computer operating systems to execute on
+  the same computer hardware concurrently.
+}
+
+@block{@block-name{Video Editing}
+  Racket's video language
+  https://lang.video/
+
+  On Guix: guix build -m render-videos.scm
+  https://guix.gnu.org/en/blog/2021/reproducible-data-processing-pipelines/
+
+  BigBlueButton
+  https://bigbluebutton.org/
+
+  @block{@block-name{Record terminal session}
+    @hyperlink["https://asciinema.org/"]{asciinema}
+    #+BEGIN_SRC shell
+    asciinema rec
+    #+END_SRC
+    in Emacs:
+    #+BEGIN_SRC emacs-lisp
+    (require 'erc)
+    (cl-macrolet ((at (d &rest b) `(run-at-time ,d nil (lambda () (progn ,@"@"b)))))
+    (pop-to-buffer-same-window
+    (erc :server "irc.libera.chat"
+    :port 6667
+    :nick "ddWfnZ7G"
+    :password ""
+    :full-name ""))
+    (at 3 (execute-kbd-macro "/join #channelddWfnZ7G"))
+    (at 4 (execute-kbd-macro "\r"))
+    (at 5  (call-interactively 'eval-expression))
+    (at 6  (execute-kbd-macro "(setq erc-fill-static-center 10)"))
+    (at 7  (execute-kbd-macro "\r"))
+    (at 8  (call-interactively 'execute-extended-command)) ; simulate M-x
+    (at 9  (execute-kbd-macro "erc-mode"))
+    (at 10 (execute-kbd-macro "\r"))
+    )
+    #+END_SRC
+  }
+}
+
+@block{@block-name{Tools for thinking}
+  Kinopio
+  https://kinopio.club/
+
+  For Political Sciences
+  https://www.juliendesrosiers.com/2021/08/21/tools-for-thinking.php
+
+  org-roam-graph
+}
+
+@block{@block-name{Solaris}
+  # checksum
+  /usr/bin/digest -a sha1
+  # wget location
+  /usr/sfw/bin/wget
+  # full command line (needs: sudo rootsh -i -u ... )
+  /usr/ucb/ps -auxww
+  # displays information about processors
+  psrinfo
+  # net: ipconfig
+  /usr/sbin/ifconfig -a
+}
+
+@block{@block-name{Eclipse}
+  .metadata/.plugins/org.eclipse.team.cvs.ui/repositoriesView.xml
+  #
+  METADA_CORE=.metadata/.plugins/org.eclipse.jdt.core;
+  # Clean history
+  rm -rf .metadata/.plugins/org.eclipse.core.resources/.history;
+  # Clean metadata
+  rm $METADA_CORE/*.index $METADA_CORE/savedIndexNames.txt;
+  # Use this in find-replace dialogue to remove trailing whitespaces
+  [\\t ]+$
+  # Type syso/sysout and ctrl + space for System.out.println()
+  syso/sysout
+  # Jump to next error
+  Ctrl-.
+}
+@block{@block-name{IRC}
+  https://libera.chat/guides/registration
+  Usefull commands:
+  /connect irc.libera.chat 6667 YourNick:YourPassword
+  /nick YourNick
+  /msg NickServ IDENTIFY YourNick YourPassword
+  /msg NickServ GROUP
+}
+
 @block{@block-name{World Wide Web}
   IPFS InterPlanetary File System
   powers the Distributed Web A peer-to-peer hypermedia protocol designed to
