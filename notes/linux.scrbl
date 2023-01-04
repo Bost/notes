@@ -10,7 +10,7 @@
   heroku config:get <VARIABLE> --app <APP-NAME>
   heroku config:set <VARIABLE>=<VALUE> --app <APP-NAME>
 
-  # Postgres database command line access
+  # PostgreSQL database command line access
   heroku pg:psql --app <APP-NAME> <DATABASE>
 
   # Inspect logfile:
@@ -46,7 +46,6 @@
   # parameter. The value of "PORT" is random when the app is running on a
   # Heroku-server. See `(System/getenv "PORT")`
   heroku local -p 7000
-
 }
 
 @block{@block-name{How to verify your Ubuntu download}
@@ -94,12 +93,12 @@
   bluetoothctl
   help # list of available commands of bluetoothctl
 
-  # rfkill - Tool for enabling and disabling wireless devices.
+  # rfkill - enable / disable wireless devices
   sudo rfkill list
   sudo hciconfig hci0 up
   hcitool scan
 
-  # xfce applet; See Settings-> Session and Startup->Applicatin Autostart
+  # xfce applet; See Settings -> Session and Startup -> Application autostart
   blueman-manager
 
   # send file to /storage/emulated/0/bluetooth
@@ -243,7 +242,7 @@
   sudo nmap -sn IP_RANGE
 
   # show open ports
-  nmap localhost | grep -i open # 631/tcp  open  ipp - Internet Printing Protocol
+  nmap localhost | grep -i open # 631/tcp  open ipp - Internet Printing Protocol
   nmap www.google.com | grep -i open
 
   # :net IPv4 - CIDR notation
@@ -339,7 +338,8 @@
   df --inodes
 
   # :net - show host name
-  hostname -i
+  hostname --ip-address       # -i; addresses for the host name
+  hostname --all-ip-addresses # -I; all addresses for the host
 
   # :mplayer reset/+/- speed by 10% / toggle OSD states / volume +/-
   backspace / \] / \[ / o / * / "/"
@@ -356,7 +356,7 @@
   # :ubuntu - change default www-browser
   sudo update-alternatives --config x-www-browser
   sudo update-alternatives --config gnome-www-browser
-  # xfce4-settings-manager -> Preferred Applications # on ubuntu
+  # xfce4-settings-manager -> Preferred Applications # on Ubuntu
   # see ~/.local/share/xfce4/helpers
   # test by opening file / URL in the user's preferred / default application
   xdg-open www.wikipedia.org # /usr/bin/browse is symlinked to xdg-open
@@ -461,7 +461,7 @@
   at -f script.sh now + 30 min  # 30 minutes from now
   watch date                    # periodically / repeatedly every 2 seconds
 
-  # echo with formating
+  # echo with formatting
   printf "Line: %05d %15.3f Result: %+15d\n" 1071 3,14156295 32589
 
   # simple python3 server
@@ -881,7 +881,7 @@
   # 1. check the priviledges - `1` means all priviledges for sysrq. `0` means no
   # priviledges.
   cat /proc/sys/kernel/sysrq
-  # how to obtain priviledges:
+  # how to obtain privileges:
   echo "1" | sudo tee /proc/sys/kernel/sysrq
   # Press ~Alt + sysrq~ buttons (i.e. the ~Alt+PrintScreen~ / ~M-<print>~) and
   # type "reisub" for restart / "reisuo" for halting the machine.
@@ -931,7 +931,7 @@
   # mounted filesystems - table layout; -t --table
   mount | column -t
 
-  # filter out some columns, remove table headers, etc. with `columng`:
+  # filter out some columns, remove table headers, etc. with `column`:
   guix package --list-available="emacs-(ace-jump-helm-line|yasnippet).*" \
   | column --table --table-noheadings --table-columns NAME,VER,OUT,PATH \
            --table-hide OUT --table-order VER,NAME,PATH \
@@ -1192,34 +1192,33 @@
   # FTPS - FTP over SSL (SSL is deprecated)
   lftp
 
-  # :HPKP HTTP Public Key Pinning; Similair to HSTS header
+  # :HPKP HTTP Public Key Pinning; similar to HSTS header
   # Create your HPKP hash: https://report-uri.io/home/pkp_hash
 
-  # :net - data transfered today / per month
+  # :net - data transferred today / per month
   sudo vnstat -u -i wlan0 && vnstat
 
   # :net - managing a netfilter firewall; ufw - uncomplicated firewall
   sudo ufw status numbered
+  sudo ufw status numbered
+  # if Status: inactive, run: sudo ufw enable
   sudo ufw delete RULE_NUMBER
   sudo ufw allow PORT
   sudo ufw allow PORT/tcp
 
-  # :net :rdp :remote-desktop - `-p` ask for password, `-f` full screen
-  rdesktop -u USER -p - COMPUTER:3389
+  # :net :RDP :remote-desktop - `-p` ask for password, `-f` full screen
+  rdesktop    -u USER -p - COMPUTER:3389
   rdesktop -f -u USER -p - COMPUTER:3389
-  # :net :rdp remote desktop
   sudo /etc/init.d/xrdp restart
 
-  # :shred :permanet-delete - shred doesn't work on dirs
+  # shred / permanent delete
+  # Warning: shred doesn't work on directories
   shred --verbose --remove path/to/file
-
-  # :shred permanet delete: shred doesn't work on dirs
   find . -type f -print0 | xargs -0 shred --remove
-
-  # :shred :permanet-delete - srm doesn't delete hardlinked files
+  # srm doesn't delete hard-linked files
   srm -r path/to/file
 
-  # synchronize sytem date behind proxy
+  # synchronize system date / system time behind proxy
   curDate="$(wget -S "http://www.google.com/" 2>&1 \
       | grep -E '^[[:space:]]*[dD]ate:' \
       | sed 's/^[[:space:]]*[dD]ate:[[:space:]]*//' \
