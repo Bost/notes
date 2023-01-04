@@ -47,3 +47,13 @@
   protocol for packet exchange between a client and server through a proxy
   server
 }
+
+@block{@block-name{Varioous}
+  # SSH Tunneling https://iximiuz.com/en/posts/ssh-tunnels/
+  # mnemonics:
+  ssh -L local:remote  # -L local
+  ssh -R remote:local  # -R remote
+
+  iptables - configure packet filtering ruleset
+}
+
