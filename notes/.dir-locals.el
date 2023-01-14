@@ -40,7 +40,8 @@
 ;;; # foo 42 bar
 
 ;;; TODO does "font-lock-add-keywords 'scribble-mode" need some `eval-after-load`?
-    (font-lock-add-keywords 'scribble-mode
+      (font-lock-add-keywords
+       'scribble-mode
        `(
          (,(rx (group ";; " (+ not-newline)))
           . 'font-lock-comment-face)
@@ -50,7 +51,7 @@
           . 'font-lock-constant-face)
          ))
 
-      (setq-local home-dir (format "%s/dev/notes/notes" (getenv "HOME")))
+      (setq-local home-dir (format "%s/notes/notes" (getenv "dev")))
 
       (defun notes=find-file--guix.scrbl ()
         (interactive)
