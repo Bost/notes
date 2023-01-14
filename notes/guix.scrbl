@@ -60,6 +60,7 @@
   #   export GIT_SSL_CAINFO="$SSL_CERT_FILE"
   #
   guix shell --development guix help2man git strace --pure
+  jobs=$[$(nproc) * 95 / 100] # use 95% of the available CPU cores
   # --check            check if the shell clobbers environment variables
   # --pure             unset existing environment variables
   # Alternatives:
@@ -72,11 +73,11 @@
   #   configure: error: 'guild' binary not found; please check your Guile installation.
   # do:
   #   ./configure GUILE=$(which guile) --localstatedir=/var
-  make          # make -j22  # first run takes a couple of minutes
-  # make check  # optional
+  make --jobs=$jobs  # first run takes a couple of minutes
+  # make --jobs=$jobs check  # optional
   # authenticate all the commits included in your checkout by running:
-  make authenticate
-  make clean-go  # make -j22 clean-go # delete the .go (Guile Object) files
+  make --jobs=$jobs authenticate
+  make --jobs=$jobs clean-go # delete the .go (Guile Object) files
   ./pre-inst-env guix home --fallback -L $dotf/guix/home/ container $dotf/guix/home/home-configuration.scm
 }
 

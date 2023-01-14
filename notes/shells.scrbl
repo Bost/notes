@@ -144,6 +144,7 @@
   # compute calculate fish-shell
   # examples https://nicolas-van.github.io/programming-with-fish-shell
   math "1 + 2"
+  set jobs (math round (nproc) \* 0.9) # should be 22 on ecke
 }
 
 @block{@block-name{Bash double brackets}
@@ -239,6 +240,11 @@
   # eval expression
   echo $[22 + 33]
   expr 11 + 22
+  # ERROR: expr: non-integer argument
+  expr $(nproc) \* 0.9
+  # ERROR: syntax error: invalid arithmetic operator (error token is ".9")
+  echo $[$(nproc) * 0.9]
+  echo $[$(nproc) * 95 / 100] # workaround for the above problem
 
   # bash insert contents of file.txt into input of tr and output results to
   # fileNew.txt
