@@ -14,6 +14,9 @@
   https://ambrevar.xyz/guix-advance/
   https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix
 
+  Ludovic Courtès: Your Distro Is A Scheme Library
+  https://youtu.be/CdixrlQzAN8
+
   https://git.sr.ht/~technomancy/
 
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso

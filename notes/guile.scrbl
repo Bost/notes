@@ -95,6 +95,12 @@
 
   Meta-commands
   https://www.gnu.org/software/guile/manual/guile.html#REPL-Commands
+
+  # disable colors and readline bindings defined in the .guile
+  @; INSIDE_EMACS=1     # bash
+  set INSIDE_EMACS 1    # fish-shell
+  guix repl --listen=tcp:37146 &
+  M-x geiser-connect
   ;; REPL debugging:
   ;; displays the call stack (aka backtrace) at the point where the debugger was
   ;; entered
@@ -255,6 +261,9 @@
 
 @block{@block-name{Various code snippets}
   @lisp{
+    ;; pwd - print working directory
+    (getcwd)
+
     (define second (time-second (current-time)))
     (define second 1607841890)
     (strftime "%Y-%m-%d %H:%M:%S" (localtime second))

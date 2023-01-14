@@ -21,12 +21,16 @@
   }
 }
 
-@block{@block-name{Object-relational mapping}
-  [[https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping][Wikipedia: Object–relational mapping]] ORM
+@block{@block-name{ORM Object-Relational Mapping}
+  Wikipedia: ORM Object–Relational Mapping
+  https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping
 
   @block{@block-name{ORM in Racket with Racquel}
-    [[https://docs.racket-lang.org/racquel/index.html][Racket Docs: Racquel]]
-    [[https://github.com/brown131/racquel][Github: Racquel]]
+    Racket Docs: Racquel
+    https://docs.racket-lang.org/racquel/index.html
+
+    Github: Racquel
+    https://github.com/brown131/racquel
   }
 }
 

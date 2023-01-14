@@ -1,5 +1,26 @@
 #lang notes
 
+@block{@block-name{Leaky Abstraction}
+  A Look into Modern Leaky Abstractions - Postgres, MySQL, HTTP/2, TCP, ORMs GraphQL, N+1, Axios, git
+  https://youtu.be/4a3bI7AYsy4
+
+  Proper abstraction:
+  - On e.g. MariaDB vs. Postgres I don't need to know if 'select * from ...' runs
+    on the former or the later: The commands have:
+    1. Same syntax
+    2. Same performance characteristics
+    3 ...
+  Leaky abstraction:
+  E.g. finger printing by e.g. different performance characteristics.
+
+  n+1 Problem: cannonical example of a leaky abstraction:
+  Optimaly 1 select:
+    select id, price form table where ...;
+  vs. select from (select from (select from ...)):
+    select price from (select * from table where ...);
+  Assume every abstraction is leaky
+}
+
 @block{@block-name{Stacks}
   LAMP Linux Apache, MySQL, PHP
   LEMP (container stack) Linux, (E)Nginx, MariaDB (MySQL replacement), PHP

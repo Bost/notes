@@ -127,8 +127,13 @@
 }
 
 @block{@block-name{Package Inputs / Outputs}
-  A package can have multiple "Outputs" that serves as a mean to separate
-  various component of a program (libraries, extra tools, documentation, etc.).
+
+  A package can have multiple "Outputs", i.e. multiple store-directories, that
+  serves as a mean to separate components of a program (libraries, extra tools,
+  documentation, etc.).
+  E.g.:
+  guix install glib:doc - install the 'doc' output of glib
+  guix install glib:out - install the default output 'out' of the glib
 
   Inputs ~ package dependencies.
   The user profile & environment only contains the packages the user explicitly

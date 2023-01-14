@@ -421,6 +421,11 @@
   xfce4-clipman-plugin  # clipboard manager
   xfce4-screenshooter
 
+  # The X server maintains three selections: PRIMARY, SECONDARY and CLIPBOARD.
+  # - PRIMARY: for copying and pasting via the middle mouse button.
+  #
+  # Copy text to clipboard so that it is available in a text editor
+  echo "foo" | xsel -bi # -b --clipboard; -i --input
   # show normal clipboard content in/on the terminal / command line
   xsel --clipboard
 
