@@ -2,7 +2,7 @@
 
 @block{@block-name{Find and Grep}
   # redirect; skip the "Permission denied" and "Invalid argument" errors
-  find ./ -name file.ext 2>&1 | grep -v "Permission denied\|Invalid argument"
+  find . -name file.ext 2>&1 | grep -v "Permission denied\|Invalid argument"
   # see also psub
 
   # grep / ripgrep / rg
@@ -19,63 +19,57 @@
   # emacs find - exclude backup files; '+' in the '--exec ... +' - the command
   # is built by appending each selected file name at the end
 
-  # find and delete empty files / dirs
-  find . -empty -type f -delete
-  find . -empty -tspe d -delete
-  find  /path/to/dest -type f -empty -user vivek
+  find . -empty -type f -delete  # delete empty files
+  find . -empty -type d -delete  # delete empty directories
+  find /path/to/dest -type f -empty -user vivek
 
-  # search for *fileToSearch* in multiple directories
-  find ./ foo/ bar/ -name "*fileToSearch*"
+  find . foo/ bar/ -name "*.txt"  # in multiple (three) directories
 
-  # TODO what does the `-print` switch?
+  # The -print action prints the name of the current file on the standard
+  # output. It is performed on all files for which the whole expression is true,
+  # unless it contains an action other than -prune or -quit.
+  # Action examples:
+  #   -print -delete -exec -execdir -ok -okdir -fls -fprint -fprintf -ls -print
+  #   -printf
+  find . -print -quit             # quit / stop search after finding 1st match
 
-  # find only filenames matching '*.clj' containing 'project'
-  find . -name '*.clj' | xargs grep -l 'project'
+  xargs # build and execute command lines from standard input
+  # only names matching '*.clj', contains 'project', w/ spaces in names
+  find . -name '*.clj' | xargs grep --files-with-matches 'project'
+  find . -name '*.jar' | xargs grep File.class     # search in jar files
+  find . -type f -name '*.txt' -print0 | xargs -0 grep --files-with-matches "Pattern"
 
-  # quit / stop search after finding 1st match
-  find . ... -print -quit
-
-  # find all files and dirs modified in the last 7 days; between: older: newer:
+  # all files & directories modified in the last 7 days; between: older: newer:
   find . ... -mtime -7
 
   # flatteb all xml files from all src subdirs to dst, fork off a new copy
   # process for every file; TODO test it!
 
-  # skip / exclude / do not search
-  find . -not -path "*/\.*"  # hidden files and dirs
+  find . -not -path "*/\.*"               # skip / exclude hidden files and dirs
   find . -not -path "*path/to/exclude*"
 
-  # files filtered by multiple extensions
-  find . -type f -name "*.xml" -or -name "*.txt"
-  find . -executable -type f
-  find . -type d -name "dirname" # directories called dirname
+  find . -type f -name "*.xml" -or -name "*.txt" # filtered by extensions
+  find . -executable -type f                     # executable files
+  find . -type l                                 # links
+  find . -type d -name "dirname"                 # directories called dirname
 
-  # grep from a string
-  txt ="Some text where the search is done"                    # bash
+  # grep from a string / variable. Works only in bash
+  txt="Some text where 123 the search is done"
+  grep --only-matching -e "[-+]\?[0-9]*\.\?[0-9]\+" <<< ${txt}
 
   # find: recursive search for "Pattern" in ... (with '.' at the end)
+  grep -nir "Pattern" --exclude-dir={.git,CVS} --include=\*.{el,clj,cljs,cljc} ./
 
   # find: grep-help: recursive search for "Pattern" in ... (with '.' at the end)
-
-  # build and execute command lines from standard input
-  xargs
-
-  # search in *.txt files (with spaces in filenames)
-  find ./ -type f -name "*.txt" -print0 | xargs -0 grep --files-with-matches "Pattern"
+  grep -nir "Pattern" --exclude-dir={.git,CVS} --include=\*.{log,propeties,cfg,txt} ./
 
   # find and delete *.jar and *.class when idling
   ionice -c3 find . -name "*.jar" -or -name "*.class" -delete
 
-  # search for File.class in jar files
-  find . -name "*.jar" | xargs grep File.class
-
   # new line separator for each grep result sh script
 
-  # grep: colorize grep in less
-  grep --color=always pattern file | less -R
-
-  # grep: lines containing any upper character
-  grep "[[:upper:]]" file
+  grep --color=always pattern file | less -R # colorize grep in less
+  grep "[[:upper:]]" file                    # lines containing any upper char
 
   # grep: intersection between two files
   grep -Fx -f file1 file2
@@ -97,19 +91,19 @@
   find ~/Pictures -type f -not -newermt "2016-02-01"
 
   # find all files recursively newer than given time
-  find ./ -newermt $(date +%Y-%m-%d -d '1 day ago') -type f -print
+  find . -newermt $(date +%Y-%m-%d -d '1 day ago') -type f -print
   # fish: find recent Guix-build logs
   l (find /var/log/guix/drvs/ -type f -newermt (date +%Y-%m-%d\ %H:%M -d '60 minutes ago') -name "*.drv.gz")
   l (find /var/log/guix/drvs/ -type f -newermt (date +%Y-%m-%d\ %H:%M -d '30 minutes ago') -name "*.drv.gz")
 
   # substitute / replace all occurences of ... with ...
-  find ./ -type f -name "*.fish" -print0 | xargs -0 sed --in-place "s/apt-get/apt/g"
+  find . -type f -name "*.fish" -print0 | xargs -0 sed --in-place "s/apt-get/apt/g"
 
   # skip the "Permission denied" and "Invalid argument" errors
-  find ./ -name file.ext 2>&1 | grep -v "Permission denied\|Invalid argument"
+  find . -name file.ext 2>&1 | grep -v "Permission denied\|Invalid argument"
 
   #  recursively count LOC (lines of code) in all source files (python & sql)
-  find ./ -name "*.py" -or -name "*.sql" | xargs wc -l
+  find . -name "*.py" -or -name "*.sql" | xargs wc -l
 
   # search for IPv4 addresses; -E --extended-regexp, -o --only-matching
 
@@ -162,6 +156,7 @@
   rg "<search-regex>" (f "<file-extention>$" /path/to/dir)
   rg "<search-regex>" (f "<file-extention>$" (pwd))
   rg "dotspacemacs/layers" (f -e scm -e c -e h '.*' ~/.emacs.d)
+
   # word boundaries
   rg "\bword\b" (f -e scm -e c -e h '.*' ~/.emacs.d)
   rg -w "word" (f -e scm -e c -e h '.*' ~/.emacs.d)
@@ -196,4 +191,8 @@
   set oldNew "oldText" "newText"
   set sFiles (rg --files-with-matches --type racket $oldNew[1])
   sed --in-place "s/$oldNew[1]/$oldNew[2]/g" $sFiles
+
+  # search through all guix and guile code
+  rg -g '*.{scm,c,h}' -w "word" (find ~/.cache/guix/checkouts/ -type l) ~/dev/guile
+
 }
