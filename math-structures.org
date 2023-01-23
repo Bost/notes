@@ -33,6 +33,11 @@ https://en.wikipedia.org/wiki/Algebraic_structure
 | Group                | Y      | Y           | Y        | Y          | -           |
 | Abelian group        | Y      | Y           | Y        | Y          | Y           |
 
+Closed / Closure property: all possible results of $a \cdot b$ are in the
+underlying body \\
+Associative: $a \cdot (b \cdot c$) = $(a \cdot b$) \cdot c$ - "the brackets" \\
+Commutative: $a \cdot b$ = $b \cdot a$
+
 *** Semigroup / Halbgruppe:
 Semigroup is tuple $(G, \cdot)$ such that: \\
 $\cdot$ is closed / closure: $a \cdot b$ must be also in $G$ \\
@@ -52,8 +57,9 @@ Not required: $\blank\inv$ inversion (dual obj): $x \cdot x\inv = x\inv \cdot x 
 *** Group
 Group is a triple $(G, \cdot, e)$ such that: \\
 A category w/ one object => every morphism is an isomorphism \\
-$\cdot$ is closed / closure: $a \cdot b$ must be also in $G$ \\
-Not required: $\cdot$ is commutative: $x \cdot y = y \cdot x$ \\
+$\cdot$ is closed / closure: $\forall a,b in G: a \cdot b$ must be also in $G$ \\
+Not required: $\cdot$ is commutative: $x \cdot y = y \cdot x$ e.g. matrix
+multiplication is not a commutative operation \\
 $\cdot$ is associative: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ \\
 $e$ is neutral element (identity) \\
 $\blank\inv$ inversion (dual obj): $x \cdot x\inv = x\inv \cdot x = e$ \\

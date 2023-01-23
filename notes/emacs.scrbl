@@ -675,8 +675,9 @@
   p prev / n next / w Copy abbreviated hash / W Copy full hash / g Goto nth rev /
   q Exit
 
-  ;; profiler
-  M-x profiler-start profiler-report profiler-stop
+  M-x profiler-start
+  M-x profiler-stop
+  M-x profiler-report ;; analyze execution profile
 
   ;; evil: global search & replace, starting from the cursor position
   :,$s/BEFORE/AFTER/gc
