@@ -31,9 +31,9 @@
   https://guix.gnu.org/guix-refcard.pdf
   https://gitlab.com/pjotrp/guix-notes
   https://github.com/pjotrp/guix-notes/blob/master/HACKING.org
-  ;; Brainiarc7/guix-notes is 1 commit ahead, 279 commits behind pjotrp:master
+  # Brainiarc7/guix-notes is 1 commit ahead, 279 commits behind pjotrp:master
   https://github.com/Brainiarc7/guix-notes/blob/master/HACKING.org
-  ;; spoelstraethan/guix-notes is 6 commits ahead, 6 commits behind pjotrp:master
+  # spoelstraethan/guix-notes is 6 commits ahead, 6 commits behind pjotrp:master
   https://github.com/spoelstraethan/guix-notes/blob/master/HACKING.org
   https://systemcrafters.cc/craft-your-system-with-guix/
 
@@ -45,7 +45,8 @@
 
   guix shell --search-paths    # display needed environment variable definitions
 
-  # building Guix:
+  # Building / Compiling Guix:
+  # https://www.rohleder.de/~mike/guix-workflow/guix-workflow.html
   # on error: 'configure: error: C compiler cannot create executables'
   guix install gcc-toolchain
   cd ~/dev/guix/
@@ -88,6 +89,11 @@
 
   GNU Guix - GNU+Linux distribution, with declarative configuration for the
              system and services
+
+  ldd (which cat)
+  #  linux-vdso.so.1 (0x00007ffd5a35e000)
+  #  libc.so.6 => /gnu/store/5h2w4qi9hk1qzzgi1w83220ydslinr4s-glibc-2.33/lib/libc.so.6 (0x00007f0fad11e000)
+  #  /gnu/store/5h2w4qi9hk1qzzgi1w83220ydslinr4s-glibc-2.33/lib/ld-linux-x86-64.so.2 (0x00007f0fad2e2000)
 }
 
 @block{@block-name{Channels}

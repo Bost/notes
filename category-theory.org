@@ -179,13 +179,13 @@ iterated product)
 
 ** Morphisms and Mappings
 Mapping or morphism of $X$ to/on $Y$: $X \to Y$:
-| Latin      | Greek / morphisms  | Meaning                         | Functor               |
-|------------+--------------------+---------------------------------+-----------------------|
-| surjective | epic / epi   \surj | all $Ys$ are used               | Full                  |
-| injective  | monic / mono \inj  | distinct $Xs \to$ distinct $Ys$ | Faithful              |
-| bijective  | epi and mono \bij  | exact pairing between $X, Y$    |                       |
-| strict     |                    | $X \surj Y$ but not $Y \inj X$  |                       |
-|            |                    |                                 | Faithful but not Full |
+| Latin      | Greek / morphisms  | Meaning                         | Functor            |
+|------------+--------------------+---------------------------------+--------------------|
+| surjective | epic / epi   \surj | all $Ys$ are used               | Full               |
+| injective  | monic / mono \inj  | distinct $Xs \to$ distinct $Ys$ | Faithful           |
+| bijective  | epi and mono \bij  | exact pairing between $X, Y$    | Full & Faithful    |
+| strict     |                    | $X \surj Y$ but not $Y \inj X$  |                    |
+|            |                    |                                 | Faithful, not Full |
 
 Also:
 | Morphism   | Size relation          | Meaning                       | Reading                                 |
@@ -393,6 +393,10 @@ For every obj $A \in \cat{C}$ get a different functor $\Fun{F}_A: \cat{C} \to
 \bigskip
 
 _Yoneda Lemma_ - idea: \\
+#+BEGIN_SRC haskell
+G f : (a -> b) -> (G a -> G b)
+#+END_SRC
+
 NaT and ftor (i.e. Container) can replace each other:
 $[\mathcal{C},\SmSet](\cat{C}(A,\minus), \Fun{F}) \iso \Fun{F}A$ \\
 also: $[\cat{C},\SmSet](\cat{C}(A,\minus), \cat{C}(B,\minus)) \iso \cat{C}(B,A)$ \\

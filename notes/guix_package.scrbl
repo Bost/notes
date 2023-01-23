@@ -15,6 +15,10 @@
   guix package --with-patch=package=file
   guix package --with-latest=package
   guix package --without-tests=package
+  guix package --with-version=PACKAGE=VERSION
+  ;; e.g.:
+  guix shell gnome-clocks --with-version=gtk=4.7.0 --without-tests=gtk -- \
+      gnome-clocks
 }
 
 @block{@block-name{Various commands}
@@ -127,7 +131,6 @@
 }
 
 @block{@block-name{Package Inputs / Outputs}
-
   A package can have multiple "Outputs", i.e. multiple store-directories, that
   serves as a mean to separate components of a program (libraries, extra tools,
   documentation, etc.).

@@ -70,6 +70,8 @@
   Embeding Guile interpreter into a program / library - it with libguile.
 
   #<unspecified>
+  (unspecified? *unspecified*)         ;; => #t
+  (equal? (when #f #t) *unspecified*)  ;; => #t
   the evaluated expression has no result specified
 
   Tail Call Optimisation
@@ -96,6 +98,12 @@
   Meta-commands
   https://www.gnu.org/software/guile/manual/guile.html#REPL-Commands
 
+  ;; pretty-print from shell
+  $ guile -c '(use-modules (ice-9 pretty-print)) (pretty-print \'(begin ...))'
+  $ guix repl
+  > ,use (ice-9 pretty-print)
+  > ,pretty-print '(begin ...)
+
   # disable colors and readline bindings defined in the .guile
   @; INSIDE_EMACS=1     # bash
   set INSIDE_EMACS 1    # fish-shell
@@ -104,19 +112,21 @@
   ;; REPL debugging:
   ;; displays the call stack (aka backtrace) at the point where the debugger was
   ;; entered
-  $ guix repl
-  scheme@"@"(guile-user) [1]> ,bt
-  ;; change the stackframe
-  scheme@"@"(guile-user) [1]> ,up
-  scheme@"@"(guile-user) [1]> ,frame 3
-  scheme@"@"(guile-user) [1]> ,down
-  scheme@"@"(guile-user) [1]> ,locals    ; local variables
-  ;;  / List procedures provided by the REPL:
+
+  ;; guix repl: Print a backtrace
+  > ,bt
+  ;; Change the stackframe
+  > ,up [COUNT] ; ,frame [COUNT] ,down [COUNT]
+  ;; Show locally-bound variables in the selected frame
+  ,locals
+
+  ;; guix repl / List procedures provided by the REPL:
   scheme@"@"(guile-user)> ,module (srfi srfi-1)
   scheme@"@"(srfi srfi-1)> ,help module
   scheme@"@"(srfi srfi-1)> ,binding
+
+  ;; guix repl
   ;; <list of procedures>
-  scheme@"@"(guile-user)> ,pretty-print '(eval-when (expand load eval) ...)
   scheme@"@"(srfi srfi-1)> ,pretty-print (module-uses (current-module))
   $_ = (#<interface (guile) 7ffa54060dc0>
    #<autoload (system base compile) 7ffa540edb40>
@@ -223,10 +233,6 @@
   $3 = #<package coreutils@8.29 gnu/packages/base.scm:327 3e28300>
   scheme@"@"(guile-user)> (macroexpand '(unquote foo))
   ...
-
-  https://www.rohleder.de/~mike/guix-workflow/guix-workflow.html
-  Open shell M-x shell and type:
-  ./configure --localstatedir=/var && make -j24
 
   ;; Configure interpreter by modifying the ~/.guile file
   ;; (create it if it doesn't exist) and put the following lines into it:
@@ -421,15 +427,15 @@
   The `(keyword? :foo:)` will work if any of the `(read-set! ...)` is evaluated.
 }
 
-@block{@block-name{G-expression - gexp}
+@block{@block-name{G-expressions - gexp}
+  - a way of staging code to run as a derivation.
   - can expand paths in the store and act similar to backquote and comma for
-    list expansion - but use ‘#~’ and ‘#$’ instead. It can be used to
+    list expansion - but use '#~' and '#$' instead. It can be used to
     generate derivations.
   - a form of S-expression adapted to build expressions. It can contain a
     package record or any file-like object which will be replaced by its '/gnu/'
-  - a way of staging code to run as a derivation.
-  - make it really easy to do complicated things, mostly by providing an easy
-    way to handle the representation of things that can end up as store items.
+  - provides a way to handle the representation of things that can end up as
+    store items.
   - can contain a package record or any other "file-like object" and, when that
     'gexp' is serialized for eventual execution, the package is replaced by its
     /gnu/store/... file name.
