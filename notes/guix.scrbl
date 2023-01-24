@@ -35,8 +35,9 @@
   https://github.com/Brainiarc7/guix-notes/blob/master/HACKING.org
   # spoelstraethan/guix-notes is 6 commits ahead, 6 commits behind pjotrp:master
   https://github.com/spoelstraethan/guix-notes/blob/master/HACKING.org
-  https://systemcrafters.cc/craft-your-system-with-guix/
 
+  https://systemcrafters.cc/craft-your-system-with-guix/
+  https://systemcrafters.cc/craft-your-system-with-guix/full-system-install/
   https://guix.gnu.org/en/manual/devel/en/guix.html#Running-Guix-Before-It-Is-Installed
 
   # Build an environment with PACKAGE-dependencies, and execute there the

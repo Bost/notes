@@ -6,7 +6,7 @@
   # see also psub
 
   # grep / ripgrep / rg
-  grep -v, --invert-match # select non-matching lines
+  grep -v, --invert-match # exclude matching / select non-matching lines
   # in grep -L is the complement / invert / negate of -l
   grep -l, --files-with-matches  # print only names of FILEs with selected lines
   grep -L, --files-without-match # only print FILE names containing no match
