@@ -1309,7 +1309,12 @@
   # Create bootable usb drive https://askubuntu.com/q/372607
   # (like with usb-creator-gtk)
   # '--exclude 7' means 'exclude loop devices' https://askubuntu.com/a/1142405
-  lsblk --exclude 7 --nodeps --output MAJ:MIN,PATH,MODEL,TRAN,LABEL,SIZE
+  # --nodeps      don't print slaves or holders
+  # TRAN          device transport type. E.g. usb / sata / ...
+  # lsblk --exclude 7 --nodeps \
+  #       --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE \
+  #      | rg --invert-match /dev/ram | sed 's/\<LABEL/FSLABEL/g'
+  lsblk --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE | sed 's/LABEL/LBL/g' | sed 's/\<LBL/FSLBL/g'
   set --local isoImg      /path/to/file.iso
   set --local blkDevice /dev/sd<letter><number>
   set --local usbDevice /dev/sd<letter>
@@ -1474,11 +1479,12 @@
 }
 
 @block{@block-name{Disk Devices}
-  # :usb :drive :drives :disk
-  # :fdisk :mount :udevadm :udiskie :udisksctl :block-device :boot
-  lsblk         # list block devices
+  # usb, drive, drives, disk, list block devices, fdisk, mount, udevadm,
+  # udiskie, udisksctl, block-device, boot
   lsblk --nodeps
-  findmnt       # find mounted filesystem
+  lsblk --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE | sed 's/LABEL/LBL/g' | sed 's/\<LBL/FSLBL/g'
+  # find mounted filesystem
+  findmnt --real --output TARGET,SOURCE,SIZE,LABEL,PARTLABEL | sed 's/LABEL/LBL/g' | sed 's/\<LBL/FSLBL/g'
   blkid         # locate/print block device attributes; show the UUIDs
   ls -la /dev/usb
 
