@@ -1,11 +1,12 @@
 #lang notes
 
 @block{@block-name{Leaky Abstraction}
-  A Look into Modern Leaky Abstractions - Postgres, MySQL, HTTP/2, TCP, ORMs GraphQL, N+1, Axios, git
+  A Look into Modern Leaky Abstractions - Postgres, MySQL, HTTP/2, TCP, ORMs
+  GraphQL, N+1, Axios, git
   https://youtu.be/4a3bI7AYsy4
 
   Proper abstraction:
-  - On e.g. MariaDB vs. Postgres I don't need to know if 'select * from ...' runs
+  - e.g. MariaDB vs. Postgres: I don't need to know if 'select * from ...' runs
     on the former or the later: The commands have:
     1. Same syntax
     2. Same performance characteristics
@@ -51,18 +52,19 @@
   Natural ℕ ⊆ Integer ℤ ⊆ Rational ℚ ⊆ Real ℝ ⊆ Complex ℂ ⊆ Quaternion ℍ
 }
 
-@block{@block-name{Structure type - record datatype composing a number of fields}
+@block{@block-name{Structure type: record datatype composing a number of fields}
   Sum type (OCaml): Generalization of enumeration. Bring heterogeneous values
   together into a common type
 
   (OCaml) type export: concrete / abstract - for fine-grained data encapsulation
   control
 
-  Concrete export - full type definition remains known: so, clients of the modules
-  can build or examine values of this type.
+  Concrete export - full type definition remains known: so, clients of the
+  modules can build or examine values of this type.
 
   Abstract export - only the type name is known outside the module. It then
-  becomes impossible, from the outside, to create or inspect values of this type.
+  becomes impossible, from the outside, to create or inspect values of this
+  type.
 }
 
 @block{@block-name{Pattern matching}
@@ -91,8 +93,8 @@
   - reasoning by an induction: consider the base case(s) and the general.
   - remove the notion of time. Change over time is one of the major sources of
     program complexity.
-  - declarative. Most of the algorithms are imperative. Under declarative approach
-    you don't have to trace the flow of time through a data structure.
+  - declarative. Most of the algorithms are imperative. Under declarative
+    approach you don't have to trace the flow of time through a data structure.
 }
 
 @block{@block-name{Database}
@@ -107,7 +109,8 @@
   than "Inherited".
 }
 
-@block{@block-name{Lisp / Minimal Scheme Implementation for use as an Extension Language}
+@block{@block-name{
+  Lisp / Minimal Scheme Implementation for use as an Extension Language}
   http://synthcode.com/wiki/chibi-scheme
 
   Scheme implementation meant to be embedded in a C-program, i.e. scripting
@@ -126,10 +129,25 @@
 }
 
 @block{@block-name{Various}
+  NIC Network Interface Controller
+
+  PXE Preboot eXecution Environment (read "pixie")
+  Needs a PXE-capable NIC, uses DHCP and TFTP
+
+  UEFI Unified Extensible Firmware Interface
+  GUID Globally Unique Identifier - part of the UEFI
+  GPT GUID Partition Table
+
+  Loop Device, vnd (vnode disk), or lofi (loop file interface): pseudo-device
+  that makes a computer file accessible as a (mounted) block device.
+
   WSL1 / WSL2 Windows Subsystem for Linux 1 / 2
 
   ICMP Internet Control Message Protocol
   Send error messages & operational information
+
+  TFTP Trivial File Transfer Protocol
+  Simple FTP, client can get a file from or put a file onto a remote host
 
   DHCP Dynamic Host Configuration Protocol
   Network management protocol used on TCP/IP networks
@@ -210,8 +228,8 @@
   - looks at the stack and the task queue, if the stack is empty, it takes the
     1st thing on the queue and pushes it onto the stack (that effectively runs
     it)
-  javascript is single threaded, 1 thread, i.e. 1 callstack, i.e. 1 thing at a time
-  blocking - asynchronous callbacks
+  javascript is single threaded, 1 thread, i.e. 1 callstack, i.e. 1 thing at a
+  time blocking - asynchronous callbacks
 
   - setTimeout(<callback function>, 0) - set to 0 means deferring the callback
     function to the end of the stack (i.e. until the stack is clear, i.e. until

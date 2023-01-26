@@ -46,7 +46,7 @@
 
   guix shell --search-paths    # display needed environment variable definitions
 
-  # Building / Compiling Guix:
+  # Building / Compile / Compiling Guix:
   # https://www.rohleder.de/~mike/guix-workflow/guix-workflow.html
   # on error: 'configure: error: C compiler cannot create executables'
   guix install gcc-toolchain
@@ -79,8 +79,9 @@
   # make --jobs=$jobs check  # optional
   # authenticate all the commits included in your checkout by running:
   make --jobs=$jobs authenticate
-  make --jobs=$jobs clean-go # delete the .go (Guile Object) files
+  # make --jobs=$jobs clean-go # delete the .go (Guile Object) files
   ./pre-inst-env guix home --fallback -L $dotf/guix/home/ container $dotf/guix/home/home-configuration.scm
+  ./pre-inst-env guix system image -t iso9660 $dotf/guix/gnu/system/install.scm
 }
 
 @block{@block-name{Chris Baines / GNU Guix Presentation}

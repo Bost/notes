@@ -329,6 +329,24 @@
   git merge --allow-unrelated-histories srcProj/master # or whichever branch you want to merge
   # git merge --continue      # in case any conflicts; after resolving them
   git remote remove srcProj
+
+  # Sign git commits
+  gpg --list-secret-keys --keyid-format=long
+  set --local keyId <secret-key-id>
+  # Sign all commits by default
+  git config --file $dotf/.gitconfig user.signingkey --gpg-sign=$keyId
+  # Repeat following two commands for every commit
+  git commit --amend --no-edit --gpg-sign=$keyId
+  git rebase --continue
+  # Verify last <number> commits
+  git log --oneline --show-signature --max-count=<number>
+  #
+  # Analyze problems
+  # GIT_TRACE=1 shows what git is actually doing. Only in bash. In the fish-shell
+  # following doesn't work:
+  #    set --local GIT_TRACE 1 git commit --amend --no-edit --gpg-sign
+  GIT_TRACE=1 git commit --amend --no-edit --gpg-sign | rg
+  echo "dummy" | <put-here-the-gpg-run_command-shown-above'
 }
 
 @block{@block-name{Mercurial}
