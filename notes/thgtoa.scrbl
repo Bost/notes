@@ -29,6 +29,10 @@
   # examples
   gpg --output file.txt.gpg --encrypt --recipient foo@"@"domain.org file.txt
   gpg --output file.txt --decrypt file.txt.gpg
+
+  # -A NUM, --after-context=NUM
+  # man gpg | grep --after-context=2 show-usage
+  Key usage / flags: E=encryption,S=signing, C=certification, A=authentication
 }
 
 @block{@block-name{Message / File authentication with GPG}

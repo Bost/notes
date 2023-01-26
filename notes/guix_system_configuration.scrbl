@@ -1,11 +1,31 @@
 #lang notes
 
+@block{@block-name{guix system Command}
+
+‘init’
+Populate the given directory with all the files necessary to run
+the operating system specified in FILE.  This is useful for
+first-time installations of Guix System.  For instance:
+
+guix system init my-os-config.scm /mnt
+
+copies to ‘/mnt’ all the store items required by the configuration
+specified in ‘my-os-config.scm’.  This includes configuration
+files, packages, and so on.  It also creates other essential files
+needed for the system to operate correctly—e.g., the ‘/etc’,
+‘/var’, and ‘/run’ directories, and the ‘/bin/sh’ file.
+
+This command also installs bootloader on the targets specified in
+‘my-os-config’, unless the ‘--no-bootloader’ option was passed.
+}
+
+
 @block{@block-name{Bootable ISO-9660 installation image}
   # TODO loop over set checkouts (f -H ^config\$ ~/.cache/guix/checkouts/) and check
   # git --git-dir=$checkout/.git remote --verbose | rg 'origin.*git.savannah.gnu.org'
 
   # Instantiate operating system declaration:
-  set --local gxCheckout $HOME/.cache/guix/checkouts/pjmkglp4t7znuugeurpurzikxq3tnlaywmisyr27shj7apsnalwq
+  set --local gxCheckout $HOME/.cache/guix/checkouts/guix # there's a symlink
   cd $gxCheckout
   # create bootable ISO-9660 installation /gnu/store/...-image.iso
   guix system image -t iso9660 gnu/system/install.scm
@@ -24,11 +44,11 @@
   #
   # Install standalone Guix OS:
   # set --local isoImg guix-system-install-$gxVer.x86_64-linux.iso
-  echo wget $url/$isoImg $url/$isoImg.sig
-  # view content of the iso image file
-  mkdir /tmp/iso
-  sudo mount --options loop $isoImg /tmp/iso
-  ls -la /tmp/iso
+  echo \
+       wget $url/$isoImg $url/$isoImg.sig
+  # View content of the iso image file
+  # -t --types, -o --options
+  mkdir /tmp/iso && sudo mount -t iso9660 -o loop $isoImg /tmp/iso && ls -la /tmp/iso
   # get the public key and import it:
   #   wget 'https://sv.gnu.org/people/viewgpg.php?user_id=127547' -qO - | gpg --import -
   #

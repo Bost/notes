@@ -1488,6 +1488,11 @@
   blkid         # locate/print block device attributes; show the UUIDs
   ls -la /dev/usb
 
+  # Label filesystem and partition
+  sudo e2label /dev/sd<letter><number> <some-filesystem-label>
+  sudo tune2fs -L "<some-filesystem-label>" /dev/sd<letter><number>
+  sudo parted /dev/sd<letter> name <number> "some-partition-label"
+
   # Format disk / usb drive
   # 1. erase everything on the device
   # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
