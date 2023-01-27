@@ -77,11 +77,32 @@
   #   ./configure GUILE=$(which guile) --localstatedir=/var
   make --jobs=$jobs  # first run takes a couple of minutes
   # make --jobs=$jobs check  # optional
-  # authenticate all the commits included in your checkout by running:
-  make --jobs=$jobs authenticate
+  # Authenticate all the commits in your checkout by:
+  make --jobs=$jobs authenticate GUIX_GIT_KEYRING=keyring
+  # This fetches the public key of the issuer of SIG from KEYRING, a keyring as
+  # returned by 'get-openpgp-keyring'.
+
   # make --jobs=$jobs clean-go # delete the .go (Guile Object) files
   ./pre-inst-env guix home --fallback -L $dotf/guix/home/ container $dotf/guix/home/home-configuration.scm
   ./pre-inst-env guix system image -t iso9660 $dotf/guix/gnu/system/install.scm
+
+   Authenticating Git checkouts:
+   - When guix pull obtains code from Git, it should be able to tell that all the
+     commits it fetched were pushed by authorized developers of the project.
+   - It requires cryptographically signed commits
+
+   By signing a commit, a developer asserts that he/she is the one who made the
+   commit as its author, or he/she applied somebody else's changes after review.
+   This also requires a notion of authorization: commits must have a valid
+   signature, and be signed by an authorized key.
+
+  .guix-authorizations:
+  File that lists the OpenPGP key fingerprints of authorized committers
+
+  A commit is considered authentic if and only if it is signed by one of the
+  keys listed in the .guix-authorizations file of each of its parents. This is
+  the authorization invariant.
+
 }
 
 @block{@block-name{Chris Baines / GNU Guix Presentation}

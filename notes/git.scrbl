@@ -107,6 +107,10 @@
   # count of files changed in the since the <tag>
   git log --format=oneline --patch <tag>..HEAD | wc -l
 
+  #  show only commit ids
+  git log --pretty=format:"%h" master..dev  # shortened commit id
+  git log --pretty=format:"%H" master..dev  # full commit id
+
   # count of commits on a branch
   git rev-list --count <branch-name>
 
