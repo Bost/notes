@@ -81,7 +81,7 @@
   # bash fish-shell
   # see what the shell does with the various types of quoting
   # https://unix.stackexchange.com/a/417408
-  printf '<%s>\n' G "G" 'G' \G "\G" '\G' \\G "\\G" '\\G'
+  printf -- '<%s>\n' G "G" 'G' \G "\G" '\G' \\G "\\G" '\\G'
 
   # bash
   # secure (password) prompt; doesn't work in fish
@@ -153,19 +153,19 @@
   (i.e. use the #!/bin/bash shebang line if using use double brackets)
 
   # correctly handle empty strings or file names with spaces in them:
-  [ -f "$file" ] && printf "is a regular file\n" || printf "else ...\n"
-  [[ -f $file ]] && printf "is a regular file\n" || printf "else ...\n"
+  [ -f "$file" ] && printf -- "is a regular file\n" || printf -- "else ...\n"
+  [[ -f $file ]] && printf -- "is a regular file\n" || printf -- "else ...\n"
 
   # double brackets lets you use && and || operators for boolean tests and < and >
   # for string comparisons. single bracket cannot do this.
 
   # =~ does regular expression matches
-  [ "$answer" = y -o "$answer" = yes ] && printf "then...\n" || printf "else...\n"
-  [[ $answer =~ ^y(es)?$ ]]            && printf "then...\n" || printf "else...\n"
+  [ "$answer" = y -o "$answer" = yes ] && printf -- "then...\n" || printf -- "else...\n"
+  [[ $answer =~ ^y(es)?$ ]]            && printf -- "then...\n" || printf -- "else...\n"
 
   # pattern matching aka globbing for free. Maybe you're less strict about how to
   # type yes. Maybe you're okay if the user types y-anything:
-  [[ $ANSWER = y* ]] && printf "then...\n" || printf "else...\n"
+  [[ $ANSWER = y* ]] && printf -- "then...\n" || printf -- "else...\n"
 }
 
 @block{@block-name{Key bindings / shortcuts}
@@ -419,7 +419,7 @@
   /bin/sh portability: ubuntu dash vs. guix /bin/sh
   export elems="aaa:bbb:ccc"
   for elem in $LIST; do
-      printf "elem: $elem\n"
+      printf -- "elem: $elem\n"
   done
   or even better:
   for prjd in \
@@ -428,7 +428,7 @@
           "ccc" \
           ;
     do
-      printf "elem: $elem\n"
+      printf -- "elem: $elem\n"
   done
 }
 

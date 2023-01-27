@@ -28,7 +28,7 @@
   guix home search .
 
   # guix home configuration:
-  printf "HOME_ENVIRONMENT: %s\n" $HOME_ENVIRONMENT
+  printf -- "HOME_ENVIRONMENT: %s\n" $HOME_ENVIRONMENT
   cat $HOME_ENVIRONMENT/configuration.scm
   # see also 'guix home describe'
   guix home reconfigure

@@ -467,7 +467,7 @@
   watch date                    # periodically / repeatedly every 2 seconds
 
   # echo with formatting
-  printf "Line: %05d %15.3f Result: %+15d\n" 1071 3,14156295 32589
+  printf -- "Line: %05d %15.3f Result: %+15d\n" 1071 3,14156295 32589
 
   # simple python3 server
   python3 -m http.server 8000 --bind 127.0.0.1
