@@ -6,6 +6,16 @@
 
   Why was Facebook down for five hours?
   https://youtu.be/-wMU8vmfaYo
+
+  TOFU Trust on first / TUFU trust Upon First Use:
+  Authentication scheme used by client software which needs to establish a trust
+  relationship with an unknown or not-yet-trusted endpoint
+
+  Downgrade / Roll-Back Attacks:
+  Trick users into installing older, known-vulnerable software packages.
+  There is no way to answer the general question "is X the latest commit of
+  branch B ?". Rollback detection prevents just rollbacks, but there's no
+  mechanism in place to tell whether a given mirror is stale.
 }
 
 @block{@block-name{GnuPG GNU Privacy Guard}
@@ -14,6 +24,9 @@
   GPG primary key pair can: sign / encrypt / authenticate / certify
   GPG subkey pairs can do everything except one thing ...
   (TODO https://youtu.be/4-Ks_f8rQFA?t=400)
+
+  gpgv - Verify OpenPGP signatures
+  Stripped-down version of gpg which is only able to check signatures.
 
   Nov 17, 2020: Creating and Managing a GPG Key Pair
   https://youtu.be/1vVIpIvboSg
@@ -26,13 +39,19 @@
   numbers in a secure manner. There are versions for the common GTK, Qt and the
   text terminal (Curses).
 
+  public key fingerprint:
+  short sequence of bytes used to identify a longer public key created by
+  applying a cryptographic hash function to a public key. Fingerprints are
+  shorter than the keys they refer to, they can be used to simplify certain key
+  management tasks.
+
   # examples
   gpg --output file.txt.gpg --encrypt --recipient foo@"@"domain.org file.txt
   gpg --output file.txt --decrypt file.txt.gpg
 
   # -A NUM, --after-context=NUM
   # man gpg | grep --after-context=2 show-usage
-  Key usage / flags: E=encryption,S=signing, C=certification, A=authentication
+  Key usage / flags: E=encryption, S=signing, C=certification, A=authentication
 }
 
 @block{@block-name{Message / File authentication with GPG}
@@ -59,7 +78,10 @@
   #                   (i.e. ECC primary key and ECC encryption subkey).
   # "(1) Curve 25519" - (this probably annoys the NSA the most :-)
 
+  # Create ASCII armored output. The default is to create the binary OpenPGP
+  # format.
   gpg --armor --export > /path/to/pub_key.gpg
+  gpg --send-keys --keyserver keyserver.ubuntu.com /path/to/pub_key.gpg
 
   # create <my-secret-file>.asc
   gpg --clear-sign <my-secret-file>
