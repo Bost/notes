@@ -1,24 +1,30 @@
 #lang notes
 
 @block{@block-name{guix system Command}
+  # create a virtual machine in which the user's home directory is accessible
+  # read-only, and where the '/exchange' directory is a read-write mapping of
+  # '$HOME/tmp' on the host and return a script to run that VM
+  guix system vm /run/current-system/configuration.scm \
+  --expose=$HOME --share=$HOME/tmp=/exchange
+  # list scripts for running available / built Guix VMs
+  ls --format=single-column /gnu/store/*-run-vm.sh
 
-‘init’
-Populate the given directory with all the files necessary to run
-the operating system specified in FILE.  This is useful for
-first-time installations of Guix System.  For instance:
+  'init'
+  Populate the given directory with all the files necessary to run
+  the operating system specified in FILE.  This is useful for
+  first-time installations of Guix System.  For instance:
 
-guix system init my-os-config.scm /mnt
+  guix system init my-os-config.scm /mnt
 
-copies to ‘/mnt’ all the store items required by the configuration
-specified in ‘my-os-config.scm’.  This includes configuration
-files, packages, and so on.  It also creates other essential files
-needed for the system to operate correctly—e.g., the ‘/etc’,
-‘/var’, and ‘/run’ directories, and the ‘/bin/sh’ file.
+  copies to '/mnt' all the store items required by the configuration
+  specified in 'my-os-config.scm'.  This includes configuration
+  files, packages, and so on.  It also creates other essential files
+  needed for the system to operate correctly—e.g., the '/etc',
+  '/var', and '/run' directories, and the '/bin/sh' file.
 
-This command also installs bootloader on the targets specified in
-‘my-os-config’, unless the ‘--no-bootloader’ option was passed.
+  This command also installs bootloader on the targets specified in
+  'my-os-config', unless the '--no-bootloader' option was passed.
 }
-
 
 @block{@block-name{Bootable ISO-9660 installation image}
   # TODO loop over set checkouts (f -H ^config\$ ~/.cache/guix/checkouts/) and check
@@ -114,16 +120,8 @@ This command also installs bootloader on the targets specified in
   # so try with sudo -E / --preserve-env
   sudo -E guix system reconfigure configuration.scm
 
-  # find operating system declaration:
+  # find operating system declaration(s):
   find ~/.cache/guix/checkouts -name install.scm
-
-  # create a VM in which the user’s home directory is accessible read-only, and
-  # where the ‘/exchange’ directory is a read-write mapping of ‘$HOME/tmp’ on
-  # the host and return a script to run that VM
-  guix system vm /run/current-system/configuration.scm \
-       --expose=$HOME --share=$HOME/tmp=/exchange
-  # list scripts for running available / built Guix VMs
-  ls --format=single-column /gnu/store/*-run-vm.sh
 
   guix pull --list-generations=20d
   # list news for last 20 days
@@ -176,7 +174,7 @@ This command also installs bootloader on the targets specified in
         prompt. The regular (VT) ttys use mingetty instead. It's basically always
         stopped - that it could be presented in a less misleading way.
         See [[https://logs.guix.gnu.org/guix/2020-09-23.log#174932][IRC #guix channel log]]
-      - A2: There is no ‘term-auto’ service (it's similar to a systemd term@"@"auto
+      - A2: There is no 'term-auto' service (it's similar to a systemd term@"@"auto
         instance). See [[https://logs.guix.gnu.org/guix/2020-03-23.log#213842][IRC #guix channel log]]
     }
   }

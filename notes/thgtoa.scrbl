@@ -16,6 +16,13 @@
   There is no way to answer the general question "is X the latest commit of
   branch B ?". Rollback detection prevents just rollbacks, but there's no
   mechanism in place to tell whether a given mirror is stale.
+
+  TUF The Update Framework:
+  https://theupdateframework.io/
+  Helps developers maintain the security of software update systems, providing
+  protection even against attackers that compromise the repository or signing
+  keys. TUF provides a flexible framework and specification that developers can
+  adopt into any software update system.
 }
 
 @block{@block-name{GnuPG GNU Privacy Guard}

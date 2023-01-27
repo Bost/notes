@@ -86,15 +86,22 @@
   ./pre-inst-env guix home --fallback -L $dotf/guix/home/ container $dotf/guix/home/home-configuration.scm
   ./pre-inst-env guix system image -t iso9660 $dotf/guix/gnu/system/install.scm
 
-   Authenticating Git checkouts:
-   - When guix pull obtains code from Git, it should be able to tell that all the
-     commits it fetched were pushed by authorized developers of the project.
-   - It requires cryptographically signed commits
+  Authenticating Git checkouts:
+  - When guix pull obtains code from Git, it should be able to tell that all the
+    commits it fetched were pushed by authorized developers of the project.
+  - It requires cryptographically signed commits
 
-   By signing a commit, a developer asserts that he/she is the one who made the
-   commit as its author, or he/she applied somebody else's changes after review.
-   This also requires a notion of authorization: commits must have a valid
-   signature, and be signed by an authorized key.
+  guix git authenticate               \
+    --keyring=$(GUIX_GIT_KEYRING)     \
+    --cache-key=channels/guix --stats \
+    --historical-authorizations=/home/bost/dev/my-authorisation.scm \
+    "$(channel_intro_commit)" "$(channel_intro_signer)"
+  # --cache-key=path/to/KEY reads file from ~/.cache/guix/authentication/path/to/KEY
+
+  By signing a commit, a developer asserts that he/she is the one who made the
+  commit as its author, or he/she applied somebody else's changes after review.
+  This also requires a notion of authorization: commits must have a valid
+  signature, and be signed by an authorized key.
 
   .guix-authorizations:
   File that lists the OpenPGP key fingerprints of authorized committers
