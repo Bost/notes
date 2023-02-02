@@ -45,6 +45,8 @@
 }
 
 @block{@block-name{Various}
+  (sort (list 4 8 21 17 33 7 21 7) #'<)
+  (sort (mapcar #'number-to-string (list 4 8 21 17 33 7 21 7)) #'string<)
 
   ;; on Ubuntu, when 'libtool not found.  Please install libtool'
   sudo apt install --yes libtool-bin
@@ -164,7 +166,6 @@
   Protesilaos Stavrou - Vlog: Moral lessons from switching to Emacs
   "I object to the characterization of the free software expert as some sort of a weirdo"
   https://youtu.be/gwT5PoXrLVs?t=2131
-
 
   | ~SPC h d~   | M-x help-describe                      |            |
   | ~SPC t g~   | M-x spacemacs/toggle-golden-ratio      | windows    |
@@ -528,6 +529,7 @@
   ;; evil-insert-mode
   ~C-U C-x C-e~
 
+  M-: (font-get (face-attribute 'default :font) :size)
   | ~C-x C-+~ | increase font size |
   | ~C-x C--~ | decrease font size |
 

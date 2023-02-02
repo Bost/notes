@@ -118,6 +118,12 @@
 
   System Crafters Live! - Lisp Compiler Progress • Live Lisp Hacking • Q&A
   https://youtu.be/E-g3Ls1GRz4
+
+  GNU Mes: Maxwell's Equations of Software!
+  Create a computer operating system that we can trust.
+  Mutual self-hosting Scheme interpreter written in C and a Nyacc-based C
+  compiler written in Scheme.
+
 }
 
 @block{@block-name{bind mount}

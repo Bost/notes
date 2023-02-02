@@ -88,6 +88,8 @@
   read -s
 
   # fish-shell retval retcode return-code exit-code (in bash $?)
+  # retcode interpretation / meaning
+  # https://fishshell.com/docs/current/language.html#variables-status
   $status
 
   # indicate how a command would be interpreted
@@ -130,16 +132,26 @@
   test -d /path/to/dir                       # directory exists
   # true if the length of $myvar is non-zero i.e. non-empty string
   # https://stackoverflow.com/a/47743269; always use "" around the myvar
-  test -n "$myvar" && echo "true: defined-and-non-empty" || echo "false: undef-or-empty"
+  test -n "$myvar" && echo "true: defined-and-non-empty: '$var'" || echo "false: undef-or-empty"
   # true if the length of $myvar is zero i.e. empty string
-  test -z "$myvar" && echo "true: undef-or-empty" || echo "false: defined-and-non-empty"
+  test -z "$myvar" && echo "true: undef-or-empty" || echo "false: defined-and-non-empty: '$myvar'"
+  set -q myvar && echo "myvar is set to '$myvar'" || echo "myvar is unset"
+  test -z "$myvar" && echo "myvar is empty: '$myvar'" || echo "myvar is not empty: '$myvar'"
+
+  # bash-shell existence-tests
+  # ${var+x} is a parameter expansion which evaluates to nothing if var is
+  # unset, and substitutes the string x otherwise.
+  # variable blank vs. unset - see https://stackoverflow.com/a/13864829
+  if [ -z ${myvar+x} ]; then echo "myvar is unset"; else echo "myvar is set to '$myvar'"; fi
+  test -z ${myvar+x} &&  echo "myvar is unset" || echo "myvar is set to '$myvar'"
 
   # bash string equality / compare
   # See https://tldp.org/LDP/abs/html/comparison-ops.html
-  [[ $a == z* ]]   # True if $a starts with an "z" (pattern matching).
-  [[ $a == "z*" ]] # True if $a is equal to z* (literal matching).
-  [ $a == z* ]     # File globbing and word splitting take place.
-  [ "$a" == "z*" ] # True if $a is equal to z* (literal matching).
+  # using double brackets '[[' and ']]' is a bashishm
+  [[ $a == z* ]]   # True if $a starts with an "z" (pattern matching)
+  [[ $a == "z*" ]] # True if $a is equal to z* (literal matching)
+  [ $a == z* ]     # File globbing and word splitting take place
+  [ "$a" == "z*" ] # True if $a is equal to z* (literal matching)
 
   # compute calculate fish-shell
   # examples https://nicolas-van.github.io/programming-with-fish-shell

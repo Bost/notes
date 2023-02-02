@@ -84,7 +84,35 @@
 
   # make --jobs=$jobs clean-go # delete the .go (Guile Object) files
   ./pre-inst-env guix home --fallback -L $dotf/guix/home/ container $dotf/guix/home/home-configuration.scm
-  ./pre-inst-env guix system image -t iso9660 $dotf/guix/gnu/system/install.scm
+  ./pre-inst-env guix system --cores=$jobs image -t iso9660 gnu/system/install.scm
+  rm -rf $HOME/system-images/guix-system.img
+  cp /gnu/store/<checksum>-image.iso $HOME/system-images/my-guix-image.iso
+  #
+  # Exit the guix-shell
+  #
+  qemu-img create -f qcow2 $HOME/system-images/guix-system.img 50G
+  set --local cpuCores 20
+  set --local ramMemory 8192
+  sudo qemu-system-x86_64 -m $ramMemory -smp $cpuCores -enable-kvm \
+      -nic user,model=virtio-net-pci -boot menu=on,order=d \
+      -drive file=$HOME/system-images/guix-system.img \
+      -drive media=cdrom,file=$HOME/system-images/nonguix-resizable-disk-image
+  #
+  # Qemu drop to TTY:
+  # Use Ctrl + Alt + 2 to switch to the QEMU console.
+  # Type sendkey ctrl-alt-f1 and press Enter .
+  # Use Ctrl + Alt + 1 to switch back to the virtual system, which should now by at TTY1.
+  #
+  ## Set up the installation environment using herd - probably not needed?
+  # herd start cow-store /mnt
+  #
+  git clone --depth=1 -b dev https://gitlab.com/rostislav.svoboda/dotfiles
+  mkdir -p ~/.config/guix
+  cp dotfiles/.config/guix/channels.scm ~/.config/guix
+  guix pull
+  guix hash
+
+  guix system -L ~/.dotfiles/.config/guix/systems init path/to/config.scm /mnt
 
   Authenticating Git checkouts:
   - When guix pull obtains code from Git, it should be able to tell that all the
@@ -153,7 +181,7 @@
   guix describe --format=human
 }
 
-@block{@block-name{Guix in a VM: SSH access}
+@block{@block-name{Guix in a virtual machine}
   Guix in a VM: SSH access
   https://guix.gnu.org/manual/en/html_node/Running-Guix-in-a-VM.html
   # edit the /run/current-system/configuration.scm
