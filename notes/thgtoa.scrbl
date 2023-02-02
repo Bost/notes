@@ -23,6 +23,10 @@
   protection even against attackers that compromise the repository or signing
   keys. TUF provides a flexible framework and specification that developers can
   adopt into any software update system.
+  Goals: provide means to minimize the impact of key compromise.
+
+  CNCF Cloud Native Computing Foundation
+  https://www.cncf.io
 }
 
 @block{@block-name{GnuPG GNU Privacy Guard}
