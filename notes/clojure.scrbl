@@ -366,11 +366,11 @@
 @block{@block-name{Macros}
   ;; ` backtick - syntax-quote
   ;; ' apostrophe - quote
-  ;; ~ tilda - unquote within a syntax-quote block
+  ;; ~ tilde - unquote within a syntax-quote block
   ;; see http://stackoverflow.com/a/17810391
   '(+ x x) => (+ x x)                         ;; symbol-name quoted exactly
   `(+ x x) = > (clojure.core/+ user/x user/x) ;; symbol-name quoted with namespace
-  ;; when using tilda inside syntax-quoted block then the ~form is unquoted
+  ;; when using tilde inside syntax-quoted block then the ~form is unquoted
   `(+ ~'x x) => (clojure.core/+ x user/x)
   `(+ ~x x)  => Unable to resolve symbol: x in this context
   ;;                                ;;

@@ -98,7 +98,7 @@
   Meta-commands
   https://www.gnu.org/software/guile/manual/guile.html#REPL-Commands
 
-  ;; pretty-print from shell
+  ;; pretty-print from shell / execute a scheme expression
   $ guile -c '(use-modules (ice-9 pretty-print)) (pretty-print \'(begin ...))'
   $ guix repl
   > ,use (ice-9 pretty-print)
@@ -425,29 +425,6 @@
   (read-set! keywords 'postfix)
   (keyword? foo:) ; => #t
   The `(keyword? :foo:)` will work if any of the `(read-set! ...)` is evaluated.
-}
-
-@block{@block-name{G-expressions - gexp}
-  - a way of staging code to run as a derivation.
-  - can expand paths in the store and act similar to backquote and comma for
-    list expansion - but use '#~' and '#$' instead. It can be used to
-    generate derivations.
-  - a form of S-expression adapted to build expressions. It can contain a
-    package record or any file-like object which will be replaced by its '/gnu/'
-  - provides a way to handle the representation of things that can end up as
-    store items.
-  - can contain a package record or any other "file-like object" and, when that
-    'gexp' is serialized for eventual execution, the package is replaced by its
-    /gnu/store/... file name.
-  - derivation represents a sequence of low-level build actions and the
-    environment in which they are performed to produce an item in the store
-
-  Syntactic forms:
-  | #~     | gexp            | quasiquote                                                      |
-  | #$     | ungexp          | unquote                                                         |
-  | #+     |                 | same role as #$, but it's a reference to a native package build |
-  | #$@"@" | ungexp-splicing | unquote-splicing / splice                                       |
-
 }
 
 @block{@block-name{Module installation}

@@ -153,6 +153,33 @@
   [ $a == z* ]     # File globbing and word splitting take place
   [ "$a" == "z*" ] # True if $a is equal to z* (literal matching)
 
+  # bash: split a string into an array https://stackoverflow.com/a/10586169
+  unset str && str="a   b   c"
+  fmtStr=$(echo $str | sed 's#\s#;#g')
+  echo "fmtStr: $fmtStr"
+  IFS=';' read -r -a array <<< "$fmtStr"
+  for idx in $(seq 0 $[${#array[@"@"]} - 1]); do
+      echo "$idx: ${array[$idx]}"
+  done
+
+  # bash operator: =~ equal tilde operator: test variable against a regex
+  unset myvar && myvar="some42"
+  if [[ "$myvar" =~ ^[a-z]*[0-9] ]]; then
+      echo "Match"
+  else
+      echo "No match"
+  fi
+
+  # bash: test if variable is an array https://stackoverflow.com/a/27254437
+  # Warning: if variable is once declared as array/non-array it's not enough
+  # just to reassign it a new value. It must be unset!
+  unset myvar && myvar=("a" "b")
+  unset myvar && myvar="ab"
+  declare -p myvar 2> /dev/null | grep -q '^declare \-a' && \
+          echo "Array" ||  echo "No array"
+  # this doesn't work:
+  # test "$(declare -p myvar)" =~ "declare -a" && echo "array" || echo "no array"
+
   # compute calculate fish-shell
   # examples https://nicolas-van.github.io/programming-with-fish-shell
   math "1 + 2"

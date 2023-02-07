@@ -1,23 +1,9 @@
 #lang notes
 
 @block{@block-name{Various}
-  # if `guix pull` show a warning:
-  #   channel '...' lacks 'introduction' field but '.guix-authorizations' found
-  # then make sure the channel definition contains:
-  # (introduction (make-channel-introduction "..." (openpgp-fingerprint "...")))
-
   # error: guile: warning: failed to install locale
   # solution:
   guix install glibc-locales
-
-  Guix: A most advanced operating system
-  https://ambrevar.xyz/guix-advance/
-  https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix
-
-  Ludovic Courtès: Your Distro Is A Scheme Library
-  https://youtu.be/CdixrlQzAN8
-
-  https://git.sr.ht/~technomancy/
 
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso
   wget https://ftp.gnu.org/gnu/guix/guix-system-install-1.3.0.x86_64-linux.iso.sig
@@ -140,13 +126,84 @@
 
 }
 
-@block{@block-name{Chris Baines / GNU Guix Presentation}
+@block{@block-name{Guix compared}
+  Guix vs. Docker
+  https://www.slant.co/versus/1145/5880/~gnu-guix_vs_docker
+  Nix vs. Guix
+  https://www.slant.co/versus/1143/1145/~nix_vs_gnu-guix
+  Main differences between Guix System (previously GuixSD) and NixOS?
+  https://unix.stackexchange.com/a/630620
+}
+
+@block{@block-name{GNU Guix}
+  GNU+Linux distribution, with declarative configuration for the
+  system and services
+
+  Pierre Neidhardt's homepage:
+  https://web.archive.org/web/20211121152844/https://ambrevar.xyz/articles.html
+
+  Pierre Neidhardt - Guix: A most advanced operating system
+  https://web.archive.org/web/20210922000926/https://ambrevar.xyz/guix-advance/index.html
+
+  https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix
+
+  Ludovic Courtès: Your Distro Is A Scheme Library
+  https://youtu.be/CdixrlQzAN8
+  $ INSIDE_EMACS=1 guix repl --listen=tcp:37146 &
+  # then in Emacs: M-x geiser-connect RET RET RET
+  ;; 1. Packages & package lookup
+  ,use (gnu)
+  ,use (guix)
+  ,use (gnu packages base)
+  (package? coreutils)
+  (package-name coreutils)
+  (specification->package "guile")
+  (length (fold-packages cons '()))
+  ;;
+  ;; 2. The store - store access mediated by daemon
+  ,use (guix store)
+  (define daemon (open-connection))
+  (add-text-to-store daemon "foo.txt" "Hi REPL")
+  (valid-path? daemon (add-text-to-store daemon "foo.txt" "Hi REPL"))
+  ;; 3. From packages to derivations
+  (package-derivation daemon coreutils)
+  (build-derivations daemon (list (package-derivation daemon spacemacs-rolling-release)))
+  ;; build-system
+  ;; package ----> bag ----+
+  ;;                       |
+  ;;                       v
+  ;;                   derivation
+  ;;                       ^
+  ;;                       |
+  ;; origin ---------------+
+  ;;
+  ;; 4. Staging: Hosting build-side code
+  #~(symlink #$coreutils #$output) ;; output is a derivation-output
+  ( #~(symlink #$coreutils #$output)) ;; query the input
+  ;; `gexp-inputs` shown in the video is exported by the (guix gexp) module and
+  ;; thus not available from the REPL
+  (gexp-input #~(symlink #$coreutils #$output))
+  ,enter-store-monad
+  ;; `gexp->sexp` shown in the video is exported by the (guix gexp) module and
+  ;; thus not available from the REPL
+  (gexp->derivation "foo" #~(symlink #$coreutils #$output))
+  ;;
+  ;; Doesn't work> (neither form the store)
+  ;; (build-derivations (list (gexp->derivation "foo" #~(symlink #$coreutils #$output))))
+  ,q ;; exit the store
+  (define os (load "/home/bost/dev/dotfiles/guix/systems/ecke.scm"))
+  (operating-system? os)
+  ,use (gnu system)  ;; exports operating-system-derivation
+  ;; ,use (gnu services) ;; probably not needed
+  ,enter-store-monad
+  (operating-system-derivation os)
+
+  https://git.sr.ht/~technomancy/
+
+  Chris Baines: GNU Guix Presentation
   https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
   2004 Nix announced
   2012 Guix announced
-
-  GNU Guix - GNU+Linux distribution, with declarative configuration for the
-             system and services
 
   ldd (which cat)
   #  linux-vdso.so.1 (0x00007ffd5a35e000)
@@ -179,6 +236,12 @@
   # Display information about the channels currently in use.
   guix describe --format=channels
   guix describe --format=human
+
+  # if `guix pull` show a warning:
+  #   channel '...' lacks 'introduction' field but '.guix-authorizations' found
+  # then make sure the channel definition contains:
+  (introduction (make-channel-introduction "..." (openpgp-fingerprint "...")))
+
 }
 
 @block{@block-name{Guix in a virtual machine}
