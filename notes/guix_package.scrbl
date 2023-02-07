@@ -76,8 +76,38 @@
   `guix weather` nars: size of the compressed archives
 }
 
-@block{@block-name{Creating package}
+@block{@block-name{Derivations}
+
+  Lower-level APIs are available to interact with the daemon and the store.
+
+  To instruct the daemon to perform a build action, provide it with
+  a derivation.
+
+  A low-level representation of the build actions to be taken, and the
+  environment in which these actions should occur - derivations are to package
+  definitions what assembly is to C programs.
+  The term "derivation" comes from the fact that build results derive from them.
+
+  Derivation represents low-level build actions and the environment in which
+  they are performed.
+
+  Derivation contains:
+  - The outputs of the derivation—derivations produce at least one file or
+    directory in the store, but may produce more.
+  - The inputs of the derivations—i.e., its build-time dependencies—which may be
+    other derivations or plain files in the store (patches, build scripts,
+    etc.).
+  - The system type targeted by the derivation—e.g., x86_64-linux.
+  - The file name of a build script in the store, along with the arguments to be
+    passed.
+  - A list of environment variables to be defined.
+}
+
+@block{@block-name{Creating packages}
   https://guix.gnu.org/cookbook/en/guix-cookbook.html#Packaging-Tutorial
+
+  PeerTube: Guix Packaging Perl Plack::Runner
+  https://video.hardlimit.com/w/p/fed80f62-f342-4f6b-980e-d98f11899236
 
   Bag:
   - an intermediate form between package and derivation.
