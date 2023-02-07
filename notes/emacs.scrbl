@@ -45,6 +45,12 @@
 }
 
 @block{@block-name{Various}
+  (setq lst '(a b c))     ; => (a b c)
+  (remove 'b lst)         ; => (a c)
+  (remove 'b '(a b c))    ; => (a c)
+  (add-to-list 'lst 'b)   ; => (a b c)
+  (add-to-list '(a c) 'b) ; => Wrong type argument: symbolp, (a c)
+
   (sort (list 4 8 21 17 33 7 21 7) #'<)
   (sort (mapcar #'number-to-string (list 4 8 21 17 33 7 21 7)) #'string<)
 

@@ -84,7 +84,7 @@
   ;; analyze system state
   guix describe profile               # for channels
   guix system describe                # for current system (OS kernel, etc.)
-  guix home describe                  # for home environment generation
+  guix home describe                  # for home environment generation & channels
   guix package --list-profiles
   ;;
   guix home list-generations 1d       # no '=' allowed after 'list-generations'

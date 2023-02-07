@@ -53,7 +53,6 @@
 
   YouTube: System Crafters Live! - A First Look at Guix Home
   https://youtu.be/R5cdtSfTpE0
-
   Notes: System Crafters Live! - A First Look at Guix Home
   https://systemcrafters.net/live-streams/october-01-2021
 
