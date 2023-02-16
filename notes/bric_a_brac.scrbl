@@ -1,5 +1,25 @@
 #lang notes
 
+@block{@block-name{Artificial Intelligence}
+  Bing AI Can't Be Trusted
+  https://dkb.blog/p/bing-ai-cant-be-trusted
+  - Microsoft knowingly released a broken product for short-term hype
+  - TLDR: Bing AI got some answers completely wrong during their demo
+    https://youtu.be/rOeRWRJ16yY
+  - Bing AI did a great job of creating media hype, but their product is no
+    better than Google’s Bard
+
+  Bing ChatGTP demands an apology from user for claiming it's 2023
+  https://old.reddit.com/r/bing/comments/110eagl/the_customer_service_of_the_new_bing_chat_is/
+
+  TODO see
+  https://colinmeloy.substack.com/p/i-had-chatgpt-write-a-decemberists
+  https://moritz.pm/posts/chatgpt-bing
+
+  What Is ChatGPT Doing … and Why Does It Work?
+  https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/
+}
+
 @block{@block-name{Communication protocols}
   imply SW architectural style for distributed environments
   REST (Representational State Transfer) accesses data

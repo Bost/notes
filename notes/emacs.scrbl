@@ -45,6 +45,13 @@
 }
 
 @block{@block-name{Various}
+  ;; Set operations / sets:
+  ;; https://www.gnu.org/software/emacs/manual/html_node/cl/Lists-as-Sets.html#Lists-as-Sets
+  (cl-set-difference '(4 3 2 1) '(1))
+
+  ;; list hash-table keys
+  (hash-table-keys my=ht)
+
   (setq lst '(a b c))     ; => (a b c)
   (remove 'b lst)         ; => (a c)
   (remove 'b '(a b c))    ; => (a c)
@@ -105,6 +112,10 @@
   ;; symbol that is used if you write the name in a Lisp expression. Distinct
   ;; symbols with the same name are not eq. See Creating and Interning Symbols.
   (eq (make-symbol "foo") 'foo)              ;; =>  nil
+  ;; symbol-to-string / symbol->string:
+  (symbol-name 'some-symbol)                 ;; => "some-symbol"
+  ;; string-to-symbol / string->symbol:
+  (intern "some-symbol")                     ;; => some-symbol
 
   ;; drawing, schemes, painting; draw lines, rectangles and ellipses with mouse
   ;; and/or keyboard.
@@ -263,11 +274,15 @@
   ;; help: ? emacs manual?
   ~C-h i m emacs~
 
-  | ~C-h m~ | M-x describe-mode     |                            |
-  | ~C-h k~ | M-x describe-key      |                            |
-  | ~C-h f~ | M-x describe-function |                            |
-  | ~C-h v~ | M-x describe-variable |                            |
-  | ~C-h b~ | M-x describe-bindings | show available keybindings |
+  ;; help-mode
+  | ~[~ / ~g b~ / ~C-c C-b~ | M-x help-go-back    |
+  | ~]~ / ~g f~ / ~C-c C-f~ | M-x help-go-forward |
+
+  | ~C-h m~           | M-x describe-mode     |                            |
+  | ~C-h k~           | M-x describe-key      |                            |
+  | ~C-h f~           | M-x describe-function |                            |
+  | ~C-h v~           | M-x describe-variable |                            |
+  | ~C-h b~ / ~SPC ?~ | M-x describe-bindings | show available keybindings |
   ;; package command-log-mode - show pressed keybindings (when screen casting)
 
   ;; dynamic vs. lexical binding: https://www.emacswiki.org/emacs/LexicalBinding

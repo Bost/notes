@@ -129,11 +129,11 @@ $\blank\inv$ inversion (dual obj): $x \cdot x\inv = x\inv \cdot x = e$
 *** Field
 Field is a triple $(X, +, \minus)$ such that $X$ is an underlying set forming a
 commutative, i.e. abelian group under the operations of: \\
-addition: $a + b = b + a$ \\
-multiplication: $a \times b = b \times a$, for non-zero elements of $X$, to
-avoid division by $0$ \\
-addition and multiplication are distributive: $a \times (b + c) = a \times b + a
-\times c$ \\
+  (commutative) addition: $a + b = b + a$ \\
+  (commutative) multiplication: $a \times b = b \times a$, for non-zero elements
+of $X$, to avoid division by $0$ \\
+  addition and multiplication are distributive: $a \times (b + c) = a \times b +
+a \times c$ \\
 
 _Examples_: \\
 $\CC$ Complex, $\RR$ Real and $\QQ$ Rational numbers form a Field. $\ZZ$ Integer
@@ -195,18 +195,21 @@ Vector is quadruple $(V, +_v, F, +_f, \cdot, 1_f)$ such that: \\
   and it contains a collection of vectors.
 - $F$ is a Field of scalars.
 - Operations and their properties:
-commutative vector addition: $v_1 +_v v_2 = v_2 +_v v_1$ \\
-vector scaling: $v \in V, f \in F: f \cdot v \in V$ \\
-distributivity of $\cdot$: $f \cdot (v_1 +_v v_2) = f \cdot v_1 +_f f \cdot v_2$,
-$(f_1 +_f f_2) \cdot v = f_1 \cdot v +_v f_2 \cdot v$ \\
-associativity of $\cdot$: $f_1 \cdot (f_2 \cdot v) = (f_1 \times \f_2) \cdot v$ \\
-scaling by $1_f$: $1_f \cdot v = v$
-
-Linear algebra - study of vector spaces.
+    commutative vector addition: $v_1 +_v v_2 = v_2 +_v v_1$ \\
+    vector scaling: $v \in V, f \in F: f \cdot v \in V$ \\
+    distributivity of $\cdot$: $f \cdot (v_1 +_v v_2) = f \cdot v_1 +_f f \cdot v_2$,
+    $(f_1 +_f f_2) \cdot v = f_1 \cdot v +_v f_2 \cdot v$ \\
+    associativity of $\cdot$: $f_1 \cdot (f_2 \cdot v) = (f_1 \times \f_2) \cdot v$ \\
+    scaling by $1_f$: $1_f \cdot v = v$
 
 \bigskip
 
-\href{https://youtu.be/ozwodzD5bJM}{Socratica - What is a Vector Space?}
+Vector space: \\
+- \href{https://youtu.be/ozwodzD5bJM}{YouTube: Socratica - What is a Vector Space?}
+- any type of mathematical object that can be multiplied by numbers and added
+  together
+- collection of vectors
+- Linear algebra - study of vector spaces.
 
 *** Module
 Module is a generalization of a Vector Space.
