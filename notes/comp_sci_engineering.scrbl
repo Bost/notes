@@ -135,6 +135,9 @@
 }
 
 @block{@block-name{Various}
+  Polyfill: code (usually JavaScript on the Web) used to provide modern
+  functionality on older browsers that do not natively support it.
+
   NIC Network Interface Controller
 
   PXE Preboot eXecution Environment (read "pixie")

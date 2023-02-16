@@ -30,10 +30,21 @@ appear separately in the result.
 In Category Theory, disjoint union is the coproduct of the category of sets.
 
 * Resource Theories: Monoid Preorders and Enrichment
+# $\cat{V}$ in section name doesn't work
 ** V-enrichment TODO
-** Symmetric Monoidal Preorder
+** Symmetric Monoidal Preorder SMP
 
-TODO verify definitions of Preorder, Full and Partial Order
+SMP is a commutative monoid $(V, \cdot, 1)$ ($V$ is a set, $\cdot$ is the
+monoidal product, and $1$ is the monoidal unit) equipped with a preorder $≤$
+that's compatible with the monoidal product, meaning that $u \cdot u^\prime ≤ v
+\cdot v^\prime$ whenever $u ≤ v$ and $u^\prime ≤ v^\prime$ for all elements
+$u,u^\prime,v,v^\prime \in V$.
+
+\bigskip
+
+TODO verify definitions of Preorder, Full and Partial Order/
+
+\bigskip
 
 _Preorder Relation_ conditions: \\
 reflexivity:  $x \leq x$ \\

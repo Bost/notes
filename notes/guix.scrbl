@@ -166,7 +166,8 @@
   (add-text-to-store daemon "foo.txt" "Hi REPL")
   (valid-path? daemon (add-text-to-store daemon "foo.txt" "Hi REPL"))
   ;; 3. From packages to derivations
-  (package-derivation daemon coreutils)
+  ;; (package-derivation daemon coreutils)
+  ,use (bost packages spacemacs)
   (build-derivations daemon (list (package-derivation daemon spacemacs-rolling-release)))
   ;; build-system
   ;; package ----> bag ----+

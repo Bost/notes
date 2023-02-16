@@ -7,6 +7,10 @@
 
   alist - association list, i.e. dictionary
   https://www.gnu.org/software/guile/manual/html_node/Alist-Example.html
+
+  (define circular-list (let ((x '(1 2 3))) (set-cdr! (cddr x) x) x))
+  (length+ circular-list) ;; => #f
+
   @lisp{
     (define capitals '(("New York" . "Albany")
                        ("Oregon"   . "Salem")

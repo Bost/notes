@@ -6,7 +6,7 @@
 #+STARTUP: nolatexpreview
 
 * \(k\)-linear maps / transformations
-** Linear map
+** Linear map / transformation
 Let $U$ and $W$ be vector spaces over the same field $K$. Function $f: U
 \rightarrow W$ is a linear map between vector spaces (or modules over a
 commutative Ring) $U$ and $W$ that preserves the operations of addition and
@@ -16,14 +16,14 @@ That means, if for any two vectors $\vec{u}, \vec{v} \in U$ and any scalar $c
 \in K$ the following two conditions are satisfied:
 
 \begin{enumerate}
-\item addition
+\item addition:
 \begin{equation}
 \begin{split}
   f(\vec{u} + \vec{v}) = f(\vec{u}) + f(\vec{v})
 \end{split}
 \end{equation}
 
-\item scalar multiplication i.e. homogeneity of degree 1
+\item scalar multiplication, i.e. homogeneity of degree 1:
 \begin{equation}
   f(c \cdot \vec{u}) = c \cdot f(\vec{u})
 \end{equation}
@@ -45,7 +45,7 @@ Linear map in abstract algebra - module homomorphism
 
 Linear map in category theory - morphism in the category of Modules over a given Ring
 
-** Bilinear and multilinear map
+** Bilinear and multilinear map / transformation
 
 Function $f: U_1 \times \dotsb \times U_k \rightarrow W$ is a \(k\)-linear map
 between $k$ vector spaces (or modules over a commutative Ring) with the

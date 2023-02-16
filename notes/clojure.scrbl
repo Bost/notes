@@ -1,25 +1,54 @@
 #lang notes
 
+@block{@block-name{Notable Clojure projects}
+  Python's notebooks in Clojure
+  https://github.com/nextjournal/clerk
+  https://clerk.vision/
+
+  Data Visualisation
+  https://github.com/metasoarous/oz
+
+  Design & Prototyping
+  https://github.com/penpot/penpot
+  https://penpot.app/
+
+  Business intelligence and analytics
+  https://github.com/metabase/metabase
+  https://metabase.com/
+
+  Collaborative Programmable Music
+  http://overtone.github.io/
+
+  Knowledge Management & Collaboration
+  https://github.com/logseq/logseq
+  https://logseq.com/
+}
+
 @block{@block-name{General}
+  Kawa Scheme - on JVM
+  https://www.gnu.org/software/kawa/
+
   https://git.sr.ht/~krevedkokun/dotfiles/tree/master/item/channel/packages/clojure.scm
 
- https://stuartsierra.com/2016/01/09/how-to-name-clojure-functions
- - A pure function can be replaced with its value - use noun, i.e.
-   preffer `age`, oveer `calculate-age` or `get-age.`
- - A function with side-effects - use verb, i.e.
-   for constructors:      `create-...`
-   information retrieval: `get-...`, `fetch-...` (e.g. query a web service)
- - Words which could be either nouns or verbs: assume noun by default then add
-   words to make verb phrases. E.g. `message` constructs a new object
-   representing a message, `send-message` transmits it.
- - Function returning functions - use suffix '...-fn', or `...-fun`
- - Function names should not repeat the name of the namespace
-   @lisp{
-     (ns products)
-     (defn product-price [product] ...) ; Bad, the 'product' is redundant
-     (defn price [product] ...)         ; Good
-   }
+  https://stuartsierra.com/2016/01/09/how-to-name-clojure-functions
+  - A pure function can be replaced with its value - use noun, i.e.
+    preffer `age`, oveer `calculate-age` or `get-age.`
+  - A function with side-effects - use verb, i.e.
+    for constructors:      `create-...`
+    information retrieval: `get-...`, `fetch-...` (e.g. query a web service)
+  - Words which could be either nouns or verbs: assume noun by default then add
+    words to make verb phrases. E.g. `message` constructs a new object
+    representing a message, `send-message` transmits it.
+  - Function returning functions - use suffix '...-fn', or `...-fun`
+  - Function names should not repeat the name of the namespace
+    @lisp{
+      (ns products)
+      (defn product-price [product] ...) ; Bad, the 'product' is redundant
+      (defn price [product] ...)         ; Good
+    }
 
+  deps.edn over leiningen, spec over malli (released after spec), socket repl
+  over nrepl, pedestal http://pedestal.io/ over ring
 
   What's the difference between a "sequence" and a "seq"?
   http://www.brainonfire.net/files/seqs-and-colls/main.html
@@ -1081,6 +1110,9 @@
   2k stars; https://github.com/thheller/shadow-cljs
   - create-cljs-app - Set up a modern CLJS (react?) web app by running one command.
     275 stars; https://github.com/filipesilva/create-cljs-app
+
+  For java projects:
+  make -> ant -> maven -> gradle
 }
 
 @block{@block-name{Clojure / ClojureScript & Maps}

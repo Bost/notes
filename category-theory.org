@@ -374,6 +374,11 @@ $$(K \comp \alpha) * (\beta \comp F) A = K(\alpha A) \comp \beta FA$$
 - is associative with an id, and the id coincides with that for vertical
 composition.
 
+** Enriched Category
+The set of morphisms between objects $X$ and $Y$ in some category $\cat{C}$: $\Hom_{\cat{C}}(X,Y)$: \\
+if the $\Hom_{\cat{C}}(X,Y)$ is also a vector space then the $\cat{C}$ is enriched over the category of sets. \\
+if the $\Hom_{\cat{C}}(X,Y)$ is also an abelian group then the $\cat{C}$ is enriched over the category of abelian groups. \\
+
 * Yoneda perspective, embeding and lemma
 _Yoneda Perspective_ - idea: \\
 An object is completely determined by its relationships to other objects.
@@ -1049,8 +1054,6 @@ B                                                  &                            
 A \arrow[uuu, "f"] \arrow[ru, no head, Rightarrow] &                                                                                                                                                                                          & A \arrow[uuu, "f"'] \\
                                                    & A \times A \arrow[ru, "\pi_{2_A}"'] \arrow[lu, "\pi_{1_A}"]                                                                                                                              &
 \end{tikzcd}
-
-
 
 * Effect in Functional Programming
  An effect is the thing that a monad handles. (Typically an IO operation)

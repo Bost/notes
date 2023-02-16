@@ -73,7 +73,6 @@ category-theory.log
 math-structures.tex
 math-structures.pdf
 *.pdf
-*.tex
 /_minted-test/
 /_minted-category-theory/
 notes/compiled/info_rkt.dep

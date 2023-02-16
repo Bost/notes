@@ -1,6 +1,12 @@
 #lang notes
 
 @block{@block-name{lisp-1 vs. lisp-2}
+  LISP 20170717 1330
+  https://youtu.be/wi2X00kvUaE
+  Lisp Working Group WG
+}
+
+@block{@block-name{lisp-1 vs. lisp-2}
   lisp-1: single-value-name languages: Scheme, Clojure, etc.
   lisp-2: multi-value-name languages: Emacs Lisp, Common Lisp
           allows the same name for both function and variable
@@ -20,7 +26,7 @@
   Common Lisp VS Racket - testimonies.md
   https://gist.github.com/vindarel/c1ef5e043773921e3b11d8f4fe1ca7ac
 
-  Common Lisp:
+  CL Common Lisp:
   - symbol-based macro system
   - has fairly unique condition system approach to handling errors.
   - subreddit tends to be heavily oriented towards Common Lisp
@@ -37,12 +43,27 @@
   Concurrency is easy. Synchronisation is hard. I.e. how do you get the data
   from your concurrent operations safely back to a single thread?
 
-  Clojure-style concurrency abstractions / operations ported to CL
+  Clojure-style concurrency abstractions / operations in Common Lisp
   https://github.com/dtenny/clj-con
 
   Clojure:
-  - provides immutability (or more correctly persistence) by default.
-    (Mind-bending!)
+  - immutability, more correctly persistence, by default. Mutation is a source
+    of bugs, and should be avoided / thoughtfully limited.
+  - immutable reference to data. Mutation allowed only along the explicit path
+    of computations you're working through (it doesn't change, actually, you
+    choose to hold onto a new reference to derived data when you want to).
+  - mutable escape hatch (eg. when holding a handle to a database), every type
+    of mutation in (core) Clojure has defined (and thoughtfully so) concurrency
+    semantics. No(?) "not thread safe" notes in Clojure API docs like in
+    JavaDocs.
+  - the state of a Clojure program will most likely comprised of printable data
+    literals (think JSON data types).
+  - it gives you object-like read-only views into your database (like Datomic's
+    `datomic.api/entity`), or help you write queries with a knowledge of your
+    database schema, but most Clojure persistence solutions will explicitly
+    coordinate mutation into a single 'site' because that's the only way
+    maintain a coherent view of state-over-time. And that single-mutation-site
+    story is the opposite of what ORMs (as commonly defined) do.
 
   CLEDE Common Lisp Emacs Development Environment
   https://emacsconf.org/2021/talks/clede/
@@ -76,6 +97,26 @@
 
   Gerbil Scheme:
   - has huilt-in actor model (TODO verify)
+
+  Janet
+  https://janet-lang.org
+  - functional, imperative & embeddable language & bytecode interpreter / VM
+  - superficially similar to Clojure, internally it's different
+  - unlike Scheme/Common Lisp, it has no cons cells
+  - lisp-like, but lists are replaced by other data structures (arrays, tables
+    (hash table), struct (immutable hash table), tuples)
+  - supports bridging to native C-code, meta-programming with macros, and
+    bytecode assembly.
+  - for rapid prototyping, dynamic systems,scripting to an application by
+    embedding a single C file and two headers.
+  - entire language (core library, interpreter, compiler, assembler, PEG) is
+    less than 1MB.
+  - immutable data structures (tuples and structs) implemented as immutable
+    arrays and hash tables, not as hash tries. Don't use them like Clojure's
+    vectors and maps, instead they work well as table keys or other identifiers.
+
+  Kawa Scheme - on JVM
+  https://www.gnu.org/software/kawa/
 }
 
 @block{@block-name{Common Lisp Implementations}
