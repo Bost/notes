@@ -12,13 +12,12 @@ Classes of math structures http://math.chapman.edu/~jipsen/structures/doku.php/
 https://en.wikipedia.org/wiki/Algebraic_structure
 
 * Algebraic structures
-
-  $G$ is an underlying body of an algebraic structure. Often it's a set. \\
-  $\cdot$ is a binary operation. \\
-  $\blank^{-1}$ element inversion is apparently not always being consider to an
-  operation.
-
 ** Group-like structures
+Group is a pair $(G, \cdot)$: \\
+$G$ is an underlying body of an algebraic structure. Often it's a set. $\cdot$
+is a binary operation. The element inversion $\blank^{-1}$ is apparently not
+always being consider to be an operation.
+
 | Group-like-Structure | Closed | Associative | Identity | Invertible | Commutative |
 |----------------------+--------+-------------+----------+------------+-------------|
 | Semigroupoid         | -      | Y           | -        | -          | -           |
@@ -35,8 +34,14 @@ https://en.wikipedia.org/wiki/Algebraic_structure
 
 Closed / Closure property: all possible results of $a \cdot b$ are in the
 underlying body \\
-Associative: $a \cdot (b \cdot c$) = $(a \cdot b$) \cdot c$ - "the brackets" \\
-Commutative: $a \cdot b$ = $b \cdot a$
+Associative, ie group with parentheses as you like, ie. no priority:
+$a \cdot (b \cdot c) = (a \cdot b) \cdot c$ \\
+Commutative, ie. order doesn't matter: $a \cdot b = b \cdot a$
+
+\bigskip
+
+Eg. for groups (which are associative, but not commutative): the priority of
+operations doesn't exist bu the order of operands is important
 
 *** Semigroup / Halbgruppe:
 Semigroup is tuple $(G, \cdot)$ such that: \\
