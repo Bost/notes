@@ -557,6 +557,8 @@
   ;; problem: emacs does not uses fonts from /usr/share/fonts
   sudo apt install --yes libgtk2.0-dev
   ./configure --with-x-toolkit=gtk
+  ;; See: M-x describe-variable system-configuration-features
+  ;; which is a list of some of the main features this Emacs was compiled with.
 
   ;; compiling emacs on the GuixOS
   guix install gtk dconf udiskie makeinfo autoconf \

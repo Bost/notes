@@ -171,10 +171,10 @@
   rg --glob-regex '^.gitlab-ci.yml$' ...
 
   # rg manual file types / extensions (globing)
-  rg -g '*.{scm,c,h}' -w "operating-system" ~/dev/guix ~/dev/guile
+  rg -g '*.{scm,c,h}' -w "operating-system" $dev/guix $dev/guile
   # fdfind manual file types / -e, --extension
-  rg -w "operating-system" (f -e scm -e c -e h '.*' ~/dev/guix ~/dev/guile)
-  rg "instrumented" (f -e scm -e c -e h '.*'  ~/dev/guix/ ~/dev/guile/)
+  rg -w "operating-system" (f -e scm -e c -e h '.*' $dev/guix $dev/guile)
+  rg "instrumented" (f -e scm -e c -e h '.*'  $dev/guix/ $dev/guile/)
 
   grep "Spacemacs is ready." (find ~/.emacs.d/ -type f -name '*.el')
   rg "Spacemacs is ready." (find ~/.emacs.d/ -type f -name '*.el')
@@ -187,12 +187,12 @@
   rg     -t clojure --word-regexp SearchText
 
   # fish-shell, ripgrep and sed the stream editor
-  # fish-shell arrays start with 1
+  # first item of a fish-shell arrays starts at / is indexed with 1 not 0
   set oldNew "oldText" "newText"
   set sFiles (rg --files-with-matches --type racket $oldNew[1])
   sed --in-place "s/$oldNew[1]/$oldNew[2]/g" $sFiles
 
   # search through all guix and guile code
-  rg -g '*.{scm,c,h}' -w "word" (find ~/.cache/guix/checkouts/ -type l) ~/dev/guile
+  rg -g '*.{scm,c,h}' -w "word\\s" $dev/guix $dev/guile
 
 }

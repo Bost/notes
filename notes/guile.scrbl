@@ -105,8 +105,11 @@
   ;; pretty-print from shell / execute a scheme expression
   $ guile -c '(use-modules (ice-9 pretty-print)) (pretty-print \'(begin ...))'
   $ guix repl
-  > ,use (ice-9 pretty-print)
-  > ,pretty-print '(begin ...)
+  ,use (ice-9 pretty-print) ;; ,use is an alias for ,import or (import ...)
+  ,pretty-print '(begin ...)
+  ;; access module variables w/o importing the whole module
+  (@"@" (my module) public-variable)
+  (@"@"@"@" (my module) private-variable)
 
   # disable colors and readline bindings defined in the .guile
   @; INSIDE_EMACS=1     # bash

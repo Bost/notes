@@ -204,7 +204,7 @@
 @block{@block-name{REPL}
   The `enter!` form both loads the code and switches the evaluation context to
   the inside of the module, just like DrRacket’s Run button.
-  (enter "mymodule.rkt")
+  (enter "my=module.rkt")
 }
 
 @block{@block-name{Various}
