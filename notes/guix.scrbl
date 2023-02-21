@@ -167,6 +167,7 @@
   (valid-path? daemon (add-text-to-store daemon "foo.txt" "Hi REPL"))
   ;; 3. From packages to derivations
   ;; (package-derivation daemon coreutils)
+  ,use (guix derivations)
   ,use (bost packages spacemacs)
   (build-derivations daemon (list (package-derivation daemon spacemacs-rolling-release)))
   ;; build-system

@@ -269,6 +269,13 @@
     (define* (partial fun #:rest args)
     (lambda x (apply fun (append args x))))
     ;; '#:rest' is a synonym for the dotted syntax rest argument.
+
+    (define* (foo prm #:key kw (kw-opt #f))
+      "kw-opt is a keyword and optional argument at the same time"
+      (list prm kw kw-opt))
+    ;;
+    (foo 'user #:kw '42)             ;; = >(user 42 #f)
+    (foo 'user #:kw '42 #:kw-opt 'x) ;; => (user 42 x)
   }
 }
 
@@ -438,7 +445,7 @@
   see `info "(guile)Installing Site Packages"`
 }
 
-@block{@block-name{begin}
+@block{@block-name{The begin form}
   (begin
     ...)
   A begin form in a definition context splices(! not sequences) its subforms
@@ -451,6 +458,21 @@
   not be clear what the value of the sequence would be, because in a sequence of
   zero expressions, there can be no last value. Sequencing zero expressions is
   an error.
+}
+
+@block{@block-name{Testing}
+  ,use (srfi srfi-64)
+  ;; Initialize and give a name to a simple testsuite.
+  (test-begin "vec-test")
+  (define v (make-vector 5 99))
+  ;; Require that an expression evaluate to true.
+  (test-assert (vector? v))
+  ;; Test that an expression is eqv? to some other expression.
+  (test-eqv (vector-ref v 2) 99)
+  (vector-set! v 2 7)
+  (test-eqv (vector-ref v 2) 7)
+  ;; Finish the testsuite, and report results.
+  (test-end "vec-test")
 }
 
 @block{@block-name{Equality}

@@ -114,17 +114,12 @@
   # count of commits on a branch
   git rev-list --count <branch-name>
 
-  # search through the gitlog
-  git show :/query
-
-  # show content of file.txt in commit ff0011
-  git show ff0011:file.txt
-
   # show content of file in the ...
-  git show :0:file    # ... stage area (i.e. index)
-  git show :1:file    # ... common ancestor
-  git show :2:file    # ... target on the current branch where I am
-  git show :3:file    # ... the one I am bringing in
+  git show ff0011:file.txt # ... commit ff0011
+  git show :0:file         # ... stage area (i.e. index)
+  git show :1:file         # ... common ancestor
+  git show :2:file         # ... target on the current branch where I am
+  git show :3:file         # ... the one I am bringing in
 
   # show older version of a file
   git show REVISION:path/to/file
@@ -203,6 +198,7 @@
   gitk    --since="2013-11-12 00:00"  --until="2013-11-13 00:00" & disown
   # list all commits for a specific commiter / user / author
   git log --author=John
+  git shortlog --author=John
 
   # show settings
   git config --global --list
@@ -230,9 +226,15 @@
 
   # search entire commit history
   git log -S "textToSearch"
-
   # search entire commit history; also in refs (see git help log)
   git log -S "textToSearch" --source --all
+  # search through the gitlog
+  git show :/"emacs-magit: Update to"
+
+  # https://stackoverflow.com/a/7124949
+  # search in the commit messages across all branches
+  git log --all    --grep="emacs-magit: Update to"
+  git log --all -i --grep="emacs-magit: Update to"  # case insensitive
 
   # search for occurences of function foo
 
