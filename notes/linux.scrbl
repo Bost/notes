@@ -382,8 +382,11 @@
   # :listing - only directories, 1 entry per line
   ls -d1 */
 
-  # :listing - count of files in ./path/to/dir
-  ls -1 ./path/to/dir | wc -l
+  # :listing - count of entries / files in /path/to/dir
+  # -a, --all          do not ignore entries starting with .
+  # -A, --almost-all   do not list implied . and ..
+  # -1                 list one file per line.  Avoid '\n' with -q or -b
+  ls --almost-all -1 /path/to/dir | wc -l
 
   # :listing - show full paths (alias lff)
   # '-d, --directory' list directories themselves, not their contents
@@ -454,7 +457,7 @@
   chmod --recursive u=rwx,g=rwx,o=rwx /path/to/dir
   chmod          -R u=rwx,g=rwx,o=rwx /path/to/dir
 
-  # remove all files except survivor.txt
+  # remove all files except survivor.txt; doesn't work in fish
   rm -f !(survivor.txt)
 
   # insert autocompletition result (use together with other progs)

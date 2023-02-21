@@ -45,8 +45,11 @@
   # flatteb all xml files from all src subdirs to dst, fork off a new copy
   # process for every file; TODO test it!
 
-  find . -not -path "*/\.*"               # skip / exclude hidden files and dirs
+  find . -not -path "*/\.*"            # skip / exclude hidden files and dirs
   find . -not -path "*path/to/exclude*"
+  # skip / exclude survivor dir
+  set sdir ~/.local/share/spacemacs/elpa/28.2/develop
+  find $dr -not -path "$sdir/archives*" -and -not -path "$sdir" # rm -rf {} +
 
   find . -type f -name "*.xml" -or -name "*.txt" # filtered by extensions
   find . -executable -type f                     # executable files
@@ -158,17 +161,22 @@
   rg "dotspacemacs/layers" (f -e scm -e c -e h '.*' ~/.emacs.d)
 
   # word boundaries
-  rg "\bword\b" (f -e scm -e c -e h '.*' ~/.emacs.d)
-  rg -w "word" (f -e scm -e c -e h '.*' ~/.emacs.d)
   # -g, --glob Include or exclude files and directories. Precede a glob with a !
   #            to exclude it.
-  rg -g '*.{el}' -w "deleted" ~/.emacs.d
+  rg --no-ignore-vcs -g '*.{el}' -w "info-constant-ref-item\b" ~/.emacs.d
+  # with -w much less is returned
+  rg --no-ignore-vcs -g '*.{el}' -w "\sdelete\s" ~/.emacs.d
+  rg --no-ignore-vcs -g '*.{el}' -w "\bdelete\b" ~/.emacs.d
+
   # TODO consider making an alias for this, or a default setting.
   # See https://github.com/BurntSushi/ripgrep/discussions/2011
   # ack, ag, git-grep, GNU grep, rg, https://beyondgrep.com/feature-comparison/
-  rg --hidden --glob '!.git'
-  rg --hidden --iglob-regex '^.git$' ...
-  rg --glob-regex '^.gitlab-ci.yml$' ...
+  rg --hidden --no-ignore-vcs --glob '!.git'
+  rg --hidden --no-ignore-vcs --iglob-regex '^.git$' ...
+  rg --no-ignore-vcs --glob-regex '^.gitlab-ci.yml$' ...
+
+  # the .gitignore contains 'elpa/', therefore the --no-ignore-vcs is needed
+  rg --no-ignore-vcs -g '*.{el}' "Buffer is read-only" ~/.emacs.d/
 
   # rg manual file types / extensions (globing)
   rg -g '*.{scm,c,h}' -w "operating-system" $dev/guix $dev/guile
@@ -176,9 +184,11 @@
   rg -w "operating-system" (f -e scm -e c -e h '.*' $dev/guix $dev/guile)
   rg "instrumented" (f -e scm -e c -e h '.*'  $dev/guix/ $dev/guile/)
 
-  grep "Spacemacs is ready." (find ~/.emacs.d/ -type f -name '*.el')
-  rg "Spacemacs is ready." (find ~/.emacs.d/ -type f -name '*.el')
-  find ~/.emacs.d/ -type f -name "*.el" -print0 | xargs -0 grep --files-with-matches "Spacemacs is ready."
+  set s "Spacemacs is ready" # s="Spacemacs is ready"
+  grep $s (find ~/.emacs.d/ -type f -name '*.el')
+  rg --no-ignore-vcs $s (find ~/.emacs.d/ -type f -name '*.el')
+  # -l --files-with-matches
+  find ~/.emacs.d/ -type f -name "*.el" -print0 | xargs -0 grep -l $s
 
   # ripgrep
   rg --type racket  --word-regexp SearchText
@@ -193,6 +203,6 @@
   sed --in-place "s/$oldNew[1]/$oldNew[2]/g" $sFiles
 
   # search through all guix and guile code
-  rg -g '*.{scm,c,h}' -w "word\\s" $dev/guix $dev/guile
+  rg --no-ignore-vcs -g '*.{scm,c,h}' -w "word\\s" $dev/guix $dev/guile
 
 }
