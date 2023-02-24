@@ -44,13 +44,24 @@
   | ~SPC p l~     | project layout          |
 }
 
+@block{@block-name{EIEIO Enhanced Implementation of Emacs Interpreted Objects}
+  - system for creating and working with object-oriented code in Emacs Lisp.
+  - additional features on top of the Emacs Lisp object system
+}
+
 @block{@block-name{Various}
+  (if (string-match "<regexp>" "string containing substring / regexp")
+    (message "found")
+   (message "not found"))
+
   ;; Set operations / sets:
   ;; https://www.gnu.org/software/emacs/manual/html_node/cl/Lists-as-Sets.html#Lists-as-Sets
   (cl-set-difference '(4 3 2 1) '(1))
 
   ;; list hash-table keys
   (hash-table-keys my=ht)
+  (hash-table-size my=ht)  ;; size that can be used as an argument to `make-hash-table`
+  (hash-table-count my=ht) ;; number of elements in the table
 
   (setq lst '(a b c))     ; => (a b c)
   (remove 'b lst)         ; => (a c)
@@ -67,7 +78,7 @@
   emacs-forge: work with Git forges, such as Github and Gitlab
   Error: forge-db: The Forge database was created with a newer Forge version.
          You need to update the Forge package.
-  Solution: M-x forge-reset-database
+  Solution: M-x forge-reset-database / ~M-:~ (forge-reset-database)
 
   ;; The command arguments are munched together. Whitespace chars are not
   ;; escaped, that means arguments can't be reliably separated from each other.

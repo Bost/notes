@@ -281,6 +281,17 @@
 
 @block{@block-name{Various code snippets}
   @lisp{
+    (use-modules (guix utils))  ;; ,use (guix utils)
+    (define* (my-function a b #:key (c 0) (d #f)) (list a b c d))
+    (define my-args '(1 2 #:c 3 #:d 4))
+    (define my-replacements '(((#:c c) (1+ c))
+                              ((#:d d) (1+ d))))
+    (define modified-args
+      (eval
+       `(substitute-keyword-arguments my-args ,my-replacements)
+       (interaction-environment)))
+    (apply my-function modified-args) ;; => (1 2 3 4)
+
     ;; pwd - print working directory
     (getcwd)
 
