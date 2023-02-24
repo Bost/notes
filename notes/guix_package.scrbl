@@ -168,9 +168,9 @@
   guix install glib:doc - install the 'doc' output of glib
   guix install glib:out - install the default output 'out' of the glib
 
-  Inputs ~ package dependencies.
-  The user profile & environment only contains the packages the user explicitly
-  installed and not necessarily the dependencies of those packages.
+  Inputs correspond to package dependencies.
+  The user profile & environment contains only the packages that the user
+  explicitly installed and not necessarily the dependencies of those packages.
   * (basic) inputs
     Built for target architecture. Can be referenced by the package. Will be in
     the resulting binary file
@@ -178,7 +178,9 @@
     Built for host architecture (the build machine), e.g. built-time utils not
     needed during run-time
   * propagated
-    Will be added to profile along with the package
+    Will be added to user profile along with the package
+    When a package has propagated inputs then any package that depends on it
+    will automatically have those inputs available to it.
   * direct
     All of the above
   * implicit
