@@ -367,6 +367,10 @@
   # display file or file system status; alternative to ls
   stat -c "%y %s %n" *
 
+  # :listing - list contents of directories in a tree-like format.
+  tree -f # full-path
+  lff
+
   # :listing - sort by size; -l     use a long listing format
   ls --sort=size -l
   ls --sort=size -l --reverse

@@ -74,8 +74,14 @@
   # Advanced Package Tool; apt is a replacement for apt-get
   sudo apt install --reinstall <package>
 
-  # When "The following packages have been kept back: ...",
+  # For "The following packages have been kept back: ..."
   # see https://askubuntu.com/a/602
+  # Cautious solution 1:
+  sudo apt-get --with-new-pkgs upgrade <list of packages kept back>
+  # Cautious solution 2:
+  sudo apt-get install <list of packages kept back>
+  # Aggressive solution
+  sudo apt-get dist-upgrade # force the installation of those new dependencies.
 
   # :ubuntu CLI OS upgrade (GUI upgrade - see `update-manager`)
   # 1. set `Prompt=normal`

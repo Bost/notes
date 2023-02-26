@@ -177,6 +177,7 @@
 
   # the .gitignore contains 'elpa/', therefore the --no-ignore-vcs is needed
   rg --no-ignore-vcs -g '*.{el}' "Buffer is read-only" ~/.emacs.d/
+  rg --no-ignore-vcs -g '*.{el,c}' "'elpa" $dev/.spguimacs.d/ $dev/emacs-28-2
 
   # rg manual file types / extensions (globing)
   rg -g '*.{scm,c,h}' -w "operating-system" $dev/guix $dev/guile
