@@ -483,15 +483,18 @@
   privacy-preserving distributed applications.
 }
 
-@block{@block-name{Flatpack}
+@block{@block-name{Flatpak | Flatpack}
+  # flatpack
   sudo flatpak upgrade
 
+  # flatpack
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   sudo flatpak install flathub us.zoom.Zoom
   flatpak run us.zoom.Zoom & disown
   sudo flatpak install flathub org.telegram.desktop
   flatpak run org.telegram.desktop & disown
 
+  # flatpack
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/apps/details/com.discordapp.Discord
   sudo flatpak install flathub com.discordapp.Discord
   flatpak run com.discordapp.Discord & disown
