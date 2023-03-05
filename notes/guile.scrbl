@@ -281,6 +281,8 @@
 
 @block{@block-name{Various code snippets}
   @lisp{
+    (string-split "aa bb cc" #\space) ;; => ("aa" "bb" "cc")
+
     (use-modules (guix utils))  ;; ,use (guix utils)
     (define* (my-function a b #:key (c 0) (d #f)) (list a b c d))
     (define my-args '(1 2 #:c 3 #:d 4))
@@ -318,8 +320,8 @@
     ;; TODO check this:
     (display (get-string-n (current-input-port) 6))
 
-    (access? some-file F_OK) ;; check if file exists
-    (access? some-file W_OK) ;; check if file is writable
+    (access? some-file F_OK) ;; check if file or directory exists
+    (access? some-file W_OK) ;; check if file or directory is writable
 
     ;; check for empty list:
     (null? '())  ; => #t

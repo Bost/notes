@@ -36,10 +36,11 @@
       ;;    ;; (1 . error)
       ;;    ))
 
-;;; TODO font-facing of numbers overrides comment-face. Test case:
-;;; # foo 42 bar
 
-;;; TODO does "font-lock-add-keywords 'scribble-mode" need some `eval-after-load`?
+      ;; no number highlighting in comments. Test case:
+      ;; # foo 42 bar
+      (font-lock-refresh-defaults)
+
       (font-lock-add-keywords
        'scribble-mode
        `(
