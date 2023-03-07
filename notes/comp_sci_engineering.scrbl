@@ -1,4 +1,9 @@
 #lang notes
+@block{@block-name{Tree-sitter}
+  library for parsing code - for text editors
+  - incremental parsing
+
+}
 
 @block{@block-name{Leaky Abstraction}
   A Look into Modern Leaky Abstractions - Postgres, MySQL, HTTP/2, TCP, ORMs

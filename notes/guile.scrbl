@@ -281,6 +281,22 @@
 
 @block{@block-name{Various code snippets}
   @lisp{
+
+    (define (read-scheme-file filename)
+      (reverse
+       (call-with-input-file filename
+         (lambda (p)
+           ;; (format #t "p: ~a\n" p)
+           (let loop ((stx
+                       (read-syntax p))
+                      (result '()))
+             (cond
+              [(eof-object? stx) result]
+              [else
+               (loop (read-syntax p) (cons stx result))]))))))
+
+    (equal? 'emacs-pkg (symbol-append 'emacs- 'pkg)) ;; => t
+
     (string-split "aa bb cc" #\space) ;; => ("aa" "bb" "cc")
 
     (use-modules (guix utils))  ;; ,use (guix utils)
