@@ -30,6 +30,10 @@
   2 - like 1 with download URLs
   3 - shows all the build log output on standard error
 
+  # `guix package --list-profiles` doesn't know about / ignores the
+  # package-profile of the home-environment (~/.guix-home/profile/manifest)
+  # see also /run/current-system/profile
+
   # list all installed / available packages...
   # ... matching '.*ema.*'
   guix package --list-installed=ema # -I ema

@@ -1,25 +1,5 @@
 #lang notes
 
-@block{@block-name{Artificial Intelligence}
-  Bing AI Can't Be Trusted
-  https://dkb.blog/p/bing-ai-cant-be-trusted
-  - Microsoft knowingly released a broken product for short-term hype
-  - TLDR: Bing AI got some answers completely wrong during their demo
-    https://youtu.be/rOeRWRJ16yY
-  - Bing AI did a great job of creating media hype, but their product is no
-    better than Google’s Bard
-
-  Bing ChatGTP demands an apology from user for claiming it's 2023
-  https://old.reddit.com/r/bing/comments/110eagl/the_customer_service_of_the_new_bing_chat_is/
-
-  TODO see
-  https://colinmeloy.substack.com/p/i-had-chatgpt-write-a-decemberists
-  https://moritz.pm/posts/chatgpt-bing
-
-  What Is ChatGPT Doing … and Why Does It Work?
-  https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/
-}
-
 @block{@block-name{Communication protocols}
   imply SW architectural style for distributed environments
   REST (Representational State Transfer) accesses data
@@ -63,23 +43,22 @@
     #+END_SRC
     in Emacs:
     #+BEGIN_SRC emacs-lisp
-    (require 'erc)
-    (cl-macrolet ((at (d &rest b) `(run-at-time ,d nil (lambda () (progn ,@"@"b)))))
-    (pop-to-buffer-same-window
-    (erc :server "irc.libera.chat"
-    :port 6667
-    :nick "ddWfnZ7G"
-    :password ""
-    :full-name ""))
-    (at 3 (execute-kbd-macro "/join #channelddWfnZ7G"))
-    (at 4 (execute-kbd-macro "\r"))
-    (at 5  (call-interactively 'eval-expression))
-    (at 6  (execute-kbd-macro "(setq erc-fill-static-center 10)"))
-    (at 7  (execute-kbd-macro "\r"))
-    (at 8  (call-interactively 'execute-extended-command)) ; simulate M-x
-    (at 9  (execute-kbd-macro "erc-mode"))
-    (at 10 (execute-kbd-macro "\r"))
-    )
+    (cl-macrolet ((at (d &rest b)
+                      `(run-at-time ,d nil (lambda () (progn ,@"@"b)))))
+      (pop-to-buffer-same-window
+       (erc :server "irc.libera.chat"
+            :port 6667
+            :nick "ddWfnZ7G"
+            :password ""
+            :full-name ""))
+      (at 3 (execute-kbd-macro "/join #channelddWfnZ7G"))
+      (at 4 (execute-kbd-macro "\r"))
+      (at 5  (call-interactively 'eval-expression))
+      (at 6  (execute-kbd-macro "(setq erc-fill-static-center 10)"))
+      (at 7  (execute-kbd-macro "\r"))
+      (at 8  (call-interactively 'execute-extended-command)) ; simulate M-x
+      (at 9  (execute-kbd-macro "erc-mode"))
+      (at 10 (execute-kbd-macro "\r")))
     #+END_SRC
   }
 }
@@ -248,11 +227,19 @@
   time bank
   dokaz identity bez udania mena
   google lab tags
-  http://www.chromeweblab.com/en-GB/lab-tag-explorer
+  http://www.chromeweblab.com/en-GB/lab-tag-explorer (link rotted)
 
   Pure vs. mostly harmless functions
 
-  :Lang:
+  # TODO org-mode-tagging; following doesn't work
+  # :org-mode-tagging:                                                      :org:
+  # | col1    | col2          |
+  # |---------+---------------|
+  # | content | other content |
+  # :end:
+}
+
+@block{@block-name{Languages}
   http://www.ted.com/talks/patricia_kuhl_the_linguistic_genius_of_babies.html?fb_ref=talk
   Learning pronounciation
 
@@ -267,14 +254,6 @@
   linguee.com - eu-texts
   le Svejk, l'Etrangeur - examples
   Communication w-/wo- Letters
-  :END:
-
-  # TODO org-mode-tagging; following doesn't work
-  # :org-mode-tagging:                                                      :org:
-  # | col1    | col2          |
-  # |---------+---------------|
-  # | content | other content |
-  # :end:
 }
 
 @block{@block-name{Simulation and Emulation}
@@ -301,24 +280,16 @@
   Forum post: Code_Aster inside a Docker container
   https://www.code-aster.org/forum2/viewtopic.php?id=23453
 
-@block{@block-name{Message Passing Interface MPI}
-     MPI Message Passing Interface
-     https://de.wikipedia.org/wiki/Message_Passing_Interface
-     for parallel computing on distributed systems
-  }
+  MPI Message Passing Interface
+  https://de.wikipedia.org/wiki/Message_Passing_Interface
+  for parallel computing on distributed systems
 
-  @block{@block-name{Singularity}
-     Container System for HPC Systems, "Docker for HPC"
-  }
-
-  @block{@block-name{HPC - High Performance Computing}
-  }
-}
-
-@block{@block-name{Singularity}
   Singularity
   https://singularity.hpcng.org/
-  Container System for HPC High Performance Computing
+  Container System for HPC High Performance Computing Systems
+  "Docker for HPC"
+
+  HPC High Performance Computing
 }
 
 @block{@block-name{Terminal / Video Recorder / Screen Casting}

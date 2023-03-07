@@ -50,6 +50,25 @@
 }
 
 @block{@block-name{Various}
+
+  ;; pretty-print
+  (format "%s" (pp '(+ 1 2)))
+
+  ;; http://newartisans.com/2016/01/pattern-matching-with-pcase/
+  (pcase-defmacro sexp (kw) `(pred (equal ,kw)))
+  ;; (sexp--pcase-macroexpander 'provide) ;; => (pred (equal provide))
+  (defun analyze (kw lst)
+    (pcase lst
+      (`(,(sexp kw) ,pkg) (message "pkg: %s" pkg))
+      (_ nil)))
+  (analyze 'provide '(provide 'aaa)) ;; => "pkg: 'aaa"
+
+  (length "(+ 1 2)")                        ;; 7
+  (read-from-string "(+ 1 2)")              ;; => ((+ 1 2) . 7)
+  (eval (car (read-from-string "(+ 1 2)"))) ;; => 3
+  (eval (read "(+ 1 2)"))                   ;; => 3
+  (read-string "(+ 1 2)")   ;; puts the expression '(+ 1 2)' into the minibuffer
+
   (if (string-match "<regexp>" "string containing substring / regexp")
     (message "found")
    (message "not found"))
