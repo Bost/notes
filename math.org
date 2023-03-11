@@ -5,6 +5,15 @@
 # latexpreview / nolatexpreview C-c C-x C-l
 #+STARTUP: nolatexpreview
 
+* Disjoint Union
+Let $\left\{A_i : i \in I\right\}$ be a family of sets indexed by $I$. The
+disjoint union of this family is the set
+$$
+\bigsqcup _{i\in I}A_{i} = \bigcup _{i\in I}\left\{(x,i):x\in A_{i}\right\}
+$$
+Its elements are ordered pairs $(x, i)$ where $i$ is an auxiliary index
+indicating from which $A_{i}$ the element $x$ came from.
+
 * \(k\)-linear maps / transformations
 ** Linear map / transformation
 Let $U$ and $W$ be vector spaces over the same field $K$. Function $f: U

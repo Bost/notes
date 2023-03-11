@@ -47,14 +47,13 @@
   #   export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
   #   export GIT_SSL_CAINFO="$SSL_CERT_FILE"
   #
-  guix shell --development guix help2man git strace --pure
+  guix shell help2man git strace glibc-locales --development guix --pure
   jobs=$[$(nproc) * 95 / 100] # use 95% of the available CPU cores
   # --check            check if the shell clobbers environment variables
   # --pure             unset existing environment variables
-  # Alternatives:
-  #   guix shell -D guix --pure
-  #   guix shell --development guix --pure
-  #   guix shell -D guix help2man git strace --pure
+  # --development -D   include the development inputs of the next package,
+  #                    i.e. 'guix'
+  # Using glibc-locales should prevent 'warning: failed to install locale'
   ./bootstrap
   ./configure --localstatedir=/var
   # on error:

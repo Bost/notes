@@ -95,6 +95,21 @@
 
 @block{@block-name{Artificial Intelligence}
 
+  Latent Space
+  High-dimensional space created during the training on a dataset.
+  - represents complex data (e.g. audio, images) so that the ML algorithm can
+    more easily identify, manipulate patterns and relationships between the
+    input data and the output predictions.
+  - used in generative models (e.g. autoencoders, generative adversarial
+    networks (GANs)), to generate new data similar to the input data. By
+    manipulating the values in the latent space, the generative model can
+    produce new data points that have similar characteristics to the original
+    dataset, but with some variations.
+  - used in image and sound compression, to represent the data in a more compact
+    form. here the latent space can be thought of as a compressed version of the
+    original data that can be used to reconstruct the original data with some
+    loss of fidelity.
+
   AGI Artificial General Intelligence
 
   GAN Generative Adversarial Network:
@@ -220,6 +235,13 @@
   1. break a problem into sub problems
   2. solve each problem
 
+  Math prompt:
+  Write your answer / response in this formula:
+  $$
+  <latex code here>
+  $$
+  Respond in the KaTeX display math mode.
+  TODO how to get two responses with different Alter-Egos?
 
   Prompt Debiasing
   Distribution: make sure there's about the same count of positite- and
@@ -368,4 +390,5 @@
   For example, in our conversation, I use the context of the previous messages
   to understand the topics being discussed, identify any relevant information or
   cues, and generate responses that are appropriate and relevant to the ongoing
-  conversation. }
+  conversation.
+}

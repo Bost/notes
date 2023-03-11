@@ -195,12 +195,35 @@ Also:
 | Bijection  | $\abs{X} =    \abs{Y}$ | mutually unambiguous          | $X$ has the same size as $Y$            |
 | Strict     | $\abs{X} <    \abs{Y}$ | ? double usage of some $Ys$ ? | $X$ strictly smaller than $Y$           |
 
-- Epimorphism and monomorphism are dual to each other
-- Isomorphism / isomorphic - "only formally different"
-- Homomorphism - structure-preserving mapping between 2 algebraic objects
- $f(m * n) = f(m) * f(n)$ \\
- Individual monoids themselves give category \\
- Monoids with homomorphisms give category
+- Isomorphism: https://en.wikipedia.org/wiki/Isomorphism \\
+  isomorphic ~ "only formally different"
+- Automorphism: https://en.wikipedia.org/wiki/Automorphism
+- Endomorphism: https://en.wikipedia.org/wiki/Endomorphism \\
+  Orthogonal projection of points onto a line is an example of an endomorphism
+  that is not an automorphism.
+
+  # \bigskip doesn't work; the 'Morphishm implication structure' may disappear
+  # or appear displaced.
+
+\\
+
+Homomorphism - structure-preserving mapping between (two) algebraic objects. \\
+Morphishm implication structure:
+
+\begin{center}
+ \begin{table}
+  \centering
+  \begin{tabular}{ccc}
+      Automorphism   &   \implies   &   Isomorphism    \\
+      \Downarrow     &              &   \Downarrow     \\
+      Endomorphism   &   \implies   &   (Homo)morphism \\
+ \end{tabular}
+ \end{table}
+\end{center}
+
+Epimorphism and monomorphism are dual to each other \\
+Individual monoids themselves give category \\
+Monoids with homomorphisms give category
 
 \bigskip
 
@@ -727,7 +750,7 @@ Functor:
 *** Contract = Object
 *** Product: examples:
 Objects   - numbers
-Morphisms - functions 'less/greater or equal than'
+Morphisms - functions 'less than / greater or equal than'
 
 *** Isomorphism (bijection when f is a function on set / sets):
 \forall f: X \to Y there \exists g: Y \to X such that $g \after
