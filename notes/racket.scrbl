@@ -208,13 +208,22 @@
 }
 
 @block{@block-name{Various}
-  Macros: quotes, syntax, etc.
+  Macros: quotes, syntax, datum etc.
   https://docs.racket-lang.org/syntax-parse-example/
   @lisp{
-    (quote-syntax (1 2 3))
+    ;; Construct and return an identifier with the symbolic name x and with the
+    ;; lexical context at the place of the x appearing in the syntax form.
+    (syntax x) ;; or `#'x` ;; => #<syntax:unknown file:13:8 x>
+
+    ;; convert an identifier to a symbol, namely its underlying symbolic name
+    (syntax->datum #'x) ;; => x
+
+    ;; quote-syntax - similar to syntax. Unlike syntax (#'), quote-syntax does
+    ;; not substitute pattern variables bound by with-syntax, syntax-parse, or
+    ;; syntax-case.
+    (quote-syntax (1 2)) ;; =>
+    ;; #<syntax:unknown file:22:14 (#<syntax:unknown file:22:15 1> #<syntax:unknown file:22:17 2>)>
   }
-  quote-syntax - similar to syntax. Unlike syntax (#'), quote-syntax does not
-  substitute pattern variables bound by with-syntax, syntax-parse, or syntax-case.
   | '   | quote                  |
   | `   | quasiquote - see notes |
   | ,   | unquote                |

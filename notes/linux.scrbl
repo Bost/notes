@@ -1308,6 +1308,8 @@
 
   # fully resolve the link; report errors; see also: realpath
   readlink --canonicalize --verbose LINKNAME
+  # follow a pathname until a terminal point is found
+  namei --long LINKNAME
   # fix broken link: ln -fsn
   ln --force --symbolic --no-dereference TARGET LINKNAME
   # -L, --dereference  : follow symbolic, i.e. copy content

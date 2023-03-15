@@ -285,11 +285,8 @@
 }
 
 @block{@block-name{Normal Forms of Formulas}
-  @block{@block-name{DNF - Disjunctive Normal Form / Formula e.g. (A ∧ ¬B ∧ C) ∨ (¬D ∧ E ∧ F)}
-  }
-
-  @block{@block-name{CNF - Conjunctive Normal Form / Formula e.g. (A ∨ ¬B ∨ C) ∧ (¬D ∨ E ∧ F)}
-  }
+  DNF Disjunctive Normal Form / Formula: e.g. (A ∧ ¬B ∧ C) ∨ (¬D ∧ E ∧ F)
+  CNF Conjunctive Normal Form / Formula: e.g. (A ∨ ¬B ∨ C) ∧ (¬D ∨ E ∧ F)
 }
 
 @block{@block-name{Homoiconicity}
@@ -476,8 +473,8 @@
 
 @block{@block-name{A Pamphlet against R}
   Programmers write code which gets in the way to understanding, rather than
-  facilitate it. Apparently even excellent programmers and great erudites have
-  been failing at this task. One of the most extreme examples is the code from
+  facilitate it.
+  One of the most extreme examples is the code from
   Donald Knuth’s The Art of Computer Programming. Written in the MIX assembly,
   the code only hides the conceptual structure of presented solutions from the
   reader.
@@ -535,3 +532,8 @@
   - Access Control List ACL: allow / deny rules
   - Public / Protected / Private / etc. access levels
 }
+
+@block{@block-name{Referential Transparency}
+  Referentially Transparent ~ can be replaced with some value.
+}
+
