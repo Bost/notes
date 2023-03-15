@@ -274,25 +274,30 @@
    ;; guix build spacemacs-rolling-release / (derivation-outputs srr-drv)
    ;; The output is empty...
    [("out","/gnu/store/rsqn0wagdp3w9wqcj1amz2pyw97zbqqy-spacemacs-rolling-release-0.999.0-0.e3c1450","","")],
-   ;; record <derivation-inputs> - list of all store items used in the build which are themselves built using (other) derivations
+   ;; record <derivation-inputs> - list of all store items used in the build
+   ;; which are themselves built using (other) derivations
    ;; (derivation-inputs srr-drv)
    [("/gnu/store/jy1ky9nmij2n1zy88vpch9q1rlkb549g-guile-3.0.7.drv",["out"]),
     ("/gnu/store/m948fy0whx7sxkdjq2mvsqxq8i38askz-module-import-compiled.drv",["out"]),
     ("/gnu/store/q45wxxjmgr06c1l9jif8x5d420hidm5k-xz-5.2.5.drv",["out"]),
     ("/gnu/store/vq4xgmn4sshyqzylpk6hl9hwy1r51g4j-tar-1.34.drv",["out"])],
-   ;; derivation-sources - list of all store items used in the build which aren't themselves built using derivations
+   ;; derivation-sources - list of all store items used in the build which
+   ;; aren't themselves built using derivations
    [
     ;; build script that realises the store items when run
     "/gnu/store/1vb06z21l8vclym6kksb59438qbyvda3-spacemacs-rolling-release-0.999.0-0.e3c1450-builder",
-    ;; path to a directory containing extra modules to add to the build script's %load-path
+    ;; path to a directory containing extra modules to add to the build script's
+    ;; %load-path
     "/gnu/store/pgj8653w17hsapbd1srlvd44rlnhbx8n-module-import",
     ;; ... however the input contains the code I need
     "/gnu/store/qxiz6limpd1k05n000pkpds9ipz5ixqf-spacemacs-rolling-release-0.999.0-0.e3c1450"],
    ;; (derivation-system srr-drv)
    "x86_64-linux",
-   ;; (derivation-builder srr-drv) / derivation-builder - the guile executable that runs the build script
+   ;; (derivation-builder srr-drv) / derivation-builder - the guile executable
+   ;; that runs the build script
    "/gnu/store/1kws5vkl0glvpxg7arabsv6q9vazp0hx-guile-3.0.7/bin/guile",
-   ;; (derivation-builder-arguments srr-drv) / arguments to pass to derivation-builder (above)
+   ;; (derivation-builder-arguments srr-drv) / arguments to pass to
+   ;; derivation-builder (above)
    ["--no-auto-compile","-L","/gnu/store/pgj8653w17hsapbd1srlvd44rlnhbx8n-module-import","-C","/gnu/store/y71fry67iylixwas5gjaxddq1yb6skq9-module-import-compiled","/gnu/store/1vb06z21l8vclym6kksb59438qbyvda3-spacemacs-rolling-release-0.999.0-0.e3c1450-builder"],
    ;; (derivation-builder-environment-vars srr-drv)
    [("out","/gnu/store/rsqn0wagdp3w9wqcj1amz2pyw97zbqqy-spacemacs-rolling-release-0.999.0-0.e3c1450")])
