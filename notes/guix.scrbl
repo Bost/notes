@@ -459,6 +459,7 @@
   cd $GUIX_CHECKOUT
   guix shell --development guix         # -D, --development
   ./pre-inst-env guix style <package>
+  ./pre-inst-env guix lint <package>
   # TODO update my own package definitions
   guix style --load-path=/path/to/channel my-package1 my-package2 ...
   guix style --load-path=~/dev/guix-packages ...

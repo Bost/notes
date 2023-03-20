@@ -1,5 +1,51 @@
 #lang notes
 
+@block{@block-name{Erlang and Elixir}
+  https://drive.google.com/file/d/1-Ktouz3lh5uNninCC_9GNsm8tJ8IVCog/view
+  Elixir:
+  - functional, concurrent, general-purpose programming language
+  - for scalable and maintainable applications, network programming, web
+    development, IoT etc.
+  - compiled to run on the Erlang VM (BEAM)
+  - dynamic typing
+  - concurrency doesn't require callbacks, async annotations etc.
+  - dichotomy between monolith/microservices removed - same code.
+  - not good CPU intensive apps: e.g. video games
+  - can interface with e.g. C, Rust
+  - no difference between assignment and pattern matching
+
+  Erlang:
+  - Virtual Machine (BEAM)
+  - ecosystem for building fault-tolerant, distributed, multicore, highly
+    available systems
+  - initially developed for telecommunication systems
+  - lightweight processes, message-passing concurrency model, hot code swapping,
+    and preemptive scheduling.
+
+}
+
+@block{@block-name{Elixir language}
+  no difference between assignment and pattern matching
+  pin operator
+
+  lightweith threads (not OS threads)
+  all data between processes are shared only with message passing
+  per-process garbage collection
+  pre-emptive threading
+
+  distributed message passing
+
+  GenServer (short for Generic Server):
+  - module, part of the Elixir standard library
+  - provides an abstraction for building concurrent, fault-tolerant server
+    processes that communicate using message passing.
+
+  - process + state + standard functions expecting messages + message queue
+  - long-running
+  - Clients interact with GenSever
+
+}
+
 @block{@block-name{Communication protocols}
   imply SW architectural style for distributed environments
   REST (Representational State Transfer) accesses data
