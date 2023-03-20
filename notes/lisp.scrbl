@@ -1,17 +1,15 @@
 #lang notes
 
 @block{@block-name{lisp-1 vs. lisp-2}
-  LISP 20170717 1330
-  https://youtu.be/wi2X00kvUaE
-  Lisp Working Group WG
-}
-
-@block{@block-name{lisp-1 vs. lisp-2}
   lisp-1: single-value-name languages: Scheme, Clojure, etc.
   lisp-2: multi-value-name languages: Emacs Lisp, Common Lisp
           allows the same name for both function and variable
+          different namespaces. I.e. must use `funcall`
+  lisp-n: in fact Emacs Lisp is a lisp-n - there are different namespaces for
+          faces and properties, etc.
   http://xahlee.info/emacs/emacs/lisp1_vs_lisp2.html
-
+  ;;
+  Clojure from a Schemer's perspective
   https://www.more-magic.net/posts/thoughts-on-clojure.html
 }
 
