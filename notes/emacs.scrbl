@@ -51,6 +51,15 @@
 
 @block{@block-name{Various}
 
+  (defun chaos (key val)
+    (let ((k '(a b c d)))
+      (setf (plist-get k key) val)
+      k))
+  ;; and then
+  (chaos 'a 2) ; => (a 2 c d)
+  ;; and then
+  (chaos 'c 100)  ; => (a 2 c 100)
+
   ;; pretty-print
   (format "%s" (pp '(+ 1 2)))
 
