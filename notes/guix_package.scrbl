@@ -162,6 +162,19 @@
   # delete generations older than 2 months days and collect at least 10 GiB of
   # garbage
   guix gc --delete-generations=2m  --collect-garbage=10GiB
+
+  # attempt to delete some PATH from the store
+  guix gc --delete PATH
+  # guix gc --referrers /gnu/store/*-spacemacs-*/ | xargs guix gc --delete
+  # attempt to delete every *-emacs-spacemacs-* directory from the store
+  for e in (ls -d1 /gnu/store/*-spacemacs-*/); guix gc --delete $e; end
+  # invoking garbage collector from the repl: https://issues.guix.gnu.org/25018
+  # see also guix gc --list-roots
+  guix gc --list-roots
+  guix gc --referrers
+
+  guix graph --type=reverse-package
+  guix graph --path
 }
 
 @block{@block-name{Package Inputs / Outputs}

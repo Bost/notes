@@ -455,20 +455,28 @@
 }
 
 @block{@block-name{Iterate over array/list}
-  /bin/sh portability: ubuntu dash vs. guix /bin/sh
-  export elems="aaa:bbb:ccc"
-  for elem in $LIST; do
-      printf -- "elem: $elem\n"
-  done
-  or even better:
-  for prjd in \
-          "aaa" \
-          "bbb" \
-          "ccc" \
-          ;
-    do
-      printf -- "elem: $elem\n"
-  done
+  # /bin/sh portability: ubuntu dash vs. guix /bin/sh
+  # ??? the snippet doesn't work
+  export LIST="a:b:c"
+  for e in $LIST; do printf -- "%s\n" $e; done
+
+  # in bash:
+  for e in "a" "b" "c"; do printf -- "%s\n" $e; done
+  for e in "a" "b" "c"; do echo $e; done
+
+  # in fish:
+  set fruits "apple" "banana" "cherry" # i.e. list / array
+  count $fruits     # 3
+  # arrays in fish are indexed from 1, i.e. index starts from 1
+  echo $fruits[1] # Output: apple
+  echo $fruits[2] # Output: banana
+  set --append fruits "orange" "grape"
+  set --prepend fruits "whiskey"
+  count $fruits     # 6
+  echo $fruits      # whiskey apple banana cherry
+  set --erase fruits[1]
+  count $fruits     # 5
+  for e in "apple" "banana" "cherry"; printf "%s\n" $e; end
 }
 
 @block{@block-name{Multiline Comments}

@@ -127,6 +127,9 @@
   # match linux-libre version number
   guix show linux-libre | head | grep version | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
 
+  # ripgrep: print only first capture group $1
+  ls /gnu/store/*-emacs-pippel-* | rg  '(.*):' --replace '$1'
+
   # grep
   # \Z  matches the EOF end-of-file
 
