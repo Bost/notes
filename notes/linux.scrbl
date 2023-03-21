@@ -211,8 +211,13 @@
   # ldapsearch ldapadd ldapmodify
   ldap-utils
 
+  echo "one" > file.txt       # create / overwrite the content of file.txt
+  echo "two" >> file.txt      # append (concatenate) string to file.txt
+  tac file.txt > reversed.txt # reverse the line order / reverse lines
+  cat reversed.txt
+
   # concatenate and print files in reverse (reversed lines)
-  tac file.txt > reversed.txt
+  tac file1.txt file2.txt > reversed.txt
 
   # prepend text or line to a file
   echo "1st-line" | cat - file.txt
@@ -377,14 +382,14 @@
 
   # :listing - files newer than ...
   ls -la (find . -type f -newermt "2022-10-01")
-  # listing files older than ...
+  # listing - files older than ...
   ls -la (find . -type f -not -newermt "2022-10-01")
 
   # :listing - only one column
   ls --format=single-column
 
   # :listing - only directories, 1 entry per line
-  ls -d1 */
+  ls -d1 */ # ls --delete -1 */
 
   # :listing - count of entries / files in /path/to/dir
   # -a, --all          do not ignore entries starting with .
@@ -1308,6 +1313,13 @@
 
   # fully resolve the link; report errors; see also: realpath
   readlink --canonicalize --verbose LINKNAME
+  # show profile size
+  for p in (guix package --list-profiles) ~/.guix-home/profile;
+      printf "%s\t%s\n" \
+        (guix size (readlink -f $p) | rg 'total: (.*)' -r '$1') \
+        $p;
+  end
+
   # follow a pathname until a terminal point is found
   namei --long LINKNAME
   # fix broken link: ln -fsn
