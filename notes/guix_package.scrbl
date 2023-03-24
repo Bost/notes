@@ -120,8 +120,7 @@
 
   # sha256; base32; either (A):
   # package definition is obtained using git-fetch
-  git clone http://example.org/foo.git
-  cd foo
+  git clone http://example.org/foo.git && cd foo
   git checkout <tag-or-branch>
   # https://guix.gnu.org/manual/en/html_node/Invoking-guix-hash.html
   guix hash -x --serializer=nar .   # with the dot at the end!
@@ -135,15 +134,16 @@
 
   # either (A):
   guix build --load-path=./gnu/packages --keep-failed <package>
-  cd $GUIX_CHECKOUT
+  cd $dgx # i.e. the GUIX_CHECKOUT directory
   guix shell --development guix         # -D, --development
   ./pre-inst-env guix build --keep-failed <package>@"@"<version>
   ./pre-inst-env guix install <package>@"@"<version>
   # or (B):
   guix package --install-from-file=my-hello.scm
-  # or (C):
+  # or (C) e.g. for the Factorio stable-version:
+  cd $dev/games
   guix package --load-path=./ --manifest=./games/packages/factorio.scm --list-available=factorio
-  guix package --load-path=./ --install=factorio
+  guix package --load-path=./ --install=factorio  # experimental-version factorio@1.1.78
 
   cd $dev/guix-packages/packages
   # guix package --load-path=./ --manifest=./bost/packages/spacemacs.scm --list-available=emacs-spacemacs

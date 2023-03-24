@@ -345,6 +345,11 @@
   guix container    # process isolation / run code in 'guix shell -C' containers
   guix pack         # create application bundles
   guix shell        # spawn one-off software environments
+
+  guix install guix-modules
+  `guix shell` expects a list of packages upfront. Module interface is more
+  "incremental". You can "load" / "unload" modules until you obtain the desired
+  environment.
 }
 
 @block{@block-name{Packaging commands}
@@ -481,21 +486,4 @@
 
   Alternative network stack for building secure, decentralized and
   privacy-preserving distributed applications.
-}
-
-@block{@block-name{Flatpak | Flatpack}
-  # flatpack
-  sudo flatpak upgrade
-
-  # flatpack
-  sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-  sudo flatpak install flathub us.zoom.Zoom
-  flatpak run us.zoom.Zoom & disown
-  sudo flatpak install flathub org.telegram.desktop
-  flatpak run org.telegram.desktop & disown
-
-  # flatpack
-  sudo flatpak remote-add --if-not-exists flathub https://flathub.org/apps/details/com.discordapp.Discord
-  sudo flatpak install flathub com.discordapp.Discord
-  flatpak run com.discordapp.Discord & disown
 }
