@@ -12,6 +12,14 @@
   | Windowing System    | XOrg, Wayland    |
   | Operating System    | Linux, Windows   |
   | Hardware            |                  |
+
+  XOrg - old, many different programs for setting everything
+  Wayland - replaces xorg; uses HW accelerated graphics
+  Wayland compositors: sway, hyperland, western
+
+  sway
+  pipewire - new audio standard for linux and bsd systems
+
 }
 
 @block{@block-name{GUI}
@@ -62,7 +70,6 @@
   Configuration storage and query system / property database; Settings daemon
   implemented as a D-Bus-based configuration storage system.
   `guix install xfconf`
-
 
   Xsettingsd
   - lightweight xsettings daemon

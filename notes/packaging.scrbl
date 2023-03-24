@@ -1,9 +1,33 @@
 #lang notes
 
 @block{@block-name{Packaging}
+  # flatpack
+  sudo flatpak upgrade
+
+  # flatpack
+  sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  sudo flatpak install flathub us.zoom.Zoom
+  flatpak run us.zoom.Zoom & disown
+  sudo flatpak install flathub org.telegram.desktop
+  flatpak run org.telegram.desktop & disown
+
+  # flatpack
+  sudo flatpak remote-add --if-not-exists flathub https://flathub.org/apps/details/com.discordapp.Discord
+  sudo flatpak install flathub com.discordapp.Discord
+  flatpak run com.discordapp.Discord & disown
+
+  # access to a file / directory
+  sudo flatpak override org.telegram.desktop --filesystem=~/Downloads
+  sudo flatpak override org.telegram.desktop --nofilesystem=/some/path/here
+
   sudo snap install <package>
   sudo snap help --all
   sudo snap refresh # i.e. update / upgrade
+
+  # access to a file / directory
+  # When: Error initializing settings: Failed saving settings file:
+  # - Error: Unable to open settings file /path/to/.bitcoin/settings.json for writing
+  snap connect bitcoin-core:removable-media
 
   # install additional ubuntu software
   gnome-software

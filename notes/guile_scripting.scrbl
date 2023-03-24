@@ -4,7 +4,7 @@
   https://www.gnu.org/software/guile/manual/html_node/Guile-Scripting.html
   On Guix (see `which guile`):
 
-  @block{@block-name{Hash-bang / She-bang variants}
+  @block{@block-name{Guile Scripting: Hash-bang / She-bang variants}
     #!/run/current-system/profile/bin/guile \
     -l utils.scm -e (<some-module-name>) -s
     !#

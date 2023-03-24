@@ -235,8 +235,7 @@
   | ~C-s~   | incremental search forward  |
   | ~C-r~   | incremental search backward |
 
-  ;; Shift-Tab
-  ~<s-tab>~ / ~<backtab>~
+  ~S-<iso-lefttab>~ / ~<backtab>~ ;; Shift-Tab
 
   | ~s-n~ | M-x narrow-to-defun |
   | ~s-N~ | M-x widen           |
@@ -247,11 +246,9 @@
   ;; unreachable repositories: use http instead of https
   emacs --insecure
 
-  ;; e.g. visualization; for log analysis
-  M-x highlight-symbol-at-point
+  M-x highlight-symbol-at-point  ;; visualization, for log analysis
 
-  ;; wrap square brackets around sexp
-  M-x paredit-wrap-square
+  M-x paredit-wrap-square        ;; wrap square brackets around sexp
 
   ;; paredit
   | ~C-k~       | kill the rest in the sexp           |
@@ -311,8 +308,7 @@
   | ~C-x <~ | scroll left  |
   | ~C-x >~ | scroll right |
 
-  ;; help: ? emacs manual?
-  ~C-h i m emacs~
+  ~C-h i m emacs~ ;; help: ? emacs manual?
 
   ;; help-mode
   | ~[~ / ~g b~ / ~C-c C-b~ | M-x help-go-back    |
@@ -350,11 +346,9 @@
 
   M-x goto-line
 
-  ;; menu bar
-  ~M-`~ / ~F10~
+  ~M-`~ / ~F10~ ;; menu bar
 
-  ;; jump back to the last mark (there is a mark-ring)
-  ~C-u C-SPC~
+  ~C-u C-SPC~   ;; jump back to the last mark (there is a mark-ring)
 
   | ~C-x ^~                    | M-x enlarge-window              |
   | ~C-x @"{"~ or ~SPC w @"["~ | M-x shrink-window-horizontally  |
@@ -415,7 +409,6 @@
   ;; # -*- mode: emacs-lisp; lexical-binding: t; -*-
   (message "Hello world")
 
-
   ;; cssh ? ssh shell ? (somehow strange)
 
   ;; color-theme-calm-forest ? does not work?
@@ -458,8 +451,8 @@
   | ~C-_~ or ~C-/~ | M-x undo-tree-undo      |
   | ~M-_~ or ~C-?~ | M-x undo-tree-redo      |
 
-  ;; next-buffer / previous-buffer
-  ~<XF86Forward>~, ~C-x <C-right>~, ~C-x <right>~ / ~<XF86Back>~, ~C-x <C-left>~, ~C-x <left>~
+  ~<XF86Forward>~  ~C-x <C-right>~  ~C-x <right>~  ;; next-buffer
+  ~<XF86Back>~     ~C-x <C-left>~   ~C-x <left>~   ;; previous-buffer
 
   ;; mark / hilite / highlight whole buffer / mark paragraph
   ~C-x h~ / ~M-h~
@@ -524,7 +517,7 @@
   http://xahlee.info/emacs/emacs/dired_sort.html
 
   ;; change file attributes: readonly / writable / executable
-  ~M~ / M-x dired-do-chmod ; then enter e.g. '+x'
+  ~M~ / M-x dired-do-chmod ;; then enter e.g. '+x'
   M-x chmod
 
   ;; dired:
@@ -556,26 +549,25 @@
   | ~U~ | mark all / unmark all / toggle marking |
   | ~t~ | mark / unmark (all) / toggle marking   |
 
-  ;; parameter key / (universal-argument)
-  ~C-u~
+  ~C-u~   ;; parameter key / (universal-argument)
 
   ;; sets the line wrap to 40 characters, M-q # activate the wrap
   ~C-u 40 C-x f~
 
-  ;; center for given line width
-  M-o M-s
+  M-o M-s ;; center for given line width
 
-  ;; query-replace-regexp
-  ~C-M-%~
+  ~C-M-%~ ;; query-replace-regexp
 
   ;; slime - Superior Lisp Interaction Mode for Emacs
-  ;; M-x gnus - read news, email, rss
-  ;; M-x grep
-  ;; M-x dbg
-  ;; M-x ediff
-  ;; M-x compile
-  ;; M-x man
-  ;; M-x erc/default-servers or M-x erc
+  ~M-p~     ;; reprint last command to the REPL
+
+  M-x gnus  ;; read news, email, rss
+  M-x grep
+  M-x dbg
+  M-x ediff
+  M-x compile
+  M-x man
+  M-x erc/default-servers or M-x erc
 
   ;; M-x speedbar
   ;; Summarize information related to the current buffer. Its original inspiration
@@ -605,17 +597,13 @@
                libxaw3d gnutls libtiff libungif libjpe libxpm
   unset EMACSLOADPATH
 
-  ;; slime: reprint last command to the REPL
-  ~M-p~
-
   ;; gui
   | M-x toggle-scroll-bar | toggle vertical scroll bar; horizontal scroll bar does not exist in emacs |
   | M-x menu-bar-mode     | toggle menu-bar                                                           |
 
   | M-x align-regexp | align at the given regexp |
 
-  ;; auto completition
-  ~C-n~
+  ~C-n~ ;; auto completition
 
   | ~C-SPC~          | region: set mark (start region) |
   | ~C-x r k~        | region: kill selected region    |
@@ -888,8 +876,8 @@
   echo $EMACSLOADPATH
 
   ;; testing: startup: skip ~/.emacs (if messed up) / don't load the init file
-  | emacs --no-init-file     | also: emacs -q  |
-  | emacs --no-window-system | also: emacs -nw |
+  emacs --no-init-file     # emacs -q
+  emacs --no-window-system # emacs -nw
 
   mkdir emacs-from-scratch && cd emacs-from-scratch
   touch init.el
@@ -923,4 +911,18 @@
   ;; package descriptor; It the file doesn't exit the package will not appear in
   ;; the M-x list-packages
   <package-name>-pkg.el
+}
+@block{@block-name{french keyboard / clavier français}
+  M-x set-input-method RET french-keyboard
+  #  ~   1   2   3   4   5   6   7   8   9   0   _   +    BACKSPACE
+  #  `   ê   é   è   ô   î   ï   â   û   ù   à   -   ë    BACKSPACE
+  #
+  # TAB   Q   W   E   R   T   Y   U   I   O   P   Ç   &        RET
+  # TAB   q   w   e   r   t   y   u   i   o   p   ç   ü        RET
+  #
+  # CAPS   A   S   D   F   G   H   J   K   L   :   ""   |      RET
+  # CAPS   a   s   d   f   g   h   j   k   l   ;   ''   \      RET
+  #
+  # RSHIFT   )   Z   X   C   V   B   N   M   (   )   ?      LSHIFT
+  # RSHIFT   (   z   x   c   v   b   n   m   ,   .   /      LSHIFT
 }

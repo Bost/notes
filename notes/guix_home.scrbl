@@ -96,7 +96,10 @@
   Login to https://github.com add SSH Key https://github.com/settings/ssh/new
 
   # Setup xfce keybindings and shortcuts:
-  # See http://docs.xfce.org/xfce/xfconf/xfconf-query
+  # See:
+  # - available keyboard layouts: /run/current-system/profile/share/keymaps
+  # - `man loadkeys`
+  # - http://docs.xfce.org/xfce/xfconf/xfconf-query
   xfconf-query --channel xfce4-keyboard-shortcuts -l | rg Super
   xfconf-query --channel xfce4-keyboard-shortcuts \
                  --property "/xfwm4/custom/<Super>Tab" --reset

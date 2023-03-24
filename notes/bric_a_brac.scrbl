@@ -389,11 +389,9 @@
 
       Chain length - number of speeds
       Chain tools - ask: Is mine the right one?
-    }
 
-    @block{@block-name{Videos}
-       How to replace chain - chain tool
-       How to adjust speeds
+      TODO How to replace chain - chain tool
+      TODO How to adjust speeds
     }
   }
 }

@@ -1153,6 +1153,9 @@
   nmcli --ask device disconnect wlan0        # 3. disconnect
   # general status and operations
   nmcli --ask general # also: nmcli general status
+  # See also
+  # nmtui - Text User Interface for controlling NetworkManager
+  # nm-applet, nm-connection-editor, NetworkManager
 
   # display installed packages
   rpm -qa
