@@ -139,9 +139,12 @@
 }
 
 @block{@block-name{Various}
-  https://www.wezm.net/technical/2019/10/useful-command-line-tools/
 
-  see also:
+  # Temporarily change language for terminal messages/warnings/errors
+  # https://askubuntu.com/q/142812
+  LANGUAGE=fr ls NoSuchFile
+
+  https://www.wezm.net/technical/2019/10/useful-command-line-tools/
   https://github.com/tldr-pages/tldr
   https://github.com/cheat/cheat
 
