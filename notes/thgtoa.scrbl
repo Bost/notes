@@ -1,6 +1,21 @@
 #lang notes
 
 @block{@block-name{Various CompSec related stuff}
+  ssh-keyscan - gather SSH public keys from servers
+  #
+  # Print keys found as SSHFP DNS records. The default is to print keys in a
+  # format usable as a ssh(1) known_hosts file.
+  ssh-keyscan -D github.com
+
+  SSHFP Secure Shell fingerprint record
+  resource record in the Domain Name System (DNS) which identifies SSH keys that
+  are associated with a host name.
+
+  HSM Hardware Security Module
+  For financial institutions, governments, and enterprises. Offer Tamper
+  resistance,Hardware isolation,Secure key management,Access control,Auditing
+  and logging
+
   The Hitchhiker’s Guide to Online Anonymity
   https://anonymousplanet.org/guide.html
 
