@@ -149,14 +149,17 @@
 
   # Prompt for Approval Before Executing Commands
 
-  # find files with extension; fdfind (Ubuntu) / fd (Guix) is aliased to `f`
+  # find files with extension; fdfind (Ubuntu) / fd (Guix) - aliased to `f`
   # https://github.com/sharkdp/fd
-  fd --extension rkt
-  fd          -e rkt
-  find -name "*.rkt"
+  # -e, --extension
+  # -H, --hidden
+  # -a, --absolute-path
+  # -I, --no-ignore
+  # -p, --full-path   search pattern is matched against the full path
   # regex:
-  fd --hidden --full-path '.envrc$' /path/to/dir
-  f  --hidden --full-path '.envrc$' ~
+  fd --extension rkt   # find -name "*.rkt"
+  fd --no-ignore --hidden --full-path '.envrc$' /path/to/dir
+  fd --no-ignore --absolute-path <some-file-ignored-by-git>
 
   # combine fdfind and ripgrep; show full files paths for the mathes
   rg "<search-regex>" (f "<file-extention>$" /path/to/dir)
