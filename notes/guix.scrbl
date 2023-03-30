@@ -1,6 +1,12 @@
 #lang notes
 
 @block{@block-name{Various}
+  (use-modules (srfi srfi-19)#| date->string |#
+               (guix swh)    #| Software Heritage |#)
+  (define o (lookup-origin "https://github.com/Bost/corona_cases"))
+  (define last-visit (car (origin-visits o)))
+  (date->string (visit-date last-visit))
+
   # error: guile: warning: failed to install locale
   # solution:
   guix install glibc-locales
