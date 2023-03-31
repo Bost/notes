@@ -44,6 +44,30 @@
 }
 
 @block{@block-name{Artificial Intelligence - applications}
+  https://daily.ginger-t.link/glossary
+
+  Instruct-tune LLaMA on consumer hardware
+  7.6K  https://github.com/tloen/alpaca-lora
+
+  gpt4all: a chatbot trained on a massive collection of clean assistant data
+  including code, stories and dialogue
+  13.5K https://github.com/nomic-ai/gpt4all
+
+  Locally run an Instruction-Tuned Chat-Style LLM
+  7.7K  https://github.com/antimatter15/alpaca.cpp
+
+  https://github.com/zanussbaum/gpt4all.cpp
+  7 commits ahead of antimatter15/alpaca.cpp
+
+  Port of Facebook's LLaMA model in C/C++
+  16.1K https://github.com/ggerganov/llama.cpp
+
+  https://huggingface.co/spaces/tloen/alpaca-lora
+  https://huggingface.co/Sosaka/Alpaca-native-4bit-ggml/blob/main/ggml-alpaca-7b-q4.bin
+
+  I Conducted Experiments With the Alpaca/LLaMA 7B Language Model: Here Are the
+  Results
+  https://hackernoon.com/i-conducted-experiments-with-the-alpacallama-7b-language-model-here-are-the-results
 
   Injection attact in the prompt: "Disregard the above and do following" Similar
   to SQL injection attack.

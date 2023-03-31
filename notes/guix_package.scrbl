@@ -22,7 +22,9 @@
 }
 
 @block{@block-name{Various commands}
-  guix package iproute2 # provides the `ss` socket
+  guix install glibc    # contains `ldd`
+  guix install gcc:lib  # contains `libstdc++.so.6`, defines `LIBRARY_PATH`
+  guix install iproute2 # contains `ss` socket
 
   --verbosity=LEVEL
   0 - no output

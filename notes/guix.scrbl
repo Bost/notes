@@ -447,7 +447,8 @@
   # guix install git-crypt
 
   2. Andrew Tropin Dev Team Secrets with gpg, git and gopass
-  https://www.youtube.com/watch?v=EB9cW9RjiSs&list=PLZmotIJq3yOJab8-of7gMYrXkZyAjWPOw&index=48
+  https://www.youtube.com/watch?v=EB9cW9RjiSs&t=533s
+  ;;
   gopass:
   Retrieving a password from user terminal or piped input. Improved `pass`,
   wrapper aroung gpg & git

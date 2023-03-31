@@ -140,6 +140,19 @@
 
 @block{@block-name{Various}
 
+  # use any of the following commands to reboot:
+  sudo reboot
+  sudo shutdown -r now
+  # shutdown -r -t 30  # reboot in 30 seconds
+  sudo init 6
+
+  # use any of the following commands to shut down:
+  sudo poweroff
+  # shutdown -h -t 30  # shut down in 30 seconds
+  sudo shutdown -h now
+  sudo halt
+  sudo init 0
+
   # Temporarily change language for terminal messages/warnings/errors
   # https://askubuntu.com/q/142812
   LANGUAGE=fr ls NoSuchFile
@@ -392,17 +405,16 @@
   ls --format=single-column
 
   # :listing - only directories, 1 entry per line
-  ls -d1 */ # ls --delete -1 */
-
-  # :listing - count of entries / files in /path/to/dir
   # -a, --all          do not ignore entries starting with .
   # -A, --almost-all   do not list implied . and ..
+  # -d, --directory    list directories themselves, not their contents
   # -1                 list one file per line.  Avoid '\n' with -q or -b
+  ls -d1 */
+
+  # :listing - count of entries / files in /path/to/dir
   ls --almost-all -1 /path/to/dir | wc -l
 
   # :listing - show full paths (alias lff)
-  # '-d, --directory' list directories themselves, not their contents
-  # '-1'              list one file per line
   ls  -lrt -d -1 $PWD/{*,.*}   # all filepaths w/  their attributes
   ls       -d -1 $PWD/{*,.*}   # all filepaths w/o their attributes
   ls       -d -1 $PWD/path/to/file
@@ -578,15 +590,19 @@
   join
 
   # total / summarize size of dir; estimate file space usage
-  du -s dir
+  # -c, --total           produce a grand total
+  # -h, --human-readable  print sizes in human readable format (e.g., 1K 234M 2G)
+  # -s, --summarize       display only a total for each argument
+  # -S, --separate-dirs   for directories do not include size of subdirectories
+  # --si              like -h, but use powers of 1000 not 1024
+
   du -sh dir
   du -sh --exclude={.git,.atom} dir
   # see also ncdu
 
   # size of ./path/to/dir with subdirs, exclude files matching pattern
-  du -csh --exclude={.git,.atom} ./ | sort --human-numeric-sort
-  du --total --separate-dirs --human-readable --exclude={.git,.atom} ./ \
-      | sort --human-numeric-sort
+  # sort: -h, --human-numeric-sort  compare human readable numbers (e.g., 2K 1G)
+  du -sh --exclude={.git,.atom} (ls -d1 */) | sort --human-numeric-sort
 
   # jump to ./path/to/dir, execute command and jump back
   (cd ./path/to/dir && ls) # works only in bash
@@ -943,6 +959,18 @@
   sudo mount.cifs //WINDOWS_MACHINE/path/to/dir path/to/dir \
        -o user=WINDOWS_USERNAME
 
+  # resize disk of a virtual machine
+  set file /path/to/some-name.iso.qcow2
+  qemu-img info $file
+  qemu-img resize $file +15G
+  # qemu-img resize --shrink $file -15G
+  # grow a designated partition to the maximum allowed by available free space
+  sudo resize2fs /dev/sda # see df -h , column Filesystem
+  # if resize2fs doesn't work use:
+  # sudo gparted
+
+  lslocks # List local system locks.
+
   # :virtualbox mount shared folder
   sudo mount -t vboxsf share /home/username/share/
 
@@ -972,12 +1000,14 @@
   xmllint
 
   # shared library dependencies
-  ldd -v $(which vim)
+  ldd --verbose $(which vim)
 
   # :library find out if libgconf is installed
-  ldconfig -p | grep libgconf
+  # -p, --print-cache          Print cache
+  ldconfig --print-cache | grep libgconf
 
-  # info about ELF files
+  # info about ELF files - doesn't work;
+  # -v --version    Display the version number of readelf
   readelf -v $(which vim)
 
   # :cygwin command-line installer
@@ -988,10 +1018,11 @@
   cygpath -u filename
 
   # zip content of ./path/to/dir to ./path/to/file.zip
-  zip --recurse-paths --encrypt ./path/to/file.zip ./path/to/dir
-  zip  -r              -e       ./path/to/file.zip ./path/to/dir
+  # -r   recurse into directories
+  # -e   encrypt
+  zip  -r -e /path/to/file.zip /path/to/dir
 
-  unzip ./path/to/file.zip -d ./path/to/extract-dir
+  unzip /path/to/file.zip -d /path/to/extract-dir
   # unzip and untar in one step / with one command
   # -z, --gzip, --gunzip, --ungzip   Filter the archive through gzip
   tar -zxvf file.tar.gz
@@ -1003,6 +1034,7 @@
   tar --list --file FILE.tbz2
   tar --list --file FILE.tgz
   tar --list --file FILE.7z
+  # -l  list files (short format)
   unzip -l file.zip
 
   # tar / untar
@@ -1010,6 +1042,9 @@
   tar xzf ./path/to/tarfile.gz
 
   # Remove all files previously extracted from a tar(.gz) file
+  # tar:
+  # -t, --list                 list the contents of an archive
+  # -f, --file=ARCHIVE         use archive file or device ARCHIVE
   tar -tf ./path/to/file.tar.gz | xargs rm -r
 
   # report or omit repeated lines; works only on adjacent duplicate lines
