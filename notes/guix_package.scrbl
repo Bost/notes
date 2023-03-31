@@ -133,24 +133,32 @@
   guix hash file
 
   # either (A):
-  guix build --load-path=./gnu/packages --keep-failed <package>
-  cd $dgx # i.e. the GUIX_CHECKOUT directory
-  guix shell --development guix         # -D, --development
+  guix build --load-path=$dgx/gnu/packages --keep-failed <package>
+  # $dgx is some GUIX_CHECKOUT directory
+  cd $dgx && guix shell --development guix         # -D, --development
   ./pre-inst-env guix build --keep-failed <package>@"@"<version>
   ./pre-inst-env guix install <package>@"@"<version>
   # or (B):
   guix package --install-from-file=my-hello.scm
   # or (C) e.g. for the Factorio stable-version:
-  cd $dev/games
-  guix package --load-path=./ --manifest=./games/packages/factorio.scm --list-available=factorio
-  guix package --load-path=./ --install=factorio  # experimental-version factorio@1.1.78
+  set lp $dev/games
+  guix package --load-path=$lp --manifest=$lp/games/packages/factorio.scm --list-available=factorio
+  guix package --load-path=$lp --install=factorio  # experimental-version factorio@1.1.78
+  @lisp{
+    (use-modules (guix)     #| package-source |#
+                 (guix swh) #| Software Heritage |#)
+    (load "/home/bost/dev/games/games/utils.scm")
+    (load "/home/bost/dev/games/games/packages/factorio.scm")
+    ,module (games packages factorio)
+    (origin-uri (package-source factorio-experimental))
+  }
 
-  cd $dev/guix-packages/packages
-  # guix package --load-path=./ --manifest=./bost/packages/spacemacs.scm --list-available=emacs-spacemacs
-  # guix build --load-path=./ --keep-failed --load=./spacemacs-settings.scm emacs-spacemacs
-  # guix build --load-path=./ --keep-failed --expression='(@"@" (gnu) %base-packages)' emacs-spacemacs
-  set --export GUIX_PACKAGE_PATH (pwd)/bost/packages/patches
-  guix build --load-path=./ --keep-failed emacs-spacemacs
+  set lp $dev/guix-packages/packages
+  # guix package --load-path=$lp --manifest=./bost/packages/spacemacs.scm --list-available=emacs-spacemacs
+  # guix build --load-path=$lp --keep-failed --load=./spacemacs-settings.scm emacs-spacemacs
+  # guix build --load-path=$lp --keep-failed --expression='(@"@" (gnu) %base-packages)' emacs-spacemacs
+  set --export GUIX_PACKAGE_PATH $lp/bost/packages/patches
+  guix build --load-path=$lp --keep-failed emacs-spacemacs
 
 }
 
