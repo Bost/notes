@@ -4,7 +4,7 @@
   https://systemd.io/
   A suite of basic building blocks for a Linux system. It provides a system and
   service manager that runs as PID 1 and starts the rest of the system.
-  #+BEGIN_SRC bash :results output
+
   man systemctl         # Control the systemd system and service manager
   man systemd.unit      # Unit configuration
   man systemd.service   # service unit configuration
@@ -58,7 +58,6 @@
   journalctl --since "1m ago" | grep Hello
 
   # access kernel logs / system logs
-  dmesg -T        # human-readable timestamps
-  dmesg --ctime   # human-readable timestamps
-  #+END_SRC
+  # -T, --ctime     human-readable timestamp (may be inaccurate!)
+  dmesg --ctime
 }
