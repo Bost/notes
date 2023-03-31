@@ -1,6 +1,18 @@
 #lang notes
 
 @block{@block-name{Various CompSec related stuff}
+
+  FHE Fully Homomorphic Encryption - Computations on encrypted data:
+  Traditionally, an app needs to decrypt the data, perform some computation on
+  the clear data, and re-encrypt the data. FHE removes the need for
+  decryption-encryption steps. FHE-Computations on encrypted data is still
+  orders of magnitude slower than performing the computation on the plaintext.
+  (April 2023) Converting a program that operates on unencrypted data to one
+  that operates on encrypted data is non-trivial. If not properly done, it can
+  significantly increase the performance gap between computing on unencrypted
+  data and the FHE-computation on encrypted data.
+  https://github.com/google/fully-homomorphic-encryption
+
   ssh-keyscan - gather SSH public keys from servers
   #
   # Print keys found as SSHFP DNS records. The default is to print keys in a
