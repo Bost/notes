@@ -105,6 +105,14 @@
   - do a good backflip.
   - get / write a good response in a chat / conversation.
 
+  Alignment: matching up the goal of AI with our own
+
+  Reward Hacking: trick human to get a good feedback
+
+  Power-Seeking: "You can't fetch a coffee if you're dead"
+  Even a policy with a simple goal would pursue survival as an instrumental
+  subgoal.
+
   Red Teaming:
   alignment work ~ safety work
   test your application to ensure it's robust to adversarial input.
