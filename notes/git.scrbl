@@ -1,7 +1,6 @@
 #lang notes
 
 @block{@block-name{Git}
-  # Idiot proof git
   # https://softwaredoug.com/blog/2022/11/09/idiot-proof-git-aliases.html
 
   # Git Annex - sync large files
@@ -25,8 +24,10 @@
   git pull --rebase origin master
   git pull --rebase upstream master
 
-  # add
   git submodule add <repo-url> ./path/to/submoduleDir
+
+  # rename submodule
+  git mv <old-submodule-name> <new-submodule-name>
 
   # pull and rebase latest of all submodules
   git submodule foreach git pull --rebase origin master
@@ -41,6 +42,12 @@
   git rm $subMod && \
   git commit -m "Removed submodule" $subMod && \
   rm -rf .git/modules/$subMod
+
+  # change the remote repository for a git submodule:
+  # edit the .gitmodules file to update the URL and then run:
+  git submodule sync --recursive
+  # with git 2.25
+  git submodule set-url [--] <path> <newurl>
 
   # change the name and email in all commits
   # -f, --force : git filter-branch refuses to start with an existing temporary
@@ -224,12 +231,14 @@
   # github: do not ask for username
   .git/config: url = https://Bost@"@"github.com/Bost/reponame.git
 
-  # search entire commit history
-  git log -S "textToSearch"
+  # search entire commit history - only(!) code-changes, not commit messages
+  git log -S "textToSearch"  # doesn't work always
   # search entire commit history; also in refs (see git help log)
   git log -S "textToSearch" --source --all
   # search through the gitlog
   git show :/"emacs-magit: Update to"
+  # search through not commit messages
+  git log --grep <regexp>
 
   # https://stackoverflow.com/a/7124949
   # search in the commit messages across all branches
