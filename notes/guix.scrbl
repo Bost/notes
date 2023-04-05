@@ -450,8 +450,12 @@
   https://www.youtube.com/watch?v=EB9cW9RjiSs&t=533s
   ;;
   gopass:
-  Retrieving a password from user terminal or piped input. Improved `pass`,
-  wrapper aroung gpg & git
+  - Retrieving a password from user terminal or piped input. Improved `pass`,
+  - wrapper aroung gpg & git:
+    * git is for storing editing history of passwords
+    * gpg is for encryptions
+  - password store is a directory containing subdirectories and ectrypted files
+
   Deprecated in favor of terminal which is deprecated, too, use
   golang.org/x/term. See
   `guix install go-golang-org-x-term`

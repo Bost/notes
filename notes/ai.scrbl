@@ -1,50 +1,56 @@
 #lang notes
 
-@block{@block-name{Editor / Emacs}
-  https://github.com/benjamin-asdf/openai-api.el
-
-  https://github.com/karthink/gptel
-
-  Gavin Freeborn: I Made a ChatGPT Like Client For Emacs - AND SO CAN YOU!!
-  https://youtu.be/EgVfurJUdFo
-  Gist: https://gist.github.com/Gavinok/a18e0b2dac74e4ae67df35e45a170f7f
-}
-
-@block{@block-name{The GPT-4 Paper}
-  AI Explained: GPT 4: Full Breakdown: 14 Crazy Details You May Have Missed
-  https://youtu.be/2AdkSYWB6LY
-  ;;
-  AI Explained: Sparks of AGI - Bombshell : Fully Read w/ 15 Revelations
-  https://youtu.be/Mqg3aTGNxZ0
-
-  - is an auto regresive model, the output is based on what has already come
-    before. I.e. is added to the input for the next output generation. That
-    means the errors accumulate. Going off track more and more
-
-  - is able to use tools with very minimal instruction and no demonstrations and
-    they make use of them appropriately. This is an emergent capability (page
-    45)
-  - has image understanding
-  - it passes tech interviews, comparable to human performance
-  - 3D game development in a zero-shot fashion
-  - Math Olympiade
-  - Fermi Questions. E.g. estimate the number of golf balls in a swimming pool.
-  - Personal (Google) Assistent. E.g. managing meetings
-  - can build a mental map of a house from reading text about walking in the
-    house. (it draws a pyplot)
-  - Theory of Mind: it can build a mental model of what other people are
-     thinking. Knowing what Alice must be thinking, what she must believe about
-     the situation, even if it doesn't correspond to the reality, Milestone on
-      the road to possible consciousness
-  - Excellent Propaganda and Conspiracies Equipping LLMs with agency and
-  - intrinsic motivation (GPT-4 is passive, not motivated) The paper authors
-    know
-  - that GPT-4 is capable of, but they don't know why it has these capabilities.
-  - I.e. "we need to figure out how these things work and we need it fast!"
-}
-
-@block{@block-name{Artificial Intelligence - applications}
+@block{@block-name{Various}
   https://daily.ginger-t.link/glossary
+
+  Softmax Function
+  maps the values in [-∞, +∞] to [0, 1] (i.e. probabilities) and normalizes the
+  total sum of the output vector to 1.
+
+  Transformer:
+  based on Encoder / Decoder Stacks : encoding ~ tokenizatiooon
+  Stacks are composed of layers.
+  - Or Transformer Encoder Blocks, Transformer Dencoder Blocks - building blocks
+    of transformers.
+
+  1. Transformer Language Models are just decoders. E.g. GPT-2, GPT-3
+  2. Masked Language Model - is encoder. E.g. BERT
+  1. and 2. can be combined.
+
+  WTE Word Token Embeddings
+  Creating the embedding matrix is a part of the training.
+  List of tokens - model's vocabulary.
+  Token is represented by a vector of several thousands of numbers, which
+  captures the semantic and syntactic information about the token.
+  (Also sentiment, ... )
+  The vector gets passed through several layers and turned back to text
+  (Output projection)
+  Scores (called logits) are created (? 50 000 ?)
+
+  Transformer-based architectures like GPT, BERT, and their variants:
+
+  Model:
+  - computational representation of a system or process, that learns from data /
+    dataset to make decisions and predictions. The goal of learning is to
+    minimize the difference between predictions and actual outcomes
+  - consists of
+    * architecture
+    * parameters
+    * training data
+    * loss function ? gradient descend ?
+    * learning algorithm
+
+  Use language as an interface for LLMs Large Language Models (e.g. ChatGPT) to
+  connect numerous AI models (e.g. those in HuggingFace). I.e. like a brain
+  deciding to which muscle to choose to complete some action.
+
+  Can you solve X.
+  Verify and find mistakes in your solution of X and correct your self.
+
+  The reward function is trained by humans, then reward function is automatic in
+  its intraction with the model. In the end all the data is created by the AIs
+  The algorithms train another algorithms.
+
 
   Instruct-tune LLaMA on consumer hardware
   7.6K  https://github.com/tloen/alpaca-lora
@@ -81,9 +87,7 @@
   Reversed Computation Model:
   English is the programming language and a human is the machine executing the
   code instructions.
-}
 
-@block{@block-name{Artificial Intelligence - applications}
   "How may word are in the full response to this prompt?"
   It means, it must know the answer before sending it over to the user. GPT-4
   fails at this task. External feedback loop and external memory is needed -
@@ -122,12 +126,18 @@
   E.g.:
   The Simulacrum writes in perfect(!) Danish that it doesn't speak Danish.
 
-  RLHF Reinforcement Learning from Human Feedback
-  Similar to reward modeling
-  E.g. Train an AI system to control a simulated robot to do a backflip.
-  It's hard to specify objectivelly what it means to (goal specification):
+  RLHF Reinforcement Learning from Human Feedback:
+  - in contrast to supervised learning and unsupervised learning
+  - Human Feedback is used as a measure of AI performance and as a loss function
+  - similar to reward modeling. E.g. Train an AI system to control a simulated
+    robot to do a backflip. It's hard to specify objectivelly what it means to
+    (goal specification):
   - do a good backflip.
   - get / write a good response in a chat / conversation.
+
+  SSL Self-Supervised Learning
+  - is unsupervised. (In contrast to supervised learning.)
+  - model learns complex patterns automatically from unlabeled data.
 
   Alignment: matching up the goal of AI with our own
 
@@ -217,6 +227,13 @@
 
 @block{@block-name{Artificial Intelligence}
 
+  RNN Recurrent Neural Network
+  allow previous outputs to be used as inputs and has hidden states.
+
+  System Cards
+  A visual representation of the results of formal audits of AI-based
+  decision-aiding systems based on a system accountability benchmark.
+
   Latent Space
   High-dimensional space created during the training on a dataset.
   - represents complex data (e.g. audio, images) so that the ML algorithm can
@@ -236,22 +253,22 @@
 
   GAN Generative Adversarial Network:
   - class of machine learning frameworks.
-  - Two neural networks contest with each other in the form of a zero-sum game,
-    where one agent's gain is another agent's loss. And the discriminative
+  - Two NNs Neural Networks contest with each other in the form of a zero-sum
+    game, where one agent's gain is another agent's loss. And the discriminative
     network evaluates them.
 
-  Ethan Gilbert
-  You are wrong. This is a neural network. It doesn’t copy things it’s heard
+  Ethan Gilbert on LLM / ChatGPT:
+  You are wrong. This is a neural network. It doesn't copy things it's heard
   from texts. It comes up with these responses completely on its own. It uses
-  all of the information it’s been given and then uses that to give its own
-  response to any question. It’s all original. Neural networks don’t copy paste
+  all of the information it's been given and then uses that to give its own
+  response to any question. It's all original. Neural networks don't copy paste
   like you think. A neural network can see 100,000 pictures of dogs and learn
   what a dog looks like and when it sees a new picture of a dog, it can identify
-  that it’s a dog even though there isn’t a single picture in those 100,000
+  that it's a dog even though there isn't a single picture in those 100,000
   pictures that look anything like it. You can ask very specific questions about
   the answers that it gives. You can argue against the logic of an answer it
   gave you and it will understand exactly what you meant and respond
-  accordingly. This simply isn’t possible if it was just copying and pasting
+  accordingly. This simply isn't possible if it was just copying and pasting
   things from its data base
 
   Robbie
@@ -275,7 +292,6 @@
 
   PE prompt engineering: How to talk to AI to get it to do what you want.
   Wrong: What is 965*590?
-
   Right: Make sure your answer is exactly correct. What is 965*590? Make sure
          your answer is exactly correct
 
@@ -300,8 +316,8 @@
 
   Zero-shot-CoT Zero Shot Chain of Thought:
   (A) "Let's think step by step."
-  (B) "Let’s solve this problem by splitting it into steps."
-  (C) "Let’s think about this logically."
+  (B) "Let's solve this problem by splitting it into steps."
+  (C) "Let's think about this logically."
   By appending the words "Let's ..." (A works the best) to the end of a
   question, LLMs are able to generate a chain of thought that answers the
   question. From this chain of thought, they are able to extract more accurate
@@ -406,6 +422,7 @@
     summarization, language translation.
   - GPT models are trained on large amounts of text data, typically using
     unsupervised learning techniques.
+  - GPT doesn't work with words. It works with lists of numbers, i.e. tokens.
 
   ChatGPT vs GPT-3:
   If ChatGPT can do it then there's a prompt that can get GPT-3 to do it.
@@ -413,9 +430,7 @@
   ChatGPT:
   - What Is ChatGPT Doing and Why Does It Work?
     https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/
-  - Models
-    https://platform.openai.com/docs/models/gpt-3-5
-    * gpt-3.5-turbo language model. OpenAI's most advanced language model.
+  - Models https://platform.openai.com/docs/models
     * gpt-3.5-turbo-0301 - snapshot from 01.03.2023. Supported to 01.06.2023
   - uses CLU contextual language understanding: a form of NPL Natural Language
     Processing, ie. each message is analyzed in the context of the preceding
@@ -478,19 +493,6 @@
     concisely as possible. Knowledge cutoff: {knowledge_cutoff} Current date:
     {current_date}
 
-  https://beta.openai.com/playground
-  Parameters:
-  https://platform.openai.com/docs/models/gpt-3-5
-  - Base GPT-3 models: Davinci, Curie, Babbage Ada; Codex series is a descendant
-    of GPT-3 trained on both natural language and code.
-    https://platform.openai.com/docs/models
-  - Temperature:
-  - controls randomnes: 0 means completely deterministic & repetitive
-  - Top P - diversity via nucleus sampling.
-  - Frequence Penalty - new token penalization, based on their frequency in the
-    text
-  - Presence Penalty
-
   BPE (Byte Pair Encoding) data
 
   Mechanistic Interpretability
@@ -542,4 +544,71 @@
   Learning:
   Finding the parameters of a function from a data set is known as.
 
+}
+
+@block{@block-name{Editor / Emacs}
+  https://github.com/benjamin-asdf/openai-api.el
+
+  https://github.com/karthink/gptel
+
+  Gavin Freeborn: I Made a ChatGPT Like Client For Emacs - AND SO CAN YOU!!
+  https://youtu.be/EgVfurJUdFo
+  Gist: https://gist.github.com/Gavinok/a18e0b2dac74e4ae67df35e45a170f7f
+}
+
+@block{@block-name{The GPT-4 Paper}
+  AI Explained: GPT 4: Full Breakdown: 14 Crazy Details You May Have Missed
+  https://youtu.be/2AdkSYWB6LY
+  ;;
+  AI Explained: Sparks of AGI - Bombshell : Fully Read w/ 15 Revelations
+  https://youtu.be/Mqg3aTGNxZ0
+
+  - is an auto regresive model, the output is based on what has already come
+    before. I.e. is added to the input for the next output generation. That
+    means the errors accumulate. Going off track more and more
+
+  - is able to use tools with very minimal instruction and no demonstrations and
+    they make use of them appropriately. This is an emergent capability (page
+    45)
+  - has image understanding
+  - it passes tech interviews, comparable to human performance
+  - 3D game development in a zero-shot fashion
+  - Math Olympiade
+  - Fermi Questions. E.g. estimate the number of golf balls in a swimming pool.
+  - Personal (Google) Assistent. E.g. managing meetings
+  - can build a mental map of a house from reading text about walking in the
+    house. (it draws a pyplot)
+  - Theory of Mind: it can build a mental model of what other people are
+     thinking. Knowing what Alice must be thinking, what she must believe about
+     the situation, even if it doesn't correspond to the reality, Milestone on
+      the road to possible consciousness
+  - Excellent Propaganda and Conspiracies Equipping LLMs with agency and
+  - intrinsic motivation (GPT-4 is passive, not motivated) The paper authors
+    know
+  - that GPT-4 is capable of, but they don't know why it has these capabilities.
+  - I.e. "we need to figure out how these things work and we need it fast!"
+}
+
+@block{@block-name{Natural Language Processing Model Parameters}
+
+  https://platform.openai.com/docs/models/gpt-3-5
+
+  - Base GPT-3 models: Davinci, Curie, Babbage Ada; Codex series is a descendant
+    of GPT-3 trained on both natural language and code.
+
+  https://platform.openai.com/docs/models
+
+  Temperature:
+  - increases or decreases the "confidence" a model has in its most likely
+    response. I.e. it controls randomnes: 0 - completely deterministic &
+    repetitive
+
+  Top P - diversity via nucleus sampling.
+
+  Frequence Penalty
+  new token penalization, based on their frequency in the text
+
+  Presence Penalty
+
+  https://beta.openai.com/playground
 }
