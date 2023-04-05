@@ -147,6 +147,7 @@
   # Jump to next error
   Ctrl-.
 }
+
 @block{@block-name{IRC}
   https://libera.chat/guides/registration
   Usefull commands:
@@ -233,6 +234,10 @@
 }
 
 @block{@block-name{Google Advanced / Extended Search}
+
+  # search for <something> in gmail using URL
+  https://mail.google.com/mail/u/0/#search/<something>
+
   guix-home-legacy-configs-backup site:logs.guix.gnu.org
   # old discussions
   bost site:logs.guix.gnu.org
