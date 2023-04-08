@@ -692,7 +692,8 @@
   ~x~ (X)
 
   ;; The info manual
-  emacs -q -e 'info' & disown
+  ;; --no-init-file, -q          load neither ~/.emacs nor default.el
+  emacs -q --eval '(info)' & disown
   M-x info
   M-x info-apropos
   M-x info-emacs-manual
@@ -708,8 +709,9 @@
   ;; emacs package https://github.com/kmonad/kbd-mode
   ;; https://github.com/jtroo/kanata#similar-projects
 
-  ;; launch emacs and eval string
-  emacs --eval '(message "ufo")' / emacs -e configuration-layer/update-packages
+  ;; launch emacs and evaluate Emacs Lisp expression
+  emacs --eval '(message "ufo")'
+  emacs --eval '(configuration-layer/update-packages)'
 
   ;; M-x shell-command; execute
   ~M-!~ / ~SPC !~

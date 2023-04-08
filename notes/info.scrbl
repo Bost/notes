@@ -12,7 +12,7 @@
   #+END_SRC
 
   #+BEGIN_SRC bash :results output
-  emacs -q -e (info-apropos "bash") & disown
+  emacs -q -eval '(info-apropos "bash")' & disown
   #+END_SRC
 
   #+BEGIN_SRC bash :results output

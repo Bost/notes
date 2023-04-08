@@ -1,6 +1,13 @@
 #lang notes
 
 @block{@block-name{Find and Grep}
+
+  # look up all indices of all Info manuals.
+  info --apropos "search-string"
+  # search in all Info documents for some string, not just in the indices
+  # zgrep - search possibly compressed files for a regular expression
+  find /usr/share/info -type f -name "*.gz" -print0 | xargs -0 zgrep -l "search-string"
+
   # redirect; skip the "Permission denied" and "Invalid argument" errors
   find . -name file.ext 2>&1 | grep -v "Permission denied\|Invalid argument"
   # see also psub
@@ -135,6 +142,7 @@
 
   # https://www.putorius.net/linux-find-command.html
   # Listing Matched Files with Find Command
+  # -iname  like -name but case insensitive
   find . -type f -iname "my*" -ls
 
   # Save output to a file

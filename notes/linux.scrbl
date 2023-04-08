@@ -752,7 +752,7 @@
   mpstat -P ALL 2 5
 
   # :processor :cpu :mem :hdd :hardware system information for console & IRC
-  # -Fz filter out privacy sensitive info
+  # -Fz filter out privacy sensitive information
   inxi -Fxz
   inxi --full --extra 1 --filter
 
@@ -814,7 +814,7 @@
   # :ps full command line; command is separated by the \0 byte
   tr '\0' ' ' < /proc/PROCESS_ID/cmdline
 
-  # :ps :top :htop all info related to a process
+  # :ps :top :htop all information related to a PROCESS_ID
   ls /proc/PROCESS_ID
 
   # :ps :top :htop currend working dir of PROCESS_ID
@@ -1006,7 +1006,7 @@
   # -p, --print-cache          Print cache
   ldconfig --print-cache | grep libgconf
 
-  # info about ELF files - doesn't work;
+  # information about ELF files - doesn't work;
   # -v --version    Display the version number of readelf
   readelf -v $(which vim)
 
@@ -1067,7 +1067,7 @@
   crontab -e   # edit entries
   crontab -l   # view / list / show / display entries
 
-  # show everything (battery info etc)
+  # show everything (battery information etc)
   acpi -V              # Advanced Configuration and Power Interface
   climate battery
 
@@ -1628,7 +1628,7 @@
   pulseaudio --kill
   jack_control start && jack_control exit
   pulseaudio --start
-  # see also jack active ports & some extra info
+  # see also jack active ports & some extra information
   jack_lsp
   jack_lsp --connections  # list connections to/from each port
 }
@@ -1691,7 +1691,7 @@
   # list files associated with a tag; (no blank between -r and TAGNAME)
   cvs -q rlog -R -N -S -rTAGNAME MODULENAME
 
-  # debug and trace info
+  # debug and trace information
   cvs -d cvs -t -d :pserver:faizal@"@"localhost:/myrepos \
       ci -m "test" -l "src/foo/Foo.ext"
 
