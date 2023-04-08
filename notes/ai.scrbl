@@ -1,6 +1,39 @@
 #lang notes
 
 @block{@block-name{Various}
+
+  DL Deep Learning is a subset of ML Machine Learning is a subset of AI
+  Artificial Intelligence
+
+  Traditional Programing : Starts with Input & Rules and makes Output
+  Machine Learning : Starts with Input & Output and makes / figures out the
+  Rules i.e. the relationship between Inputs and Outputs (TODO compare ML with
+  Logic Programming)
+
+  Reasons for doing ML: Can you really think of all the Rules for a complex
+  problem? (i.e. driving a car)
+
+  ML can be used to find patterns in anything if it can be converted to numbers.
+
+  If possible prefer building a simple rule-based system over ML.
+
+  in ML:
+  Inputs a.k.a Features
+  Output a.k.a Labels
+
+  DL is good for:
+  - problems with many rules
+  - problems with changing environment -> adaptation
+  - discovering insights in large datasets
+  DL is not good for:
+  - when explainability is needed
+  - when traditional approach is better
+  - when errors are unacceptable -> probabilities
+  - when not much data is available
+
+  ML is for structured data (e.g. tables): Algorithm: gradient boosted machine, random forest, tree based algorithm (XGBoost), naive Bayes - shallow algorithms
+  DL is for unstructured data (e.g. text, images, etc.): Algorithm: neural network
+
   https://daily.ginger-t.link/glossary
 
   Softmax Function
