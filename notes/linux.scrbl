@@ -603,6 +603,8 @@
   # size of ./path/to/dir with subdirs, exclude files matching pattern
   # sort: -h, --human-numeric-sort  compare human readable numbers (e.g., 2K 1G)
   du -sh --exclude={.git,.atom} (ls -d1 */) | sort --human-numeric-sort
+  # including hidden files
+  du -sh --exclude={.git,.atom} (ls -d1 */ .*/) | sort --human-numeric-sort
 
   # jump to ./path/to/dir, execute command and jump back
   (cd ./path/to/dir && ls) # works only in bash
@@ -620,8 +622,9 @@
   # :telnet terminate session
   Ctrl-\] Enter quit Enter
 
-  # download fileX.txt and save it under different location / name
-  wget http://server/fileX.ext -O ./path/to/fileY.ext
+  # download fileX.txt and save it under specific...
+  wget http://server/fileX.ext -O ./path/to/fileY.ext # ... filepath
+  wget http://server/fileX.ext -P ./path/to/dir/      # ... directory
 
   # download fileX.txt and save it under different location / name
   curl -O http://server/fileX.txt > ./path/to/fileY.txt
@@ -1158,6 +1161,21 @@
 
   # enterprise cryptographic filesystem for Linux
   ecryptfs
+
+  # file attributes: see `info ls`
+  # -  regular file
+  # b  block special file
+  # c  character special file
+  # C  high performance ("contiguous data") file
+  # d  directory
+  # D  door (Solaris 2.5 and up)
+  # l  symbolic link
+  # M  off-line ("migrated") file (Cray DMF)
+  # n  network special file (HP-UX)
+  # p  FIFO (named pipe)
+  # P  port (Solaris 10 and up)
+  # s  socket
+  # ?  some other file type
 
   # :debian-goodies
   # display all the dependencies of the given package and when each dependency

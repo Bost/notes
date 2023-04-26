@@ -80,11 +80,17 @@
   git fetch upstream <branch1> <branch2>
 
   # remove / delete a remote-tracking branch from local repository
+  # -r, --remotes
+  # -d, --delete
   git branch --remotes --delete <origin/branch>
-  git branch        -r       -d <origin/branch> # -rd
   # remove / delete a remote branch or tag
   git push --delete <origin> <branch-or-tag>
-  git push       -d <origin> <branch-or-tag>
+
+  # list branches that contain a given commit
+  # https://stackoverflow.com/a/1419637/5151982
+  # -r, --remotes
+  git branch           --contains <commit>
+  git branch --remotes --contains <commit>
 
   # file changes against remote branch
   git diff <branch1> <branch2> <filepath>
@@ -114,9 +120,15 @@
   # count of files changed in the since the <tag>
   git log --format=oneline --patch <tag>..HEAD | wc -l
 
-  #  show only commit-ids
+  #  show only commit-ids (shows only Author and Date / AuthorDate)
   git log --pretty=format:' "%h"' master..dev  # shortened commit id
   git log --pretty=format:' "%H"' master..dev  # full commit id
+  # show also Commit and CommitDate
+  git log --pretty=fuller --author=<Name>
+  # show dates in the local timezone (seems like UTC doesn't work)
+  git config log.date local    # don't forget to unset it!
+  git log --pretty=format:'%cd' --author=<Name>
+  git config --unset log.date
 
   # count of commits on a branch
   git rev-list --count <branch-name>
@@ -143,12 +155,12 @@
   git checkout <revision>~1 -- file1/to/restore file2/to/restore
 
   # show current branch and changes made since last commit
-  git status --show --branch
-  git status -sb
+  # -s, --short   Give the output in the short-format.
+  # -b, --branch   Show the branch and tracking info even in short-format.
+  git status --short --branch
 
   # interactively choose hunks of patch; see --interactive
-  git add --patch
-  git add -p
+  git add --patch # -p, --patch
 
   # How to apply a patch generated with git format-patch?
   # https://stackoverflow.com/a/2250170
@@ -181,7 +193,8 @@
   git clone --bare <origRepo> <bareRepoDir>
 
   # shallow clone with a history truncated to the specified number of commits
-  git clone --depth=1 -b <branch> <origRepo> <newRepoName>
+  # -b, --branch
+  git clone --depth=1 --branch <branch> <origRepo> <newRepoName>q
 
   # After the clone is created, initialize all submodules within, using their
   # default settings. Equivalent to running
@@ -197,21 +210,26 @@
 
   # list contributors / committers / developers
   # git log --pretty=short | git shortlog [<options>]
+  # -n, --numbered Sort output according to the number of commits per author
+  #                instead of author alphabetic order.
+  # -s, --summary Suppress commit description and provide a commit count summary
+  #               only.
+  # -e, --email    Show the email address of each author.
   git shortlog --summary --numbered --email
-  git shortlog -sne
 
   # list all commits for a specific day / date / timestamp
   git log --after="2013-12-11 00:00" --before="2013-12-11 23:57"
   gitk    --since="2013-11-12 00:00"  --until="2013-11-13 00:00" & disown
-  # list all commits for a specific commiter / user / author
-  git log --author=John
-  git shortlog --author=John
+  # list all commits for a specific committer / user / author on the master
+  # branch
+  git      log master --author=John
+  git shortlog master --author=John
 
   # show settings
   git config --global --list
-  git config --local  --list
+  git config  --local --list
   git config --global --list --get <setting>
-  git config --local  --list --get <setting>
+  git config  --local --list --get <setting>
 
   # set user.name and user.mail
   git config --global user.name "Bost"
@@ -243,6 +261,7 @@
   # https://stackoverflow.com/a/7124949
   # search in the commit messages across all branches
   git log --all    --grep="emacs-magit: Update to"
+  # -i, --regexp-ignore-case
   git log --all -i --grep="emacs-magit: Update to"  # case insensitive
 
   # search for occurences of function foo
@@ -261,6 +280,11 @@
 
   # find / list all commits changing / touching specific file
   git log --follow --name-only --format='%H' -- path/to/file
+  git log --follow --format='%H' \
+          --after="2023-04-08 14:04:42" \
+          --before="2023-04-12 14:29:23" \
+          -- \
+          gnu/packages/emacs-xyz.scm
 
   # set git base directory and working tree
   git --git-dir=path/to/.git --work-tree=path/to/ ...
@@ -307,8 +331,9 @@
   git bisect fixed master
   git bisect unfixed <some-old-sha1>
 
-  # checkout as; older revision of a file under a new name
+  # checkout as; older revision of a file under a new / different name
   git show HEAD^:main.cpp > old_main.cpp
+  git show cef05ce4feceaf6881d78d6ba0a1775d5334bd35:gnu/packages/emacs-xyz.scm > gnu/packages/emacs-xyz.cef.scm
 
   # prepare release; create an archive of files from a named tree
   git archive --format zip --output "output.zip" master
