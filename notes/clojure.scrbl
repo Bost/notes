@@ -313,6 +313,9 @@
     lein repl :headless :host 0.0.0.0 :port <portNr>
     #
     # deps.edn; clojure -M:outdated corresponds to `lein ancient`
+    # see https://github.com/practicalli/clojure-cli-config
+    ;; Dependency version management
+    ;; https://github.com/liquidz/antq
     clojure -M:outdated --upgrade # --force
   }
 }

@@ -76,7 +76,7 @@
   # https://github.com/whoozle/android-file-transfer-linux/issues/301
 
   cd /media/bost/elements/Pictures
-  ~/dev/android-file-transfer-linux/build/cli/aft-mtp-cli
+  aft-mtp-cli    # guix install aft-mtp-cli
   Phone> cd DCIM/Camera/
   Phone> ls
   Phone> get filename.ext # download / transfer: phone    -> computer
