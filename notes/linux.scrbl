@@ -1221,6 +1221,11 @@
   sudo --login
   sudo -i
 
+  # login vs. non-login shell; see https://unix.stackexchange.com/a/237672
+  ssh -t $USER@$hostname /bin/sh
+  sh-5.1$ shopt login_shell
+  login_shell    	off
+
   # user management
   groups USER             # groups a user is in
   id                      # real and effective user and group IDs
