@@ -106,10 +106,16 @@
   $ guile -c '(use-modules (ice-9 pretty-print)) (pretty-print \'(begin ...))'
   $ guix repl
   ,use (ice-9 pretty-print) ;; ,use is an alias for ,import or (import ...)
+  ;; ,use (guix read-print) ; pretty-printer smarter than (ice-9 pretty-print).
+  ;; (pretty-print-with-comments (current-output-port) '1)
   ,pretty-print '(begin ...)
   ;; access module variables w/o importing the whole module
   (@"@" (my module) public-variable)
   (@"@"@"@" (my module) private-variable)
+
+  $ guix repl
+  ,use (guix read-print) ;; pretty-printer smarter than (ice-9 pretty-print).
+  (pretty-print-with-comments (current-output-port) '1)
 
   # disable colors and readline bindings defined in the .guile
   @; INSIDE_EMACS=1     # bash
