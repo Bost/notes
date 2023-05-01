@@ -170,6 +170,14 @@
   # apply the patch as a commit. It also allows to sign off an applied patch.
   git am --signoff < a_file.patch
 
+  # Troubleshoot Git Patch Error: patch does not apply.
+  # Run 1.:
+  git apply --reject --whitespace=fix mychanges.patch
+  # '--reject' causes creation of a .rej file containing what cannot be patched
+  # 2. Then, manually resolve the conflicts. Alternatively, run:
+  git apply --ignore-space-change --ignore-whitespace mypatch.patch
+  # See https://www.delftstack.com/howto/git/git-patch-does-not-apply/#troubleshoot-git-patch-error-patch-does-not-apply
+
   # amend commit; reuse commit message
   git commit --amend --no-edit
 

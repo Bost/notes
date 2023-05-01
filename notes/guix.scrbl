@@ -152,6 +152,16 @@
 
   https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix
 
+  ;; inspect package and bag
+  ,use (gnu packages maven)
+  ,use (guix)
+  ,use (guix build-system)
+  (package-derivation (open-connection) maven)
+  (package-name maven)
+  (package-inputs maven)
+  (package-outputs maven)
+  (package->bag maven)
+
   Ludovic Courtès: Your Distro Is A Scheme Library
   https://youtu.be/CdixrlQzAN8
   $ INSIDE_EMACS=1 guix repl --listen=tcp:37146 &
