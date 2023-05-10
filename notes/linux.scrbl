@@ -140,6 +140,9 @@
 
 @block{@block-name{Various}
 
+  # fix line endings
+  sed -i 's/\r//g' /path/to/file
+
   # use any of the following commands to reboot:
   sudo reboot
   sudo shutdown -r now
