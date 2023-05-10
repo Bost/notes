@@ -7,11 +7,26 @@
 # #+STARTUP: nolatexpreview
 #+STARTUP: showeverything inlineimages nolatexpreview
 
-Classes of math structures http://math.chapman.edu/~jipsen/structures/doku.php/
+\href{http://math.chapman.edu/~jipsen/structures/doku.php}{Classes of math structures}
 
-https://en.wikipedia.org/wiki/Algebraic_structure
+* Algebra
+
+Algebra is a lot like arithmetic. In arithmetic the only unknown thing is the
+answer to the problem. Algebra follows the rules of arithmetic. \\
+
+Algebra uses operations of arithmetic: $+$, $-$, $*$, $/$ in equations: $1 + 2 = ...$ \\
+
+Algebra adds the element of "unknown", typically a letter $x$ which is a
+placeholder for some unknown value in the equation: $1 + 2 = x$ \\
+
+Goals of algebra: what is the value of $x$? I.e. it's about "solving equations"
+
+Abstract Algebra, aka Modern Algebra
+
+
 
 * Algebraic structures
+\href{https://en.wikipedia.org/wiki/Algebraic_structure}{Algebraic structure}
 ** Group-like structures
 Group is a pair $(G, \cdot)$: \\
 $G$ is an underlying body of an algebraic structure. Often it's a set. $\cdot$

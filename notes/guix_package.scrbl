@@ -24,7 +24,7 @@
 @block{@block-name{Various commands}
   guix install glibc    # contains `ldd`
   guix install gcc:lib  # contains `libstdc++.so.6`, defines `LIBRARY_PATH`
-  guix install iproute2 # contains `ss` socket
+  guix install iproute2 # contains `ss` socket statistics
 
   --verbosity=LEVEL
   0 - no output

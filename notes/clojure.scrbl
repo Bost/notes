@@ -1028,7 +1028,9 @@
   (map {:a 1 :b 2 :c 3} [:a :b]) ;; select-vals
   ;; => (1 2)
 
-  (map-indexed (fn [idx elem] [idx elem]) [:a :b :c]) ;; => ([0 :a] [1 :b] [2 :c])
+  (map-indexed (fn [i e] [i e]) [:a :b])                   ;; => ([0 :a] [1 :b])
+  ;; map-indexed accepts only 2 arguments
+  (map-indexed (fn [i e1 e2] [i e1 e2]) [:a :b] [:A :B]) ;; => Error
 
   ;; Symbols constructed on the fly are not interned
   (= 'foo 'foo)          ;; => true
