@@ -379,6 +379,9 @@
   # iterate / loop through files in a directory
   for file in /path/to/dir/*.ext; do echo $file; done
 
+  # fish-shell loop over some range
+  for i in (seq 50 55); printf "i: %s\n" $i; end
+
   # syntax - single / double brackets; variables
   https://unix.stackexchange.com/a/416716
   https://www.thegeekstuff.com/2010/06/bash-conditional-expression/

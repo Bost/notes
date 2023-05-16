@@ -194,10 +194,10 @@
   rg --no-ignore-vcs -g '*.{el,c}' "'elpa" $dev/.spguimacs.d/ $dev/emacs-28-2
 
   # rg manual file types / extensions (globing)
-  rg -g '*.{scm,c,h}' -w "operating-system" $dev/guix $dev/guile
+  rg -g '*.{scm,c,h}' -w "operating-system" $dgx $dev/guile
   # fdfind manual file types / -e, --extension
-  rg -w "operating-system" (f -e scm -e c -e h '.*' $dev/guix $dev/guile)
-  rg "instrumented" (f -e scm -e c -e h '.*'  $dev/guix/ $dev/guile/)
+  rg -w "operating-system" (f -e scm -e c -e h '.*' $dgx $dev/guile)
+  rg "instrumented" (f -e scm -e c -e h '.*'  $dgx/ $dev/guile/)
 
   set s "Spacemacs is ready" # s="Spacemacs is ready"
   grep $s (find ~/.emacs.d/ -type f -name '*.el')
@@ -218,6 +218,6 @@
   sed --in-place "s/$oldNew[1]/$oldNew[2]/g" $sFiles
 
   # search through all guix and guile code
-  rg --no-ignore-vcs -g '*.{scm,c,h}' -w "word\\s" $dev/guix $dev/guile
+  rg --no-ignore-vcs -g '*.{scm,c,h}' -w "word\\s" $dgx $dev/guile
 
 }
