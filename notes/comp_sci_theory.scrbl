@@ -457,7 +457,23 @@
 }
 
 @block{@block-name{Semantics}
-  @block{@block-name{Denotational Semantics}
+  @block{@block-name{Denotational Semantics aka Denotational Model}
+    denotation ~ meaning
+    Mapping of of syntactic construct to a semantic domain.
+
+    DS/DM provides a way to define the behavior of a program by mapping it to a
+    mathematical object that represents its meaning.
+
+    E.g. DS in a simple programming language, the meaning of an arithmetics
+    expression might be represented by a function mapping the expression to a
+    number (its value). In this case, semantic domain is the set of numbers.
+
+    Denotational Models contrasted with:
+    - Operational Semantics
+      OS defines the meaning of a programming construct in terms of state
+      transitions and execution of abstract machines
+    - Axiomatic Semantics:
+      Uses logical assertions to describe the behavior of a program
   }
 
   @block{@block-name{Operational Semantics}
@@ -536,4 +552,3 @@
 @block{@block-name{Referential Transparency}
   Referentially Transparent ~ can be replaced with some value.
 }
-

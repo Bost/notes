@@ -79,12 +79,14 @@ not a proper class, i.e. both the objects and morphisms form small sets.
 
 \bigskip
 
-_Up to isomorphism_ - meaning: \\
+_"$X \iso Y$ (Things are equal) up to isomorphism"_ - meaning: \\
 Things are isomorphic, i.e.
+$X$ can be mapped to $Y$ in a way that we see that $X$ and $Y$ are
 - structurally the same, i.e.
 - only formally different, i.e.
 - working via analogy, i.e.
 - $X$ is just a renamed version of $Y$
+Such mapping is called isomorphism.
 
 \bigskip
 
@@ -110,6 +112,10 @@ obj is below it
 
 _Locally Closed Cartesian Category LCCC_: \\
 For every obj $X$ sliced category is a CCC
+
+Sliced Category C/c
+Category over an Object, i.e. an over-category. Slicing the original category
+along a specific object
 
 \bigskip
 
@@ -207,7 +213,7 @@ Also:
 
 \\
 
-Homomorphism - structure-preserving mapping between (two) algebraic objects. \\
+Homomorphism - structure-preserving mapping (between two algebraic objects). \\
 Morphishm implication structure:
 
 \begin{center}

@@ -612,6 +612,10 @@
   # jump to ./path/to/dir, execute command and jump back
   (cd ./path/to/dir && ls) # works only in bash
 
+  # change the timezone on an ubuntu server system-wide
+  sudo dpkg-reconfigure tzdata
+  # tzselect - user-specific timezone change
+
   # stop-watch; ctrl-d to stop; measure execution time; or try to install
   # stopwatch
   time read
@@ -977,6 +981,21 @@
 
   lslocks # List local system locks.
 
+  # Ubuntu: Extend your default LVM space
+  # https://packetpushers.net/ubuntu-extend-your-default-lvm-space/
+  # some userfull commands
+  lsblk
+  sudo cfdisk
+  findmnt --real --output TARGET,SOURCE,SIZE,LABEL,PARTLABEL
+  sudo vgdisplay
+  sudo lvdisplay
+  sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+  sudo pvdisplay
+  sudo pvresize /dev/sda3
+  sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+  sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+  df -h
+
   # :virtualbox mount shared folder
   sudo mount -t vboxsf share /home/username/share/
 
@@ -1227,7 +1246,7 @@
   # login vs. non-login shell; see https://unix.stackexchange.com/a/237672
   ssh -t $USER@$hostname /bin/sh
   sh-5.1$ shopt login_shell
-  login_shell    	off
+  login_shell     off
 
   # user management
   groups USER             # groups a user is in
