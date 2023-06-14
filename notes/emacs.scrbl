@@ -866,7 +866,9 @@
     ;; => ("[" "aaa" "bbb" "]")
 
     ;; filter list
-    (remove-if (lambda (e) (eq e 1)) '(1 2))
+    (cl-remove-if (lambda (e) (eq e 1)) '(1 2))
+    (--filter FORM LIST) ;;  --filter, --remove Lisp macros in 'dash.el'
+
     ;; https://www.reddit.com/r/emacs/comments/7dp6oa/comment/dpzi5hz/?utm_source=share&utm_medium=web2x&context=3
     (seq-filter (apply-partially #'< 3) '(1 2 3 4 5 6))
   }

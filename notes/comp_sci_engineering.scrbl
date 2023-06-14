@@ -2,7 +2,6 @@
 @block{@block-name{Tree-sitter}
   library for parsing code - for text editors
   - incremental parsing
-
 }
 
 @block{@block-name{Leaky Abstraction}
@@ -36,7 +35,6 @@
 }
 
 @block{@block-name{TODOs - programming}
-  delimited continuations
   module system / OCaml
   hygienic macros
   threads

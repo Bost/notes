@@ -552,3 +552,30 @@
 @block{@block-name{Referential Transparency}
   Referentially Transparent ~ can be replaced with some value.
 }
+
+@block{@block-name{continuations}
+ - concept. not a language feature
+ - like "scope" or "value"
+
+ Parts of calculated expression:
+ - redex - reducible expression, "foreground"
+
+ - evaluation context - "background" how to continue evaluation process, i.e. the
+ continuation
+ it changes over the course of the program
+ rest, remainder of the program
+
+ why is continuation interesting - compilers care
+
+ exit - discarding continuation
+
+ in try-catch, the catch part delimits the continuation
+
+ first classs continuations - continuations are values in a given programming language
+
+ continuations can be through as functions of one value
+ "call with current continuation" is an old (not really usefull) concept
+
+ delimited continuations
+ prompt / control - ie.e. delimit continuation up to the prompt
+}

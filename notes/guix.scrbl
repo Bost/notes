@@ -248,9 +248,8 @@
   # provides tight coupling to Guix.
   guile-hall
 
-  guix describe
+  guix describe # Display information about the channels currently in use.
   guix describe --list-formats
-  # Display information about the channels currently in use.
   guix describe --format=channels
   guix describe --format=human
 
@@ -390,6 +389,22 @@
   guix offload    # set up and operate build offloading
   guix processes  # list client processes / currently running sessions
   guix repl       # interactive programming of Guix in Guile
+}
+
+
+@block{@block-name{Normalized Archives}
+  # When 'guix home: error: corrupt input while restoring archive from'
+  # See "nar 404 leads to hard 'guix substitute' crash"
+  # https://issues.guix.gnu.org/63634
+  #
+  # 1. workaround: remove bordeaux.guix.gnu.org from the substitute URLs
+  guix home --substitute-urls=URL ...
+  # see https://guix.gnu.org/manual/en/html_node/Invoking-guix_002ddaemon.html#daemon_002dsubstitute_002durls
+  # or (probably the better solution):
+  # 2. clear daemon's the cached narinfos
+  sudo mv /var/guix/substitute/cache/ /var/guix/substitute/cache.delete-me
+  # repeat
+  guix home ...
 }
 
 @block{@block-name{Crypthography}
