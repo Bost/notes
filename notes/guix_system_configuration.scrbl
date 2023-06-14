@@ -27,11 +27,34 @@
 }
 
 @block{@block-name{Bootable ISO-9660 installation image}
-  # TODO loop over set checkouts (f -H ^config\$ ~/.cache/guix/checkouts/) and check
-  # git --git-dir=$checkout/.git remote --verbose | rg 'origin.*git.savannah.gnu.org'
+  # in bash:
+  # guix_repo=https://git.savannah.gnu.org/git/guix.git
+  # for d in $HOME/.cache/guix/checkouts/*; do
+  #     if [ -d "$d" ] && [ ! -L "$d" ]; then
+  #         # echo "is dir: $d"
+  #         if git --git-dir=$d/.git remote -v | rg --quiet $guix_repo; then
+  #             coDir=$d
+  #             # echo "Guix channel checkout directory: $coDir"
+  #             break
+  #         fi
+  #     fi
+  # done
 
+  set guix_repo https://git.savannah.gnu.org/git/guix.git
+  for d in $HOME/.cache/guix/checkouts/*;
+      # echo "$d"
+      if test -d "$d" && not test -L "$d"
+          # echo "is dir: $d"
+          git --git-dir=$d/.git remote -v | rg --quiet $guix_repo
+          if test $status
+              set coDir $d
+              printf "Guix channel checkout directory: %s\n" $coDir
+              break
+          end
+      end
+  end
+  set --local gxCheckout $coDir
   # Instantiate operating system declaration:
-  set --local gxCheckout $HOME/.cache/guix/checkouts/guix # there's a symlink
   cd $gxCheckout
   # create bootable ISO-9660 installation /gnu/store/...-image.iso
   guix system image -t iso9660 gnu/system/install.scm
@@ -81,10 +104,10 @@
 
   TODO see elisp-configuration-service
 
-  ;; analyze system state
-  guix describe profile               # for channels
-  guix system describe                # for current system (OS kernel, etc.)
-  guix home describe                  # for home environment generation & channels
+  ;; analyze system state / show information about the
+  guix profile                        # channels currently in use
+  guix system describe                # current system (OS kernel, etc.)
+  guix home describe                  # home environment generation & channels
   guix package --list-profiles
   ;;
   guix home list-generations 1d       # no '=' allowed after 'list-generations'
@@ -185,9 +208,13 @@
   # revision / older version
   guix time-machine --commit=HEAD   --disable-authentication -- describe
   guix time-machine --commit=<sha1> --disable-authentication -- describe
+  # lock / freeze
+  guix describe --format=channels > /tmp/channels.scm
+  guix pull --channels=/tmp/channels.scm --allow-downgrades --cores=24 && gxhre --cores=24
+  # guix pull --roll-back
 
-  Upgrade Guix
-  https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html
+  # Upgrade Guix
+  # https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html
   # upgrade GuixOS on a foreign system (e.g. Ubuntu)
   sudo --login guix pull
   systemctl restart guix-daemon.service

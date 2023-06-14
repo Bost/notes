@@ -25,6 +25,15 @@
 }
 
 @block{@block-name{General}
+  (def my-hash-map {:a [{:b1 2} {:b2 4}] :c 3})
+  (get-in my-hash-map [:a 0 :b1]) ;; => 2
+
+  (defn foo
+    "The same as (get-in params [:params :file])"
+    [{{:keys [file]} :params}] file)
+  ;; called it with an argument like this:
+  (foo {:params {:file "test.txt"}}) ;; => "test.txt"
+
   Kawa Scheme - on JVM
   https://www.gnu.org/software/kawa/
 

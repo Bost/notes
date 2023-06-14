@@ -262,19 +262,21 @@
   https://srfi.schemers.org/srfi-26/srfi-26.html
 
   @lisp{
+    ;; https://www.gnu.org/software/guile/manual/guile.html#lambda_002a-and-define_002a
     ;; 'lambda*' is ‘lambda’ with allowed optional and keyword argument.
     ;; 'define*' is syntactic sugar for 'lambda*'
 
     (use-modules (srfi srfi-26))
-    (map (cut * 2 <>) (1 2 3 4))
-    ;; also variadic function arguments
+    (map (cut * 2 <>) '(1 2 3 4)) ;; => (2 4 6 8)
+    (map (cut * 2) '(1 2 3 4)) ;; => Wrong number of arguments ...
+    ;; Also variadic function arguments:
     (define (partial fun . args)
-    ;; Note: 'cons' is a bit faster than 'append'
-    (lambda x (apply fun (append args x))))
-    ;; or
-    (define* (partial fun #:rest args)
-    (lambda x (apply fun (append args x))))
+      ;; Note: 'cons' is a bit faster than 'append'
+      (lambda x (apply fun (append args x))))
+    ;; or:
     ;; '#:rest' is a synonym for the dotted syntax rest argument.
+    (define* (partial fun #:rest args)
+      (lambda x (apply fun (append args x))))
 
     (define* (foo prm #:key kw (kw-opt #f))
       "kw-opt is a keyword and optional argument at the same time"
@@ -287,6 +289,11 @@
 
 @block{@block-name{Various code snippets}
   @lisp{
+    (use-modules (srfi srfi-13) (ice-9 regex))
+    (define s "How
+    Are
+    You")
+    (string-tokenize s (char-set-complement (char-set #\newline)))
 
     (define (read-scheme-file filename)
       (reverse
