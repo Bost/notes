@@ -44,6 +44,12 @@
   guix home container /path/to/configuration.scm
   guix home --keep-failed -L $dotf/guix/home container $dotf/guix/home/home-configuration.scm
 
+  # -L --load-path
+  # -c --cores
+  guix home --allow-downgrades -c 24 \
+            -L $dotf/guix/home -L $dgxp/packages/bost/packages/patches \
+            reconfigure $dotf/guix/home/home-config-ecke.scm
+
   LEMP WordPress Reproducible Environment
   guix-lemp-container
   See also https://www.notabug.org/hackware/guix-lemp-container/src/dev/run.sh

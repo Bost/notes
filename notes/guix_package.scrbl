@@ -161,7 +161,6 @@
   # guix build --load-path=$lp --keep-failed --expression='(@"@" (gnu) %base-packages)' emacs-spacemacs
   set --export GUIX_PACKAGE_PATH $lp/bost/packages/patches
   guix build --load-path=$lp --keep-failed emacs-spacemacs
-
 }
 
 @block{@block-name{Garbage collection}

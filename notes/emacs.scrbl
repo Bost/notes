@@ -97,6 +97,10 @@
   (add-to-list 'lst 'b)   ; => (a b c)
   (add-to-list '(a c) 'b) ; => Wrong type argument: symbolp, (a c)
 
+  ;; in? member?
+  (cl-find "b" '("a" "b" "c") :test #'string=) ; => nil
+  (cl-find 'b '(a b c))                        ; => b
+
   (sort (list 4 8 21 17 33 7 21 7) #'<)
   (sort (mapcar #'number-to-string (list 4 8 21 17 33 7 21 7)) #'string<)
 
@@ -147,13 +151,15 @@
   (eq foo '(1 (2 (3))))                      ;; =>  nil
   (eq [(1 2) 3] [(1 2) 3])                   ;; =>  nil
   (eq (point-marker) (point-marker))         ;; =>  nil
-  ;; The make-symbol function returns an uninterned symbol, distinct from the
+  ;; The `make-symbol` returns an uninterned symbol, distinct from the
   ;; symbol that is used if you write the name in a Lisp expression. Distinct
   ;; symbols with the same name are not eq. See Creating and Interning Symbols.
   (eq (make-symbol "foo") 'foo)              ;; =>  nil
   ;; symbol-to-string / symbol->string:
   (symbol-name 'some-symbol)                 ;; => "some-symbol"
   ;; string-to-symbol / string->symbol:
+  ;; `intern` creates or retrieves a symbol with a given name from the global
+  ;; obarray (a table storing symbols)
   (intern "some-symbol")                     ;; => some-symbol
 
   ;; drawing, schemes, painting; draw lines, rectangles and ellipses with mouse
@@ -868,6 +874,10 @@
     ;; filter list
     (cl-remove-if (lambda (e) (eq e 1)) '(1 2))
     (--filter FORM LIST) ;;  --filter, --remove Lisp macros in 'dash.el'
+    (--filter (string= "k1" (car it)) '(("k0" . ("v00" "v01"))
+                                        ("k1" . ("v10" "v11"))
+                                        ("k2" . ("v20" "v21"))))
+    ;; => (("k1" "v10" "v11"))
 
     ;; https://www.reddit.com/r/emacs/comments/7dp6oa/comment/dpzi5hz/?utm_source=share&utm_medium=web2x&context=3
     (seq-filter (apply-partially #'< 3) '(1 2 3 4 5 6))
