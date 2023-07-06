@@ -1114,15 +1114,14 @@
   | Shadow CLJS       | ClojureScript compilation made easy                                         |
   | create-cljs-app   | Set up a modern CLJS web app by running one command.                        |
 
-  Figwheel Main (rewrite of lein-figwheel)
-  build ClojureScript and hot load it
+
+  Figwheel Main (rewrite of lein-figwheel): build & hot load ClojureScript
   603 stars; https://github.com/bhauman/figwheel-main
   2.9k stars; https://github.com/bhauman/lein-figwheel
 
-  Shadow CLJS
-  ClojureScript compilation made easy
+  Shadow CLJS (shadow-cljs): ClojureScript compilation made easy
   2k stars; https://github.com/thheller/shadow-cljs
-  - create-cljs-app - Set up a modern CLJS (react?) web app by running one command.
+  - create-cljs-app - Set up a modern CLJS (react?) web app with one command.
     275 stars; https://github.com/filipesilva/create-cljs-app
 
   For java projects:
@@ -1140,8 +1139,9 @@
   clojure ->                                 js                             -> browser
   clojure -> webpack js (with included npm modules) -> webpack -> js bundle -> browser
 
-  Reagent - interface between ClojureScript and React. A wrapper around React.
-  Allows to define React components.
+  Reagent:
+  Interface between ClojureScript and React. Wrapper around React. Web
+  page-rendering framework. Allows to define React components.
 
   GIS Geographic Information System
   database with geographic data

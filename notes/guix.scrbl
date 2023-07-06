@@ -337,6 +337,7 @@
 }
 
 @block{@block-name{Main commands}
+  $dgx/guix/scripts/*.scm
   guix deploy        # deploy operating systems on a set of machines
   guix describe      # describe the channel revisions currently used
   guix gc            # invoke the garbage collector
