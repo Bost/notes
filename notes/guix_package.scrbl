@@ -181,6 +181,18 @@
   # see also guix gc --list-roots
   guix gc --list-roots
   guix gc --referrers
+  guix gc --list-dead
+
+  set lst \
+  /gnu/store/5d48vxdg7yqsvcq683r2d68mqslpx5hq-emacs-spacemacs-28.2-0.999.0-0.a51a79a \
+  /gnu/store/5j0hk9nlc98s41y93bcpadzww27k677n-emacs-spacemacs-28.2-0.999.0-0.f6664c8
+  for e in $lst; guix gc --delete $e; end;
+  # for e in $lst; guix gc --referrers $e; end;
+  # for e in (ls -d1 /gnu/store/*-spacemacs-rolling-*-0.999.0-*/) guix gc --delete $e end
+
+  guix gc --list-dead > /tmp/dead.log
+  rg -N profile /tmp/dead.log
+  guix gc --delete ...
 
   guix graph --type=reverse-package
   guix graph --path

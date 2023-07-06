@@ -10,7 +10,7 @@
   #+RESULTS:
   : Yeah from emacs-lisp!
 
-  #+BEGIN_SRC bash :exports both
+  #+BEGIN_SRC bash :exports both :results output
   echo "Hello World from sh" # evaluate: ~C-c C-C~
   #+END_SRC
 

@@ -1,14 +1,44 @@
 #lang notes
 
+@block{@block-name{Rethinking Reactivity}
+  Rich Harris - Rethinking reactivity
+  https://youtu.be/AdNJ3fydeao
+
+  Reactivity = forward referencing
+  Dependency graph of elements
+
+  Functional Reactive Programming:
+  Specify dynamic behavior of a value completelly at the time of declaration.
+
+  I.e. it's about data flow, tracking values through the application. I.e. when
+  a value changes the application should react.
+
+  to reconcile ~ to compare, e.g. two bank accounts
+
+  See also svelte
+  https://svelte.dev/
+}
+
 @block{@block-name{Complexity classes & Complexity Zoo}
   https://complexityzoo.uwaterloo.ca/Complexity_Zoo
   NP      - decision problems solvable by non-deterministic TM (Turing Machine) in polynomial time
   PSPACE  - decision problems solvable by     deterministic TM                  in polynomial space
 
-  @block{@block-name{computational problem type: e.g. problems: decision, function, counting, optimization, promise, etc.}
+  @block{@block-name{computational problem type: e.g. problems:}
+    decision
+    function
+    counting
+    optimization
+    promise
+    etc.
   }
 
-  @block{@block-name{model of computational: e.g. deterministic TM (Turing Machine), non-deterministic TM, boolean circuits, quantum TM, monotone circuits}
+  @block{@block-name{model of computational: e.g. }
+    deterministic TM (Turing Machine)
+    non-deterministic TM
+    boolean circuits
+    quantum TM
+    monotone circuits
   }
 
   @block{@block-name{bounded resource(s): e.g. space, time}
@@ -257,7 +287,7 @@
 }
 
 @block{@block-name{Chomsky hierarchy of formal grammars}
-  | Grammar | Languages              | Automaton                                       | Production rules (constraints)* | Examples[3]                                                     |
+  | Grammar | Languages | Automaton | Production rules (constraints)* | Examples[3] |
   ** Meaning of symbols:
   a = terminal
   A, B = non-terminal
@@ -423,7 +453,7 @@
 
 @block{@block-name{Method Chaining}
   @javascript{
-   somethings
+   someThings
      .filter(x => x.count > 10)
      .sort((a, b) => a.count - b.count)
      .map(x => x.name)
@@ -553,7 +583,7 @@
   Referentially Transparent ~ can be replaced with some value.
 }
 
-@block{@block-name{continuations}
+@block{@block-name{Continuations}
  - concept. not a language feature
  - like "scope" or "value"
 

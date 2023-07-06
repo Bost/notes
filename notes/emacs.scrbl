@@ -50,6 +50,10 @@
 }
 
 @block{@block-name{Various}
+  ;; condp doesn't exist
+  (cond ((< n 0) "Negative")
+        ((> n 0) "Positive")
+        (t "Zero"))
 
   (defun chaos (key val)
     (let ((k '(a b c d)))
