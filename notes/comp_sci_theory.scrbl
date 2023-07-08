@@ -180,7 +180,49 @@
   free")
 }
 
-@block{@block-name{Haskell / Agda comparison:}
+@block{@block-name{Theorem provers vs. proof assistants}
+  https://en.wikipedia.org/wiki/Proof_assistant
+  both are used for formal verification and automated reasoning.
+  TPs focuse on automated proof search and providing a "yes" or "no" answer.
+  PAs provide an interactive environment for users to construct, verify, and
+  interact with formal proofs. PAs offer a higher level of interactivity and
+  control, allowing users to manually guide the proof process and explore
+  different proof strategies.
+}
+
+@block{@block-name{Haskell / Agda comparison}
+  Coq:
+  formal proof management system. It provides a formal language to write
+  mathematical definitions, executable algorithms and theorems together with an
+  environment for semi-interactive development of machine-checked proofs.
+
+  Agda:
+  dependently typed functional programming language and a proof assistant (i.e. an
+  interactive system for writing and checking proofs), based on intuitionistic
+  type theory, a foundational system for constructive mathematics developed by Per
+  Martin-Löf.
+
+  Idris:
+  Language for Type-Driven Development
+
+  Lean:
+  theorem prover and programming language, based on the calculus of
+  constructions with inductive types.
+
+  ACL2 A Computational Logic for Applicative Common Lisp
+  theorem prover based on Common Lisp. It uses a variant of Lisp syntax called
+  ACL2 syntax, which extends Common Lisp with additional constructs for
+  specifying logical formulas and proof goals.
+
+  HOL Higher Order Logic
+  theorem prover, which has various implementations, including HOL4 and HOL
+  Light. HOL Light, in particular, is implemented in OCaml but provides a
+  Lisp-like syntax for specifying and manipulating formal proofs.
+
+  Haskell:
+  statically typed, purely functional programming language with type inference
+  and lazy evaluation.
+
  |             | Haskell                              | Agda                                     |
  |-------------|--------------------------------------|------------------------------------------|
  |             |                                      | full higher order logic with existential |
@@ -213,18 +255,18 @@
 }
 
 @block{@block-name{Impossibility of a perfect type-checker for a programming language}
-  It it’s impossible to have a procedure that figures out whether an arbitrary
-  program halts, it’s easy to show that it’s impossible to have a procedure that
+  It's impossible to have a procedure that figures out whether an arbitrary
+  program halts, it's easy to show that it's impossible to have a procedure that
   is a perfect recognizer for any overall run time property. A program that
-  type-checks is guaranteed not to cause a run-time type-error. But since it’s
-  impossible to recognize perfectly when programs won’t cause type-errors, it
-  follows that the type-checker must be rejecting programs that really wouldn’t
-  cause a type-error. The conclusion is that no type-checker is perfect—you can
-  always do better!
+  type-checks is guaranteed not to cause a run-time type-error. But since it's
+  impossible to recognize perfectly when programs won't cause type-errors, it
+  follows that the type-checker must be rejecting programs that really wouldn't
+  cause a type-error. The conclusion is that no type-checker is perfect.
 }
 
 @block{@block-name{Krakatoa and Jessie: verification tools for Java and C programs}
   Why3: platform for deductive program verification
+  https://why3.lri.fr/
   git clone https://scm.gforge.inria.fr/anonscm/git/why3/why3.git
 
   A user can write WhyML programs directly and get correct-by-construction OCaml
@@ -521,7 +563,7 @@
   Programmers write code which gets in the way to understanding, rather than
   facilitate it.
   One of the most extreme examples is the code from
-  Donald Knuth’s The Art of Computer Programming. Written in the MIX assembly,
+  Donald Knuth's The Art of Computer Programming. Written in the MIX assembly,
   the code only hides the conceptual structure of presented solutions from the
   reader.
 }

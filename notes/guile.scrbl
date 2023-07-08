@@ -25,8 +25,7 @@
   Create and publish Guile projects
   https://gitlab.com/a-sassmannshausen/guile-hall
 
-  define-syntax vs. defmacro / defmacro-public
-
+  Programming concepts & philosophy about SW development & design
   https://wiki.c2.com/
 
   Google: daviwil system common

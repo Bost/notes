@@ -63,6 +63,21 @@
     maintain a coherent view of state-over-time. And that single-mutation-site
     story is the opposite of what ORMs (as commonly defined) do.
 
+  Chez Scheme:
+  https://cisco.github.io/ChezScheme/
+  - programming language and an implementation of that language, with supporting
+    tools and documentation.
+  - a superset of the language described in the Revised6 Report on the
+    Algorithmic Language Scheme (R6RS)
+
+  Macro Hygiene
+  - Chez Scheme Guile Scheme, MIT Scheme, Racket Schemes, etc. have hygienic
+    macros, i.e. you can't modify everything.
+  - one of the selling points of Scheme macros and one (of many) reasons why
+    Scheme macros are so more powerful than, say, macros in C or even in Common
+    Lisp.
+    https://github.com/mnieper/scheme-macros#breaking-hygiene
+
   CLEDE Common Lisp Emacs Development Environment
   https://emacsconf.org/2021/talks/clede/
 
@@ -74,9 +89,6 @@
 
   The Common Lisp Cheat Sheet
   https://github.com/ashok-khanna/lisp-notes
-
-  Guile Scheme, MIT Scheme, Racket Schemes, etc. all have hygienic macros, i.e.
-  you can't modify everything (TODO verify it).
 
   Racket Scheme:
   - general-purpose, multi-paradigm
@@ -113,7 +125,7 @@
     arrays and hash tables, not as hash tries. Don't use them like Clojure's
     vectors and maps, instead they work well as table keys or other identifiers.
 
-  Kawa Scheme - on JVM
+  Kawa Scheme - a Scheme Lisp on Java Virtual Machine JVM
   https://www.gnu.org/software/kawa/
 }
 
@@ -151,4 +163,94 @@
   https://news.ycombinator.com/item?id=5802960
 
   https://github.com/Bost/bash_koans
+}
+
+@block{@block-name{Chez Scheme Macro Programming}
+  define-syntax vs. defmacro / defmacro-public
+
+  Extending a Language - Powerful Macros in Scheme
+  https://github.com/mnieper/scheme-macros.git
+  @lisp{
+    (define-syntax incr!
+      (syntax-rules ()
+        ((incr!)
+         (values))
+        ((incr! x . x*)
+         (begin
+           (set! x (+ x 1))
+           (incr! . x*)))))
+
+    (define v (vector 1 2 3))
+
+    ;; #(1 2 3)
+    ;; Vector elements can be retrieved using vector-ref and mutated using vector-set!:
+    ;; (vector-ref v 2)
+    ;; 3
+
+    (vector-set! v 1 4)
+    v
+
+    (define-syntax v1
+      (identifier-syntax
+       [v1 (vector-ref v 1)]
+       [(set! v1 expr) (vector-set! v 1 expr)]))
+
+    (incr! v1)
+    v
+
+    (define-syntax define-vector-reference
+      (syntax-rules ()
+        [(define-vector-reference var vec-expr idx-expr)
+         (begin
+           (define vec vec-expr)
+           (define idx idx-expr)
+           (define-syntax var
+             (identifier-syntax
+              [var (vector-ref vec idx)]
+              [(set! var expr) (vector-set! vec idx expr)])))]))
+
+    ;; We can now use this macro as follows:
+    (define-vector-reference initial-element v 0)
+    (incr! initial-element)
+    v
+
+    (let ([x 1]
+          [y 1]
+          )
+      (list
+       (bound-identifier=? #'x #'y) ;; => f
+       (free-identifier=?  #'x #'y) ;; => f
+       ))
+
+    (let ([x 1])
+      (define outer-x #'x)
+      (let ([x 1])
+        (define inner-x #'x)
+        (list
+         ;; when outer-x inner-x appear bound, are they interchangeable?
+         ;; i.e. do they have the same symbolic name and same history?
+         (bound-identifier=? outer-x inner-x) ;; => t
+
+         ;; when outer-x inner-x appear free, are they interchangeable?
+         ;; i.e. do they refer to the same binding in their respective lexical contexts?
+         (free-identifier=? outer-x inner-x) ;; => f
+         )))
+
+    (let ([x 1])
+      (let-syntax
+          ([outer-x (identifier-syntax #'x)])
+        (define inner-x #'x)
+        (list
+         (syntax->datum outer-x)
+         (syntax->datum inner-x)
+         x
+         ;; when outer-x inner-x appear bound, are they interchangeable?
+         ;; i.e. do they have the same symbolic name and same history?
+         (bound-identifier=? outer-x inner-x) ;; => f
+
+         ;; when outer-x inner-x appear free, are they interchangeable?
+         ;; i.e. do they refer to the same binding in their respective lexical contexts?
+         (free-identifier=?  outer-x inner-x) ;; => t
+         )))
+  }
 }
