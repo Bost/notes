@@ -209,14 +209,25 @@
 
 @block{@block-name{Key bindings / shortcuts}
   # fish shell key bindings / shortcuts in the...
+  # Ctrl+l - clear
+  # Ctrl+r - search history
+  # \t - TAB, \e - Alt (Esc), \cy - Ctrl+y
+  # Ctrl+i - TAB, Ctrl+j - newwline (\n)
+  # \el __fish_list_current_token
+  # \eo __fish_preview_current_file
+  # \ew __fish_whatis_current_token
+  # \ck kill-line
+  # \cu backward-kill-line
+
   bind       # ... console
   help bind  # ... web browser
   # list of available shell commands
   /etc/inputrc
 
   # bash key bindings / shortcuts including
-  # Ctrl+L, Ctrl+R; \e - ESC, \C-y - Ctrl+y
-  # see fzf
+  # Ctrl+l - clear
+  # Ctrl+r - search history
+  # \t TAB, \e Alt (Esc), \C-y Ctrl+y
   bind -P    # -P List function names and bindings
   help bind
 

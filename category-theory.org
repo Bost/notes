@@ -2,10 +2,13 @@
 
 #+LATEX_HEADER: \usepackage{cat-7-sketches}
 #+LATEX_HEADER: \usepackage{minted}     % syntax coloring
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usetikzlibrary{cd}
 
 # https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
 # latexpreview / nolatexpreview C-c C-x C-l
 # #+STARTUP: nolatexpreview
+
 #+STARTUP: showeverything inlineimages nolatexpreview
 
 * Category Theory
@@ -47,12 +50,12 @@ _Category - informal description_:
 _Category - formal definition_:
 # TODO can it be considered to be a quadruple type?
 - A quadruple $\cat{C}: (\Ob, \Mor, \comp, \id)$
-- $\Ob(\cat{C})$ : Class of objects: $A$, $B$, $C$, $\dots$ e.g. Types / Propositions /
-  Algebras / Logic Formulas \\
+- $\Ob(\cat{C})$ : Class of objects: $A$, $B$, $C$, $\dots$ e.g. Types /
+  Propositions / Algebras / Logic Formulas \\
   An object exists in and depends upon an ambient category. \\
   An object is characterized by its morphisms going in and out of it. \\
-  Objects are always characterized up to isomorphism (in the best cases, up to
-  a unique isomorphism). E.g. there is no such thing as _the_ natural numbers. \\
+  Objects are always characterized up to isomorphism (in the best cases, up to a
+  unique isomorphism). E.g. there is no such thing as _the_ natural numbers. \\
   However, the concept of natural numbers exists.
 - $\Mor(\cat{C})$ : Morphisms (arrows): $f$, $g$, $h$, $\dots$ e.g. Computation
   / Proofs / ??? / \\
@@ -66,7 +69,8 @@ _Category - formal definition_:
 
 ** Types of categories
 _Locally Small Category LSC_:\\
-A category where each Hom-set is a small set, i.e. a set and not a proper class. \\
+A category where each Hom-set is a small set, i.e. a set and not a proper class.
+\\
 LSC "doesn't have too many morphisms" \\
 $\forall A,B \in \Ob(\cat{C}): \Hom_\cat{C}(A, B)$ is a small set. \\
 (TODO arrow weight = price of calculation; preference for compositions)
@@ -74,8 +78,8 @@ $\forall A,B \in \Ob(\cat{C}): \Hom_\cat{C}(A, B)$ is a small set. \\
 \bigskip
 
 _Small Category SC_: \\
-A locally small category such that also the objects form a small set, i.e. a set and
-not a proper class, i.e. both the objects and morphisms form small sets.
+A locally small category such that also the objects form a small set, i.e. a set
+and not a proper class, i.e. both the objects and morphisms form small sets.
 
 \bigskip
 
@@ -96,16 +100,15 @@ No matter which way you go around you get the same thing.
 \bigskip
 
 _Cartesian Closed Category CCC_ - useful in programming
-- Cartesian: has product $A \cprod B$ for any pair of objs $A$, $B$
-- Closed: has exponential $B^A$, i.e. morphisms $A \to B$ for any pair of objs
-  $A$, $B$
+- Cartesian: has product $A \cprod B$ for any pair of objects $A$, $B$
+- Closed: has exponential $B^A$, i.e. morphisms $A \to B$ for any pair of
+  objects $A$, $B$
 - 0-th power of an obj: has terminal obj $\termObj$ (for all objects there
   exists a unique map $A \to \termObj$)
 - multiplying by terminal obj $\termObj$ gives back the original obj
-- initial obj $\initObj$ - dual to terminal obj $\termObj$; Top and Bottom objs
-  i.e. any one-element
-set (= singleton) is terminal DTTO for poset 1 is such an object that any other
-obj is below it
+- initial obj $\initObj$ - dual to terminal obj $\termObj$; Top and Bottom
+  objects i.e. any one-element set (= singleton) is terminal DTTO for poset 1 is
+  such an object that any other object is below it
 - ? monoidal structure on objects ?
 
 \bigskip
@@ -120,29 +123,54 @@ along a specific object
 \bigskip
 
 _Bi-Cartesian Closed Category BCCC_: Algebra of Types can be made here
-- has coproduct for every pair of objs
+- has coproduct for every pair of objects
 - has initial obj $\initObj$
 
 \bigskip
 
-_Universal Mapping Property UMP_: The /double/ triangle of Product
+
+# Universal property is satisfied by an object in a category that is unique up
+# to unique isomorphism, and it is used to define the notion of a "universal"
+# object in a category.
+
+# "universal" object - an object that represents all objects of a certain type
+# in the category.
+
+# Imagine that you are trying to find the "best" object that represents all
+# objects of a certain type in a category. E.g. in the category of sets, you
+# want to find the "best" set that represents all sets in that category. A
+# Universal property would say that there is a set, called the "universal set",
+# that has a particular property that makes it the "best" set to represent all
+# sets in that category. This property might be that any set in the category can
+# be uniquely mapped to the universal set, or that any two sets in the category
+# that are "equivalent" in some way can be mapped to the same element in the
+# universal set.
+
+
+_Universal Mapping Property UMP_:
 - Universal - for all
 - Consists of Initial and Terminal mapping (morphism)
 - Universal Construction - 3 steps (? the triangle ?):
-1. Define a pattern:
-\begin{verbatim}
-         Z'  (Z' \cross A) ---+
-         |⎢          |⎢          \
-       h |⎢          |⎢id         \ g'
-         |⎢          |⎢            \
-    a=>b ↓          ↓               ↘
-         Z   (Z \cross A) --------> B
-                 A      g
 
-    g' = g \comp (h \cross id)
-\end{verbatim}
-2. Define ranking between matches
-3. The best match is "our guy"
+# % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbAGIAKAIIBKbrxAZseAkVHDx9Zq0Qg58gOTKefDYKIAmMdX1Sj8lVYFaU93Y8mGQZtziMFAA5vBEoABmAE4QALZIZCA4EEiiEgZsTG4gsQlJ1KlItpZ5cYmIGcWI9iAMWGD+UHRwABYhIL5ZRnJtFqr5lQDMRWmIACzUDU1sLe2d03QARjAMAAr8mkL1MFE4XZnOIG1BXEA
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[r, "u"] \arrow[rd] & F(A) \arrow[d, "F(h)", dashed] & A \arrow[d, "h", dashed] \\
+                            & F(A')                          & A'
+\end{tikzcd}
+\end{equation*}
+
+The /double/ triangle of Product:
+# % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQANEAX1PU1z5CKcqWLU6TVuwCCPPiAzY8BImXE0GLNohAyABAB1DeALbx9AIXn9lQogCYxErdN3XuEmFADm8IqAAZgBOEKZIoiA4EEhkktrsaAD6cjSM9ABGMIwACgIqwiDBWD4AFjg2ICFhETTRSADMmlI6iknWaZnZeXaquowwgRW8QaHhiJH1iE7xbiDMIJ1Zufn2-YMVaVhgrVD0cKXeldXjM1NNs63GaFjtiyDpyz2CfQ8bx2NIZzGIca5XhhuKXuj26q1exTKw0o3CAA
+\begin{equation*}
+# \begin{center}
+  \begin{tikzcd}
+  & X \arrow[ld, "p_A"'] \arrow[rd, "p_B"] \arrow[d, "u", dashed] &   \\
+A & A \times B \arrow[r, "\pi_B"] \arrow[l, "\pi_A"']             & B
+  \end{tikzcd}
+# \end{center}
+\end{equation*}
+
 
 ** Features of a category
 _Associative composability_ \\
@@ -216,16 +244,13 @@ Also:
 Homomorphism - structure-preserving mapping (between two algebraic objects). \\
 Morphishm implication structure:
 
-\begin{center}
- \begin{table}
-  \centering
-  \begin{tabular}{ccc}
-      Automorphism   &   \implies   &   Isomorphism    \\
-      \Downarrow     &              &   \Downarrow     \\
-      Endomorphism   &   \implies   &   (Homo)morphism \\
- \end{tabular}
- \end{table}
-\end{center}
+# % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEmcIBbCAJzQALLHB4gAvqXSZc+QigBM5KrUYs2ASTi8Bw0eKkzseAkTIBGVfWatEIAKJgouwSLGTpIDCflFlVtQ2GvYAFAASugCUfG4GkqowUADm8ESgAGb8vEhkINxIyiAMWGB2IC5MAEYMrNRCMHRQSGBMDAzUOHRYDGyQZZ6Z2eKIRQWIAMzUJQP2lTV1IA1NLW0d+d299v2sRiBZOYgWnRBIU8Wl5fO1IPWNzYit7Z2bfQS7XgcjeePHF7MVCDVG53FaPNYvHpvAYSCgSIA
+\begin{equation*}
+\begin{tikzcd}
+Automorphism \arrow[d, Rightarrow] \arrow[rr, Rightarrow] &  & Isomorphism \arrow[d, Rightarrow] \\
+Endomorphism \arrow[rr, Rightarrow]                       &  & (Homo)morphism
+\end{tikzcd}
+\end{equation*}
 
 Epimorphism and monomorphism are dual to each other \\
 Individual monoids themselves give category \\
@@ -247,7 +272,7 @@ composite functor, i.e. functor composition $\Fun{G} \comp \Fun{F}$.
 
 _Subobject of an object_
 If $f: X \inj Y$ is monomorphism, i.e. an injection, i.e. different $Xs \to$
-different $Ys$ - don’t smush multiple elements into one, i.e. parallel arrows,
+different $Ys$ - don't smush multiple elements into one, i.e. parallel arrows,
 then it is isomorphic (only formally different) from $Y$.
 
 I have a set of different monomorphisms to $Y$: \\
@@ -262,9 +287,9 @@ _Functor_:
 - Preserves structure between two categories
 - Is a homomorphism by definition, i.e. it preserves structure between two
   categories
-- In programming: total mapping of types; (total = all objs from the source are
-  mapped)
-- Constant functor: collapses all objs into one obj and all morphisms into an
+- In programming: total mapping of types; (total = all objects from the source
+  are mapped)
+- Constant functor: collapses all objects into one obj and all morphisms into an
   identity
 - Intuitive understanding: (endo) functor is a container - i.e. list contains
   values (Comonad is a container that already comes prefilled with many values
@@ -277,14 +302,14 @@ _Functor_:
   Endoscopy}
 - Lifting: (= applying functor) transforms a function into a corresponding
   function within another (usually more general) setting
+\begin{equation*}
+\begin{tikzcd}
+Fa \arrow[r, "Ff"]         & Fb          \\
+a \arrow[r, "f"] \arrow[u] & b \arrow[u]
+\end{tikzcd}
+\end{equation*}
+# % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADE6QBfU9TXPkIoAjOSq1GLNuwBGPPiAzY8BImRET6zVohBde-FUKJjN1bdL3zuEmFADm8IqABmAJwgBbJGRA4IJDEQBjpZGAYABQFVYRCYVxwQCyldDlcFN08fRAAmagCkAGZqUPComJM9BgSklJ02DMMQD28kfP9AxGJm1pySzqDbbiA
 
-\begin{verbatim}
-                Ff
-          Fa -------> Fb
-           ↑          ↑
-           |    f     |
-           a -------> b
-\end{verbatim}
 - Covariant functor: Same directions in src and dst category
 #+BEGIN_SRC haskell
 G f : (a -> b) -> (G a -> G b)
@@ -299,17 +324,16 @@ G f : (b -> a) -> (G a -> G b)
 #+END_SRC
 i.e. $G f : \cat{C^\op} \to \cat{D}$ respectively $Gf : \cat{C} \to \cat{D^\op}$
 
-- Bifunctor: e.g a Product - it takes two objs and produces third obj, but it
+- Bifunctor: e.g a Product - it takes two objects and produces third obj, but it
   also takes two morphisms and produces 3rd morphism which is a product of these
-  two morphisms $C \cprod D \to E$
 - List: $List(\alpha) = Nil | Const \alpha (List \alpha)$ - most intuitive(?)
+  two morphisms $C \cprod D \to E$
   functor example. It's also a type constructor: takes a type $\alpha$ and
   creates a list of $\alpha$.
-- Functoriality: A morphism is functorial, if it fulfills definition of a functor
-
-
-- Profunctor:
-  Lenses are profuntors. (In Clojure: get-in, update-in, assoc-in functions)
+- Functoriality: A morphism is functorial, if it fulfills definition of a
+  functor
+- Profunctor: Lenses are profunctors. (In Clojure: get-in, update-in, assoc-in
+  functions)
 
 Sum $\csum$ and Product $\cprod are algebraic data types (Algebra on Types): \\
 List(\alpha) = Nil | Const \alpha (List \alpha) ~ L(\alpha) = 1 + \alpha \cprod L(\alpha) => .. => L(\alpha) = 1 / (1 - \alpha) = 1 + \alpha + \alpha \cprod \alpha + \alpha \cprod \alpha \cprod \alpha + ...
@@ -318,20 +342,20 @@ Inlining and refactoring are the opposite.
 
 \bigskip
 
-_Fibre_: points mapped to the same value_
+_Fibre_: points mapped to the same value
 invertibility: function to fibre
 
 ** Natural Transformations
 - a way of/for comparing functors
 - maps Morphism(s) to commuting diagram(s) (naturality squares). i.e.
   comorphism: replacing a square of (complex) relations with a single morphism
-- picks a morphish between two Objs; Picking 1 morphishm from a Homset
+- picks a morphish between two Objects; Picking 1 morphishm from a Homset
 - Components of NaT
 - Composing ftor acting on an obj with a ftor acting on a Morphishm:
  $\alpha b \comp Ff$
 
 - Every polymorphic functions is a NaT: it is defined for every single type
-i.e. multiplication (Product) of all Objs in a Category. The same goes for
+i.e. multiplication (Product) of all Objects in a Category. The same goes for
 the dual - the Sum.
 - Functor is a container, NaT repackages the container
 - Naturality condition i.e. the Naturality Square:
@@ -404,9 +428,12 @@ $$(K \comp \alpha) * (\beta \comp F) A = K(\alpha A) \comp \beta FA$$
 composition.
 
 ** Enriched Category
-The set of morphisms between objects $X$ and $Y$ in some category $\cat{C}$: $\Hom_{\cat{C}}(X,Y)$: \\
-if the $\Hom_{\cat{C}}(X,Y)$ is also a vector space then the $\cat{C}$ is enriched over the category of sets. \\
-if the $\Hom_{\cat{C}}(X,Y)$ is also an abelian group then the $\cat{C}$ is enriched over the category of abelian groups. \\
+The set of morphisms between objects $X$ and $Y$ in some category $\cat{C}$:
+$\Hom_{\cat{C}}(X,Y)$: \\
+If the $\Hom_{\cat{C}}(X,Y)$ is also a vector space then the $\cat{C}$ is
+enriched over the category of sets. \\
+If the $\Hom_{\cat{C}}(X,Y)$ is also an abelian group then the $\cat{C}$ is
+enriched over the category of abelian groups. \\
 
 * Yoneda perspective, embeding and lemma
 _Yoneda Perspective_ - idea: \\
@@ -447,6 +474,8 @@ It's enough to define this NaT on one obj, i.e. set $\cat{C}(A,A)$ and moreover
 it's enough to define it on one point in this set i.e. the $\id_A$. The rest of
 the NaT is transported from this point.
 
+# See https://texample.net/tikz/examples/beamer-arrows/
+
 \begin{verbatim}
  (                     ) \iso \Fun{F}A
            |⎜                |⎜
@@ -461,6 +490,27 @@ the NaT is transported from this point.
            +------------------ ...
 \end{verbatim}
 
+# \tikzstyle{na} = [baseline=-.5ex]
+
+\begin{equation*}
+ (\forall X :
+        \tikz[baseline]{
+            \node[fill=blue!20,anchor=base] (t1)
+            {$ (A \to X) $};
+        } \to \Fun{F}X) \iso \Fun{F}A
+\end{equation*}
+
+\begin{itemize}[<+-| alert@+>]
+    \item NaT i.e. Polymorphic Higher Order Function
+        \tikz[na]\node [coordinate] (n1) {};
+\end{itemize}
+
+# % Now it's time to draw some edges between the global nodes. Note that we
+# % have to apply the 'overlay' style.
+\begin{tikzpicture}[overlay]
+        \path[->]<1-> (n1) edge [bend right] (t1);
+\end{tikzpicture}
+
 # * Khan Extentions: the next abstraction level
 
 * Adjoints, Adjunctions, Adjointness
@@ -473,15 +523,15 @@ formula of the type $(x, \Fun{G}y) \iso (\Fun{F}x, y)$.
 
 \bigskip
 
-_Adjunctions_ - weakening of "equality" of Categories
+_Adjunctions_: weakening of "equality" of Categories
 "inverse" is defined only for functions not functors, e.g. Currying: from a Pair
 to Function type
 
 \bigskip
 
-_Adjointness_ - constructing / generating principle
+_Adjointness_: constructing / generating principle
 - Adjunctions/Adjoins are monads ???
-examples:
+Examples:
 - product is left adjoint to exponential: $(\minus) \cross A \ladj (\minus)^A$
 - left adjointness of sum (coproduct), pairing and product: $\Sigma \ladj \Delta \ladj \Pi$
 induction, recursion, Natural Numbers (inductively defined), Lists, ...
@@ -499,7 +549,7 @@ I'm interested only if it was an even or odd value
 
 _Modeling_: mapping / injecting
 HomSet of category $\cat{C}$: $\Hom_{\cat{C}}(A,B) = \{f: A \to B\}$
-- Set of all morphisms $A \to B$ in the category $\cat{C}$. Objs of
+- Set of all morphisms $A \to B$ in the category $\cat{C}$. Objects of
   $\cat{C}$ don't need to be sets.
 - A collection of two monoids $A$,$B$ (The identity on an object is its monoidal
   operation) with a set of compatible transitions between them.
@@ -545,35 +595,41 @@ $\Hom(h,B) : \Hom(Y,B) \to \Hom(X,B)$ given by \\
 
 \bigskip
 
-_Representable functor_ \\
-$\Fun{F}: \cat{C} \to \SmSet$ is naturally isomorphic to $HomC(A,\minus)$ for
-some obj $A$ of $\cat{C}$
+_Representable functor_ $\Fun{F}: \cat{C^\op} \to \SmSet$ is naturally
+isomorphic to homset $HomC(\minus,Y)$ for some obj $X$ of $\cat{C}$. I.e.
+$\Fun{F}$ can be "represented" by an object $Y$ in $\cat{C}$ such that for any
+object $X$ in $\cat{C}$ the set of morphisms from $X \to Y$ captures the
+essential information of the functor $F$ applied to $X$.
 
-Represents:
-- Objs of $\cat{C}$ as sets
+\bigskip
+
+Representable functor represents:
+- Objects of $\cat{C}$ as sets
 - Morphisms of $\cat{C}$ as morphisms between sets, i.e. the functions
   "tabulate" and "index" can be created; mapping of function to a data-type
+- Think of a functor $\Fun{F}: \cat{C} \to \cat{D}$ as giving a picture, or
+  "representation" of $\cat{C}$ in $\cat{D}$ (Lawvere). Following Lawvere,
+  logicians often call the category 'theory', and the functor $\Fun{F} : \cat{C}
+  \to \cat{D}$ a "model" of this theory.
 
-Functors as representations (Lawvere): \\
-Think of a functor $\Fun{F}: \cat{C} \to \cat{D}$ as giving a picture,
-or "representation" of $\cat{C}$ in $\cat{D}$.
+# (TODO see Bartosz's intuition about functors in the "Programming with
+# Categories" videos)
+\bigskip
 
-Following Lawvere, logicians often call the category ‘theory’, and the functor
-$\Fun{F} : \cat{C} \to \cat{D}$ a "model" of this theory.
+For any fixed object $A$ in $\cat{C}$, we have a $HomC(A,\minus)$, such that we
+have a mapping $HomC(A,X) \to HomC(A, Y)$ when there is a morphism $X \to Y$.
 
-(TODO see Bartosz's intuition about functors in the "Programming with Categories" videos)
+\bigskip
 
-For any fix obj $A \in \cat{C}$, we have a $HomC(A,\minus)$ such that we have a
-mapping $HomC(A,X) \to HomC(A, Y)$ when there is a morphism $X
-\to Y$. E.g.: The forgetful functor $\Cat{Grp} \to \Set$ on the
-category of groups $(G, *, e)$ is represented by $(Z, 1)$.
-
-The forgetful functor $\Cat{Ring} \to \Cat{Set}$ on the category of rings is represented by
-$(Z[x], x)$, the polynomial ring in one variable with integer coefficients.
-The forgetful functor $\Cat{Vect} \to \Cat{Set}$ on the category of real vector spaces is
-represented by $(R, 1)$.
-The forgetful functor $\Cat{Top} \to \Cat{Set}$ on the category of topological spaces is
-represented by any singleton topological space with its unique $e$.
+Examples: The forgetful functor ...
+- $\Cat{Grp} \to \Cat{Set}$ on the category of groups $(G, *, e)$ is represented
+  by $(\ZZ, 1)$.
+- $\Cat{Ring} \to \Cat{Set}$ on the category of rings is represented by
+  $(\ZZ[x], x)$, the polynomial ring in one variable with integer coefficients.
+- $\Cat{Vect} \to \Cat{Set}$ on the category of real vector spaces is
+  represented by $(\RR, 1)$.
+- $\Cat{Top} \to \Cat{Set}$ on the category of topological spaces is represented
+  by any singleton topological space with its unique $e$.
 
 ** Kleisli category
 
@@ -915,7 +971,7 @@ A subset of a Cartesian Product; doesn't have a directionality; n-to-n relation
 ** in functional programming - tagged unions
 
 * Monoidal category
-Has (objs, arrows, product), looks kinda like multiplication / addition \\
+Has objects, arrows and product; looks kinda like multiplication / addition \\
 Algebra of types ... \\
 (ADT - abstract algebraic data type) \\
 
@@ -927,10 +983,11 @@ Monoidal category has:
 
 * Functor
 Structure preserving mapping $\Fun{F}: \cat{C} \to \cat{D}$ between two
-categories (objs to objs, fns to fns): i.e. if there's an arrow $c_1 \to c_2$, then
-there must be arrow $\Fun{F}c_1 \to \Fun{F}c_2$ where $\Fun{F}c_i \in \Ob(\cat{D})$.
+categories (objects to objects, morphisms to morphisms): i.e. if there's an
+arrow $c_1 \to c_2$, then there must be arrow $\Fun{F}c_1 \to \Fun{F}c_2$ where
+$\Fun{F}c_i \in \Ob(\cat{D})$.
 
-May collapse things, preserves unit obj and composition
+A functor may collapse things, preserves unit object and composition.
 
 _Endofunctor_: \\
 Mapping $\cat{C} \to \cat{C}$ from the same Cat to the same Cat. Endo ~ inside,

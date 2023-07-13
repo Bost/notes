@@ -105,26 +105,26 @@
 
   guix system -L ~/.dotfiles/.config/guix/systems init path/to/config.scm /mnt
 
-  Authenticating Git checkouts:
+  Authenticating Git checkouts (see $dotf/bin/guix-git-auth):
   - When guix pull obtains code from Git, it should be able to tell that all the
     commits it fetched were pushed by authorized developers of the project.
   - It requires cryptographically signed commits
-
+  ;;
   guix git authenticate               \
     --keyring=$(GUIX_GIT_KEYRING)     \
     --cache-key=channels/guix --stats \
     --historical-authorizations=/home/bost/dev/my-authorisation.scm \
     "$(channel_intro_commit)" "$(channel_intro_signer)"
   # --cache-key=path/to/KEY reads file from ~/.cache/guix/authentication/path/to/KEY
-
+  ;;
   By signing a commit, a developer asserts that he/she is the one who made the
   commit as its author, or he/she applied somebody else's changes after review.
   This also requires a notion of authorization: commits must have a valid
   signature, and be signed by an authorized key.
-
+  ;;
   .guix-authorizations:
   File that lists the OpenPGP key fingerprints of authorized committers
-
+  ;;
   A commit is considered authentic if and only if it is signed by one of the
   keys listed in the .guix-authorizations file of each of its parents. This is
   the authorization invariant.
@@ -247,6 +247,12 @@
   # transparently support the GNU build system, manage a project hierarchy &
   # provides tight coupling to Guix.
   guile-hall
+  # commands:
+  # --execute  -x  Carry out operations, instead of displaying them
+  hall init <project-name> --author="Jim B" --license="gpl3+" --prefix="guile" --execute
+  hall build --execute
+  hall scan --execute
+  hall dist --execute
 
   guix describe # Display information about the channels currently in use.
   guix describe --list-formats

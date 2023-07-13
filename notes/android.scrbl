@@ -110,7 +110,7 @@
   groups # check plugdev membership
 
   adb devices
-  dmesg --ctime | grep usb # --ctime  - human-readable timestamps
+  sudo dmesg --ctime | grep usb # --ctime  - human-readable timestamps
   # [...] usb 5-3: new high-speed USB device number 4 using xhci_hcd
   # [...] usb 5-3: New USB device found, idVendor=04e8, idProduct=6860, bcdDevice= 4.00
   # [...] usb 5-3: New USB device strings: Mfr=1, Product=2, SerialNumber=3

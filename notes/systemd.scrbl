@@ -59,5 +59,5 @@
 
   # access kernel logs / system logs
   # -T, --ctime     human-readable timestamp (may be inaccurate!)
-  dmesg --ctime
+  sudo dmesg --ctime
 }
