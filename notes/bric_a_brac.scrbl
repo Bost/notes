@@ -62,6 +62,8 @@
 }
 
 @block{@block-name{Various}
+  SPAM SPiced hAM
+
   CORS Cross-Origin Resource Sharing
   chrome://flags/#block-insecure-private-network-requests
 

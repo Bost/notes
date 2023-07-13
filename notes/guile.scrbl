@@ -160,15 +160,16 @@
   $ guix repl --load-path=.
   $ guix repl << EOF
     ;; it won't work - %default-system-profile is not exported
-    ;; (use-modules (guix scripts home))    %default-system-profile
-    (use-modules (guix download))           %mirrors
-    (use-modules (guix channels))           %default-channels
-    (use-modules (gnu system file-systems)) %fuse-control-file-system
+    ;; (use-modules (guix scripts home))    ,pp %default-system-profile
+    (use-modules (guix download))           ,pp %mirrors
+    (use-modules (guix channels))           ,pp %default-channels
+    (use-modules (gnu system file-systems)) ,pp %fuse-control-file-system
+    (use-modules (gnu services base))       ,pp %base-services
     (use-modules (gnu packages))
     (format #t "%patch-path:\n  ~a\n" (string-join (%patch-path) "\n  "))
-    %load-path           ; guile module load-path
-    %load-compiled-path
-    (%site-dir)
+    ,pp %load-path           ; guile module load-path
+    ,pp %load-compiled-path
+    ,pp (%site-dir)
   EOF
 
   $ guix repl
@@ -249,9 +250,7 @@
   ;; Configure interpreter by modifying the ~/.guile file
   ;; (create it if it doesn't exist) and put the following lines into it:
   ;; requires `guix install guile-colorized guile-readline`
-  (use-modules (ice-9 readline)
-               (ice-9 colorized))
-  ;;
+  (use-modules (ice-9 readline) (ice-9 colorized))
   (activate-readline)
   (activate-colorized)
 }
@@ -288,6 +287,17 @@
 
 @block{@block-name{Various code snippets}
   @lisp{
+    (use-modules (srfi srfi-13))
+    (remove (lambda (service)
+              (member (service-kind service) (list gdm-service-type)))
+            %desktop-services)
+    (remove (lambda (service)
+              (eq? (service-kind service) gdm-service-type))
+            %desktop-services)
+    ;; in guix system configuration the `delete` can be used:
+    (modify-services %desktop-services (delete gdm-service-type))
+    ;; TODO (partition ...)
+
     (use-modules (srfi srfi-13) (ice-9 regex))
     (define s "How
     Are

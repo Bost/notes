@@ -45,15 +45,16 @@
   |                (e.g. X = X11 = X Window System, Wayland, Quartz)         |
   |                                                                          |
   |  +--------------------------------+         +-------------------------+  |
-  |  |   Display Server (e.g. XOrg)   |  <--->  | Window Manager          |  |
-  |  |(i.e. Window Server Compositor) |         | (e.g. KDE, GNOME, Xfce) |  |
+  |  |   Display Server (e.g. XOrg)   |  <--->  |     Window Manager      |  |
+  |  |(i.e. Window Server Compositor) |         | e.g. KDE/KD Plasma,     |  |
+  |  |                                |         |      GNOME, Xfce, Sway  |  |
   |  +--------------------------------+         +-------------------------+  |
   |                                                                          |
   +--------------------------------------------------------------------------+
 
-  xfwm4          - Window Manager
+  xfwm4          - Xfce Window Manager
   startxfce4`    - an (bin/sh) shell script to start an Xfce session or choose
-                    Xfce Session from the graphical login manager
+                   Xfce Session from the graphical login manager
   xfce4-session  - Session Manager. Starts up the Xfce Desktop Environment
   xfdesktop      - Desktop Manager for the Desktop Environment
 

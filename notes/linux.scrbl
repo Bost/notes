@@ -138,7 +138,58 @@
   sudo tcpdump -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
 }
 
+@block{@block-name{Linux vs OpenBSD}
+  OpenBSD
+  - has "secure by default" policy. It emphasizes code correctness, simplicity,
+    and full disclosure of security issues. Only the minimum necessary services
+    are enabled by default, and all code is rigorously reviewed for potential
+    security issues.
+  - complete operating system that includes its own kernel, system utilities,
+    and software. It has a monolithic kernel and is a derivative of the BSD
+    (Berkeley Software Distribution), a Unix variant.
+  - often used in systems where security is paramount, such as firewalls,
+    intrusion detection systems, and servers.
+
+}
+
+@block{@block-name{OpenSSH}
+  has server, client and other components
+  default port 22
+}
+
 @block{@block-name{Various}
+  # Seat management takes care of mediating access to shared devices (graphics,
+  # input), without requiring the applications needing access to be root.
+
+  # A seat management daemon, that does everything it needs to do. Nothing more,
+  # nothing less. Depends only on libc.
+  seatd
+  #
+  # A seat management library allowing applications to use whatever seat
+  # management is available.
+  libseat
+  #
+  seatd / embedded seatd for standalone operation
+  elogind
+
+  elogind-service
+  runs the elogind login and seat management daemon. Elogind exposes a D-Bus
+  interface that can be used to know which users are logged in, know what kind
+  of sessions they have open, suspend the system, inhibit system suspend, reboot
+  the system, and other tasks.
+  #
+  Elogind handles most system-level power events for a computer, for example
+  suspending the system when a lid is closed, or shutting it down when the power
+  button is pressed.
+
+  # authorization information used in connecting to the X server
+  xauth
+  xauth extract - $DISPLAY > ~/.Xauthority
+  xauth info
+  # /run/user/1000/gdm/Xauthority
+
+  # manage host & user names allowed to make connections to the X server
+  xhost # See also https://logs.guix.gnu.org/guix/2020-10-08.log#233240
 
   # fix line endings
   sed -i 's/\r//g' /path/to/file
@@ -230,8 +281,9 @@
   # ldapsearch ldapadd ldapmodify
   ldap-utils
 
-  echo "one" > file.txt       # create / overwrite the content of file.txt
-  echo "two" >> file.txt      # append (concatenate) string to file.txt
+  truncate --size=0 file.txt  # create / truncate / shrink
+  echo "one" > file.txt       # create / overwrite
+  echo "two" >> file.txt      # append (concatenate) string
   tac file.txt > reversed.txt # reverse the line order / reverse lines
   cat reversed.txt
 
@@ -1249,9 +1301,11 @@
   login_shell     off
 
   # user management
-  groups USER             # groups a user is in
+  groups $USER            # primary groups a user is in
   id                      # real and effective user and group IDs
-  cat /etc/group          # available groups
+  cat /etc/group          # available (supplementary) groups; also:
+  getent group
+
   gpasswd                 # administer /etc/group and /etc/gshadow
   sudo adduser USER
   sudo deluser --remove-home USER             # userdel is a low level utility
@@ -1683,10 +1737,45 @@
   Tiling Wayland compositor and a drop-in replacement for the i3 window manager
   for X11. It works with your existing i3 configuration and supports most of i3's
   features, plus a few extras.
+  It works with the Wayland display protocol, not the X Window System.
+  ;;
+  Sway allows to arrange application windows logically, rather than spatially.
+  Windows are arranged into a grid by default which maximizes the efficiency of
+  your screen and can be quickly manipulated using only the keyboard.
+  ;;
+  DRI Direct Rendering Infrastructure
+  component of the X Window System that provides hardware-accelerated rendering.
+  ;;
+  DRI2 Direct Rendering Infrastructure extension
+  it's not a later version but a different extension not even compatible with
+  the original DRI
+  ;;
+  KMS Kernel Mode Setting
+  DRM Direct Rendering Manager
+  Linux kernel subsystems that provide functionalities for the graphical display
+  and rendering capabilities
+  ;;
+  EGL Embedded-System Graphics Library
+  interface between rendering APIs (e.g. OpenGL or Vulkan) and the underlying
+  native platform window system.
 
-  Allows to arrange application windows logically, rather than spatially. Windows
-  are arranged into a grid by default which maximizes the efficiency of your
-  screen and can be quickly manipulated using only the keyboard.
+  # video, graphics
+  # lists hardware
+  # -class CLASS    only show a certain class of hardware
+  sudo lshw -class video
+
+  # video, graphics
+  # lists all PCI devices, find information about the graphics card
+  lspci -k | grep -EA3 'VGA|3D|Display'
+
+  # Get entries from administrative database.
+  # getent [OPTION...] database [key ...]
+  #
+  # Supported databases:
+  # ahosts ahostsv4 ahostsv6 aliases ethers group gshadow hosts initgroups
+  # netgroup networks passwd protocols rpc services shadow
+  getent passwd $USER
+
 }
 
 @block{@block-name{Concurrent Versions System}
