@@ -10,6 +10,12 @@
 }
 
 @block{@block-name{Various}
+  # https://guix.gnu.org/manual/devel/en/guix.html#Keyboard-Layout
+  # https://guix.gnu.org/manual/devel/en/guix.html#Keyboard-Layout-1
+  # available keyboard layouts
+  cat /run/current-system/profile/share/keymaps
+  man loadkeys
+
   (use-modules (srfi srfi-19)#| date->string |#
                (guix swh)    #| Software Heritage |#)
   (define o (lookup-origin "https://github.com/Bost/corona_cases"))

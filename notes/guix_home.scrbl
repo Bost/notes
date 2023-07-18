@@ -100,20 +100,4 @@
   Copy public keys to the available machines
   Login to https://gitlab.com add SSH Key https://gitlab.com/-/profile/keys
   Login to https://github.com add SSH Key https://github.com/settings/ssh/new
-
-  # Setup xfce keybindings and shortcuts:
-  # See:
-  # - available keyboard layouts: /run/current-system/profile/share/keymaps
-  # - `man loadkeys`
-  # - http://docs.xfce.org/xfce/xfconf/xfconf-query
-  xfconf-query --channel xfce4-keyboard-shortcuts -l | rg Super
-  xfconf-query --channel xfce4-keyboard-shortcuts \
-                 --property "/xfwm4/custom/<Super>Tab" --reset
-
-  Setup Displays
-
-  Setup xfce4-pannel: Position, Icons, etc.:
-  Copy the xfce4 configuration from a different machine
-  Window Buttons context menu (right-click in the middle of the panel)
-  -> Properties -> Window grouping: -> Never
 }
