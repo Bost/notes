@@ -11,11 +11,26 @@
   : Yeah from emacs-lisp!
 
   #+BEGIN_SRC bash :exports both :results output
-  echo "Hello World from sh" # evaluate: ~C-c C-C~
+  echo "Hello World from bash" # evaluate: ~C-c C-C~
   #+END_SRC
 
   #+RESULTS:
-  : Hello World from sh
+  : Hello World from bash
+
+  #+BEGIN_SRC bash :exports both :results output
+  echo "Hello World from bash" # evaluate: ~C-c C-C~
+  #+END_SRC
+
+  #+BEGIN_SRC shell :exports both :results output
+  echo "Hello World from shell" # evaluate: ~C-c C-C~
+  #+END_SRC
+
+  #+RESULTS:
+  : Hello World from shell
+
+  #+BEGIN_SRC fish :exports both :results output
+  crep 'mpstat\|iostat'
+  #+END_SRC
 
   #+begin_src clojure :results silent
   ;; ":results silent" causes result to be displayed in the mini-buffer

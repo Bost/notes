@@ -880,44 +880,6 @@
   # :ps :top :htop currend working dir of PROCESS_ID
   cat /proc/PROCESS_ID/cwd
 
-  # :xfce :ubuntu :popup :message desktop notification
-  notify-send "Hello World"
-
-  # modify keymaps and pointer button mappings in X
-  xmodmap -pm
-  # See https://unix.stackexchange.com/a/126795
-  # shift       Shift_L (0x32),  Shift_R (0x3e)
-  # lock        Caps_Lock (0x42)
-  # control     Control_L (0x25),  Control_R (0x69)
-  # mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
-  # mod2        Num_Lock (0x4d)
-  # mod3
-  # mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
-  # mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
-  # keyboard: print contents of X events
-  xev
-
-  # shortcuts keybindings
-  xfce4-keyboard-settings
-  # https://forum.manjaro.org/t/cant-switch-windows-with-super-tab/2406/4
-  #
-  # http://docs.xfce.org/xfce/xfconf/xfconf-query
-  xfconf-query --list --verbose --channel xfce4-keyboard-shortcuts # -lvc
-  xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/custom/<Super>Tab" --reset
-  # following might not be needed
-  xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/default/<Super>Tab" --reset
-  xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/custom/<Super>Tab" --create --type string --set "empty"
-  xfconf-query --channel xfce4-keyboard-shortcuts --property "/xfwm4/default/<Super>Tab" --create --type string --set "empty"
-  #
-  # if changes in the xml don't work, use xfce4-settings-editor
-  locate xfce4-keyboard-shortcuts.xml
-  find ~ -name xfce4-keyboard-shortcuts.xml
-  # ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-
-  #
-  gnome-session-quit
-  xfce4-session-logout
-
   # difference between nohup, disown, & https://unix.stackexchange.com/a/148698
   # - puts the job in the background, that is, makes it block on attempting to
   # read input, and makes the shell not wait for its completion.
@@ -945,29 +907,6 @@
 
   # :virtualbox restart clipboard
   killall VBoxClient && VBoxClient --clipboard & disown
-
-  # restart xfce when the title bar dissapears from xfwm4 or execute
-  #   rm -r ~/.cache/sessions
-  pkill -KILL -u $USER
-
-  # reset / remove xfce user settings
-  rm -rf \
-    ~/.local/share/xfce4/ \
-    ~/.cache/sessions/ \
-    ~/.cache/xfce4/ \
-    ~/.cache/xfce4-indicator-plugin.log \
-    ~/.config/xfce4/ \
-    ~/.config/xfce4-session/ \
-    ~/.config/xubuntu/
-  # also (reset and restart xfce4-panel):
-  xfce4-panel --quit
-  pkill xfconfd
-  rm -rf \ ~/.config/xfce4/panel
-           ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-  xfce4-panel
-
-  sudo systemctl | grep dm
-  sudo systemctl restart <dm service>
 
   # anti-freeze / WD40
   killall -SIGUSR2 emacs
