@@ -111,7 +111,24 @@
   git diff --name-only <branch1>..<branch2>  # between 2 branches
   git diff --name-only <branch>              # between <branch> and the HEAD
   git diff --name-only 5890e37..ebbf4c0      # between 2 commits
-  git diff --name-status <branch1> <branch2> # show status D-deleted M-modified
+  git diff --name-status <branch1> <branch2> # show modification types for files
+
+  # --name-status option is a parameter for `git diff` and `git log`.
+  # list modified files along with the type of modification:
+  # A: The file was added.
+  # M: The file was modified.
+  # D: The file was deleted.
+  # R: The file was renamed.
+  # C: The file was copied.
+  # U: The file is unmerged. You'll see this after a merge conflict.
+
+  # list all files changed / touched in a particular commit
+  # see
+  # `diff-tree` won't work when looking at the root commit. (Use --root flag)
+  git diff-tree --no-commit-id --name-only               -r <commit-ish>
+  git diff-tree --no-commit-id             --name-status -r <commit-ish>
+  git show --pretty=""         --name-only                  <commit-ish>
+  git ls-tree                  --name-only               -r <commit-ish>
 
   # find commit containing last change of a file - as in gitk
   git log   --perl-regexp <filepath>
@@ -286,8 +303,9 @@
   # show commit messages matching <pattern>
   git log --oneline --grep="<pattern>"
 
-  # find / list all commits changing / touching specific file
-  git log --follow --name-only --format='%H' -- path/to/file
+  # find / list all commits changing / touching some file
+  # find / list all commits which changed / touched some file
+  git log --follow --name-only --format='%H' -- /path/to/file
   git log --follow --format='%H' \
           --after="2023-04-08 14:04:42" \
           --before="2023-04-12 14:29:23" \
