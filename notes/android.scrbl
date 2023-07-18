@@ -106,11 +106,12 @@
   # portal on /run/user/1000/doc type fuse.portal (rw,nosuid,nodev,relatime,user_id=1000,group_id=1000)
 
   # on Ubuntu
-  sudo aptitude install android-tools-adb android-tools-fastboot
+  sudo apt install android-tools-adb android-tools-fastboot
   groups # check plugdev membership
 
   adb devices
-  sudo dmesg --ctime | grep usb # --ctime  - human-readable timestamps
+  # -T, --ctime     human-readable timestamp (may be inaccurate!)
+  sudo dmesg --ctime | grep usb
   # [...] usb 5-3: new high-speed USB device number 4 using xhci_hcd
   # [...] usb 5-3: New USB device found, idVendor=04e8, idProduct=6860, bcdDevice= 4.00
   # [...] usb 5-3: New USB device strings: Mfr=1, Product=2, SerialNumber=3

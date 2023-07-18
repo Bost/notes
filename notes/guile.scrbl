@@ -287,7 +287,7 @@
 
 @block{@block-name{Various code snippets}
   @lisp{
-    (use-modules (srfi srfi-13))
+    (use-modules (srfi srfi-1))
     (remove (lambda (service)
               (member (service-kind service) (list gdm-service-type)))
             %desktop-services)

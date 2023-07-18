@@ -1,51 +1,31 @@
 #lang notes
 
-@block{@block-name{Heroku}
-  heroku login --app <APP-NAME>
-  # Use Git to clone the repository / source code to a local machine
-  heroku git:clone  --app <APP-NAME>
+@block{@block-name{tmux}
+  C-b \"  # split horizontally (just the double quote, without the '\')
+  C-b %   # split vertically
+  C-b x   # kill pane
+  C-d     # kill pane without confirmation
+  C-b up / down / left / right  # move between the panes
+  C-b z   # toggle zoom of the active pane
+  C-b c / x   # create (open) / kill (close) window
+  C-b n / n   # switch between windows; * indicated active window
+  C-b , <window-name>   # rename window
+  C-b d   # disconnect from a session
+  tmux attach -t <target-number>  # connect to session <target-number>
+  tmux list-sessions    # also `tmux ls`
+  C b s <session-name>  # also list-sessions
 
-  # Show configuration / List all environment variables
-  heroku config --app <APP-NAME>
-  heroku config:get <VARIABLE> --app <APP-NAME>
-  heroku config:set <VARIABLE>=<VALUE> --app <APP-NAME>
+  C b $ <session-name>  # rename session
+  tmux new -s <session-name>  # open a new session called <session-name>
 
-  # PostgreSQL database command line access
-  heroku pg:psql --app <APP-NAME> <DATABASE>
+  # Reload configuration
+  tmux source $XDG_XONFIG_HOME/tmux.conf
 
-  # Inspect logfile:
-  heroku plugins:install heroku-papertrail --app <APP-NAME>
-  heroku pt ":type -'ssl-client-cert' -'$MY_TELEGRAM_ID'" --app <APP-NAME> | grep -v -e '^[[:space:]]*$
-  # open papertrail
-  heroku addons:open papertrail --app <APP-NAME>
+  # Cheatsheet
+  https://tmuxcheatsheet.com/
 
-  # Shell / Command line access. It reads the .bashrc and/or .bash_profile
-  heroku run bash --app <APP-NAME>
-
-  # Install on Ubuntu: `sudo snap install heroku --classic` doesn't work
-  # See https://github.com/heroku/cli/issues/822
-  curl https://cli-assets.heroku.com/install.sh | sh
-
-  # Install on Guix:
-  npm install --global heroku
-  # It may lead to:
-  #    fatal error: uv.h: No such file or directory
-  # which apparently may be ignored. See https://help.heroku.com/1104958
-  sudo rm /usr/local/bin/heroku
-  sudo ln -s /home/bost/.npm-packages/bin/heroku /usr/local/bin/heroku
-
-  # Restart / Stop and start
-  heroku ps:restart --app <APP-NAME>
-  heroku ps:scale web=0 --app <APP-NAME> && heroku ps:scale web=1 --app <APP-NAME>
-
-  # Deploy to test / production / etc.
-  heroku pipelines:promote --app <APP-NAME>
-
-  # `heroku ...` adds a new environment variable "PORT". Its default value
-  # is 5000 when running `heroku local ...`. It can be changed using the '-p'
-  # parameter. The value of "PORT" is random when the app is running on a
-  # Heroku-server. See `(System/getenv "PORT")`
-  heroku local -p 7000
+  # Plugins
+  https://github.com/tmux-plugins/tpm
 }
 
 @block{@block-name{How to verify your Ubuntu download}
@@ -149,12 +129,30 @@
     (Berkeley Software Distribution), a Unix variant.
   - often used in systems where security is paramount, such as firewalls,
     intrusion detection systems, and servers.
-
 }
 
 @block{@block-name{OpenSSH}
+  OpenSSH Full Guide - Everything you need to get started!
+  https://youtu.be/YS5Zh7KExvE
+
   has server, client and other components
   default port 22
+}
+
+@block{@block-name{shutdown vs halt}
+  shutdown
+  brings the system down in a secure way. All logged-in users are notified that
+  the system is going down, and login operations are blocked.
+
+  halt
+  simply stops all processing. It brings the system down to its lowest level of
+  operations, stopping all running services and processes.
+}
+
+@block{@block-name{tail vs less}
+  Instead of `tail -f ...` try to use `less +F ...`.
+  `tail -f ...` is better when watching multiple files at the same time.
+  See https://www.brianstorti.com/stop-using-tail/
 }
 
 @block{@block-name{Various}
@@ -197,13 +195,13 @@
   # use any of the following commands to reboot:
   sudo reboot
   sudo shutdown -r now
-  # shutdown -r -t 30  # reboot in 30 seconds
+  sudo shutdown -r -t 30  # reboot in 30 seconds
   sudo init 6
 
   # use any of the following commands to shut down:
   sudo poweroff
-  # shutdown -h -t 30  # shut down in 30 seconds
   sudo shutdown -h now
+  sudo shutdown -h -t 30  # shut down in 30 seconds
   sudo halt
   sudo init 0
 
@@ -961,11 +959,11 @@
     ~/.config/xfce4/ \
     ~/.config/xfce4-session/ \
     ~/.config/xubuntu/
-
-  # also:
+  # also (reset and restart xfce4-panel):
   xfce4-panel --quit
   pkill xfconfd
-  rm -rf ~/.config/xfce4/panel ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+  rm -rf \ ~/.config/xfce4/panel
+           ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
   xfce4-panel
 
   sudo systemctl | grep dm
@@ -1295,7 +1293,8 @@
   sudo --login
   sudo -i
 
-  # login vs. non-login shell; see https://unix.stackexchange.com/a/237672
+  # login vs non-login shell
+  # see https://unix.stackexchange.com/a/237672
   ssh -t $USER@$hostname /bin/sh
   sh-5.1$ shopt login_shell
   login_shell     off
@@ -1390,8 +1389,8 @@
   # list(?) linux kernel modules
   modprobe --show-config
 
-  # :vbox
-  sudo aptitude install virtualbox-guest-additions-iso
+  # vbox aptitude
+  sudo apt install virtualbox-guest-additions-iso
   sudo /etc/init.d/virtualbox restart
   sudo /etc/init.d/virtualbox-guest-utils start
 
@@ -1594,12 +1593,6 @@
   mysql_install_db 2>&1 | sed '/^$marker1/,/$marker2$/d'
 }
 
-@block{@block-name{tail vs less}
-  Instead of `tail -f ...` try to use `less +F ...`.
-  `tail -f ...` is better when watching multiple files at the same time.
-  See https://www.brianstorti.com/stop-using-tail/
-}
-
 @block{@block-name{rsync}
   # rsync must be installed on the target machine!
   # March 2022: the scp Secure Copy Protocol is obsolete! Use sftp or rsync
@@ -1730,105 +1723,4 @@
   # see also jack active ports & some extra information
   jack_lsp
   jack_lsp --connections  # list connections to/from each port
-}
-
-@block{@block-name{Sway}
-  https://swaywm.org/
-  Tiling Wayland compositor and a drop-in replacement for the i3 window manager
-  for X11. It works with your existing i3 configuration and supports most of i3's
-  features, plus a few extras.
-  It works with the Wayland display protocol, not the X Window System.
-  ;;
-  Sway allows to arrange application windows logically, rather than spatially.
-  Windows are arranged into a grid by default which maximizes the efficiency of
-  your screen and can be quickly manipulated using only the keyboard.
-  ;;
-  DRI Direct Rendering Infrastructure
-  component of the X Window System that provides hardware-accelerated rendering.
-  ;;
-  DRI2 Direct Rendering Infrastructure extension
-  it's not a later version but a different extension not even compatible with
-  the original DRI
-  ;;
-  KMS Kernel Mode Setting
-  DRM Direct Rendering Manager
-  Linux kernel subsystems that provide functionalities for the graphical display
-  and rendering capabilities
-  ;;
-  EGL Embedded-System Graphics Library
-  interface between rendering APIs (e.g. OpenGL or Vulkan) and the underlying
-  native platform window system.
-
-  # video, graphics
-  # lists hardware
-  # -class CLASS    only show a certain class of hardware
-  sudo lshw -class video
-
-  # video, graphics
-  # lists all PCI devices, find information about the graphics card
-  lspci -k | grep -EA3 'VGA|3D|Display'
-
-  # Get entries from administrative database.
-  # getent [OPTION...] database [key ...]
-  #
-  # Supported databases:
-  # ahosts ahostsv4 ahostsv6 aliases ethers group gshadow hosts initgroups
-  # netgroup networks passwd protocols rpc services shadow
-  getent passwd $USER
-
-}
-
-@block{@block-name{Concurrent Versions System}
-  # restart cvs daemon
-  sudo /etc/init.d/cvsd restart / start / stop / status
-
-  # diff tagX tagY
-  cvs diff -r tagX -r tagY
-
-  # get clean copy
-  cvs update -C ./path/to/file.ext
-
-  # :cvs get revision 1.11
-  cvs update -P -C -r 1.11 ./path/to/file.ext
-
-  # checkout module from branch or tag
-  cvs checkout -r branchOrTag module
-
-  # commit file with multi-line commit message
-  cvs commit -m "fst-comment-line\nsnd-comment-line" path/to/file.ext
-
-  # update file
-  cvs log    -P -d ./path/to/file.ext
-
-  # reminder to leave in 15 minutes / at 13:55
-  leave +15 / leave 1355
-
-  # delete NormalTag from file.ext in version 1.17
-  cvs tag    -d -r 1.17 NormalTag ./path/to/file.ext
-
-  # delete BranchTag from file.ext in version 1.17
-  cvs tag -B -d -r 1.17 BranchTag ./path/to/file.ext
-
-  # move   BranchTag to   file.ext in version 1.19
-  cvs tag -B -F -r 1.19 BranchTag ./path/to/file.ext
-
-  # create BranchTag on   file.ext in version 1.19
-  cvs tag -b    -r 1.19 BranchTag ./path/to/file.ext
-
-  # move   NormalTag to   file.ext in version 1.63
-  cvs tag    -F -r 1.63 NormalTag ./path/to/file.ext
-
-  # version and tags
-  cvs log file.ext
-  cvs status -v file.ext
-
-  # list files associated with a tag; (no blank between -r and TAGNAME)
-  cvs -q rlog -R -N -S -rTAGNAME MODULENAME
-
-  # debug and trace information
-  cvs -d cvs -t -d :pserver:faizal@"@"localhost:/myrepos \
-      ci -m "test" -l "src/foo/Foo.ext"
-
-  #
-  cvs add file.ext
 }

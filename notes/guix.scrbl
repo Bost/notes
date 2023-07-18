@@ -1,5 +1,14 @@
 #lang notes
 
+@block{@block-name{NixOS Flakes}
+  New system for managing Nix eco system
+
+  # guix time-machine with channels is equal to nix flakes
+  # https://logs.guix.gnu.org/guix/2023-01-31.log#094922
+  # See 7.3 Replicating Guix in manual
+  # https://guix.gnu.org/manual/devel/en/html_node/Replicating-Guix.html
+}
+
 @block{@block-name{Various}
   (use-modules (srfi srfi-19)#| date->string |#
                (guix swh)    #| Software Heritage |#)

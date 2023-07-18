@@ -44,12 +44,28 @@
   | ~SPC p l~     | project layout          |
 }
 
-@block{@block-name{EIEIO Enhanced Implementation of Emacs Interpreted Objects}
-  - system for creating and working with object-oriented code in Emacs Lisp.
-  - additional features on top of the Emacs Lisp object system
+@block{@block-name{term vs vterm vs multiterm (multi-term)}
+  term
+  good enough for simple command line task
+
+  vterm
+  better perfomance than term, more accurate terminal emulation, for
+  more complex programs.
+
+  multiterm (multi-term)
+  - mode based on term.el, for managing multiple (terminals) terminal buffers.
+  - has better defaults, more user-friendly keybindings, more configuration
+    options etc.
 }
 
 @block{@block-name{Various}
+  EIEIO Enhanced Implementation of Emacs Interpreted Objects
+  - system for creating and working with object-oriented code in Emacs Lisp.
+  - additional features on top of the Emacs Lisp object system
+
+  universal prefix argument ~C-u~
+  numerical prefix argument ~C-u <number>~ or ~C-<number>~
+
   ;; condp doesn't exist
   (cond ((< n 0) "Negative")
         ((> n 0) "Positive")

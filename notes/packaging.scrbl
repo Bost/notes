@@ -24,6 +24,15 @@
   sudo snap help --all
   sudo snap refresh # i.e. update / upgrade
 
+  sudo snap refresh snap-store
+  # error: cannot refresh "snap-store": snap "snap-store" has running apps (snap-store), pids: <...>
+  kill <...>
+  # or:
+  ps -e | grep snap-store #id blocking process
+  kill #id
+  # sudo snap refresh snap-store
+  sudo snap refresh
+
   # access to a file / directory
   # When: Error initializing settings: Failed saving settings file:
   # - Error: Unable to open settings file /path/to/.bitcoin/settings.json for writing
