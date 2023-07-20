@@ -3,6 +3,10 @@
 @block{@block-name{Org Mode}
   http://ehneilsen.net/notebook/orgExamples/org-examples.html
 
+  #+begin_src chatgpt-shell
+  Mirror, mirror, who's the most beautiful person on Earth?
+  #+end_src
+
   #+BEGIN_SRC emacs-lisp
   (message "Yeah from emacs-lisp!")
   #+END_SRC

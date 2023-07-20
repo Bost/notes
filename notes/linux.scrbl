@@ -28,7 +28,7 @@
   https://github.com/tmux-plugins/tpm
 }
 
-@block{@block-name{How to verify your Ubuntu download}
+@block{@block-name{Verify Ubuntu download}
   # Obtain key(s) 0x46181433FBB75451 and 0xD94AA3F0EFE21092 from the Ubuntu key
   # server
   gpg --keyid-format long --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x46181433FBB75451 0xD94AA3F0EFE21092
