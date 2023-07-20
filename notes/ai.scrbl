@@ -2,6 +2,10 @@
 
 @block{@block-name{Various}
 
+  Accessing Llama 2 from the command-line with the llm-replicate plugin
+  https://simonwillison.net/2023/Jul/18/accessing-llama-2/
+  Llama 2: openly licensed Large Language Model from Meta AI.
+
   DL Deep Learning is a subset of ML Machine Learning is a subset of AI
   Artificial Intelligence
 
@@ -17,15 +21,15 @@
 
   If possible prefer building a simple rule-based system over ML.
 
-  in ML:
+  in ML Machine Learning:
   Inputs a.k.a Features
   Output a.k.a Labels
 
-  DL is good for:
+  DL Deep Learning is good for:
   - problems with many rules
   - problems with changing environment -> adaptation
   - discovering insights in large datasets
-  DL is not good for:
+  DL Deep Learning is not good for:
   - when explainability is needed
   - when traditional approach is better
   - when errors are unacceptable -> probabilities
