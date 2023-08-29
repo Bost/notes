@@ -116,6 +116,9 @@
   sudo tcpdump -s 0 -A -n -l | egrep -i "POST /|pwd=|passwd=|password=|Host:"
   # Capture cookies from server and from client
   sudo tcpdump -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
+
+  # "telnet with SSL encryption"
+  openssl s_client -connect localhost:30001
 }
 
 @block{@block-name{Linux vs OpenBSD}
@@ -156,6 +159,22 @@
 }
 
 @block{@block-name{Various}
+  xxd    # make a hexdump
+  xxd -r # make a hexdump reverse
+
+  # rotate by 13 places https://en.wikipedia.org/wiki/ROT13
+  echo "Gur cnffjbeq vf WIAOOSFzMjXXBC0KoSKBbJ8puQm5lIEi" | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+  # https://overthewire.org/wargames/
+  # For your convenience we have installed a few useful tools which you can find
+  # in the following locations:
+  gef (https://github.com/hugsy/gef) in /opt/gef/
+  pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+  peda (https://github.com/longld/peda.git) in /opt/peda/
+  gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+  pwntools (https://github.com/Gallopsled/pwntools)
+  radare2 (http://www.radare.org/)
+
   # Seat management takes care of mediating access to shared devices (graphics,
   # input), without requiring the applications needing access to be root.
 
@@ -208,6 +227,11 @@
   # Temporarily change language for terminal messages/warnings/errors
   # https://askubuntu.com/q/142812
   LANGUAGE=fr ls NoSuchFile
+  # change the language for man command
+  man --locale=en nmap # see locale --all-locales
+
+  # troff: <standard input>:2749: warning [p 36, 3.7i]: can't break line
+  set MANWIDTH 160; man --locale=en nmap | rg '\\-s'
 
   https://www.wezm.net/technical/2019/10/useful-command-line-tools/
   https://github.com/tldr-pages/tldr
@@ -231,6 +255,8 @@
   basenc --base64
   # "Hello world!" == "SGVsbG8gd29ybGQh"
   https://stackoverflow.com/a/62017480/5151982
+
+  echo "base64 encoded string / text" | base64 --decode
 
   # bat - A cat(1) clone with syntax highlighting and Git integration.
   bat --pager=never README.md
@@ -312,7 +338,15 @@
   chrome://net-internals/#hsts
 
   # :net - ports listening for connection (i.e. open ports)
+  # -s<Letter>   scan for something
   sudo nmap -sT -O localhost
+  # -sL: List Scan - simply list targets to scan
+  # -sn: Ping Scan - disable port scan
+  # This is by default one step more intrusive than the list scan, and can often
+  # be used for the same purposes. It allows light reconnaissance of a target
+  # network without attracting much attention. Knowing how many hosts are up is
+  # more valuable to attackers than the list provided by list scan of every
+  # single IP and host name.
   sudo nmap -sn IP_RANGE
 
   # show open ports
@@ -737,7 +771,8 @@
 
   # output line-numbers
   diff --unchanged-line-format="" --old-line-format="" \
-       --new-line-format=":%dn: %L" fold fnew
+       --new-line-format=":%dn: %L" oldfile newfile
+  diff --color -u $(ls)
 
   # new line separator for each grep result sh script
   grep "pattern" /path/to/file | awk '{print $0,"\n"}'
@@ -750,6 +785,9 @@
 
   # write output to stdout; zcat and gunzip -c are identical
   gunzip -c / zcat
+  # -c --stdout --to-stdout
+  gunzip  --stdout data.gz > data.bz2  # don't overwrite the data.gz
+  bunzip2 --stdout data.bz2 > data.x
 
   # commit log since ...
   svn log -r \{2017-01-01\}:HEAD REPO_URL/MODULE > svn.log
@@ -949,6 +987,9 @@
   # login to remote host using authorized public key
   ssh-copy-id USER@"@"HOST
 
+  # connect using private key instead of password
+  ssh -p 2220 -i ./sshkey.private bandit14@localhost
+
   # sshfs - network filesystem client to connect to SSH servers
   # See http://fuse.sourceforge.net/sshfs.html.
   # mount a folder/filesystem securely over a network
@@ -1064,7 +1105,7 @@
   # report or omit repeated lines; works only on adjacent duplicate lines
   uniq
   # deduplicate
-  sort file.txt | uniq
+  sort file.txt | uniq --unique
   awk '!visited[$0]++' file.txt > deduplicated-file.txt
 
   # :net :ping :traceroute - check connection
@@ -1111,6 +1152,10 @@
 
   # :net what is currently using inet
   lsof -P -i -n | cut --fields=1 --delimiter=" " | uniq | tail --lines=+2
+
+  # rm: cannot remove '/path': Device or resource busy
+  # see https://www.positioniseverything.net/umount-target-is-busy/
+  lsof +D /path
 
   # list open files (see what is currently using a file) whose inet address
   # matches ADDR; -t: terse output
@@ -1488,6 +1533,7 @@
   sed - stream editor
   awk - written by Alfred V. Aho, Peter J. Weinberger, Brian W. Kernighan
   text processing, data extraction, reporting tool
+  https://learnbyexample.github.io/learn_gnuawk/awk-introduction.html
 
   # cut huge file: content between lines 10 and 20 / print 5th line
   sed -n "10,20p" /path/to/file / sed -n 5p /path/to/file
