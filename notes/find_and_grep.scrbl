@@ -1,6 +1,13 @@
 #lang notes
 
 @block{@block-name{Find and Grep}
+  #+BEGIN_SRC fish :results output
+  # filesize is exactly 1033 bytes
+  find . -type f -size 1033c -user bandit7 -group badit6 | sort
+
+  # -a, --text
+  # Process a binary file as if it were text; equivalent to --binary-files=text
+  grep --binary-files=text -oP "[[:alnum:]]{4,}" binary-mixed-with-text.txt
 
   # look up all indices of all Info manuals.
   info --apropos "search-string"
@@ -137,6 +144,10 @@
   # ripgrep: print only first capture group $1
   ls /gnu/store/*-emacs-pippel-* | rg  '(.*):' --replace '$1'
 
+  # scap for open ports in the range 31000 to 31999 and print them using \K for
+  # capture group and sort them
+  ss -tulpn | grep -oP "0.0.0.0:\K(31[0-9]{3})" | sort
+
   # grep
   # \Z  matches the EOF end-of-file
 
@@ -219,5 +230,5 @@
 
   # search through all guix and guile code
   rg --no-ignore-vcs -g '*.{scm,c,h}' -w "word\\s" $dgx $dev/guile
-
+  #+END_SRC
 }

@@ -4,10 +4,11 @@
   # check if a file contains only binary zeros
   # https://stackoverflow.com/a/20226139/5151982
   # bash
-  <file.ext      tr -d '\0' | read -n 1 || echo "All zeroes."
-  cat file.ext | tr -d '\0' | read -n 1 || echo "All zeroes."
+  <file.ext      tr --delete '\0' | read --nchars 1 || echo "All zeroes."
+  cat file.ext | tr --delete '\0' | read --nchars 1 || echo "All zeroes."
   # fish-shell
-  cat file.ext | tr -d '\0' | read -n 1 && echo -e "\nHas some content." || echo "All zeroes."
+  cat file.ext | tr --delete '\0' | read --nchars 1 \
+      && echo -e "\nHas some content." || echo "All zeroes."
 
   # include other script; also in bash
   source /pth/to/script
