@@ -1,6 +1,9 @@
 #lang notes
 
 @block{@block-name{tmux}
+  # tmux vs. screen
+  https://superuser.com/a/236160
+
   C-b \"  # split horizontally (just the double quote, without the '\')
   C-b %   # split vertically
   C-b x   # kill pane
@@ -132,14 +135,6 @@
     (Berkeley Software Distribution), a Unix variant.
   - often used in systems where security is paramount, such as firewalls,
     intrusion detection systems, and servers.
-}
-
-@block{@block-name{OpenSSH}
-  OpenSSH Full Guide - Everything you need to get started!
-  https://youtu.be/YS5Zh7KExvE
-
-  has server, client and other components
-  default port 22
 }
 
 @block{@block-name{shutdown vs halt}
@@ -297,6 +292,27 @@
   # TCP proxies; shell-script based HTTP clients / servers;
   # network daemon testing; a SOCKS or HTTP ProxyCommand for ssh
   netcat
+  #
+  # -l Listen for an incoming connection rather than initiating a connection to
+  # a remote host. The destination and port to listen on can be specified either
+  # as non-optional arguments, or with options -s and -p re‐ spectively. Cannot
+  # be used together with -x or -z. Additionally, any timeouts specified with
+  # the -w option are ignored.
+  #
+  # Create a server listening on the port 30003 in the background.
+  echo "This is a socket message." | nc -l localhost 30003 &
+  # After connecting to the port 30003 the server using:
+  nc localhost 30003
+  # the server send the message "This is a socket message." to client over the
+  # socket and terminates.
+  #
+  # See also
+  # https://unix.stackexchange.com/a/336919
+  # https://www.geeksforgeeks.org/coproc-command-in-linux-with-examples/
+  #
+  # connect to localhost:30003 and send there the content of file-with-messages
+  # line by line
+  cat file-with-messages | nc localhost 30003
 
   # :net :arp - Network security auditing tool
   hunt
@@ -756,10 +772,6 @@
   # See also
   https://resolve.rs/
 
-  # exec disc usage command on a remote host and sort results
-  ssh HOST_ALIAS du -h --max-depth=1 /path/to/dir | sort -h
-  climate ssh-mount / ssh-unmount # climate - command line tools for Linux
-
   # recursively compare dirA with dirB; show only filenames: -q (quiet)
   diff -rq dirA dirB | sort
 
@@ -813,17 +825,6 @@
 
   # system information (kernel version etc.)
   uname -a
-
-  # tail a (log)file over ssh
-  # -t force pseudo-terminal allocation
-  ssh -t user@"@"hostname "tail -f /path/to/file"
-  # -n redirects stdin from /dev/null
-  ssh -n user@"@"hostname "tail -f /path/to/file" &
-
-  ssh-keygen
-  # :github now copy-paste the ~/.ssh/id_rsa.pub to github under
-  # "Account settings / SSH keys / Add another public key"
-  cat ~/.ssh/id_rsa.pub
 
   # Execute a command as another user
   pkexec
@@ -968,34 +969,7 @@
   # brief description of CMD / help for shell built ins
   whatis CMD / help
 
-  # remote login using different / specific shell
-  ssh -t USER@"@"HOST "bash -l"
-
-  # :net
-  # responds with 'ssh: connect to host ipv6-address port 22: Invalid argument'
-  ssh -6 IPV6_ADDRESS
-  ping6 -I wlan0 -c 4 IPV6_ADDRESS # responds with 'ping: unknown iface wlan0'
-
-  # compare a remote file with a local file
-  ssh user@"@"host cat ./path/to/remotefile | diff ./path/to/localfile -
-
-  # enable remote access / login...
-  sudo apt install openssh-server
-  sudo systemctl status ssh
-  sudo ufw allow ssh
-  # ... and copy ssh keys to user@"@"host to enable password-less login, i.e.
-  # login to remote host using authorized public key
-  ssh-copy-id USER@"@"HOST
-
-  # connect using private key instead of password
-  ssh -p 2220 -i ./sshkey.private bandit14@localhost
-
-  # sshfs - network filesystem client to connect to SSH servers
-  # See http://fuse.sourceforge.net/sshfs.html.
-  # mount a folder/filesystem securely over a network
-  sshfs USER@"@"HOST:/path/to/dir ./path/to/mount/point
-
-  # mound windows shares under linux
+  # mount windows shares under linux
   sudo mount.cifs //WINDOWS_MACHINE/path/to/dir path/to/dir \
        -o user=WINDOWS_USERNAME
 
@@ -1278,7 +1252,7 @@
 
   # login vs non-login shell
   # see https://unix.stackexchange.com/a/237672
-  ssh -t $USER@$hostname /bin/sh
+  ssh -t $USER@"@"$hostname /bin/sh
   sh-5.1$ shopt login_shell
   login_shell     off
 
@@ -1327,10 +1301,6 @@
   {M2_HOME}/settings.xml
   # Cleanup local maven repository. It removes all snapshot from more than
   # 6 months: https://gist.github.com/cescoffier/1582615
-
-  # :sftp - SSH File Transfer from the OpenSSH / FTP over SSL
-  # FTPS - FTP over SSL (SSL is deprecated)
-  lftp
 
   # :HPKP HTTP Public Key Pinning; similar to HSTS header
   # Create your HPKP hash: https://report-uri.io/home/pkp_hash
