@@ -48,7 +48,7 @@
   Application Layer Attacks si measured in requests per second (rps).
 }
 
-@block{@block-name{Ampliefied DOS}
+@block{@block-name{Amplified DOS}
   Uses NTP Network Time Protocol -> NTP Amplification
 }
 

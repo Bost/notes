@@ -274,15 +274,26 @@
   # github: do not ask for username
   .git/config: url = https://Bost@"@"github.com/Bost/reponame.git
 
-  # search entire commit history - only(!) code-changes, not commit messages
-  git log -S "textToSearch"  # doesn't work always
-  # search entire commit history; also in refs (see git help log)
-  git log -S "textToSearch" --source --all
+  # search in commit content, ie code-changes, not in commit messages
+  git grep <regexp> $(git rev-list --all)
+  # search in the lib/util subtree
+  git grep <regexp> $(git rev-list --all -- lib/util) -- lib/util
+  # Search all revisions between rev1 and rev2
+  git grep <regexp> $(git rev-list <rev1>..<rev2>)
+  # search in commit content; -p --patch
+  git log -S<string>  -- path_containing_change
+  # search in commit content; -p --patch - show's also the change itself
+  git log -S "string" -p -- path_containing_change
+  git log -S<string>  --since=2009.1.1 --until=2010.1.1 -- path_containing_change
+  git log -S "string" --since=2009.1.1 --until=2010.1.1 -- path_containing_change
+  # search in commit content; also in refs (see git help log)
+  git log -S<string>  --source --all
+  git log -S "string" --source --all
   # search through the gitlog
   git show :/"emacs-magit: Update to"
-  # search through not commit messages
-  git log --grep <regexp>
 
+  # search in commit messages
+  git log --grep <regexp>
   # https://stackoverflow.com/a/7124949
   # search in the commit messages across all branches
   git log --all    --grep="emacs-magit: Update to"

@@ -739,7 +739,7 @@
 
   ;; launch emacs and evaluate Emacs Lisp expression
   emacs --eval '(message "ufo")'
-  emacs --eval '(configuration-layer/update-packages)'
+  emacs --eval '(configuration-layer/update-packages)' & disown
 
   ;; M-x shell-command; execute
   ~M-!~ / ~SPC !~
