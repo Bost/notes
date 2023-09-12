@@ -223,7 +223,7 @@
   ;; Doesn't work> (neither form the store)
   ;; (build-derivations (list (gexp->derivation "foo" #~(symlink #$coreutils #$output))))
   ,q ;; exit the store
-  (define os (load "/home/bost/dev/dotfiles/guix/systems/ecke.scm"))
+  (define os (load "/home/bost/dev/dotfiles/guix/systems/syst-ecke.scm"))
   (operating-system? os)
   ,use (gnu system)  ;; exports operating-system-derivation
   ;; ,use (gnu services) ;; probably not needed

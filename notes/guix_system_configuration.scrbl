@@ -105,7 +105,7 @@
   TODO see elisp-configuration-service
 
   ;; analyze system state / show information about the
-  guix profile                        # channels currently in use
+  guix describe                       # channels currently in use
   guix system describe                # current system (OS kernel, etc.)
   guix home describe                  # home environment generation & channels
   guix package --list-profiles
