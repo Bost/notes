@@ -1576,13 +1576,15 @@
   sudo eject     $deviceFile
 
   # partition manipulation: resize / create / delete partitions
-  parted                 # from the command line
+  # parted               # CLI / command line version of gparted
   sudo gparted & disown  # GUI; requires `parted` on Guix
   cfdisk # basic partitioning functionality with a user-friendly interface
   fdisk  # advanced partitioning functionality
   # TODO see partprobe: https://opensource.com/article/18/9/swap-space-linux-systems
   # e.g. resize 3rd partition and use all free / available space
-  parted /dev/sda resize 3 100%
+  sudo parted /dev/vda resizepart 3 100%
+  sudo resize2fs /dev/vda3
+  # see also https://askubuntu.com/q/1078918/401596
 
   # flush file system buffers
   sync
