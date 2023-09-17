@@ -866,9 +866,14 @@
 }
 
 @block{@block-name{Source Code Pro font}
+  # on Ubuntu install using snippet:
+  # wget -qO- https://gist.githubusercontent.com/enzinier/8d00d3f37d2e23985dcfa65662d163fa/raw/2fd47d3ff5e4342ae789c355fccad46accebe256/install_font_adobe_source_code_pro.sh | bash
+  #
   guix install font-adobe-source-code-pro
   # clean font cache
   fc-cache --verbose --force
+  # list installed fonts
+  fc-list | rg source-code-pro
 }
 
 @block{@block-name{Mapping Functions}

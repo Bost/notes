@@ -183,6 +183,12 @@
   # keyboard: print contents of X events
   xev
 
+  # on Ubuntu: Settings -> Accessibility -> Repeat Keys
+  # repetition speed in milliseconds [ms]
+  gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
+  # repetition delay in milliseconds [ms]
+  gsettings set org.gnome.desktop.peripherals.keyboard delay 140
+
   xfce4-keyboard-settings # shortcuts keybindings
   # http://docs.xfce.org/xfce/xfconf/xfconf-query
   xfconf-query --list --verbose --channel xfce4-keyboard-shortcuts # -lvc
