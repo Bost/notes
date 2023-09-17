@@ -71,6 +71,13 @@
   # bash fish-shell - sequence from 0 to 10 (both included) increment by 2
   seq 0 2 10
 
+  # bash history without line numbers
+  # https://stackoverflow.com/q/7110119/5151982
+  history | cut -c 8-
+  history | awk '{$1="";print substr($0,2)}'
+  # -w write the current history to the history file
+  history -w /dev/stdout
+
   # bash
   # remove line from shell history (i.e. password) see also ~/.bash_history
   history -d

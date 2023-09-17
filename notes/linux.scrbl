@@ -338,6 +338,9 @@
   google-chrome --headless --screenshot --window-size=1280,169 https://www.eff.or
 
   # install google-chrome-stable from PPA
+  # -O file   --output-document=file
+  # -q        --quiet
+  # -         print to standard output, disabling link conversion
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
   sudo apt update
@@ -1149,6 +1152,7 @@
   # monitor file and network activities of a PROCESS
   # max printed string size 10000
   # *.strace file should be handled correctly by strace-mode emacs plugin
+  # -f, --follow-forks
   strace -f -e trace=file,network -s 10000 -o outfile.strace PROCESS ARGS
 
   # check file types and compare values

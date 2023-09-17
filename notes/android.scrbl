@@ -81,6 +81,7 @@
   Phone> ls
   Phone> get filename.ext # download / transfer: phone    -> computer
   Phone> put filename.ext #  upload  / transfer: computer -> phone
+  Phone> rm filename.ext  # delete from phone
 
   # On Ubuntu:
   # mtp://SAMSUNG_SAMSUNG_Android_R58N10C71EM/
