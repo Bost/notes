@@ -1,5 +1,30 @@
 #lang notes
 
+@block{@block-name{Crypthography}
+  Pseudo Random Number Generator PRNG and Random Number Generator RNG are only
+  as good as their underlying entropy source.
+
+  entropy creation / usage / requirements / amount
+  https://www.blackhat.com/docs/us-15/materials/us-15-Potter-Understanding-And-Managing-Entropy-Usage.pdf
+
+  Entropy:
+  Quantity of uncertainty of an outcome. Entropy generation - shuffling play
+  cards Full entropy is 100% random. Can be measured by tests
+
+  Randomness:
+  Quality of uncertainty of an outcome. PRNG - dealing the deck of play cards
+  to. Randomness either is or is not.
+
+  The better the card shuffling (entropy), the more random the card deal will
+  be(???)
+
+  $ cat /proc/sys/kernel/random/entropy_avail
+  256
+
+  OpenSSL PFS - OpenSSL Perfect Forward Security
+  National Institute of Standards and Technology NIST
+}
+
 @block{@block-name{Rethinking Reactivity}
   Rich Harris - Rethinking reactivity
   https://youtu.be/AdNJ3fydeao

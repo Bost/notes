@@ -10,6 +10,11 @@
 }
 
 @block{@block-name{Various}
+  pwclient info <patch-id>
+  # download patches sent to https://issues.guix.gnu.org/issue/53765
+  https://patches.guix-patches.cbaines.net/project/guix-patches/list/?series=11955
+  https://patches.guix-patches.cbaines.net/project/guix-patches/list/?series=12092
+
   # https://guix.gnu.org/manual/devel/en/guix.html#Keyboard-Layout
   # https://guix.gnu.org/manual/devel/en/guix.html#Keyboard-Layout-1
   # available keyboard layouts
@@ -168,9 +173,7 @@
   https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix
 
   ;; inspect package and bag
-  ,use (gnu packages maven)
-  ,use (guix)
-  ,use (guix build-system)
+  (use-modules (gnu packages maven) (guix) (guix build-system))
   (package-derivation (open-connection) maven)
   (package-name maven)
   (package-inputs maven)
@@ -182,9 +185,7 @@
   $ INSIDE_EMACS=1 guix repl --listen=tcp:37146 &
   # then in Emacs: M-x geiser-connect RET RET RET
   ;; 1. Packages & package lookup
-  ,use (gnu)
-  ,use (guix)
-  ,use (gnu packages base)
+  (use-modules (gnu) (guix) (gnu packages base))
   (package? coreutils)
   (package-name coreutils)
   (specification->package "guile")
@@ -197,8 +198,7 @@
   (valid-path? daemon (add-text-to-store daemon "foo.txt" "Hi REPL"))
   ;; 3. From packages to derivations
   ;; (package-derivation daemon coreutils)
-  ,use (guix derivations)
-  ,use (bost packages spacemacs)
+  (use-modules (guix derivations) (bost packages spacemacs))
   (build-derivations daemon (list (package-derivation daemon spacemacs-rolling-release)))
   ;; build-system
   ;; package ----> bag ----+
@@ -429,31 +429,6 @@
   guix home ...
 }
 
-@block{@block-name{Crypthography}
-  Pseudo Random Number Generator PRNG and Random Number Generator RNG are only
-  as good as their underlying entropy source.
-
-  entropy creation / usage / requirements / amount
-  https://www.blackhat.com/docs/us-15/materials/us-15-Potter-Understanding-And-Managing-Entropy-Usage.pdf
-
-  Entropy:
-  Quantity of uncertainty of an outcome. Entropy generation - shuffling play
-  cards Full entropy is 100% random. Can be measured by tests
-
-  Randomness:
-  Quality of uncertainty of an outcome. PRNG - dealing the deck of play cards
-  to. Randomness either is or is not.
-
-  The better the card shuffling (entropy), the more random the card deal will
-  be(???)
-
-  $ cat /proc/sys/kernel/random/entropy_avail
-  256
-
-  OpenSSL PFS - OpenSSL Perfect Forward Security
-  National Institute of Standards and Technology NIST
-}
-
 @block{@block-name{TODO}
   https://guix.gnu.org/manual/devel/en/html_node/Using-Guix-Interactively.html
 
@@ -463,9 +438,9 @@
   Auxiliary modules for programming in GNU guile
   https://luis-felipe.gitlab.io/guile-aux/
 
+  # Block unwanted content from web sites
+  # uBlock Origin is a wide spectrum blocker for IceCat and ungoogled-chromium.
   guix install ublock-origin-chromium
-  Block unwanted content from web sites
-  uBlock Origin is a wide spectrum blocker for IceCat and ungoogled-chromium.
 
   https://guix.gnu.org/manual/devel/en/html_node/Secure-Shell.html
   @lisp{
@@ -503,9 +478,9 @@
     * gpg is for encryptions
   - password store is a directory containing subdirectories and ectrypted files
 
-  Deprecated in favor of terminal which is deprecated, too, use
-  golang.org/x/term. See
-  `guix install go-golang-org-x-term`
+  # Deprecated in favor of terminal which is deprecated, too, use
+  # golang.org/x/term. See
+  guix install go-golang-org-x-term
 
   personal password management using gopass
   The encrypted files can be stored in a (separate) github / gitlab repo
@@ -533,15 +508,9 @@
   # search for existing service type 'console'
   guix system search console
 
-  # search in source code
-  rg define-configuration ~/dev/guix/gnu/home/services
+  # search through all Guix and Guile source code
+  rg define-configuration $dev/guix/gnu/home/services
   rg "define.*\(operating-system\b" (fd 'scm$' ~/dev/guix/)
   rg "\boperating-system\s" (fd 'scm$' ~/dev/guix/)
-}
-
-@block{@block-name{GNUnet}
-  Replace the old insecure Internet protocol stack.
-
-  Alternative network stack for building secure, decentralized and
-  privacy-preserving distributed applications.
+  rg --no-ignore-vcs -g '*.{scm,c,h}' -w "word\\s" $dgx $dev/guile
 }

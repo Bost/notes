@@ -14,17 +14,9 @@
   (message "Yeah from emacs-lisp!")
   #+end_src
 
-  #+RESULTS:
-  : Yeah from emacs-lisp!
-
   #+begin_src bash :exports both :results output
   echo "Hello World from bash" # evaluate: ~C-c C-C~
   #+end_src
-
-  #+RESULTS:
-  : Hello World from bash
-
-
 
   #+begin_src bash :exports both :results output
   echo "Hello World from bash" # evaluate: ~C-c C-C~
@@ -33,11 +25,6 @@
   #+begin_src shell :exports both :results output
   echo "Hello World from shell" # evaluate: ~C-c C-C~
   #+end_src
-
-  #+RESULTS:
-  : Hello World from shell
-
-
 
   #+begin_src fish :exports both :results output
   crep 'mpstat\|iostat'
@@ -62,11 +49,6 @@
   print("Hello from Python") # evaluate: ~C-c C-c~
   #+end_src
 
-  #+RESULTS:
-  : Hello from Python
-
-
-
   #+begin_src fish :exports both :results output
   set deps '
   {:deps {cider/cider-nrepl {:mvn/version "0.30.0"},
@@ -85,10 +67,44 @@
   strace $cmd 2>&1 | rg --only-matching '"/(.+)/([^/]+)\.edn"' | sort | uniq --unique
   #+end_src
 
-  #+RESULTS:
-  : "/gnu/store/2fgxqg4rvdgj8ivn4q3qxfv0xjzap5c3-clojure-tools-1.11.1.1165/lib/clojure/tools.edn"
-  : "/home/bost/.config/clojure/tools/tools.edn"
+  #+begin_src fish :exports both :results output
+  # fish_trace doesn't work in org-babel. The executed commands are not
+  # displayed in the #+RESULTS:
+  # set fish_trace on
+  # guix home list-generations 1d       # no '=' allowed after 'list-generations'
+  # set --erase fish_trace
 
+  function trace --description "Print executed string-command"
+    # set cmd gitk --all (string escape -- $argv) \&
+    printf "> %s\n" (string join " " $argv)
+    eval $argv
+    printf "\n"
+  end
+
+  date
+  trace "guix home list-generations 20h  | rg -i generation"
+  trace "guix home list-generations 20h  | rg -A 4 '\bguix( |:)' | rg commit"
+  trace "guix pull --list-generations=2h | rg -i generation"
+  trace "guix pull --list-generations=2h | rg -A 4 '\bguix( |:)' | rg commit"
+  trace "guix system list-generations 7d | rg -i generation"
+  trace "guix system list-generations 7d | rg -A 4 '\bguix( |:)' | rg commit"
+  #+end_src
+
+  #+begin_src bash :exports both :results output :dir /sudo::
+  # https://www.reddit.com/r/orgmode/comments/lercjw/tip_org_babel_sudo_command/
+  # Doesn't work. dmidecode is not in the profile of the sudo-user
+  which dmidecode
+  #+end_src
+
+  #+begin_src bash :var pw=(read-passwd "Password: ")
+  # https://www.reddit.com/r/orgmode/comments/lercjw/tip_org_babel_sudo_command/
+  # Doesn't work. Prints no results.
+  #
+  # -S, --stdin
+  #         Write the prompt to the standard error and read the password from
+  #         the standard input instead of using the terminal device.
+  echo $pw | sudo -S dmidecode
+  #+end_src
 }
 
 @block{@block-name{Literal Example - an example in another example}

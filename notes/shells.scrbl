@@ -64,6 +64,8 @@
     ~/.config/guix/current/etc/.* \
     ~/.config/guix/current/etc/profile \
   2> /dev/null
+  # in the fish shell:
+  set --show PATH
 
   # available shells; current shell; change shell
   cat /etc/shells; echo $SHELL; chsh --shell /usr/bin/fish
@@ -324,11 +326,16 @@
   https://rosettacode.org/wiki/Multiline_shebang
 
   # shebang / hashbang
-  # -e   bash: stop the script after any error
-  #!/bin/bash -e
-  # -x   bash: debug / trace execution steps
-  # set -x; stop on error: set -e
+  #!/usr/bin/env bash
+  #!/bin/bash
   #!/usr/bin/env fish
+
+  # bash trace / debug
+  set -e   # stop the script after any error
+  set -x   # debug / trace execution steps
+
+  # fish trace / debug
+  set fish_trace on; isatty; set --erase fish_trace
 }
 
 @block{@block-name{Various commands}
