@@ -1,4 +1,12 @@
 #lang notes
+
+@block{@block-name{GNUnet}
+  Replace the old insecure Internet protocol stack.
+
+  Alternative network stack for building secure, decentralized and
+  privacy-preserving distributed applications.
+}
+
 @block{@block-name{Tree-sitter}
   library for parsing code - for text editors
   - incremental parsing

@@ -109,10 +109,19 @@
   guix system describe                # current system (OS kernel, etc.)
   guix home describe                  # home environment generation & channels
   guix package --list-profiles
-  ;;
+
+  ;; According to
+  ;;   `info '(dir)Invoking guix package'`
+  ;; duration can be only d, w, m (days, weeks, months), however hours
+  ;; apparently works for `guix home`, too, however...
   guix home list-generations 1d       # no '=' allowed after 'list-generations'
-  guix package --list-generations=1d  # no '(--)describe' parameter exists
+  ;; ... it doesn't work for `guix pull`. E.g.
+  ;; $ date; guix pull --list-generations=1h | grep Generation
+  ;; Mon Sep 18 11:08:32 AM CEST 2023
+  ;; Generation 699     Sep 18 2023 01:01:58
+  ;; Generation 700     Sep 18 2023 09:23:39    (current)
   guix pull --list-generations=1d     # no '(--)describe' parameter exists
+  guix package --list-generations=1d  # no '(--)describe' parameter exists
   guix system list-generations 1m     # no '=' allowed after 'list-generations'
   ;; in Emacs
   M-x guix-generations

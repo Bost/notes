@@ -1,6 +1,6 @@
 #lang notes
 
-@block{@block-name{Find and Grep}
+@block{@block-name{Find and Grep / RipGrep}
   #+BEGIN_SRC fish :results output
   # filesize is exactly 1033 bytes
   find . -type f -size 1033c -user bandit7 -group badit6 | sort
@@ -228,7 +228,7 @@
   set sFiles (rg --files-with-matches --type racket $oldNew[1])
   sed --in-place "s/$oldNew[1]/$oldNew[2]/g" $sFiles
 
-  # search through all guix and guile code
+  # search through all Guix and Guile source code
   rg --no-ignore-vcs -g '*.{scm,c,h}' -w "word\\s" $dgx $dev/guile
   #+END_SRC
 }

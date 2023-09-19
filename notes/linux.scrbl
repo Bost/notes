@@ -1370,12 +1370,13 @@
   sudo mount -t tmpfs /mnt/ram -o size=8192M
 
   # mount / umount (usb) disk without 'root' as the mount command.
-  udiskie  # a user-level daemon for auto-mounting
+  udiskie --verbose    # user-level daemon for auto-mounting
   # udisksctl uses udiskds binary launched by udisks2.service.
   # see also udev / udevadm
   # test if /dev/sdc1 is mounted
   udisksctl info    --block-device /dev/sdc1 | rg MountPoints: | rg /
-  udisksctl mount   --block-device=/dev/sdc1
+  udisksctl mount   --block-device=/dev/sdc1      # under /media/$USER/elements
+  sudo udisksctl mount   --block-device=/dev/sdc1 # under /media/root/
   udisksctl unmount --block-device=/dev/sdc1
 
   # make file acting as / accessible as a pseudo ("fake") block-based device.
@@ -1433,9 +1434,9 @@
   # --nodeps      don't print slaves or holders
   # TRAN          device transport type. E.g. usb / sata / ...
   # lsblk --exclude 7 --nodeps \
-  #       --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE \
+  #       --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS \
   #      | rg --invert-match /dev/ram | sed 's/\<LABEL/FSLABEL/g'
-  lsblk --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE | sed 's/LABEL/LBL/g' | sed 's/\<LBL/FSLBL/g'
+  lsblk --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS | sed 's/LABEL/LBL/g' | sed 's/\<LBL/FSLBL/g'
   set --local isoImg      /path/to/file.iso
   set --local blkDevice /dev/sd<letter><number>
   set --local usbDevice /dev/sd<letter>
@@ -1558,7 +1559,7 @@
   # usb, drive, drives, disk, list block devices, fdisk, mount, udevadm,
   # udiskie, udisksctl, block-device, boot
   lsblk --nodeps
-  lsblk --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE | sed 's/LABEL/LBL/g' | sed 's/\<LBL/FSLBL/g'
+  lsblk --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS | sed 's/LABEL/LBL/g' | sed 's/\<LBL/FSLBL/g'
   # find mounted filesystem
   findmnt --real --output TARGET,SOURCE,SIZE,LABEL,PARTLABEL | sed 's/LABEL/LBL/g' | sed 's/\<LBL/FSLBL/g'
   blkid         # locate/print block device attributes; show the UUIDs
