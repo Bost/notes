@@ -1,12 +1,5 @@
 #lang notes
 
-@block{@block-name{GNUnet}
-  Replace the old insecure Internet protocol stack.
-
-  Alternative network stack for building secure, decentralized and
-  privacy-preserving distributed applications.
-}
-
 @block{@block-name{Tree-sitter}
   library for parsing code - for text editors
   - incremental parsing
@@ -99,7 +92,7 @@
   because it ignores the result(s).
 }
 
-@block{@block-name{Data structures (are / do):}
+@block{@block-name{What Data Structures are /do}
   - static (Algorithms - dynamic)
   - reasoning by an induction: consider the base case(s) and the general.
   - remove the notion of time. Change over time is one of the major sources of
@@ -149,37 +142,6 @@
   Polyfill: code (usually JavaScript on the Web) used to provide modern
   functionality on older browsers that do not natively support it.
 
-  NIC Network Interface Controller
-
-  PXE Preboot eXecution Environment (read "pixie")
-  Needs a PXE-capable NIC, uses DHCP and TFTP
-
-  UEFI Unified Extensible Firmware Interface
-  GUID Globally Unique Identifier - part of the UEFI
-  GPT GUID Partition Table
-
-  Loop Device, vnd (vnode disk), or lofi (loop file interface): pseudo-device
-  that makes a computer file accessible as a (mounted) block device.
-
-  WSL1 / WSL2 Windows Subsystem for Linux 1 / 2
-
-  ICMP Internet Control Message Protocol
-  Send error messages & operational information
-
-  TFTP Trivial File Transfer Protocol
-  Simple FTP, client can get a file from or put a file onto a remote host
-
-  DHCP Dynamic Host Configuration Protocol
-  Network management protocol used on TCP/IP networks
-
-  LDAP Lightweight Directory Access Protocol
-  Accessing and maintaining distributed directory information services over an
-  Internet Protocol (IP) network.
-  Client authentication is a part of LDAP.
-
-  PAM Pluggable Authentication Module
-  SASL Simple Authentication and Security Layer
-
   BusyBox - Unix utilities in a single executable file; 2.1 MB in tar.bz2
   https://www.busybox.net/
   Git Repo
@@ -194,12 +156,6 @@
   Web Content Accessibility Guidelines (WCAG) 2 Level AAA Conformance
   https://www.w3.org/WAI/WCAG2AAA-Conformance
 
-  Firefox - How to allow a restricted port?
-  https://support.mozilla.org/en-US/questions/1083282
-  about:config
-  network.security.ports.banned.override
-  enter the port number as a string
-
   GLSL - OpenGL Shading Language
 
   IOPS - [eye-ops] input/output operations per second
@@ -212,11 +168,6 @@
   If one hard drive HDD / SSD disk fails, it is more likely to see a second
   failure before getting back up if the disks are from the same manufacturing
   batch
-
-  Network provisioning:
-  The process of setting up a network so that authorized users, devices, and
-  servers can access it. In practice, it primarily concerns connectivity and
-  security, which means a heavy focus on device and identity management.
 
   Cloud architecture:
   The way technology components combine to build a cloud, in which resources are
@@ -260,26 +211,4 @@
   - rendering every 16ms for a screen (60 FPS?)
   - render has higher prio than a callback
     23:12
-}
-
-@block{@block-name{NTP Network Time Protocol}
-  Network Time Protocol (NTP) - Computerphile
-  https://youtu.be/BAo5C2qbLq8
-
-  Time synchronisation accurate to a millisecond or better. The protocol has it
-  to microseconds.
-
-  32 bin NTP packet containing:
-  - timestamps: t0, t1, t2, t3
-  - stratum: st
-    st = 0 really good clock - such a computer is never talked to
-    st = 1
-    st = 2 - synchronized for st = 1
-    st = 3 - synchronized for st = 2
-    ...
-    st = 15 - not reliable
-  A packet is sent between two computers C1, C2 on a round trip.
-  C1 fills in send out time t0 and receiving time t3.
-  C2 fills in receiving time t1 and send out time t2.
-  Network delay is: (- (- t3 t0) (- t2 t1))
 }
