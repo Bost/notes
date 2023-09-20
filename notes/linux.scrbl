@@ -24,10 +24,7 @@
   # Reload configuration
   tmux source $XDG_XONFIG_HOME/tmux.conf
 
-  # Cheatsheet
   https://tmuxcheatsheet.com/
-
-  # Plugins
   https://github.com/tmux-plugins/tpm
 }
 
@@ -154,6 +151,12 @@
 }
 
 @block{@block-name{Various}
+
+  os-prober - debian-installer component. Detects other operating system
+
+  # Display all values currently available kernel parameters
+  sysctl --all
+
   xxd    # make a hexdump
   xxd -r # make a hexdump reverse
 
@@ -413,7 +416,7 @@
   # monitor disk I/O usage
   sudo iotop -oPa
 
-  # :HDD :SSD - disk information
+  # HDD SSD - hard disk / hard drive information
   sudo hdparm -I FILESYSTEM # see: df -h
   sudo hdparm -I /dev/sda1
 

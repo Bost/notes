@@ -676,3 +676,13 @@
  delimited continuations
  prompt / control - ie.e. delimit continuation up to the prompt
 }
+
+@block{@block-name{A very minimal introduction to some terms from type theory}
+  https://wscp.dev/posts/tech/java-pattern-matching/
+  Bottom, or Empty Type (⊥)
+  Top Type (⊤)
+  Unit Type (())
+  Boolean Type
+  Product type
+  Sum type
+}

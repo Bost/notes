@@ -357,25 +357,19 @@
 }
 
 @block{@block-name{Bike}
+  OSMAnd
+  https://github.com/osmandapp/OsmAnd
+
   Prepare routes: View Ranger
   https://my.viewranger.com/user/routes/myroutes
 
-  @block{@block-name{Weather}
-    Stuttgart
-    https://www.wetter.com/deutschland/stuttgart/DE0010287.html
-    München
-    https://www.wetter.com/deutschland/muenchen/DE0006515.html
-  }
-
-  @block{@block-name{Cafe Fietsen}
-    Ask about service
-    True the wheels
-  }
+  Weather
+  https://www.wetter.com/deutschland/stuttgart/DE0010287.html
+  https://www.wetter.com/deutschland/muenchen/DE0006515.html
 
   @block{@block-name{Repair and Prepare}
     Swap normal for tubeless tires
-    Baumarkt - Socket for the Nigrin Reifen Dicht (Buy Bildschirmreiniger)
-    Cut plasters
+    Baumarkt - Socket for the Nigrin Reifen Dicht
 
     @block{@block-name{Bicycle chain}
       YouTube: When to replace chain
@@ -394,11 +388,87 @@
       YouTube - GCN Show: Replace A Bicycle Chain
       https://youtu.be/rWchudX-Tqs
 
-      Chain length - number of speeds
-      Chain tools - ask: Is mine the right one?
+      Chain length depends on number of speeds
 
       TODO How to replace chain - chain tool
       TODO How to adjust speeds
     }
   }
+}
+
+
+http://blog.interfacevision.com/design/design-visual-progarmming-languages-snapshots/
+https://futureofcoding.org/catalog/
+
+@block{@block-name{Law and LegalTech}
+  Proof of X - Consensus algorithm(s) used by Crypto currecies
+  Smart Contracts
+
+  Catala: domain-specific programming language designed for deriving
+  correct-by-construction implementations from legislative texts.
+  https://catala-lang.org/
+  YouTube: law.MIT.edu IdeaFlow Episode 8: Domain Specific Language for Law
+  https://youtu.be/L3gFuK8MCYA?si=e38N7Y7_tTrhTsyG
+
+  HN Discussion 2023-09 https://news.ycombinator.com/item?id=37546874
+  HN Discussion 2020-10 https://news.ycombinator.com/item?id=24948342
+
+  Gödel’s theorems don’t imply inconsistency for all large systems (unless
+  "large" is taken to mean something strange), just for systems which are both
+  not super-weak in what they can say, and complete (or if they have their own
+  consistency as a theorem).
+
+  https://en.wikipedia.org/wiki/Lojban
+  Logical, constructed, human language
+
+  Nomic is a game, the rules of which include mechanisms for changing those
+  rules, usually beginning by way of democratic voting. The game demonstrates
+  that in any system where rule changes are possible, a situation may arise in
+  which the resulting laws are contradictory or insufficient to determine what
+  is in fact legal.
+  An example of the game rules: https://agoranomic.org/ruleset/slr.txt
+
+  Workshop on Programming Languages and the Law 2023
+  https://popl23.sigplan.org/home/prolala-2023
+
+  ;;
+  Paper: "Catala: A Programming Language for the Law"
+  https://inria.hal.science/hal-03159939v2/document
+  ;;
+  Black's Law Dictionary
+  https://thelawdictionary.org/
+
+  https://www.legaltech.com/
+  https://en.wikipedia.org/wiki/Legal_technology
+
+
+  @block{@block-name{Logical English as a Programming Language for Law and Ethics}
+    https://logicalenglish.logicalcontracts.com/
+
+    A more human-friendly computer language for the future
+    https://virtuale.unibo.it/pluginfile.php/1273247/mod_unibores/content/0/Logical%20English%20for%20Law%20and%20Ethics_new2.pdf
+
+    The loan agreement as a Discrete Finite Automaton:
+    - Financial contracts are structured internally as state-transition systems
+    - Discrete Finite Automata: Finite set of states, events and transitions.
+
+    See also
+    https://legalmachinelab.unibo.it/
+
+    Interpreting the Rule(s) of Code by Laurence Diver
+    https://law.mit.edu/pub/interpretingtherulesofcode/release/4
+  }
+
+  @block{@block-name{Law is political}
+    Law is political. It's persuasive, not deterministic. It often comes down to
+    a judgment based on the relative political power of the entities in
+    question.
+    Even if you find a statute that says very clearly that X is unlawful, there
+    will be situations where a lawyer will argue that it isn't.
+    Sometimes they'll make that case successfully - for various possible
+    reasons, not all of which will be lawful themselves.
+    This is one reason why statute law is expanded by case law. And good luck
+    trying to automate case law.
+  }
+
 }

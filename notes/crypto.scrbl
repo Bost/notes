@@ -1,6 +1,13 @@
 #lang notes
 
-@block{@block-name{hyperleddger}
+@block{@block-name{Various}
+
+  EOS Costa Rica Developers Guide
+  https://guide.eoscostarica.io/
+  Web3 developers portal. Learn about blockchain technology and all the stuff
+  that makes it possible.
+
+  Hyperledger
   open-source project developed by the Linux foundation. It uses a modular
   approach to building blockchains collective of open-source blockchains and tools
   that anyone can use to create their own distributed ledgers.
@@ -17,8 +24,13 @@
   tangle
   token vs. crypto currency ~ value representation
   tokenomics - e.g. collectables; game currency
-  SC - smart contracts
+  SC - Smart Contracts
   DLT supply chain
+
+  Ricardian Contracts
+  Digital documents that define the terms and conditions among those involved in
+  the contract, these are signed and verified cryptographically and are readable
+  by both humans and computer systems.
 
   Byzantine Fault Tolerances / Consensus methods:
   https://link.medium.com/V2dglrC5UU

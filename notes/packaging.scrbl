@@ -1,24 +1,32 @@
 #lang notes
 
-@block{@block-name{Packaging}
-  # flatpack
+
+@block{@block-name{flatpak}
+  # offers a sandbox to run applications in isolation
+
   sudo flatpak upgrade
 
-  # flatpack
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   sudo flatpak install flathub us.zoom.Zoom
   flatpak run us.zoom.Zoom & disown
   sudo flatpak install flathub org.telegram.desktop
   flatpak run org.telegram.desktop & disown
 
-  # flatpack
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/apps/details/com.discordapp.Discord
   sudo flatpak install flathub com.discordapp.Discord
   flatpak run com.discordapp.Discord & disown
 
-  # access to a file / directory
+  # grant access permissions to a file / directory
   sudo flatpak override org.telegram.desktop --filesystem=~/Downloads
   sudo flatpak override org.telegram.desktop --nofilesystem=/some/path/here
+}
+
+@block{@block-name{snap}
+
+  # Packaging and deployment system developed by Canonical for OSes with Linux
+  # kernel and the systemd.
+  # Compare Snap vs Apt
+  # https://www.baeldung.com/linux/snap-vs-apt-package-management-system
 
   sudo snap install <package>
   sudo snap help --all
@@ -37,6 +45,16 @@
   # When: Error initializing settings: Failed saving settings file:
   # - Error: Unable to open settings file /path/to/.bitcoin/settings.json for writing
   snap connect bitcoin-core:removable-media
+}
+
+@block{@block-name{Various}
+
+  # Compare `apt upgrade` vs `apt dist-upgrade` vs `apt full-upgrade`
+  apt upgrade      # upgrade packages to their latest versions w/o removing or
+                   # adding new packages. Suitable for routine package updates.
+  apt full-upgrade # can handle complex package dependencies; for major system
+                   # upgrades or significant package changes.
+  apt dist-upgrade # alias for full-upgrade
 
   # install additional ubuntu software
   gnome-software
@@ -122,7 +140,7 @@
   Prompt=normal
   #
   # 2. `download package information`; and `install available upgrades`.
-  # See also full-upgrade / dist-upgrade / `apt list --upgradable -a`
+  # See also full-upgrade / `apt list --upgradable -a`
   sudo apt update && sudo apt upgrade
   #
   # 3. remove / install / upgrade of packages updates and upgrades the OS
