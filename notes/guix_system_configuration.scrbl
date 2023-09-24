@@ -34,7 +34,7 @@
   #         # echo "is dir: $d"
   #         if git --git-dir=$d/.git remote -v | rg --quiet $guix_repo; then
   #             coDir=$d
-  #             # echo "Guix channel checkout directory: $coDir"
+  #             echo "Guix channel checkout directory: $coDir"
   #             break
   #         fi
   #     fi
@@ -45,8 +45,7 @@
       # echo "$d"
       if test -d "$d" && not test -L "$d"
           # echo "is dir: $d"
-          git --git-dir=$d/.git remote -v | rg --quiet $guix_repo
-          if test $status
+          if git --git-dir=$d/.git remote -v | rg --quiet $guix_repo
               set coDir $d
               printf "Guix channel checkout directory: %s\n" $coDir
               break

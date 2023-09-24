@@ -59,6 +59,14 @@
 }
 
 @block{@block-name{Various}
+  Documentation string encoding:
+  Single quote chararcter ie. ASCII apostrophe \\='
+  Accent grave \\=`
+  https://www.gnu.org/software/emacs/manual/html_node/elisp/Documentation-Tips.htmy
+  (defun foo () "(equal (list 1 (list 2 3)) \\='(1 (2 3)))" 42)
+
+  (get-buffer " *Echo Area 0*")
+
   EIEIO Enhanced Implementation of Emacs Interpreted Objects
   - system for creating and working with object-oriented code in Emacs Lisp.
   - additional features on top of the Emacs Lisp object system
@@ -166,6 +174,8 @@
   ;; an error.
   ;; (string= "abc" 1)                       ;; => error
   (eq '(1 (2 (3))) '(1 (2 (3))))             ;; =>  nil
+  (equal '(1 (2 (3))) '(1 (2 (3))))          ;; =>  t
+  (equal (list 1 (list 2 3)) '(1 (2 3)))     ;; => t
   (setq foo '(1 (2 (3))))                    ;; =>  (1 (2 (3)))
   (eq foo foo)                               ;; =>  t
   (eq foo '(1 (2 (3))))                      ;; =>  nil

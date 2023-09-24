@@ -3,7 +3,7 @@
 @block{@block-name{Find and Grep / RipGrep}
   #+BEGIN_SRC fish :results output
   # filesize is exactly 1033 bytes
-  find . -type f -size 1033c -user bandit7 -group badit6 | sort
+  find . -type f -size 1033c -user bandit7 -group bandit6 | sort
 
   # -a, --text
   # Process a binary file as if it were text; equivalent to --binary-files=text
@@ -228,7 +228,16 @@
   set sFiles (rg --files-with-matches --type racket $oldNew[1])
   sed --in-place "s/$oldNew[1]/$oldNew[2]/g" $sFiles
 
+  # -w, --word-regexp
+  # -g, --glob <GLOB>...
   # search through all Guix and Guile source code
   rg --no-ignore-vcs -g '*.{scm,c,h}' -w "word\\s" $dgx $dev/guile
+  # -t, --type <TYPE>...
+  rg --no-ignore-vcs -tlisp -tc -w "word"  $dgx $dev/guile
+
+  # search for sexp, see https://docs.rs/regex/1.9.5/regex/#syntax
+  rg --no-ignore-vcs -tlisp -tc       "([\\[\\(\s]|^)load-path([\\]\\)\s]|\$)" $dgx $dev/guile
+  rg --no-ignore-vcs -g '*.{scm,c,h}' "([\\[\\(\s]|^)load-path([\\]\\)\s]|\$)" (pwd)
+  rg --no-ignore-vcs -g '*.{scm,c,h}' "([\\[\\(\s]|^)x-x([\\]\\)\s]|\$)"       $dev/notes/notes/testfile.scm
   #+END_SRC
 }

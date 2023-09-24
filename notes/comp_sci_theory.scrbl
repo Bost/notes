@@ -587,10 +587,9 @@
 @block{@block-name{A Pamphlet against R}
   Programmers write code which gets in the way to understanding, rather than
   facilitate it.
-  One of the most extreme examples is the code from
-  Donald Knuth's The Art of Computer Programming. Written in the MIX assembly,
-  the code only hides the conceptual structure of presented solutions from the
-  reader.
+  One of the most extreme examples is the code from Donald Knuth's The Art of
+  Computer Programming. Written in the MIX assembly, the code only hides the
+  conceptual structure of presented solutions from the reader.
 }
 
 @block{@block-name{Scheme Lisp}
@@ -678,11 +677,37 @@
 }
 
 @block{@block-name{A very minimal introduction to some terms from type theory}
-  https://wscp.dev/posts/tech/java-pattern-matching/
-  Bottom, or Empty Type (⊥)
-  Top Type (⊤)
-  Unit Type (())
-  Boolean Type
-  Product type
-  Sum type
+  https://wscp.dev/posts/tech/java-pattern-matching/#a-very-minimal-introduction-to-some-terms-from-type-theory
+
+  Bottom, or Empty Type: ⊥, `Nothing`
+  describes the set of all values which can't be computed in the Turing-complete
+  sense. This set is usually empty for any normal programming language (Ø).
+
+  Top Type: ⊤, `Any`
+  represents every value of every type - the universal set of values, U
+
+  Unit Type: () 1 with the unique element ★.
+  has only one value. There is only one instance of that one value, and it is
+  impossible to create more of it.
+
+  Product type 𝜏1 × 𝜏2 with pairs written ⟨−; −⟩.
+  composed of two or more constituent types. In general, a product type is a
+  list of two or more types grouped together. A product type’s arity, or degree,
+  is the number of constituent types within it.
+
+  Sum type 𝜏1 + 𝜏2 with injections inl and inr.
+  encodes that a type can be any one of its constituents at a single time. They
+  are also known as tagged union types because, in type theory, they are usually
+  represented as a type whose range of values is the union set of its
+  components, where each component type is “tagged” with a label.
+  You could express a sum type like this if you were to use my
+  pseudo-type-theory notation: T = A + B + C
+  The set of values that are in T could be expressed with this logical
+  predicate: T = { x | x ∈ A ⋃ B ⋃ C }
+
+  (Strictly positive) inductive types 𝜇𝑎.𝜏 with their recursor fold𝜏′ 𝑎.𝜏 . The
+  type variable 𝑎 must be strictly positive in 𝜏, a condition formally written
+  as 𝑎 ∈++ 𝜏.
+
+
 }
