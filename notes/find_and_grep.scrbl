@@ -239,5 +239,6 @@
   rg --no-ignore-vcs -tlisp -tc       "([\\[\\(\s]|^)load-path([\\]\\)\s]|\$)" $dgx $dev/guile
   rg --no-ignore-vcs -g '*.{scm,c,h}' "([\\[\\(\s]|^)load-path([\\]\\)\s]|\$)" (pwd)
   rg --no-ignore-vcs -g '*.{scm,c,h}' "([\\[\\(\s]|^)x-x([\\]\\)\s]|\$)"       $dev/notes/notes/testfile.scm
+  rg -g '*.{scm,c,h}' "([\\[\\(\s]|^)x-x([\\]\\)\s]|\$)" $dev/notes/notes/testfile.scm
   #+END_SRC
 }
