@@ -196,6 +196,8 @@
 
   guix graph --type=reverse-package
   guix graph --path
+  # visualize package dependencies
+  guix graph coreutils | xdot -
 }
 
 @block{@block-name{Package Inputs / Outputs}

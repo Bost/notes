@@ -48,10 +48,12 @@
 
 @block{@block-name{Various}
 
-  nftables
-  Packet filtering framework in the Linux kernel for managing network traffic.
-  Replacement for two older packet filtering systems: iptables and ip6tables
-  Network rules management for easier firewall and NAT configuration.
+
+  # nftables
+  # Packet filtering framework in the Linux kernel for managing network traffic.
+  # Replacement for two older packet filtering systems: iptables and ip6tables
+  # Network rules management for easier firewall and NAT configuration.
+  sudo nft list ruleset
 
   Mesh Topology / Mesh Network
   nodes connect directly, dynamically and non-hierarchically to as many other
