@@ -632,6 +632,8 @@
   SearchText site:bartoszmilewski.com
 
   # net, networking, DNS lookup, domain information groper
+  sudo apt install --yes dnsutils # contains a.o. dig, nslookup
+  #
   # convert hostname / domainname <-> IP address
   host www.google.com
   # www.google.com has:
@@ -644,6 +646,18 @@
   dig www.google.com
   # query wikipedia for keyword - doesn't work
   dig +short txt <keyword>.wp.dg.cx
+  #
+  resolvectl status
+  # edit /etc/netplan/00-installer-config.yaml
+  sudo netplan apply
+  #
+  # On Ubuntu see also
+  /etc/resolv.conf
+  /run/systemd/resolve/stub-resolv.conf
+  #
+  # Public DNS Servers:
+  # 8.8.8.8, 8.8.4.4  # Google
+  # 1.1.1.1           # Cloudflare
 
   # make block or character special files
   mknod

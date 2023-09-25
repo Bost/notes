@@ -145,7 +145,7 @@
   # or (C) e.g. for the Factorio stable-version:
   set lp $dev/games
   guix package --load-path=$lp --manifest=$lp/games/packages/factorio.scm --list-available=factorio
-  guix package --load-path=$lp --install=factorio  # experimental-version factorio@1.1.78
+  guix package --load-path=$lp --install=factorio  # experimental-version factorio@"@"1.1.78
   @lisp{
     (use-modules (guix)     #| package-source |#
                  (guix swh) #| Software Heritage |#)

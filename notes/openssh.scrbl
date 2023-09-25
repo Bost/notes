@@ -32,7 +32,7 @@
         # multiple ssh clients
         # ControlPath denotes a socket that is checked by new connections to see
         # if there is an existing ssh session that can be used.
-        ControlPath ~/.ssh/master-%r@%h:%p
+        ControlPath ~/.ssh/master-%r@"@"%h:%p
         # even after exiting the terminal,the existing session will remain open
         # for 10 minutes
         ControlPersist 10m

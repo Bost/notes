@@ -10,9 +10,8 @@
 
   # March 2022: the scp Secure Copy Protocol is obsolete! Use sftp or rsync
 
-
   # --copy-links, -L         transform symlink into referent file/dir
-  rsync -Lav bost@lukas:/run/current-system/configuration.scm $dotf/
+  rsync -Lav bost@"@"lukas:/run/current-system/configuration.scm $dotf/
 
   # recursive copy `dotfiles` and `cheat` to server:~/dev/
   # i.e. create `server:~/dev/dotfiles/` and `server:~/dev/cheat/`
