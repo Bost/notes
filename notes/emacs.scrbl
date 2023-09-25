@@ -353,7 +353,7 @@
   | ~C-h m~           | M-x describe-mode     |                            |
   | ~C-h k~           | M-x describe-key      |                            |
   | ~C-h f~           | M-x describe-function |                            |
-  | ~C-h v~           | M-x describe-variable |                            |
+  | ~C-h v~           | M-x describe-variable | (describe-variable 'foo)   |
   | ~C-h b~ / ~SPC ?~ | M-x describe-bindings | show available keybindings |
   ;; package command-log-mode - show pressed keybindings (when screen casting)
 
@@ -403,6 +403,10 @@
   ;; 2. emacs --no-init-file --eval "(setq tramp-verbose 10)" &
   ~C-x C-f~ /method:user@"@"remotehost#port:filename
   ~C-x C-f~ /ssh:test@"@"host#2222:/tmp
+  ;;
+  (find-file "/ssh:you@"@"remotehost#port|sudo:remotehost:/path/to/file")
+  ;; seems like 'remotehost#port' is not needed:
+  (find-file "/ssh:you@"@"remotehost#port|sudo:remotehost#port:/path/to/file")
 
   | ~C-x C-f~ | M-x spacemacs/helm-find-files     | open file                        |
   | ~SPC b R~ | M-x spacemacs/safe-revert-buffer  | reload / refresh file            |

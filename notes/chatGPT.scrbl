@@ -1,8 +1,6 @@
 #lang notes
 
-@block{@block-name{}
-}
-
+@block{@block-name{ChatGPT}
 #|
 I want you to act as an IT Expert. I will provide you with all
 the information needed about my technical problems, and your role
@@ -478,3 +476,4 @@ and answer the five questions written inside the code snipped below. Encode and 
   )
  )
 |#
+}

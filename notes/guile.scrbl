@@ -176,7 +176,7 @@
   scheme@"@"(guix-user)> ,use (gnu packages shells)
   scheme@"@"(guix-user)> ,use (guix gexp)
   scheme@"@"(guix-user)> #~#$fish-foreign-env
-  $1 = #<gexp #<gexp-input #<package fish-foreign-env@0.20190116 gnu/packages/shells.scm:278 7efedecbd0b0>:out> 7efedf25c270>
+  $1 = #<gexp #<gexp-input #<package fish-foreign-env@"@"0.20190116 gnu/packages/shells.scm:278 7efedecbd0b0>:out> 7efedf25c270>
 
   $ guix repl
   scheme@"@"(guix-user)> ,option value-history
@@ -243,7 +243,7 @@
   $2 = #t
   scheme@"@"(guile-user)> ,use (gnu packages base)
   scheme@"@"(guile-user)> coreutils
-  $3 = #<package coreutils@8.29 gnu/packages/base.scm:327 3e28300>
+  $3 = #<package coreutils@"@"8.29 gnu/packages/base.scm:327 3e28300>
   scheme@"@"(guile-user)> (macroexpand '(unquote foo))
   ...
 

@@ -13,7 +13,7 @@
     Presence of the targets 'all', 'clean' is convention.
 
     Percent char '%' is a wild card.
-    at @ - the target side (left side of the ':')
+    at @"@" - the target side (left side of the ':')
     carret ^ - dependency side (right side of the ':')
     https://youtu.be/DtGrdB8wQ_8?t=963
   }
