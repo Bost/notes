@@ -179,6 +179,18 @@
   $1 = #<gexp #<gexp-input #<package fish-foreign-env@"@"0.20190116 gnu/packages/shells.scm:278 7efedecbd0b0>:out> 7efedf25c270>
 
   $ guix repl
+  scheme@"@"(guile-user)> (use-modules (gnu packages))
+  scheme@"@"(guile-user)> (specification->package+output "glib:bin")
+  $5 = #<package glib@"@"2.72.3 gnu/packages/glib.scm:560 7f9ff955f6e0>
+  $6 = "bin"
+  scheme@"@"(guile-user)> (specification->package+output "glib:out")
+  $7 = #<package glib@"@"2.72.3 gnu/packages/glib.scm:560 7f9ff955f6e0>
+  $8 = "out"
+  scheme@"@"(guile-user)> (specification->package+output "glib")
+  $9 = #<package glib@"@"2.72.3 gnu/packages/glib.scm:560 7f9ff955f6e0>
+  $10 = "out"
+
+  $ guix repl
   scheme@"@"(guix-user)> ,option value-history
   #t
   scheme@"@"(guix-user)> ,option value-history #f
