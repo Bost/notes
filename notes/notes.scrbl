@@ -33,6 +33,7 @@
 @include-section{guix_pull_vs_upgrade.scrbl}
 @include-section{guix_reproducible_environment.scrbl}
 @include-section{guix.scrbl}
+@include-section{guix_repl.scrbl}
 @include-section{guix_system_configuration.scrbl}
 @include-section{heroku.scrbl}
 @include-section{influenza.scrbl}
