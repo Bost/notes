@@ -153,7 +153,7 @@
   # unset, and substitutes the string x otherwise.
   # variable blank vs. unset - see https://stackoverflow.com/a/13864829
   if [ -z ${myvar+x} ]; then echo "myvar is unset"; else echo "myvar is set to '$myvar'"; fi
-  test -z ${myvar+x} &&  echo "myvar is unset" || echo "myvar is set to '$myvar'"
+  test -z ${myvar+x} &&      echo "myvar is unset"  ||   echo "myvar is set to '$myvar'"
 
   # bash string equality / compare
   # See https://tldp.org/LDP/abs/html/comparison-ops.html

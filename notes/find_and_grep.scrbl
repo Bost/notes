@@ -236,8 +236,8 @@
   rg --no-ignore-vcs -tlisp -tc -w "word"  $dgx $dev/guile
 
   # search for sexp, see https://docs.rs/regex/1.9.5/regex/#syntax
-  rg --no-ignore-vcs -tlisp -tc       "([\\[\\(\s]|^)load-path([\\]\\)\s]|\$)" $dgx $dev/guile
-  rg --no-ignore-vcs -g '*.{scm,c,h}' "([\\[\\(\s]|^)load-path([\\]\\)\s]|\$)" (pwd)
-  rg -g '*.{scm,c,h}' "([\\[\\(\s]|^)x-x([\\]\\)\s]|\$)" $dev/notes/notes/testfile.scrbl
+  rg --no-ignore-vcs -tlisp -tc       "(['\"\\[\\(\s]|^)load-path(['\"\\]\\)\s]|\$)" $dgx $dev/guile
+  rg --no-ignore-vcs -g '*.{scm,c,h}' "(['\"\\[\\(\s]|^)load-path(['\"\\]\\)\s]|\$)" (pwd)
+  rg                 -g '*.{scm,c,h}' "(['\"\\[\\(\s]|^)x-x(['\"\\]\\)\s]|\$)"       $dev/notes/notes/testfile.scrbl
   #+END_SRC
 }
