@@ -488,12 +488,12 @@
   # ??? the snippet doesn't work
   export LIST="a:b:c"
   for e in $LIST; do printf -- "%s\n" $e; done
-
-  # in bash:
+  #
+  # bash
   for e in "a" "b" "c"; do printf -- "%s\n" $e; done
   for e in "a" "b" "c"; do echo $e; done
-
-  # in fish:
+  #
+  # fish
   set fruits "apple" "banana" "cherry" # i.e. list / array
   count $fruits     # 3
   # arrays in fish are indexed from 1, i.e. index starts from 1
@@ -506,6 +506,12 @@
   set --erase fruits[1]
   count $fruits     # 5
   for e in "apple" "banana" "cherry"; printf "%s\n" $e; end
+
+  # create an array with a sequence of numbers and print its length
+  # bash - without 'echo' it returns 'bash: 6: command not found'
+  myArray=($(seq 0 2 10)); echo ${#myArray[@]}
+  # fish
+  set myArray (seq 0 2 10); count $myArray
 }
 
 @block{@block-name{Multiline Comments}
