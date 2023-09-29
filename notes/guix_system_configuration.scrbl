@@ -284,4 +284,31 @@
     fi
     unset profile
   done
+
+  $ cd /tmp
+  # create a new profile 'foo' and install guile in it:
+  $ guix package --profile=foo --install=guile
+  # add vim to the foo-profile:
+  $ guix package --profile=foo --install=vim
+  # list structure of the foo-profile:
+  $ ls -l foo* | awk '{print $9, $10, $11}'
+  foo -> foo-2-link
+  foo-1-link -> /gnu/store/lv43kziij7sa1xck7gf1c720393pck65-profile
+  foo-2-link -> /gnu/store/15ra24gkqkfagzj16672528ivkkb9ya4-profile
+  $ guix gc --list-roots | rg foo
+  # remove profile just by deleting the links:
+  rm /tmp/foo-2-link
+  rm /tmp/foo-1-link
+  rm foo
+  # the profile-item may be manually deleted from the store, however it's not
+  # necessary `guix gc` will auto-remove the store entries for the created
+  # profile.
+  $ guix gc --delete /gnu/store/lv43kziij7sa1xck7gf1c720393pck65-profile # foo-2-link
+  # this (probably) won't work since the current profile point to this store-item I guess
+  # but I can't find out where/how exactly?
+  $ guix gc --delete /gnu/store/lv43kziij7sa1xck7gf1c720393pck65-profile # foo-1-link
+
+  # list all user profiles
+  $ guix gc --list-roots | rg -v $HOME/\.cache\|\(guix-profile\|guix-home\|current-guix\)-[0-9]+-link
+
 }
