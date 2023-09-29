@@ -88,7 +88,7 @@
   history delete --contains <substring>
   history delete --contains "history delete --contains"
 
-  # bash fish-shell
+  # bash
   # see what the shell does with the various types of quoting
   # https://unix.stackexchange.com/a/417408
   printf -- '<%s>\n' G "G" 'G' \G "\G" '\G' \\G "\\G" '\\G'
@@ -201,17 +201,17 @@
   bash extension. In sh-compatible scripts only the single bracket must be used
   (i.e. use the #!/bin/bash shebang line if using use double brackets)
 
-  # correctly handle empty strings or file names with spaces in them:
+  # bash: correctly handle empty strings or file names with spaces in them:
   [ -f "$file" ] && printf -- "is a regular file\n" || printf -- "else ...\n"
   [[ -f $file ]] && printf -- "is a regular file\n" || printf -- "else ...\n"
-
+  #
   # double brackets lets you use && and || operators for boolean tests and < and >
   # for string comparisons. single bracket cannot do this.
-
+  #
   # =~ does regular expression matches
   [ "$answer" = y -o "$answer" = yes ] && printf -- "then...\n" || printf -- "else...\n"
   [[ $answer =~ ^y(es)?$ ]]            && printf -- "then...\n" || printf -- "else...\n"
-
+  #
   # pattern matching aka globbing for free. Maybe you're less strict about how to
   # type yes. Maybe you're okay if the user types y-anything:
   [[ $ANSWER = y* ]] && printf -- "then...\n" || printf -- "else...\n"
