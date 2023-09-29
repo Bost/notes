@@ -6,6 +6,9 @@
   M-x org-babel
   in Org mode ~, b ~
 
+  ;; insert / surround code block with #+begin_src ... #+end_src
+  M-x org-babel-demarcate-block / ~, b d~
+
   #+begin_src chatgpt-shell
   Mirror, mirror, who's the most beautiful person on Earth?
   #+end_src

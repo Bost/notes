@@ -48,6 +48,8 @@
 
 @block{@block-name{Various}
 
+  The Internet explained from first principles
+  https://explained-from-first-principles.com/internet/
 
   # nftables
   # Packet filtering framework in the Linux kernel for managing network traffic.
