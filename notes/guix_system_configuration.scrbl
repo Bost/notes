@@ -105,6 +105,7 @@
 
   ;; analyze system state / show information about the
   guix describe                   # channels currently in use
+  # guix describe | rg '^  ([a-z])' --replace '$1' | column -t -s ' '
   guix system describe            # current system (OS kernel, etc.)
   guix home describe              # home environment generation & channels
   guix package --list-profiles    # doesn't show the $HOME/.guix-home/profile
@@ -150,9 +151,6 @@
 
   # systemctl status guix-daemon # on a foreign host
 
-  # lists the currently defined GNU Shepherd services
-  sudo herd status
-
   # `sudo guix system reconfigure configuration.scm` may produce:
   #   guix system: error: symlink: Permission denied: "/var/guix/profiles/system-2-link.new"
   # so try with sudo -E / --preserve-env
@@ -180,11 +178,23 @@
     - can be extensible or non-extensible.
     One-shot services stop immediately after their start action has completed.
 
+    # herd - client program to control a running instance of 'shepherd'.
+    # status of all the "system services":
+    sudo herd status
+    # status of "user services", assuming a user 'shepherd' is running
+    herd status
+
+    # list all available system services
+    guix system search .
+
+    # list all available (login) manager system services
+    guix system search manager
+
     Extensions - connect system services. A service-extension gets the command line
     from the service it is extending.
     Service types - define extension relations.
 
-   (service-extension TARGET COMPUTE DEFAULT-VAL)
+    (service-extension TARGET COMPUTE DEFAULT-VAL)
 
     TARGET - "arrow target" in the graph, i.e. name of service which is going to
     be extended.
