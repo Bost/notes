@@ -59,6 +59,10 @@
 }
 
 @block{@block-name{Various}
+  ;; Copy and invoke a function?
+  (setq wrapped-copy (symbol-function 'emacs-version))
+  (fset 'fn (lambda () (funcall wrapped-copy)))
+
   Documentation string encoding:
   Single quote chararcter ie. ASCII apostrophe \\='
   Accent grave \\=`
@@ -66,6 +70,8 @@
   (defun foo () "(equal (list 1 (list 2 3)) \\='(1 (2 3)))" 42)
 
   (get-buffer " *Echo Area 0*")
+  (current-buffer) ;; #<buffer emacs.scrbl>
+  (buffer-name) ;; "emacs.scrbl"
 
   EIEIO Enhanced Implementation of Emacs Interpreted Objects
   - system for creating and working with object-oriented code in Emacs Lisp.
