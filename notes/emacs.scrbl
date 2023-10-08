@@ -946,10 +946,15 @@
 
   Andrew Tropin: GNU Guix as Emacs package manager
   https://youtu.be/gqmZjovuomc?t=90
-  init.el
-  default.el      ;; may be located in '/usr/local/share/emacs/site-lisp'
-  ;; may be located in '/usr/local/share/emacs/site-lisp'; loaded before init.el?
-  site-start.el
+  ;; loading order:
+  ;; 1. early-init.el  - loaded before the package system and GUI is initialized
+  ;;
+  ;; 2. site-start.el  - loaded before before the user's init file
+  ;;
+  ;; 3. User's init file. Specifies how to initialize Emacs. Located in:
+  ;; ~/.emacs or ~/.emacs.el or ~/.emacs.d/init.el
+  ;;
+  ;; 4. default.el     - default init file. May be in '/usr/local/share/emacs/site-lisp'
 
   Emacs package change management with quelpa and use-package
   https://youtu.be/GhItV6dE0Fo
@@ -975,15 +980,30 @@
 }
 @block{@block-name{french keyboard / clavier français}
   M-x set-input-method RET french-keyboard
-  #  ~   1   2   3   4   5   6   7   8   9   0   _   +    BACKSPACE
-  #  `   ê   é   è   ô   î   ï   â   û   ù   à   -   ë    BACKSPACE
+  #    ~   1   2   3   4   5   6   7   8   9   0   _   +   BACKSPACE
+  #    `   ê   é   è   ô   î   ï   â   û   ù   à   -   ë   BACKSPACE
   #
-  # TAB   Q   W   E   R   T   Y   U   I   O   P   Ç   &        RET
-  # TAB   q   w   e   r   t   y   u   i   o   p   ç   ü        RET
+  #   TAB   Q   W   E   R   T   Y   U   I   O   P   Ç   &     RETURN
+  #   TAB   q   w   e   r   t   y   u   i   o   p   ç   ü     RETURN
   #
-  # CAPS   A   S   D   F   G   H   J   K   L   :   ""   |      RET
-  # CAPS   a   s   d   f   g   h   j   k   l   ;   ''   \      RET
+  #   CAPS   A   S   D   F   G   H   J   K   L   :   ""   |   RETURN
+  #   CAPS   a   s   d   f   g   h   j   k   l   ;   ''   \   RETURN
   #
-  # RSHIFT   )   Z   X   C   V   B   N   M   (   )   ?      LSHIFT
-  # RSHIFT   (   z   x   c   v   b   n   m   ,   .   /      LSHIFT
+  # RSHIFT |   Z   X   C   V   B   N   M   (   )   ?          LSHIFT
+  # RSHIFT \   z   x   c   v   b   n   m   ,   .   /          LSHIFT
+
+
+  M-x set-input-method RET french-azerty
+  #    @   &   é   "   '   (   -   è   _   ç   à   )   =    BACKSPACE
+  #    ~   1   2   3   4   5   6   7   8   9   0   °   _    BACKSPACE
+  #
+  #   TAB   a   z   e   r   t   y   u   i   o   p   ^   $      RETURN
+  #   TAB   A   Z   E   R   T   Y   U   I   O   P   ¨   ¨      RETURN
+  #
+  #   CAPS   q   s   d   f   g   h   j   k   l   m   ù   *     RETURN
+  #   CAPS   Q   S   D   F   G   H   J   K   L   M   %   |     RETURN
+  #
+  # RSHIFT *   w   x   c   v   b   n   ,   ;   :   !           LSHIFT
+  # RSHIFT |   W   X   C   V   B   N   ?   .   /   +           LSHIFT
+
 }

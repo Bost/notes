@@ -139,6 +139,10 @@
 }
 
 @block{@block-name{Various}
+  Project Gemini
+  new internet technology supporting an electronic library of interconnected
+  text documents.
+
   Polyfill: code (usually JavaScript on the Web) used to provide modern
   functionality on older browsers that do not natively support it.
 
