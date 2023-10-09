@@ -262,7 +262,8 @@
   https://karthinks.com/
 
   Protesilaos Stavrou - Vlog: Moral lessons from switching to Emacs
-  "I object to the characterization of the free software expert as some sort of a weirdo"
+  "I object to the characterization of the free software expert as some sort of
+  a weirdo"
   https://youtu.be/gwT5PoXrLVs?t=2131
 
   | ~SPC h d~   | M-x help-describe                      |            |
@@ -308,10 +309,10 @@
   | \(http[[:print:]]*\)/ | match / find url                   |
 
   ;; regexp, syntax table, syntax classes; symbols must be used within square brackets
-  | [[:space:]] | whitespace char, as defined by the syntax table, typically [\t\r\n\v\f]        |
-  | \\s-        | see [:space:]                                                                  |
-  | [[:blank:]] | a space or tab character                                                       |
-  | [[:print:]] | printing char - either whitespace, or a graphic character matched by [:graph:] |
+  | [[:space:]] | whitespace char as defined by the syntax table, typically [\t\r\n\v\f] |
+  | \\s-        | see [:space:]                                                          |
+  | [[:blank:]] | a space or tab character                                               |
+  | [[:print:]] | printing char - whitespace or graphic char matched by [:graph:]        |
 
   ;; utf8 unicode
   | M-x describe-char       | describe char at the point                    |
@@ -414,19 +415,19 @@
   ;; seems like 'remotehost#port' is not needed:
   (find-file "/ssh:you@"@"remotehost#port|sudo:remotehost#port:/path/to/file")
 
-  | ~C-x C-f~ | M-x spacemacs/helm-find-files     | open file                        |
-  | ~SPC b R~ | M-x spacemacs/safe-revert-buffer  | reload / refresh file            |
-  | ~C-x x g~ | M-x revert-buffer-quick           | force reload / refresh file      |
-  | ~C-x k~   | M-x kill-buffer                   | close file                       |
-  | ~C-x C-b~ | M-x list-buffers                  |                                  |
-  | ~C-x b~   | M-x ido-switch-buffer             |                                  |
-  | ~C-x 4 f~ | M-x ido-find-file-other-window    | ctl-x-4-prefix                   |
-  | ~C-x 4 b~ | M-x switch-to-buffer-other-window | ctl-x-4-prefix                   |
-  | ~C-x o~   | M-x other-window                  | switch window / frame; o = other |
-  | ~C-x C-s~ | M-x save-buffer                   | save file                        |
-  | ~C-x s~   | M-x save-some-buffers             | save all files                   |
-  | ~SPC f c~ | M-x spacemacs/save-as             |                                  |
-  | ~C-x C-w~ | M-x write-file                    | save as                          |
+  | ~C-x C-f~ | M-x spacemacs/helm-find-files     | open file                  |
+  | ~SPC b R~ | M-x spacemacs/safe-revert-buffer  | reload / refresh file      |
+  | ~C-x x g~ | M-x revert-buffer-quick           | force reload / refresh file|
+  | ~C-x k~   | M-x kill-buffer                   | close file                 |
+  | ~C-x C-b~ | M-x list-buffers                  |                            |
+  | ~C-x b~   | M-x ido-switch-buffer             |                            |
+  | ~C-x 4 f~ | M-x ido-find-file-other-window    | ctl-x-4-prefix             |
+  | ~C-x 4 b~ | M-x switch-to-buffer-other-window | ctl-x-4-prefix             |
+  | ~C-x o~   | M-x other-window                  | switch window / frame      |
+  | ~C-x C-s~ | M-x save-buffer                   | save file                  |
+  | ~C-x s~   | M-x save-some-buffers             | save all files             |
+  | ~SPC f c~ | M-x spacemacs/save-as             |                            |
+  | ~C-x C-w~ | M-x write-file                    | save as                    |
 
   ;; Introduction to EShell: https://youtu.be/RhYNu6i_uY4
   ;; Video ransscript: http://howardism.org/Technical/Emacs/eshell-present.html
@@ -544,7 +545,8 @@
 
   | M-x spell         | check word             |
   | M-x flyspell-mode | ? check all document ? |
-  ;; Error enabling Flyspell mode: No word lists can be found for the language "en_US"
+  ;; Error enabling Flyspell mode: No word lists can be found for the language
+  ;; "en_US"
   ;; sudo apt install --yes aspell-en
 
   | ~C-t~         | transpose chars         |
@@ -618,8 +620,8 @@
   M-x erc/default-servers or M-x erc
 
   ;; M-x speedbar
-  ;; Summarize information related to the current buffer. Its original inspiration
-  ;; is the “explorer”
+  ;; Summarize information related to the current buffer. Its original
+  ;; inspiration is the “explorer”
 
   | M-x linum-relative-toggle | line numbers: relative |
   | M-x global-linum-mode     | line numbers: absolute |
@@ -645,9 +647,9 @@
                libxaw3d gnutls libtiff libungif libjpe libxpm
   unset EMACSLOADPATH
 
-  ;; gui
-  | M-x toggle-scroll-bar | toggle vertical scroll bar; horizontal scroll bar does not exist in emacs |
-  | M-x menu-bar-mode     | toggle menu-bar                                                           |
+  ;; gui; horizontal scroll bar does not exist in emacs
+  | M-x toggle-scroll-bar | toggle vertical scroll bar;  |
+  | M-x menu-bar-mode     | toggle menu-bar              |
 
   | M-x align-regexp | align at the given regexp |
 
@@ -708,8 +710,8 @@
   | "select chunk" |                                | split chunk                           |
   | ~i~            | M-x magit-gitignore            | add to .gitignore / .git/info/exclude |
 
-  ;; M-x magit-status; remoting / log / branching / bisecting / diff / fetch /
-  ;; merge / rewrite
+  ;; M-x magit-status:
+  ;; remoting / log / branching / bisecting / diff / fetch / merge / rewrite
   ~M~ / ~l~ / ~b~ / ~B~ / ~d~ / ~f~ / ~m~ / ~r~
 
   ;; M-x magit-log; show commit details and stay in log / jump to details /
@@ -722,7 +724,8 @@
   ;; M-x magit-status: section visibility: hide (all) / show (all)
   ~M-h~ (H) / ~M-s~ (S)
 
-  ;; M-x magit-commit: log-edit-commit-ring / Kill commit / Tested / Signed-off by
+  ;; M-x magit-commit:
+  ;; log-edit-commit-ring / Kill commit / Tested / Signed-off by
   ~M-p~ / ~M-n~ / ~C-c C-k~ / ~C-c C-t~ / ~C-c C-s~
 
   ;; M-x magit-status: rebase / ineractive-rebase
@@ -799,7 +802,8 @@
   'event-apply-hyper-modifier)
   ;;
   ;; local keymaps
-  ;; Major modes customize Emacs by providing their own key bindings in local keymaps
+  ;; Major modes customize Emacs by providing their own key bindings in local
+  ;; keymaps
 
   ;; buffer's major mode:
   (message "%s" major-mode)
@@ -833,8 +837,9 @@
   ;; https://www.masteringemacs.org/article/highlighting-by-word-line-regexp
   M-x highlight-lines-matching-regexp
 
-  ;; replace-all: recursive find & replace / substitute all occurences of a string
-  M-x find-name-dired  then  't' (toggle mark) then  'Q' (Query replace in files)
+  ;; replace-all: recursive find & replace / substitute all occurences of a
+  ;; string
+  M-x find-name-dired  then 't' (toggle mark) then 'Q' (Query replace in files)
 
   ;; edit as a root / super user
   M-x spacemacs/sudo-edit
@@ -844,8 +849,8 @@
   ;; toggle neotree
   ~SPC f T~
 
-  ;; Collapse every form of it when first opened - put the following block in the
-  ;; bottom of init.el:
+  ;; Collapse every form of it when first opened - put the following block in
+  ;; the bottom of init.el:
   ;; Local Variables:
   ;; eval: (hs-hide-all)
   ;; End:
@@ -954,14 +959,16 @@
   ;; 3. User's init file. Specifies how to initialize Emacs. Located in:
   ;; ~/.emacs or ~/.emacs.el or ~/.emacs.d/init.el
   ;;
-  ;; 4. default.el     - default init file. May be in '/usr/local/share/emacs/site-lisp'
+  ;; 4. default.el     - default init file,  may be in
+  ;;                     /usr/local/share/emacs/site-lisp
 
   Emacs package change management with quelpa and use-package
   https://youtu.be/GhItV6dE0Fo
 
   autoload:
   - code should be evaluated even if a package itself is NOT loaded
-  - it's for lazy loading mechanism. E.g. you can provide here a function signature
+  - it's for lazy loading mechanism. E.g. you can provide here a function
+    signature
   M-x list-packages
   M-x find-library
 
