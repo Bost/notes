@@ -763,6 +763,18 @@
   ;; launch emacs and evaluate Emacs Lisp expression
   emacs --eval '(message "ufo")'
   emacs --eval '(configuration-layer/update-packages)' & disown
+  ;; testing: startup: skip ~/.emacs (if messed up) / don't load the init file
+  emacs --no-init-file     # emacs -q
+  emacs --no-window-system # emacs -nw
+  ;; --batch    do not do interactive display; implies --no-init-file, -q
+  emacs --batch --eval "(message \"%s\" (+ 1 2))"
+  emacs --batch --script test.el
+  emacs --script test.el
+
+  mkdir emacs-from-scratch && cd emacs-from-scratch
+  touch init.el
+  emacs --no-init-file --load init.el & disown
+
 
   ;; M-x shell-command; execute
   ~M-!~ / ~SPC !~
@@ -941,13 +953,8 @@
   EMACSLOADPATH variable
   echo $EMACSLOADPATH
 
-  ;; testing: startup: skip ~/.emacs (if messed up) / don't load the init file
-  emacs --no-init-file     # emacs -q
-  emacs --no-window-system # emacs -nw
-
-  mkdir emacs-from-scratch && cd emacs-from-scratch
-  touch init.el
-  emacs --no-init-file --load init.el & disown
+  (parse-colon-path (getenv "PATH")) ;; items end with '/'
+  ;; => ("/home/bost/scm-bin/" "/home/bost/bin/" ...)
 
   Andrew Tropin: GNU Guix as Emacs package manager
   https://youtu.be/gqmZjovuomc?t=90
