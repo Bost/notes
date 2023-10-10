@@ -412,9 +412,9 @@
   set --local keyId <secret-key-id>
   # Sign all commits by default
   git config --file $dotf/.gitconfig user.signingkey --gpg-sign=$keyId
-  # Repeat following two commands for every commit
-  git commit --amend --no-edit --gpg-sign=$keyId
-  git rebase --continue
+  git rebase --exec \
+    'git commit --amend --no-edit -n --gpg-sign=$keyId' \
+    origin/master master
   # Verify last <number> commits
   git log --oneline --show-signature --max-count=<number>
   #
@@ -422,8 +422,11 @@
   # GIT_TRACE=1 shows what git is actually doing. Only in bash. In the fish-shell
   # following doesn't work:
   #    set --local GIT_TRACE 1 git commit --amend --no-edit --gpg-sign
-  GIT_TRACE=1 git commit --amend --no-edit --gpg-sign | rg
-  echo "dummy" | <put-here-the-gpg-run_command-shown-above'
+  GIT_TRACE=1 git commit --amend --no-edit --gpg-sign | rg 'trace: run_command: \(gpg .*\)'
+  echo "dummy" | <put-here-the-gpg-run_command-shown-above>
+  #
+  pkill gpg-agent
+  gpg-agent --pinentry-program=$(which pinentry) --daemon
 }
 
 @block{@block-name{Mercurial}
