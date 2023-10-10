@@ -125,7 +125,7 @@
 
   guix system -L ~/.dotfiles/.config/guix/systems init path/to/config.scm /mnt
 
-  Authenticating Git checkouts (see $dotf/bin/guix-git-auth):
+  Authenticate Git checkouts (see $dotf/bin/git-authenticate):
   - When guix pull obtains code from Git, it should be able to tell that all the
     commits it fetched were pushed by authorized developers of the project.
   - It requires cryptographically signed commits
@@ -133,7 +133,7 @@
   guix git authenticate               \
     --keyring=$(GUIX_GIT_KEYRING)     \
     --cache-key=channels/guix --stats \
-    --historical-authorizations=/home/bost/dev/my-authorisation.scm \
+    --historical-authorizations=/home/bost/dev/.my-guix-authorisations \
     "$(channel_intro_commit)" "$(channel_intro_signer)"
   # --cache-key=path/to/KEY reads file from ~/.cache/guix/authentication/path/to/KEY
   ;;
