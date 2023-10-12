@@ -130,6 +130,8 @@
   (remove 'b '(a b c))    ; => (a c)
   (add-to-list 'lst 'b)   ; => (a b c)
   (add-to-list '(a c) 'b) ; => Wrong type argument: symbolp, (a c)
+  (cl-pushnew 'a lst)     ; => (a b c)  ;; cl-pushnew is a macro
+  (add-to-list 'lst 'b)   ; => (a b c)  ;; doesn't append
 
   ;; in? member?
   (cl-find "b" '("a" "b" "c") :test #'string=) ; => nil
@@ -246,6 +248,7 @@
   | (boundp 'my=variable)      | test if symbol is defined   |
   | (functionp 'dbg=function)  | test if function is defined |
   | (functionp #'dbg=function) | test if function is defined |
+  | (macrop 'cl-pushnew)       | test if macro is defined    |
 
   # emacsclient in Guix is in the package
   guix install emacs-with-editor
@@ -953,8 +956,10 @@
   EMACSLOADPATH variable
   echo $EMACSLOADPATH
 
-  (parse-colon-path (getenv "PATH")) ;; items end with '/'
+  (parse-colon-path (getenv "PATH")) ;; items end with trailing shash '/'
   ;; => ("/home/bost/scm-bin/" "/home/bost/bin/" ...)
+  (parse-colon-path "a:b") ;; => ("a/" "b/")
+  (split-string "a:b" ":") ;; => ("a" "b")
 
   Andrew Tropin: GNU Guix as Emacs package manager
   https://youtu.be/gqmZjovuomc?t=90
