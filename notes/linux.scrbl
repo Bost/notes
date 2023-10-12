@@ -270,9 +270,12 @@
   curl 'http://stash.compciv.org/congress-twitter/json/joni-ernst.json' \
        > ernst.json && cat ernst.json | jq '.'
 
-  # cpu mem hdd hardware: system information in a GTK+ window
+  # processor cpu mem hdd hardware: system information in a GTK+ window
   hwinfo
-  inxi -Fxz
+  # system information for console & IRC
+  # -Fz filter out privacy sensitive information
+  inxi -Fxz  # ie. inxi --full --extra 1 --filter
+  inxi -aGz
   hardinfo
   sudo dmidecode
   sudo lshw
@@ -869,11 +872,6 @@
   # Display five reports of statistics for all processors at two second
   # intervals
   mpstat -P ALL 2 5
-
-  # :processor :cpu :mem :hdd :hardware system information for console & IRC
-  # -Fz filter out privacy sensitive information
-  inxi -Fxz
-  inxi --full --extra 1 --filter
 
   # :nice :cpulimit find and delete *.jar and *.class when idling
   ionice -c3 find . -name "*.jar" -or -name "*.class" -delete
