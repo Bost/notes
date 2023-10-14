@@ -586,9 +586,9 @@
   | ~g~                | refresh buffer                                    |
   | ~+~                | M-x dired-create-directory                        |
   | ~R~                | M-x dired-do-rename                               |
-  | ~@"("~             | toggle listing details                            |
+  | ~@"("~             | M-x dired-hide-details-mode                       |
+  |                    | toggle listing details                            |
   |                    | See `(describe-variable 'dired-listing-switches)` |
-  | ~@")"~             | M-x dired-hide-details-mode                       |
   | ~C-x C-q~          | perform operations by editing dired buffer        |
   | ~C-x C-q~          | M-x dired-toggle-read-only                        |
   |                    | M-x wdired-finish-edit                            |
@@ -675,7 +675,7 @@
   ;; helm: minibuffer: minibuffer-force-complete
   ~C-M-i~
 
-  ;; Helm: toggle horizontal / vertical listing
+  ;; Helm: toggle horizontal / vertical split
   ~M-x C-t~
 
   ;; M-x helm-toggle-visible-mark / M-x helm-copy-to-buffer

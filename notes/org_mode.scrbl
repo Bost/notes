@@ -129,3 +129,28 @@
   List of Code Block Languages supported by Babel
   https://orgmode.org/worg/org-contrib/babel/languages/index.html
 }
+
+@block{@block-name{Info}
+  info - read Info documents / documentation in Info format
+  
+  YouTube: Andrew Tropin - Info and Texinfo
+  https://www.youtube.com/watch?v=KDlVGg_VgQc
+  
+  Plain Text:
+  #+BEGIN_SRC bash :results output
+  emacs -q ~/.guix-home/profile/share/info/bash.info.gz & disown
+  #+END_SRC
+  
+  #+BEGIN_SRC bash :results output
+  emacs -q -eval '(info-apropos "bash")' & disown
+  #+END_SRC
+  
+  #+BEGIN_SRC bash :results output
+  echo $INFOPATH
+  #+END_SRC
+  
+  The Top-Directory content in Emacs is defined by:
+  #+BEGIN_SRC emacs-lisp
+  Info-directory-list
+  #+END_SRC
+}
