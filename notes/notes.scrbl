@@ -37,9 +37,9 @@
 @include-section{guix_system_configuration.scrbl}
 @include-section{heroku.scrbl}
 @include-section{influenza.scrbl}
-@include-section{info.scrbl}
 @include-section{linux.scrbl}
 @include-section{lisp.scrbl}
+@include-section{listing.scrbl}
 @include-section{logics.scrbl}
 @include-section{mainframe_and_host.scrbl}
 @include-section{make.scrbl}

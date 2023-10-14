@@ -500,45 +500,10 @@
   # display file or file system status; alternative to ls
   stat -c "%y %s %n" *
 
-  # :listing - list contents of directories in a tree-like format.
-  tree -f # full-path
-  lff
-
-  # :listing - sort by size; -l     use a long listing format
-  ls --sort=size -l
-  ls --sort=size -l --reverse
-
-  # :listing - files newer than ...
-  ls -la (find . -type f -newermt "2022-10-01")
-  # listing - files older than ...
-  ls -la (find . -type f -not -newermt "2022-10-01")
-
-  # :listing - only one column
-  ls --format=single-column
-
-  # :listing - only directories, 1 entry per line
-  # -a, --all          do not ignore entries starting with .
-  # -A, --almost-all   do not list implied . and ..
-  # -d, --directory    list directories themselves, not their contents
-  # -1                 list one file per line.  Avoid '\n' with -q or -b
-  ls -d1 */
-
-  # :listing - count of entries / files in /path/to/dir
-  ls --almost-all -1 /path/to/dir | wc -l
-
-  # :listing - show full paths (alias lff)
-  ls  -lrt -d -1 $PWD/{*,.*}   # all filepaths w/  their attributes
-  ls       -d -1 $PWD/{*,.*}   # all filepaths w/o their attributes
-  ls       -d -1 $PWD/path/to/file
-  exa      -d -1 $PWD/path/to/file
-
-  # :listing - file all extentions / filetypes in current directory
-  find ./ -type f | perl -ne 'print $1 if m/\.([^.\/]+)$/' | sort -u
-
   # line count, word count
   wc /usr/share/common-licenses/GPL-2
 
-  # list current traps; shell function responding to HW / other signals
+  # current traps; shell function responding to HW / other signals
   trap
 
   # delete /tmp/xyz$$ on shell exit / shell error
@@ -547,7 +512,7 @@
   # fist / last 5 lines from file
   head -n 5 file / tail -n 5 file
 
-  # :listing process environment variables (separated by null-chars)
+  # process environment variables (separated by null-chars)
   cat /proc/PROCESS_ID/environ | tr '\0' '\n'
 
   # :net :ubuntu - (edit) and re-read proxy definition
@@ -1077,7 +1042,7 @@
   # -z, --gzip, --gunzip, --ungzip   Filter the archive through gzip
   tar -zxvf file.tar.gz
 
-  # :listing :compression list file content
+  # :gzip :zip :compression list file content
   tar --list --file FILE.tar.xz
   tar --list --file FILE.tar.gz
   tar --list --file FILE.tar.bz2

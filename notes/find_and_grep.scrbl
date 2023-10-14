@@ -151,11 +151,6 @@
   # grep
   # \Z  matches the EOF end-of-file
 
-  # https://www.putorius.net/linux-find-command.html
-  # Listing Matched Files with Find Command
-  # -iname  like -name but case insensitive
-  find . -type f -iname "my*" -ls
-
   # Save output to a file
   find ~/test/ -type f -fprint output.txt
 
