@@ -201,6 +201,16 @@
 }
 
 @block{@block-name{Package Inputs / Outputs}
+  (use-modules (rnrs base)) ;; provides 'let-values'
+  (define (divide-and-remainder a b)
+    (if (= b 0)
+        (error "Division by zero")
+        ;; return multiple / more than one output value
+        (values (quotient a b) (remainder a b))))
+  ;;
+  (let-values (((quot rem) (divide-and-remainder 10 3)))
+    (format #t "Quotient: ~a, Remainder: ~a~%" quot rem))
+
   A package can have multiple "Outputs", i.e. multiple store-directories, that
   serves as a mean to separate components of a program (libraries, extra tools,
   documentation, etc.).
