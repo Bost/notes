@@ -307,7 +307,7 @@
   Submitting Patches
   https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html
 
-  git format-patch origin
+  git format-patch origin/master
   git send-email --to=guix-patches@"@"gnu.org *.patch
   info "(guix)Submitting Patches"
 }
