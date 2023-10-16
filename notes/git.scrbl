@@ -250,11 +250,11 @@
   git      log master --author=John
   git shortlog master --author=John
 
-  # show settings
-  git config --global --list
+  # show settings: --local use .git/config; --global use ~/.gitconfig 
   git config  --local --list
-  git config --global --list --get <setting>
-  git config  --local --list --get <setting>
+  git config  --local --get <setting>
+  git config --global --list
+  git config --global --get <setting>
 
   # set user.name and user.mail
   git config --global user.name "Bost"
@@ -269,7 +269,7 @@
 
   # github add new repository: create a new repo on www.github.com, then:
   git remote add origin git@"@"github.com:Bost/<newrepo>.git
-  git push -u origin master
+  git push --set-upstream origin master
 
   # github: do not ask for username
   .git/config: url = https://Bost@"@"github.com/Bost/reponame.git
@@ -407,11 +407,14 @@
   # git merge --continue      # in case any conflicts; after resolving them
   git remote remove srcProj
 
-  # Sign git commits
-  gpg --list-secret-keys --keyid-format=long
-  set --local keyId <secret-key-id>
   # Sign all commits by default
-  git config --file $dotf/.gitconfig user.signingkey --gpg-sign=$keyId
+  git config --file $dotf/.gitconfig --get commit.gpgsign
+  # Sign git commits
+  set personName <...>
+  gpg --list-public-keys --keyid-format=long $personName
+  gpg --list-secret-keys --keyid-format=long $personName
+  set --local keyId <secret-key-id>
+  git config --file $dotf/.gitconfig user.signingkey $keyId
   git rebase --exec \
     'git commit --amend --no-edit -n --gpg-sign=$keyId' \
     origin/master master
@@ -427,6 +430,12 @@
   #
   pkill gpg-agent
   gpg-agent --pinentry-program=$(which pinentry) --daemon
+
+  # delete all remote/origin branches except 'master'
+  git --git-dir=$dgx/.git branch --all | \
+  rg 'remotes/origin/' | rg -v master | \
+  cut --delimiter="/" --fields=2,3 | \
+  xargs git --git-dir=$dgx/.git branch --remote --delete
 }
 
 @block{@block-name{Mercurial}
