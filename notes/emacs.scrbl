@@ -996,7 +996,14 @@
   ;; package descriptor; It the file doesn't exit the package will not appear in
   ;; the M-x list-packages
   <package-name>-pkg.el
+
+  # mu4e - see also https://systemcrafters.net/emacs-mail/
+  mbsync --all
+  mu init --maildir=~/Mail --my-address=<email-at-domain.com>
+  mu index
+
 }
+
 @block{@block-name{french keyboard / clavier français}
   M-x set-input-method RET french-keyboard
   #    ~   1   2   3   4   5   6   7   8   9   0   _   +   BACKSPACE
