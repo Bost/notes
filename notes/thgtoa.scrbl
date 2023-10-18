@@ -86,6 +86,7 @@
   # examples
   gpg --output file.txt.gpg --encrypt --recipient foo@"@"domain.org file.txt
   gpg --output file.txt --decrypt file.txt.gpg
+  gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.passwords/gmail.gpg
 
   # -A NUM, --after-context=NUM
   # man gpg | grep --after-context=2 show-usage

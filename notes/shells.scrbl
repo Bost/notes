@@ -135,7 +135,7 @@
   # fish-shell - all function arguments from 3rd to the last
   $argv[3..-1]
 
-  # fish-shell existence-tests
+  # fish-shell exists / existence-tests
   test (string escape -- $argv) = "--switch" # string equality / compare
   test -e /path/to/file.txt                  # file exists
   test -L /path/to/link                      # symbolic link exists
@@ -148,7 +148,7 @@
   set -q myvar && echo "myvar is set to '$myvar'" || echo "myvar is unset"
   test -z "$myvar" && echo "myvar is empty: '$myvar'" || echo "myvar is not empty: '$myvar'"
 
-  # bash-shell existence-tests
+  # bash-shell exists / existence-tests
   # ${var+x} is a parameter expansion which evaluates to nothing if var is
   # unset, and substitutes the string x otherwise.
   # variable blank vs. unset - see https://stackoverflow.com/a/13864829
