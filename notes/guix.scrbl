@@ -430,7 +430,6 @@
 }
 
 @block{@block-name{TODO}
-  https://guix.gnu.org/manual/devel/en/html_node/Using-Guix-Interactively.html
 
   Protesilaos Stavrou
   https://protesilaos.com/emacs/dotemacs

@@ -151,6 +151,8 @@
 }
 
 @block{@block-name{Various}
+  # generate random 4 letter hexadecimal strings / numbers
+  printf "\"%s\"\n" (random | sha512sum | rg --only-matching .... | string join '" "')
 
   os-prober - debian-installer component. Detects other operating system
 

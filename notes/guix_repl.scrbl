@@ -7,6 +7,7 @@
 
   REPL-commands (start with ',')
   https://www.gnu.org/software/guile/manual/guile.html#REPL-Commands
+  https://guix.gnu.org/manual/devel/en/html_node/Using-Guix-Interactively.html
 
   ;; pretty-print from shell / execute a scheme expression
   $ guile -c '(use-modules (ice-9 pretty-print)) (pretty-print \'(begin ...))'
@@ -14,25 +15,23 @@
   ,use (ice-9 pretty-print) ;; ,use is an alias for ,import or (import ...)
   ;; ,use (guix read-print) ; pretty-printer smarter than (ice-9 pretty-print).
   ;; (pretty-print-with-comments (current-output-port) '1)
-  ,pretty-print '(begin ...)
-  ;; access module variables w/o importing the whole module
+  ,pretty-print '(begin ...) 
+  ,h inspect       ;; REPL debugging:
+  ,inspect EXP                 [,i] - Inspect the result(s) of evaluating EXP.
+  ,pretty-print EXP           [,pp] - Pretty-print the result(s) of evaluating EXP.
+  ,pk              ;; peek
+
+  ;; repl: access module variables without importing the whole module
   (@"@" (my module) public-variable)
   (@"@"@"@" (my module) private-variable)
-
-  $ guix repl
-  ,use (guix read-print) ;; pretty-printer smarter than (ice-9 pretty-print).
-  (pretty-print-with-comments (current-output-port) '1)
 
   # disable colors and readline bindings defined in the .guile
   @; INSIDE_EMACS=1     # bash
   set INSIDE_EMACS 1    # fish-shell
   guix repl --listen=tcp:37146 &
   M-x geiser-connect
-  ;; REPL debugging:
-  ;; displays the call stack (aka backtrace) at the point where the debugger was
-  ;; entered
 
-  ;; guix repl: Print a backtrace
+  ;; debugging: guix repl: Print a backtrace / callstack
   > ,bt
   ;; Change the stackframe
   > ,up [COUNT] ; ,frame [COUNT] ,down [COUNT]
@@ -44,8 +43,7 @@
   scheme@"@"(srfi srfi-1)> ,help module
   scheme@"@"(srfi srfi-1)> ,binding
 
-  ;; guix repl
-  ;; <list of procedures>
+  ;; guix repl: <list of procedures>
   scheme@"@"(srfi srfi-1)> ,pretty-print (module-uses (current-module))
   $_ = (#<interface (guile) 7ffa54060dc0>
    #<autoload (system base compile) 7ffa540edb40>
@@ -54,11 +52,7 @@
    #<interface (ice-9 threads) 7ffa540a2aa0>
    #<interface (value-history) 7ffa52cce5a0>
    #<interface (geiser emacs) 7ffa51539f00>)
-  scheme@"@"(guile-user) > ,h inspect       ; REPL debugging:
-  Inspect Commands [abbrev]:
-  ;;
-  ,inspect EXP                 [,i] - Inspect the result(s) of evaluating EXP.
-  ,pretty-print EXP           [,pp] - Pretty-print the result(s) of evaluating EXP.
+
   scheme@"@"(guile-user)> ,use (gnu packages base)
   scheme@"@"(guile-user)> coreutils
   ;; quit / terminate the repl with exit / return code 0
@@ -88,14 +82,8 @@
   $ guix repl
   scheme@"@"(guile-user)> (use-modules (gnu packages))
   scheme@"@"(guile-user)> (specification->package+output "glib:bin")
-  $5 = #<package glib@"@"2.72.3 gnu/packages/glib.scm:560 7f9ff955f6e0>
-  $6 = "bin"
-  scheme@"@"(guile-user)> (specification->package+output "glib:out")
-  $7 = #<package glib@"@"2.72.3 gnu/packages/glib.scm:560 7f9ff955f6e0>
-  $8 = "out"
+  ;; "out" is the default package output
   scheme@"@"(guile-user)> (specification->package+output "glib")
-  $9 = #<package glib@"@"2.72.3 gnu/packages/glib.scm:560 7f9ff955f6e0>
-  $10 = "out"
 
   $ guix repl
   scheme@"@"(guix-user)> ,option value-history
