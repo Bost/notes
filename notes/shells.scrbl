@@ -201,6 +201,9 @@
   bash extension. In sh-compatible scripts only the single bracket must be used
   (i.e. use the #!/bin/bash shebang line if using use double brackets)
 
+  # regular file - none of:
+  # directory, symbolic link, device, other special type
+
   # bash: correctly handle empty strings or file names with spaces in them:
   [ -f "$file" ] && printf -- "is a regular file\n" || printf -- "else ...\n"
   [[ -f $file ]] && printf -- "is a regular file\n" || printf -- "else ...\n"
