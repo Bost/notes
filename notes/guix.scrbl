@@ -1,12 +1,114 @@
 #lang notes
 
-@block{@block-name{NixOS Flakes}
-  New system for managing Nix eco system
+@block{@block-name{Guix Source Code}
+  Let's read the GNU Guix source code
+  https://youtu.be/xccqwN7Negw?si=dFfWBcPlOCgbg_CT
 
-  # guix time-machine with channels is equal to nix flakes
-  # https://logs.guix.gnu.org/guix/2023-01-31.log#094922
-  # See 7.3 Replicating Guix in manual
-  # https://guix.gnu.org/manual/devel/en/html_node/Replicating-Guix.html
+  nix/boost/
+  Boost.org: free peer-reviewed portable C++ source libraries.
+
+  nix/libstore/
+  Some common parts with NoxOS
+
+  m4/
+  m4 macro processor
+  (L4 is a microkernel familly, seL4 Microkernel Security)
+
+  Guix TODOs
+  GNUnet - free and open-source decentralized network with mesh topology
+  GNUnet DHT Distributed Hash Table - part of GNUnet
+  store & retrieve key-value pairs in a distributed manner across GNUnet network
+  nodes.
+
+  libswift
+  leverage the capabilities of GNUnet in the Swift programming language.
+  provides a high-level abstraction over the GNUnet APIs
+
+  FSD Free Software Directory
+  a comprehensive collection of free software
+
+  cow-store
+  - Copy-On-Write Store, key component of the Guix package manager
+    once a package is built and stored, it cannot be changed.
+  - layered structure
+  - Copy-On-Write: technique to optimize disk space. Only the changed package
+    part are copied and modified. The unmodified parts are shared with the
+    original package
+
+  guix/po
+  po file extension - internationalization, GNU gettext
+
+  scripts/guix.in
+  - ? initialisation ?
+
+  PKI Public Key Infrastructure
+  - component of Guix package manager
+  - framework of policies, processes, and technologies used to manage and secure
+    public key cryptography
+
+  gcrypt
+  - known as Libgcrypt
+  - cryptographic functionality to applications
+  - cryptographic engine behind many software applications. The library handles
+  various cryptographic algorithms, such as symmetric and asymmetric encryption,
+  hash functions, key generation, and more.
+
+  authentication challenge
+  - security measure used to verify the identity of a
+    user or device by requesting additional credentials or information.
+
+  gnu system tripplet
+
+  Fluids
+  dynamically scoped variables.
+  can be accessed throughout the dynamic extent of that scope
+
+  Fluid fields:
+  - dynamic, mutable values within records, for more flexible and configurable
+    data structures.
+  - can be useful in concurrent or multi-threaded environments.
+
+  'Why ice-9' by Noah Lavine
+  https://lists.gnu.org/archive/html/guile-devel/2010-07/msg00046.html
+
+  https://inria.hal.science/hal-03604971
+  two performance-critical aspects in HPC: message passing (MPI) and CPU
+  micro-architecture tuning.
+  package multi-versioning, a technique developed for GNU Guix, a tool for
+  reproducible software deployment, and show that it allows us to implement CPU
+  tuning without compromising on reproducibility and provenance tracking.
+
+
+  embedded code snippets are staged for eventual execution. 
+  gexps - staging mechanism
+  explain our journey from traditional Lisp S-expressions to G-expressions,
+
+
+  Oleg Kysielov - monadic programming in scheme
+  https://okmij.org/ftp/Scheme/monad-in-Scheme.html
+
+  https://programming-idioms.org
+
+  Procedures in Guile Scheme
+  differ from functions in mathematics due to the presence of side effects,
+  mutable state, and language-specific features in Guile Scheme procedures.
+
+  language-specific features: control flow constructs (loops, conditionals),
+  exception handling, and support for input/output operations, which are not
+  present in mathematical functions.
+
+  (file-append shadow "/bin/passwd")
+
+  herd.scm
+  hurd.scm
+
+}
+
+@block{@block-name{NixOS Flakes}
+  - like guix time-machine with channels
+  https://logs.guix.gnu.org/guix/2023-01-31.log#094922
+  See 7.3 Replicating Guix in manual
+  https://guix.gnu.org/manual/devel/en/html_node/Replicating-Guix.html
 }
 
 @block{@block-name{Various}
@@ -430,6 +532,11 @@
 }
 
 @block{@block-name{TODO}
+  Emacs-Guix
+  guix-devel-mode mode that indents and highlights Guix code
+  properly (see Development in The Emacs-Guix Reference Manual).
+
+  7.5 Channels with Substitutes
 
   Protesilaos Stavrou
   https://protesilaos.com/emacs/dotemacs
@@ -459,6 +566,9 @@
   auth info - gpg secrets
   EasyPG / epa - Emacs’s native support for GnuPG
   https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources
+
+  # PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.passwords/gmail.gpg"
+  # see also sops-nix, vauld
 
   # Set up secret environment variable
   guix install gnupg

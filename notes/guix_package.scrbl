@@ -80,6 +80,9 @@
 
   https://guix.gnu.org/manual/en/html_node/Invoking-guix-weather.html
   `guix weather` nars: size of the compressed archives
+
+  NAR / nar Nix Archive
+  binary, platform independent
 }
 
 @block{@block-name{Derivations}
