@@ -1027,6 +1027,8 @@
   # -v --version    Display the version number of readelf
   readelf -v $(which vim)
 
+  ELF Executable and Linkable Format for executable and shared object files.
+
   # :cygwin command-line installer
   apt-cyg --mirror \
       http://ftp-stud.hs-esslingen.de/pub/Mirrors/sources.redhat.com/cygwin/x86
