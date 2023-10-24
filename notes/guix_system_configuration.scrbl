@@ -204,7 +204,7 @@
 
     DEFAULT-VAL - default value for instances of this service-extension.
 
-    Servive instantiation examples:
+    Service instantiation examples:
       (service guix-service-type   ;; name of the service to start
                ;; initial service
                (guix-configuration
@@ -212,6 +212,11 @@
                  (extra-options '("--gc-keep-derivations"))))
       ;;
       (service guix-service-type)  ;; uses the DEFAULT-VAL
+      ;;
+      (simple-service 'consider-relogin
+                       home-run-on-first-login-service-type
+                       #~(begin (display "AAA\n")
+                                 (display "BBB\n")))
 
     Every '...-service-type' has at least one extension. The only exception is
     the boot service type, which is the ultimate service.
