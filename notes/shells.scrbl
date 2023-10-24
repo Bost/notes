@@ -185,10 +185,12 @@
   # just to reassign it a new value. It must be unset!
   unset myvar && myvar=("a" "b")
   unset myvar && myvar="ab"
-  declare -p myvar 2> /dev/null | grep -q '^declare \-a' && \
-          echo "Array" ||  echo "No array"
+  # -p	display the attributes and value of each NAME
+  declare -p myvar 2> /dev/null | grep -q '^declare -a' && \
+      echo "Array: true" || echo "Array: false"
   # this doesn't work:
-  # test "$(declare -p myvar)" =~ "declare -a" && echo "array" || echo "no array"
+  # test "$(declare -p myvar)" =~ "declare -a" && \
+  #     echo "Array: true" || echo "Array: false"
 
   # compute calculate fish-shell
   # examples https://nicolas-van.github.io/programming-with-fish-shell

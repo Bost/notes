@@ -275,11 +275,11 @@
   .git/config: url = https://Bost@"@"github.com/Bost/reponame.git
 
   # search in commit content, ie code-changes, not in commit messages
-  git grep <regexp> $(git rev-list --all)
+  git grep <regexp> $(git rev-list --abbrev-commit --all)
   # search in the lib/util subtree
-  git grep <regexp> $(git rev-list --all -- lib/util) -- lib/util
+  git grep <regexp> $(git rev-list --abbrev-commit --all -- lib/util) -- lib/util
   # Search all revisions between rev1 and rev2
-  git grep <regexp> $(git rev-list <rev1>..<rev2>)
+  git grep <regexp> $(git rev-list --abbrev-commit <rev1>..<rev2>)
   # search in commit content; -p --patch
   git log -S<string>  -- path_containing_change
   # search in commit content; -p --patch - show's also the change itself
