@@ -408,15 +408,17 @@
   git remote remove srcProj
 
   # Sign all commits by default
-  git config --file $dotf/.gitconfig --get commit.gpgsign
+  git config --file $dotf/.gitconfig commit.gpgsign true
+  # git config --file $dotf/.gitconfig --get commit.gpgsign
+  #
   # Sign git commits
   set personName <...>
   gpg --list-public-keys --keyid-format=long $personName
   gpg --list-secret-keys --keyid-format=long $personName
   set --local keyId <secret-key-id>
-  git config --file $dotf/.gitconfig user.signingkey $keyId
+  git config --file $dotf/.gitconfig user.signingkey $gpgPubKey
   git rebase --exec \
-    'git commit --amend --no-edit -n --gpg-sign=$keyId' \
+    'git commit --amend --no-edit -n --gpg-sign=$gpgPubKey' \
     origin/master master
   # Verify last <number> commits
   git log --oneline --show-signature --max-count=<number>
