@@ -58,6 +58,13 @@
   guix           upgrade --do-not-upgrade="(openjdk|postgres|fish).*"
   # guix package -i mycli --with-latest=mycli
 
+  # remove package with different-than-default output
+  $ guix package --profile=/home/bost/.guix-profile --list-installed
+  bind	9.16.38	utils	/gnu/store/6rw5zfyn5ydjvsyd6xx9lrnppkqns2iw-bind-9.16.38-utils
+  $ guix package --profile=/home/bost/.guix-profile --remove bind
+  guix package: error: package 'bind' not found in profile
+  $ guix package --profile=/home/bost/.guix-profile --remove bind:utils
+
   IRC discussion: How to find out from which package a binary comes from?
   https://logs.guix.gnu.org/guix/2021-10-30.log#111758
 

@@ -79,7 +79,7 @@
   tuning without compromising on reproducibility and provenance tracking.
 
 
-  embedded code snippets are staged for eventual execution. 
+  embedded code snippets are staged for eventual execution.
   gexps - staging mechanism
   explain our journey from traditional Lisp S-expressions to G-expressions,
 
@@ -102,13 +102,6 @@
   herd.scm
   hurd.scm
 
-}
-
-@block{@block-name{NixOS Flakes}
-  - like guix time-machine with channels
-  https://logs.guix.gnu.org/guix/2023-01-31.log#094922
-  See 7.3 Replicating Guix in manual
-  https://guix.gnu.org/manual/devel/en/html_node/Replicating-Guix.html
 }
 
 @block{@block-name{Various}
@@ -433,9 +426,9 @@
 }
 
 @block{@block-name{Local repository clone}
- <muradm>if one ever did guix pull, gnu/system/install.scm can be found in
-         ~/.cache/guix/checkouts/....../gnu/system/install.scm
- <muradm>no need to clone guix again
+  <muradm>if one ever did guix pull, gnu/system/install.scm can be found in
+          ~/.cache/guix/checkouts/....../gnu/system/install.scm
+  <muradm>no need to clone guix again
   2021-08-22: IRC #guix channel log
   https://logs.guix.gnu.org/guix/2021-08-22.log#181402
 
@@ -444,19 +437,19 @@
 }
 
 @block{@block-name{Org mode, Pdf, LaTex}
-  - `guix install texlive-bin` is not enough. It leads to: "I can't find the
-    format file `pdflatex.fmt'!" where `sudo texconfig rehash` doesn't help.
-    See http://tex.stackexchange.com/questions/64894/ddg#64895
-  - Installing everything with `guix install texlive` (2.6 GB)
-  - viewing pdf in the spacemacs:
-  1. install pdf layer
-  2. `guix install gwl` for the `autoreconf` program
-  3. TODO fix `pdf-info-epdfinfo-program is not executable`
+   - `guix install texlive-bin` is not enough. It leads to: "I can't find the
+     format file `pdflatex.fmt'!" where `sudo texconfig rehash` doesn't help.
+     See http://tex.stackexchange.com/questions/64894/ddg#64895
+   - Installing everything with `guix install texlive` (2.6 GB)
+   - viewing pdf in the spacemacs:
+   1. install pdf layer
+   2. `guix install gwl` for the `autoreconf` program
+   3. TODO fix `pdf-info-epdfinfo-program is not executable`
 
- M-x org-odt-export-to-odt needs
- guix install zip
- M-x org-roam-graph needs
- guix install graphviz
+  M-x org-odt-export-to-odt needs
+  guix install zip
+  M-x org-roam-graph needs
+  guix install graphviz
 }
 
 @block{@block-name{Main commands}
@@ -507,7 +500,7 @@
 }
 
 @block{@block-name{Plumbing commands}
-  guix archive    # manipulate, export, import normalized archives (nars)
+  guix archive    # manipulate, export, import nix / normalized archives (nars)
   guix copy       # copy items to and from a remote store over SSH
   guix git        # operate on Git repositories
   guix offload    # set up and operate build offloading
@@ -515,8 +508,7 @@
   guix repl       # interactive programming of Guix in Guile
 }
 
-
-@block{@block-name{Normalized Archives}
+@block{@block-name{Nix / Normalized Archives}
   # When 'guix home: error: corrupt input while restoring archive from'
   # See "nar 404 leads to hard 'guix substitute' crash"
   # https://issues.guix.gnu.org/63634
