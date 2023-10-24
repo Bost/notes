@@ -139,6 +139,11 @@
 }
 
 @block{@block-name{Various}
+  POSIX Portable Operating System Interface
+  Standards for compatibility between operating systems. It defines the
+  application programming interface (API), command line shells and utility
+  interfaces, for compatibility with variants of Unix and other OSes.
+
   Project Gemini
   new internet technology supporting an electronic library of interconnected
   text documents.
