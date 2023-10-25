@@ -596,7 +596,13 @@
   sudo !!
 
   # real and effective user and group IDs
-  id user
+  id $USER
+  # UID   Real User ID
+  # GID   Real Group ID
+  # EUID  Effective User ID
+  # EGID  Effective Group ID
+  # real ID: actual identity of the user / group running a process
+  # effective ID: used to determine the permissions the process has
 
   # google domain / sice specific search
   SearchText site:bartoszmilewski.com
