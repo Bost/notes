@@ -110,7 +110,7 @@
   @lisp{
     ;; define vs let - difference is in the scope
     ;; https://stackoverflow.com/a/5406423
-    ;; correct:
+        ;; correct:
     (define (f x)
       (let ((a 1))
         (+ a x)))
