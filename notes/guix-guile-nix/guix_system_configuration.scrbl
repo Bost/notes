@@ -27,6 +27,7 @@
 }
 
 @block{@block-name{Bootable ISO-9660 installation image}
+
   # in bash:
   # guix_repo=https://git.savannah.gnu.org/git/guix.git
   # for d in $HOME/.cache/guix/checkouts/*; do
