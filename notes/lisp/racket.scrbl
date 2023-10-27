@@ -74,6 +74,8 @@
 }
 
 @block{@block-name{Various & snippets, etc.}
+  (require racket)
+  (string-split " foo bar  baz \r\n\t") ;; => '("foo" "bar" "baz")
 
   @lisp{
     ;; take / fetch n-elements from a list
