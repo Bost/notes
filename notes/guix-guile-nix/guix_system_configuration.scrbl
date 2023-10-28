@@ -29,35 +29,44 @@
 @block{@block-name{Bootable ISO-9660 installation image}
 
   # in bash:
-  # guix_repo=https://git.savannah.gnu.org/git/guix.git
+  # guixRepo=https://git.savannah.gnu.org/git/guix.git
   # for d in $HOME/.cache/guix/checkouts/*; do
   #     if [ -d "$d" ] && [ ! -L "$d" ]; then
-  #         # echo "is dir: $d"
+  #         # echo "Analyzing $d"
   #         if git --git-dir=$d/.git remote -v | rg --quiet $guix_repo; then
-  #             coDir=$d
-  #             echo "Guix channel checkout directory: $coDir"
+  #             coGxDir=$d
+  #             echo "$coGxDir  # coGxDir"
   #             break
   #         fi
   #     fi
   # done
 
-  set guix_repo https://git.savannah.gnu.org/git/guix.git
+  set guixRepo https://git.savannah.gnu.org/git/guix.git
+  set nonguixRepo https://gitlab.com/nonguix/nonguix
   for d in $HOME/.cache/guix/checkouts/*;
       # echo "$d"
       if test -d "$d" && not test -L "$d"
-          # echo "is dir: $d"
-          if git --git-dir=$d/.git remote -v | rg --quiet $guix_repo
-              set coDir $d
-              printf "Guix channel checkout directory: %s\n" $coDir
+          # echo "Analyzing $d"
+          if git --git-dir=$d/.git remote -v | rg --quiet $guixRepo
+              set coGxDir $d
+              printf "%s   # coGxDir\n" $coGxDir
+          end
+          if git --git-dir=$d/.git remote -v | rg --quiet $nonguixRepo
+              set coNonGxDir $d
+              printf "%s   # coNonGxDir\n" $coNonGxDir
+          end
+          if test -n "$coGxDir" && test -n "$coNonGxDir"
+              # echo $coGxDir
+              # echo $coNonGxDir
               break
           end
       end
   end
-  set --local gxCheckout $coDir
-  # Instantiate operating system declaration:
-  cd $gxCheckout
   # create bootable ISO-9660 installation /gnu/store/...-image.iso
-  guix system image -t iso9660 gnu/system/install.scm
+  set installFile $coGxDir/gnu/system/install.scm
+  # set installFile $coNonGxDir/nongnu/system/install.scm
+  guix system image --image-type=iso9660 $installFile
+
   # set --local isoImg /gnu/store/...-image.iso
   #
   # Alternatively download pre-build ISO image:
@@ -73,8 +82,7 @@
   #
   # Install standalone Guix OS:
   # set --local isoImg guix-system-install-$gxVer.x86_64-linux.iso
-  echo \
-       wget $url/$isoImg $url/$isoImg.sig
+  echo wget $url/$isoImg $url/$isoImg.sig
   # View content of the iso image file
   # -t --types, -o --options
   mkdir /tmp/iso && sudo mount -t iso9660 -o loop $isoImg /tmp/iso && ls -la /tmp/iso
@@ -134,6 +142,8 @@
   guix pull --list-generations=1d     # no '(--)describe' parameter exists
   guix package --list-generations=1d  # no '(--)describe' parameter exists
   guix system list-generations 1m     # no '=' allowed after 'list-generations'
+  # show system configuration files
+  guix system list-generations 30d | rg 'configuration file:' | awk '{ print $3 }' | uniq --unique
   ;; in Emacs
   M-x guix-generations
   M-x guix-last-generations
