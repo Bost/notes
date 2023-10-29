@@ -361,3 +361,18 @@
    ;; (derivation-builder-environment-vars srr-drv)
    [("out","/gnu/store/rsqn0wagdp3w9wqcj1amz2pyw97zbqqy-spacemacs-rolling-release-0.999.0-0.e3c1450")])
 }
+
+@block{@block-name{Analyzing package structure / record}
+  (use-modules
+    ;; specification->package
+    (gnu packages)
+    ;; package? package-name etc
+    (guix packages))
+  ;;
+  (define p (specification->package "emacs"))
+  (record? p)
+  (define rtd (record-type-descriptor p))
+  (record-accessor rtd 'name)
+  (package? p)
+  (package-name p)
+}
