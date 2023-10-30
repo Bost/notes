@@ -432,9 +432,8 @@
   #
   # show how the pid of gpg-agent an the command line how was it started
   ps h -o pid,command -p (pidof gpg-agent)
-  pkill gpg-agent
-  gpg-agent --pinentry-program=(which pinentry-gtk-2) --daemon
-  # gpg-agent --pinentry-program=(which pinentry) --daemon
+  pkill gpg-agent && gpg-agent --pinentry-program=(which pinentry-gtk-2) --daemon
+  # pkill gpg-agent && gpg-agent --pinentry-program=(which pinentry) --daemon
 
   # delete all remote/origin branches except 'master'
   git --git-dir=$dgx/.git branch --all | \
