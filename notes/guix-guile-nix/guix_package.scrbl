@@ -41,8 +41,8 @@
   guix package --list-installed=ema # -I ema
   guix package --list-available=ema # -A ema
 
-  # export the list installed packages
-  guix package --export-manifest > manifest.scm
+  # export the list installed packages; can't use ~
+  guix package --profile=$HOME/.guix-home/profile --export-manifest > manifest.scm
   # reproduce, i.e. reinstall packages
   guix package --manifest=manifest.scm # -m manifest.scm
 
