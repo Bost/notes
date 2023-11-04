@@ -242,6 +242,15 @@
   # -e, --email    Show the email address of each author.
   git shortlog --summary --numbered --email
 
+  # join all lines
+  $ git shortlog --regexp-ignore-case --summary --numbered --grep='.*release.*since.*' | awk '{print $1}' | tr '\n' ' '
+  2 1 1 1 1 1 1 ⏎                                                                                                                                                                ╭─    ~/dev/guix   master ⇡1 ?1 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── ✔    14:46:56 
+  # join all lines into columns
+  $ git shortlog --regexp-ignore-case --summary --numbered --grep='.*release.*since.*' | awk '{print $1}' | paste -d " " - - - 
+  2 1 1
+  1 1 1
+  1  
+
   # list all commits for a specific day / date / timestamp
   git log --after="2013-12-11 00:00" --before="2013-12-11 23:57"
   gitk    --since="2013-11-12 00:00"  --until="2013-11-13 00:00" & disown
