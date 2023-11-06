@@ -556,7 +556,13 @@
   # change file mode bits of file according to reference-file
   chmod --reference reference-file file
 
-  # change file mode bits - verbose example(s)
+  # change file mode bits:
+  # u - user who owns it (u)
+  # g - other users in the file's group (g)
+  # o - other users not in the file's group (o)
+  # a - all users (a)
+  # If none of these are given, the effect is as if (a) were given, but bits
+  # that are set in the umask are not affected
   chmod --recursive u=rwx,g=rwx,o=rwx /path/to/dir
   chmod          -R u=rwx,g=rwx,o=rwx /path/to/dir
 

@@ -122,6 +122,49 @@
   gpg --armor --export > /path/to/pub_key.gpg
   gpg --send-keys --keyserver keyserver.ubuntu.com /path/to/pub_key.gpg
 
+  # copy / transfer keys and ownertrust to a new machine / computer
+  # 2020-06: https://www.victordodon.com/how-to-move-your-gpg-key-and-pass-store-to-a-different-computer/
+  # 1. Export public keys
+  # On to the DST_HOST where the keys need to be transfered, run:
+  # echo "Enter passphrase:" && read -s pass && echo $pass | ssh -t SRC_HOST \
+  # "gpg --export --passphrase-fd=0 --pinentry-mode=loopback | \
+  #  gpg --import --batch --yes"
+  # #
+  # # 2. Export secret keys:
+  # echo "Enter passphrase:" && read -s pass && echo $pass | ssh -t SRC_HOST \
+  # "gpg --export-secret-keys --passphrase-fd=0 --pinentry-mode=loopback | \
+  #  gpg --import --batch --yes"
+  # However:
+  gpg --list-keys
+  gpg --list-secret-keys
+  # show NOTHING!!!
+
+  # copy / transfer keys and ownertrust to a new machine / computer
+  gpg --armor --export-secret-keys > gpg--armor--export-secret-keys.gpg
+  gpg --armor --export             > gpg--armor--export.gpg
+  gpg --export-ownertrust          > gpg--ownertrust.gpg       # plain text file
+  rsync gpg--ownertrust.gpg gpg--armor--export-secret-keys.gpg gpg--export.gpg DST_HOST:
+  shred --verbose --remove gpg--ownertrust.gpg gpg--armor--export-secret-keys.gpg gpg--export.gpg
+
+  # gpg --export-ownertrust  # see https://superuser.com/a/1125128
+  # It seems the trust level is corresponds to the number entered in the trust
+  # edit command plus one:
+  # 1 = I don't know or won't say (export: 2)
+  # 2 = I do NOT trust            (export: 3)
+  # 3 = I trust marginally        (export: 4)
+  # 4 = I trust fully             (export: 5)
+  # 5 = I trust ultimately        (export: 6)
+
+  # 2016-01: https://access.redhat.com/solutions/2115511
+  # TODO what is trustdb / --export-ownertrust / --import-ownertrust / ... ?
+  # TODO verify that the subkeys are transferred, too. See:
+  #   --export
+  #   --export-secret-keys
+  #   --export-secret-subkeys
+  # TODO verify transfer by encrypting & decrypting something:
+  gpg --encrypt --recipient <name> USERID ...
+  gpg --decrypt ...
+
   # create <my-secret-file>.asc
   gpg --clear-sign <my-secret-file>
   # Enter your name and email. Comment is usually left empty.
@@ -130,7 +173,7 @@
   # check the signature. It may produce several warnings!
   gpg --verify <my-secret-file>.asc | grep --ignore-case "good\|bad"
 
-  # suppress warnings - not recommended
+  # change password / passphrase with warnings suppressed - not recommended
   gpg          --edit-key KEYID trust
   gpg --expert --edit-key KEYID trust
   # can be used to generate subkeys; each of them can have only one purpose.
