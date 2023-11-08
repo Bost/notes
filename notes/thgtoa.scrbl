@@ -107,6 +107,12 @@
   # https://www.qubes-os.org/doc/split-gpg/ (E.g. The 'qubes-gpg-split' is
   # needed in the vault of the QubeOS).
 
+  # show gpg-agent PID and the command line how was it started
+  ps h -o pid,command -p (pidof gpg-agent)
+  pkill gpg-agent && gpg-agent --pinentry-program=(which pinentry-gtk-2) --daemon
+  prep gpg-agent
+  # pkill gpg-agent && gpg-agent --pinentry-program=(which pinentry) --daemon
+
   # public & private key pair creation:
   gpg --expert --full-generate-key
   # gpg --batch --generate-key ... # see bottom of the webpage:

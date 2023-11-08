@@ -438,11 +438,6 @@
   #    set --local GIT_TRACE 1 git commit --amend --no-edit --gpg-sign
   GIT_TRACE=1 git commit --amend --no-edit --gpg-sign | rg 'trace: run_command: \(gpg .*\)'
   echo "dummy" | <put-here-the-gpg-run_command-shown-above>
-  #
-  # show how the pid of gpg-agent an the command line how was it started
-  ps h -o pid,command -p (pidof gpg-agent)
-  pkill gpg-agent && gpg-agent --pinentry-program=(which pinentry-gtk-2) --daemon
-  # pkill gpg-agent && gpg-agent --pinentry-program=(which pinentry) --daemon
 
   # delete all remote/origin branches except 'master'
   git --git-dir=$dgx/.git branch --all | \

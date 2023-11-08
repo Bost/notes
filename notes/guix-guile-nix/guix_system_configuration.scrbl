@@ -56,8 +56,8 @@
               printf "%s   # coNonGxDir\n" $coNonGxDir
           end
           if test -n "$coGxDir" && test -n "$coNonGxDir"
-              # echo $coGxDir
-              # echo $coNonGxDir
+              echo "Guix checkout directory: $coGxDir"
+              echo "NonGuix checkout directory: $coNonGxDir"
               break
           end
       end

@@ -168,7 +168,7 @@
   #   export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
   #   export GIT_SSL_CAINFO="$SSL_CERT_FILE"
   #
-  guix shell help2man git strace glibc-locales --development guix --pure
+  guix shell direnv gnupg help2man git strace glibc-locales --development guix --pure
   jobs=$[$(nproc) * 95 / 100] # use 95% of the available CPU cores
   # --check            check if the shell clobbers environment variables
   # --pure             unset existing environment variables
