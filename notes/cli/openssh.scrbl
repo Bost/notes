@@ -70,9 +70,9 @@
   climate ssh-mount / ssh-unmount # climate - command line tools for Linux
 
   ssh-keygen
-  # :github now copy-paste the ~/.ssh/id_rsa.pub to github under
+  # now copy-paste the ~/.ssh/id_rsa.pub to github / gitlab under
   # "Account settings / SSH keys / Add another public key"
-  cat ~/.ssh/id_rsa.pub
+  cat ~/.ssh/id_rsa.pub | xsel -bi # -b --clipboard; -i --input
 
   # tail a logfile / file over ssh
   # -t force pseudo-terminal allocation
