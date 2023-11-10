@@ -260,8 +260,16 @@
   cargo / go / clojure / maven / ant / r / etc.
 
   Build Phases:
-  Sequentially executed list; Some build phases can provide
-  implicit inputs
+  Sequentially executed list; Some build phases can provide implicit inputs
+  Different build systems (may) have different build phases. See e.g.:
+  $dgx/guix/build/perl-build-system.scm
+  $dgx/guix/build/emacs-build-system.scm
+  $dgx/guix/build/waf-build-system.scm
+  $dgx/guix/build/go-build-system.scm
+
+  # package will be scheduled for Software Heritage
+  guix lint --checker=archival <package>
+  guix lint --no-network <package>        # doesn't fetch CVEs hopefully
 
   Arguments:
   Customize build process w/o modifying it
@@ -320,11 +328,11 @@
   - derivation represents a sequence of low-level build actions and the
     environment in which they are performed to produce an item in the store
 
-  Syntactic forms:
-  | #~     | gexp            | quasiquote                                                      |
-  | #$     | ungexp          | unquote                                                         |
+  Syntactic forms, all of them are "in the context of the store content":
+  | #~     | gexp            | quasiquote; like `      |
+  | #$     | ungexp          | unquote; like ,         |
   | #+     |                 | same role as #$, but it's a reference to a native package build |
-  | #$@"@" | ungexp-splicing | unquote-splicing / splice                                       |
+  | #$@"@" | ungexp-splicing | unquote-splicing / splice; like ,@                              |
 
 }
 
