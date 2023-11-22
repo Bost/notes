@@ -1005,7 +1005,25 @@
 }
 
 @block{@block-name{french keyboard / clavier français}
-  M-x set-input-method RET french-keyboard
+  In Xfce:
+  #    ¬   ¹   ~   #   {   [   |   `   \   ^   @   ]   }   BACKSPACE  # When AltGr is pressed
+  #    ~   1   2   3   4   5   6   7   8   9   0   °   +   BACKSPACE  # When Shift is pressed
+  #    ²   &   é   "   '   (   -   è   _   ç   à   )   =   BACKSPACE
+  #
+  #   TAB   æ   «   €   ¶   ŧ   ←   ↓   →   ø   þ   ¨   ¤     RETURN  # ¨ when pressed twice
+  #   TAB   A   Z   E   R   T   Y   U   I   O   P   Ç   £     RETURN
+  #   TAB   a   z   e   r   t   y   u   i   o   p   ç   $     RETURN
+  #
+  #   CAPS   @   ß   ð   đ   ŋ   ħ   ̉    ĸ   ł   µ   ^   `    RETURN  # ̉  ^ ` when pressed twice
+  #   CAPS   Q   S   D   F   G   H   J   K   L   M   %   µ    RETURN
+  #   CAPS   q   s   d   f   g   h   j   k   l   m   ù   *    RETURN
+  #
+  # RSHIFT \   ł   »   ¢   „   “   ”   ´   •   ·   ̣           LSHIFT  # ´ ̣  when pressed twice
+  # RSHIFT |   W   X   C   V   B   N   ?   .   /   §          LSHIFT
+  # RSHIFT \   w   x   c   v   b   n   ,   ;   :   !          LSHIFT
+
+
+  In Emacs: M-x set-input-method RET french-keyboard
   #    ~   1   2   3   4   5   6   7   8   9   0   _   +   BACKSPACE
   #    `   ê   é   è   ô   î   ï   â   û   ù   à   -   ë   BACKSPACE
   #
@@ -1019,7 +1037,7 @@
   # RSHIFT \   z   x   c   v   b   n   m   ,   .   /          LSHIFT
 
 
-  M-x set-input-method RET french-azerty
+  In Emacs: M-x set-input-method RET french-azerty
   #    @   &   é   "   '   (   -   è   _   ç   à   )   =    BACKSPACE
   #    ~   1   2   3   4   5   6   7   8   9   0   °   _    BACKSPACE
   #
@@ -1031,5 +1049,26 @@
   #
   # RSHIFT *   w   x   c   v   b   n   ,   ;   :   !           LSHIFT
   # RSHIFT |   W   X   C   V   B   N   ?   .   /   +           LSHIFT
+
+}
+
+
+@block{@block-name{slovak keyboard / slovenská klávesnica}
+  In Xfce:
+  #    `   !   @   #   $   %   ^   &   *   {   }   \   \   BACKSPACE  # When AltGr is pressed
+  #    ~   1   2   3   4   5   6   7   8   9   0   %   (   BACKSPACE  # When Shift is pressed
+  #    ;   +   ľ   š   č   ť   ž   ý   á   í   é   =   ´   BACKSPACE  # ´ when pressed twice
+  #
+  #   TAB   \   |   €   ¶   ŧ   ←   ↓   →   ø   þ   [   ]     RETURN
+  #   TAB   Q   W   E   R   T   Y   U   I   O   P   /   (     RETURN
+  #   TAB   q   w   e   r   t   y   u   i   o   p   ú   ä     RETURN
+  #
+  #   CAPS   ~   đ   Đ   [   ]   `   ̉'   ł   Ł   $   '   \    RETURN
+  #   CAPS   A   S   D   F   G   H   J   K   L   "   !   )    RETURN
+  #   CAPS   a   s   d   f   g   h   j   k   l   ô   §   ň    RETURN
+  #
+  # RSHIFT /   °   #   &   @   {   }   ^   <   >   *          LSHIFT
+  # RSHIFT |   Z   X   C   V   B   N   M   ?   :   _          LSHIFT
+  # RSHIFT \   z   x   c   v   b   n   m   ,   .   -          LSHIFT
 
 }
