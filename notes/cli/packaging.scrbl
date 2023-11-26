@@ -1,6 +1,5 @@
 #lang notes
 
-
 @block{@block-name{flatpak}
   # offers a sandbox to run applications in isolation
 
@@ -19,6 +18,8 @@
   # grant access permissions to a file / directory
   sudo flatpak override org.telegram.desktop --filesystem=~/Downloads
   sudo flatpak override org.telegram.desktop --nofilesystem=/some/path/here
+
+  # installation directory: /var/lib/flatpak/app
 }
 
 @block{@block-name{snap}
