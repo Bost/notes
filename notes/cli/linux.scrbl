@@ -758,7 +758,7 @@
   curl --request POST -H 'Content-Type: application/json' -d '{"x":"1", "y":"2"}' URL
   curl --request POST --form variable=value URL
 
-  # :iproute2 :net - like ifconfig. State of network interfaces
+  # :iproute2 :network - like ifconfig. State of network interfaces
   ip address
   # show / manipulate routing, devices, policy routing and tunnels
   ip address show eth0
@@ -769,20 +769,20 @@
   # Address Resolution Protocol table
   ip neighbour
 
-  # :net what is my IP address
+  # :network - what is my IP address? See also https://resolve.rs/
   curl ifconfig.me
-  # See also
-  https://resolve.rs/
-
-  # recursively compare dirA with dirB; show only filenames: -q (quiet)
-  diff -rq dirA dirB | sort
 
   # sort via 2nd key (?column?)
   sort -k2 file.csv
 
-  # :diff outputs the files in two columns, side by side, separated by spaces
+  # diff / compare directories, show only filenames
+  # -q, --brief        report only when files differ
+  # -r, --recursive
+  diff --brief --recursive dirA dirB --exclude '*.log' | sort
+  #
+  # outputs the files in two columns, side by side, separated by spaces
   sdiff file1 file0
-
+  #
   # output line-numbers
   diff --unchanged-line-format="" --old-line-format="" \
        --new-line-format=":%dn: %L" oldfile newfile
