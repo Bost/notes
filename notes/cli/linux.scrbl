@@ -775,7 +775,7 @@
   # sort via 2nd key (?column?)
   sort -k2 file.csv
 
-  # diff / compare directories, show only filenames
+  # recursively diff / compare directories, show only filenames
   # -q, --brief        report only when files differ
   # -r, --recursive
   diff --brief --recursive dirA dirB --exclude '*.log' | sort
