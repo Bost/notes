@@ -1007,23 +1007,23 @@
 @block{@block-name{french keyboard / clavier français}
   # ç C-cedilla / Ç C-cédille majuscule (in vim / evil capitalize with ~ Alt-2)
   In Xfce & Emacs:
-  #    ¬   ¡   ⅛   £   $   ⅜   ⅝   ⅞   ™   ±   °   ¿   ˛   BACKSPACE  # Shift-AltGr; ˛ when pressed twice
+  #    ¬   ¡   ⅛   £   $   ⅜   ⅝   ⅞   ™   ±   °   ¿   ˛   BACKSPACE  # Shift-AltGr; ˛ pressed 2x
   #    ¬   ¹   ~   #   {   [   |   `   \   ^   @   ]   }   BACKSPACE  # AltGr
   #    ~   1   2   3   4   5   6   7   8   9   0   °   +   BACKSPACE  # Shift
   #    ²   &   é   "   '   (   -   è   _   ç   à   )   =   BACKSPACE
   #
-  #   TAB   Æ   <   ¢   ®   Ŧ   ¥   ↑   ı   Ø   Þ   °   ¯     RETURN  # ° ¯ when pressed twice
-  #   TAB   æ   «   €   ¶   ŧ   ←   ↓   →   ø   þ   ¨   ¤     RETURN  # ¨ when pressed twice
-  #   TAB   A   Z   E   R   T   Y   U   I   O   P   ¨   £     RETURN  # ¨ when pressed twice
-  #   TAB   a   z   e   r   t   y   u   i   o   p   ^   $     RETURN  # ^ when pressed twice
+  #   TAB   Æ   <   ¢   ®   Ŧ   ¥   ↑   ı   Ø   Þ   °   ¯     RETURN  # ° ¯ pressed 2x
+  #   TAB   æ   «   €   ¶   ŧ   ←   ↓   →   ø   þ   ¨   ¤     RETURN  # ¨ pressed 2x
+  #   TAB   A   Z   E   R   T   Y   U   I   O   P   ¨   £     RETURN  # ¨ pressed 2x; 1x - accent circonflexe
+  #   TAB   a   z   e   r   t   y   u   i   o   p   ^   $     RETURN  # ^ pressed 2x
   #
-  #   CAPS   Ω   ẞ   Ð   ª   Ŋ   Ħ   ̛    &   Ł   º   ˇ   ˘    RETURN  # ̛  ˇ ˘ when pressed twice
-  #   CAPS   @   ß   ð   đ   ŋ   ħ   ̉    ĸ   ł   µ   ^   `    RETURN  # ̉  ^ ` when pressed twice
+  #   CAPS   Ω   ẞ   Ð   ª   Ŋ   Ħ   ̛    &   Ł   º   ˇ   ˘    RETURN  # ̛  ˇ ˘ pressed 2x
+  #   CAPS   @   ß   ð   đ   ŋ   ħ   ̉    ĸ   ł   µ   ^   `    RETURN  # ̉  ^ ` pressed 2x
   #   CAPS   Q   S   D   F   G   H   J   K   L   M   %   µ    RETURN  #
   #   CAPS   q   s   d   f   g   h   j   k   l   m   ù   *    RETURN
   #
-  # RSHIFT |   Ł   >   ©   ‚   ‘   ’   ˝   ×   ÷   ˙          LSHIFT  # ˝ ˙ when pressed twice
-  # RSHIFT \   ł   »   ¢   „   “   ”   ´   •   ·   ̣           LSHIFT  # ´ ̣  when pressed twice
+  # RSHIFT |   Ł   >   ©   ‚   ‘   ’   ˝   ×   ÷   ˙          LSHIFT  # ˝ ˙ pressed 2x
+  # RSHIFT \   ł   »   ¢   „   “   ”   ´   •   ·   ̣           LSHIFT  # ´ ̣  pressed 2x
   # RSHIFT |   W   X   C   V   B   N   ?   .   /   §          LSHIFT
   # RSHIFT \   w   x   c   v   b   n   ,   ;   :   !          LSHIFT
 
@@ -1057,12 +1057,11 @@
 
 }
 
-
 @block{@block-name{slovak keyboard / slovenská klávesnica}
   In Xfce:
-  #    `   !   @   #   $   %   ^   &   *   {   }   \   \   BACKSPACE  # When AltGr is pressed
-  #    ~   1   2   3   4   5   6   7   8   9   0   %   (   BACKSPACE  # When Shift is pressed
-  #    ;   +   ľ   š   č   ť   ž   ý   á   í   é   =   ´   BACKSPACE  # ´ when pressed twice
+  #    `   !   @   #   $   %   ^   &   *   {   }   \   \   BACKSPACE  # AltGr
+  #    ~   1   2   3   4   5   6   7   8   9   0   %   (   BACKSPACE  # Shift
+  #    ;   +   ľ   š   č   ť   ž   ý   á   í   é   =   ´   BACKSPACE  # ´ pressed 2x
   #
   #   TAB   \   |   €   ¶   ŧ   ←   ↓   →   ø   þ   [   ]     RETURN
   #   TAB   Q   W   E   R   T   Y   U   I   O   P   /   (     RETURN

@@ -223,46 +223,49 @@
 }
 
 @block{@block-name{Key bindings / shortcuts}
-  # fish shell key bindings / shortcuts in the...
-  # Ctrl+l - clear
-  # Ctrl+r - search history
-  # \t - TAB, \e - Alt (Esc), \cy - Ctrl+y
-  # Ctrl+i - TAB, Ctrl+j - newwline (\n)
-  # \el __fish_list_current_token
-  # \eo __fish_preview_current_file
-  # \ew __fish_whatis_current_token
+  # notation
+  # \t - TAB, \e - Alt (Esc), \c - Ctrl, \b - Backspace
+  # in fish
+  bind / help bind # list functions and bindings in console / web browser
+  # in bash
+  bind -P / help bind # list functions and bindings in console / web browser
+
+  # fish shell key bindings / shortcuts
+  # Ctrl+i - TAB, Ctrl+j - newline (\n)
+  # \cg - Ctrl+g: cancel
   # \ck kill-line
+  # \cl - Ctrl+l: clear
+  # \cr - Ctrl+r: search history
   # \cu backward-kill-line
+  # \cy - Ctrl+y: yank
+  # \ee - Alt+e: edit_command_buffer - run Emacs
+  # \eh - Alt+h: __fish_man_page
+  # \el - Alt+l: __fish_list_current_token
+  # List contents of token under the cursor if it is a directory, otherwise list
+  # the contents of the current directory
+  # \eo - Alt+o: __fish_preview_current_file
+  # \ep - Alt+p: __fish_paginate, i.e. puts '&| less' at the end of line
+  # \es - Alt+s: add sudo before the last command
+  # \et - Alt+t: transpose-words / swap words
+  # \ew - Alt+w: __fish_whatis_current_token
+  # \e. - Alt+.: history-token-search-backward
+  # get the parameter / argument of the last command
+  Esc-. ???
 
-  bind       # ... console
-  help bind  # ... web browser
-  # list of available shell commands
+
+  # bash key bindings / shortcuts
+  # \cl - Ctrl+l: clear
+  # \cr - Ctrl+r: search history
+  # \cg - C-g / Ctrl+g: abort history
+  
+  # bind: list of available shell commands; doesn't work on Guix
   /etc/inputrc
-
-  # bash key bindings / shortcuts including
-  # Ctrl+l - clear
-  # Ctrl+r - search history
-  # \t TAB, \e Alt (Esc), \C-y Ctrl+y
-  bind -P    # -P List function names and bindings
-  help bind
 
   # bash undo & yank
   # type partial cmd, kill this cmd, check something you forgot, yank the cmd,
   # resume typing
   C-u ... C-y / Ctrl-u ... Ctrl-y
-
-  # bash history
-  C-r / Ctrl-r
-  # bash abort history
-  C-g / Ctrl-g
-
-  # get the parameter / argument of the last command. see bind -P
-  M-. / Alt-.
-  Esc-.
-
-  # bash swap words
-  M-t / Alt-t
-
+  
   # alias escape command aliases
   \\\[command\]
 
