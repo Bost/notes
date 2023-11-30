@@ -237,16 +237,17 @@
   https://github.com/tldr-pages/tldr
   https://github.com/cheat/cheat
 
-  Master the command line, in one page
+  # Master the command line, in one page
   https://github.com/jlevy/the-art-of-command-line
 
-  Climate - the ultimate command line tool for Linux
+  # Climate - the ultimate command line tool for Linux
   https://github.com/adtac/climate
 
-  Compare shells
+  # Compare shells
   https://htmlpreview.github.io/?https://raw.githubusercontent.com/michaelmacinnis/oh/master/doc/comparison.html
 
-  find / search in terminal Shift + Ctrl + F
+  # find / search in terminal
+  Shift + Ctrl + F
 
   sudo apt install --yes ubuntu-restricted-extras # multimedia / video codecs
   sudo apt install --yes vlc                      # video player
@@ -425,14 +426,14 @@
   sudo hdparm -I FILESYSTEM # see: df -h
   sudo hdparm -I /dev/sda1
 
-  # top report / output to stdout: -b batch mode; -n Number of iterations
-  top -b -n 1
-
   # load average explained
   curl --silent https://raw.githubusercontent.com/torvalds/linux/v5.1/kernel/sched/loadavg.c | head -n 8
   # process queuing: load-average > nr-of-processors * cores-per-processor
   uptime               # load average from /proc/uptime
-  top -b -n 1 | grep load
+  # top report / output to stdout:
+  # -n --iterations Number of iterations
+  # -b --batch mode
+  top --batch-mode --iterations 1
   cat /proc/loadavg    # 4. column: processes running/total; 5.: last used pid
   # number of processors
   lscpu | grep "^CPU"
@@ -469,8 +470,7 @@
   gpg --verify file.sig file
 
   # fs / filesystem - number of inodes; every file or directory requires 1 inode
-  df -i
-  df --inodes
+  df --inodes # -i
 
   # :net - show host name
   hostname --ip-address       # -i; addresses for the host name
@@ -519,6 +519,12 @@
 
   # :net :ubuntu - (edit) and re-read proxy definition
   source /etc/environment
+
+  # printenv vs env
+  # env can modify the environment for subsequent commands
+  env VAR=value command
+  # printenv is only for displaying environment variable values
+  printenv $VAR
 
   # duplicate files in a given set of directories
   fdupes -r .
@@ -654,8 +660,10 @@
   # mv README.text README.txt ; cp file file.bak
   mv README.{text,txt} ; cp file{,.bak}
 
-  | fist 5 lines from file | head -n 5 file |
-  | last 5 lines from file | tail -n 5 file |
+  # first 5 lines from file
+  head -n 5 file
+  # last 5 lines from file
+  tail -n 5 file
 
   # get date (timestamp) in a given format
   date +"%Y-%m-%d_%H-%M-%S"
@@ -688,6 +696,7 @@
   # enable / disable devices and files for paging and swapping
   swapon
   swapoff
+  
   # summary about used swap devices
   swapon --show
 
@@ -700,7 +709,6 @@
   # -s, --summarize       display only a total for each argument
   # -S, --separate-dirs   for directories do not include size of subdirectories
   # --si              like -h, but use powers of 1000 not 1024
-
   du -sh dir
   du -sh --exclude={.git,.atom} dir
   # see also ncdu
@@ -1552,8 +1560,11 @@
 }
 
 @block{@block-name{Disk Devices}
+  mount -t iso9660 /dev/sr0 /media/bost/cdrom
+
   # usb, drive, drives, disk, list block devices, fdisk, mount, udevadm,
   # udiskie, udisksctl, block-device, boot
+
   lsblk --nodeps
   lsblk --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS | sed 's/LABEL/LBL/g' | sed 's/\<LBL/FSLBL/g'
   # find mounted filesystem
