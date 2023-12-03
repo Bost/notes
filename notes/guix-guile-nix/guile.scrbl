@@ -114,12 +114,14 @@
     (define* (partial fun #:rest args)
       (lambda x (apply fun (append args x))))
 
-    (define* (foo prm #:key kw (kw-opt #f))
+    (define* (fun x #:key kw (kw-opt #f) #:rest args)
       "kw-opt is a keyword and optional argument at the same time"
-      (list prm kw kw-opt))
+      ;; (apply list p kw kw-opt args) ;; flattens the output list
+      (list x kw kw-opt args))
     ;;
-    (foo 'user #:kw '42)             ;; = >(user 42 #f)
-    (foo 'user #:kw '42 #:kw-opt 'x) ;; => (user 42 x)
+    (fun 'x #:kw '42 'args)             ;; (x 42 #f (#:kw 42 args))
+    (fun 'x #:kw '42 #:kw-opt 'x 'args) ;; (x 42 x (#:kw 42 #:kw-opt x args))
+    (apply fun (list 'x #:kw '42 'args));; (x 42 #f (#:kw 42 args))
   }
 }
 
