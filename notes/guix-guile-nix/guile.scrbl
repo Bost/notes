@@ -8,12 +8,11 @@
   https://sourcehut.org
   https://codeberg.org
 
-  alist - association list, i.e. dictionary
-  https://www.gnu.org/software/guile/manual/html_node/Alist-Example.html
-
   (define circular-list (let ((x '(1 2 3))) (set-cdr! (cddr x) x) x))
   (length+ circular-list) ;; => #f
 
+  alist - association list, i.e. dictionary
+  https://www.gnu.org/software/guile/manual/html_node/Alist-Example.html
   @lisp{
     (define capitals '(("New York" . "Albany")
                        ("Oregon"   . "Salem")
@@ -24,6 +23,13 @@
     (assoc-ref capitals "Oregon")   ;; ⇒ "Salem"
   }
   plist - property list (see plist in emacs-lisp)
+
+  (use-modules (ice-9 hash-table))
+  (define ht (make-hash-table))
+  (hash-set! ht "one" 1)
+  (hash-set! ht "two" 2)
+  (hash-set! ht "three" 3)
+  (hash-for-each (lambda (key value) (format #t "~a => ~a~%" key value)) ht)
 
   Create and publish Guile projects
   https://gitlab.com/a-sassmannshausen/guile-hall
