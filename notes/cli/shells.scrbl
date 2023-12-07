@@ -142,7 +142,7 @@
   test -d /path/to/dir                       # directory exists
   # true if the length of $myvar is non-zero i.e. non-empty string
   # https://stackoverflow.com/a/47743269; always use "" around the myvar
-  test -n "$myvar" && echo "true: defined-and-non-empty: '$var'" || echo "false: undef-or-empty"
+  test -n "$myvar" && echo "true: defined-and-non-empty: '$myvar'" || echo "false: undef-or-empty"
   # true if the length of $myvar is zero i.e. empty string
   test -z "$myvar" && echo "true: undef-or-empty" || echo "false: defined-and-non-empty: '$myvar'"
   set -q myvar && echo "myvar is set to '$myvar'" || echo "myvar is unset"

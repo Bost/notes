@@ -1,6 +1,9 @@
 #lang notes
 
 @block{@block-name{Guile Scheme}
+  (define my-list '(a b c d e))
+  (list-ref my-list 2)  ;; nth element of a list
+
   https://sourcegraph.com/search
   https://sourcehut.org
   https://codeberg.org
