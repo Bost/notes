@@ -31,7 +31,7 @@
   # in bash:
   # guixRepo=https://git.savannah.gnu.org/git/guix.git
   # for d in $HOME/.cache/guix/checkouts/*; do
-  #     if [ -d "$d" ] && [ ! -L "$d" ]; then
+  #     if [ -d "$d" ] && [ ! -L "$d" ]; then # is a directory and not a link
   #         # echo "Analyzing $d"
   #         if git --git-dir=$d/.git remote -v | rg --quiet $guix_repo; then
   #             coGxDir=$d
@@ -45,7 +45,7 @@
   set nonguixRepo https://gitlab.com/nonguix/nonguix
   for d in $HOME/.cache/guix/checkouts/*;
       # echo "$d"
-      if test -d "$d" && not test -L "$d"
+      if test -d "$d" && not test -L "$d" # is a directory and not a link
           # echo "Analyzing $d"
           if git --git-dir=$d/.git remote -v | rg --quiet $guixRepo
               set coGxDir $d

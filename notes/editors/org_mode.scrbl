@@ -1,6 +1,9 @@
 #lang notes
 
 @block{@block-name{Org Mode}
+  org-html-export-to-html saves the result to a file
+  org-html-export-as-html returns the result as a string
+
   http://ehneilsen.net/notebook/orgExamples/org-examples.html
 
   M-x org-babel
