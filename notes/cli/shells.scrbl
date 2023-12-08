@@ -148,6 +148,17 @@
   set -q myvar && echo "myvar is set to '$myvar'" || echo "myvar is unset"
   test -z "$myvar" && echo "myvar is empty: '$myvar'" || echo "myvar is not empty: '$myvar'"
 
+  # fish shell: (sequencing) empty array; no indexOutOfBounds thrown / produced
+  set aaa  # empty array
+  printf "(seq (count aaa)): '%s'\n" (seq (count $aaa))
+  for i in (seq (count $aaa)); printf "aaa[$i]: %s\n" $aaa[$i]; end
+  # returns: (seq (count aaa)): ''
+  #
+  set bbb  # empty array
+  printf "(seq (count bbb)): '%s'\n" (seq (count $bbb))
+  for i in $bbb; printf "bbb[$i]: %s\n" $bbb[$i]; end
+  # returns: (seq (count bbb)): ''
+
   # bash-shell exists / existence-tests
   # ${var+x} is a parameter expansion which evaluates to nothing if var is
   # unset, and substitutes the string x otherwise.
