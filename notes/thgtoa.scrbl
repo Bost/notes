@@ -109,7 +109,7 @@
 
   # show gpg-agent PID and the command line how was it started
   ps h -o pid,command -p (pidof gpg-agent)
-  pkill gpg-agent && gpg-agent --pinentry-program=(which pinentry-gtk-2) --daemon
+  pkill gpg-agent || gpg-agent --pinentry-program=(which pinentry-gtk-2) --daemon
   prep gpg-agent
   # pkill gpg-agent && gpg-agent --pinentry-program=(which pinentry) --daemon
 
