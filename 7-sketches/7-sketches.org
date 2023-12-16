@@ -602,3 +602,18 @@ TODO is it possible to have more $\Ob(\cat{E})$ and/or $\Mor(\cat{E})$?
 tool for tracking locally defined data
 
 *** Presheaf: Functor \(F: \cat{C}\op \to \SmSet\)
+
+
+* Compactness
+shape property
+https://www.youtube.com/watch?v=td7Nz9ATyWY
+
+Elements of a Topology form Open sets -
+See Also https://www.youtube.com/watch?v=td7Nz9ATyWY&t=719
+
+
+Functorial Semantics
+C - category of syntactic expressions
+D - category meanings 
+F: C -> D - functor sending an expression to it's meaning. I.e. it's the way
+how to give meaning i.e. how to interpret the syntactic expression
