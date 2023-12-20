@@ -1,0 +1,349 @@
+# generate pdf: M-x org-latex-export-to-pdf
+
+#+LATEX_HEADER: \usepackage{cat-7-sketches}
+
+# latexpreview / nolatexpreview C-c C-x C-l
+#+STARTUP: nolatexpreview
+
+THE LARGE STRUCTURES OF GROTHENDIECK FOUNDED ON FINITE ORDER ARITHMETIC
+https://arxiv.org/pdf/1102.1773.pdf
+
+cohomology toposes
+ZFC Zermelo Fraenkel set theory with Choice
+
+theorems of EGA and SGA
+finite order arithmetic
+elementary topos of sets with infinity
+arithmetic scheme
+category of sheaves
+
+Finite order arithmetic, or simple type theory with infinity, is n-th order
+arithmetic for all finite n.
+
+universe $\mathcal{U}$, and a simpler notion of $\mathcal{U}$-category
+
+theory of classes and collections conservative over set theory
+
+derived categories
+
+fibered categories
+
+replacement ZFC
+
+ETCS Elementary Theory of the Category of Sets
+
+Equiconsistency of finite order arithmetic
+
+# * Disjoint Union
+# Let $\left\{A_i : i \in I\right\}$ be a family of sets indexed by $I$. The
+# disjoint union of this family is the set
+# $$
+# \bigsqcup _{i\in I}A_{i} = \bigcup _{i\in I}\left\{(x,i):x\in A_{i}\right\}
+# $$
+# Its elements are ordered pairs $(x, i)$ where $i$ is an auxiliary index
+# indicating from which $A_{i}$ the element $x$ came from.
+
+# * \(k\)-linear maps / transformations
+# ** Linear map / transformation
+# Let $U$ and $W$ be vector spaces over the same field $K$. Function $f: U
+# \rightarrow W$ is a linear map between vector spaces (or modules over a
+# commutative Ring) $U$ and $W$ that preserves the operations of addition and
+# scalar multiplication.
+
+# That means, if for any two vectors $\vec{u}, \vec{v} \in U$ and any scalar $c
+# \in K$ the following two conditions are satisfied:
+
+# \begin{enumerate}
+# \item addition:
+# \begin{equation}
+# \begin{split}
+#   f(\vec{u} + \vec{v}) = f(\vec{u}) + f(\vec{v})
+# \end{split}
+# \end{equation}
+
+# \item scalar multiplication, i.e. homogeneity of degree 1:
+# \begin{equation}
+#   f(c \cdot \vec{u}) = c \cdot f(\vec{u})
+# \end{equation}
+# \end{enumerate}
+
+# By the associativity of the addition $+$, for any vectors $\vec{u_1} \dotsc \vec{u_n} \in
+# U$ and scalars $c_1 \dotsc c_n \in K$ the following equality holds:
+
+# \begin{equation}
+#    f(c_1 \cdot \vec{u_1} + \dotsb + c_n \cdot \vec{u_n}) =
+#    c_1 \cdot f(\vec{u_1}) + \dotsb + c_n \cdot f(\vec{u_n})
+# \end{equation}
+
+# If $U = W$ the $f$ is a linear endomorphism of $V$.
+
+# Linearity meaning: can be drawn as a line.
+
+# Linear map in abstract algebra - module homomorphism
+
+# Linear map in category theory - morphism in the category of Modules over a given Ring
+
+# ** Bilinear and multilinear map / transformation
+
+# Function $f: U_1 \times \dotsb \times U_k \rightarrow W$ is a \(k\)-linear map
+# between $k$ vector spaces (or modules over a commutative Ring) with the
+# following property:
+#   $\forall i = 1 \dots n$
+# if all of the vectors but $\vec{v_i}$ are held constant, then
+#   $f(\vec{v_1}, \dotsc \vec{v_i}, \dotsc \vec{v_n})$
+# is a linear function of $\vec{v_i}$.
+
+
+# For $k = 1$ the map is called linear, for $k = 2$ bilinear.
+
+# * Tensors
+# Generalization of matrices to \(n\)-dimensional space. Also \(n\)-dimensional
+# data containers with descriptions of the valid linear transformations between
+# tensors.
+
+# See \href{https://youtu.be/tpL95Sd7zT0}{Jim Fowler: Tensor products} \\
+
+# ** Tensors as multidimensional arrays
+# *** Scalar
+# 0-dimensional tensor, i.e. a single number. E.g: \\
+# \begin{equation}
+# \begin{matrix}
+# 1
+# \end{matrix}
+# \end{equation}
+
+# Scalar (dot) product: takes two vectors, returns a single number
+
+# *** Vector
+# 1-dimensional tensor. An arrow with a length and orientation. E.g.: \\
+# \begin{equation}
+# \begin{bmatrix}
+# 1 \\
+# 2
+# \end{bmatrix}
+# \end{equation}
+
+# Can represent a quantity with magnitude and direction (e.g. area):
+# - orientation is perpendicular to the area
+# - length is proportional to the amount the area
+
+# Vector (cross) product: takes two vectors $\vec{v_1}$, $\vec{v_2}$, returns a
+# perpendicular vector. $\vec{v_1}$, $\vec{v_2}$ must be linearly independent,
+# i.e. one cannot by obtained (linearly combined) from the other.
+
+# *** Matrix
+# 2-dimensional tensor. E.g.: \\
+# \begin{equation}
+# \begin{bmatrix}
+# 1 & 2 \\
+# 3 & 4
+# \end{bmatrix}
+# \end{equation}
+
+# Matrix product (multiplication): takes two matrices, returns a matrix. Number of
+# columns in the first matrix must be equal to the number of rows in the second
+# matrix
+
+# *** Multidimensional tensor
+# E.g. 3-dimensional tensor. E.g: \\
+# \begin{equation}
+# \begin{bmatrix}
+#   [ 1 & 2 ] & [1 & 0] \\
+#   [ 3 & 3 ] & [3 & 4]
+# \end{bmatrix}
+# \end{equation}
+
+# ??? Tensor product $\otimes$: most general bilinear operation ???
+
+# ** Tensors as multilinear maps
+# TODO
+
+# * Hierarchy
+# What is needed to understand $X$? A big tree and paths through this tree.
+
+# Where leads understanding of $X_1, X_2, ..., X_n$? Prospects, applications in
+# other science fields, everyday life etc.
+
+# What's the next step? Why to study $Z$ and not $W$ after understanding $X_1,
+# X_2, ..., X_n$ in dependency of the field of some interest.
+
+# * Game Theory
+# Pure Strategy - set of decisions made with certitude. \\
+# Mixed Strategy - distribution of probabilities over some set of pure strategies.
+
+# ** Nash Equilibrum
+# Each player gives best response to the others. Nobody has an incentive to
+# deviate from their actions if an equilibrum is played.
+
+# Example: Close windows to make air conditioning working: \\
+# Everybody just gives up without trying to convince others to close the window.
+
+# Example: Party organisation - follow the majority: \\
+# Majority joins - those skipping are penalized by "missed something". \\
+# Majority skips - those joining are penalized by "booring".
+
+# Nash Equilibrum TODOs:
+# 1. Write action profiles for everyone (the matrix).
+# 2. Calculate optimal mixed strategies for everyone in order to get Nash Equilibrum.
+# 3. Calculate maxmin strategy and maxmin value (i.e. when the other guys do max harm to the i-th guy).
+
+# ** Pareto Efficiency
+# Whenever all agents agree on ordering of outcomes the social welfare function
+# selects that ordering.
+
+# _Independence of Irrelevant Alternatives_: \\
+# If the selected ordering between two outcomes depends only on the relative
+# ordering they are given by the agents.
+
+# _Dictator_: \\
+# Single agent whose preferencies always determine the social ordering.
+
+# _Arrows Theorem_: \\
+# Any social welfare function that is pareto efficient and independent of
+# irrelevant alternatives is dictatorial.
+
+# ** Markov chain (model)
+# [[https://youtu.be/o-jdJxXL_W4?t=423][Market transition]] \\
+# Dragan Djuric: Clojure on GPU \\
+# Bayadera (Bayesian): very fast \\
+# Bayesian is hard to compute, multi model, many dimensional problem, complex hyperspace \\
+# Markov Chain Monte Carlo simulations (MCMC): difficult to parallelize \\
+# JAGS/Stan (state-of-the-art bayesian C++ tools)
+
+# ** Games beyond 2x2 (See the 2-4 Hardness lecture):
+# Linear Complementarity formulation\\
+# Support Enumeration Method
+
+# * Hypotheses, Conjectures & Theorems
+# ** Goldbach conjencture
+# Every even integer $n \in \{2,4,6, ...\}$ is a sum of two primes.
+
+# ** Riemann hypothesis
+# [[https://youtu.be/sD0NjbwqlYw][3Blue1Brown: Visualizing the Riemann hypothesis and analytic continuation]]
+
+# The real part of every non-trivial zero of the Zeta function $\zeta$ is $1/2$
+# (prime numbers).\\
+# _Or:_ \\
+# All the nontrivial zeroes of the analytic continuation of the Riemann zeta
+# function $\zeta$ have a real part equal to $1/2$.
+
+# ** Poincare conjencture
+# Every simply connected, closed 3-manifold is homeomorfic to the 3-sphere
+# (Donuts)
+
+# ** P vs. NP
+# Every problem whose solution can be quickly verified by a computer can also be
+# quickly solved by a computer.
+
+# ** Fermant's Last Theorem
+# With $n,x,y,z \in \mathbb{N}$ and $n > 2$, the equation $x^n + y^n = z^n$ has no solutions.
+
+# ** Continuum hypothesis
+# There is no set with cardinality strictly between the cardinalities of integers
+# and real numbers. Notes: R surj P(N) (Power series - Mocninovy rad)
+
+# ** Fundamental Theorem of Arithmetics
+# Every positive integer $n \in \mathbb{N}$ can be written in a unique way as a
+# product of primes. \\
+# [[https://en.wikipedia.org/wiki/Barber_paradox][Barber paradox]] is derived from [[https://en.wikipedia.org/wiki/Russell%27s_paradox][Russell's paradox]].
+
+# * Probability
+# \begin{tabbing}
+#     Rule              \hspace{7em} \= Expression                                     \\
+#     Difference                     \> $P(B - A) = P(B) - P(A \cap B)$                \\
+#     Inclusion-Exclusion            \> $P(A \cup B) = P(A) + P(B) - P(A \cap B)$      \\
+#     Boole’s Inequality             \> $P(A \cup B) \Leftarrow P(A) + P(B)$           \\
+#     Monotonicity                   \> If $A \subseteq B$ then $P(A) \Leftarrow P(B)$
+# \end{tabbing}
+
+# ** Ordinary conditional probability
+# $$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$
+
+# See \href{https://youtu.be/M8xlOm2wPAA}{Bayes' Theorem applied to disease diagnosis}
+# on YouTube.
+
+# \begin{table}[H]
+# \begin{tabular}{|l|l|l|l|l|l|}
+# \hline
+# \multicolumn{2}{|l|}{Objective Health} & \multicolumn{2}{l|}{Test result} & Outcome                                   & Event $T \cap H$                                                       \\ \hline
+# ill / healthy & p           & i / h   & p       & probability                                                         & probability                                                            \\ \hline
+# $H$           & $P(H)$      & $T$     & $P(T)$  & \begin{tabular}[c]{@{}l@{}}$P(T \cap H) = P(H) \cdot P(T)$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$P(T \mid H ) = P(T \cap H) / P(H)$\end{tabular} \\ \hline
+# really-i      & 0.1         & test-i  & 0.9     & 0.09                                                                & (/ 0.09 (+ 0.09 0.27))=0.25                                             \\ \hline
+# really-i      & 0.1         & test-h  & 0.1     & 0.01                                                                & (/ 0.01 (+ 0.01 0.63))=0.015625                                         \\ \hline
+# really-h      & 0.9         & test-i  & 0.3     & 0.27                                                                & (/ 0.27 (+ 0.09 0.27))=0.75                                             \\ \hline
+# really-h      & 0.9         & test-h  & 0.7     & 0.63                                                                & (/ 0.63 (+ 0.01 0.63))=0.984375                                         \\ \hline
+# \end{tabular}
+# \end{table}
+
+# - Generall test correctness: 0.09 + 0.63 = 0.72 (i.e. proper results for ill +
+#   proper results for healthy persons)
+# - Just guessing "everybody's healthy" gives 90% "generall test correctness"
+#   because the test is wrong only for ill patients and they make up 10% of the
+#   population.
+
+# #+NAME: <name>
+# #+BEGIN_SRC clojure
+#   ;;                      +-- test positive 0.9: 0.1 * 0.9 = 0.09
+#   ;;                      |
+#   ;;    +-----  ill 0.1 --+
+#   ;;    |                 |
+#   ;;    |                 +-- test negative 0.1: 0.1 * 0.1 = 0.01
+#   ;; ---+
+#   ;;    |                 +-- test positive 0.3: 0.9 * 0.3 = 0.27
+#   ;;    |                 |
+#   ;;    +-- healthy 0.9 --+
+#   ;;                      |
+#   ;;                      +-- test negative 0.7: 0.9 * 0.7 = 0.63
+#   ;; test negative, i.e. says "you're healthy" and the patient is really
+#   ;; ill (has the condition)
+#   (/ 0.01 (+ 0.01 0.63)) = 0.015625
+#   ;; test positive, i.e. says "you're ill" and the patient is really ill (has
+#   ;; the condition)
+#   (/ 0.09 (+ 0.09 0.27)) = 0.25
+#   ;; test negative, i.e. says "you're healthy" and the patient is really
+#   ;; health (doesn't have the condition)
+#   (/ 0.63 (+ 0.01 0.63)) = 0.984375
+#   ;; test posivite, i.e. says "you're ill" and the patient is really
+#   ;; healthy (doesn't have the condition)
+#   (/ 0.27 (+ 0.09 0.27)) = 0.75
+# #+END_SRC
+
+# ** A posteriori conditional probability
+# $$P(B \mid A) = \frac{P(A \cap B)}{P(B)}$$
+
+# If event $B$ precedes event $A$ in time. \\
+# Example: The probability it was cloudy this morning, given that it rained in the
+# afternoon.
+
+# * Homology
+# Higher dimensional analogues for studying loops = (alternative to) Homotopy
+# groups \\
+# Simplices: analogs of triangles in higher dimensions
+
+# * Fundamental group $\pi_2$ - loops of loops
+# Loops around sphere: captuers 2-dimensional hole in the sphere
+
+# $\pi_n$(S-k-upper-index) Homotopy group exists even if $n > k$; measuring higher
+# dimensional holes in k dimensional sphere
+
+# $\in$ is a containment relation
+
+# * Homotopy Type Theory
+# [[https://homotopytypetheory.org/][HoTT]] foundational framework; notions of paths in a space; equality and
+# quivalence.
+
+# Easier translation of mathematical proofs to a programming language of proof
+# assistants (than before).
+
+# ** The Univalence Axiom
+# Identity is equivalent to equivalence, in particular: equivalent types are
+# identical.
+
+# For all types $A,B: \Pi A,B : Type.(A = B) \simeq (A \simeq B)$
+# - There's a function $UA: (A \simeq B) \rightarrow (A = B)$ such that from a
+#   proof equivalence of $A \simeq B$ it constructs a proof of equality $A = B$.
+#   Moreover a proof equivalence of $A \simeq B$ is equivalent to a proof of
+#   equality $A = B$. I.e. $(A \simeq B) \simeq (A = B)$.
+# - it allows to create a homotopy calculus w/o introduction of differential
+#   variety and even w/o an introduction of real numbers
+# Entier Relativ i.e. Set of Integers $\mathbb{Z}$.
