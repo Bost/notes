@@ -84,9 +84,11 @@
   management tasks.
 
   # examples
-  gpg --output file.txt.gpg --encrypt --recipient foo@"@"domain.org file.txt
-  gpg --output file.txt --decrypt file.txt.gpg
-  gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.passwords/gmail.gpg
+  gpg --list-keys # gpg --list-public-keys
+  gpg --encrypt --output file.txt.gpg --recipient $gpgPubKey file.txt
+  gpg --encrypt --output file.txt.gpg --recipient foo@"@"domain.org file.txt
+  gpg --decrypt file.txt.gpg --output file.txt
+  gpg --decrypt --quiet --for-your-eyes-only --no-tty ~/.passwords/gmail.gpg
 
   # -A NUM, --after-context=NUM
   # man gpg | grep --after-context=2 show-usage
