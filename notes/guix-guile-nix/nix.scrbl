@@ -47,6 +47,21 @@
   nix-env -q -a --description nodejs-18.14.1
   nix-env -q -a --json nodejs-18.14.1
 
+  # list available packages
+  nix-env -qaP '*' --description
+
+  # warning: name collision in input Nix expressions, skipping '/home/bost/.nix-defexpr/channels_root/nixos'
+  # suggestion: remove 'nixos' from either the root channels or the user channels
+  $ nix-channel --list
+  nixos https://channels.nixos.org/nixos-23.11
+  #
+  $ sudo nix-channel --list
+  [sudo] password for bost: 
+  nixos https://channels.nixos.org/nixos-23.11
+  #
+  $ nix-channel --remove nixos
+  uninstalling 'nixos-23.11'
+
   # Searching for packages in the nix packages collection repository
   nix search nixpkgs <package_name>
   nix --extra-experimental-features nix-command \
@@ -96,4 +111,30 @@
   https://logs.guix.gnu.org/guix/2023-01-31.log#094922
   See 7.3 Replicating Guix in manual
   https://guix.gnu.org/manual/devel/en/html_node/Replicating-Guix.html
+}
+
+@block{@block-name{NixOS Examples}
+  $ nix-env -i emacs.yes-no
+  installing 'emacs-yes-no-2017-10-01'
+  this path will be fetched (0.02 MiB download, 0.07 MiB unpacked):
+  /nix/store/wy0p5skg99n4msspjn4wn8p17jf1674n-emacs-yes-no-2017-10-01
+  copying path '/nix/store/wy0p5skg99n4msspjn4wn8p17jf1674n-emacs-yes-no-2017-10-01' from 'https://cache.nixos.org'...
+  building '/nix/store/d77r8vlp8088izs10w5f3klrnslxc1vk-user-environment.drv'...
+  #
+  $ nix-env -qaP emacs.yes-no --description
+  nixos.emacsPackages.yes-no  emacs-yes-no-2017-10-01  Specify use of `y-or-n-p' or `yes-or-no-p' on a case-by-case basis
+
+  # error: experimental Nix feature 'nix-command' is disabled; use '--extra-experimental-features nix-command' to override
+  sudo vim /etc/nixos/configuration.nix
+  # add here:
+  #   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # and rebuild the configuration
+  sudo nixos-rebuild switch
+  #
+  # or alternativelly edit the nix.conf:
+  #   mkdir -p ~/.config/nix/
+  #   vim ~/.config/nix/nix.conf
+
+  nix-env -i emacs.gptel
+  cat pkgs/applications/editors/emacs/elisp-packages/recipes-archive-melpa.json
 }
