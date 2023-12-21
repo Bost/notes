@@ -47,8 +47,10 @@
   nix-env -q -a --description nodejs-18.14.1
   nix-env -q -a --json nodejs-18.14.1
 
-  # list available packages
+  # list / search available packages
   nix-env -qaP '*' --description
+  # user-friendlier way to search for packages than: nix-env -qaP
+  nix search
 
   # warning: name collision in input Nix expressions, skipping '/home/bost/.nix-defexpr/channels_root/nixos'
   # suggestion: remove 'nixos' from either the root channels or the user channels
@@ -73,7 +75,20 @@
   nix-env -iA <package_name>
   nix-env --query                    # List installed packages: -q
   nix-env --uninstall <package_name> # Uninstall packages: -e
-  nix-env --upgrade                  # Upgrade packages: -u
+  nix-env --upgrade                  # Upgrade all installed packages: -u
+  upgrading 'vim-9.0.0609' to 'vim-9.0.2048'
+  upgrading 'openssh-9.1p1' to 'openssh-9.5p1'
+  upgrading 'nodejs-18.14.1' to 'nodejs-18.18.2'
+  these 4 paths will be fetched (23.27 MiB download, 161.08 MiB unpacked):
+  /nix/store/cs1hycx3bnfyvxkq8jv5xr0pv5d7ksj7-icu4c-73.2-dev
+  /nix/store/rd7kpk1xnjsk46njh3s80wyr5wj9h8zm-libuv-1.46.0-dev
+  /nix/store/4bgg8j8275adawqbc5rkm4fv48dgg2i3-nodejs-18.18.2
+  /nix/store/d0iajflf9crbz43fd07q9vszyzr979qq-nodejs-18.18.2-libv8
+  copying path '/nix/store/d0iajflf9crbz43fd07q9vszyzr979qq-nodejs-18.18.2-libv8' from 'https://cache.nixos.org'...
+  copying path '/nix/store/cs1hycx3bnfyvxkq8jv5xr0pv5d7ksj7-icu4c-73.2-dev' from 'https://cache.nixos.org'...
+  copying path '/nix/store/rd7kpk1xnjsk46njh3s80wyr5wj9h8zm-libuv-1.46.0-dev' from 'https://cache.nixos.org'...
+  copying path '/nix/store/4bgg8j8275adawqbc5rkm4fv48dgg2i3-nodejs-18.18.2' from 'https://cache.nixos.org'...
+  building '/nix/store/253dpn43fvdk9am2cmlcjzsdkwgsl58h-user-environment.drv'...
 
   # Upgrading Nix
   # On Single-user Nix installation:
@@ -137,4 +152,5 @@
 
   nix-env -i emacs.gptel
   cat pkgs/applications/editors/emacs/elisp-packages/recipes-archive-melpa.json
+
 }

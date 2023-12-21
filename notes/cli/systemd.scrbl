@@ -93,6 +93,8 @@
   # system logs
   logger "Enter messages into the system log: Hello Logs"
   journalctl --since "1m ago" | grep Hello
+  # messages from a specific --user and --boot. See man journalctl
+  journalctl --user --boot
 
   # access kernel logs / system logs
   # -T, --ctime     human-readable timestamp (may be inaccurate!)
