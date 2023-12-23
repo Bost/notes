@@ -134,25 +134,29 @@
   # 2020-06: https://www.victordodon.com/how-to-move-your-gpg-key-and-pass-store-to-a-different-computer/
   # 1. Export public keys
   # On to the DST_HOST where the keys need to be transfered, run:
-  # echo "Enter passphrase:" && read -s pass && echo $pass | ssh -t SRC_HOST \
-  # "gpg --export --passphrase-fd=0 --pinentry-mode=loopback | \
-  #  gpg --import --batch --yes"
-  # #
-  # # 2. Export secret keys:
-  # echo "Enter passphrase:" && read -s pass && echo $pass | ssh -t SRC_HOST \
-  # "gpg --export-secret-keys --passphrase-fd=0 --pinentry-mode=loopback | \
-  #  gpg --import --batch --yes"
+  set SRC_HOST <ip-address>
+  echo "Enter passphrase:" && read -s pass && echo $pass | ssh -t $SRC_HOST \
+  "gpg --export --passphrase-fd=0 --pinentry-mode=loopback | \
+   gpg --import --batch --yes"
+  #
+  # 2. Export secret keys:
+  set SRC_HOST <ip-address>
+  echo "Enter passphrase:" && read -s pass && echo $pass | ssh -t $SRC_HOST \
+  "gpg --export-secret-keys --passphrase-fd=0 --pinentry-mode=loopback | \
+   gpg --import --batch --yes"
   # However:
   gpg --list-keys
   gpg --list-secret-keys
   # show NOTHING!!!
 
   # copy / transfer keys and ownertrust to a new machine / computer
+  set DST_HOST <ip-address>
   gpg --armor --export-secret-keys > gpg--armor--export-secret-keys.gpg
   gpg --armor --export             > gpg--armor--export.gpg
   gpg --export-ownertrust          > gpg--ownertrust.gpg       # plain text file
-  rsync gpg--ownertrust.gpg gpg--armor--export-secret-keys.gpg gpg--export.gpg DST_HOST:
-  shred --verbose --remove gpg--ownertrust.gpg gpg--armor--export-secret-keys.gpg gpg--export.gpg
+  rsync                    gpg--armor--export-secret-keys.gpg gpg--armor--export.gpg gpg--ownertrust.gpg $DST_HOST:
+  gpg --import --yes       gpg--armor--export-secret-keys.gpg gpg--armor--export.gpg gpg--ownertrust.gpg
+  shred --verbose --remove gpg--armor--export-secret-keys.gpg gpg--armor--export.gpg gpg--ownertrust.gpg
 
   # gpg --export-ownertrust  # see https://superuser.com/a/1125128
   # It seems the trust level is corresponds to the number entered in the trust
