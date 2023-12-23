@@ -1,5 +1,24 @@
 #lang notes
 
+@block{@block-name{Signature made by expired key}
+  When:
+      An error occurred ... (error: (bad-signature queue-0.2.el.sig))
+  Then:
+  1. in the *Error* buffer look fo:
+      Signature made by expired key <some-expired-key>
+  and try to update the GPG keys manually
+  gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys <some-expired-key>
+  alternativelly:
+  1. (setq package-check-signature nil)
+  2. M-x dotspacemacs/sync-configuration-layers / ~SPC f e R~
+  3. M-x spacemacs/restart-emacs-resume-layouts / ~SPC q r~
+  ;;
+  See also
+  https://emacs.stackexchange.com/a/53142
+  https://metaredux.com/posts/2019/12/09/dealing-with-expired-elpa-gpg-keys.html
+  It seems like the package gnu-elpa-keyring-update is not needed
+}
+
 @block{@block-name{debug / edebug}
   System Crafters: Learning To Use the Emacs Debugger
   https://youtu.be/LfwSc-lfFxM
@@ -59,6 +78,9 @@
 }
 
 @block{@block-name{Various}
+  ;; check if FILENAME directory exists / is an existing directory
+  (file-directory-p FILENAME)
+
   ;; Copy and invoke a function?
   (setq wrapped-copy (symbol-function 'emacs-version))
   (fset 'fn (lambda () (funcall wrapped-copy)))
