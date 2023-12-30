@@ -1,8 +1,18 @@
 #lang notes
 
-@block{@block-name{Nix Source Code}
+@block{@block-name{Learning Nix}
   Let's read the Nix source code
   https://youtu.be/0tp86yOQ6XY?si=7vk-fjyYJCYqCZln
+
+  Peering into the Land of Parentheses - Guix from the Nix Perspective 
+  https://www.youtube.com/watch?v=bDGzCXr6VYU
+}
+
+@block{@block-name{Nix parsers}
+  set prms "--extra-experimental-features nix-command"
+  echo '1 + 2' | nix --extra-experimental-features nix-command --extra-experimental-features flakes run github:kamadorueda/nixel -- --format=debug
+  echo '1 + 2' | nix run github:kamadorueda/nixel -- --format=debug
+  echo '1 + 2' | nix --extra-experimental-features nix-command run github:kamadorueda/nixel -- --format=debug
 }
 
 @block{@block-name{Various}
@@ -152,5 +162,4 @@
 
   nix-env -i emacs.gptel
   cat pkgs/applications/editors/emacs/elisp-packages/recipes-archive-melpa.json
-
 }
