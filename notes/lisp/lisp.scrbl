@@ -127,6 +127,9 @@
 
   Kawa Scheme - a Scheme Lisp on Java Virtual Machine JVM
   https://www.gnu.org/software/kawa/
+
+  Wisp: Whitespace to Lisp
+  https://www.draketo.de/software/wisp.html
 }
 
 @block{@block-name{Common Lisp Implementations}
