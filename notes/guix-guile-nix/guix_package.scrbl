@@ -214,14 +214,23 @@
 }
 
 @block{@block-name{Package Inputs / Outputs}
+  ;; https://www.gnu.org/software/guile/manual/html_node/Multiple-Values.html
   (use-modules (rnrs base)) ;; provides 'let-values'
   (define (divide-and-remainder a b)
     (if (= b 0)
         (error "Division by zero")
         ;; return multiple / more than one output value
         (values (quotient a b) (remainder a b))))
-  ;;
+  ;; Read multiple values using `let-values`
   (let-values (((quot rem) (divide-and-remainder 10 3)))
+    (format #t "Quotient: ~a, Remainder: ~a~%" quot rem))
+  ;; Read multiple values using `call-with-values`
+  (call-with-values (lambda () (values 4 5))
+    (lambda (a b) b))
+  ;; Read multiple values using `receive`, which is more convenient
+  (use-module (ice-9 receive)) ;; or (srfi srfi-8)
+  (receive (quot rem)
+      (divide-and-remainder 10 3)
     (format #t "Quotient: ~a, Remainder: ~a~%" quot rem))
 
   A package can have multiple "Outputs", i.e. multiple store-directories, that
@@ -389,20 +398,22 @@
   Functional Package Management with Guix; Ludovic Courtès, 2013
   https://arxiv.org/pdf/1305.4584.pdf
   Like Guix and Nix, Vesta is a purely functional build system [11]
-  
-  Scsh provides a complete interface to substitute Scheme in “shell programming” tasks [18].
-  
-  Nickel is an evolution of the Nix language, while trying to overcome some of its limitations.
+
+  Scsh provides a complete interface to substitute Scheme in "shell programming"
+  tasks [18].
+
+  Nickel is an evolution of the Nix language, while trying to overcome some of
+  its limitations.
   https://github.com/tweag/nickel
   Nickel grammar for tree-sitter.
   https://github.com/nickel-lang/tree-sitter-nickel
-  
+
   https://nixos.wiki/wiki/Packaging/Tutorial
-  
+
   nix-service-type
   runs build daemon of the Nix package manager. Which 'would allow you to use
   Nix's Firefox package'
-  
+
   Example how to use it:
   (use-modules (gnu))
   (use-service-modules nix)
@@ -415,28 +426,24 @@
     (services (append (list (service nix-service-type))
                       %base-services)))
   After `guix system reconfigure` configure Nix for your user:
-  Add a Nix channel and update it. See Nix Package Manager Guide. 
-  
+  Add a Nix channel and update it. See Nix Package Manager Guide.
+
   Tree-sitter
   An incremental parsing system for programming tools
   https://github.com/tree-sitter/tree-sitter
-  
+
   TODO ChatGPT search for
   - parsing the Nix DSL (racket FTW?)
-  - porting packages from Nix to Guix
-  
+
   Declaratively yours: Composing system abstractions with GNU Guix
   https://archive.fosdem.org/2021/schedule/event/gnuguix/
-  
-  Learning Nix:
-  Peering into the Land of Parentheses - Guix from the Nix Perspective (NixCon 2019)
-  https://www.youtube.com/watch?v=bDGzCXr6VYU
-  
-  generate environment modules, as commonly used in high-performance computing (HPC) on shared clusters
+
+  generate environment modules, as commonly used in high-performance computing
+  (HPC) on shared clusters
   https://gitlab.inria.fr/guix-hpc/guix-modules
   `guix module create` ???
-  
+
   racket2nix generate a Nix derivation for your Racket package
-  Take an info.rkt file, produce a info.nix file. 
+  Take an info.rkt file, produce a info.nix file.
   https://github.com/fractalide/racket2nix
 }
