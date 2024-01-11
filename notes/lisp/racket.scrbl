@@ -74,8 +74,18 @@
 }
 
 @block{@block-name{Various & snippets, etc.}
-  (require racket)
-  (string-split " foo bar  baz \r\n\t") ;; => '("foo" "bar" "baz")
+  @lisp{
+    ;; Early return from a function
+    (define (division x y)
+      (let/cc return
+        (when (= y 0) (return null))
+        (/ x y)))
+  }
+
+  @lisp{
+    (require racket)
+    (string-split " foo bar  baz \r\n\t") ;; => '("foo" "bar" "baz")
+  }
 
   @lisp{
     ;; take / fetch n-elements from a list
