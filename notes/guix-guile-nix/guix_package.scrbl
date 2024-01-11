@@ -165,7 +165,7 @@
     (origin-uri (package-source factorio-experimental))
   }
 
-  set lp $dev/guix-packages/packages
+  set lp $dev/guix-packages/src
   # guix package --load-path=$lp --manifest=./bost/packages/spacemacs.scm --list-available=emacs-spacemacs
   # guix build --load-path=$lp --keep-failed --load=./spacemacs-settings.scm emacs-spacemacs
   # guix build --load-path=$lp --keep-failed --expression='(@"@" (gnu) %base-packages)' emacs-spacemacs
