@@ -139,7 +139,10 @@
   echo "version: 51.19.7"  | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
   echo "version: 5.19.7"   | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
   # match linux-libre version number
-  guix show linux-libre | head | grep version | grep -oP "([0-9]{1,}\.)+[0-9]{1,}"
+  # In the default Guix installation the ripgrep `rg` is not available and grep
+  # is build with --disable-perl-regexp, i.e. no -P --perl-regexp can be used.
+  # I.e. the chars +(){} must be escaped by a backslash in the regexp.
+  guix show linux-libre | head | grep version | grep -o "\([0-9]\{1,\}\.\)\+[0-9]\{1,\}"
 
   # ripgrep: print only first capture group $1
   ls /gnu/store/*-emacs-pippel-* | rg  '(.*):' --replace '$1'

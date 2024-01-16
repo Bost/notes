@@ -1,6 +1,10 @@
 #lang notes
 
 @block{@block-name{Various CompSec related stuff}
+  PEM Privacy Enhanced Email
+  Contains delimiters like
+  -----BEGIN CERTIFICATE-----
+  -----END CERTIFICATE-----
 
   FHE Fully Homomorphic Encryption - Computations on encrypted data:
   Traditionally, an app needs to decrypt the data, perform some computation on
