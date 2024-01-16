@@ -216,7 +216,9 @@
 
   # shallow clone with a history truncated to the specified number of commits
   # -b, --branch
-  git clone --depth=1 --branch <branch> <origRepo> <newRepoName>q
+  git clone --depth=1 --branch <branch> <origRepo> <newRepoName>
+  # fetch additional 100 commits if the --depth=1 wasn't enough
+  cd <newRepoName> && git fetch --depth=100
 
   # After the clone is created, initialize all submodules within, using their
   # default settings. Equivalent to running
