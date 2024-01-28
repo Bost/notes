@@ -144,6 +144,11 @@
   # compute the hash of any (already downloaded) file
   guix hash file
 
+  # fish-shell; download emacs package source code
+  set expr '(use-modules (guix packages) (gnu packages emacs))
+            (display (origin-uri (package-source emacs)))'
+  guix download (guile -c $expr)
+
   # either (A):
   guix build --load-path=$dgx/gnu/packages --keep-failed <package>
   # $dgx is some GUIX_CHECKOUT directory
