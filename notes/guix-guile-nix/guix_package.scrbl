@@ -172,7 +172,7 @@
   set --export GUIX_PACKAGE_PATH $lp/bost/packages/patches
   guix build --load-path=$lp --keep-failed emacs-spacemacs
 
-  # package source code
+  # build the packages' source derivations
   guix build --expression='(@"@"@"@" (bost packages emacs-xyz) emacs-color-identifiers-mode)' --source
 }
 
