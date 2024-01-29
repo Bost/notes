@@ -22,9 +22,9 @@
 }
 
 @block{@block-name{Various commands}
-  guix install glibc    # contains `ldd`
-  guix install gcc:lib  # contains `libstdc++.so.6`, defines `LIBRARY_PATH`
-  guix install iproute2 # contains `ss` socket statistics
+  guix install glibc    # contains ldd
+  guix install gcc:lib  # contains libstdc++.so.6, defines LIBRARY_PATH
+  guix install iproute2 # contains ss socket statistics
 
   --verbosity=LEVEL
   0 - no output
@@ -41,7 +41,7 @@
   guix package --list-installed=ema # -I ema
   guix package --list-available=ema # -A ema
 
-  # export the list installed packages; can't use ~
+  # export the list installed packages; can't use tilda ~
   guix package --profile=$HOME/.guix-home/profile --export-manifest > manifest.scm
   # reproduce, i.e. reinstall packages
   guix package --manifest=manifest.scm # -m manifest.scm
