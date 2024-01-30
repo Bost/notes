@@ -136,8 +136,15 @@
   git checkout <tag-or-branch>
   # https://guix.gnu.org/manual/en/html_node/Invoking-guix-hash.html
   guix hash -x --serializer=nar .   # with the dot at the end!
+  
+  # sha256; base32; or (B):
+  # package definition is obtained using git-fetch
+  # clone specific tag or branch
+  set repo https://github.com/clojure/tools.deps.alpha
+  git clone --depth=1 --branch=v0.15.1254 $repo
+  guix hash -x --serializer=nar (basename $repo)
 
-  # sha256; base32; or (A):
+  # sha256; base32; or (C):
   # package is a file downloaded from an the URI - add it to the store, and
   # print both its file name in the store and its SHA256 hash
   guix download URI
