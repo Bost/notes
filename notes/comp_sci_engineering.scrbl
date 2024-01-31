@@ -156,9 +156,13 @@
   Git Repo
   https://git.busybox.net/busybox
 
-  Wasm - WebAssembly
-  https://webassembly.org
-  WebAssembly is a binary instruction format for a stack-based virtual machine.
+  Wasm - WebAssembly https://webassembly.org
+  Binary instruction format (bytecode) for a stack-base  d virtual machine.
+  E.g. C, C++, Rust code can be compiled to wasm format, then this wasm code
+  runs in the web browser's sandbox at near-native speed.
+  Not a standalone programming language but a compilation target.
+  "Use WebAssembly for computationally intensive tasks and JavaScript for
+  'standart' web development."
 
   Clang - drop-in replacement for the GNU Compiler Collection (GCC)
 
