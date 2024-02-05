@@ -181,66 +181,77 @@
   # list available linux-libre kernels
   ls --format=single-column /gnu/store/*-linux-libre-*/bzImage
   guix show linux-libre | grep version
+}
 
-  @block{@block-name{Services}
-    Service:
-    - building block the operating system.
-    - (broadly speaking) extends the functionality of the operating system.
-    - can be extensible or non-extensible.
-    One-shot services stop immediately after their start action has completed.
+@block{@block-name{Services}
+  Service:
+  - building block the operating system.
+  - (broadly speaking) extends the functionality of the operating system.
+  - can be extensible or non-extensible.
+  One-shot services stop immediately after their start action has completed.
 
-    # herd - client program to control a running instance of 'shepherd'.
-    # status of all the "system services":
-    sudo herd status
-    # status of "user services", assuming a user 'shepherd' is running
-    herd status
+  shepherd - init system, i.e. the first process started (PID 1 typically), run
+  as root, manages all system-wide services and can help managing daemons of
+  nonpriviledged users
 
-    # list all available system services
-    guix system search .
+  herd
+  - client program to control a running instance of 'shepherd
+  - sends commands to shepherd
+  - communicates with spepherd using Unix Daemon Socket
 
-    # list all available (login) manager system services
-    guix system search manager
+  # status of all the "system services":
+  sudo herd status
+  # status of "user services", assuming a user 'shepherd' is running
+  herd status
+  herd detailed-status
+  herd log
+  herd reload-modules <module-name> # e.g. herd reload-modules apache
 
-    Extensions - connect system services. A service-extension gets the command line
-    from the service it is extending.
-    Service types - define extension relations.
+  # list all available system services
+  guix system search .
 
-    (service-extension TARGET COMPUTE DEFAULT-VAL)
+  # list all available (login) manager system services
+  guix system search manager
 
-    TARGET - "arrow target" in the graph, i.e. name of service which is going to
-    be extended.
+  Extensions - connect system services. A service-extension gets the command
+  line from the service it is extending.
+  Service types - define extension relations.
 
-    COMPUTE - a procedure that, given the parameters of the service, returns a
-    list of objects to extend the service of that type.
+  (service-extension TARGET COMPUTE DEFAULT-VAL)
 
-    DEFAULT-VAL - default value for instances of this service-extension.
+  TARGET - "arrow target" in the graph, i.e. name of service which is going to
+  be extended.
 
-    Service instantiation examples:
-      (service guix-service-type   ;; name of the service to start
-               ;; initial service
-               (guix-configuration
-                 (build-accounts 5)
-                 (extra-options '("--gc-keep-derivations"))))
-      ;;
-      (service guix-service-type)  ;; uses the DEFAULT-VAL
-      ;;
-      (simple-service 'consider-relogin
-                       home-run-on-first-login-service-type
-                       #~(begin (display "AAA\n")
-                                 (display "BBB\n")))
+  COMPUTE - a procedure that, given the parameters of the service, returns a
+  list of objects to extend the service of that type.
 
-    Every '...-service-type' has at least one extension. The only exception is
-    the boot service type, which is the ultimate service.
+  DEFAULT-VAL - default value for instances of this service-extension.
 
-    @block{@block-name{term-auto}
-      - Q: What's the term-auto service? It seems to be my only stopped service
-      - A1: "term-auto" is mainly for serial consoles that might need a log-in
-        prompt. The regular (VT) ttys use mingetty instead. It's basically always
-        stopped - that it could be presented in a less misleading way.
-        See https://logs.guix.gnu.org/guix/2020-09-23.log#174932
-      - A2: There is no 'term-auto' service (it's similar to a systemd term@"@"auto
-        instance). See https://logs.guix.gnu.org/guix/2020-03-23.log#213842
-    }
+  Service instantiation examples:
+    (service guix-service-type   ;; name of the service to start
+             ;; initial service
+             (guix-configuration
+               (build-accounts 5)
+               (extra-options '("--gc-keep-derivations"))))
+    ;;
+    (service guix-service-type)  ;; uses the DEFAULT-VAL
+    ;;
+    (simple-service 'consider-relogin
+                     home-run-on-first-login-service-type
+                     #~(begin (display "AAA\n")
+                               (display "BBB\n")))
+
+  Every '...-service-type' has at least one extension. The only exception is
+  the boot service type, which is the ultimate service.
+
+  @block{@block-name{term-auto}
+    - Q: What's the term-auto service? It seems to be my only stopped service
+    - A1: "term-auto" is mainly for serial consoles that might need a log-in
+      prompt. The regular (VT) ttys use mingetty instead. It's basically always
+      stopped - that it could be presented in a less misleading way.
+      See https://logs.guix.gnu.org/guix/2020-09-23.log#174932
+    - A2: There is no 'term-auto' service (it's similar to a systemd term@"@"auto
+      instance). See https://logs.guix.gnu.org/guix/2020-03-23.log#213842
   }
 }
 

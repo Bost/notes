@@ -188,6 +188,7 @@
   # This fetches the public key of the issuer of SIG from KEYRING, a keyring as
   # returned by 'get-openpgp-keyring'.
 
+  # when ABI needs to be rebuild
   # make --jobs=$jobs clean-go # delete the .go (Guile Object) files
   ./pre-inst-env guix home --fallback -L $dotf/guix/home/ container $dotf/guix/home/home-configuration.scm
   ./pre-inst-env guix system --cores=$jobs image -t iso9660 gnu/system/install.scm
@@ -615,3 +616,11 @@
   rg "\boperating-system\s" (fd 'scm$' ~/dev/guix/)
   rg --no-ignore-vcs -g '*.{scm,c,h}' -w "word\\s" $dgx $dev/guile
 }
+
+etc/teams.scm
+
+Extension - language extension
+https://gitlab.inria.fr/guix-hpc/guix-modules
+
+
+inclus les entrées de développement du paquet suivant TODO add to the documentation "can be used repeatedly"
