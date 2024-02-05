@@ -188,7 +188,7 @@
   # This fetches the public key of the issuer of SIG from KEYRING, a keyring as
   # returned by 'get-openpgp-keyring'.
 
-  # when ABI needs to be rebuild
+  # when record ABI mismatch; recompilation needed # rebuild
   # make --jobs=$jobs clean-go # delete the .go (Guile Object) files
   ./pre-inst-env guix home --fallback -L $dotf/guix/home/ container $dotf/guix/home/home-configuration.scm
   ./pre-inst-env guix system --cores=$jobs image -t iso9660 gnu/system/install.scm
@@ -392,8 +392,8 @@
 }
 
 @block{@block-name{Contributing & sending patches}
-  Documentation changes:
-  # compile...
+  texi files, po files, documentation changes:
+  # compile / recreate / regenerate / rebuild ...
   make doc/guix.info
   # ...and view it with the info viewer:
   info -f doc/guix.info
