@@ -115,9 +115,9 @@
 
   # show gpg-agent PID and the command line how was it started
   ps h -o pid,command -p (pidof gpg-agent)
-  pkill gpg-agent || gpg-agent --pinentry-program=(which pinentry-gtk-2) --daemon
-  prep gpg-agent
-  # pkill gpg-agent && gpg-agent --pinentry-program=(which pinentry) --daemon
+  # start gpg-agent as a daemon
+  gpg-agent --pinentry-program=(which pinentry-gtk-2) --daemon
+  gpg-agent --pinentry-program=(which pinentry-tty)   --daemon
 
   # public & private key pair creation:
   gpg --expert --full-generate-key
