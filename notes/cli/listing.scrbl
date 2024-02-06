@@ -6,8 +6,8 @@
   lff
 
   # listing: sort by size; -l     use a long listing format
-  ls --sort=size -l
-  ls --sort=size -l --reverse
+  ls --sort=size -l            # ls -lS    largest first
+  ls --sort=size -l --reverse  # ls -lrS   smallest first
 
   # listing: files newer than ...
   ls -la (find . -type f -newermt "2022-10-01")

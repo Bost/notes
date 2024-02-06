@@ -617,10 +617,22 @@
   rg --no-ignore-vcs -g '*.{scm,c,h}' -w "word\\s" $dgx $dev/guile
 }
 
-etc/teams.scm
+@block{@block-name{Guix Modules}
+  Allows to export packages as "environment modules".
+  `guix shell` expects a list of packages upfront. The module interface enables
+  "incremental" approach: load / unload modules until you obtain the desired
+  environment.
 
-Extension - language extension
-https://gitlab.inria.fr/guix-hpc/guix-modules
+  ? Extension - language extension ?
+  https://gitlab.inria.fr/guix-hpc/guix-modules
 
+  Environment modules
+  http://modules.sourceforge.net/
+
+  Back to the future: modules for Guix packages
+  https://hpc.guix.info/blog/2022/05/back-to-the-future-modules-for-guix-packages/
+}
 
 inclus les entrées de développement du paquet suivant TODO add to the documentation "can be used repeatedly"
+
+https://lepiller.eu/en/a-deep-dive-into-guix-records.html
