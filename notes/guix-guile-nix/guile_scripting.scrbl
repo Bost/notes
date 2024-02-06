@@ -2,6 +2,7 @@
 
 @block{@block-name{Guile Scripting}
   https://www.gnu.org/software/guile/manual/html_node/Guile-Scripting.html
+  See also $dgx/etc/teams.scm
   On Guix (see `which guile`):
 
   @block{@block-name{Guile Scripting: Hash-bang / She-bang variants}
