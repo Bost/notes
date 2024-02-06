@@ -46,4 +46,12 @@
   |                    | toggle listing details                            |
   |                    | See `(describe-variable 'dired-listing-switches)` |
 
+  # find all scm files and sort them by size largest first
+  fd -g '*.{scm}' $dgx | xargs -I {} ls -lS {} | \
+     sort --key=5 --numeric-sort --reverse # 5th column
+
+  # listing: print only the file size; doesn't work without '--human-readable'
+  ls --human-readable --size (readlink (which guile))
+  16K /gnu/store/1gd9nsy4cps8fnrd1avkc9l01l7ywiai-guile-3.0.9/bin/guile
+
 }
