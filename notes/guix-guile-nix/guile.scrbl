@@ -139,6 +139,8 @@
 }
 
 @block{@block-name{Various code snippets}
+  (* 3-8i 2.3+0.3i) ;; complex numbers
+
   @lisp{
     (use-modules (srfi srfi-1))
     (remove (lambda (service)
@@ -172,6 +174,7 @@
 
     (equal? 'emacs-pkg (symbol-append 'emacs- 'pkg)) ;; => t
 
+    ;; #\space - blank character, whitespace
     (string-split "aa bb cc" #\space) ;; => ("aa" "bb" "cc")
 
     (use-modules (guix utils))  ;; ,use (guix utils)
