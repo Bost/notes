@@ -142,12 +142,19 @@
   ;; try-catch
   ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
   (begin
+    (use-modules (ice-9 exceptions))
     (guard (exception (else (format #t "[catch] An exception was thrown:\n")
                             (format #t "[catch] ~a\n\n" exception)))
       (format #t "[try]")
       (/ 1 0)
       (format #t "[try] Unreachable\n"))
-    (format #t "Moving n.\on"))
+    (format #t "Moving on.\n"))
+
+  ;; ignore exception
+  (begin
+    (use-modules (ice-9 exceptions))
+    (guard (exception (else #f)) (/ 1 0))
+    (format #t "Moving on.\n"))
 
   ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
   (use-modules (ice-9 exceptions))
