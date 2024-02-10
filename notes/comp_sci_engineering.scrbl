@@ -225,3 +225,8 @@
   - render has higher prio than a callback
     23:12
 }
+
+@block{@block-name{RPC Server}
+  RPC Remore Procedure Call
+  accepts commands comming from some client and returns responses
+}

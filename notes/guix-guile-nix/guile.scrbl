@@ -139,6 +139,47 @@
 }
 
 @block{@block-name{Various code snippets}
+  ;; try-catch
+  ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
+  (begin
+    (guard (exception (else (format #t "[catch] An exception was thrown:\n")
+                            (format #t "[catch] ~a\n\n" exception)))
+      (format #t "[try]")
+      (/ 1 0)
+      (format #t "[try] Unreachable\n"))
+    (format #t "Moving n.\on"))
+
+  ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
+  (use-modules (ice-9 exceptions))
+  ;;
+  (define (disk-space-amount) 1000)
+  (define (disk-space-left? query) (< query (disk-space-amount)))
+  ;;
+  (define-exception-type &read-exception &exception make-read-exception read-exception?
+                                          ; (field-name field-accessor) ...
+    (read-reason read-exception-reason)
+    (read-severity read-exception-severity))
+  ;;
+  (with-exception-handler
+      (lambda (exception)
+        (cond
+         ((and (read-exception? exception)
+               (eq? (read-exception-reason exception)  'almost-full))
+          (format #t "the disk is almost full, only has ~a left.\n"
+                  (disk-space-amount))
+          (format #t "please provide a different file size: ")
+          (let ((new-file-size (read)))
+            (if (disk-space-left? new-file-size)
+                new-file-size
+                (raise-exception exception))))
+         (else (raise-exception exception))))
+    (lambda ()
+      (let ((file-size (if (disk-space-left? 1028)
+                           1028
+                           (raise-continuable
+                            (make-read-exception 'almost-full 'medium)))))
+        (format #t "writing ~a\n" file-size))))
+
   (* 3-8i 2.3+0.3i) ;; complex numbers
 
   @lisp{
