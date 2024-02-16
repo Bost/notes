@@ -91,6 +91,9 @@
 }
 
 @block{@block-name{Various}
+  ;; default value of an an optional parameter is nil
+  ((lambda (a &optional b) (list a b)) 'a) ; => (a nil)
+
   ;; check if FILENAME directory exists / is an existing directory
   (file-directory-p FILENAME)
 
