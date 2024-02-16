@@ -1036,8 +1036,19 @@
   # :xml command line XML tool (formating)
   xmllint
 
-  # shared library dependencies
+  # shared library / shared object dependencies
   ldd --verbose $(which vim)
+
+  # calculate the size of a shared library / shared object with its dependencies
+  # TODO The calculation doesn't work recursively. A shared object can require
+  # other shared objects. See https://news.ycombinator.com/item?id=39232976#39250540
+  guile=$(readlink -f $(which guile))
+  sizes=$({ echo $guile; ldd $guile|grep /|sed 's+^[^/]*\(/[^ ]*\).*+\1+'; }|xargs -n 1 readlink -f|xargs du -ab|cut -f 1)
+  sumsize=0
+  for size in $sizes; do
+      sumsize=$((sumsize+size));
+  done
+  echo $sumsize
 
   # :library find out if libgconf is installed
   # -p, --print-cache          Print cache
