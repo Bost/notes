@@ -184,8 +184,8 @@
   set --export GUIX_PACKAGE_PATH $lp/bost/packages/patches
   guix build --load-path=$lp --keep-failed emacs-spacemacs
 
-  # build the packages' source derivations
-  guix build --expression='(@"@"@"@" (bost packages emacs-xyz) emacs-color-identifiers-mode)' --source
+  # build the packages' source derivations: the [at] char must be used twice
+  guix build --expression='(@"@"@"@" (bost gnu packages emacs-xyz) emacs-color-identifiers-mode)' --source
 }
 
 @block{@block-name{Garbage collection}
