@@ -100,11 +100,14 @@ No matter which way you go around you get the same thing.
 \bigskip
 
 _Cartesian Closed Category CCC_ - useful in programming
-- Cartesian: has product $A \cprod B$ for any pair of objects $A$, $B$
-- Closed: has exponential $B^A$, i.e. morphisms $A \to B$ for any pair of
-  objects $A$, $B$
+- Cartesian:
+  for any two objects $A$, $B$ of a category $\mathcal{C}$ there exists an
+  ordered pair in $\mathcal{C}$ called product, noted as $A \cprod B$.
+- Closed:
+  for any two objects $A$, $B$ there exists a morphisms $A \to B$ in
+  $\mathcal{C}$ called exponential, notes as $B^A$.
 - 0-th power of an obj: has terminal obj $\termObj$ (for all objects there
-  exists a unique map $A \to \termObj$)
+  exists a unique morphism $A \to \termObj$)
 - multiplying by terminal obj $\termObj$ gives back the original obj
 - initial obj $\initObj$ - dual to terminal obj $\termObj$; Top and Bottom
   objects i.e. any one-element set (= singleton) is terminal DTTO for poset 1 is
@@ -518,8 +521,11 @@ the NaT is transported from this point.
 - Adjoints / adjoint functors - functors with a relation of adjunction between
   them.
 
-If $\Fun{F}$ is (left) adjoint to $\Fun{G}$, then there is typically some
-formula of the type $(x, \Fun{G}y) \iso (\Fun{F}x, y)$.
+\\
+
+If $\Fun{F}$ is (left) adjoint to $\Fun{G}$ and $\Fun{G}$ is (right) adjoint
+to $\Fun{F}$, then there is typically some formula of the type $(x, \Fun{G}y)
+\iso (\Fun{F}x, y)$.
 
 \bigskip
 
