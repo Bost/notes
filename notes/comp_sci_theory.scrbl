@@ -158,22 +158,35 @@
 @block{@block-name{Hindley-Milner type system - type inference}
 }
 
-@block{@block-name{Alpha α-conversion / α-equivalence of terms: Term are same up to a renaming of binding and bound vars}
+@block{@block-name{Alpha α-conversion / α-equivalence of terms}
+  Terms are same up to a renaming of binding and bound vars
 }
 
-@block{@block-name{Beta β-reduction (computational): Substitute var x with s in term t: (λx.t)s = [s/x]t}
-  β- reduction in computation a.k. calculation rule: Simplify proofs by replacing formal params with terms.
+@block{@block-name{Beta β-reduction (computational)}
+  Substitute var x with s in term t: (λx.t)s = [s/x]t
+  β-reduction in computation a.k. calculation rule:
+  Simplify proofs by replacing formal params with terms.
   fst<g , h > = g
   snd<g , h > = h
   (λx.h)g = [g/x]h      - substitute variable x in the expression (i.e λ-term) h by the (i.e λ-term) g
   (λx.f)x = [x/x]f = f  - ? do nothing, i.e. void substitution ?
 
-  @block{@block-name{Fixed Point Theorem: for each λ-term L there exists a λ-term M (a.k.a fixed point) such that LM =β M}
-    =β   - β-conversion a.k.a β-equality
-   }
+  Fixed Point Theorem:
+  for each λ-term L there exists a λ-term M (a.k.a fixed point) such that LM = β M
+  =β   - β-conversion a.k.a β-equality
+  
+  β-computational reduction looks a bit like the ϵA the "evaluation" natural
+  transformation from ("eval") from
+  "F. William Lawvere: Diagonal arguments and cartesian closed categories."
+  http://tac.mta.ca/tac/reprints/articles/15/tr15abs.html
+ 
 }
 
 @block{@block-name{TODO Eta η-extentionality principle}
+  λA​ looks a bit like the η-extentionality principle. See
+  "F. William Lawvere: Diagonal arguments and cartesian closed categories."
+  http://tac.mta.ca/tac/reprints/articles/15/tr15abs.html
+
 }
 
 @block{@block-name{Tautology - "this is always true"}
@@ -708,6 +721,31 @@
   (Strictly positive) inductive types 𝜇𝑎.𝜏 with their recursor fold𝜏′ 𝑎.𝜏 . The
   type variable 𝑎 must be strictly positive in 𝜏, a condition formally written
   as 𝑎 ∈++ 𝜏.
-
-
 }
+
+@block{@block-name{Fixed point - "mapped to itself"}
+  The "fixed point property" and "fixed point theorems" refer to fundamental
+  concepts in mathematics that identify conditions under which a function is
+  guaranteed to have a fixed point. A fixed point of a function is an element
+  that is mapped to itself by the function, i.e., for a function ff, an element
+  x is a fixed point if f(x)=xf(x)=x.
+}
+
+@block{@block-name{Contrapositive}
+  "If P, then Q" (symbolically represented as P→Q), the contrapositive of this
+  statement is "If not Q, then not P" (symbolically, ¬Q→¬P).
+}
+
+@block{@block-name{Cantor's theorem}
+  ∣A∣<∣P(A)∣
+  The set of all possible subsets of A (i.e.the power set of A, denoted by 2^A
+  or P(A)) has a strictly greater cardinality (size of a set, denoted by∣⋅∣)
+  than the set A itself. I.e. there is no one-to-one correspondence (bijection)
+  between the elements of a set and the elements of its power set.
+ 
+}
+
+@block{@block-name{Possible interpretation of A × X -> Y}
+  family of morphisms A -> Y indexed by the elements of X.
+}
+

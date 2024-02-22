@@ -24,6 +24,8 @@
   GREEK SMALL LETTER GAMMA	γ	&‌#947;	&‌#x03B3	&‌gamma;
   GREEK SMALL LETTER DELTA	δ	&‌#948;	&‌#x03B4	&‌delta;
   GREEK SMALL LETTER EPSILON	ε	&‌#949;	&‌#x03B5	&‌epsilon;
+  curly epsilon (ε): \xce\xb5
+  straight epsilon (ϵ): \xcf\xb5
   GREEK SMALL LETTER ZETA	ζ	&‌#950;	&‌#x03B6	&‌zeta;
   GREEK SMALL LETTER ETA	η	&‌#951;	&‌#x03B7	&‌eta;
   GREEK SMALL LETTER THETA	θ	&‌#952;	&‌#x03B8	&‌theta;
