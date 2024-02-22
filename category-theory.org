@@ -348,21 +348,40 @@ Inlining and refactoring are the opposite.
 _Fibre_: points mapped to the same value
 invertibility: function to fibre
 
-** Natural Transformations
+** NaT Natural Transformations
 - a way of/for comparing functors
 - maps Morphism(s) to commuting diagram(s) (naturality squares). i.e.
   comorphism: replacing a square of (complex) relations with a single morphism
 - picks a morphish between two Objects; Picking 1 morphishm from a Homset
 - Components of NaT
 - Composing ftor acting on an obj with a ftor acting on a Morphishm:
- $\alpha b \comp Ff$
-
+  $\alpha b \comp Ff$
 - Every polymorphic functions is a NaT: it is defined for every single type
 i.e. multiplication (Product) of all Objects in a Category. The same goes for
 the dual - the Sum.
 - Functor is a container, NaT repackages the container
 - Naturality condition i.e. the Naturality Square:
 $$Gf ∘ \alpha a = \alpha b ∘ Ff$$
+
+--------------------------------------------------------------------------
+The "naturalness" of NaT:
+the transformation is defined in a way that is consistent across the entire
+structure of the categories and functors it connects, without making arbitrary
+choices or depending on specific properties of objects within the categories.
+
+
+Why Are They Called "Natural"?
+
+The concept of naturality comes from the observation that certain transformations arise in a way that feels "natural" or "canonical," without the need for arbitrary choices. For example, consider the identity functor ICIC​ on a category CC and any other functor FF from CC to CC. A natural transformation η:IC⇒Fη:IC​⇒F assigns to each object XX in CC a morphism ηX:X→F(X)ηX​:X→F(X) such that for any morphism f:X→Yf:X→Y in CC, we have F(f)∘ηX=ηY∘fF(f)∘ηX​=ηY​∘f. This condition ensures that the way ηη acts on morphisms is consistent and "naturally" aligned with how FF and ICIC​ act on those morphisms.
+Existence of Non-Natural Transformations
+
+In the strict sense of category theory, transformations that are not "natural" in the sense described above are generally not considered or discussed because the concept of a transformation inherently carries the requirement of this naturality condition. However, one can think of mappings or constructions that are not natural in specific contexts. For example:
+
+- A choice of a particular element from each set in a family of sets cannot be made "naturally" in the absence of additional structure (like an ordering or a distinguished element) because it requires an arbitrary choice.
+- Mappings between objects or between functors that do not satisfy the coherence condition of a natural transformation can be considered "non-natural" in the sense that they do not respect the structure of the categories involved.
+
+In essence, the "non-natural" transformations or mappings are those that fail to fulfill the coherence and compatibility criteria across the categories they relate. The power of natural transformations in category theory lies in their ability to capture the essence of "naturally occurring" relationships between mathematical structures in a broad and abstract way, facilitating the study of deeper connections between various areas of mathematics.
+--------------------------------------------------------------------------
 
 _Compositons of Natural Transformations_ \\
 See \href{https://math.vanderbilt.edu/dept/conf/tacl2013/coursematerials/SelingerTACL20132.pdf}{SelingerTACL20132},
