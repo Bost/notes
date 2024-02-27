@@ -1042,6 +1042,28 @@
 
 }
 
+@block{@block-name{us / american keyboard}
+  #    ~   ¡   ˝   ¯   £   ¸   ¼   ½   ¾   ˘   °   ̣    ÷   BACKSPACE  # Shift-AltGr; some keys must be pressed 2x
+  #    ¬   ¹   ²   ³   ¤   €   ^       ˛   ‘   ’   ¥   ×   BACKSPACE  # AltGr; 2x AltGr-6 inserts a funny char
+  #    ~   !   @   #   $   %   ^   &   *   (   )   _   +   BACKSPACE  # Shift
+  #    `   1   2   3   4   5   6   7   8   9   0   -   =   BACKSPACE
+  #
+  #   TAB   Ä   Å   É   Ë   Þ   Ü   Ú   Í   Ó   Ö   “   ”     RETURN  #
+  #   TAB   ä   å   é   ë   þ   ü   ú   í   ó   ö   «   »     RETURN  #
+  #   TAB   A   W   E   R   T   Y   U   I   O   P   {   }     RETURN  #
+  #   TAB   q   w   e   r   t   y   u   i   o   p   [   ]     RETURN  #
+  #
+  #   CAPS   Á   §   Ð   F   G   H   ̛Ï   Œ   Ø   °   ˇ   ¦    RETURN  #
+  #   CAPS   á   ß   ð   f   g   h   ̉ï   œ   ø   ¶   ´   ¬    RETURN  # ´ pressed 2x
+  #   CAPS   A   S   D   F   G   H   J   K   L   :   "   |    RETURN  #
+  #   CAPS   a   s   d   f   g   h   j   k   l   ;   '   \    RETURN
+  #
+  # RSHIFT |   Æ   Œ   ¢   ™   B   Ñ   µ   Ç   ˇ   ̉˙          LSHIFT  # ˇ pressed 2x
+  # RSHIFT \   æ   œ   ©   ®   b   ñ   µ   ç   ˙   ̣¿          LSHIFT  # ˙ pressed 2x
+  # RSHIFT |   Z   X   C   V   B   N   M   <   >   ?          LSHIFT
+  # RSHIFT \   z   x   c   v   b   n   m   ,   .   /          LSHIFT
+}
+
 @block{@block-name{french keyboard / clavier français}
   # ç C-cedilla / Ç C-cédille majuscule (in vim / evil capitalize with ~ Alt-2)
   In Xfce & Emacs:
