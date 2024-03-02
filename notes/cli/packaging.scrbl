@@ -20,6 +20,13 @@
   sudo flatpak override org.telegram.desktop --nofilesystem=/some/path/here
 
   # installation directory: /var/lib/flatpak/app
+
+  https://gitlab.com/flatpak-repo/com-ankama-Dofus-flatpak
+  https://github.com/azert9/ankama-launcher-flatpak
+
+  # how to build, install and remove flatpak applications from cli
+  https://gist.github.com/user5145/9aecebaa8045174958123c9798c93009
+
 }
 
 @block{@block-name{snap}
@@ -46,9 +53,65 @@
   # When: Error initializing settings: Failed saving settings file:
   # - Error: Unable to open settings file /path/to/.bitcoin/settings.json for writing
   snap connect bitcoin-core:removable-media
+
+  # `dofus` on Ubuntu may throw:
+  # /snap/dofus/3/usr/share/anakama-launcher/zaap: error while loading shared
+  # libraries: libffmpeg.so: cannot open shared object file: No such file or
+  # directory.
+  # snap package definition:
+  ldd -v /snap/dofus/3/usr/share/anakama-launcher/zaap | rg libffmpeg.so
+  #
+  # protontricks - wine for steam
+  sudo apt install -y protontricks winetricks
+  https://dl.winehq.org/wine/source/
+  #
+  cat /snap/dofus/3/snap/manifest.yaml
+  wget https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage \
+       -O Dofus-Setup-x86_64.AppImage
+  chmod +x Dofus-Setup-x86_64.AppImage
+  ./Dofus-Setup-x86_64.AppImage --appimage-extract
+  rm -f Dofus-Setup-x86_64.AppImage
+  #
+  # https://forum.snapcraft.io/t/error-while-loading-shared-libraries/18997/5
+  SNAPD_DEBUG=1 SNAP_CONFINE_DEBUG=1 snap run dofus
+  # sudo /usr/lib/snapd/snap-discard-ns dofus
+  #
+  sudo find /snap -name libffmpeg.so
+  snap run --shell dofus
+  snap run --debug-log dofus
+  # setting, i.e. exporting SNAP_LIBRARY_PATH LD_LIBRARY_PATH doesn't help
+  # snap is running in some kind of a container.
+  echo $SNAP_LIBRARY_PATH
+  echo $LD_LIBRARY_PATH
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(dirname /path/to/libffmpeg.so)
+  export SNAP_LIBRARY_PATH=$SNAP_LIBRARY_PATH:$(dirname /path/to/libffmpeg.so)
+  unset LD_LIBRARY_PATH
+  unset SNAP_LIBRARY_PATH
+  #
+  # following installs some libraries - may or may not not help
+  sudo apt install libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
+  #
+  sudo apt install -y plocate
+  locate libffmpeg.so
+  #
+  sudo apt install -y apt-file
+  sudo apt-file update
+  apt-file search libffmpeg.so
+  #
+  snap info ffmpeg
+  apt policy ffmpeg
+  #
+  mkdir ~/ffmpeg
+  cp /path/to/libffmpeg.so ~/ffmpeg/libffmpeg.so.<postfix>
+  chmod +x ~/ffmpeg/*
+  # following doesn't help snap is running in some kind of a container.
+  sudo rm -f /lib/x86_64-linux-gnu/libffmpeg.so && \
+  sudo ln -s ~/ffmpeg/libffmpeg.so.<postfix> /lib/x86_64-linux-gnu/libffmpeg.so
 }
 
 @block{@block-name{Various}
+  # Run a program with namespaces of other processes.
+  nsenter
 
   # Compare `apt upgrade` vs `apt dist-upgrade` vs `apt full-upgrade`
   apt upgrade      # upgrade packages to their latest versions w/o removing or
