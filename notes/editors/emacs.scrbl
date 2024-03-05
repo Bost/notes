@@ -786,10 +786,10 @@
   ;; The info manual
   ;; --no-init-file, -q          load neither ~/.emacs nor default.el
   emacs -q --eval '(info)' & disown
-  M-x info
-  M-x info-apropos
-  M-x info-emacs-manual
-  M-x info-display-manual
+  | ~C-h i~ |  M-x info
+  |         |  M-x info-apropos
+  |         |  M-x info-emacs-manual
+  |         |  M-x info-display-manual
 
   ;; macros
   M-x kmacro-name-last-macro  ;; 1.
@@ -815,7 +815,6 @@
   mkdir emacs-from-scratch && cd emacs-from-scratch
   touch init.el
   emacs --no-init-file --load init.el & disown
-
 
   ;; M-x shell-command; execute
   ~M-!~ / ~SPC !~

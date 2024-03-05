@@ -887,6 +887,7 @@
   cat /proc/version
 
   # :ubuntu show OS version
+  cat /usr/lib/os-release
   lsb_release -a
   cat /etc/issue
 
@@ -1041,14 +1042,11 @@
 
   # calculate the size of a shared library / shared object with its dependencies
   # TODO The calculation doesn't work recursively. A shared object can require
-  # other shared objects. See https://news.ycombinator.com/item?id=39232976#39250540
+  # other shared objects.
   guile=$(readlink -f $(which guile))
   sizes=$({ echo $guile; ldd $guile|grep /|sed 's+^[^/]*\(/[^ ]*\).*+\1+'; }|xargs -n 1 readlink -f|xargs du -ab|cut -f 1)
   sumsize=0
-  for size in $sizes; do
-      sumsize=$((sumsize+size));
-  done
-  echo $sumsize
+  for size in $sizes; do sumsize=$((sumsize+size)); done; echo $sumsize
 
   # :library find out if libgconf is installed
   # -p, --print-cache          Print cache
@@ -1389,15 +1387,15 @@
   # udisksctl uses udiskds binary launched by udisks2.service.
   # see also udev / udevadm
   # test if /dev/sdc1 is mounted
-  udisksctl info    --block-device /dev/sdc1 | rg MountPoints: | rg /
-  udisksctl mount   --block-device=/dev/sdc1      # under /media/$USER/elements
-  sudo udisksctl mount   --block-device=/dev/sdc1 # under /media/root/
-  udisksctl unmount --block-device=/dev/sdc1
+       udisksctl info    --block-device /dev/sdc1 | rg MountPoints: | rg /
+       udisksctl mount   --block-device=/dev/sdc1  # under /media/$USER/elements
+  sudo udisksctl mount   --block-device=/dev/sdc1  # under /media/root/
+       udisksctl unmount --block-device=/dev/sdc1
 
   # make file acting as / accessible as a pseudo ("fake") block-based device.
-  udisksctl loop-setup  -f disk.img
-  udisksctl unmount     -b /dev/loop8
-  udisksctl loop-delete -b /dev/loop8
+  udisksctl loop-setup  --file disk.img
+  udisksctl unmount     --block-device /dev/loop8
+  udisksctl loop-delete --block-device /dev/loop8
 
   # Change the label on an ext2/ext3/ext4 filesystem
   e2label
