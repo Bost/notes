@@ -60,7 +60,7 @@
   ldd -v /snap/dofus/3/usr/share/anakama-launcher/zaap | rg libffmpeg.so
   #
   # protontricks - wine for steam
-  sudo apt install -y protontricks winetricks
+  sudo apt install --yes protontricks winetricks
   https://dl.winehq.org/wine/source/
   #
   cat /snap/dofus/3/snap/manifest.yaml
@@ -89,10 +89,10 @@
   # following installs some libraries - may or may not not help
   sudo apt install libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
   #
-  sudo apt install -y plocate
+  sudo apt install --yes plocate
   locate libffmpeg.so
   #
-  sudo apt install -y apt-file
+  sudo apt install --yes apt-file
   sudo apt-file update
   apt-file search libffmpeg.so
   #
