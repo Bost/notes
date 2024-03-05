@@ -24,14 +24,12 @@
   https://gitlab.com/flatpak-repo/com-ankama-Dofus-flatpak
   https://github.com/azert9/ankama-launcher-flatpak
 
-  # how to build, install and remove flatpak applications from cli
+  # build / install / remove flatpak applications from cli
   https://gist.github.com/user5145/9aecebaa8045174958123c9798c93009
-
 }
 
 @block{@block-name{snap}
-
-  # Packaging and deployment system developed by Canonical for OSes with Linux
+# Packaging and deployment system developed by Canonical for OSes with Linux
   # kernel and the systemd.
   # Compare Snap vs Apt
   # https://www.baeldung.com/linux/snap-vs-apt-package-management-system
@@ -142,16 +140,20 @@
   sudo vim /etc/yum.com; proxy=http://<ip:port>
   sudo yum update
   sudo yum groupinstall 'Development Tools'
-  sudo yum install openssl-devel curl-devel expat-devel perl-devel asciidoc xmlto
+  sudo yum install openssl-devel curl-devel expat-devel perl-devel asciidoc \
+                   xmlto
 
   # centos compile emacs
-  sudo yum install texinfo gtk2-devel gnutls-devel libtiff-devel libungif-devel \
-       libjpeg-devel libXpm-devel ncurses-devel
+  sudo yum install texinfo gtk2-devel gnutls-devel libtiff-devel \
+                   libungif-devel libjpeg-devel libXpm-devel ncurses-devel
 
   # centos compile guake
   sudo yum install gnome-common GConf2-devel pytgtk2-devel python-vte-devel \
-       gnome-python2-gconf python-keybinder pyxdg notify-python
+                   gnome-python2-gconf python-keybinder pyxdg notify-python
 
+  # dnf Dandified Yum package manager
+  # Package manager forked from Yum, using libsolv as a dependency resolver.
+  # It requires a working rpm installation and is meant to be used in chroots
 
   # :bash list repositories
   sudo grep -rhE ^deb /etc/apt/sources.list*
@@ -228,8 +230,7 @@
 
   # list the names of all packages in the system
   apt-cache pkgnames <packagePrefix>
-  dpkg --status <package>
-  dpkg -s <package>
+  dpkg --status <package> # --status -s
 
   sudo dpkg --install <package.deb>
   sudo dpkg --remove  <package.deb>
