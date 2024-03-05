@@ -13,11 +13,10 @@
 
 @block{@block-name{#lang video}
   # In an Ubuntu VM
-  sudo apt update && sudo apt upgrade
-  sudo apt install openssh-server
-  sudo apt install racket ffmpeg pulseaudio libssl-dev libportaudio2
+  sudo apt update && sudo apt upgrade && \
+  sudo apt install --yes openssh-server racket ffmpeg pulseaudio libssl-dev \
+                         libportaudio2
   raco pkg install video-testing
-
   # sudo systemctl restart gdm
 }
 
@@ -36,7 +35,6 @@
 }
 
 @block{@block-name{Command line snippets}
-
   # install on Ubuntu
   sudo add-apt-repository ppa:plt/racket
   sudo apt update
