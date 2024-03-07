@@ -829,6 +829,11 @@
   ;; M-x shell-command: top: capture top output from stdout
   ~M-! RET top -c -n -1 -b -w 200~
 
+  | ~C-M-u~   | M-x backward-up-list                  |
+  | ~C-M-d~   | M-x down-list                         |
+  | ~SPC k 0~ | M-x evil-lisp-state-beginning-of-sexp |
+  | ~SPC k $~ | M-x evil-lisp-state-sp-end-of-sexp    |
+
   ;; M-x git-timemachine git:
   p prev / n next / w Copy abbreviated hash / W Copy full hash / g Goto nth rev /
   q Exit
