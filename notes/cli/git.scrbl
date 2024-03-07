@@ -115,8 +115,9 @@
 
   # --name-status option is a parameter for `git diff` and `git log`.
   # list modified files along with the type of modification:
-  # A: / M: / D: / R: / C: / U:
-  # The file was/is Added / Modified / Deleted / Renamed / Copied / Unmerged
+  # A: / M: / D: / R: / C: / U: / T:
+  # The file was/is:
+  #   Added / Modified / Deleted / Renamed / Copied / Unmerged / Typechange
   # (After a merge conflict.)
 
   # list all files changed / touched in a particular commit
