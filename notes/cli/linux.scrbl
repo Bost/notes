@@ -1042,7 +1042,7 @@
   # calculate the size of a shared library / shared object with its dependencies
   # TODO The calculation doesn't work recursively. A shared object can require
   # other shared objects.
-  guile=$(readlink -f $(which guile))
+  guile=$(readlink --canonicalize $(which guile))    # -f, --canonicalize
   sizes=$({ echo $guile; ldd $guile|grep /|sed 's+^[^/]*\(/[^ ]*\).*+\1+'; }|xargs -n 1 readlink -f|xargs du -ab|cut -f 1)
   sumsize=0
   for size in $sizes; do sumsize=$((sumsize+size)); done; echo $sumsize
@@ -1409,11 +1409,11 @@
   chown -h myuser:mygroup mysymbolic
 
   # SMBIOS - System Management BIOS
-  # DMI table - Desktop Management Interface
-  dmidecode
-  sudo dmidecode --type bios
-  sudo dmidecode --type baseboard
-  # see also: system chassis processor memory cache connector slot
+  # DMI table - Desktop Management Interface, some say SMBIOS. Shows a.o. BIOS
+  # revision, serial numbers, etc.
+  sudo dmidecode --type bios --type system --type baseboard --type chassis \
+                 --type processor --type memory --type cache --type connector \
+                 --type slot
 
   # Setup Wake on LAN https://tek.io/37ZXhPs
   sudo ethtool -s INTERFACE wol g  # list of interfaces: ip addr
@@ -1424,11 +1424,11 @@
   # TODO add powernap
 
   # fully resolve the link; report errors; see also: realpath
-  readlink --canonicalize --verbose LINKNAME
+  readlink --canonicalize --verbose LINKNAME # -f, --canonicalize
   # show profile size
   for p in (guix package --list-profiles) ~/.guix-home/profile;
       printf "%s\t%s\n" \
-        (guix size (readlink -f $p) | rg 'total: (.*)' -r '$1') \
+        (guix size (readlink --canonicalize $p) | rg 'total: (.*)' -r '$1') \
         $p;
   end
 

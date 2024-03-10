@@ -189,6 +189,19 @@
   # repetition delay in milliseconds [ms]
   gsettings set org.gnome.desktop.peripherals.keyboard delay 140
 
+  xfconf-query --list --verbose
+  xfconf-query --list --verbose --channel xfce4-panel
+  xfconf-query --list --verbose --channel xsettings
+  xfconf-query --list --verbose --channel xfce4-session
+  xfconf-query --list --verbose --channel xfce4-keyboard-shortcuts
+
+  ~/.guix-home/profile/etc/xdg
+  /run/current-system/profile/etc/xdg
+
+  # both files are changed when editing shortcuts by xfce4-keyboard-settings
+  # ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+  # ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+
   xfce4-keyboard-settings # shortcuts keybindings
   # http://docs.xfce.org/xfce/xfconf/xfconf-query
   xfconf-query --list --verbose --channel xfce4-keyboard-shortcuts # -lvc
@@ -226,6 +239,12 @@
   rm -rf \ ~/.config/xfce4/panel
            ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
   xfce4-panel # .. and restart it
+
+  echo $XDG_CONFIG_DIRS
+  echo $XDG_DATA_DIRS
+  # on Guix
+  /run/current-system/profile/etc/xdg/xfce4/panel/default.xml
+  $dotf/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 
   sudo systemctl | grep dm
   sudo systemctl restart <dm service>
