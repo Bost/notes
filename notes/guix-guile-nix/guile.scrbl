@@ -135,6 +135,11 @@
     (fun 'x #:kw '42 'args)             ;; (x 42 #f (#:kw 42 args))
     (fun 'x #:kw '42 #:kw-opt 'x 'args) ;; (x 42 x (#:kw 42 #:kw-opt x args))
     (apply fun (list 'x #:kw '42 'args));; (x 42 #f (#:kw 42 args))
+
+    (define* (fun x #:optional (y 'y-default-val))
+      (list x y))
+    (fun 1)                             ;; (1 y-default-val)
+    (fun 1 2)                           ;; (1 2)
   }
 }
 

@@ -791,6 +791,18 @@
   |         |  M-x info-emacs-manual
   |         |  M-x info-display-manual
 
+  ;; Info pages / mode movements
+  | ~l~                 | Back to the last node visited                        |
+  | ~n~                 | Next node                                            |
+  | ~p~                 | Previous node                                        |
+  | ~u~                 | Up in the hierarchy                                  |
+  | ~m~                 | Follow a menu item (with prompt for menu item name)  |
+  | ~s~                 | Search the Info pages (with prompt for search query) |
+  | ~g~                 | Go to a node by name (with prompt for node name)     |
+  | ~Space~             | Scroll forward one page                              |
+  | ~Backspace~ / ~DEL~ | Scroll backward one page                             |
+  | ~d~                 | Directory node ("home page" of Info documentation)   |
+
   ;; macros
   M-x kmacro-name-last-macro  ;; 1.
   M-x insert-kbd-macro        ;; 2.
