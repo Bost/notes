@@ -2,7 +2,7 @@
 
 @block{@block-name{Listing}
   # listing: list contents of directories in a tree-like format.
-  tree -f # full-path
+  tree -f (pwd) # full path prefix for each file.
   lff
 
   # listing: sort by size; -l     use a long listing format

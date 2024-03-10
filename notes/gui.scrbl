@@ -234,11 +234,11 @@
     ~/.config/xfce4-session/ \
     ~/.config/xubuntu/
   # also: reset xfce4-panel ...
-  xfce4-panel --quit
-  pkill xfconfd
-  rm -rf \ ~/.config/xfce4/panel
-           ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-  xfce4-panel # .. and restart it
+  xfce4-panel --quit && \
+  pkill xfconfd && \
+  rm -rf ~/.config/xfce4/panel \
+         ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml && \
+  xfce4-panel & disown # .. and restart it. The xfconfd is respawned automatically
 
   echo $XDG_CONFIG_DIRS
   echo $XDG_DATA_DIRS
@@ -248,8 +248,4 @@
 
   sudo systemctl | grep dm
   sudo systemctl restart <dm service>
-
-  # Window Buttons context menu (right-click in the middle of the panel)
-  # -> Properties -> Window grouping: -> Never
-
 }
