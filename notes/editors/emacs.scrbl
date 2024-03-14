@@ -610,26 +610,26 @@
   M-x chmod
 
   ;; dired:
-  | ~<normal-state> S~ | symlink                                           |
-  | ~s~                | sort by ...                                       |
-  | ~S~                | M-x hydra-dired-quick-sort/body                   |
-  | ~Z~                | zip: compress / uncompress (extract) file         |
-  | ~* . <ext>~        | mark all: toggle marking                          |
-  | ~* s~              | mark all: executables                             |
-  | ~* *~              | mark all: files (with extention)                  |
-  | ~* . <ext> D~      | mark & delete all files with extention            |
-  | ~* c~              | change all marks                                  |
-  | ~\~~               | markup: all backup files                          |
-  | ~#~                | markup: auto-save files                           |
-  | ~g~                | refresh buffer                                    |
-  | ~+~                | M-x dired-create-directory                        |
-  | ~R~                | M-x dired-do-rename                               |
-  | ~@"("~             | M-x dired-hide-details-mode                       |
-  |                    | toggle listing details                            |
-  |                    | See `(describe-variable 'dired-listing-switches)` |
-  | ~C-x C-q~          | perform operations by editing dired buffer        |
-  | ~C-x C-q~          | M-x dired-toggle-read-only                        |
-  |                    | M-x wdired-finish-edit                            |
+  | ~<normal-state> S~ | symlink                                         |
+  | ~s~                | sort by ...                                     |
+  | ~S~                | M-x hydra-dired-quick-sort/body                 |
+  | ~Z~                | zip: compress / uncompress (extract) file       |
+  | ~* . <ext>~        | mark all: toggle marking                        |
+  | ~* s~              | mark all: executables                           |
+  | ~* *~              | mark all: files (with extention)                |
+  | ~* . <ext> D~      | mark & delete all files with extention          |
+  | ~* c~              | change all marks                                |
+  | ~\~~               | markup: all backup files                        |
+  | ~#~                | markup: auto-save files                         |
+  | ~g~                | refresh buffer                                  |
+  | ~+~                | M-x dired-create-directory                      |
+  | ~R~                | M-x dired-do-rename                             |
+  | ~@"("~             | M-x dired-hide-details-mode                     |
+  |                    | toggle listing details                          |
+  |                    | See (describe-variable 'dired-listing-switches) |
+  | ~C-x C-q~          | perform operations by editing dired buffer      |
+  | ~C-x C-q~          | M-x dired-toggle-read-only                      |
+  | ~C-c C-c~          | M-x wdired-finish-edit                          |
 
   | ~C-x C-f [type in something] <return>~ | dired - create newfile |
 

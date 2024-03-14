@@ -1177,3 +1177,33 @@ Writer is a monad that models logging as an effect
 State is a monad that models the effect of state (composing a series of computations that maintain state)
 
 effectful function is a function that returns F[A] rather than [A]
+
+* Terminal and initial categories
+A category may server as a terminal and/or initial category. We assume that such
+a category has a has a single object. It must have the identity morphism, but
+probably it may have some other morphism(s) on this singleton object.
+
+* Lindenbaum category
+tool for exploring the connections between logic, algebra, and category theory.
+** Lindenbaum construction
+   can be used to create a category where:
+    + The objects are formulas or propositions within the theory, sometimes
+      considered up to logical equivalence (two formulas are equivalent if the
+      theory proves them to be either both true or both false).
+    + The morphisms represent logical implications or derivations between these
+      formulas.
+
+
+* Gödel's incompleteness theorems
+** First
+  Some true statements cannot be proven
+** Second
+  a theory with ×, + operations (products and sums) may lead to be
+  inconsistencies
+
+
+diagramatische komposition ;
+\circ
+
+global elements siehe Wikipedia
+A morphism from the terminal object to a given object (to which it is said to belong).

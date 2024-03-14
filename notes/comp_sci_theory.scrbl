@@ -174,12 +174,12 @@
   Fixed Point Theorem:
   for each λ-term L there exists a λ-term M (a.k.a fixed point) such that LM = β M
   =β   - β-conversion a.k.a β-equality
-  
+
   β-computational reduction looks a bit like the ϵA the "evaluation" natural
   transformation from ("eval") from
   "F. William Lawvere: Diagonal arguments and cartesian closed categories."
   http://tac.mta.ca/tac/reprints/articles/15/tr15abs.html
- 
+
 }
 
 @block{@block-name{TODO Eta η-extentionality principle}
@@ -728,7 +728,38 @@
   concepts in mathematics that identify conditions under which a function is
   guaranteed to have a fixed point. A fixed point of a function is an element
   that is mapped to itself by the function, i.e., for a function ff, an element
-  x is a fixed point if f(x)=xf(x)=x.
+  x is a fixed point if f(x)=x.
+
+  @block{@block-name{Fixed-point combinator / Y-combinator}
+    "Implement recursion in a language without recursion"
+    Essentials: Functional Programming's Y Combinator - Computerphile
+    https://youtu.be/9T8A89jgeTI
+
+    Fixed-point combinators in lambda calculus
+    https://en.wikipedia.org/wiki/Fixed-point_combinator#Fixed-point_combinators_in_lambda_calculus
+    Definition:
+    Y = λf.(λx.f(x x) λx.f(x x))
+
+    Y g = (λf.(λx.f(x x) λx.f(x x)))g   (by definition of Y)
+        = (λx.g(x x) λx.g(x x))         (by β-reduction of λf: applied Y to g)
+        = g(λx.g(x x) λx.g(x x))        (by β-reduction of λx: applied left function to right function)
+        = g(Y g)                        (by second equality)
+        = g(g(Y g))
+        = g(g(g(Y g)))
+        = g(...(g(Y g))...)
+
+    YouTube: Encoding of Boolean values
+    https://youtu.be/9T8A89jgeTI?t=217
+    One is opposite of the other:
+    TRUE  = λx.λy.x
+    FALSE = λx.λy.y
+
+    TODO Wikipedia: SKI combinator calculus
+    https://en.wikipedia.org/wiki/SKI_combinator_calculus
+
+    Bartosz Milewski: The Fall of the SKI Civilization
+    https://bartoszmilewski.com/2020/09/06/the-fall-of-the-ski-civilization/
+  }
 }
 
 @block{@block-name{Contrapositive}
@@ -742,10 +773,20 @@
   or P(A)) has a strictly greater cardinality (size of a set, denoted by∣⋅∣)
   than the set A itself. I.e. there is no one-to-one correspondence (bijection)
   between the elements of a set and the elements of its power set.
- 
+  A = {1 2 3}
+  P(A) = {{} 1 2 3 {1 2} {1 3} {2 3} {1 2 3}} - hash 2^3 = 8 elements
 }
 
 @block{@block-name{Possible interpretation of A × X -> Y}
   family of morphisms A -> Y indexed by the elements of X.
 }
+
+
+In the chapter "1. Exponentiation, surjectivity, and a fixed-point theorem" the paper explains what is a cartesian closed category:
+
+"is meant a category C equipped with the following three kinds of right-adjoints: a right adjoint 1 to the unique C -> 1"
+
+Here in this context the 1 is meant to be a category. (The C and 1 are written with bold font weight)
+
+However on the page 7 the paper mentions "1 is a generator for C". (The 1 is written with normal font weight, the C is bold.) I assume that here the 1 is an object with a property of being a generator object. Can you explain me please what exactly that means?
 
