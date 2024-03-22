@@ -186,6 +186,9 @@
 
   # build the packages' source derivations: the [at] char must be used twice
   guix build --expression='(@"@"@"@" (bost gnu packages emacs-xyz) emacs-color-identifiers-mode)' --source
+
+  # obtain / download / clone package source code
+  guix build --source emacs-treemacs
 }
 
 @block{@block-name{Garbage collection}
