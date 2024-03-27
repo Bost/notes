@@ -224,8 +224,18 @@
 
   guix graph --type=reverse-package
   guix graph --path
-  # visualize package dependencies
-  guix graph coreutils | xdot -
+
+  # visualize dependencies of / packages needed by / packages required by:
+  guix graph coreutils | xdot - & disown
+  guix graph coreutils | dot -Tpdf > dag.pdf
+
+  # visualize dependencies of / packages needed by / packages required by
+  # including implicit inputs:
+  guix graph --type=bag-emerged coreutils | xdot - & disown
+  guix graph --type=bag-emerged coreutils | dot -Tpdf > dag.pdf
+
+  # packages that explicitly depend on:
+  guix graph --type=reverse-package ocaml
 }
 
 @block{@block-name{Package Inputs / Outputs}
@@ -261,10 +271,10 @@
   * (basic) inputs
     Built for target architecture. Can be referenced by the package. Will be in
     the resulting binary file
-  * native
+  * native-inputs
     Built for host architecture (the build machine), e.g. built-time utils not
     needed during run-time
-  * propagated
+  * propagated-inputs
     Will be added to user profile along with the package
     When a package has propagated inputs then any package that depends on it
     will automatically have those inputs available to it.
@@ -356,7 +366,7 @@
   | #~     | gexp            | quasiquote; like `      |
   | #$     | ungexp          | unquote; like ,         |
   | #+     |                 | same role as #$, but it's a reference to a native package build |
-  | #$@"@" | ungexp-splicing | unquote-splicing / splice; like ,@                              |
+  | #$@"@" | ungexp-splicing | unquote-splicing / splice; like ,@"@"                           |
 
 }
 

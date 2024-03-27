@@ -785,7 +785,7 @@
   # recursively diff / compare directories, show only filenames
   # -q, --brief        report only when files differ
   # -r, --recursive
-  diff --brief --recursive dirA dirB --exclude '*.log' | sort
+  diff --brief --recursive dirA dirB --exclude '*.log' --exclude '*.gz' | sort
   #
   # outputs the files in two columns, side by side, separated by spaces
   sdiff file1 file0

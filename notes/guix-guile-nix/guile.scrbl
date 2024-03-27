@@ -127,14 +127,14 @@
     (define* (partial fun #:rest args)
       (lambda x (apply fun (append args x))))
 
-    (define* (fun x #:key kw (kw-opt #f) #:rest args)
-      "kw-opt is a keyword and optional argument at the same time"
-      ;; (apply list p kw kw-opt args) ;; flattens the output list
-      (list x kw kw-opt args))
+    (define* (fun x y #:key kw (kw-opt1 'o1) (kw-opt2 'o2) #:rest args)
+      "kw-opt1, kw-opt2 are keywords and optional arguments at the same time"
+      (list x y kw kw-opt1 kw-opt2 args))
     ;;
-    (fun 'x #:kw '42 'args)             ;; (x 42 #f (#:kw 42 args))
-    (fun 'x #:kw '42 #:kw-opt 'x 'args) ;; (x 42 x (#:kw 42 #:kw-opt x args))
-    (apply fun (list 'x #:kw '42 'args));; (x 42 #f (#:kw 42 args))
+    (fun 'x #:kw '42 'args)                ; (x #:kw #f o1 o2 (42 args))
+    (apply fun (list 'x #:kw '42 'args))   ; (x #:kw #f o1 o2 (42 args))
+    (fun 'x 'y #:kw '42 #:kw-opt1 'ox #:kw-opt2 'oy 'args)
+    ;; (x y 42 ox oy (#:kw 42 #:kw-opt1 ox #:kw-opt2 oy args))
 
     (define* (fun x #:optional (y 'y-default-val))
       (list x y))
@@ -332,7 +332,7 @@
 
     ;; TODO see 'push all branches to all remotes'
     ;; https://stackoverflow.com/a/18674313/5151982
-
+    (use-modules (ice-9 regex)) ;; string-match
     (define (main args)
       ((compose
       (partial format #t "~a\n")
