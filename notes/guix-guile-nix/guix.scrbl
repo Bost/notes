@@ -175,8 +175,7 @@
   # --development -D   include the development inputs of the next package,
   #                    i.e. 'guix'
   # Using glibc-locales should prevent 'warning: failed to install locale'
-  ./bootstrap
-  ./configure --localstatedir=/var
+  ./bootstrap && ./configure --localstatedir=/var --sysconfdir=/etc
   # on error:
   #   configure: error: 'guild' binary not found; please check your Guile installation.
   # do:

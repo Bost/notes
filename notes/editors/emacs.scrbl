@@ -283,10 +283,11 @@
   Composite programs in a high-level extension language running on a kernel in a
   low-level language.
 
-  | (boundp 'my=variable)      | test if symbol is defined   |
-  | (functionp 'dbg=function)  | test if function is defined |
-  | (functionp #'dbg=function) | test if function is defined |
-  | (macrop 'cl-pushnew)       | test if macro is defined    |
+  | (boundp 'my=variable)      | test if symbol is defined       |
+  | (functionp 'dbg=function)  | test if function is defined     |
+  | (functionp #'dbg=function) | test if function is defined     |
+  | (fboundp #'dbg=function)   | may be preferred over functionp |
+  | (macrop 'cl-pushnew)       | test if macro is defined        |
 
   # emacsclient in Guix is in the package
   guix install emacs-with-editor
