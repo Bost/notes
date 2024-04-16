@@ -436,6 +436,7 @@
 }
 
 @block{@block-name{Equality}
+  | eqv?   | (eqv? 3 (+ 1 2)) => #t     (eqv? 1 1.0) => #f        |
   |        | returns `#t' if X and Y are:                         |
   | equal? | the same type, and their contents or value are equal |
   | eq?    | the same object, except for numbers and characters   |

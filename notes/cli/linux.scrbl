@@ -1102,7 +1102,7 @@
 
   # :net :ping :traceroute - check connection
   mtr google.com
-  mtr --report www.google.com
+  mtr --report www.google.com # -r --report
   ethtool eth0
   ip neigh show | grep REACHABLE
   ip link show

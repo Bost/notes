@@ -299,8 +299,9 @@
   /home/bost/.my-profiles/my-project     # from /var/guix/gcroots/auto/
   /home/bost/.config/guix/current
   /home/bost/.guix-profile
-  # the guix home profile /home/bost/.guix-home/profile is not listed in the
-  # output of `guix package --list-profiles`!
+  # the guix home profile /home/bost/.guix-home/profile and
+  # /run/current-system/profile are not listed in the output of
+  # `guix package --list-profiles`!
 
   # see also guix package --export-manifest
   guix package --list-profiles
