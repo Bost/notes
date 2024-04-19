@@ -144,6 +144,22 @@
 }
 
 @block{@block-name{Various code snippets}
+  ;; use-modules Syntax:
+  (use-modules (MODULE-NAME [#:select SELECTION]
+                            [#:prefix PREFIX]
+                            [#:renamer RENAMER]
+                            ;; R6RS-compatible version reference
+                            [#:version VERSION-SPEC]))
+  ;; example
+  (use-modules ((ice-9 popen)
+                #:select ((open-pipe . pipe-open) close-pipe)
+                #:renamer (symbol-prefix-proc 'unixy:)))
+
+  ;; rename & export
+  (define-module (my-module)
+    #:export ((old-name . new-name)))
+  (define old-name 42)
+
   ;; try-catch
   ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
   (begin
