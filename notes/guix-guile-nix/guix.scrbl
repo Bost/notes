@@ -105,6 +105,112 @@
 }
 
 @block{@block-name{Various}
+  $dgx/guix/scripts/*.scm
+  # deploy operating systems on a set of machines
+  guix deploy
+
+  # current channel revisions and package generation
+  guix describe
+
+  # invoke the garbage collector
+  guix gc
+
+  # build and deploy home environments
+  guix home
+  # install packages
+  guix install
+
+  # package may be split into different outputs. `dig` is in the 'utils:out'
+  guix install bind:utils
+
+  # manage packages and profiles
+  guix package
+
+  # pull the latest revision of Guix
+  guix pull
+
+  # remove installed packages
+  guix remove
+
+  # search for packages
+  guix search
+
+  # show information about packages
+  guix show
+
+  # build and deploy full operating systems
+  guix system
+
+  # run commands from a different revision
+  guix time-machine
+
+  # upgrade packages to their latest version. Alias of `guix package --upgrade`
+  guix upgrade
+
+  # report on the availability of pre-built package binaries
+  guix weather
+
+  # process isolation / run code in 'guix shell -C' containers
+  guix container
+
+  # create application bundles
+  guix pack
+
+  # spawn one-off software environments
+  guix shell
+  # load / unload packages one by one. `guix shell` needs a list of packages upfront.
+  guix install guix-modules
+
+  # build packages or derivations without installing them
+  guix build
+
+  # challenge substitute servers, comparing their binaries
+  guix challenge
+
+  # download a file to the store and print its hash
+  guix download
+
+  # view and edit package definitions
+  guix edit
+
+  # visualize, view and query package dependency graphs
+  guix graph
+
+  # compute the cryptographic hash of a file
+  guix hash
+
+  # import a package definition from an external repository
+  guix import
+
+  # find errors and validate package definitions
+  guix lint
+
+  # share substitutes / publish build results over HTTP
+  guix publish
+
+  # update existing package definitions
+  guix refresh
+
+  # profile disk usage, i.e. the on-disk size of packages
+  guix size
+
+  # update the style of package definitions
+  guix style
+
+  # manipulate, export, import nix / normalized archives (nars)
+  guix archive
+
+  # copy items to and from a remote store over SSH
+  guix copy
+
+  # operate on Git repositories
+  guix git
+  # set up and operate build offloading
+  guix offload
+
+  # list client processes / currently running sessions
+  guix processes
+
   pwclient info <patch-id>
   # download patches sent to https://issues.guix.gnu.org/issue/53765
   https://patches.guix-patches.cbaines.net/project/guix-patches/list/?series=11955
@@ -296,23 +402,15 @@
   (use-modules (guix derivations) (bost packages spacemacs))
   (build-derivations daemon (list (package-derivation daemon spacemacs-rolling-release)))
   ;; build-system
-  ;; package ----> bag ----+
-  ;;                       |
-  ;;                       v
-  ;;                   derivation
-  ;;                       ^
-  ;;                       |
-  ;; origin ---------------+
+  ;; package --> bag --> derivation <-- origin
   ;;
   ;; 4. Staging: Hosting build-side code
   #~(symlink #$coreutils #$output) ;; output is a derivation-output
-  ( #~(symlink #$coreutils #$output)) ;; query the input
-  ;; `gexp-inputs` shown in the video is exported by the (guix gexp) module and
-  ;; thus not available from the REPL
+  (#~(symlink #$coreutils #$output)) ;; query the input
+  ;; `gexp-inputs` shown in the video is exported by the (guix gexp) module,
+  ;; i.e. not available from the REPL
   (gexp-input #~(symlink #$coreutils #$output))
   ,enter-store-monad
-  ;; `gexp->sexp` shown in the video is exported by the (guix gexp) module and
-  ;; thus not available from the REPL
   (gexp->derivation "foo" #~(symlink #$coreutils #$output))
   ;;
   ;; Doesn't work> (neither form the store)
@@ -320,7 +418,7 @@
   ,q ;; exit the store
   (define os (load "/home/bost/dev/dotfiles/guix/systems/syst-ecke.scm"))
   (operating-system? os)
-  ,use (gnu system)  ;; exports operating-system-derivation
+  ,use (gnu system)      ;; exports operating-system-derivation
   ;; ,use (gnu services) ;; probably not needed
   ,enter-store-monad
   (operating-system-derivation os)
@@ -329,8 +427,7 @@
 
   Chris Baines: GNU Guix Presentation
   https://www.cbaines.net/projects/guix/freenode-live-2017/presentation/#/
-  2004 Nix announced
-  2012 Guix announced
+  2004 Nix announced, 2012 Guix announced
 
   ldd (which cat)
   #  linux-vdso.so.1 (0x00007ffd5a35e000)
@@ -339,32 +436,28 @@
 }
 
 @block{@block-name{Channels}
-  Specifying Additional Channels
   https://guix.gnu.org/manual/en/html_node/Specifying-Additional-Channels.html
   Edit `~/.config/guix/channels.scm` and run `guix pull`. The result in
   `~/.config/guix/current` is the union of Guix and the
   `~/.config/guix/channels.scm`
 
-  Inferiors - fetch a package from a previous guix revision:
+  # Fetch a package from a previous guix revision:
   https://guix.gnu.org/manual/devel/en/html_node/Inferiors.html
 
   # Run command-line scripts provided by GNU Guile and related programs.
   guild
   guild disassemble         # Disassemble a compiled .go file.
 
-  # Hall is a command-line application and a set of Guile libraries that allow
-  # you to quickly create and publish Guile projects. It allows you to
-  # transparently support the GNU build system, manage a project hierarchy &
-  # provides tight coupling to Guix.
+  # Create and publish Guile projects. Support the GNU build system, manage a
+  # project hierarchy; tightly coupled with Guix
   guile-hall
-  # commands:
   # --execute  -x  Carry out operations, instead of displaying them
-  hall init <project-name> --author="Jim B" --license="gpl3+" --prefix="guile" --execute
+  hall init <my-prj> --author="Jim B" --license="gpl3+" --prefix="guile" -x
   hall build --execute
   hall scan --execute
   hall dist --execute
 
-  guix describe # Display information about the channels currently in use.
+  guix describe # current channel revisions and package generation
   guix describe --list-formats
   guix describe --format=channels
   guix describe --format=human
@@ -373,7 +466,6 @@
   #   channel '...' lacks 'introduction' field but '.guix-authorizations' found
   # then make sure the channel definition contains:
   (introduction (make-channel-introduction "..." (openpgp-fingerprint "...")))
-
 }
 
 @block{@block-name{Guix in a virtual machine}
@@ -397,7 +489,7 @@
   # ...and view it with the info viewer:
   info -f doc/guix.info
 
-  Guix Documentation source code
+  Documentation source code
   https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi
   Submitting Patches
   https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html
@@ -410,8 +502,7 @@
 @block{@block-name{QEMU shrink disk size - doesn't work}
   https://pve.proxmox.com/wiki/Shrink_Qcow2_Disk_Files
 
-  dd if=/dev/zero of=mytempfile
-  # that could take a some time
+  dd if=/dev/zero of=mytempfile # may take longer to finish
   sync
   rm -f mytempfile
 
@@ -446,66 +537,8 @@
    2. `guix install gwl` for the `autoreconf` program
    3. TODO fix `pdf-info-epdfinfo-program is not executable`
 
-  M-x org-odt-export-to-odt needs
-  guix install zip
-  M-x org-roam-graph needs
-  guix install graphviz
-}
-
-@block{@block-name{Main commands}
-  $dgx/guix/scripts/*.scm
-  guix deploy        # deploy operating systems on a set of machines
-  guix describe      # describe the channel revisions currently used
-  guix gc            # invoke the garbage collector
-  guix home          # build and deploy home environments
-  guix install       # install packages
-  # also a package may be split into different outputs, and the dig is in the
-  # 'utils' output
-  guix install bind:utils
-  guix package       # manage packages and profiles
-  guix pull          # pull the latest revision of Guix
-  guix remove        # remove installed packages
-  guix search        # search for packages
-  guix show          # show information about packages
-  guix system        # build and deploy full operating systems
-  guix time-machine  # run commands from a different revision
-  guix upgrade       # upgrade packages to their latest version
-  guix weather       # report on the availability of pre-built package binaries
-}
-
-@block{@block-name{Software development commands}
-  guix container    # process isolation / run code in 'guix shell -C' containers
-  guix pack         # create application bundles
-  guix shell        # spawn one-off software environments
-
-  guix install guix-modules
-  `guix shell` expects a list of packages upfront. Module interface is more
-  "incremental". You can "load" / "unload" modules until you obtain the desired
-  environment.
-}
-
-@block{@block-name{Packaging commands}
-  guix build      # build packages or derivations without installing them
-  guix challenge  # challenge substitute servers, comparing their binaries
-  guix download   # download a file to the store and print its hash
-  guix edit       # view and edit package definitions
-  guix graph      # visualize, view and query package dependency graphs
-  guix hash       # compute the cryptographic hash of a file
-  guix import     # import a package definition from an external repository
-  guix lint       # find errors and validate package definitions
-  guix publish    # share substitutes / publish build results over HTTP
-  guix refresh    # update existing package definitions
-  guix size       # profile disk usage, i.e. the on-disk size of packages
-  guix style      # update the style of package definitions
-}
-
-@block{@block-name{Plumbing commands}
-  guix archive    # manipulate, export, import nix / normalized archives (nars)
-  guix copy       # copy items to and from a remote store over SSH
-  guix git        # operate on Git repositories
-  guix offload    # set up and operate build offloading
-  guix processes  # list client processes / currently running sessions
-  guix repl       # interactive programming of Guix in Guile
+  M-x org-odt-export-to-odt needs `guix install zip`
+  M-x org-roam-graph needs `guix install graphviz`
 }
 
 @block{@block-name{Nix / Normalized Archives}

@@ -229,13 +229,13 @@
   # -w, --word-regexp
   # -g, --glob <GLOB>...
   # search through all Guix and Guile source code
-  rg --no-ignore-vcs -g '*.{scm,c,h,sh}' -w "word\\s" $dgx $dev/guile
+  rg --no-ignore-vcs -g '*.{scm,c,cc,h,cc,sh}' -w "word\\s" $dgx $dev/guile
   # -t, --type <TYPE>...
   rg --no-ignore-vcs -tlisp -tc -tsh -w "word"  $dgx $dev/guile
 
   # search for sexp, see https://docs.rs/regex/1.9.5/regex/#syntax
-  rg --no-ignore-vcs -tlisp -tc -tsh     "(['\"\\[\\(\s]|^)load-path(['\"\\]\\)\s]|\$)" $dgx $dev/guile
-  rg --no-ignore-vcs -g '*.{scm,c,h,sh}' "(['\"\\[\\(\s]|^)load-path(['\"\\]\\)\s]|\$)" (pwd)
-  rg                 -g '*.{scm,c,h,sh}' "(['\"\\[\\(\s]|^)x-x(['\"\\]\\)\s]|\$)"       $dev/notes/notes/testfile.scrbl
+  rg --no-ignore-vcs -tlisp -tc -tsh           "(['\"\\[\\(\s]|^)load-path(['\"\\]\\)\s]|\$)" $dgx $dev/guile
+  rg --no-ignore-vcs -g '*.{scm,c,cc,h,hh,sh}' "(['\"\\[\\(\s]|^)load-path(['\"\\]\\)\s]|\$)" (pwd)
+  rg                 -g '*.{scm,c,cc,h,hh,sh}' "(['\"\\[\\(\s]|^)x-x(['\"\\]\\)\s]|\$)"       $dev/notes/notes/testfile.scrbl
   #+END_SRC
 }

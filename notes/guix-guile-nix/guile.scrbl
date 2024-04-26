@@ -117,7 +117,7 @@
 
     (use-modules (srfi srfi-26))
     (map (cut * 2 <>) '(1 2 3 4)) ;; => (2 4 6 8)
-    (map (cut * 2) '(1 2 3 4)) ;; => Wrong number of arguments ...
+    (map (cut * 2) '(1 2 3 4))    ;; => Wrong number of arguments ...
     ;; Also variadic function arguments:
     (define (partial fun . args)
       ;; Note: 'cons' is a bit faster than 'append'
@@ -131,8 +131,8 @@
       "kw-opt1, kw-opt2 are keywords and optional arguments at the same time"
       (list x y kw kw-opt1 kw-opt2 args))
     ;;
-    (fun 'x #:kw '42 'args)                ; (x #:kw #f o1 o2 (42 args))
-    (apply fun (list 'x #:kw '42 'args))   ; (x #:kw #f o1 o2 (42 args))
+    (fun 'x #:kw '42 'args)                ;; (x #:kw #f o1 o2 (42 args))
+    (apply fun (list 'x #:kw '42 'args))   ;; (x #:kw #f o1 o2 (42 args))
     (fun 'x 'y #:kw '42 #:kw-opt1 'ox #:kw-opt2 'oy 'args)
     ;; (x y 42 ox oy (#:kw 42 #:kw-opt1 ox #:kw-opt2 oy args))
 
@@ -144,73 +144,78 @@
 }
 
 @block{@block-name{Various code snippets}
-  ;; use-modules Syntax:
-  (use-modules (MODULE-NAME [#:select SELECTION]
-                            [#:prefix PREFIX]
-                            [#:renamer RENAMER]
-                            ;; R6RS-compatible version reference
-                            [#:version VERSION-SPEC]))
-  ;; example
-  (use-modules ((ice-9 popen)
-                #:select ((open-pipe . pipe-open) close-pipe)
-                #:renamer (symbol-prefix-proc 'unixy:)))
-
-  ;; rename & export
-  (define-module (my-module)
-    #:export ((old-name . new-name)))
-  (define old-name 42)
-
-  ;; try-catch
-  ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
-  (begin
-    (use-modules (ice-9 exceptions))
-    (guard (exception (else (format #t "[catch] An exception was thrown:\n")
-                            (format #t "[catch] ~a\n\n" exception)))
-      (format #t "[try]")
-      (/ 1 0)
-      (format #t "[try] Unreachable\n"))
-    (format #t "Moving on.\n"))
-
-  ;; ignore exception
-  (begin
-    (use-modules (ice-9 exceptions))
-    (guard (exception (else #f)) (/ 1 0))
-    (format #t "Moving on.\n"))
-
-  ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
-  (use-modules (ice-9 exceptions))
-  ;;
-  (define (disk-space-amount) 1000)
-  (define (disk-space-left? query) (< query (disk-space-amount)))
-  ;;
-  (define-exception-type &read-exception &exception make-read-exception read-exception?
-                                          ; (field-name field-accessor) ...
-    (read-reason read-exception-reason)
-    (read-severity read-exception-severity))
-  ;;
-  (with-exception-handler
-      (lambda (exception)
-        (cond
-         ((and (read-exception? exception)
-               (eq? (read-exception-reason exception)  'almost-full))
-          (format #t "the disk is almost full, only has ~a left.\n"
-                  (disk-space-amount))
-          (format #t "please provide a different file size: ")
-          (let ((new-file-size (read)))
-            (if (disk-space-left? new-file-size)
-                new-file-size
-                (raise-exception exception))))
-         (else (raise-exception exception))))
-    (lambda ()
-      (let ((file-size (if (disk-space-left? 1028)
-                           1028
-                           (raise-continuable
-                            (make-read-exception 'almost-full 'medium)))))
-        (format #t "writing ~a\n" file-size))))
-
-  (* 3-8i 2.3+0.3i) ;; complex numbers
-
   @lisp{
+    (use-modules) (srfi srfi-13)   ;; String Library
+    (string->number "1")           ;; => 1
+    (string->number* "1")          ;; from (guix ui)
+
+    ;; Module installation: see `info "(guile)Installing Site Packages"`
+    ;; ,use / use-modules Syntax:
+    (use-modules (MODULE-NAME [#:select SELECTION]
+                              [#:prefix PREFIX]
+                              [#:renamer RENAMER]
+                              ;; R6RS-compatible version reference
+                              [#:version VERSION-SPEC]))
+    ;; example
+    (use-modules ((ice-9 popen)
+                  #:select ((open-pipe . pipe-open) close-pipe)
+                  #:renamer (symbol-prefix-proc 'unixy:)))
+
+    ;; rename & export
+    (define-module (my-module)
+      #:export ((old-name . new-name)))
+    (define old-name 42)
+
+    ;; try-catch
+    ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
+    (begin
+      (use-modules (ice-9 exceptions))
+      (guard (exception (else (format #t "[catch] An exception was thrown:\n")
+                              (format #t "[catch] ~a\n\n" exception)))
+        (format #t "[try]")
+        (/ 1 0)
+        (format #t "[try] Unreachable\n"))
+      (format #t "Moving on.\n"))
+
+    ;; ignore exception
+    (begin
+      (use-modules (ice-9 exceptions))
+      (guard (exception (else #f)) (/ 1 0))
+      (format #t "Moving on.\n"))
+
+    ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
+    (use-modules (ice-9 exceptions))
+    ;;
+    (define (disk-space-amount) 1000)
+    (define (disk-space-left? query) (< query (disk-space-amount)))
+    ;;
+    (define-exception-type &read-exception &exception make-read-exception read-exception?
+                                            ;; (field-name field-accessor) ...
+      (read-reason read-exception-reason)
+      (read-severity read-exception-severity))
+    ;;
+    (with-exception-handler
+        (lambda (exception)
+          (cond
+           ((and (read-exception? exception)
+                 (eq? (read-exception-reason exception)  'almost-full))
+            (format #t "the disk is almost full, only has ~a left.\n"
+                    (disk-space-amount))
+            (format #t "please provide a different file size: ")
+            (let ((new-file-size (read)))
+              (if (disk-space-left? new-file-size)
+                  new-file-size
+                  (raise-exception exception))))
+           (else (raise-exception exception))))
+      (lambda ()
+        (let ((file-size (if (disk-space-left? 1028)
+                             1028
+                             (raise-continuable
+                              (make-read-exception 'almost-full 'medium)))))
+          (format #t "writing ~a\n" file-size))))
+
+    (* 3-8i 2.3+0.3i) ;; complex numbers
+
     (use-modules (srfi srfi-1))
     (remove (lambda (service)
               (member (service-kind service) (list gdm-service-type)))
@@ -262,14 +267,10 @@
 
     (define second (time-second (current-time)))
     (define second 1607841890)
-    (strftime "%Y-%m-%d %H:%M:%S" (localtime second))
-    ;; => "2020-12-13 07:44:50"
-    (strftime "%Y%m%d%H%M%s" (localtime second))
-    ;; => "20201213074450"
-    (strftime "%Y%m%d_%H%M%s" (localtime second))
-    ;; => "20201213_074450"
-    (strftime "%Y%m%d_%H%M%S" (localtime second))
-    ;; => "20201213_074450"
+    (strftime "%Y-%m-%d %H:%M:%S" (localtime second)) ; => "2020-12-13 07:44:50"
+    (strftime "%Y%m%d%H%M%s" (localtime second))      ; => "20201213074450"
+    (strftime "%Y%m%d_%H%M%s" (localtime second))     ; => "20201213_074450"
+    (strftime "%Y%m%d_%H%M%S" (localtime second))     ; => "20201213_074450"
 
     ;; Set operations / sets:
     ,use (srfi srfi-1) ;; or (use-modules (srfi srfi-1))
@@ -394,31 +395,33 @@
 
     ;; `letrec` - like `let`, but enables function definitons which can refer each
     ;; other
-    (letrec ((even? (lambda (n)
-                      (if (zero? n)
-                          #t
-                          (odd? (- n 1)))))
-             (odd? (lambda (n)
-                     (if (zero? n)
-                         #f
-                         (even? (- n 1))))))
+    (letrec ((even? (lambda (n) (if (zero? n) #t (odd?  (- n 1)))))
+             (odd?  (lambda (n) (if (zero? n) #f (even? (- n 1))))))
       (even? 88))
+
+    (keyword? #:foo)   ;; => #t
+    ;; (keyword? :foo) ;; => error
+    ;; (keyword? foo:) ;; => error
+    (read-set! keywords 'prefix)
+    (keyword? :foo)    ;; => #t
+    (read-set! keywords 'postfix)
+    (keyword? foo:)    ;; => #t
+    ;; `(keyword? :foo:)` works if any of the `(read-set! ...)` is evaluated.
+
+
+    ,use (srfi srfi-64)  ;; Testing
+    ;; Initialize and give a name to a simple testsuite.
+    (test-begin "vec-test")
+    (define v (make-vector 5 99))
+    ;; Require that an expression evaluate to true.
+    (test-assert (vector? v))
+    ;; Test that an expression is eqv? to some other expression.
+    (test-eqv (vector-ref v 2) 99)
+    (vector-set! v 2 7)
+    (test-eqv (vector-ref v 2) 7)
+    ;; Finish the testsuite, and report results.
+    (test-end "vec-test")
   }
-}
-
-@block{@block-name{Keywords}
-  (keyword? #:foo) ; => #t
-  ;; (keyword? :foo) ; => error
-  ;; (keyword? foo:) ; => error
-  (read-set! keywords 'prefix)
-  (keyword? :foo) ; => #t
-  (read-set! keywords 'postfix)
-  (keyword? foo:) ; => #t
-  The `(keyword? :foo:)` will work if any of the `(read-set! ...)` is evaluated.
-}
-
-@block{@block-name{Module installation}
-  see `info "(guile)Installing Site Packages"`
 }
 
 @block{@block-name{The begin form}
@@ -436,23 +439,9 @@
   an error.
 }
 
-@block{@block-name{Testing}
-  ,use (srfi srfi-64)
-  ;; Initialize and give a name to a simple testsuite.
-  (test-begin "vec-test")
-  (define v (make-vector 5 99))
-  ;; Require that an expression evaluate to true.
-  (test-assert (vector? v))
-  ;; Test that an expression is eqv? to some other expression.
-  (test-eqv (vector-ref v 2) 99)
-  (vector-set! v 2 7)
-  (test-eqv (vector-ref v 2) 7)
-  ;; Finish the testsuite, and report results.
-  (test-end "vec-test")
-}
-
 @block{@block-name{Equality}
   | eqv?   | (eqv? 3 (+ 1 2)) => #t     (eqv? 1 1.0) => #f        |
+  ;;
   |        | returns `#t' if X and Y are:                         |
   | equal? | the same type, and their contents or value are equal |
   | eq?    | the same object, except for numbers and characters   |
