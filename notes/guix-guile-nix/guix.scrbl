@@ -8,7 +8,7 @@
   Boost.org: free peer-reviewed portable C++ source libraries.
 
   nix/libstore/
-  Some common parts with NoxOS
+  Some common parts with NixOS
 
   m4/
   m4 macro processor
@@ -54,8 +54,8 @@
   hash functions, key generation, and more.
 
   authentication challenge
-  - security measure used to verify the identity of a
-    user or device by requesting additional credentials or information.
+  - security measure used to verify the identity of a user or device by
+    requesting additional credentials or information.
 
   gnu system tripplet
 
@@ -78,11 +78,9 @@
   reproducible software deployment, and show that it allows us to implement CPU
   tuning without compromising on reproducibility and provenance tracking.
 
-
   embedded code snippets are staged for eventual execution.
   gexps - staging mechanism
   explain our journey from traditional Lisp S-expressions to G-expressions,
-
 
   Oleg Kysielov - monadic programming in scheme
   https://okmij.org/ftp/Scheme/monad-in-Scheme.html
@@ -91,17 +89,16 @@
 
   Procedures in Guile Scheme
   differ from functions in mathematics due to the presence of side effects,
-  mutable state, and language-specific features in Guile Scheme procedures.
+  mutable state, and Guile Scheme language-specific features.
 
-  language-specific features: control flow constructs (loops, conditionals),
-  exception handling, and support for input/output operations, which are not
-  present in mathematical functions.
+  language-specific features (which are not present in mathematical functions):
+  - control flow constructs (loops, conditionals)
+  - exception handling
+  - support for input/output operations
 
   (file-append shadow "/bin/passwd")
 
-  herd.scm
-  hurd.scm
-
+  herd.scm / hurd.scm
 }
 
 @block{@block-name{Various}
