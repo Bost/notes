@@ -136,7 +136,7 @@
   git checkout <tag-or-branch>
   # https://guix.gnu.org/manual/en/html_node/Invoking-guix-hash.html
   guix hash -x --serializer=nar .   # with the dot at the end!
-  
+
   # sha256; base32; or (B):
   # package definition is obtained using git-fetch
   # clone specific tag or branch
@@ -347,30 +347,37 @@
       file-is-directory? (? file-exists?)
 }
 
-@block{@block-name{G-expressions - gexp}
-  - a way of staging code to run as a derivation.
-  - can expand paths in the store and act similar to backquote and comma for
-    list expansion - but use '#~' and '#$' instead. It can be used to
-    generate derivations.
-  - a form of S-expression adapted to build expressions. It can contain a
-    package record or any file-like object which will be replaced by its '/gnu/'
+@block{@block-name{G-expressions, G-exps, gexp}
+  - embedded DSL (Domain Specific Language), a form of S-expressions
+    adapted to build expressions.
+  - a staging mechanism, i.e. a sequence of actions to be eventually
+    performed, i.e staged for eventual execution, to produce a
+    derivation, i.e. an item in the store. Gexp can expand paths in
+    the store.
+  - utilisées pour reporter l'exécution du code de construction des
+    paquets, mais aussi du code du système ou de Guix Home (en gros à
+    chaque fois qu'on génère du code pour une exécution ultérieure)
+  - Deploy scripts using G-expressions
+    https://systemreboot.net/post/deploy-scripts-using-g-expressions
+  - can contain a package record or any file-like object which will be
+    replaced by its '/gnu/'
   - provides a way to handle the representation of things that can end up as
     store items.
-  - can contain a package record or any other "file-like object" and, when that
-    'gexp' is serialized for eventual execution, the package is replaced by its
-    /gnu/store/... file name.
+  - can contain a package record or any other "file-like object" and,
+    when that 'gexp' is serialized for eventual execution, the package
+    is replaced by its /gnu/store/... file name.
   - derivation represents a sequence of low-level build actions and the
     environment in which they are performed to produce an item in the store
 
   Syntactic forms, all of them are "in the context of the store content":
-  | #~     | gexp            | quasiquote; like `      |
-  | #$     | ungexp          | unquote; like ,         |
+  | #~     | gexp            | quasiquote; like `                                              |
+  | #$     | ungexp          | unquote; like ,                                                 |
   | #+     |                 | same role as #$, but it's a reference to a native package build |
   | #$@"@" | ungexp-splicing | unquote-splicing / splice; like ,@"@"                           |
 
 }
 
-@block{@block-name{Derivatinons}
+@block{@block-name{Derivations}
   (;; record <derivation-output>
    ;; guix build spacemacs-rolling-release / (derivation-outputs srr-drv)
    ;; The output is empty...

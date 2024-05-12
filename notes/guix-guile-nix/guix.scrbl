@@ -78,10 +78,6 @@
   reproducible software deployment, and show that it allows us to implement CPU
   tuning without compromising on reproducibility and provenance tracking.
 
-  embedded code snippets are staged for eventual execution.
-  gexps - staging mechanism
-  explain our journey from traditional Lisp S-expressions to G-expressions,
-
   Oleg Kysielov - monadic programming in scheme
   https://okmij.org/ftp/Scheme/monad-in-Scheme.html
 
