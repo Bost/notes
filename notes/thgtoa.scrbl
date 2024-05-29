@@ -94,6 +94,16 @@
   gpg --decrypt file.txt.gpg --output file.txt
   gpg --decrypt --quiet --for-your-eyes-only --no-tty ~/.passwords/gmail.gpg
 
+  # Encrypt Both File Content and Filename
+  # -c --symmetric
+  # -o --output
+  echo "file.txt" | gpg -c --cipher-algo AES256 -o filename.gpg && \
+                    gpg -c --cipher-algo AES256 -o filecontent.gpg file.txt
+  # Decrypt the Filename and File Content
+  gpg --decrypt filename.gpg > decrypted_filename.txt && \
+  gpg --decrypt filecontent.gpg > "$(cat decrypted_filename.txt)" && \
+  rm decrypted_filename.txt  # or permanent delete by `shred`
+
   # -A NUM, --after-context=NUM
   # man gpg | grep --after-context=2 show-usage
   Key usage / flags: E=encryption, S=signing, C=certification, A=authentication
