@@ -1,5 +1,35 @@
 #lang notes
 
+@block{@block-name{Sway / i3 / keys keybingings / Refcard / Reference Card}
+  | Alt + Enter         | open new terminal                 |
+  | Alt + j             | focus left                        |
+  | Alt + k             | focus down                        |
+  | Alt + l             | focus up                          |
+  | Alt + ;             | focus right                       |
+  | Alt + a             | focus parent                      |
+  | Alt + Space         | toggle focus mode                 |
+  | Alt + Shift + j     | move window left                  |
+  | Alt + Shift + k     | move window down                  |
+  | Alt + Shift + l     | move window up                    |
+  | Alt + Shift + ;     | move window right                 |
+  | Alt + f             | toggle fullscreen                 |
+  | Alt + v             | split a window vertically         |
+  | Alt + h             | split a window horizontally       |
+  | Alt + r             | resize mode                       |
+  | Alt + e             | default                           |
+  | Alt + s             | stacking                          |
+  | Alt + w             | tabbed                            |
+  | Alt + Shift + Space | toggle floating                   |
+  | Alt + Left click    | drag floating                     |
+  | Alt + 0-9           | switch to another workspace       |
+  | Alt + Shift + 0-9   | move window to workspace          |
+  | Alt + d             | open application launcher (dmenu) |
+  | Alt + Shift + q     | kill a window                     |
+  | Alt + Shift + c     | reload the configuration file     |
+  | Alt + Shift + r     | restart i3 inplace                |
+  | Alt + Shift + e     | exit i3                           |
+}
+
 @block{@block-name{Erlang and Elixir}
   https://drive.google.com/file/d/1-Ktouz3lh5uNninCC_9GNsm8tJ8IVCog/view
   Elixir:
@@ -21,7 +51,6 @@
   - initially developed for telecommunication systems
   - lightweight processes, message-passing concurrency model, hot code swapping,
     and preemptive scheduling.
-
 }
 
 @block{@block-name{Elixir language}
@@ -43,7 +72,6 @@
   - process + state + standard functions expecting messages + message queue
   - long-running
   - Clients interact with GenSever
-
 }
 
 @block{@block-name{Communication protocols}
