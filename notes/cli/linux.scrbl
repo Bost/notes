@@ -699,7 +699,7 @@
   # enable / disable devices and files for paging and swapping
   swapon
   swapoff
-  
+
   # summary about used swap devices
   swapon --show
 
@@ -971,12 +971,6 @@
   # type "reisub" for restart / "reisuo" for halting the machine.
   # Note: On Guix when unter tty (i.e. ~C-M-<f1>~) ~M-<print>~ swichtes to the
   # last tty (tty switching is also possible by ~M-'some-f-key'>~)
-
-  # search man pages for "topic"
-  man -k topic / apropos -r topic
-
-  # brief description of CMD / help for shell built ins
-  whatis CMD / help
 
   # mount windows shares under linux
   sudo mount.cifs //WINDOWS_MACHINE/path/to/dir path/to/dir \
@@ -1663,4 +1657,38 @@
   # see also jack active ports & some extra information
   jack_lsp
   jack_lsp --connections  # list connections to/from each port
+}
+
+@block{@block{Help and Documentation}
+  # search man pages for "topic"
+  man -k topic
+  apropos -r topic
+
+  # if a package has man pages, they are usually installed in /usr/share/man
+  man1 # user commands
+  man2 # system calls
+  man3 # C library functions
+  man5 # file formats and conventions
+  man7 # miscellaneous
+
+  # content preview of man pages for e.g. "miscellaneous"
+  apropos . | grep '(7)'   # then e.g.:
+  man 7 gitcli             # syntax: man [section] [page]
+  # some topics or commands can exist in more than one section
+
+  # brief description of a command
+  whatis CMD
+  # help for built-ins of current shell
+  help
+
+  # man-db: manage and display a comprehensive database of man pages. It has
+  # indexing capabilities. It typically displays pages from a centralized
+  # database of man pages
+  guix shell man-db
+
+  # mandoc: lighter / simpler than man-db. It primarily processes and formats
+  # man pages for display. Unlike man-db, it doesn't handle a complex database
+  # but works directly with the man page files. It might not support all
+  # features of man-db, requires `more` from `util-linux`.
+  guix shell mandoc util-linux
 }
