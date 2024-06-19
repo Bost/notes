@@ -57,9 +57,9 @@
 
   #+begin_src fish :exports both :results output
   set deps '
-  {:deps {cider/cider-nrepl {:mvn/version "0.30.0"},
-          nrepl/nrepl {:mvn/version "1.0.0"},
-          refactor-nrepl/refactor-nrepl {:mvn/version "3.9.0"}}
+  {:deps {cider/cider-nrepl {:mvn/version "0.49.0"},
+          nrepl/nrepl {:mvn/version "1.2.0"},
+          refactor-nrepl/refactor-nrepl {:mvn/version "3.10.0"}}
    :aliases
    {:cider/nrepl
     {:main-opts

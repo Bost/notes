@@ -90,6 +90,12 @@
 }
 
 @block{@block-name{Various}
+  http://blog.interfacevision.com/design/design-visual-progarmming-languages-snapshots/
+  https://futureofcoding.org/catalog/
+
+  Flutter: Google's UI toolkit for building natively compiled apps for mobile,
+  web, desktop, and embedded devices from a single codebase.
+
   SPAM SPiced hAM
 
   CORS Cross-Origin Resource Sharing
@@ -264,7 +270,6 @@
 }
 
 @block{@block-name{Google Advanced / Extended Search}
-
   # search for <something> in gmail using URL
   https://mail.google.com/mail/u/0/#search/<something>
 
@@ -388,15 +393,11 @@
   OSMAnd
   https://github.com/osmandapp/OsmAnd
 
-  Prepare routes: View Ranger
-  https://my.viewranger.com/user/routes/myroutes
-
   Weather
   https://www.wetter.com/deutschland/stuttgart/DE0010287.html
   https://www.wetter.com/deutschland/muenchen/DE0006515.html
 
   @block{@block-name{Repair and Prepare}
-    Swap normal for tubeless tires
     Baumarkt - Socket for the Nigrin Reifen Dicht
 
     @block{@block-name{Bicycle chain}
@@ -423,10 +424,6 @@
     }
   }
 }
-
-
-http://blog.interfacevision.com/design/design-visual-progarmming-languages-snapshots/
-https://futureofcoding.org/catalog/
 
 @block{@block-name{Law and LegalTech}
   Proof of X - Consensus algorithm(s) used by Crypto currecies
@@ -468,7 +465,6 @@ https://futureofcoding.org/catalog/
 
   https://www.legaltech.com/
   https://en.wikipedia.org/wiki/Legal_technology
-
 
   @block{@block-name{Logical English as a Programming Language for Law and Ethics}
     https://logicalenglish.logicalcontracts.com/
