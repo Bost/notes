@@ -244,12 +244,12 @@
 
   # join all lines
   $ git shortlog --regexp-ignore-case --summary --numbered --grep='.*release.*since.*' | awk '{print $1}' | tr '\n' ' '
-  2 1 1 1 1 1 1 ⏎                                                                                                                                                                ╭─    ~/dev/guix   master ⇡1 ?1 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── ✔    14:46:56 
+  2 1 1 1 1 1 1 ⏎                                                                                                                                                                ╭─    ~/dev/guix   master ⇡1 ?1 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── ✔    14:46:56
   # join all lines into columns
-  $ git shortlog --regexp-ignore-case --summary --numbered --grep='.*release.*since.*' | awk '{print $1}' | paste -d " " - - - 
+  $ git shortlog --regexp-ignore-case --summary --numbered --grep='.*release.*since.*' | awk '{print $1}' | paste -d " " - - -
   2 1 1
   1 1 1
-  1  
+  1
 
   # list all commits for a specific day / date / timestamp
   git log --after="2013-12-11 00:00" --before="2013-12-11 23:57"
@@ -259,11 +259,15 @@
   git      log master --author=John
   git shortlog master --author=John
 
-  # show settings: --local use .git/config; --global use ~/.gitconfig 
-  git config  --local --list
-  git config  --local --get <setting>
-  git config --global --list
-  git config --global --get <setting>
+  # show all settings; .git/config overrides ~/.gitconfig
+  git config --list             # read both 
+  git config --get <setting>    # read both
+  git config --get alias.fs     # read alias.fs
+  git config --list --local     # read only from .git/config
+  git config --list --global    # read only from ~/.gitconfig
+  # show only particular setting
+  git config --get <setting> --local   # read only from .git/config
+  git config --get <setting> --global  # read only from ~/.gitconfig
 
   # set user.name and user.mail
   git config --global user.name "Bost"
