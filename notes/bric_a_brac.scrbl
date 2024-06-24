@@ -95,6 +95,11 @@
 
   Flutter: Google's UI toolkit for building natively compiled apps for mobile,
   web, desktop, and embedded devices from a single codebase.
+  ;;
+  Dart: client-optimized language for developing fast apps on any platform. It's
+  foundation of Flutter. It provides the language and runtimes that power
+  Flutter apps, but Dart also supports many core developer tasks like
+  formatting, analyzing, and testing code.
 
   SPAM SPiced hAM
 
