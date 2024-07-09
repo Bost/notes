@@ -412,6 +412,11 @@
   # annotated, signed tag(s) with a message will be pushed by `git push ...`
   git tag --annotate <tagname>
 
+  # push all branches at once / simultaneously
+  git push --follow-tags --verbose --force <remote> --all
+  # push multiple branches at once / simultaneously
+  git push <remote> branch1 branch2 
+
   # merge srcProj into dstProj
   cd path/to/dstProj
   git remote add srcProj /path/to/srcProj
