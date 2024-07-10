@@ -13,11 +13,15 @@
   # compute sha1 for any file
   git hash-object path/to/file.ext
 
-  # reset current branch to particular state
+  # reset current HEAD to particular state
   # <startpoint> is (probably) <tag/branch/commit id (sha1)>
   git reset --hard <startpoint>
-  # reset / move <branch> to <startpoint>, even if <branchname> exists already
-  git branch --force <branch> <startpoint>
+  #
+  # reset / move <branch> to <startpoint>, even if <branch> exists already ...
+  # ... in two steps, with prior branch-checkout:
+  git checkout <branch> && git branch --force <branch> <startpoint>
+  # ... in one go / one step, without prior branch-checkout:
+  git update-ref refs/heads/<branch> <startpoint>
 
   # in case of:
   # Your branch is behind 'origin/master' by .. commits, and can be fast-forwarded
