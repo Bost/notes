@@ -214,7 +214,8 @@
   git --git-dir=path/to/dir add "src/**/*.txt"
 
   # commit to a repo located in gitDir under given Name
-  git --git-dir=<dir> commit --author="Name <noreply@"@"domain.com>" -m "commitMsg"
+  # -m <msg>, --message=<msg>
+  git --git-dir=<dir> commit --author="Name <foo@"@"example.com>" -m "commitMsg"
 
   # clone a repo from <origRepo> to an (empty) <bareRepoDir>
   git clone --bare <origRepo> <bareRepoDir>
@@ -228,8 +229,11 @@
   # After the clone is created, initialize all submodules within, using their
   # default settings. Equivalent to running
   # 'git submodule update --init --recursive'
-  # immediately after the clone is finished. This option is ignored if the cloned
-  # repository does not have a worktree/checkout (i.e. if any of --no-checkout/-n,
+
+  # immediately after the clone is finished. This option is ignored if the
+  # cloned repository does not have a worktree/checkout (i.e. if any of
+  # --no-checkout/-n,
+
   # --bare, or --mirror is given)
   git clone --recursive
   git clone --recurse-submodules
@@ -264,7 +268,7 @@
   git shortlog master --author=John
 
   # show all settings; .git/config overrides ~/.gitconfig
-  git config --list             # read both 
+  git config --list             # read both
   git config --get <setting>    # read both
   git config --get alias.fs     # read alias.fs
   git config --list --local     # read only from .git/config
@@ -301,8 +305,8 @@
   git log -S<string>  -- path_containing_change
   # search in commit content; -p --patch - show's also the change itself
   git log -S "string" -p -- path_containing_change
-  git log -S<string>  --since=2009.1.1 --until=2010.1.1 -- path_containing_change
-  git log -S "string" --since=2009.1.1 --until=2010.1.1 -- path_containing_change
+  git log -S<string>  --since=2009.1.1 --until=2010.1.1 -- pathContainingChange
+  git log -S "string" --since=2009.1.1 --until=2010.1.1 -- pathContainingChange
   # search in commit content; also in refs (see git help log)
   git log -S<string>  --source --all
   git log -S "string" --source --all
@@ -387,7 +391,7 @@
 
   # checkout as; older revision of a file under a new / different name
   git show HEAD^:main.cpp > old_main.cpp
-  git show cef05ce4feceaf6881d78d6ba0a1775d5334bd35:gnu/packages/emacs-xyz.scm > gnu/packages/emacs-xyz.cef.scm
+  git show <commit>:gnu/packages/emacs-xyz.scm > gnu/packages/emacs-xyz.cef.scm
 
   # prepare release; create an archive of files from a named tree
   git archive --format zip --output "output.zip" master
@@ -419,7 +423,7 @@
   # push all branches at once / simultaneously
   git push --follow-tags --verbose --force <remote> --all
   # push multiple branches at once / simultaneously
-  git push <remote> branch1 branch2 
+  git push <remote> branch1 branch2
 
   # merge srcProj into dstProj
   cd path/to/dstProj
@@ -446,8 +450,8 @@
   git log --oneline --show-signature --max-count=<number>
   #
   # Analyze problems
-  # GIT_TRACE=1 shows what git is actually doing. Only in bash. In the fish-shell
-  # following doesn't work:
+  # GIT_TRACE=1 shows what git is actually doing. Only in bash. In the
+  # fish-shell following doesn't work:
   #    set --local GIT_TRACE 1 git commit --amend --no-edit --gpg-sign
   GIT_TRACE=1 git commit --amend --no-edit --gpg-sign | rg 'trace: run_command: \(gpg .*\)'
   echo "dummy" | <put-here-the-gpg-run_command-shown-above>
