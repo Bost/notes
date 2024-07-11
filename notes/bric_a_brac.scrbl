@@ -90,6 +90,10 @@
 }
 
 @block{@block-name{Various}
+  Unicode mapping error / chinese characters / plain text /
+  UTF-16LE mistaken for UTF-16BE or vice versa
+  https://youtu.be/_mZBa3sqTrI?t=2211
+
   http://blog.interfacevision.com/design/design-visual-progarmming-languages-snapshots/
   https://futureofcoding.org/catalog/
 
