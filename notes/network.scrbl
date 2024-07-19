@@ -136,7 +136,7 @@
 
   UEFI Unified Extensible Firmware Interface
   GUID Globally Unique Identifier - part of the UEFI
-  GPT GUID Partition Table
+  GPT  GUID (Globally Unique Identifier) Partition Table
 
   Loop Device, vnd (vnode disk), or lofi (loop file interface): pseudo-device
   that makes a computer file accessible as a (mounted) block device.
