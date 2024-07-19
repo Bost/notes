@@ -278,13 +278,13 @@
        > ernst.json && cat ernst.json | jq '.'
 
   # see lsblk
-  set --local fullDisk /dev/sd<letter>
+  set --local diskFull /dev/sd<letter>
   set --local diskPart /dev/sd<letter><number>
   #
   # SMART status of the hdd drive / all SMART information about the device
-  sudo smartctl --all $fullDisk     # -a, --all
+  sudo smartctl --all $diskFull     # -a, --all
   # all SMART and non-SMART information about the device.
-  sudo smartctl --xall $fullDisk    # -x, --xall
+  sudo smartctl --xall $diskFull    # -x, --xall
   #
   # File System Integrity Check
   sudo umount  $diskPart
@@ -1008,7 +1008,7 @@
   lsblk
   sudo cfdisk
   findmnt --real --output TARGET,SOURCE,SIZE,LABEL,PARTLABEL | \
-          sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FS_LBL/g'
+          sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   sudo vgdisplay
   sudo lvdisplay
   sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
@@ -1460,20 +1460,20 @@
   # TRAN          device transport type. E.g. usb / sata / ...
   # lsblk --exclude 7 --nodeps \
   #       --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS \
-  #      | rg --invert-match /dev/ram | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FS_LBL/g'
+  #      | rg --invert-match /dev/ram | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   lsblk --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS | \
-        sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FS_LBL/g'
+        sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   set --local isoImg   /path/to/file.iso
-  set --local fullDisk /dev/sd<letter>         # full disk device
+  set --local diskFull /dev/sd<letter>         # full disk device
   set --local diskPart /dev/sd<letter><number> # partition on a full disk device
   udisksctl unmount --block-device=$diskPart
-  # TODO check if the size $fullDisk is large enough for the $isoImg
+  # TODO check if the size $diskFull is large enough for the $isoImg
   # oflag=sync - use synchronized I/O for data & metadata
   echo \
-       sudo dd bs=4M if=$isoImg of=$fullDisk status=progress oflag=sync && sync
+       sudo dd bs=4M if=$isoImg of=$diskFull status=progress oflag=sync && sync
   # or try:
   echo \
-       sudo dd bs=4M if=$isoImg of=$fullDisk status=progress conv=fdatasync && sync
+       sudo dd bs=4M if=$isoImg of=$diskFull status=progress conv=fdatasync && sync
 
   # create temporary file
   mktemp
@@ -1590,42 +1590,42 @@
   lsblk --nodeps
   lsblk --output \
           FSTYPE,PARTTYPE,PATH,MODEL,TRAN,LABEL,SIZE,PARTLABEL,MOUNTPOINTS | \
-          sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FS_LBL/g'
+          sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   # find mounted filesystem
   findmnt --real --output \
           TARGET,SOURCE,SIZE,LABEL,PARTLABEL | \
-          sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FS_LBL/g'
+          sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   blkid         # locate/print block device attributes; show the UUIDs
   ls -la /dev/usb
 
   # /dev/zero device - special file that produces a continuous stream of zero
   # (null) bytes when read.
   #
-  set --local fullDisk /dev/sd<letter>
+  set --local diskFull /dev/sd<letter>
   set --local diskPart /dev/sd<letter><number>
   #
   # 1. erase everything on the disk
   # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
-  sudo dd if=/dev/zero of=$fullDisk bs=4M status=progress && sync
+  sudo dd if=/dev/zero of=$diskFull bs=4M status=progress && sync
   #
   # 2. make a new partition on the device using:
-  sudo fdisk $fullDisk   # GUID (Globally Unique Identifier) Partition Table
+  sudo fdisk $diskFull   # GUID (Globally Unique Identifier) Partition Table
   # or:
-  # sudo parted --script $fullDisk mkpart primary ext4 0% 100%
+  # sudo parted --script $diskFull mkpart primary ext4 0% 100%
   #
   # 3. create / format ext2/ext3/ext4 file system
-  sudo mkfs.ext4 $diskPart   # may not be needed: sudo eject $fullDisk
+  sudo mkfs.ext4 $diskPart   # may not be needed: sudo eject $diskFull
   #
   # 4. label the partition
-  sudo parted --script $fullDisk name 1 <part-label>
+  sudo parted --script $diskFull name 1 <part-label>
   #
   # 6. label the filesystem (not partition!)
-  sudo e2label $diskPart <filesystem-label>   # not partition-label!!!
+  sudo e2label $diskPart <fsyst-label>   # filesystem-label, not partition-label!!!
   #
   # 7. verify
   lsblk --output \
         FSTYPE,PARTTYPE,PATH,MODEL,TRAN,LABEL,SIZE,PARTLABEL,MOUNTPOINTS | \
-        sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FS_LBL/g'
+        sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   #
   # In the context of Linux tools like blkid and lsblk, it is not possible to
   # assign a custom label directly to the entire hard drive (as opposed to
