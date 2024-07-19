@@ -1617,10 +1617,10 @@
   sudo mkfs.ext4 $diskPart   # may not be needed: sudo eject $diskFull
   #
   # 4. label the partition
-  sudo parted --script $diskFull name 1 <part-label>
+  sudo parted --script $diskFull name 1 <lbl-part-...> # partition-label
   #
   # 6. label the filesystem (not partition!)
-  sudo e2label $diskPart <fsyst-label>   # filesystem-label, not partition-label!!!
+  sudo e2label $diskPart <lbl-fsyst-...>   # filesystem-label, not partition-label!!!
   #
   # 7. verify
   lsblk --output \
@@ -1633,7 +1633,7 @@
   # output.
   #
   # see also:
-  # sudo tune2fs -L <partition-label> $diskPart
+  # sudo tune2fs -L <lbl-part-...> $diskPart   # partition-label
 
   # partition manipulation: resize / create / delete partitions
   # parted               # CLI / command line version of gparted
@@ -1651,6 +1651,14 @@
 
   # :usb :drive gnome userspace virtual fs
   mount | grep gvfs; cd ...
+
+  # How do I find out what process is accesing the partition? When:
+  udisksctl unmount --block-device=$diskPart
+  # returns:
+  #   Error unmounting ...: ... target is busy
+  sudo lsof     $diskPart      # find processes accessing the partition
+  sudo fuser -v $diskPart      # alternative: find processes accessing the partition
+  sudo fuser -k $diskPart      # forcefully kill processes (use with caution)
 }
 
 @block{@block-name{Swap}
