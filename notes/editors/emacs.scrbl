@@ -91,6 +91,13 @@
 }
 
 @block{@block-name{Various}
+  ;; `add-to-list' prepends i.e. puts an item to the head of a list.
+  (defun append-to-list (list-var element)
+    "Append ELEMENT to the end of LIST-VAR."
+    (set list-var (nconc (symbol-value list-var) (list element))))
+  (setq my-list '(1 2 3))
+  (append-to-list 'my-list 4) ;; => (1 2 3 4)
+
   ;; default value of an an optional parameter is nil
   ((lambda (a &optional b) (list a b)) 'a) ; => (a nil)
 
