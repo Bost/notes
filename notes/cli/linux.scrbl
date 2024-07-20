@@ -286,10 +286,35 @@
   # all SMART and non-SMART information about the device.
   sudo smartctl --xall $diskFull    # -x, --xall
   #
-  # File System Integrity Check
-  sudo umount  $diskPart
-  sudo fsck    $diskPart         # for ext2/ext3/ext4 filesystem (linux)
-  sudo ntfsfix $diskPart         # for ntfs filesystem (windows)
+  # File System Integrity Check / Fix Corrupted Filesystem
+  # locate flash drive / (usb) disk
+  ls /dev/disk/by-id
+  # create (usb) disk backup
+  set flashDrive /dev/disk/by-id/YOUR_FLASH_DRIVE
+  set backupImg  /path/to/BACKUP.img.gz
+  echo "sudo dd if=$flashDrive bs=4M status=progress | gzip -c > $backupImg"
+  # restore
+  echo "sudo gzip -cd $backupImg | sudo dd of=$flashDrive bs=4M status=progress"
+  # -V   verbose / explain what is being done
+  # -C   display progress bar; file descriptor is for GUIs
+  # -A   check all filesystems
+  # sudo fsck -C -V /dev/disk/by-id/YOUR_FLASH_DRIVE-PARTITION-TO-CHECK
+  sudo umount        $diskPart
+  # or
+  sudo umount --lazy $diskPart # detach the filesystem now, clean up things later
+
+  #
+  # -w   data-destructive write-mode test. (Mutually exclusive with -n)
+  #      Scans for bad blocks by writing some patterns on every block of the
+  #      device, reading every block and comparing the contents.
+  # -n   non-destructive read-write mode. (Mutually exclusive with -w)
+  # -s   Show the progress
+  # -o   <output_file>
+  # -v   verbose
+  # -b   block size in bytes; 4MB = 4194304 = (* 4 1024 1024)
+  sudo badblocks -nsv -b 4194304 -o badblocks-errors.log $diskFull
+  sudo fsck    -C -V $diskPart    # for ext2/ext3/ext4 filesystem (linux)
+  sudo ntfsfix       $diskPart    # for ntfs filesystem (windows)
 
   # processor cpu mem hdd hardware: system information in a GTK+ window
   hwinfo
@@ -1007,8 +1032,9 @@
   # some userfull commands
   lsblk
   sudo cfdisk
-  findmnt --real --output TARGET,SOURCE,SIZE,LABEL,PARTLABEL | \
-          sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
+  findmnt --real --output \
+            TARGET,SOURCE,SIZE,LABEL,PARTLABEL \
+          | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   sudo vgdisplay
   sudo lvdisplay
   sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
@@ -1458,11 +1484,13 @@
   # '--exclude 7' means 'exclude loop devices' https://askubuntu.com/a/1142405
   # --nodeps      don't print slaves or holders
   # TRAN          device transport type. E.g. usb / sata / ...
-  # lsblk --exclude 7 --nodeps \
-  #       --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS \
-  #      | rg --invert-match /dev/ram | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
-  lsblk --output PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS | \
-        sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
+  # lsblk --exclude 7 --nodeps --output \
+  #         PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS \
+  #       | rg --invert-match /dev/ram | sed 's/PARTLABEL/PART_LBL/g' \
+  #       | sed 's/LABEL/FSYS_LBL/g'
+  lsblk --output \
+          PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS \
+        | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   set --local isoImg   /path/to/file.iso
   set --local diskFull /dev/sd<letter>         # full disk device
   set --local diskPart /dev/sd<letter><number> # partition on a full disk device
@@ -1470,10 +1498,10 @@
   # TODO check if the size $diskFull is large enough for the $isoImg
   # oflag=sync - use synchronized I/O for data & metadata
   echo \
-       sudo dd bs=4M if=$isoImg of=$diskFull status=progress oflag=sync && sync
+    sudo dd if=$isoImg of=$diskFull bs=4M status=progress oflag=sync && sync
   # or try:
   echo \
-       sudo dd bs=4M if=$isoImg of=$diskFull status=progress conv=fdatasync && sync
+    sudo dd if=$isoImg of=$diskFull bs=4M status=progress conv=fdatasync && sync
 
   # create temporary file
   mktemp
@@ -1589,13 +1617,13 @@
 
   lsblk --nodeps
   lsblk --output \
-          FSTYPE,PARTTYPE,PATH,MODEL,TRAN,LABEL,SIZE,PARTLABEL,MOUNTPOINTS | \
-          sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
+          FSTYPE,PARTTYPE,PATH,MODEL,TRAN,LABEL,SIZE,PARTLABEL,MOUNTPOINTS \
+        | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   # find mounted filesystem
   findmnt --real --output \
-          TARGET,SOURCE,SIZE,LABEL,PARTLABEL | \
-          sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
-  blkid         # locate/print block device attributes; show the UUIDs
+            TARGET,SOURCE,SIZE,LABEL,PARTLABEL \
+          | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
+  blkid   # locate/print block device attributes; show the UUIDs
   ls -la /dev/usb
 
   # /dev/zero device - special file that produces a continuous stream of zero
@@ -1606,7 +1634,7 @@
   #
   # 1. erase everything on the disk
   # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
-  sudo dd if=/dev/zero of=$diskFull bs=4M status=progress && sync
+  sudo dd if=/dev/zero of=$diskFull bs=M status=progress && sync
   #
   # 2. make a new partition on the device using:
   sudo fdisk $diskFull   # GUID (Globally Unique Identifier) Partition Table
@@ -1624,8 +1652,8 @@
   #
   # 7. verify
   lsblk --output \
-        FSTYPE,PARTTYPE,PATH,MODEL,TRAN,LABEL,SIZE,PARTLABEL,MOUNTPOINTS | \
-        sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
+          FSTYPE,PARTTYPE,PATH,MODEL,TRAN,LABEL,SIZE,PARTLABEL,MOUNTPOINTS \
+        | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   #
   # In the context of Linux tools like blkid and lsblk, it is not possible to
   # assign a custom label directly to the entire hard drive (as opposed to
@@ -1655,7 +1683,7 @@
   # How do I find out what process is accesing the partition? When:
   udisksctl unmount --block-device=$diskPart
   # returns:
-  #   Error unmounting ...: ... target is busy
+  #   Error unmounting ...: ... target is busy / la cible est active
   sudo lsof     $diskPart      # find processes accessing the partition
   sudo fuser -v $diskPart      # alternative: find processes accessing the partition
   sudo fuser -k $diskPart      # forcefully kill processes (use with caution)
@@ -1673,7 +1701,7 @@
   # See swapspace - the swap file manager
   # http://www.pqxx.org/development/swapspace/
   set swapfile /swapfile
-  sudo dd if=/dev/zero of=$swapfile count=8388608 bs=1024 status=progress
+  sudo dd if=/dev/zero of=$swapfile count=8388608 bs=4M status=progress
   # sudo fallocate --length 8G $swapfile
   sync   # synchronize cached writes to persistent storage
   # permissions should be: -rw------- 1 root root
