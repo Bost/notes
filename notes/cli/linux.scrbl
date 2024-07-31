@@ -278,13 +278,13 @@
        > ernst.json && cat ernst.json | jq '.'
 
   # see lsblk
-  set --local diskFull /dev/sd<letter>
+  set --local diskRoot /dev/sd<letter>
   set --local diskPart /dev/sd<letter><number>
   #
   # SMART status of the hdd drive / all SMART information about the device
-  sudo smartctl --all $diskFull     # -a, --all
+  sudo smartctl --all $diskRoot     # -a, --all
   # all SMART and non-SMART information about the device.
-  sudo smartctl --xall $diskFull    # -x, --xall
+  sudo smartctl --xall $diskRoot    # -x, --xall
   #
   # File System Integrity Check / Fix Corrupted Filesystem
   # locate flash drive / (usb) disk
@@ -312,7 +312,7 @@
   # -o   <output_file>
   # -v   verbose
   # -b   block size in bytes; 4MB = 4194304 = (* 4 1024 1024)
-  sudo badblocks -nsv -b 4194304 -o badblocks-errors.log $diskFull
+  sudo badblocks -nsv -b 4194304 -o badblocks-errors.log $diskRoot
   sudo fsck    -C -V $diskPart    # for ext2/ext3/ext4 filesystem (linux)
   sudo ntfsfix       $diskPart    # for ntfs filesystem (windows)
 
@@ -454,33 +454,6 @@
 
   # centos update
   su -c 'yum update'
-
-  # :net - grouping bandwidth per process; "net top"
-  sudo nethogs wlan0
-
-  # top and htop explained; see also atop iotop
-  https://peteris.rocks/blog/htop/
-
-  # monitor disk I/O usage
-  sudo iotop -oPa
-
-  # HDD SSD - hard disk / hard drive information
-  sudo hdparm -I FILESYSTEM # see: df -h
-  sudo hdparm -I /dev/sda1
-
-  # load average explained
-  curl --silent https://raw.githubusercontent.com/torvalds/linux/v5.1/kernel/sched/loadavg.c | head -n 8
-  # process queuing: load-average > nr-of-processors * cores-per-processor
-  uptime               # load average from /proc/uptime
-  # top report / output to stdout:
-  # -n --iterations Number of iterations
-  # -b --batch mode
-  top --batch-mode --iterations 1
-  cat /proc/loadavg    # 4. column: processes running/total; 5.: last used pid
-  # number of processors
-  lscpu | grep "^CPU"
-  # cores per processor
-  cat /proc/cpuinfo | grep cores
 
   # download and import gnu-keyring
   wget http://ftp.heanet.ie/mirrors/gnu/gnu-keyring.gpg && \
@@ -957,15 +930,6 @@
   #  against the SHA checksums of the files in the current directory
   sha256sum --check SHA256SUMS.asc | grep OK
   sha256sum -c      SHA256SUMS.asc | grep OK
-
-  # :ps full command line; command is separated by the \0 byte
-  tr '\0' ' ' < /proc/PROCESS_ID/cmdline
-
-  # :ps :top :htop all information related to a PROCESS_ID
-  ls /proc/PROCESS_ID
-
-  # :ps :top :htop currend working dir of PROCESS_ID
-  cat /proc/PROCESS_ID/cwd
 
   # difference between nohup, disown, & https://unix.stackexchange.com/a/148698
   # - puts the job in the background, that is, makes it block on attempting to
@@ -1492,16 +1456,16 @@
           PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS \
         | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
   set --local isoImg   /path/to/file.iso
-  set --local diskFull /dev/sd<letter>         # full disk device
+  set --local diskRoot /dev/sd<letter>         # full disk device
   set --local diskPart /dev/sd<letter><number> # partition on a full disk device
   udisksctl unmount --block-device=$diskPart
-  # TODO check if the size $diskFull is large enough for the $isoImg
+  # TODO check if the size $diskRoot is large enough for the $isoImg
   # oflag=sync - use synchronized I/O for data & metadata
   echo \
-    sudo dd if=$isoImg of=$diskFull bs=4M status=progress oflag=sync && sync
+    sudo dd if=$isoImg of=$diskRoot bs=4M status=progress oflag=sync && sync
   # or try:
   echo \
-    sudo dd if=$isoImg of=$diskFull bs=4M status=progress conv=fdatasync && sync
+    sudo dd if=$isoImg of=$diskRoot bs=4M status=progress conv=fdatasync && sync
 
   # create temporary file
   mktemp
@@ -1629,23 +1593,23 @@
   # /dev/zero device - special file that produces a continuous stream of zero
   # (null) bytes when read.
   #
-  set --local diskFull /dev/sd<letter>
+  set --local diskRoot /dev/sd<letter>
   set --local diskPart /dev/sd<letter><number>
   #
   # 1. erase everything on the disk
   # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
-  sudo dd if=/dev/zero of=$diskFull bs=M status=progress && sync
+  sudo dd if=/dev/zero of=$diskRoot bs=M status=progress && sync
   #
   # 2. make a new partition on the device using:
-  sudo fdisk $diskFull   # GUID (Globally Unique Identifier) Partition Table
+  sudo fdisk $diskRoot   # GUID (Globally Unique Identifier) Partition Table
   # or:
-  # sudo parted --script $diskFull mkpart primary ext4 0% 100%
+  # sudo parted --script $diskRoot mkpart primary ext4 0% 100%
   #
   # 3. create / format ext2/ext3/ext4 file system
-  sudo mkfs.ext4 $diskPart   # may not be needed: sudo eject $diskFull
+  sudo mkfs.ext4 $diskPart   # may not be needed: sudo eject $diskRoot
   #
   # 4. label the partition
-  sudo parted --script $diskFull name 1 <lbl-part-...> # partition-label
+  sudo parted --script $diskRoot name 1 <lbl-part-...> # partition-label
   #
   # 6. label the filesystem (not partition!)
   sudo e2label $diskPart <lbl-fsyst-...>   # filesystem-label, not partition-label!!!

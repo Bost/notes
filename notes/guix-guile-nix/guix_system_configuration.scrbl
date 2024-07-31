@@ -95,15 +95,15 @@
   # write the iso image to USB (erase / overwrite its content)
   # '--exclude 7' means 'exclude loop devices' https://askubuntu.com/a/1142405
   lsblk --exclude 7 --nodeps --output MAJ:MIN,PATH,MODEL,TRAN,LABEL,SIZE
-  set --local blkDevice /dev/sd<letter><number>
-  set --local usbDevice /dev/sd<letter>
-  udisksctl unmount --block-device=$blkDevice
+  set --local diskRoot /dev/sd<letter>
+  set --local diskPart /dev/sd<letter><number>
+  udisksctl unmount --block-device=$diskPart
   # 'echo sudo ...' for safety
   # bs=BYTES - read and write up to BYTES bytes at a time
   # oflag=sync - use synchronized I/O for data & metadata
   # `... && sync` is probably not needed if the `dd` is used with 'oflag=sync'
   echo \
-       sudo dd if=$isoImg of=$usbDevice bs=4M status=progress oflag=sync && sync
+       sudo dd if=$isoImg of=$diskRoot bs=4M status=progress oflag=sync && sync
 }
 
 @block{@block-name{System Configuration}
