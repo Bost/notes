@@ -286,7 +286,7 @@
   # all SMART and non-SMART information about the device.
   sudo smartctl --xall $diskRoot    # -x, --xall
   #
-  # File System Integrity Check / Fix Corrupted Filesystem
+  # Filesystem Integrity Check / Fix Corrupted Filesystem
   # locate flash drive / (usb) disk
   ls /dev/disk/by-id
   # create (usb) disk backup
@@ -514,7 +514,7 @@
   # on guix (requires logout and login):
   # xfce4-settings-manager -> Default Applications
 
-  # display file or file system status; alternative to ls
+  # display file or filesystem status; alternative to ls
   stat -c "%y %s %n" *
 
   # line count, word count
@@ -1378,7 +1378,8 @@
   # update all packages
   apm update
   # restore / synchronise settings
-  rsync -avz --include="*/" --include="*.cson" --exclude="*" ~/.atom/* ~/dev/dotfiles/.atom
+  rsync -avz --include="*/" --include="*.cson" --exclude="*" \
+        ~/.atom/* ~/dev/dotfiles/.atom
 
   # super fast ram disk
   sudo mkdir -p /mnt/ram
@@ -1401,6 +1402,14 @@
 
   # Change the label on an ext2/ext3/ext4 filesystem
   e2label
+
+  # loop device: virtual filesystem withing a file. Mount file as if it was a
+  # disk partition.
+  # ram device / disk: use system memory (RAM) to simulate a block device.
+  # For high-speed temporary storage or caching.
+  #
+  # don't list loop and ram devices
+  sudo fdisk --list | sed --expression='/Disk \/dev\/\(loop\|ram\)/,+5d'
 
   # intercept stdout to a log file
   cat file | tee -a file.log | cat /dev/null
@@ -1605,7 +1614,7 @@
   # or:
   # sudo parted --script $diskRoot mkpart primary ext4 0% 100%
   #
-  # 3. create / format ext2/ext3/ext4 file system
+  # 3. create / format ext2/ext3/ext4 filesystem
   sudo mkfs.ext4 $diskPart   # may not be needed: sudo eject $diskRoot
   #
   # 4. label the partition
@@ -1638,7 +1647,7 @@
   sudo resize2fs /dev/vda3
   # see also https://askubuntu.com/q/1078918/401596
 
-  # flush file system buffers
+  # flush filesystem buffers
   sync
 
   # :usb :drive gnome userspace virtual fs
