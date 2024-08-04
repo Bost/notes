@@ -54,8 +54,9 @@
   # also
   # `snap interfaces` deprecated by `snap connections
   snap connections bitcoin-core
-  # start the daemon
+  # start /stop the daemon
   bitcoin-core.daemon -datadir=$HOME/.bitcoin -daemon
+  bitcoin-core.cli    -datadir=$HOME/.bitcoin stop
 
   # `dofus` on Ubuntu may throw:
   # /snap/dofus/3/usr/share/anakama-launcher/zaap: error while loading shared
