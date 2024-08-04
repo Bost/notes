@@ -47,10 +47,15 @@
   # sudo snap refresh snap-store
   sudo snap refresh
 
-  # access to a file / directory
+  # snap: access to a file / directory
   # When: Error initializing settings: Failed saving settings file:
   # - Error: Unable to open settings file /path/to/.bitcoin/settings.json for writing
-  snap connect bitcoin-core:removable-media
+  sudo snap connect bitcoin-core:removable-media
+  # also
+  # `snap interfaces` deprecated by `snap connections
+  snap connections bitcoin-core
+  # start the daemon
+  bitcoin-core.daemon -datadir=$HOME/.bitcoin -daemon
 
   # `dofus` on Ubuntu may throw:
   # /snap/dofus/3/usr/share/anakama-launcher/zaap: error while loading shared

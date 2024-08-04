@@ -41,29 +41,37 @@
   # Non-login: Any other shell run by the user after logging on, or which is run
   # by any automated process which is not coupled to a logged in user.
 
-  # Where is PATH variable set? https://askubuntu.com/a/706069/401596
-  grep --color -H 'PATH=' \
-    ~/.bashrc \
-    ~/.profile \
-    ~/.bash_profile \
-    ~/bash.login \
-    ~/.bash_aliases \
-    /etc/bash.bashrc \
-    /etc/profile \
-    /etc/skel/* \
-    /etc/skel/.* \
-    /etc/profile.d/* \
-    /etc/profile.d/.* \
-    /etc/environment \
-    ~/.guix-home/* \
-    ~/.guix-home/.* \
-    ~/.guix-profile/* \
-    ~/.guix-profile/.* \
-    ~/.guix-profile/etc/profile \
-    ~/.config/guix/current/etc/* \
-    ~/.config/guix/current/etc/.* \
+  # Where is PATH variable set? / defined https://askubuntu.com/a/706069/401596
+  grep --color -H '.*PATH.*=' \
+    ~/.bashrc ~/.profile ~/.bash_profile ~/.bash_aliases ~/bash.login
+     ~/.xsessionrc ~/.xprofile ~/.zshrc ~/.cshrc ~/.tcshrc ~/.kshrc \
+    /etc/bash.bashrc /etc/profile
+    /etc/skel/* /etc/skel/.* \
+    /etc/profile.d/* /etc/profile.d/.* \
+    ~/.guix-home/* ~/.guix-home/.* \
+    ~/.guix-profile/* ~/.guix-profile/.* ~/.guix-profile/etc/profile \
+    ~/.config/guix/* \
+    ~/.config/guix/current/etc/* ~/.config/guix/current/etc/.* \
     ~/.config/guix/current/etc/profile \
+    /etc/systemd/system/* /lib/systemd/system/* \
+    /etc/cron.* \
+    /var/spool/cron/crontabs/* \
+    ~/.config/systemd/user/* ~/.config/autostart/* \
+    ~/bin/* \
+    /etc/X11/Xsession.d/* \
+    /etc/xdg/autostart/* \
+    /usr/local/bin/* \
+    /etc/guix/* \
+    /etc/environment /etc/ /usr/local/etc/ /opt/ /usr/share/ \
+    2> /dev/null
+  #
+  grep -r '.*LD_PRELOAD.*=' \
+    /etc/ \
+    /usr/local/etc/ \
+    /opt/ \
+    /usr/share/ \
   2> /dev/null
+  #
   # in the fish shell:
   set --show PATH
 
