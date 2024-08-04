@@ -16,7 +16,7 @@
 }
 
 @block{@block-name{guix upgrade}
-  # Alias for guix package --upgrade
+  # Alias for `guix package --upgrade`
   # Upgrade all installed packages to the latest version of packages found in
   # the distribution currently installed. Examples:
   guix upgrade --cores=12 --verbosity=3

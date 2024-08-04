@@ -141,21 +141,21 @@
 
   # Create ASCII armored output. The default is to create the binary OpenPGP
   # format.
-  gpg --armor --export > /path/to/pub_key.gpg
-  gpg --send-keys --keyserver keyserver.ubuntu.com /path/to/pub_key.gpg
+  gpg --armor --export > /path/to/pub_key.asc
+  gpg --send-keys --keyserver keyserver.ubuntu.com /path/to/pub_key.asc
 
   # copy / transfer keys and ownertrust to a new machine / computer
   # 2020-06: https://www.victordodon.com/how-to-move-your-gpg-key-and-pass-store-to-a-different-computer/
   # 1. Export public keys
-  # On to the DST_HOST where the keys need to be transfered, run:
-  set SRC_HOST <ip-address>
-  echo "Enter passphrase:" && read -s pass && echo $pass | ssh -t $SRC_HOST \
+  # On to the dstHost where the keys need to be transfered, run:
+  set srcHost <ip-address>
+  echo "Enter passphrase:" && read -s pass && echo $pass | ssh -t $srcHost \
   "gpg --export --passphrase-fd=0 --pinentry-mode=loopback | \
    gpg --import --batch --yes"
   #
   # 2. Export secret keys:
-  set SRC_HOST <ip-address>
-  echo "Enter passphrase:" && read -s pass && echo $pass | ssh -t $SRC_HOST \
+  set srcHost <ip-address>
+  echo "Enter passphrase:" && read -s pass && echo $pass | ssh -t $srcHost \
   "gpg --export-secret-keys --passphrase-fd=0 --pinentry-mode=loopback | \
    gpg --import --batch --yes"
   # However:
@@ -164,13 +164,13 @@
   # show NOTHING!!!
 
   # copy / transfer keys and ownertrust to a new machine / computer
-  set DST_HOST <ip-address>
-  gpg --armor --export-secret-keys > gpg--armor--export-secret-keys.gpg
-  gpg --armor --export             > gpg--armor--export.gpg
-  gpg --export-ownertrust          > gpg--ownertrust.gpg       # plain text file
-  rsync                    gpg--armor--export-secret-keys.gpg gpg--armor--export.gpg gpg--ownertrust.gpg $DST_HOST:
-  gpg --import --yes       gpg--armor--export-secret-keys.gpg gpg--armor--export.gpg gpg--ownertrust.gpg
-  shred --verbose --remove gpg--armor--export-secret-keys.gpg gpg--armor--export.gpg gpg--ownertrust.gpg
+  set dstHost <ip-address>
+  gpg --armor --export-secret-keys > gpg--armor--export-secret-keys.asc
+  gpg --armor --export             > gpg--armor--export-public-keys.asc
+  gpg --export-ownertrust          > gpg--ownertrust.txt       # plain text file
+  rsync                    gpg--armor--export-secret-keys.asc gpg--armor--export-public-keys.asc gpg--ownertrust.txt $dstHost:
+  gpg --import --yes       gpg--armor--export-secret-keys.asc gpg--armor--export-public-keys.asc gpg--ownertrust.txt
+  shred --verbose --remove gpg--armor--export-secret-keys.asc gpg--armor--export-public-keys.asc gpg--ownertrust.txt
 
   # gpg --export-ownertrust  # see https://superuser.com/a/1125128
   # It seems the trust level is corresponds to the number entered in the trust

@@ -1602,7 +1602,7 @@
   sudo parted --script $diskRoot name 1 <lbl-part-...> # partition-label
   #
   # 6. label the filesystem (not partition!)
-  sudo e2label $diskPart <lbl-fsyst-...>   # filesystem-label, not partition-label!!!
+  sudo e2label $diskPart <lbl-fsys-...>   # filesystem-label, not partition-label!!!
   #
   # 7. verify
   lsblk --output \
