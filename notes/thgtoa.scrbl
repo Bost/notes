@@ -88,11 +88,16 @@
   management tasks.
 
   # examples
-  gpg --list-keys # gpg --list-public-keys
+  gpg --list-public-keys # gpg --list-keys
+  set gpgPubKey ...
   gpg --encrypt --output file.txt.gpg --recipient $gpgPubKey file.txt
   gpg --encrypt --output file.txt.gpg --recipient foo@"@"domain.org file.txt
   gpg --decrypt file.txt.gpg --output file.txt
   gpg --decrypt --quiet --for-your-eyes-only --no-tty ~/.passwords/gmail.gpg
+
+  # encrypt / decrypt a folder / directory
+  gpgtar --encrypt --output filename.gpg --recipient $gpgPubKey /path/to/dir
+  gpgtar --decrypt filename.gpg
 
   # Encrypt Both File Content and Filename
   # -c --symmetric
