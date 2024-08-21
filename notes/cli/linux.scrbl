@@ -327,7 +327,7 @@
   sudo lshw
   cpu-x
 
-  # net Address-Resolution-Protocol
+  # network Address-Resolution-Protocol
   # MAC address of a network neighbour for a given IPv4 Address
   # display / modify the IP-to-Physical address translation tables for ARP
   arp -a
@@ -338,7 +338,7 @@
   # keep track of ethernet/ip address pairings
   arpwatch
 
-  # :net - Network exploration tool and security / port scanner
+  # network exploration tool and security / port scanner
   nmap
 
   # TCP proxies; shell-script based HTTP clients / servers;
@@ -366,7 +366,7 @@
   # line by line
   cat file-with-messages | nc localhost 30003
 
-  # :net :arp - Network security auditing tool
+  # :arp - network security auditing tool
   hunt
 
   # query an LDAP server from the command line with ldap-utils
@@ -407,7 +407,7 @@
   "This web always encrypts. And it does so using trusted certificate"
   chrome://net-internals/#hsts
 
-  # :net - ports listening for connection (i.e. open ports)
+  # network - ports listening for connection (i.e. open ports)
   # -s<Letter>   scan for something
   sudo nmap -sT -O localhost
   # -sL: List Scan - simply list targets to scan
@@ -419,11 +419,11 @@
   # single IP and host name.
   sudo nmap -sn IP_RANGE
 
-  # show open ports
+  # network - show open ports
   nmap localhost | grep -i open # 631/tcp  open ipp - Internet Printing Protocol
   nmap www.google.com | grep -i open
 
-  # :net IPv4 - CIDR notation
+  # network IPv4 - CIDR notation
   # 192.168.100.14/24 represents the IPv4 address 192.168.100.14 and its
   # associated routing prefix 192.168.100.0
   # TODO what is the /24 - address range?
@@ -487,7 +487,7 @@
   # fs / filesystem - number of inodes; every file or directory requires 1 inode
   df --inodes # -i
 
-  # :net - show host name
+  # network - show host name
   hostname --ip-address       # -i; addresses for the host name
   hostname --all-ip-addresses # -I; all addresses for the host
 
@@ -532,7 +532,7 @@
   # process environment variables (separated by null-chars)
   cat /proc/PROCESS_ID/environ | tr '\0' '\n'
 
-  # :net :ubuntu - (edit) and re-read proxy definition
+  # network ubuntu - (edit) and re-read proxy definition
   source /etc/environment
 
   # printenv vs env
@@ -761,10 +761,10 @@
   # download fileX.txt and save it under different location / name
   curl -O http://server/fileX.txt > ./path/to/fileY.txt
 
-  # :net ask http://ifconfig.me about myself (ua: User Agent)
+  # network ask http://ifconfig.me about myself (ua: User Agent)
   curl ifconfig.me/ip/host/ua/port/
 
-  # :net test connection with disabled proxy
+  # network - test connection with disabled proxy
   curl --noproxy "*" -X GET http://www.google.com
 
   # enforce using http_proxy instead of https_proxy in case of
@@ -781,7 +781,7 @@
   curl --request POST -H 'Content-Type: application/json' -d '{"x":"1", "y":"2"}' URL
   curl --request POST --form variable=value URL
 
-  # :iproute2 :network - like ifconfig. State of network interfaces
+  # iproute2 network - like ifconfig. State of network interfaces
   ip address
   # show / manipulate routing, devices, policy routing and tunnels
   ip address show eth0
@@ -792,7 +792,7 @@
   # Address Resolution Protocol table
   ip neighbour
 
-  # :network - what is my IP address? See also https://resolve.rs/
+  # network - what is my IP address? See also https://resolve.rs/
   curl ifconfig.me
 
   # sort via 2nd key (?column?)
@@ -1103,14 +1103,14 @@
   sort file.txt | uniq --unique
   awk '!visited[$0]++' file.txt > deduplicated-file.txt
 
-  # :net :ping :traceroute - check connection
+  # network ping traceroute - check connection
   mtr google.com
   mtr --report www.google.com # -r --report
   ethtool eth0
   ip neigh show | grep REACHABLE
   ip link show
 
-  # :iproute2 :net open / listening ports and PIDs of associated processes.
+  # iproute2 network - open / listening ports and PIDs of associated processes
   # tcp (-t) udp (-u)
   ss -tulpn  # ss - socket statistics replaces obsolete netstat
 
@@ -1145,15 +1145,15 @@
   # remove sections from each line of files
   cut
 
-  # :net what is currently using inet
+  # network - what is currently using inet
   lsof -P -i -n | cut --fields=1 --delimiter=" " | uniq | tail --lines=+2
 
   # rm: cannot remove '/path': Device or resource busy
   # see https://www.positioniseverything.net/umount-target-is-busy/
   lsof +D /path
 
-  # list open files (see what is currently using a file) whose inet address
-  # matches ADDR; -t: terse output
+  # network - list open files (see what is currently using a file) whose inet
+  # address matches ADDR; -t: terse output
   lsof -i:[ADDR] -t
   # fish: process listening on the PORT_NUMBER
   ps (lsof -i:PORT_NUMBER -t)
@@ -1249,7 +1249,7 @@
   # start COMMAND and kill it if it is running still after 5 sec
   timeout 5s COMMAND
 
-  # :net retcode==1 - online; retcode!=1 offline
+  # network - retcode==1 - online; retcode!=1 offline
   nm-online --exit; echo "retcode: $?"
 
   # wifi net nmcli - command-line tool for controlling NetworkManager
@@ -1327,10 +1327,10 @@
   # :HPKP HTTP Public Key Pinning; similar to HSTS header
   # Create your HPKP hash: https://report-uri.io/home/pkp_hash
 
-  # :net - data transferred today / per month
+  # network - data transferred today / per month
   sudo vnstat -u -i wlan0 && vnstat
 
-  # :net - managing a netfilter firewall; ufw - uncomplicated firewall
+  # network - managing a netfilter firewall; ufw - uncomplicated firewall
   sudo ufw status numbered
   sudo ufw status numbered
   # if Status: inactive, run: sudo ufw enable
@@ -1338,7 +1338,7 @@
   sudo ufw allow PORT
   sudo ufw allow PORT/tcp
 
-  # :net :RDP :remote-desktop - `-p` ask for password, `-f` full screen
+  # network RDP remote-desktop - `-p` ask for password, `-f` full screen
   rdesktop    -u USER -p - COMPUTER:3389
   rdesktop -f -u USER -p - COMPUTER:3389
   sudo /etc/init.d/xrdp restart

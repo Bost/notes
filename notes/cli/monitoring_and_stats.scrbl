@@ -4,7 +4,7 @@
   # vmstat [options] [delay [count]]
   vmstat 2 10
 
-  # :net - grouping bandwidth per process; "net top"
+  # network - grouping bandwidth per process; "net top"
   sudo nethogs wlan0
   
   # :top :htop explained; see also atop iotop
