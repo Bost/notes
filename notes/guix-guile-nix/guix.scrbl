@@ -486,6 +486,7 @@
   https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi
   Submitting Patches
   https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html
+  https://guix.gnu.org/en/manual/devel/en/guix.html#Submitting-Patches
 
   git format-patch origin/master
   git send-email --to=guix-patches@"@"gnu.org *.patch
