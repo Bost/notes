@@ -35,8 +35,12 @@
   - when errors are unacceptable -> probabilities
   - when not much data is available
 
-  ML is for structured data (e.g. tables): Algorithm: gradient boosted machine, random forest, tree based algorithm (XGBoost), naive Bayes - shallow algorithms
-  DL is for unstructured data (e.g. text, images, etc.): Algorithm: neural network
+  ML is for structured data (e.g. tables):
+  Algorithm: gradient boosted machine, random forest, tree based algorithm
+  (XGBoost), naive Bayes - shallow algorithms
+
+  DL is for unstructured data (e.g. text, images, etc.):
+  Algorithm: neural network
 
   https://daily.ginger-t.link/glossary
 
