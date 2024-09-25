@@ -5,6 +5,75 @@
 # latexpreview / nolatexpreview C-c C-x C-l
 #+STARTUP: nolatexpreview
 
+* Sheaf and sheaves
+** Example
++ Topological Space $X$: The surface of the Earth.
++ Open Subsets $U_i$​: These represent countries or regions on Earth, and $X$ is
+  covered by these $n$ open subsets, $\left\{U_1, U_2, \dots ,U_n\right\}$.
+
+** Sections $\mathcal{F}(U_i)$ over each Open Subset
++ For each open subset $U_i$​ (a country or region), you have a set
+  $\mathcal{F}(U_i)$, which is called the set of sections over $U_i$​.
++ The elements of $\mathcal{F}(U_i)$ are specific functions or pieces of data
+  defined over the region $U_i$​. E.g.:
+  - $\mathcal{F}(U_i)_1$​ could be a function representing the temperature
+    distribution in the country $U_i$​.
+  - $\mathcal{F}(U_i)_2​$ could be a function representing the population density
+    in $U_i$​. And so on for other types of data.
+
+*** Infinite Possibility of Sections
+In theory, $\mathcal{F}(U_i)$ could be infinitely large because there could be
+an infinite number of different kinds of data you might want to assign to $U_i$​.
+However, in practical scenarios, this set is typically finite but large,
+depending on how much information you're trying to capture.
+
+*** Different Cardinalities
+The cardinality of the sets $\mathcal{F}(U_i)$ for different countries (or
+regions) $U_i$​ and $U_j$​ can indeed be different. For example, one country might
+have data on temperature and population density, while another might only have
+temperature data. This reflects that different regions might have different
+types or amounts of data available.
+
+** To summarize
++ $\mathcal{F}(U_i)$ for a country $U_i$​ might be
+  $\mathcal{F}(U_i)=\left\{f_{temp}, f_{density}, f_{elevation}, \dots
+  \right\}$, where each $f$ is a function or piece of data over that region.
+
++ $\mathcal{F}(U_j)$ for another country $U_j$​ might only include a subset of
+  those functions, say just $\mathcal{F}(U_j)=\left\{f_{temp},
+  f_{elevation}\right\}, if population density hasn't been measured there.
+
+These differences reflect the real-world scenario where different regions might
+have different data available or might be described by different sets of
+functions. The key idea of sheaves is to handle these variations and allow for
+consistent "gluing" of this local information into a global picture.
+
+\bigskip
+
+Each region $U_i$ can have its own set of sections $\mathcal{F}(U_i)$, and these
+sets can be as large or as small as needed, reflecting the available data or
+functions for that region.
+
+* Algebra
+An algebra over a field $F$ is a tuple $(A, +, \cdot, \times)$ where:
++ $(A, +)$ is an abelian group (under addition),
++ $(A, \cdot)$ is a vector space over $F$,
++ $(A, \times)$ is a ring,
++ and the operations are compatible, satisfying distributive laws.
+
+** Algebraic theory
+Algebraic theory in classical universal algebra (or strictly, a presentation of
+an algebraic theory) consists of:
++ operation symbols of specified arities
++ equations
+
+E.g. The (usual presentation of the) theory of groups:
++ operation symbols of specified arities:
+- an operation symbol $1$ of arity $0$
+- an operation symbol $\blank\inv$ of arity $1$
+- an operation symbol $\cdot$ of arity $2$
++ equations: "the usual equations"
+
 * Disjoint Union
 Let $\left\{A_i : i \in I\right\}$ be a family of sets indexed by $I$. The
 disjoint union of this family is the set
@@ -13,6 +82,21 @@ $$
 $$
 Its elements are ordered pairs $(x, i)$ where $i$ is an auxiliary index
 indicating from which $A_{i}$ the element $x$ came from.
+
+* Pullback a.k.a fibred product
+Consider sets
+  $$X = \left\{1, 2, 3, 4\right\}$$
+  $$Y = \left\{10, 11, 12, 13\right\}$$
+  $$Z = \left\{a, e, o, b\righ\}$$
+where the functions $f$ and $g$ are defined as follows:
+  $$f : X \rightarrow Z : f(1) = o, f(2) = e, f(3) = o, f(4) = a$$
+  $$g : Y \rightarrow Z : g(10) = b, g(11) = o, g(12) = e, g(13) = o$$
+Pullback $P = X \times_{Z}​ Y$ is the set
+  $$X \times_{Z}​ Y = \left\{(1,11),(1,13),(2,12),(3,11),(3,13)\right\}$$
+
+This set contains all pairs $(x, y)$ where the elements $x$ from $X$ and $y$
+from $Y$ are mapped to the same element in $Z$ by their respective functions $f$
+and $g$.
 
 * \(k\)-linear maps / transformations
 ** Linear map / transformation

@@ -345,7 +345,7 @@ Inlining and refactoring are the opposite.
 
 \bigskip
 
-_Fibre_: points mapped to the same value
+_Fibre_: points mapped to the same (index) value
 invertibility: function to fibre
 
 ** NaT Natural Transformations
