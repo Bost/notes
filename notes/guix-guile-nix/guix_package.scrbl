@@ -151,9 +151,15 @@
   # compute the hash of any (already downloaded) file
   guix hash file
 
-  # fish-shell; download emacs package source code
+  # fish-shell; download source code of the package of GNU Emacs
   set expr '(use-modules (guix packages) (gnu packages emacs))
             (display (origin-uri (package-source emacs)))'
+  guix download (guile -c $expr)
+
+  # fish-shell; download source code of some <emacs-package>
+  set emacs_package "eless"
+  set expr "(use-modules (guix packages) (gnu packages emacs-xyz))
+            (display (origin-uri (package-source $emacs_package)))"
   guix download (guile -c $expr)
 
   # either (A):
