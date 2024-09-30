@@ -70,10 +70,10 @@
 
   Transformer-based architectures like GPT, BERT, and their variants:
 
-  Model:
-  - computational representation of a system or process, that learns from data /
-    dataset to make decisions and predictions. The goal of learning is to
-    minimize the difference between predictions and actual outcomes
+  Model i.e. the "brain":
+  The original data is not don't needed. The model is ready to perform tasks
+  based on what it learned during training. I.e. it can run on your own hardware,
+  For fine-tuning or further training of the brain, you might need additional data.
   - consists of
     * architecture
     * parameters
@@ -91,7 +91,6 @@
   The reward function is trained by humans, then reward function is automatic in
   its intraction with the model. In the end all the data is created by the AIs
   The algorithms train another algorithms.
-
 
   Instruct-tune LLaMA on consumer hardware
   7.6K  https://github.com/tloen/alpaca-lora
