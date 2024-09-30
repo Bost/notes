@@ -299,11 +299,11 @@
   # -C   display progress bar; file descriptor is for GUIs
   # -A   check all filesystems
   # sudo fsck -C -V /dev/disk/by-id/YOUR_FLASH_DRIVE-PARTITION-TO-CHECK
+  # sudo e2fsck -v $diskPart     # -v verbose
   sudo umount        $diskPart
   # or
   sudo umount --lazy $diskPart # detach the filesystem now, clean up things later
 
-  #
   # -w   data-destructive write-mode test. (Mutually exclusive with -n)
   #      Scans for bad blocks by writing some patterns on every block of the
   #      device, reading every block and comparing the contents.

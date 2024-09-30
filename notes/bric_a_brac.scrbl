@@ -1,5 +1,12 @@
 #lang notes
 
+
+@block{@block-name{bc - An arbitrary precision calculator language}
+  printf "1 / 2\nquit\n" > /tmp/math.txt
+  bc --quiet --mathlib /tmp/math.txt 
+  .50000000000000000000
+}
+
 @block{@block-name{Sway / i3 / keys keybingings / Refcard / Reference Card}
   | Alt + Enter         | open new terminal                 |
   | Alt + j             | focus left                        |
