@@ -1,5 +1,11 @@
 #lang notes
 
+@block{@block-name{FHS Filesystem Hierarchy Standard}
+  Reference describing the conventions used for the layout of Unix-like systems.
+  All files and directories appear under the root directory /, even if they are
+  stored on different physical or virtual devices.
+}
+
 @block{@block-name{tmux}
   # tmux vs. screen
   https://superuser.com/a/236160

@@ -29,7 +29,7 @@
 }
 
 @block{@block-name{snap}
-# Packaging and deployment system developed by Canonical for OSes with Linux
+  # Packaging and deployment system developed by Canonical for OSes with Linux
   # kernel and the systemd.
   # Compare Snap vs Apt
   # https://www.baeldung.com/linux/snap-vs-apt-package-management-system
@@ -66,6 +66,7 @@
   ldd -v /snap/dofus/3/usr/share/anakama-launcher/zaap | rg libffmpeg.so
   #
   # protontricks - wine for steam
+  # Proton - Patched version of Wine, i.e. compatibility layer for Windows games
   sudo apt install --yes protontricks winetricks
   https://dl.winehq.org/wine/source/
   #
