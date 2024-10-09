@@ -206,6 +206,8 @@
   herd detailed-status
   herd log
   herd reload-modules <module-name> # e.g. herd reload-modules apache
+  #
+  sudo herd configuration sshd
 
   # list all available system services
   guix system search .
