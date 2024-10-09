@@ -424,6 +424,8 @@
   git push --follow-tags --verbose --force <remote> --all
   # push multiple branches at once / simultaneously
   git push <remote> branch1 branch2
+  # cycle keyseq guix: forced push; develop: normal, non-forced push
+  git push github develop --force cycle keyseq guix
 
   # merge srcProj into dstProj
   cd path/to/dstProj
