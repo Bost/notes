@@ -1,5 +1,8 @@
 #lang notes
 
+Example package for a shell script
+https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/guix.scm?ref_type=heads
+
 @block{@block-name{Package Transformation Options}
   https://guix.gnu.org/manual/en/html_node/Package-Transformation-Options.html
   guix package --with-source=source

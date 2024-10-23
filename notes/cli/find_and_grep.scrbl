@@ -55,6 +55,7 @@
 
   # all files & directories modified in the last 7 days; between: older: newer:
   find . ... -mtime -7
+  fd --type=d --max-depth=1 --changed-before="2024-10-01" guix-home-legacy-configs-backup
 
   # flatteb all xml files from all src subdirs to dst, fork off a new copy
   # process for every file; TODO test it!
