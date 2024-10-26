@@ -39,11 +39,10 @@
   Debugging Lisp Programs
   https://www.gnu.org/software/emacs/manual/html_node/elisp/Debugging.html
 
-  Two debuggers
-
+  Two debuggers:
   M-x toggle-debug-on-error
   M-x debug-on-variable-change ;; works also on local override
-  M-x debug-on-entry ;; for a function?
+  M-x debug-on-entry           ;; for a function?
 
   edebug main function: step through execution of function call
   (debug can't do it)
