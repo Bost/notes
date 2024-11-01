@@ -103,7 +103,6 @@
   zgrep "Pattern" myfile.gz / zgrep 'GET /blog' access_log.gz
 
   # find images; -o --only-matching; -P --perl-regexp
-
   # between: older: newer:
   find ~/Pictures -type f -newer
   find ~/Pictures -type f -not -newermt "2016-02-01"

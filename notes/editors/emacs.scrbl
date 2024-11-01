@@ -1062,7 +1062,6 @@
   mbsync --all
   mu init --maildir=~/Mail --my-address=<email-at-domain.com>
   mu index
-
 }
 
 @block{@block-name{us / american keyboard}
@@ -1137,13 +1136,12 @@
   #
   # RSHIFT *   w   x   c   v   b   n   ,   ;   :   !           LSHIFT
   # RSHIFT |   W   X   C   V   B   N   ?   .   /   +           LSHIFT
-
 }
 
 @block{@block-name{slovak keyboard / slovenská klávesnica}
   In Xfce:
   #    `   !   @   #   $   %   ^   &   *   {   }   \   \   BACKSPACE  # AltGr
-  #    ~   1   2   3   4   5   6   7   8   9   0   %   (   BACKSPACE  # Shift
+  #    °   1   2   3   4   5   6   7   8   9   0   %   (   BACKSPACE  # Shift; ° pressed 2x
   #    ;   +   ľ   š   č   ť   ž   ý   á   í   é   =   ´   BACKSPACE  # ´ pressed 2x
   #
   #   TAB   \   |   €   ¶   ŧ   ←   ↓   →   ø   þ   [   ]     RETURN
@@ -1157,5 +1155,4 @@
   # RSHIFT /   °   #   &   @   {   }   ^   <   >   *          LSHIFT
   # RSHIFT |   Z   X   C   V   B   N   M   ?   :   _          LSHIFT
   # RSHIFT \   z   x   c   v   b   n   m   ,   .   -          LSHIFT
-
 }
