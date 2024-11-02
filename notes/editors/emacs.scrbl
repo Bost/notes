@@ -269,8 +269,9 @@
   alist - association list
   plist - property list
   @lisp{
-    (plist-get (plist-put (list ':host "localhost") ':port 42)  ':port)
-    ;; => 42 (#o52, #x2a, ?*)
+    (plistp '(:x 42))                                 ; => t
+    (plist-get (plist-put '(:x 42) ':port 42) ':port) ; => 42 (#o52, #x2a, ?*)
+    (plist-member '(:x 42) :x)                        ; => (:x 42)
   }
 
   ;; https://endlessparentheses.com/get-in-the-habit-of-using-sharp-quote.html
