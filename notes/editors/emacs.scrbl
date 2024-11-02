@@ -269,9 +269,20 @@
   alist - association list
   plist - property list
   @lisp{
-    (plistp '(:x 42))                                 ; => t
-    (plist-get (plist-put '(:x 42) ':port 42) ':port) ; => 42 (#o52, #x2a, ?*)
-    (plist-member '(:x 42) :x)                        ; => (:x 42)
+    (plistp '(:x 1))                          ; => t
+    (plist-get (plist-put '(:x 1) ':y 2) ':x) ; => 1 (#o52, #x2a, ?*)
+    (plist-member '(:x 1) :x)                 ; => (:x 1)
+    (plist-member '(:x 1) :y)                 ; => nil
+    ;;
+    (defun plist-keys (lst)
+      "Return a list of keys in plist LST."
+      (let (keys)
+        (while lst
+          (push (car lst) keys)  ; Add the key to the list
+          (setq lst (cdr lst)))  ; Move to the next pair
+        (nreverse keys)))
+    ;; Usage
+    (plist-keys (plist-put '(:x 42) ':y 24)) ;; => '(:x :y)
   }
 
   ;; https://endlessparentheses.com/get-in-the-habit-of-using-sharp-quote.html
