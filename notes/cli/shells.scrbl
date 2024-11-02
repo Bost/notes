@@ -257,6 +257,8 @@
   # \cr - Ctrl+r: search history
   # \cu backward-kill-line
   # \cy - Ctrl+y: yank
+  # \cz - Ctrl+z: undo
+  # \e/ - Alt+/: redo
   # \ee - Alt+e: edit_command_buffer - run Emacs
   # \eh - Alt+h: __fish_man_page
   # \el - Alt+l: __fish_list_current_token
@@ -270,7 +272,6 @@
   # \e. - Alt+.: history-token-search-backward
   # get the parameter / argument of the last command
   Esc-. ???
-
 
   # bash key bindings / shortcuts
   # \cl - Ctrl+l: clear
