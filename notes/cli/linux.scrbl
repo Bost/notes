@@ -324,7 +324,8 @@
   # -o   <output_file>
   # -v   verbose
   # -b   block size in bytes; 4MB = 4194304 = (* 4 1024 1024)
-  sudo badblocks -nsv -b 4194304 -o badblocks-errors.log $diskRoot
+  set tstp (date +"%Y-%m-%d_%H-%M-%S")
+  sudo badblocks -nsv -b 4194304 -o ~/badblocks.$tstp.log $diskRoot
   sudo fsck    -C -V $diskPart    # for ext2/ext3/ext4 filesystem (linux)
   sudo ntfsfix       $diskPart    # for ntfs filesystem (windows)
 
