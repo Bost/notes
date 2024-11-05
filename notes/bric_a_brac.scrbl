@@ -1,10 +1,20 @@
 #lang notes
 
+@block{@block-name{An arbitrary precision calculators}
+  Coq can be compiled to OCaml?
+  Write part of your program in Coq and prove its correctness, and then write
+  the rest in pleasant OCaml.
+}
 
-@block{@block-name{bc - An arbitrary precision calculator language}
-  printf "1 / 2\nquit\n" > /tmp/math.txt
-  bc --quiet --mathlib /tmp/math.txt 
+@block{@block-name{An arbitrary precision calculators}
+  $ printf "1 / 2\nquit\n" > /tmp/math.txt
+  $ bc --quiet --mathlib /tmp/math.txt 
   .50000000000000000000
+  #
+  # dc is a reverse-polish desk calculator
+  $ printf "3 4 * 5 6 * + p\nquit\n" > /tmp/math.txt  # p is probably for `print`
+  $ dc --file /tmp/math.txt
+  42
 }
 
 @block{@block-name{Sway / i3 / keys keybingings / Refcard / Reference Card}
