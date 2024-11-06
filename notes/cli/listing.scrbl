@@ -54,4 +54,6 @@
   ls --human-readable --size (readlink (which guile))
   16K /gnu/store/1gd9nsy4cps8fnrd1avkc9l01l7ywiai-guile-3.0.9/bin/guile
 
+  # list only links. '-ls' lists current file in 'ls -dils'
+  find /path/to/dir -maxdepth 1 -type l -ls
 }
