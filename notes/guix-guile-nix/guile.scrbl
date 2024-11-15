@@ -1,19 +1,13 @@
 #lang notes
 
-@block{@block-name{Guile Scheme}
-  ;; `iota` in Guile Scheme is similar to `range` in Clojure
-  (iota 6)        ⇒ (0 1 2 3 4 5)
-  (iota 4 2.5 -2) ⇒ (2.5 0.5 -1.5 -3.5)
-
-  (define my-list '(a b c d e))
-  (list-ref my-list 2)  ;; nth element of a list
-
-  https://sourcegraph.com/search
-  https://sourcehut.org
-  https://codeberg.org
-
-  (define circular-list (let ((x '(1 2 3))) (set-cdr! (cddr x) x) x))
-  (length+ circular-list) ;; => #f
+@block{@block-name{List-like structures}
+  | Feature     | Alist Association List | Plist Property List          | Hash Table                        |
+  |-------------+------------------------+------------------------------+-----------------------------------|
+  | Structure   | List of pairs          | Flat list w/ alternating K/V | Specialized hash table object     |
+  | Lookup Time | Linear (O(n))          | Linear (O(n))                | Constant (O(1))                   |
+  | Mutability  | Immutable (functional) | Immutable (functional)       | Mutable                           |
+  | Syntax      | ((k . v) ...)          | (k v k v ...)                | Hash table procedures             |
+  | Best For    | Small datasets         | Passing keyword arguments    | Large datasets w/ frequent access |
 
   alist - association list, i.e. dictionary
   https://www.gnu.org/software/guile/manual/html_node/Alist-Example.html
@@ -34,6 +28,22 @@
   (hash-set! ht "two" 2)
   (hash-set! ht "three" 3)
   (hash-for-each (lambda (key value) (format #t "~a => ~a~%" key value)) ht)
+}
+
+@block{@block-name{Guile Scheme}
+  ;; `iota` in Guile Scheme is similar to `range` in Clojure
+  (iota 6)        ⇒ (0 1 2 3 4 5)
+  (iota 4 2.5 -2) ⇒ (2.5 0.5 -1.5 -3.5)
+
+  (define my-list '(a b c d e))
+  (list-ref my-list 2)  ;; nth element of a list
+
+  https://sourcegraph.com/search
+  https://sourcehut.org
+  https://codeberg.org
+
+  (define circular-list (let ((x '(1 2 3))) (set-cdr! (cddr x) x) x))
+  (length+ circular-list) ;; => #f
 
   Create and publish Guile projects
   https://gitlab.com/a-sassmannshausen/guile-hall
