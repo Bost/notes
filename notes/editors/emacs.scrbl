@@ -674,7 +674,7 @@
   M-x gnus  ;; read news, email, rss
   M-x grep
   M-x dbg
-  M-x ediff
+  M-x ediff      ;; dwim - Do What I Mean: action based on the current context
   M-x compile
   M-x man
   M-x erc/default-servers or M-x erc
