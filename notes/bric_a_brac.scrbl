@@ -1,5 +1,16 @@
 #lang notes
 
+@block{@block-name{ChatGPT Raccourcis clavier}
+  | Ouvrir un nouveau chat                  | Ctrl Shift o           |
+  | Focus sur la saisie dans le chat        | Shift Esc              |
+  | Copier le dernier bloc de code          | Ctrl Shift ;           |
+  | Copier la dernière réponse              | Ctrl Shift c           |
+  | Définir des instructions personnalisées | Ctrl Shift i           |
+  | Activer/désactiver la barre latérale    | Ctrl Shift s           |
+  | Supprimer le chat                       | Ctrl Shift <backspace> |
+  | Afficher les raccourcis                 | Ctrl /                 |
+}
+
 @block{@block-name{An arbitrary precision calculators}
   Coq can be compiled to OCaml?
   Write part of your program in Coq and prove its correctness, and then write
