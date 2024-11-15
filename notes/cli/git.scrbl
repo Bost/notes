@@ -154,7 +154,7 @@
 
   # show content of file in the ...
   git show ff0011:file.txt # ... commit ff0011
-  git show :0:file         # ... stage area (i.e. index)
+  git show :0:file         # ... stage area (i.e. index, incoming changes)
   git show :1:file         # ... common ancestor
   git show :2:file         # ... target on the current branch where I am
   git show :3:file         # ... the one I am bringing in
@@ -362,7 +362,7 @@
   # list the contents of a tree object; like ls -a
   git ls-tree branchName path/to/file
 
-  # show info about files in the index and the working tree
+  # show info about files in the index (incoming changes) and the working tree
   git ls-files --cached
   git ls-files --deleted
   git ls-files --modified

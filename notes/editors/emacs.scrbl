@@ -674,10 +674,15 @@
   M-x gnus  ;; read news, email, rss
   M-x grep
   M-x dbg
-  M-x ediff      ;; dwim - Do What I Mean: action based on the current context
+  M-x ediff / M-x magit-ediff-dwim
   M-x compile
   M-x man
   M-x erc/default-servers or M-x erc
+
+  M-x magit-ediff-dwim
+  Think of HEAD as "What you had" (your branch's committed state)
+  Think of index as "What you're getting" (the incoming changes)
+  dwim - Do What I Mean: action based on the current context
 
   ;; M-x speedbar
   ;; Summarize information related to the current buffer. Its original
