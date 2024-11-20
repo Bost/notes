@@ -157,6 +157,11 @@
 }
 
 @block{@block-name{Various}
+  # webcam; See:
+  # https://www.onlinemictest.com/webcam-test/
+  # https://webcamtests.com/
+  guvcview --control_panel
+
   # --since doesn't work if used without -T / --ctime ... ugh
   set LANG en; sudo dmesg --ctime --since="2024-10-26T12:00:00"; set --erase LANG
   #
