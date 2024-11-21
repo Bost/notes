@@ -174,7 +174,8 @@
   # -I, --no-ignore
   # -p, --full-path   search pattern is matched against the full path
   # regex:
-  fd --extension rkt   # find -name "*.rkt"
+  fd --extension rkt                  # find ./ -name "*.rkt"
+  fd --no-ignore-vcs --extension go   # find ./ -name "*.go"
   fd --no-ignore --hidden --full-path '.envrc$' /path/to/dir
   fd --no-ignore --absolute-path <some-file-ignored-by-git>
 
