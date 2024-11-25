@@ -90,14 +90,17 @@
   # examples
   gpg --list-public-keys # gpg --list-keys
   set gpgPubKey ...
-  gpg --encrypt --output file.txt.gpg --recipient $gpgPubKey file.txt
-  gpg --encrypt --output file.txt.gpg --recipient foo@"@"domain.org file.txt
-  gpg --decrypt file.txt.gpg --output file.txt
+  set fPlainText "file.txt"
+  set fEncrypted "file.txt.gpg"
+  gpg --encrypt --output $fEncrypted --recipient $gpgPubKey $fPlainText && shred --verbose --remove $fPlainText
+  gpg --encrypt --output $fEncrypted --recipient $gpgPubKey $filePlainText
+  gpg --encrypt --output $fEncrypted --recipient foo@"@"domain.org $filePlainText
+  gpg --decrypt $fEncrypted --output $filePlainText
   gpg --decrypt --quiet --for-your-eyes-only --no-tty ~/.passwords/gmail.gpg
 
   # encrypt / decrypt a folder / directory
-  gpgtar --encrypt --output filename.gpg --recipient $gpgPubKey /path/to/dir
-  gpgtar --decrypt filename.gpg
+  gpgtar --encrypt --output $fEncrypted --recipient $gpgPubKey /path/to/dir
+  gpgtar --decrypt $fEncrypted
 
   # Encrypt Both File Content and Filename
   # -c --symmetric
@@ -107,7 +110,7 @@
   # Decrypt the Filename and File Content
   gpg --decrypt filename.gpg > decrypted_filename.txt && \
   gpg --decrypt filecontent.gpg > "$(cat decrypted_filename.txt)" && \
-  rm decrypted_filename.txt  # or permanent delete by `shred`
+  rm decrypted_filename.txt  # or: shred --verbose --remove decrypted_filename.txt
 
   # -A NUM, --after-context=NUM
   # man gpg | grep --after-context=2 show-usage
