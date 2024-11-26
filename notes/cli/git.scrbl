@@ -165,12 +165,15 @@
   # copy file from a BRANCH to /path/to/file
   git checkout BRANCH -- /path/to/file
 
-  # :restore :revert - revert uncommited changes in path/to/file
+  # revert / restore uncommited changes in path/to/file
   git checkout path/to/file
 
-  # :reset :revert - restore file(s) from (before) a specific revision
+  # revert / restore file(s) from (before) a specific revision
   git checkout <revision>   -- file1/to/restore file2/to/restore
   git checkout <revision>~1 -- file1/to/restore file2/to/restore
+
+  # revert / restore file under some different / new name
+  git show <revision>:/path/to/file > /path/to/newfile
 
   # show current branch and changes made since last commit
   # -s, --short   Give the output in the short-format.
