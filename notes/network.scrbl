@@ -134,12 +134,13 @@
   PXE Preboot eXecution Environment (read "pixie")
   Needs a PXE-capable NIC, uses DHCP and TFTP
 
-  UEFI Unified Extensible Firmware Interface
-  GUID Globally Unique Identifier - part of the UEFI
-  GPT  GUID (Globally Unique Identifier) Partition Table
-  Coreboot - extended firmware platform: fast and secure boot experience on
-  modern computers and embedded systems.
-
+  | EFI      | Extensible Firmware Interface                                                         |
+  | UEFI     | Unified Extensible Firmware Interface                                                 |
+  | GUID     | Globally Unique Identifier - part of the UEFI                                         |
+  | GPT      | GUID (Globally Unique Identifier) Partition Table                                     |
+  | MBR      | Master Boot Record (old, replaced by GPT)                                             |
+  | Coreboot | extended firmware platform: fast & secure boot on modern computers / embedded systems |
+  
   Loop Device, vnd (vnode disk), or lofi (loop file interface): pseudo-device
   that makes a computer file accessible as a (mounted) block device.
 
