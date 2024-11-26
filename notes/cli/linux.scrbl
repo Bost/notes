@@ -1623,36 +1623,45 @@
   set --local diskRoot /dev/sd<letter>
   set --local diskPart /dev/sd<letter><number>
   #
-  # 1. erase everything on the disk
+  # 1. Erase whole disk:
+  sudo wipefs --all $diskRoot
+  # sudo dd if=/dev/zero of=$diskRoot bs=4M count=1 # count=1: write only one block
   # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
-  sudo dd if=/dev/zero of=$diskRoot bs=M status=progress && sync
+  sudo dd if=/dev/zero of=$diskRoot bs=4M status=progress && sync
   #
-  # 2. make a new partition on the device using:
-  sudo fdisk $diskRoot   # GUID (Globally Unique Identifier) Partition Table
+  # 2. Create a new partition: (possible partition table types: GPT or MBR)
+  sudo parted $diskRoot --script mklabel GPT
+  sudo parted $diskRoot --script mkpart <lbl-part-...> ext4 0% 100%
   # or:
-  # sudo parted --script $diskRoot mkpart primary ext4 0% 100%
+  ## sudo fdisk $diskRoot   # GUID (Globally Unique Identifier) Partition Table
+  ## Inside fdisk:
+  ## 1. Press 'o' to create a new partition table.
+  ## 2. Press 'n' to create a new partition.
+  ## 3. Press 'p' for primary, accept defaults for partition size.
+  ## 4. Press 'w' to write changes.
   #
-  # 3. create / format ext2/ext3/ext4 filesystem
-  sudo mkfs.ext4 $diskPart   # may not be needed: sudo eject $diskRoot
+  # 3. Format partition as ext4 (or ext2 or ext3):
+  sudo mkfs.ext4 $diskPart -L <lbl-fsys-...> # -L <volume-label>
   #
-  # 4. label the partition
-  sudo parted --script $diskRoot name 1 <lbl-part-...> # partition-label
+  # 4. Label partition number 1:
+  sudo parted $diskRoot --script name 1 <lbl-part-...>
   #
-  # 6. label the filesystem (not partition!)
-  sudo e2label $diskPart <lbl-fsys-...>   # filesystem-label, not partition-label!!!
-  #
-  # 7. verify
+  # 5. verify:
   lsblk --output \
           FSTYPE,PARTTYPE,PATH,MODEL,TRAN,LABEL,SIZE,PARTLABEL,MOUNTPOINTS \
-        | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
+        | sed 's/PARTLABEL/PARTLBL  /g' | sed 's/LABEL/FSLBL/g'
+  #
+  sudo parted $diskRoot print
+  sudo fdisk --list $diskRoot
   #
   # In the context of Linux tools like blkid and lsblk, it is not possible to
   # assign a custom label directly to the entire hard drive (as opposed to
   # partitions or filesystems) that would appear as a "disk label" in their
   # output.
   #
-  # see also:
+  # See also:
   # sudo tune2fs -L <lbl-part-...> $diskPart   # partition-label
+  # sudo e2label $diskPart <lbl-fsys-...>      # filesystem-label
 
   # partition manipulation: resize / create / delete partitions
   # parted               # CLI / command line version of gparted
