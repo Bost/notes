@@ -96,7 +96,7 @@
   git branch           --contains <commit>
   git branch --remotes --contains <commit>
 
-  # file changes against remote branch
+  # show file changes against remote branch
   git diff <branch1> <branch2> <filepath>
 
   # show particular changed word / staged changes
@@ -168,9 +168,8 @@
   # :restore :revert - revert uncommited changes in path/to/file
   git checkout path/to/file
 
-  # :reset :revert - restore file from a specific revision
-  git checkout <revision> -- file1/to/restore file2/to/restore
-  # :reset :revert - restore file from before a specific revision
+  # :reset :revert - restore file(s) from (before) a specific revision
+  git checkout <revision>   -- file1/to/restore file2/to/restore
   git checkout <revision>~1 -- file1/to/restore file2/to/restore
 
   # show current branch and changes made since last commit
@@ -183,11 +182,11 @@
 
   # How to apply a patch generated with git format-patch?
   # https://stackoverflow.com/a/2250170
-  git apply --stat a_file.patch
+  git apply --stat file.patch
   # dry run to detect errors:
-  git apply --check a_file.patch
+  git apply --check file.patch
   # apply the patch as a commit. It also allows to sign off an applied patch.
-  git am --signoff < a_file.patch
+  git am --signoff < file.patch
 
   # Troubleshoot Git Patch Error: patch does not apply.
   # Run 1.:
@@ -252,7 +251,7 @@
 
   # join all lines
   $ git shortlog --regexp-ignore-case --summary --numbered --grep='.*release.*since.*' | awk '{print $1}' | tr '\n' ' '
-  2 1 1 1 1 1 1 ⏎                                                                                                                                                                ╭─    ~/dev/guix   master ⇡1 ?1 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── ✔    14:46:56
+  2 1 1 1 1 1 1
   # join all lines into columns
   $ git shortlog --regexp-ignore-case --summary --numbered --grep='.*release.*since.*' | awk '{print $1}' | paste -d " " - - -
   2 1 1
