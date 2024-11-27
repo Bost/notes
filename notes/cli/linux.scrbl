@@ -1625,9 +1625,9 @@
   #
   # 1. Erase whole disk:
   sudo wipefs --all $diskRoot
-  # sudo dd if=/dev/zero of=$diskRoot bs=4M count=1 # count=1: write only one block
+  sudo dd if=/dev/zero of=$diskRoot bs=4M count=1 # count=1: write only one block
   # convert and copy a file; bs=BYTES  read & write up to BYTES at a time
-  sudo dd if=/dev/zero of=$diskRoot bs=4M status=progress && sync
+  # sudo dd if=/dev/zero of=$diskRoot bs=4M status=progress && sync
   #
   # 2. Create a new partition: (possible partition table types: GPT or MBR)
   sudo parted $diskRoot --script mklabel GPT
@@ -1643,10 +1643,7 @@
   # 3. Format partition as ext4 (or ext2 or ext3):
   sudo mkfs.ext4 $diskPart -L <lbl-fsys-...> # -L <volume-label>
   #
-  # 4. Label partition number 1:
-  sudo parted $diskRoot --script name 1 <lbl-part-...>
-  #
-  # 5. verify:
+  # 4. verify:
   lsblk --output \
           FSTYPE,PARTTYPE,PATH,MODEL,TRAN,LABEL,SIZE,PARTLABEL,MOUNTPOINTS \
         | sed 's/PARTLABEL/PARTLBL  /g' | sed 's/LABEL/FSLBL/g'
@@ -1660,6 +1657,7 @@
   # output.
   #
   # See also:
+  # sudo parted $diskRoot --script name 1 <lbl-part-...> # Label partition nr 1
   # sudo tune2fs -L <lbl-part-...> $diskPart   # partition-label
   # sudo e2label $diskPart <lbl-fsys-...>      # filesystem-label
 
