@@ -89,8 +89,8 @@
   history -w /dev/stdout
 
   # bash
-  # remove line from shell history (i.e. password) see also ~/.bash_history
-  history -d
+  # remove line(s) from shell history (i.e. password) see also ~/.bash_history
+  history -d <cmdNrX> <cmdNrY>
 
   # fish-shell see also ~/.config/fish/fish_history
   history delete --contains <substring>
@@ -150,11 +150,11 @@
   test -d /path/to/dir                       # directory exists
   # true if the length of $myvar is non-zero i.e. non-empty string
   # https://stackoverflow.com/a/47743269; always use "" around the myvar
-  test -n "$myvar" && echo "true: defined-and-non-empty: '$myvar'" || echo "false: undef-or-empty"
+  test -n "$myvar" && echo "true: defAndNonEmpty: '$myvar'" || echo "false: undefOrEmpty"
   # true if the length of $myvar is zero i.e. empty string
-  test -z "$myvar" && echo "true: undef-or-empty" || echo "false: defined-and-non-empty: '$myvar'"
-  set -q myvar && echo "myvar is set to '$myvar'" || echo "myvar is unset"
-  test -z "$myvar" && echo "myvar is empty: '$myvar'" || echo "myvar is not empty: '$myvar'"
+  test -z "$myvar" && echo "true: undefOrEmpty" || echo "false: defAndNonEmpty: '$myvar'"
+  set -q myvar && echo "myvar set to '$myvar'" || echo "myvar unset"
+  test -z "$myvar" && echo "myvar empty: '$myvar'" || echo "myvar not empty: '$myvar'"
 
   # fish shell: (sequencing) empty array; no indexOutOfBounds thrown / produced
   set aaa  # empty array
@@ -171,8 +171,8 @@
   # ${var+x} is a parameter expansion which evaluates to nothing if var is
   # unset, and substitutes the string x otherwise.
   # variable blank vs. unset - see https://stackoverflow.com/a/13864829
-  if [ -z ${myvar+x} ]; then echo "myvar is unset"; else echo "myvar is set to '$myvar'"; fi
-  test -z ${myvar+x} &&      echo "myvar is unset"  ||   echo "myvar is set to '$myvar'"
+  if [ -z ${myvar+x} ]; then echo "myvar unset"; else echo "myvar set to '$myvar'"; fi
+  test -z ${myvar+x} &&      echo "myvar unset"  ||   echo "myvar set to '$myvar'"
 
   # bash string equality / compare
   # See https://tldp.org/LDP/abs/html/comparison-ops.html
@@ -229,15 +229,14 @@
   [ -f "$file" ] && printf -- "is a regular file\n" || printf -- "else ...\n"
   [[ -f $file ]] && printf -- "is a regular file\n" || printf -- "else ...\n"
   #
-  # double brackets lets you use && and || operators for boolean tests and < and >
+  # double brackets lets you use && and || operators for boolean tests and <, >
   # for string comparisons. single bracket cannot do this.
-  #
   # =~ does regular expression matches
-  [ "$answer" = y -o "$answer" = yes ] && printf -- "then...\n" || printf -- "else...\n"
-  [[ $answer =~ ^y(es)?$ ]]            && printf -- "then...\n" || printf -- "else...\n"
+  [ "$answer" = y -o "$answer" = yes ] && echo "then..." || echo "else..."
+  [[ $answer =~ ^y(es)?$ ]]            && echo "then..." || echo "else..."
   #
-  # pattern matching aka globbing for free. Maybe you're less strict about how to
-  # type yes. Maybe you're okay if the user types y-anything:
+  # pattern matching aka globbing for free. Maybe you're less strict about how
+  # to type yes. Maybe you're okay if the user types y-anything:
   [[ $ANSWER = y* ]] && printf -- "then...\n" || printf -- "else...\n"
 }
 
@@ -277,7 +276,7 @@
   # \cl - Ctrl+l: clear
   # \cr - Ctrl+r: search history
   # \cg - C-g / Ctrl+g: abort history
-  
+
   # bind: list of available shell commands; doesn't work on Guix
   /etc/inputrc
 
@@ -285,7 +284,7 @@
   # type partial cmd, kill this cmd, check something you forgot, yank the cmd,
   # resume typing
   C-u ... C-y / Ctrl-u ... Ctrl-y
-  
+
   # alias escape command aliases
   \\\[command\]
 
@@ -313,7 +312,7 @@
   $$   # TODO check: process ID of the shell / count of arguments
   $!   # process ID of the most recently executed background process
   !$   # last argument of the last command
-  $?   # last cmd exit / return code / retcode (0: success); adduser joe; echo $?
+  $?   # last cmd exit / return code / retcode (0 success); adduser joe; echo $?
   !:-  # last command without the last argument
   :    # if; no-op, nope, empty operation
   > file.txt  # empty file.txt
