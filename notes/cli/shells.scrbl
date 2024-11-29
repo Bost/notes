@@ -34,9 +34,9 @@
   # can't assume if can request input or that someone will see the output. E.g
   # Maybe it is best to write output to a log-file.
   #
-  # Login: shell is run as part of the login of the user to the system. Typically
-  # used to do any configuration that a user needs/wants to establish his
-  # work-environment.
+  # Login: shell is run as part of the login of the user to the system.
+  # Typically used to do any configuration that a user needs/wants to establish
+  # his work-environment.
   #
   # Non-login: Any other shell run by the user after logging on, or which is run
   # by any automated process which is not coupled to a logged in user.
