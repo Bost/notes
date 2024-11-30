@@ -1016,7 +1016,7 @@
   sudo cfdisk
   findmnt --real --output \
             TARGET,SOURCE,SIZE,LABEL,PARTLABEL \
-          | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
+          | sed 's/PARTLABEL/PARTLBL  /g' | sed 's/LABEL/FSLBL/g'
   sudo vgdisplay
   sudo lvdisplay
   sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
@@ -1477,11 +1477,11 @@
   # TRAN          device transport type. E.g. usb / sata / ...
   # lsblk --exclude 7 --nodeps --output \
   #         PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS \
-  #       | rg --invert-match /dev/ram | sed 's/PARTLABEL/PART_LBL/g' \
-  #       | sed 's/LABEL/FSYS_LBL/g'
+  #       | rg --invert-match /dev/ram
+  #       | sed 's/PARTLABEL/PARTLBL  /g' | sed 's/LABEL/FSLBL/g'
   lsblk --output \
           PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS \
-        | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
+        | sed 's/PARTLABEL/PARTLBL  /g' | sed 's/LABEL/FSLBL/g'
   set --local isoImg   /path/to/file.iso
   set --local diskRoot /dev/sd<letter>         # full disk device
   set --local diskPart /dev/sd<letter><number> # partition on a full disk device
@@ -1609,11 +1609,11 @@
   lsblk --nodeps
   lsblk --output \
           FSTYPE,PARTTYPE,PATH,MODEL,TRAN,LABEL,SIZE,PARTLABEL,MOUNTPOINTS \
-        | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
+        | sed 's/PARTLABEL/PARTLBL  /g' | sed 's/LABEL/FSLBL/g'
   # find mounted filesystem
   findmnt --real --output \
             TARGET,SOURCE,SIZE,LABEL,PARTLABEL \
-          | sed 's/PARTLABEL/PART_LBL/g' | sed 's/LABEL/FSYS_LBL/g'
+          | sed 's/PARTLABEL/PARTLBL  /g' | sed 's/LABEL/FSLBL/g'
   blkid   # locate/print block device attributes; show the UUIDs
   ls -la /dev/usb
 

@@ -94,7 +94,9 @@
   gpg --verify $isoImg.sig    # look for 'Good signature'
   # write the iso image to USB (erase / overwrite its content)
   # '--exclude 7' means 'exclude loop devices' https://askubuntu.com/a/1142405
-  lsblk --exclude 7 --nodeps --output MAJ:MIN,PATH,MODEL,TRAN,LABEL,SIZE
+  lsblk --output \
+          PATH,MODEL,TRAN,LABEL,PARTLABEL,SIZE,MOUNTPOINTS \
+        | sed 's/PARTLABEL/PARTLBL  /g' | sed 's/LABEL/FSLBL/g'
   set --local diskRoot /dev/sd<letter>
   set --local diskPart /dev/sd<letter><number>
   udisksctl unmount --block-device=$diskPart
