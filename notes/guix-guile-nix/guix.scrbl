@@ -489,6 +489,7 @@
   https://guix.gnu.org/en/manual/devel/en/guix.html#Submitting-Patches
 
   git format-patch origin/master
+  # multiple recipiensts: --to=name1@"@"example.com --to=name2@"@"example.com
   git send-email --to=guix-patches@"@"gnu.org *.patch
   info "(guix)Submitting Patches"
 }
