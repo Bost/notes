@@ -151,7 +151,9 @@
 
   # spawn one-off software environments
   guix shell
-  # load / unload packages one by one. `guix shell` needs a list of packages upfront.
+
+  # load / unload packages one by one. `guix shell` needs a list of packages
+  # upfront.
   guix install guix-modules
 
   # build packages or derivations without installing them
@@ -267,29 +269,27 @@
   #   export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
   #   export GIT_SSL_CAINFO="$SSL_CERT_FILE"
   #
-  guix shell direnv gnupg help2man git strace glibc-locales --development guix --pure
-  jobs=$[$(nproc) * 95 / 100] # use 95% of the available CPU cores
+  guix shell direnv gnupg help2man git strace glibc-locales -D guix --pure
   # --check            check if the shell clobbers environment variables
   # --pure             unset existing environment variables
-  # --development -D   include the development inputs of the next package,
-  #                    i.e. 'guix'
+  # -D, --development  add development inputs of the next package, i.e. 'guix'
   # Using glibc-locales should prevent 'warning: failed to install locale'
   ./bootstrap && ./configure --localstatedir=/var --sysconfdir=/etc
   # on error:
-  #   configure: error: 'guild' binary not found; please check your Guile installation.
+  #   configure: error: 'guild' binary not found; please check <...>
   # do:
   #   ./configure GUILE=$(which guile) --localstatedir=/var
-  make --jobs=$jobs  # first run takes a couple of minutes
-  # make --jobs=$jobs check  # optional
+  make --jobs=<N>  # first run takes a couple of minutes
+  # make --jobs=<N> check  # optional
   # Authenticate all the commits in your checkout by:
-  make --jobs=$jobs authenticate GUIX_GIT_KEYRING=keyring
+  make --jobs=<N> authenticate GUIX_GIT_KEYRING=keyring
   # This fetches the public key of the issuer of SIG from KEYRING, a keyring as
   # returned by 'get-openpgp-keyring'.
 
-  # when record ABI mismatch; recompilation needed # rebuild
-  # make --jobs=$jobs clean-go # delete the .go (Guile Object) files
+  # when 'record ABI mismatch; recompilation needed' rebuild by
+  # make --jobs=<N> clean-go # delete the .go (Guile Object) files
   ./pre-inst-env guix home --fallback -L $dotf/guix/home/ container $dotf/guix/home/home-configuration.scm
-  ./pre-inst-env guix system --cores=$jobs image -t iso9660 gnu/system/install.scm
+  ./pre-inst-env guix system --cores=<N> image -t iso9660 gnu/system/install.scm
   rm -rf $HOME/system-images/guix-system.img
   cp /gnu/store/<checksum>-image.iso $HOME/system-images/my-guix-image.iso
   #
@@ -306,7 +306,7 @@
   # Qemu drop to TTY:
   # Use Ctrl + Alt + 2 to switch to the QEMU console.
   # Type sendkey ctrl-alt-f1 and press Enter .
-  # Use Ctrl + Alt + 1 to switch back to the virtual system, which should now by at TTY1.
+  # Use Ctrl + Alt + 1 to switch back to the virtual system (should be at TTY1)
   #
   ## Set up the installation environment using herd - probably not needed?
   # herd start cow-store /mnt
@@ -323,22 +323,22 @@
   - When guix pull obtains code from Git, it should be able to tell that all the
     commits it fetched were pushed by authorized developers of the project.
   - It requires cryptographically signed commits
-  ;;
+  #
   guix git authenticate               \
     --keyring=$(GUIX_GIT_KEYRING)     \
     --cache-key=channels/guix --stats \
     --historical-authorizations=/home/bost/dev/.my-guix-authorisations \
     "$(channel_intro_commit)" "$(channel_intro_signer)"
-  # --cache-key=path/to/KEY reads file from ~/.cache/guix/authentication/path/to/KEY
-  ;;
+  # --cache-key=path/to/KEY reads ~/.cache/guix/authentication/path/to/KEY
+  #
   By signing a commit, a developer asserts that he/she is the one who made the
   commit as its author, or he/she applied somebody else's changes after review.
   This also requires a notion of authorization: commits must have a valid
   signature, and be signed by an authorized key.
-  ;;
+  #
   .guix-authorizations:
-  File that lists the OpenPGP key fingerprints of authorized committers
-  ;;
+  list of OpenPGP key fingerprints of authorized committers
+  #
   A commit is considered authentic if and only if it is signed by one of the
   keys listed in the .guix-authorizations file of each of its parents. This is
   the authorization invariant.
@@ -501,8 +501,8 @@
   sync
   rm -f mytempfile
 
-  cp guix-system-vm-image-1.3.0.x86_64-linux.qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup
-  qemu-img convert -O qcow2 guix-system-vm-image-1.3.0.x86_64-linux.qcow2.backup guix-system-vm-image-1.3.0.x86_64-linux.qcow2
+  set fQcow guix-system-vm-image-1.3.0.x86_64-linux.qcow2
+  cp $fQcow $fQcow.backup && qemu-img convert -O qcow2 $fQcow.backup $fQcow
 }
 
 @block{@block-name{Guile Script portability across Linux & Guix machines}
