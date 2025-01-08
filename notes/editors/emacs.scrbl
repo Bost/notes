@@ -1081,7 +1081,7 @@
   mu index
 }
 
-@block{@block-name{us / american keyboard}
+@block{@block-name{us / american / english keyboard}
   #    ~   ¡   ˝   ¯   £   ¸   ¼   ½   ¾   ˘   °   ̣    ÷   BACKSPACE  # Shift-AltGr; some keys must be pressed 2x
   #    ¬   ¹   ²   ³   ¤   €   ^       ˛   ‘   ’   ¥   ×   BACKSPACE  # AltGr; 2x AltGr-6 inserts a funny char
   #    ~   !   @   #   $   %   ^   &   *   (   )   _   +   BACKSPACE  # Shift
