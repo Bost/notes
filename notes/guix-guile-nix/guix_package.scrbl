@@ -174,9 +174,11 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   # or (B):
   guix package --install-from-file=my-hello.scm
   # or (C) e.g. for the Factorio stable-version:
+  # -L --load-path; -m --manifest; -K --keep-failed; -A --list-available
+  # -i --install
   set lp $dev/games
-  guix package --load-path=$lp --manifest=$lp/games/packages/factorio.scm --list-available=factorio
-  guix package --load-path=$lp --install=factorio  # experimental-version factorio@"@"1.1.78
+  guix package -L $lp -m $lp/games/packages/factorio.scm -A factorio
+  guix package -L $lp -i factorio  # experimental-version factorio@"@"1.1.78
   @lisp{
     (use-modules (guix)     #| package-source |#
                  (guix swh) #| Software Heritage |#)
@@ -186,15 +188,19 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
     (origin-uri (package-source factorio-experimental))
   }
 
+  # -L --load-path; -m --manifest; -K --keep-failed;  -A --list-available
   set lp $dev/guix-packages/src
-  # guix package --load-path=$lp --manifest=./bost/packages/spacemacs.scm --list-available=emacs-spacemacs
-  # guix build --load-path=$lp --keep-failed --load=./spacemacs-settings.scm emacs-spacemacs
-  # guix build --load-path=$lp --keep-failed --expression='(@"@" (gnu) %base-packages)' emacs-spacemacs
+  # guix package -L $lp -m ./bost/packages/spacemacs.scm -A emacs-spacemacs
+  # guix build -L $lp -K --load=./spacemacs-settings.scm emacs-spacemacs
+  # guix build -L $lp -K -e '(@"@" (gnu) %base-packages)' emacs-spacemacs
   set --export GUIX_PACKAGE_PATH $lp/bost/packages/patches
   guix build --load-path=$lp --keep-failed emacs-spacemacs
 
   # build the packages' source derivations: the [at] char must be used twice
-  guix build --expression='(@"@"@"@" (bost gnu packages emacs-xyz) emacs-color-identifiers-mode)' --source
+  # -e --expression; -S --source
+  guix build -S -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
+  # force rebuild
+  guix build --check --no-grafts -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
 
   # obtain / download / clone package source code
   guix build --source emacs-treemacs
