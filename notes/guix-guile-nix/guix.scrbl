@@ -476,11 +476,9 @@
 }
 
 @block{@block-name{Contributing & sending patches}
-  texi files, po files, documentation changes:
-  # compile / recreate / regenerate / rebuild ...
-  make doc/guix.info
-  # ...and view it with the info viewer:
-  info -f doc/guix.info
+  # texi files, po files, documentation changes:
+  # compile / recreate / regenerate / rebuild and view it with the info viewer:
+  make --jobs $cores doc/guix.info && info -f doc/guix.info
 
   Documentation source code
   https://git.savannah.gnu.org/cgit/guix.git/tree/doc/guix.texi
