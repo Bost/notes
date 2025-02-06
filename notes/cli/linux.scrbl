@@ -949,6 +949,9 @@
   sha256sum --check SHA256SUMS.asc | grep OK
   sha256sum -c      SHA256SUMS.asc | grep OK
 
+  # verify checksum of one particular file
+  grep "DeepSeek-R1-Distill-Llama-8B-Q8_0.gguf" SHA256SUMS.asc | sha256sum --check
+
   # difference between nohup, disown, & https://unix.stackexchange.com/a/148698
   # - puts the job in the background, that is, makes it block on attempting to
   # read input, and makes the shell not wait for its completion.
