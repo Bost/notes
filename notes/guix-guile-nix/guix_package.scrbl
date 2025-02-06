@@ -237,20 +237,17 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   rg -N profile /tmp/dead.log
   guix gc --delete ...
 
-  guix graph --type=reverse-package
-  guix graph --path
+  guix graph --path ocaml python-minimal
 
-  # visualize dependencies of / packages needed by / packages required by:
-  guix graph coreutils | xdot - & disown
-  guix graph coreutils | dot -Tpdf > dag.pdf
-
-  # visualize dependencies of / packages needed by / packages required by
+  # graph / visualize dependencies of / packages needed / required by:
+  set pkgDeps (guix graph coreutils)
   # including implicit inputs:
-  guix graph --type=bag-emerged coreutils | xdot - & disown
-  guix graph --type=bag-emerged coreutils | dot -Tpdf > dag.pdf
-
+  set pkgDeps (guix graph --type=bag-emerged coreutils)
   # packages that explicitly depend on:
-  guix graph --type=reverse-package ocaml
+  set pkgDeps (guix graph --type=reverse-package coreutils)
+  #
+  echo $pkgDeps | xdot - & disown
+  echo $pkgDeps | dot -Tpdf > dag.pdf
 }
 
 @block{@block-name{Package Inputs / Outputs}

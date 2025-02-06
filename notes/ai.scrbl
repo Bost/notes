@@ -1,6 +1,12 @@
 #lang notes
 
 @block{@block-name{Various}
+  # System Management Interface
+  nvidia-smi
+
+  # Basic web UI can be accessed via browser: http://localhost:8080
+  # Chat completion endpoint: http://localhost:8080/v1/chat/completions
+  llama-server -m model.gguf --port 8080
 
   Accessing Llama 2 from the command-line with the llm-replicate plugin
   https://simonwillison.net/2023/Jul/18/accessing-llama-2/
