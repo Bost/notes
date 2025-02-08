@@ -198,9 +198,13 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
 
   # build the packages' source derivations: the [at] char must be used twice
   # -e --expression; -S --source
-  guix build -S -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
+  guix build -L $lp -S -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
   # force rebuild
-  guix build --check --no-grafts -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
+  guix build -L $lp --check --no-grafts -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
+
+  # build and test package without installing it
+  guix build -c 24 -K -L $lp -e '(@(bost gnu packages guake) guake)'
+  guix shell -L $lp --file=src/bost/gnu/packages/guake.scm
 
   # obtain / download / clone package source code
   guix build --source emacs-treemacs
