@@ -202,9 +202,14 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   # force rebuild
   guix build -L $lp --check --no-grafts -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
 
-  # build and test package without installing it
+  # build...
   guix build -c 24 -K -L $lp -e '(@(bost gnu packages guake) guake)'
+  # ... and test package without installing it:
   guix shell -L $lp --file=src/bost/gnu/packages/guake.scm
+
+  # -c cmd : program passed in as string (terminates option list)
+  guix shell -f src/bost/gnu/packages/guake.scm -- python -c "print(\"Hello World!\")"
+  guix shell -f src/bost/gnu/packages/guake.scm -- python my_script.py
 
   # obtain / download / clone package source code
   guix build --source emacs-treemacs
