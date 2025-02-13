@@ -3,7 +3,7 @@
 @block{@block-name{flatpak}
   # offers a sandbox to run applications in isolation
 
-  sudo flatpak upgrade
+  sudo flatpak upgrade --assumeyes  # -y  answer yes for all questions
 
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   sudo flatpak install flathub us.zoom.Zoom
