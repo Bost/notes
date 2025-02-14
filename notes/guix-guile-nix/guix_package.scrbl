@@ -211,6 +211,9 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   guix shell -f src/bost/gnu/packages/guake.scm -- python -c "print(\"Hello World!\")"
   guix shell -f src/bost/gnu/packages/guake.scm -- python my_script.py
 
+  # debug output in the Makefile
+  $(info $(shell echo "#### [LOGGER] DESTDIR is '$(DESTDIR)'"))
+
   # obtain / download / clone package source code
   guix build --source emacs-treemacs
 }
