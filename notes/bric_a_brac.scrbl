@@ -533,3 +533,26 @@
   }
 
 }
+
+@block{@block-name{Unites States of America}
+  * US federal government branches
+  ** Executive
+  ** Judicial
+  ** Legislative = bicameral Congress
+  Functions:
+      Legislation: Both chambers must pass a bill for it to become law. The
+                   president can veto it. Congress overrides veto with a 2/3 in
+                   both chambers.
+      Oversight: Over executive branch, ensuring laws are properly implemented.
+                 Investigates misconducts.
+  *** House of Representatives
+      Composition: 435 voting members, represents population of each state.
+                   Members serve two-year terms.
+      Exclusive Powers: Initiates revenue-raising bills (eg. tax laws)
+                        impeaches federal officials.
+  *** Senate
+      Composition: 100 members each serves 6 years. 2 senators per state.
+                   ~1/3 is up for election every 2 years.
+      Exclusive Powers: Confirms presidential appointments (federal judges,
+                        cabinet members (ie ministers), etc.), ratifies treaties.
+}
