@@ -157,6 +157,14 @@
 }
 
 @block{@block-name{Various}
+  # set the keyboard using the X Keyboard Extension
+  $ setxkbmap -query
+  rules:      evdev
+  model:      pc105
+  layout:     us,de,sk,fr
+  variant:    altgr-intl,,qwerty,
+  options:    compose:menu,grp:ctrls_toggle
+
   # webcam; See:
   # https://www.onlinemictest.com/webcam-test/
   # https://webcamtests.com/
