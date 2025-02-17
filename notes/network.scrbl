@@ -119,7 +119,7 @@
   networks
 
   VPN
-  tun0 (on local machine) <-- the tunner --> tun0 (on remote machine)
+  tun0 (on local machine) <-- the tunnel --> tun0 (on remote machine)
   tun0 - tunneling network interface (virtual)
   https://en.wikipedia.org/wiki/TUN/TAP
 
