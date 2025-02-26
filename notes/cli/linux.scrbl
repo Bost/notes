@@ -1481,6 +1481,10 @@
   cp --dereference --recursive ~/.guix-home/ /tmp/
   # -l, --link  : hard link files instead of copying
 
+  # Copy symlink / symbolic link file without the content under the target
+  # -P, --no-dereference    never follow symbolic links in SOURCE
+  cp --no-dereference /path/to/link /path/to/link-copy
+
   # Create bootable usb drive https://askubuntu.com/q/372607
   # (like with usb-creator-gtk)
   # '--exclude 7' means 'exclude loop devices' https://askubuntu.com/a/1142405
