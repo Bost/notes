@@ -254,8 +254,9 @@
       prompt. The regular (VT) ttys use mingetty instead. It's basically always
       stopped - that it could be presented in a less misleading way.
       See https://logs.guix.gnu.org/guix/2020-09-23.log#174932
-    - A2: There is no 'term-auto' service (it's similar to a systemd term@"@"auto
-      instance). See https://logs.guix.gnu.org/guix/2020-03-23.log#213842
+    - A2: There is no 'term-auto' service (it's similar to a systemd
+      term@"@"auto instance). See
+      https://logs.guix.gnu.org/guix/2020-03-23.log#213842
   }
 }
 
@@ -264,10 +265,21 @@
   # revision / older version
   guix time-machine --commit=HEAD   --disable-authentication -- describe
   guix time-machine --commit=<sha1> --disable-authentication -- describe
-  # lock / freeze
+  # lock / freeze; -c --cores
   guix describe --format=channels > /tmp/channels.scm
-  guix pull --channels=/tmp/channels.scm --allow-downgrades --cores=24 && gxhre --cores=24
+  guix pull --channels=/tmp/channels.scm --allow-downgrades -c 24 && gxhre -c 24
   # guix pull --roll-back
+
+  guix time-machine --commit=4270c484ca -- pull
+  # It switches from the current state of GuixOS to the state defined by the
+  # commit 4270c484ca. Then it pulls (according to the rules and defaults of the
+  # 4270c484ca) the latest commit made in the git repository and makes it the
+  # new GuixOS state.
+  #
+  guix pull --commit=4270c484ca
+  # Using the current GuixOS state, it pulls the commit 4270c484ca and makes it
+  # the new GuixOS state. Both commands permanently change the installed GuixOS
+  # version
 
   # Upgrade Guix
   # https://guix.gnu.org/manual/en/html_node/Upgrading-Guix.html
