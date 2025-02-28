@@ -54,6 +54,11 @@
   ls --human-readable --size (readlink (which guile))
   16K /gnu/store/1gd9nsy4cps8fnrd1avkc9l01l7ywiai-guile-3.0.9/bin/guile
 
-  # list only links. '-ls' lists current file in 'ls -dils'
+  # listing only links. '-ls' lists current file in 'ls -dils'
   find /path/to/dir -maxdepth 1 -type l -ls
+
+  # listing only the files without '.sample' extension
+  find .git/hooks -maxdepth 1 -type f ! -name "*.sample" -ls
+  eza --ignore-glob '*.sample' -abghHliS --color=always --time-style=+%d-%m-%Y\ %H:%M:%S .git/hooks/
+
 }
