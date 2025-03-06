@@ -177,6 +177,7 @@
   fd --extension rkt                  # find ./ -name "*.rkt"
   fd --no-ignore-vcs --extension go   # find ./ -name "*.go"
   fd --no-ignore --hidden --full-path '.envrc$' /path/to/dir
+  fd             --hidden --extension=xml '' ~/.config/xfce4/
   fd --no-ignore --absolute-path <some-file-ignored-by-git>
 
   # combine fdfind and ripgrep; show full files paths for the mathes

@@ -465,6 +465,14 @@
   rg 'remotes/origin/' | rg -v master | \
   cut --delimiter="/" --fields=2,3 | \
   xargs git --git-dir=$dgx/.git branch --remote --delete
+
+  # --ancestry-path  only commits that are part of the direct history are shown.
+  # --boundary       include boundary commits
+  # Author Date (%ad): date when the commit was originally authored
+  # Committer Date (%cr): date when the commit was recorded / amended
+  # Committer Date (%cs): short format of %cr
+  git log --oneline --date=short --pretty=format:'%h %ad%d %s (%cr) %an' \
+          --ancestry-path --boundary 1fbc2625d2..9c7ef1994d
 }
 
 @block{@block-name{Mercurial}
