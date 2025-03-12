@@ -76,8 +76,13 @@
   sudo systemctl enable bluetooth
   sudo systemctl start  bluetooth
 
-  bluetoothctl
-  help # list of available commands of bluetoothctl
+  $ bluetoothctl
+  [bluetooth]# help # list of available commands of bluetoothctl
+  [bluetooth]# power on
+  [bluetooth]# scan on
+  [bluetooth]# scan off
+  [bluetooth]# pair <MAC address>
+  [bluetooth]# connect <MAC address>
 
   # rfkill - enable / disable wireless devices
   sudo rfkill list
