@@ -185,11 +185,10 @@
 
   # How to apply a patch generated with git format-patch?
   # https://stackoverflow.com/a/2250170
-  git apply --stat file.patch
-  # dry run to detect errors:
-  git apply --check file.patch
-  # apply the patch as a commit. It also allows to sign off an applied patch.
-  git am --signoff < file.patch
+  git apply --stat file.patch   # preview what the file.patch will do
+  git apply --check file.patch  # dry run to detect errors
+  git am --signoff < file.patch # apply patch as a commit with allowance to
+                                # sign off an applied patch
 
   # Troubleshoot Git Patch Error: patch does not apply.
   # Run 1.:
