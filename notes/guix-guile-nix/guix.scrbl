@@ -160,6 +160,9 @@
   guix build
 
   # challenge substitute servers, comparing their binaries
+  # The hash of the binary file received from the substitute server is (most
+  # probably) not automatically verified. i.e I have to trust the substitute
+  # server that the binary doesn't contains any malicious code
   guix challenge
 
   # download a file to the store and print its hash

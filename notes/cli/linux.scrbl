@@ -1579,6 +1579,12 @@
   text processing, data extraction, reporting tool
   https://learnbyexample.github.io/learn_gnuawk/awk-introduction.html
 
+  # comment out the lines 92 to 93 and preview the edit with bat (the cat clone)
+  sed '92,93 s/^/;;/' /path/to/file.scm | bat --line-range 92:93 --language scm
+  # comment out the line 92 and preview the edit with bat (the cat clone)
+  sed '92 s/^/;;/' /path/to/file.scm | bat --line-range 92:93 --language scm
+  sed "92 s/\(\s*\)\(.*\)/\1;; \2/" /path/to/file.scm | bat -r 92:93 -l scm
+
   # cut huge file: content between lines 10 and 20 / print 5th line
   sed -n "10,20p" /path/to/file / sed -n 5p /path/to/file
 
