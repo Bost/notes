@@ -75,7 +75,7 @@
 
   iptables - configure packet filtering ruleset
 
-  wpa_supplicant utility
+  wpa_supplicant utility (supplicant, Bittsteller, solliciteur, prosebník)
   - for securing wireless / Wi-Fi connection between a client, e.g. laptop or
     smartphone, and a wireless access point, e.g router or modem, using the
     Wi-Fi Protected Access (WPA) and WPA2 security standards.
