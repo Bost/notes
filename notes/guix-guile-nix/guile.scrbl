@@ -150,6 +150,15 @@
       (list x y))
     (fun 1)                             ;; (1 y-default-val)
     (fun 1 2)                           ;; (1 2)
+
+    (map (lambda (a b) (* a b)) (list 1 2) (list 3 4)) ;; (3 8)
+    ;; However:
+    (define* (fun-kw #:key a b) (* a b))
+    (map fun-kw (list #:a 1 #:b 2) (list #:a 3 #:b 4))
+    ;; => In procedure *: Wrong type argument in position 1: #:a
+    (map fun-kw (list 1 2) (list 3 4))
+    ;; => Invalid keyword: 1
+
   }
 }
 

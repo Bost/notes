@@ -3,7 +3,7 @@
 @block{@block-name{Shells: Bash & Fish-shell}
   # check if a file contains only binary zeros
   # https://stackoverflow.com/a/20226139/5151982
-  # bash
+  # bash (`cat` shouldn't be used in scripts, only on command line)
   <file.ext      tr --delete '\0' | read --nchars 1 || echo "All zeroes."
   cat file.ext | tr --delete '\0' | read --nchars 1 || echo "All zeroes."
   # fish-shell
