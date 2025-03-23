@@ -167,6 +167,10 @@
 
   # revert / restore uncommited changes in path/to/file
   git checkout path/to/file
+  # discard unstaged changes in the working directory.
+  git restore .
+  # discard staged and unstaged changes, resetting everything to the last commit
+  git reset --hard
 
   # revert / restore file(s) from (before) a specific revision
   git checkout <revision>   -- file1/to/restore file2/to/restore
@@ -176,7 +180,7 @@
   git show <revision>:/path/to/file > /path/to/newfile
 
   # show current branch and changes made since last commit
-  # -s, --short   Give the output in the short-format.
+  # -s, --short    Give the output in the short-format.
   # -b, --branch   Show the branch and tracking info even in short-format.
   git status --short --branch
 
