@@ -196,7 +196,7 @@
   # '--reject' causes creation of a .rej file containing what cannot be patched
   # 2. Then, manually resolve the conflicts. Alternatively, run:
   git apply --ignore-space-change --ignore-whitespace mypatch.patch
-  # See https://www.delftstack.com/howto/git/git-patch-does-not-apply/#troubleshoot-git-patch-error-patch-does-not-apply
+  # https://www.delftstack.com/howto/git/git-patch-does-not-apply/#troubleshoot-git-patch-error-patch-does-not-apply
 
   # amend commit; reuse commit message
   git commit --amend --no-edit
@@ -252,10 +252,11 @@
   git shortlog --summary --numbered --email
 
   # join all lines
-  $ git shortlog --regexp-ignore-case --summary --numbered --grep='.*release.*since.*' | awk '{print $1}' | tr '\n' ' '
+  # -i, --regexp-ignore-case; -s, --summary; -n, --numbered
+  $ git shortlog -isn --grep='.*release.*since.*' | awk '{print $1}' | tr '\n' ' '
   2 1 1 1 1 1 1
   # join all lines into columns
-  $ git shortlog --regexp-ignore-case --summary --numbered --grep='.*release.*since.*' | awk '{print $1}' | paste -d " " - - -
+  $ git shortlog -isn --grep='.*release.*since.*' | awk '{print $1}' | paste -d " " - - -
   2 1 1
   1 1 1
   1
@@ -432,7 +433,7 @@
   cd path/to/dstProj
   git remote add srcProj /path/to/srcProj
   git fetch srcProj --tags
-  git merge --allow-unrelated-histories srcProj/master # or whichever branch you want to merge
+  git merge --allow-unrelated-histories srcProj/<branch>
   # git merge --continue      # in case any conflicts; after resolving them
   git remote remove srcProj
 
@@ -456,7 +457,8 @@
   # GIT_TRACE=1 shows what git is actually doing. Only in bash. In the
   # fish-shell following doesn't work:
   #    set --local GIT_TRACE 1 git commit --amend --no-edit --gpg-sign
-  GIT_TRACE=1 git commit --amend --no-edit --gpg-sign | rg 'trace: run_command: \(gpg .*\)'
+  GIT_TRACE=1 git commit --amend --no-edit --gpg-sign | \
+              rg 'trace: run_command: \(gpg .*\)'
   echo "dummy" | <put-here-the-gpg-run_command-shown-above>
 
   # delete all remote/origin branches except 'master'
@@ -471,7 +473,11 @@
   # Committer Date (%cr): date when the commit was recorded / amended
   # Committer Date (%cs): short format of %cr
   git log --oneline --date=short --pretty=format:'%h %ad%d %s (%cr) %an' \
-          --ancestry-path --boundary 1fbc2625d2..9c7ef1994d
+          --ancestry-path --boundary <commit-1>..<commit-2>
+
+  # resolve any conflicts by overriding with the changes made in the <commit>
+  git cherry-pick --strategy-option=theirs      # -X --strategy-option
+
 }
 
 @block{@block-name{Mercurial}
