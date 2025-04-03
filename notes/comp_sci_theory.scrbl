@@ -613,8 +613,8 @@
   Recursive Functions of Symbolic Expressions and their Computation by Machine
   by John McCarthy, which gave birth to the predecessor of Scheme called Lisp.
 
-  A nesting of pairs whose last right value is not the empty list is called
-  improper list
+  A nesting of pairs (cons cells) whose last right value is not the empty list
+  is called improper list
 
   Each occurrence of the (random n) expression can be replaced with a value
   randomly chosen from the range 0 to n − 1. That's nondeterminism - i.e. reason
