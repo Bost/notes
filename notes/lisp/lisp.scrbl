@@ -1,5 +1,27 @@
 #lang notes
 
+@block{@block-name{Cons Cells vs. Lists}
+  Lists are special case/sugar implemented using cons cells. Nesting of pairs.
+
+  Cons cells are more general:
+  - For pairs(!) or Tree nodes, can represent pairs of any two objects
+  - Don't require the cdr to be another cons cell or nil
+  Lists are more specific:
+  - For sequences
+  - Must have nil as the terminating cdr
+
+  (cdr (cons 1 2))  ; => 2
+  (cdr (list 1 2))  ; => (2)
+  (consp '(1 . 2))  ; => t
+  (listp '(1 . 2))  ; => t
+  (length '(1 . 2)) ; => (wrong-type-argument listp 2)
+  ;;
+  (proper-list-p '(1 . 2)) ; => nil
+  (proper-list-p '(1 2))   ; => 2
+  (proper-list-p nil)      ; => 0
+
+}
+
 @block{@block-name{lisp-1 vs. lisp-2}
   lisp-1: single-value-name languages: Scheme, Clojure, etc.
   lisp-2: multi-value-name languages: Emacs Lisp, Common Lisp

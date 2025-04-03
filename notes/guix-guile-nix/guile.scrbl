@@ -116,7 +116,7 @@
   Ports are the way that Guile performs input and output
 }
 
-@block{@block-name{Partial function application.}
+@block{@block-name{Partial function application}
   Notation for Specializing Parameters without Currying
   https://srfi.schemers.org/srfi-26/srfi-26.html
 
