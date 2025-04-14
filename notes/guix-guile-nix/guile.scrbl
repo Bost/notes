@@ -31,6 +31,9 @@
 }
 
 @block{@block-name{Guile Scheme}
+  ;; sort list alphabetically
+  (sort (list "a" "c" "b") string<?)
+
   ;; `iota` in Guile Scheme is similar to `range` in Clojure
   (iota 6)        ⇒ (0 1 2 3 4 5)
   (iota 4 2.5 -2) ⇒ (2.5 0.5 -1.5 -3.5)
