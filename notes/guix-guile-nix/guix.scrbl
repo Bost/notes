@@ -177,7 +177,7 @@
   # compute the cryptographic hash of a file
   guix hash
 
-  # import a package definition from an external repository
+  # add / import a package definition from an external repository
   guix import
 
   # find errors and validate package definitions
@@ -618,8 +618,8 @@
   gpg --keyserver keyserver.ubuntu.com --search-keys email@"@"address.com
   gpg --list-keys
 
-  # add a package to the distribution
-  guix import
+  # add / import a package to the distribution
+  guix import elpa --archive=melpa vline
 
   # Update package definitions to the latest style. `guix style` may not do any
   # change or throw: error: mkstemp: Read-only file system

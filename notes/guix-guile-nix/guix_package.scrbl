@@ -82,6 +82,7 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
 @block{@block-name{Substitutes}
   https://guix.gnu.org/manual/en/html_node/Substitutes.html
   guix weather       # report on the availability of pre-built package binaries
+  guix weather --system=x86_64-linux --substitute-urls="https://bordeaux.guix.gnu.org https://ci.guix.gnu.org" python-numpy
 
   Substitute is a pre-built item which can be downloaded from a server, i.e. a
   substitute for local build result. It can be anything resulting from a
