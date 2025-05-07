@@ -189,7 +189,7 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
     (origin-uri (package-source factorio-experimental))
   }
 
-  # -L --load-path; -m --manifest; -K --keep-failed;  -A --list-available
+  # -L --load-path; -m --manifest; -K --keep-failed; -A --list-available
   set lp $dev/guix-packages/src
   # guix package -L $lp -m ./bost/packages/spacemacs.scm -A emacs-spacemacs
   # guix build -L $lp -K --load=./spacemacs-settings.scm emacs-spacemacs
@@ -198,7 +198,7 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   guix build --load-path=$lp --keep-failed emacs-spacemacs
 
   # build the packages' source derivations: the [at] char must be used twice
-  # -e --expression; -S --source
+  # -L --load-path; -S --source; -e --expression
   guix build -L $lp -S -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
   # force rebuild
   guix build -L $lp --check --no-grafts -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'

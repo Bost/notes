@@ -397,6 +397,7 @@
   ;; (package-derivation daemon coreutils)
   (use-modules (guix derivations) (bost packages spacemacs))
   (build-derivations daemon (list (package-derivation daemon spacemacs-rolling-release)))
+  (build-derivations daemon (list "/gnu/store/...-spacemacs-rolling-release-<...>.drv"))
   ;; build-system
   ;; package --> bag --> derivation <-- origin
   ;;
