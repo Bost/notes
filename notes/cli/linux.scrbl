@@ -1586,7 +1586,8 @@
   sed "92 s/\(\s*\)\(.*\)/\1;; \2/" /path/to/file.scm | bat -r 92:93 -l scm
 
   # cut huge file: content between lines 10 and 20 / print 5th line
-  sed -n "10,20p" /path/to/file / sed -n 5p /path/to/file
+  sed -n "10,20p" /path/to/file
+  sed -n 5p /path/to/file
 
   # cut huge file: content between lines 10 and 20
   # see https://unix.stackexchange.com/a/47423
