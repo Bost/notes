@@ -124,6 +124,11 @@
   #   Added / Modified / Deleted / Renamed / Copied / Unmerged / Typechange
   # (After a merge conflict.)
 
+  # Git Merge Conflicts
+  UPPER=HEAD = "My version" (current branch before the merge)
+  LOWER=c999896ff = "Their version" (incoming changes from the branch you're merging)
+  ediff-merge = "Final version" (the one you'll save as the resolved file)
+
   # list all files changed / touched in a particular commit
   # see
   # `diff-tree` won't work when looking at the root commit. (Use --root flag)
