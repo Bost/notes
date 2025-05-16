@@ -5,22 +5,24 @@
 @block{@block-name{GUI composition}
   https://unix.stackexchange.com/a/464321
 
-  | Component           | Examples         |
-  |---------------------+------------------|
-  | Desktop Environment | GNOME, KDE, Xfce |
-  | Widget Toolkit      | GTK+, QT         |
-  | Windowing System    | XOrg, Wayland    |
-  | Operating System    | Linux, Windows   |
-  | Hardware            |                  |
+  | Component             | Examples                               |
+  |-----------------------+----------------------------------------|
+  | Desktop Environment   | GNOME, KDE Plasma, Xfce, Cinnamon      |
+  | Window Manager        | Mutter, KWin, Xfwm, i3, Openbox        |
+  | Widget Toolkit        | GTK, Qt, FLTK, EFL                     |
+  | Display Server        | X.Org Server (X11), Weston, Sway       |
+  | Display Protocol      | X11, Wayland                           |
+  | Display Manager       | GDM, SDDM, LightDM                     |
+  | Operating System      | Linux, FreeBSD, Windows, macOS         |
+  | Kernel                | Linux, NT, XNU                         |
+  | Hardware              | GPU, monitor, keyboard, mouse          |
 
-  XOrg - old, many different programs for setting everything
-  Wayland - replaces xorg; uses HW accelerated graphics
-  Wayland compositors: sway, hyperland, western
+  XOrg: old, many different programs for setting everything
+  Wayland:replaces xorg; uses HW accelerated graphics
+  Wayland compositors: Sway, Hyperland, Weston, Mutter
 
   pipewire - new audio standard for linux and bsd systems
-}
 
-@block{@block-name{GUI}
   KDE GNOME, Xfce work on X Display server ~ X Window Managers
   KDE GNOME, Xfce desktops ~ Desktop Environments
 
@@ -38,17 +40,59 @@
 
   ??? Graphical Interface (E.g. KDE Plasma, GNOME Shell, Xfce)
 
-  +--------------------------------------------------------------------------+
-  |                              Windowing System                            |
-  |                (e.g. X = X11 = X Window System, Wayland, Quartz)         |
-  |                                                                          |
-  |  +--------------------------------+         +-------------------------+  |
-  |  |   Display Server (e.g. XOrg)   |  <--->  |     Window Manager      |  |
-  |  |(i.e. Window Server Compositor) |         | e.g. KDE/KD Plasma,     |  |
-  |  |                                |         |      GNOME, Xfce, Sway  |  |
-  |  +--------------------------------+         +-------------------------+  |
-  |                                                                          |
-  +--------------------------------------------------------------------------+
+ +------------------------------------------------------------+
+ |                  Desktop Environment                       |
+ |          (GNOME, KDE Plasma, Xfce, Cinnamon)               |
+ |   - Panels, file managers, system settings, app launcher   |
+ +------------------------------------------------------------+
+                             ↑
+   +--------------------------------------------------------+
+   |                 Window Manager (WM)                    |
+   |         (Mutter, KWin, Xfwm, i3, Openbox)              |
+   |    - Manages window borders, focus, tiling/stacking    |
+   +--------------------------------------------------------+
+                             ↑
+ +-------------------------------------------------------------+
+ |  Client Application Layer: Widget Toolkit / GUI Frameworks  |
+ |                   (GTK, Qt, FLTK, EFL)                      |
+ |       - Used by applications to render UI elements          |
+ +-------------------------------------------------------------+
+                             ⇅
+                    **Display Protocol**
+                       (X11, Wayland)
+                             ⇅
+              +-----------------------------+
+              |       Display Server        |
+              | (X.Org, Weston, Sway, etc.) |
+              | - Compositing & event mgmt  |
+              +-----------------------------+
+                             ↑
+      +----------------------------------------------+
+      |          Display Manager (login screen)      |
+      |             (GDM, SDDM, LightDM)             |
+      | - Starts display server and user session     |
+      +----------------------------------------------+
+                             ↑
+      +----------------------------------------------+
+      |                Operating System              |
+      |     (Linux, FreeBSD, Windows, macOS)         |
+      +----------------------------------------------+
+                             ↑
+ +-----------------------------------------------------------+
+ |              Kernel (Linux kernel, NT, XNU)               |
+ |  - DRM/KMS (Direct Rendering Mngr / Kernel Mode Setting), |
+ |            input subsystem, GPU drivers                   |
+ +-----------------------------------------------------------+
+                             ↑
+   +------------------------------------------------------+
+   |                     Hardware                         |
+   |    - Graphics card (GPU), Monitor, Keyboard, Mouse   |
+   +------------------------------------------------------+
+
+
+* Display Manager: only involved in session startup. After login, its job is done
+* Wayland compositors: act as both Display Server & Window Manager
+* In X11, Display Server (Xorg) and Window Manager are usually separate processes
 
   xfwm4          - Xfce Window Manager
   startxfce4`    - an (bin/sh) shell script to start an Xfce session or choose
@@ -72,11 +116,11 @@
 
   Xsettingsd
   - lightweight xsettings daemon
-  - settings for Xorg applications via the XSETTINGS (? KDE has it's own daemon ?)
+  - settings for Xorg apps via the XSETTINGS (? KDE has it's own daemon ?)
   - Java, Wine have different font settings through Fontconfig
 
   append `xsettingsd &` to `~/.xinitrc` when using `xinit`
-  append `xsettingsd &` to `~/.xprofile` when using a Display manager like, e.g. GDM (GNOME), LightDM (Xfce), etc.
+  append `xsettingsd &` to `~/.xprofile` when using a Display Manager
 
   ~/.config/xsettingsd/xsettingsd.conf
   May or may not contain the same config as xfce4-settings-editor -> xsettings.
@@ -122,8 +166,8 @@
 @block{@block-name{Sway}
   https://swaywm.org/
   Tiling Wayland compositor and a drop-in replacement for the i3 window manager
-  for X11. It works with your existing i3 configuration and supports most of i3's
-  features, plus a few extras.
+  for X11. It works with your existing i3 configuration and supports most of
+  i3's features, plus a few extras.
   It works with the Wayland display protocol, not the X Window System.
   ;;
   Sway allows to arrange application windows logically, rather than spatially.
@@ -146,14 +190,18 @@
   interface between rendering APIs (e.g. OpenGL or Vulkan) and the underlying
   native platform window system.
 
-  # video, graphics
-  # lists hardware
+  # video, graphics, lists hardware
   # -class CLASS    only show a certain class of hardware
   sudo lshw -class video
-
-  # video, graphics
+  #
   # lists all PCI devices, find information about the graphics card
+  # -k    Show kernel drivers handling each device
   lspci -k | grep -EA3 'VGA|3D|Display'
+  # -v    Be verbose (-vv or -vvv for higher verbosity)
+  # -s    Show only devices in selected slots
+  sudo lspci -v -s 08:00.0
+  nvidia-smi
+  sudo hwinfo --gfxcard
 
   # Get entries from administrative database.
   # getent [OPTION...] database [key ...]
