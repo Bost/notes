@@ -162,6 +162,9 @@
 }
 
 @block{@block-name{Various}
+  nscd: name service cache daemon
+  Caching for accesses of the passwd, group and hosts
+
   # set the keyboard using the X Keyboard Extension
   $ setxkbmap -query
   rules:      evdev
