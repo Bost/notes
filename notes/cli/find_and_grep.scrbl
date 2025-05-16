@@ -168,11 +168,11 @@
 
   # find files with extension; fdfind (Ubuntu) / fd (Guix) - aliased to `f`
   # https://github.com/sharkdp/fd
-  # -e, --extension
-  # -H, --hidden
-  # -a, --absolute-path
-  # -I, --no-ignore
-  # -p, --full-path   search pattern is matched against the full path
+  # -e --extension
+  # -H --hidden
+  # -a --absolute-path
+  # -I --no-ignore
+  # -p --full-path   search pattern is matched against the full path
   # regex:
   fd --extension rkt                  # find ./ -name "*.rkt"
   fd --no-ignore-vcs --extension go   # find ./ -name "*.go"
@@ -185,9 +185,9 @@
   rg "<search-regex>" (f "<file-extention>$" (pwd))
   rg "dotspacemacs/layers" (f -e scm -e c -e h '.*' ~/.emacs.d)
 
-  # word boundaries
-  # -g, --glob Include or exclude files and directories. Precede a glob with a !
-  #            to exclude it.
+  # -w --word-regexp     Only show matches surrounded by word boundaries
+  # -g --glob Include or exclude files and directories. Use it to specify file
+  #           extensions. Precede a glob with a ! to exclude it.
   rg --no-ignore-vcs -g '*.{el}' -w "info-constant-ref-item\b" ~/.emacs.d
   # with -w much less is returned
   rg --no-ignore-vcs -g '*.{el}' -w "\sdelete\s" ~/.emacs.d
