@@ -10,7 +10,7 @@
   | Desktop Environment   | GNOME, KDE Plasma, Xfce, Cinnamon      |
   | Window Manager        | Mutter, KWin, Xfwm, i3, Openbox        |
   | Widget Toolkit        | GTK, Qt, FLTK, EFL                     |
-  | Display Server        | X.Org Server (X11), Weston, Sway       |
+  | Display Server        | X.Org Server (X11), Weston, Sway, Mir  |
   | Display Protocol      | X11, Wayland                           |
   | Display Manager       | GDM, SDDM, LightDM                     |
   | Operating System      | Linux, FreeBSD, Windows, macOS         |
@@ -20,6 +20,25 @@
   XOrg: old, many different programs for setting everything
   Wayland:replaces xorg; uses HW accelerated graphics
   Wayland compositors: Sway, Hyperland, Weston, Mutter
+
+  LightDM main features:
+  - support different display servers
+  - no GNOME dependencies
+  - support GTK and Qt
+  - low memory requirements
+  - fast performance
+  - remote login via XDMCP and VNC
+  - guest sessions
+
+
+  Simple Desktop Display Manager (SDDM) is the successor and replacement of the
+  KDE Display Manager (KDM). SDDM features:
+  - support X11 and Wayland
+  - autologin
+  - modern and prettified look
+  - DPI settings (HiDPI)
+  - highly customizable
+  - Qt-based
 
   pipewire - new audio standard for linux and bsd systems
 
@@ -61,15 +80,15 @@
                     **Display Protocol**
                        (X11, Wayland)
                              ⇅
-              +-----------------------------+
-              |       Display Server        |
-              | (X.Org, Weston, Sway, etc.) |
-              | - Compositing & event mgmt  |
-              +-----------------------------+
+           +-----------------------------------+
+           |          Display Server           |
+           |  (X.Org / X11, Weston, Sway, Mir) |
+           |  - Compositing & event management |
+           +-----------------------------------+
                              ↑
       +----------------------------------------------+
       |          Display Manager (login screen)      |
-      |             (GDM, SDDM, LightDM)             |
+      |        (GDM, SDDM, LightDM, XDM, KDM, Ly)    |
       | - Starts display server and user session     |
       +----------------------------------------------+
                              ↑
@@ -165,9 +184,11 @@
 
 @block{@block-name{Sway}
   https://swaywm.org/
+
   Tiling Wayland compositor and a drop-in replacement for the i3 window manager
-  for X11. It works with your existing i3 configuration and supports most of
-  i3's features, plus a few extras.
+  for X.org Server (X11). It works with your existing i3 configuration and
+  supports most of i3's features, plus a few extras.
+
   It works with the Wayland display protocol, not the X Window System.
   ;;
   Sway allows to arrange application windows logically, rather than spatially.
