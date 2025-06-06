@@ -22,6 +22,7 @@
   }
   plist - property list (see plist in emacs-lisp)
 
+  ;; hashmap, dictionary
   (use-modules (ice-9 hash-table))
   (define ht (make-hash-table))
   (hash-set! ht "one" 1)

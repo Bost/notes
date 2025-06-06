@@ -139,6 +139,9 @@
 }
 
 @block{@block-name{Various}
+  GIO general purpose I/O, networking, IPC, settings,
+  and other high level application functionality
+
   POSIX Portable Operating System Interface
   Standards for compatibility between operating systems. It defines the
   application programming interface (API), command line shells and utility
