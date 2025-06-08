@@ -89,13 +89,12 @@
 
   # examples
   gpg --list-public-keys # gpg --list-keys
-  set gpgPubKey ...
+  # set gpgPubKey "..." # this I have already defined
   set fPlainText "file.txt"
   set fEncrypted "file.txt.gpg"
   gpg --encrypt --output $fEncrypted --recipient $gpgPubKey $fPlainText && shred --verbose --remove $fPlainText
-  gpg --encrypt --output $fEncrypted --recipient $gpgPubKey $filePlainText
   gpg --encrypt --output $fEncrypted --recipient foo@"@"domain.org $filePlainText
-  gpg --decrypt $fEncrypted --output $filePlainText
+  gpg --decrypt $fEncrypted > $fPlainText
   gpg --decrypt --quiet --for-your-eyes-only --no-tty ~/.passwords/gmail.gpg
 
   # encrypt / decrypt a folder / directory
