@@ -294,13 +294,13 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   The user profile & environment contains only the packages that the user
   explicitly installed and not necessarily the dependencies of those packages.
   * (basic) inputs
-    Built for target architecture. Can be referenced by the package. Will be in
-    the resulting binary file
+    Packages listed here are built for target architecture. Can be referenced by
+    the package. Will be in the resulting binary file
   * native-inputs
-    Built for host architecture (the build machine), e.g. built-time utils not
-    needed during run-time
+    Packages listed here built for host architecture (the build machine), e.g.
+    built-time utils not needed during run-time
   * propagated-inputs
-    Will be added to user profile along with the package
+    Packages listed here will be added to user profile along with the package
     When a package has propagated inputs then any package that depends on it
     will automatically have those inputs available to it.
   * direct
