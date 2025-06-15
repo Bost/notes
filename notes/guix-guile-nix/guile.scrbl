@@ -166,31 +166,15 @@
   }
 }
 
-@block{@block-name{Various code snippets}
+@block{@block-name{Exceptions}
+  ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
+  ;; old style uses
+  catch with-throw-handler throw
+  ;; new style uses
+  with-exception-handler raise-exception
+
   @lisp{
-    (use-modules) (srfi srfi-13)   ;; String Library
-    (string->number "1")           ;; => 1
-    (string->number* "1")          ;; from (guix ui)
-
-    ;; Module installation: see `info "(guile)Installing Site Packages"`
-    ;; ,use / use-modules Syntax:
-    (use-modules (MODULE-NAME [#:select SELECTION]
-                              [#:prefix PREFIX]
-                              [#:renamer RENAMER]
-                              ;; R6RS-compatible version reference
-                              [#:version VERSION-SPEC]))
-    ;; example
-    (use-modules ((ice-9 popen)
-                  #:select ((open-pipe . pipe-open) close-pipe)
-                  #:renamer (symbol-prefix-proc 'unixy:)))
-
-    ;; rename & export
-    (define-module (my-module)
-      #:export ((old-name . new-name)))
-    (define old-name 42)
-
     ;; try-catch
-    ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
     (begin
       (use-modules (ice-9 exceptions))
       (guard (exception (else (format #t "[catch] An exception was thrown:\n")
@@ -237,8 +221,40 @@
                               (make-read-exception 'almost-full 'medium)))))
           (format #t "writing ~a\n" file-size))))
 
+    (throw 'my-exception)
+    (throw 'my-exception "Some description of <my-exception>")
+
+  }
+}
+
+@block{@block-name{Various code snippets}
+  @lisp{
+    (use-modules) (srfi srfi-13)   ;; String Library
+    (string->number "1")           ;; => 1
+    (string->number* "1")          ;; from (guix ui)
+
+    ;; Module installation: see `info "(guile)Installing Site Packages"`
+    ;; ,use / use-modules Syntax:
+    (use-modules (MODULE-NAME [#:select SELECTION]
+                              [#:prefix PREFIX]
+                              [#:renamer RENAMER]
+                              ;; R6RS-compatible version reference
+                              [#:version VERSION-SPEC]))
+    ;; example
+    (use-modules ((ice-9 popen)
+                  #:select ((open-pipe . pipe-open) close-pipe)
+                  #:renamer (symbol-prefix-proc 'unixy:)))
+
+    ;; rename & export
+    (define-module (my-module)
+      #:export ((old-name . new-name)))
+    (define old-name 42)
+
     (* 3-8i 2.3+0.3i) ;; complex numbers
 
+    ;; filter procedure is in the (guile) module
+    (filter odd? (list 1 2 3 4)) ; => (1 3)
+    ;;
     (use-modules (srfi srfi-1))
     (remove (lambda (service)
               (member (service-kind service) (list gdm-service-type)))
