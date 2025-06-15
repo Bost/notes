@@ -54,3 +54,14 @@
   }
 
 }
+
+@block{@block-name{Andrew Tropin:  How to Install 100000 Packages in Guix? (feat. Distrobox, Flatpak, Nix)}
+  https://youtu.be/UsY00oWBgJw
+
+  podman - Manage containers, images, pods, and their volumes
+  distrobox - Create and start containers highly integrated with the hosts
+  guix shell flatpak - flatpak apps in a guix shell
+
+  guix install nix
+  nix-shell -t htop - Nix hast the largest amount of available packages
+}
