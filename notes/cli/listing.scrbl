@@ -61,4 +61,10 @@
   find .git/hooks -maxdepth 1 -type f ! -name "*.sample" -ls
   eza --ignore-glob '*.sample' -abghHliS --color=always --time-style=+%d-%m-%Y\ %H:%M:%S .git/hooks/
 
+  find . -type d | sed 's|^\./||' | awk '{print $0 "/"}'
+  find . -type d # Recursively lists all directories starting from the current directory (.).
+  sed 's|^\./||' # Removes the leading ./ from each path.
+  awk '{print $0 "/"}' # Appends a trailing / to each line (to match your desired format).
+  #
+  tree -dfi --noreport | sed 's|^\./||'
 }
