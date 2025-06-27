@@ -997,15 +997,39 @@
 @block{@block-name{Mapping Functions}
   https://www.gnu.org/software/emacs/manual/html_node/elisp/Sequences-Arrays-Vectors.html
   https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html
+
+  | Function | Input Type                          | Return Value              | Purpose             |
+  |----------+-------------------------------------+---------------------------+---------------------|
+  | mapcar   | List only                           | New list of results       | Transform elements  |
+  | mapc     | List only                           | Original list             | Side effects only   |
+  | map      | Any sequence (list, vector, string) | New sequence of same type | Generalized mapping |
+
+  | Function | Best For                               | Speed (Relative)                           | Memory Usage           |
+  |----------+----------------------------------------+--------------------------------------------+------------------------|
+  | mapcar   | Transforming lists                     | Fast (optimized)                           | Allocates new list     |
+  | mapc     | Side-effect loops                      | Fastest (no allocation)                    | No allocation          |
+  | map      | Mixed sequences (lists, vectors, etc.) | Slower for lists, fast for vectors/strings | Allocates new sequence |
+
   @lisp{
+    (benchmark-run 10000 (mapcar #'1+ '(1 2 3 4 5)))
+    ;; Typically faster than:
+    (benchmark-run 10000 (map 'list #'1+ '(1 2 3 4 5)))
+    ;;
+    (benchmark-run 10000 (mapc #'ignore '(1 2 3 4 5)))  ; Fastest, no result collection
+    (benchmark-run 10000 (mapcar #'ignore '(1 2 3 4 5))) ; Slower, builds a list
+    ;;
+    ;; Good: `map` works natively on vectors
+    (benchmark-run 10000 (map 'vector #'1+ [1 2 3 4 5]))
+    ;;
+    ;; Bad: `mapcar` requires conversion (slow)
+    (benchmark-run 10000 (mapcar #'1+ (append [1 2 3 4 5] nil)))
+
     mapconcat
     (mapcar 'string "abc")
     (mapcar 'list '(a b c d)) ; => ((a) (b) (c) (d))
     (mapcan 'list '(a b c d)) ; => (a b c d)  ;; i.e. with reduction
     ;; -partial is from dash.el
     (mapcar (-partial #'apply #'+) '((1 2 3) (4 5 6))) ;; => (6 15)
-
-    mapc ;; like mapcar; used for side-effects only
 
     ;; mapconcat is like joins result list into a string with a separator:
     (mapconcat 'symbol-name '(The cat in the hat) "-") ; => "The-cat-in-the-hat"
