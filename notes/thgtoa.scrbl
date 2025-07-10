@@ -473,3 +473,28 @@
 @block{@block-name{JSON hijacking}
   haacked.com/archive/2009/06/25/json-hijacking.aspx/
 }
+
+@block{@block-name{gocryptfs vs GPG}
+
+  | Use Case                        | gocryptfs        | GPG                        |
+  |---------------------------------+------------------+----------------------------|
+  | Long-term interactive storage   | ✅ Ideal         | ❌ Inconvenient            |
+  | Occasional file encryption      | ✅/❌ Maybe      | ✅ Perfect fit             |
+  | Encryption for transfer/email   | ❌ Awkward       | ✅ Standard method         |
+  | Key-based identity & signing    | ❌ Not supported | ✅ Built-in                |
+  | Fast access to many small files | ✅ Efficient     | ❌ Slow, impractical       |
+  | Works with editors, scripts     | ✅ Seamless      | ❌ Needs manual decryption |
+
+  To encrypt ~/Downloads directory and actively work with its contents, gocryptfs is more suitable.
+  To occasionally archive and encrypt sensitive data, GPG is a solid alternative.
+
+  | Aspect              | gocryptfs                                | GPG + Archiving                                         |
+  |---------------------+------------------------------------------+---------------------------------------------------------|
+  | Access              | Transparent filesystem (live mount)      | Entire archive; no file access without decrypting first |
+  | Use case            | Continuous work with encrypted files     | Backup, transport, long-term storage                    |
+  | Password protection | Yes (mount-time password)                | Yes (prompted during decryption)                        |
+  | Flexibility         | Very high, instant access after mounting | Less flexible, requires extraction                      |
+  | Complexity          | Higher (needs FUSE/system integration)   | Simpler (no system mount needed)                        |
+
+  
+}

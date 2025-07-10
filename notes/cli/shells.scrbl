@@ -148,6 +148,7 @@
   test -e /path/to/file.txt                  # file exists
   test -L /path/to/link                      # symbolic link exists
   test -d /path/to/dir                       # directory exists
+  test -z (ls -A /path/to/dir)               # directory is emptys
   # true if the length of $myvar is non-zero i.e. non-empty string
   # https://stackoverflow.com/a/47743269; always use "" around the myvar
   test -n "$myvar" && echo "true: defAndNonEmpty: '$myvar'" || echo "false: undefOrEmpty"
