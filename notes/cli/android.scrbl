@@ -110,7 +110,7 @@
   sudo apt install android-tools-adb android-tools-fastboot
   groups # check plugdev membership
 
-  adb devices
+  adb devices -l      # list all connected devices with device qualifiers
   # -T, --ctime     human-readable timestamp (may be inaccurate!)
   sudo dmesg --ctime | grep usb
   # [...] usb 5-3: new high-speed USB device number 4 using xhci_hcd
@@ -119,7 +119,12 @@
   # [...] usb 5-3: Product: SAMSUNG_Android
   # [...] usb 5-3: Manufacturer: SAMSUNG
   # [...] usb 5-3: SerialNumber: R58N10C71EM
-  adb logcat      # view device log
+  adb logcat          # view device log
+  adb logcat --clear  # -c clear / flush the entire log and exit
+  # directs command to the device or emulator with the given serial number or
+  # qualifier. Overrides ANDROID_SERIAL
+  adb logcat -s <specific device>
+  adb logcat -s bt_stack  # do `logcat` for bluetooth
   adb shell
   adb push src dst
 
