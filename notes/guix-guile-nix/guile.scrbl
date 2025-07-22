@@ -150,10 +150,11 @@
     (fun 'x 'y #:kw '42 #:kw-opt1 'ox #:kw-opt2 'oy 'args)
     ;; (x y 42 ox oy (#:kw 42 #:kw-opt1 ox #:kw-opt2 oy args))
 
-    (define* (fun x #:optional (y 'y-default-val))
-      (list x y))
-    (fun 1)                             ;; (1 y-default-val)
-    (fun 1 2)                           ;; (1 2)
+    (define* (fun x #:optional (y 'y-default-val) z) (list x y z))
+    (fun 1)         ;; (1 y-default-val #f)
+    (fun 1 2)       ;; (1 2 #f)
+    (fun 1 2 3)     ;; (1 2 3)
+    (fun 1 #:y 2 3) ;; error. `#:optional` doesn't allow using keyword arguments
 
     (map (lambda (a b) (* a b)) (list 1 2) (list 3 4)) ;; (3 8)
     ;; However:
