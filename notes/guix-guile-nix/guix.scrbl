@@ -277,7 +277,7 @@
   # --pure             unset existing environment variables
   # -D, --development  add development inputs of the next package, i.e. 'guix'
   # Using glibc-locales should prevent 'warning: failed to install locale'
-  ./bootstrap && ./configure --localstatedir=/var # --sysconfdir=/etc
+  ./bootstrap && ./configure # defaults: --localstatedir=/var --sysconfdir=/etc
   # on error:
   #   configure: error: 'guild' binary not found; please check <...>
   # do:
