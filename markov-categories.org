@@ -1,0 +1,17 @@
+# generate pdf: M-x org-latex-export-to-pdf
+
+#+LATEX_HEADER: \usepackage{cat-7-sketches}
+#+LATEX_HEADER: \usepackage{minted}     % syntax coloring
+# #+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usetikzlibrary{cd}
+
+# https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
+# latexpreview / nolatexpreview C-c C-x C-l
+# #+STARTUP: nolatexpreview
+#+STARTUP: showeverything inlineimages nolatexpreview
+
+* Markov Categories
+- probability theory from a dynamical, i.e. process-oriented point of view
+- the structures (? Morphism ?) are transitions with randomness
+
+test $f_N$ and $f^G$
