@@ -434,8 +434,9 @@
   # iterate / loop through files in a directory
   for file in /path/to/dir/*.ext; do echo $file; done
 
-  # fish-shell loop over some range
-  for i in (seq 50 55); printf "i: %s\n" $i; end
+  # for-loop over the range 2 to 5 (4 times)
+  for i in (seq 2 5); printf "i: %s\n" $i; end         # fish-shell
+  for i in $(seq 2 5); do printf "i: %s\n" $i; done    # bash
 
   # syntax - single / double brackets; variables
   https://unix.stackexchange.com/a/416716
