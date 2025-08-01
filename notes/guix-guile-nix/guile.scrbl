@@ -286,10 +286,15 @@
               [else
                (loop (read-syntax p) (cons stx result))]))))))
 
-    (equal? 'emacs-pkg (symbol-append 'emacs- 'pkg)) ;; => t
+    (equal? 'emacs-pkg (symbol-append 'emacs- 'pkg)) ; => t
 
     ;; #\space - blank character, whitespace
-    (string-split "aa bb cc" #\space) ;; => ("aa" "bb" "cc")
+    (string-split "aa bb cc" #\space) ; => ("aa" "bb" "cc")
+
+    ;; characters / chars
+    ;; https://www.gnu.org/software/guile/manual/html_node/Characters.html
+    (eq? (char? #\tab) (char? #\space) (char? #\a) #t)   ; => #t
+     ; => #t
 
     (use-modules (guix utils))  ;; ,use (guix utils)
     (define* (my-function a b #:key (c 0) (d #f)) (list a b c d))
