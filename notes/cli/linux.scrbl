@@ -1300,7 +1300,7 @@
   firefox http://neverssl.com    # login on a wifi network via browser
   # iw - show / manipulate wireless devices and their configuration
   # get the wireless interface name
-  set iface (iw dev | awk '$1=="Interface"{print $2}')
+  set iface (iw dev | awk '$1=="Interface"{print $2}'); echo $iface
   nmcli --ask device disconnect $iface       # 3. disconnect e.g. wl01 wlan0
   # general status and operations
   nmcli --ask general # also: nmcli general status
