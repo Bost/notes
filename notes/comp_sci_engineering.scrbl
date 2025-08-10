@@ -230,6 +230,11 @@
 }
 
 @block{@block-name{RPC Server}
-  RPC Remore Procedure Call
+  RPC Remote Procedure Call
   accepts commands comming from some client and returns responses
+}
+
+@block{@block-name{Architectural patterns}
+  MVC  Model-View-Controler
+  MVVM Model–View–View-Model, a modern variant of MVC
 }
