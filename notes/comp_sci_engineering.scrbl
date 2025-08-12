@@ -238,3 +238,12 @@
   MVC  Model-View-Controler
   MVVM Model–View–View-Model, a modern variant of MVC
 }
+
+@block{@block-name{D-Bus}
+  D-Bus - Desktop Bus
+  - message-oriented middleware mechanism for communication between multiple
+    processes running concurrently on the same machine.
+  - developed as part of the freedesktop.org project, initiated by GNOME to
+    standardize services provided by Linux desktop environments such as GNOME
+    and KDE.
+}
