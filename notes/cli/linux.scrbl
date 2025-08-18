@@ -1103,13 +1103,6 @@
   guix package --list-available="emacs-(ace-jump-helm-line|yasnippet).*" \
   | awk '{print "("$1, "\""$2"\"", $4")"}'
 
-  # error: Requested formats are incompatible for merge and will be merged into
-  # mkv.
-  youtube-dl -f bestvideo[ext=mp4]+bestaudio[ext=m4a] URL
-  # See
-  # Youtube-dl fork with additional features and fixes
-  # https://github.com/yt-dlp/yt-dlp
-
   # align csv file
   cat data.csv | column -t -s ';'
 

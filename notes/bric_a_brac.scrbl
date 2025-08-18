@@ -386,6 +386,10 @@
 }
 
 @block{@block-name{YouTube}
+
+  # In the console
+  $('video').playbackRate = 1.15;
+
   | ~>~ | speed 25% faster      |
   | ~<~ | speed 25% slower      |
   | ~c~ | toggle captions       |
@@ -395,6 +399,13 @@
 
   YouTube: Making a bolt with double threads
   https://www.youtube.com/watch?v=v96LTfmtDPU&t=626s
+
+  # error: Requested formats are incompatible for merge and will be merged into
+  # mkv.
+  youtube-dl -f bestvideo[ext=mp4]+bestaudio[ext=m4a] URL
+  # See
+  # Youtube-dl fork with additional features and fixes
+  # https://github.com/yt-dlp/yt-dlp
 }
 
 @block{@block-name{code_aster}
