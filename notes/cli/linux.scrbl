@@ -418,7 +418,46 @@
   tac file1.txt file2.txt > reversed.txt
 
   # prepend text or line to a file
-  echo "1st-line" | cat - file.txt
+  ### 1. Temporary file (most portable)
+  echo "1st-line" | cat - file.txt > temp.txt && mv temp.txt file.txt
+  #
+  ### 2. Sponge (requires moreutils)
+  echo "1st-line" | cat - file.txt | sponge file.txt
+  #
+  ### 3. sed in-place
+  sed -i '1i\1st-line' file.txt
+  #
+  ### 4. ex/vi editor
+  ex -c '1i|1st-line' -c 'wq' file.txt
+  #
+  ### 5. Here-document
+  { echo "1st-line"; cat file.txt; } > temp.txt && mv temp.txt file.txt
+  #
+  ### 6. Printf
+  printf '%s\n%s' "1st-line" "$(cat file.txt)" > temp.txt && mv temp.txt file.txt
+  #
+  ### 7. Awk
+  awk 'BEGIN{print "1st-line"} {print}' file.txt > temp.txt && mv temp.txt file.txt
+  #
+  ### 8. Perl
+  perl -i -pe 'print "1st-line\n" if $. == 1' file.txt
+  #
+  ### 9. Python
+  python3 -c "
+  with open('file.txt', 'r') as f: content = f.read()
+  with open('file.txt', 'w') as f: f.write('1st-line\n' + content)
+  "
+  #
+  ### 10. Process substitution
+  cat <(echo "1st-line") file.txt > temp.txt && mv temp.txt file.txt
+  #
+  ### 11. dd (binary-safe)
+  echo "1st-line" > temp.txt
+  cat file.txt >> temp.txt
+  mv temp.txt file.txt
+  #
+  ### 12. tac (reverse twice)
+  { echo "1st-line"; tac file.txt | tac; } > temp.txt && mv temp.txt file.txt
 
   # print web page to pdf / screenshot
   google-chrome --headless --disable-gpu --print-to-pdf https://www.eff.or
