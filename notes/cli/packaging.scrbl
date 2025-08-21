@@ -207,6 +207,10 @@
   # Aggressive solution
   sudo apt-get dist-upgrade # force the installation of those new dependencies.
 
+  # Also after `sudo apt update && sudo apt upgrade` when this appears:
+  # '.. packages can be upgraded. Run 'apt list --upgradable' to see them.'
+  sudo apt-get --with-new-pkgs upgrade <list of packages kept back>
+
   # :ubuntu CLI OS upgrade (GUI upgrade - see `update-manager`)
   # 1. set `Prompt=normal`
   /etc/update-manager/release-upgrades
