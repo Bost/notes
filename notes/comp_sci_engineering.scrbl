@@ -138,6 +138,19 @@
   bindfs /some/where /else/where
 }
 
+@block{@block-name{Wasm - WebAssembly }
+  https://webassembly.org
+  Binary instruction format (bytecode) that can be parsed and executed much
+  faster than JavaScript. It enables predictable performance by being closer to
+  machine code, leveraging hardware features like efficient memory access and
+  JIT/AOT compilation.
+  For example, C, C++, Rust, etc. code can be compiled to bytecode in wasm
+  format, which then runs in the web browser's sandbox at near-native speed.
+  It's not a standalone programming language but a compilation target.
+  Use WebAssembly for computationally intensive tasks and JavaScript for
+  "standard" web development.
+}
+
 @block{@block-name{Various}
   GIO general purpose I/O, networking, IPC, settings,
   and other high level application functionality
@@ -158,14 +171,6 @@
   https://www.busybox.net/
   Git Repo
   https://git.busybox.net/busybox
-
-  Wasm - WebAssembly https://webassembly.org
-  Binary instruction format (bytecode) for a stack-base  d virtual machine.
-  E.g. C, C++, Rust code can be compiled to wasm format, then this wasm code
-  runs in the web browser's sandbox at near-native speed.
-  Not a standalone programming language but a compilation target.
-  "Use WebAssembly for computationally intensive tasks and JavaScript for
-  'standart' web development."
 
   Clang - drop-in replacement for the GNU Compiler Collection (GCC)
 
