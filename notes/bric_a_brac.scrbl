@@ -1,5 +1,12 @@
 #lang notes
 
+
+@block{@block-name{Color models}
+  Systems (RGB, HSL, LCH, OKLCH etc.) to describe colors.
+  The model determines how easy it is to manipulate or think about a color.
+  See more https://jakub.kr/components/oklch-colors
+}
+
 @block{@block-name{ChatGPT Raccourcis clavier}
   | Ouvrir un nouveau chat                  | Ctrl Shift o           |
   | Focus sur la saisie dans le chat        | Shift Esc              |
@@ -19,7 +26,7 @@
 
 @block{@block-name{An arbitrary precision calculators}
   $ printf "1 / 2\nquit\n" > /tmp/math.txt
-  $ bc --quiet --mathlib /tmp/math.txt 
+  $ bc --quiet --mathlib /tmp/math.txt
   .50000000000000000000
   #
   # dc is a reverse-polish desk calculator
