@@ -138,17 +138,21 @@
   bindfs /some/where /else/where
 }
 
-@block{@block-name{Wasm - WebAssembly }
-  https://webassembly.org
-  Binary instruction format (bytecode) that can be parsed and executed much
-  faster than JavaScript. It enables predictable performance by being closer to
-  machine code, leveraging hardware features like efficient memory access and
-  JIT/AOT compilation.
-  For example, C, C++, Rust, etc. code can be compiled to bytecode in wasm
-  format, which then runs in the web browser's sandbox at near-native speed.
-  It's not a standalone programming language but a compilation target.
-  Use WebAssembly for computationally intensive tasks and JavaScript for
-  "standard" web development.
+@block{@block-name{Wasm - https://webassembly.org}
+  "If HW vendors can't agree on a universal binary, let's define a portable one
+  above them all."
+  - Finding the "lowest common denominator" compromise for binary execution
+    across all hardware and platforms.
+  - Binary instruction format (bytecode) that can be parsed and executed much
+    faster than JavaScript. It enables predictable performance, critical for
+    browsers, by being closer to machine code, leveraging hardware features like
+    efficient memory access and JIT/AOT compilation.
+  - For example, C, C++, Rust, etc. code can be compiled to bytecode in wasm
+    format, which then runs in the web browser's sandbox at near-native speed.
+  - It's not a standalone programming language but a compilation target.
+  - Mode d'emploi:
+    Use WebAssembly for computationally intensive tasks and JavaScript for
+    "standard" web development.
 }
 
 @block{@block-name{Various}
