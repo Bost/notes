@@ -4,7 +4,7 @@
   Let's read the Nix source code
   https://youtu.be/0tp86yOQ6XY?si=7vk-fjyYJCYqCZln
 
-  Peering into the Land of Parentheses - Guix from the Nix Perspective 
+  Peering into the Land of Parentheses - Guix from the Nix Perspective
   https://www.youtube.com/watch?v=bDGzCXr6VYU
 }
 
@@ -49,13 +49,20 @@
   # repository with Nix Packages collection
   nixpkgs
 
-  # install package: -i
-  nix-env --install nodejs
+  # Install package; -i --install
+  nix-env -i package-name
+  # Install from specific channel
+  nix-env -iA nixpkgs.package-name
 
-  # view package definition
-  # --query --available
-  nix-env -q -a --description nodejs-18.14.1
-  nix-env -q -a --json nodejs-18.14.1
+  # Remove package
+  nix-env -e package-name
+
+  # Uninstall all packages (reset profile)
+  nix-env -e '*'
+
+  # View package definition; --query --available
+  nix-env -qa --description nodejs-18.14.1
+  nix-env -qa --json nodejs-18.14.1
 
   # list / search available packages
   nix-env -qaP '*' --description
@@ -68,7 +75,7 @@
   nixos https://channels.nixos.org/nixos-23.11
   #
   $ sudo nix-channel --list
-  [sudo] password for bost: 
+  [sudo] password for bost:
   nixos https://channels.nixos.org/nixos-23.11
   #
   $ nix-channel --remove nixos
