@@ -156,6 +156,8 @@
 }
 
 @block{@block-name{Various}
+  DRMAA Distributed Resource Management Application API
+
   GIO general purpose I/O, networking, IPC, settings,
   and other high level application functionality
 
