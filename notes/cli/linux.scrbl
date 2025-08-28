@@ -1002,8 +1002,8 @@
   sha256sum file1.ext file2.txt > SHA256SUMS.asc
   # read SHA checksums from the SHA256SUMS.asc file and check / verify them
   #  against the SHA checksums of the files in the current directory
-  sha256sum --check SHA256SUMS.asc | grep OK
-  sha256sum -c      SHA256SUMS.asc | grep OK
+  sha256sum --check SHA256SUMS.asc | grep OK # -c, --check
+  sha256sum --binary file.iso      | grep OK # -b, --binary
 
   # verify checksum of one particular file
   grep "DeepSeek-R1-Distill-Llama-8B-Q8_0.gguf" SHA256SUMS.asc | sha256sum --check
