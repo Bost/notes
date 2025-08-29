@@ -156,7 +156,10 @@
 }
 
 @block{@block-name{Various}
-  DRMAA Distributed Resource Management Application API
+  DRMAA Distributed Resource Management Application API:
+  high-level Open Grid Forum (OGF) API specification for the submission and
+  control of jobs to a distributed resource management (DRM) system, such as a
+  cluster or grid computing infrastructure.
 
   GIO general purpose I/O, networking, IPC, settings,
   and other high level application functionality

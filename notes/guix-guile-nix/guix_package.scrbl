@@ -252,7 +252,7 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
 
   guix graph --path ocaml python-minimal
 
-  # graph / visualize dependencies of / packages needed / required by:
+  # visualize dependency or dependencies of / packages needed / required by:
   set pkgDeps (guix graph coreutils)
   # including implicit inputs:
   set pkgDeps (guix graph --type=bag-emerged coreutils)
