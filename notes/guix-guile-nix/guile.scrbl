@@ -32,6 +32,8 @@
 }
 
 @block{@block-name{Guile Scheme}
+  (string-replace-substring "x-X-x" "x" "y") ⇒ "y-X-y"
+
   ;; sort list alphabetically
   (sort (list "a" "c" "b") string<?)
 
