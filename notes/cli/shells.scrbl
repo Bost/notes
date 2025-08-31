@@ -411,9 +411,8 @@
   bash -i -c ./pth/to/emacs
 
   # fish-shell bash locate command
-  command --search <command>  # fish buildin
-  command       -v <command>  # bash buildin (bash version has no '--search')
-  which            <command>  # debian
+  command -v <command>  # bash version has no '--search', fish has it
+  which      <command>  # debian
 
   # cygwin bash
   # print windows form of filename
