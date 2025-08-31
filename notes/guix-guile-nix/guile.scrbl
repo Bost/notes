@@ -144,7 +144,6 @@
     (define* (fun x y #:key kw (kw-opt1 'o1) (kw-opt2 'o2) #:rest args)
       "kw-opt1, kw-opt2 are keywords and optional arguments at the same time"
       (list x y kw kw-opt1 kw-opt2 args))
-    ;;
     (fun 'x #:kw '42 'args)                ;; (x #:kw #f o1 o2 (42 args))
     (apply fun (list 'x #:kw '42 'args))   ;; (x #:kw #f o1 o2 (42 args))
     (fun 'x 'y #:kw '42 #:kw-opt1 'ox #:kw-opt2 'oy 'args)
@@ -155,6 +154,10 @@
     (fun 1 2)       ;; (1 2 #f)
     (fun 1 2 3)     ;; (1 2 3)
     (fun 1 #:y 2 3) ;; error. `#:optional` doesn't allow using keyword arguments
+
+    (define* (fun a #:optional (b (const #t)) #:key (c 1) d)
+      (list 'a a 'b b 'c c 'd d))
+    (fun "a") ;; (a "a" b #<procedure ... at ice-9/boot-9.scm:809:2 _> c 1 d #f)
 
     (map (lambda (a b) (* a b)) (list 1 2) (list 3 4)) ;; (3 8)
     ;; However:
