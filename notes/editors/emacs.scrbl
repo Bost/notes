@@ -368,11 +368,12 @@
   | \(.\{2\}\)            | match / find exactly 2 occurrences |
   | \(http[[:print:]]*\)/ | match / find url                   |
 
-  ;; regexp, syntax table, syntax classes; symbols must be used within square brackets
-  | [[:space:]] | whitespace char as defined by the syntax table, typically [\t\r\n\v\f] |
-  | \\s-        | see [:space:]                                                          |
-  | [[:blank:]] | a space or tab character                                               |
-  | [[:print:]] | printing char - whitespace or graphic char matched by [:graph:]        |
+  ;; regexp, syntax table, syntax classes (must be enclosed by square brackets)
+  ;; [[:<classname>:]] is POSIX character class equivalent (humand readable)
+  | [^[:space:]] | \\S- non-whitespace                                            |
+  | [[:space:]]  | \\s- whitespace, typically [\t\r\n\v\f], see syntax table      |
+  | [[:blank:]]  | space or tab character                                         |
+  | [[:print:]]  | printing char: whitespace or graphic char matched by [:graph:] |
 
   ;; utf8 unicode
   | M-x describe-char       | describe char at the point                    |
