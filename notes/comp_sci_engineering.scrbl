@@ -261,3 +261,26 @@
     standardize services provided by Linux desktop environments such as GNOME
     and KDE.
 }
+
+@block{@block-name{Visibility on Public Wi-Fi}
+  | Information                   | Visible on Public Wi-Fi       | HTTPS   |
+  |                               |                               | Protect |
+  |-------------------------------+-------------------------------+---------|
+  | IP addresses contacted        | Yes [0]                       | No      |
+  | Domain names visited          | Usually yes [1]               | No      |
+  | DNS queries                   | Yes [1]                       | No      |
+  | Pages/URL paths visited       | No                            | Yes     |
+  | Page content (HTML, JS, etc.) | No (request/response content) | Yes     |
+  | Data sent (forms, passwords)  | No                            | Yes     |
+  | Request timing/frequency      | Yes (packet timing visible)   | No      |
+  | Request/response sizes        | Yes (traffic volume visible)  | No      |
+  | Unencrypted HTTP traffic      | Yes (full content)            | N/A     |
+  | Connection metadata [2]       | Yes                           | No      |
+  | Which app/browser used        | Sometimes [3]                 | No      |
+
+  [0] Always visible, unless VPN/Tor
+  [1] DNS/SNI visibility can be reduced with encrypted DNS (DoH/DoT) and
+      Encrypted ClientHello (ECH), or hidden entirely with a VPN/Tor.
+  [2] TLS version, ciphers, handshake info
+  [3] traffic patterns/fingerprints
+}
