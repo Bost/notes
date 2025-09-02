@@ -90,6 +90,10 @@
 }
 
 @block{@block-name{Various}
+  ;; Max column width of buffer names before truncate. (Default 20)
+  ;; Reset when the column width / size gets too narrow
+  (setq helm-buffer-max-length nil)
+
   ;; `add-to-list' prepends i.e. puts an item to the head of a list.
   (defun append-to-list (list-var element)
     "Append ELEMENT to the end of LIST-VAR."
