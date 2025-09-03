@@ -113,7 +113,7 @@
 * Wayland compositors: act as both Display Server & Window Manager
 * In X11, Display Server (Xorg) and Window Manager are usually separate processes
 
-  xfwm4          - Xfce Window Manager
+  xfwm4          - Window Manager for Xfce
   startxfce4`    - an (bin/sh) shell script to start an Xfce session or choose
                    Xfce Session from the graphical login manager
   xfce4-session  - Session Manager. Starts up the Xfce Desktop Environment
@@ -289,7 +289,8 @@
   xfce4-session-logout        # or gnome-session-quit
   xfce4-session-logout --help
 
-  # restart xfce when the title bar dissapears from xfwm4 or execute
+  # restart xfce when the title bar dissapears from xfwm4 (window manager for
+  # xfce) or execute:
   #   rm -r ~/.cache/sessions
   pkill -KILL -u $USER
 
