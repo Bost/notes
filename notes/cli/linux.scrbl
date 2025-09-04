@@ -266,6 +266,7 @@
   sed -i 's/\r//g' /path/to/file
 
   # use any of the following commands to reboot:
+  sudo herd stop shepherd # on Guix
   sudo reboot
   sudo shutdown -r now
   sudo shutdown -r -t 30  # reboot in 30 seconds
@@ -901,15 +902,6 @@
        --new-line-format=":%dn: %L" oldfile newfile
   diff --color -u $(ls)
 
-  # new line separator for each grep result sh script
-  grep "pattern" /path/to/file | awk '{print $0,"\n"}'
-
-  # find files and open them in gvim
-  gvim $(find . -name "*fileToSearch*")
-
-  # :gzip list compressed, uncompressed size, compression ratio etc.
-  gzip -l ./path/to/file.gz
-
   # write output to stdout; zcat and gunzip -c are identical
   gunzip -c / zcat
   # -c --stdout --to-stdout
@@ -944,9 +936,6 @@
   # Execute a command as another user
   pkexec
 
-  # :systemd Control the systemd login manager - logging data
-  loginctl
-
   # last logged-in users
   last
 
@@ -959,7 +948,6 @@
   nproc
 
   # Report processors related statistics
-  mpstat
   mpstat -P ALL
   # Display five reports of statistics for all processors at two second
   # intervals
@@ -987,8 +975,8 @@
   | ps ax        | every process on the system: BSD syntax             |
   | ps --windows | show windows as well as cygwin processes (-W)       |
 
-  # distro name and ver
-  cat /etc/*-release
+  # Distro / Distribution name and version
+  cat /etc/os-release  # cat /etc/*-release
   cat /proc/version
 
   # :ubuntu show OS version
@@ -1361,8 +1349,7 @@
 
   # root login shell / console / prompt
   # run login shell as the target user; a command may also be specified
-  sudo --login
-  sudo -i
+  sudo --login    # sudo -i
 
   # login vs non-login shell
   # see https://unix.stackexchange.com/a/237672
@@ -1628,61 +1615,6 @@
     }
     return 0;
   }
-}
-
-@block{@block-name{sed & awk}
-  sed - stream editor
-  awk - written by Alfred V. Aho, Peter J. Weinberger, Brian W. Kernighan
-  text processing, data extraction, reporting tool
-  https://learnbyexample.github.io/learn_gnuawk/awk-introduction.html
-
-  # comment out the lines 92 to 93 and preview the edit with bat (the cat clone)
-  sed '92,93 s/^/;;/' /path/to/file.scm | bat --line-range 92:93 --language scm
-  # comment out the line 92 and preview the edit with bat (the cat clone)
-  sed '92 s/^/;;/' /path/to/file.scm | bat --line-range 92:93 --language scm
-  sed "92 s/\(\s*\)\(.*\)/\1;; \2/" /path/to/file.scm | bat -r 92:93 -l scm
-
-  # cut huge file: content between lines 10 and 20 / print 5th line
-  sed -n "10,20p" /path/to/file
-  sed -n 5p /path/to/file
-
-  # cut huge file: content between lines 10 and 20
-  # see https://unix.stackexchange.com/a/47423
-  awk 'NR >= 10 && NR <= 20' /path/to/file > /path/to/cut-file
-  # awk is for tabular data
-
-  # replace / substitute 1st occurence
-  sed --in-place "s/foo/FOO/" /path/to/file
-
-  # append two lines at the end of the file / EOF
-  sed --in-place '$ aline3\nline4' /path/to/file  # doesnt work
-
-  # add 'FOO' behind the 1st occurence of '#+title: something'
-  sed --in-place "s/\(foo: .*\)/\1\nFOO/" /path/to/file
-
-  # replace all occurences of "foo" (globally)
-  sed --in-place "s/foo/FOO/g" /path/to/file
-
-  # remove / delete empty lines (globally)
-  sed --in-place '/^\s*$/d' /path/to/file
-
-  # remove / delete line matching 'pattern'
-  sed --in-place "/pattern/d" /path/to/file
-
-  # remove / delete line matching pattern and one following line
-  # see https://stackoverflow.com/a/4398433/5151982
-  sed --in-place --regexp-extended "/^#\+title:.*/,+1d" *.scrbl
-
-  # replace newlines with space
-  sed ':a;N;$!ba;s/\n/ /g'
-
-  # :ascii :ebcdic fix new lines and empty chars; \x85 - hexadecimal char
-  sed "s/\x85/\n/g" <log.txt >log.nl.txt; \
-  sed "s/\x85/\n/g" <log.nl.txt >log.nl.00.txt
-
-  # ignore lines between 'marker1' and 'marker2'
-  # see https://stackoverflow.com/a/40433880/5151982
-  mysql_install_db 2>&1 | sed '/^$marker1/,/$marker2$/d'
 }
 
 @block{@block-name{Disk Devices}

@@ -1,6 +1,9 @@
 #lang notes
 
 @block{@block-name{Listing}
+  # listing: compressed, uncompressed size, compression ratio etc.
+  gzip --list ./path/to/file.gz   # -l, --list   list compressed file contents
+
   # listing: list contents of directories in a tree-like format.
   tree -f (pwd) # full path prefix for each file.
   lff
