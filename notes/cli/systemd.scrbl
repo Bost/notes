@@ -105,4 +105,8 @@
 
   # can replace cron. systemd timers have some additional features
   timers
+  
+  # :systemd Control the systemd login manager - logging data
+  loginctl
+
 }
