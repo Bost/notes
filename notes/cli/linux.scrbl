@@ -1,5 +1,21 @@
 #lang notes
 
+@block{@block-name{SysRq "magic keys"}
+  Enable SysRq (PRT SC / Drucken) "magic keys" by putting 'kernel.sysrq=1' in
+  /etc/sysctl.conf
+  Alt+SysRq+f       OOM killer immediately kills something big
+  Alt+SysRq+k       kill all processes on the current TTY (less than reboot)
+  Alt+SysRq+REISUB  clean reboot without pressing reset
+
+  Test "magic keys" with something that only logs a message into the kernel log
+  Alt+SysRq+h  prints a short help about available SysRq commands
+  Alt+SysRq+p  dumps the registers of the current process
+  Alt+SysRq+t  dumps a process list
+
+  Test "magic keys" by simulated pressing Alt+SysRq+h (help).
+  echo h | sudo tee /proc/sysrq-trigger && sudo dmesg --ctime | tail -n10
+}
+
 @block{@block-name{FHS Filesystem Hierarchy Standard}
   Reference describing the conventions used for the layout of Unix-like systems.
   All files and directories appear under the root directory /, even if they are
