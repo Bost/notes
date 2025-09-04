@@ -279,14 +279,14 @@
   Some DSL languages are too-limiting as programming languages.
   Guix: A most advanced operating system
   https://ambrevar.xyz/guix-advance/index.html
-  |                                                 | better ideas                          |
-  |-------------------------------------------------+---------------------------------------|
-  | Bash, Zsh, Fish                                 | Eshell, Scheme Shell (scsh)           |
-  | Octave, R, PARI/GP, most scientific SW          | Common Lisp, Racket and other Schemes |
-  | Regular expressions                             | Emacs’ rx, Racket’s PEG, etc.         |
-  | Most init system configurations, incl. systemd  | GNU Shepherd                          |
-  | cron                                            | mcron                                 |
-  | TeX, LaTeX (and all the derivatives), Asymptote | scribble, skribilo                    |
+  |                                         | better ideas                  |
+  |-----------------------------------------+-------------------------------|
+  | Bash, Zsh, Fish                         | Eshell, Scheme Shell (scsh)   |
+  | Octave, R, PARI/GP, most scientific SW  | Common Lisp, Racket & Schemes |
+  | Regular expressions                     | Emacs' rx, Racket's PEG, etc. |
+  | Most init system configs, incl. systemd | GNU Shepherd                  |
+  | cron                                    | mcron                         |
+  | TeX, LaTeX & derivatives, Asymptote     | scribble, skribilo            |
 
   mcron - see also https://github.com/leahneukirchen/snooze
 
