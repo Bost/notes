@@ -30,7 +30,6 @@
   - remote login via XDMCP and VNC
   - guest sessions
 
-
   Simple Desktop Display Manager (SDDM) is the successor and replacement of the
   KDE Display Manager (KDM). SDDM features:
   - support X11 and Wayland
@@ -56,6 +55,10 @@
   GNOME uses gdm3
   Xfce  uses lightdm
   KDE   uses kdm
+
+  freedesktop.org (fd.o), formerly X Desktop Group (XDG):
+  project focused on interoperability and shared base technology for
+  free-software desktop environments for the X Window System (X11) and Wayland
 
   ??? Graphical Interface (E.g. KDE Plasma, GNOME Shell, Xfce)
 
