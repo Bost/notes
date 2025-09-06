@@ -315,12 +315,12 @@
     ;; pwd - print working directory
     (getcwd)
 
-    (define second (time-second (current-time)))
+    (define second (current-time))
     (define second 1607841890)
     (strftime "%Y-%m-%d %H:%M:%S" (localtime second)) ; => "2020-12-13 07:44:50"
     (strftime "%Y%m%d%H%M%s" (localtime second))      ; => "20201213074450"
     (strftime "%Y%m%d_%H%M%s" (localtime second))     ; => "20201213_074450"
-    (strftime "%Y%m%d_%H%M%S" (localtime second))     ; => "20201213_074450"
+    (strftime "%Y-%m-%d_%H-%M-%S" (localtime second)) ; => "2020-12-13 07:44:50"
 
     ;; Set operations / sets:
     ,use (srfi srfi-1) ;; or (use-modules (srfi srfi-1))
