@@ -101,10 +101,15 @@
 
   Embeding Guile interpreter into a program / library - it with libguile.
 
-  #<unspecified>
-  (unspecified? *unspecified*)         ;; => #t
-  (equal? (when #f #t) *unspecified*)  ;; => #t
-  the evaluated expression has no result specified
+  #<unspecified> - special value that represents "no useful value" - typically
+  #the result of an expression where the return value isn't meant to be used.
+
+  (unspecified? *unspecified*)        ; => #t
+  ;; The evaluated expression has no result specified:
+  (equal? (when #f #t) *unspecified*) ; => #t
+  ;; *unspecified* is a value apart from both: empty list and boolean false
+  (eq? *unspecified* '()) ; => #f
+  (eq? *unspecified* #f)  ; => #f
 
   Tail Call Optimisation
   the compiler will rewrite the recursive form into a serialised iterative form.
