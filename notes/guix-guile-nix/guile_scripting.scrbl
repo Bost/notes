@@ -40,17 +40,22 @@
     (write (cdr (command-line)))
     (newline)
 
-    ;; Formatted output like fprintf
-    ;; available from (use-modules (ice-9 format))
-    ;; Read environment variable and print it:
-    ;; '#t' 'a:'~ outputs an argument like `display` to the current output port
-    (format #t "~a\n" (getenv "HOME"))
-    ;; '#t' 'a:'~ outputs an argument like `write` to the current output port
-    (format #t "~s\n" (getenv "HOME"))
+    ;; Read environment variable
+    (getenv "HOME")
+    (getenv "UNDEF") ; => #f
+
+    ;; Formatted output like fprintf from (use-modules (ice-9 format))
     ;; https://www.gnu.org/software/guile/manual/html_node/Formatted-Output.html
-    ;; https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html
-    (format #t "~a\n" (getenv "HOME")) ;; => #t print to current output port
-    (string? (format #f "~a\n" (getenv "HOME"))) ;; => #t ;; i.e. print to string
+    |                        | Destination       | Style     | Result        |                                 |
+    |------------------------+-------------------+-----------+---------------+---------------------------------|
+    | (format #t "~a\n" "x") | stdout (terminal) | aesthetic | x (newline)   | Print readable form to terminal |
+    | (format #t "~s\n" "x") | stdout (terminal) | standard  | "x" (newline) | Print with quotes to terminal   |
+    | (format #f "~a\n" "x") | return string     | aesthetic | "x\n"         | Return readable form as string  |
+    | (format #f "~s\n" "x") | return string     | standard  | "\"x\"\n"     | Return with quotes as string    |
+    ;;
+    ;; #t outputs to current output port (usually terminal), #f returns a string
+    ;; ~a gives aesthetic/readable format, ~s gives standard/quoted format (like `write` vs `display`)
+    ;; ;; Use ~a for human-readable output, ~s for machine-readable/serializable output
 
     ;; https://www.draketo.de/software/guile-capture-stdout-stderr.html
     (use-modules (ice-9 rdelim)
