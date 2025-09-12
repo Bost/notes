@@ -11,6 +11,8 @@
   See also chrome://inspect/#devices
 
   Android Package Kit APK
+
+  Replicant: fully free Android distribution
 }
 
 @block{@block-name{LineageOS}
