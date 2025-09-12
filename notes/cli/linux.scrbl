@@ -644,6 +644,11 @@
   #
   # Copy text to clipboard so that it is available in a text editor
   echo "foo" | xsel -bi # -b --clipboard; -i --input
+  #
+  # `tee /dev/tty` Writes the input to both the terminal and passes it along to
+  # the next command in the pipe, which copies it to clipboard
+  echo "foo" | tee /dev/tty | xsel -bi
+  #
   # show normal clipboard content in/on the terminal / command line
   xsel --clipboard
 
