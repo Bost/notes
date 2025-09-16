@@ -457,13 +457,15 @@
 
     @block{@block-name{Bicycle chain}
       YouTube: When to replace chain
-      https://youtu.be/gXd-3UnqoaM?t=37
+      https://youtu.be/gXd-3UnqoaM?t=126
 
-      | stretch | nr-of-gears | verdict |
-      |---------+-------------+---------|
-      |    0.5% | >= 11       | replace |
-      |   0.75% | <= 10       | replace |
-      |      1% | any         | replace |
+      If the measuring tool goes through the chain at 0.75 then it's stretched
+      by more than 0.75% compared to its original length, when it was new.
+      | Stretch          | Number of gears (NrG) | Verdict |
+      |------------------+-----------------------+---------|
+      | Stretch >= 0.5%  | NrG >= 11             | replace |
+      | Stretch >= 0.75% | NrG <= 10             | replace |
+      | Stretch >= 1%    | any                   | replace |
 
       YouTube: Measure Chain Wear
       https://youtu.be/FzyRCcjRuu0?t=98
