@@ -156,6 +156,17 @@
 }
 
 @block{@block-name{Various}
+
+  | EFI      | Extensible Firmware Interface                      |
+  | UEFI     | Unified Extensible Firmware Interface              |
+  | GUID     | Globally Unique Identifier - part of the UEFI      |
+  | GPT      | GUID (Globally Unique Identifier) Partition Table  |
+  | MBR      | Master Boot Record (old, replaced by GPT)          |
+  | Coreboot | extended firmware platform:                        |
+  |          | fast & secure boot on computers / embedded systems |
+
+  WSL1 / WSL2 Windows Subsystem for Linux 1 / 2
+
   DRMAA Distributed Resource Management Application API:
   high-level Open Grid Forum (OGF) API specification for the submission and
   control of jobs to a distributed resource management (DRM) system, such as a

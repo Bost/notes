@@ -12,13 +12,31 @@
 
   Android Package Kit APK
 
-  Replicant: fully free Android distribution
+  Android distributions
+  LineageOS
+  GrapheneOS
+  Replicant
+}
+
+@block{@block-name{Replicant}
+  https://www.replicant.us/
+  A fully free mobile operating system (Android distribution). Emphasis on
+  freedom & privacy/security
+
+  Relation between Replicant and Guix:
+  https://redmine.replicant.us/projects/upstreaming/wiki/GuixBuildSystem
+}
+
+@block{@block-name{GrapheneOS}
+  https://grapheneos.org
+  Private & secure mobile operating system with Android app compatibility.
+  Non-profit open source project.
 }
 
 @block{@block-name{LineageOS}
-
-  # OS for smartphones, tablets, and set-top boxes, based on Android; mostly
-  # free and open-source Successor to CyanogenMod
+  A (mostly?) free and open-source operating system for various devices, based
+  on the Android mobile platform. For smartphones, tablets, and set-top boxes,
+  etc. Successor to CyanogenMod
 
   wget https://spflashtool.com/download/SP_Flash_Tool-5.1916_Linux.zip
   sudo add-apt-repository ppa:linuxuprising/libpng12
