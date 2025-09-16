@@ -10,12 +10,46 @@
   data between the device and the computer.
   See also chrome://inspect/#devices
 
-  Android Package Kit APK
+  Android Package Kit (APK)
+  Android Open Source Project (AOSP)
+  OTA (over-the-air) updates
+  OEM Original Equipment Manufacturer, the one who sells and manages SW (e.g.
+      Samsung, Motorola, Google)
 
-  Android distributions
+  WebUSB
+  JavaScript API specification for securely providing access to USB devices from
+  web applications
+
+  Android distributions:
   LineageOS
+  postmarketOS
   GrapheneOS
   Replicant
+  /e/OS
+
+  | Feature / Aspect   | LineageOS                                    | postmarketOS                                      | GrapheneOS                                                         | Replicant                                      |
+  |--------------------+----------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+------------------------------------------------|
+  | Base Platform      | Android (AOSP)                               | Alpine Linux                                      | Android (AOSP, hardened)                                           | Android (AOSP, fully free SW)                  |
+  | Device Support     | Wide and mature (hundreds of models)         | Growing but limited (~250+ devices, many partial) | Narrow (mainly Google Pixel devices)                               | Very narrow (handful of older Samsung devices) |
+  | User Interface     | Android-like with customization              | Linux UIs (Phosh, GNOME, Plasma, Sxmo, etc.)      | Stock-like Android with strong security controls                   | Basic Android, stripped of non-free components |
+  | App Compatibility  | Full Android apps + optional GMS/microG      | Native Linux apps; Android via Waydroid           | Full Android apps; sandboxed Play Services optional                | Only free Android apps; no Google Play support |
+  | Installation       | Easy, OTA and recovery-supported             | Complex, pmbootstrap-based                        | Moderate (official installers for Pixel devices)                   | Difficult; limited devices and outdated HW     |
+  | Target Audience    | General users, privacy-conscious users       | Linux enthusiasts, hackers, experimenters         | Security/privacy-focused users, journalists, activists             | Free SW purists; FOSS advocates                |
+  | Lifecycle Focus    | Extend device support beyond OEM updates     | 10-year lifecycle, true Linux experience          | Maximum security and privacy on modern HW                          | 100% SW freedom, but outdated and limited HW   |
+  | Privacy & Security | De-Googling possible, privacy tools built-in | Full control, minimal proprietary blobs           | Hardened kernel, memory safety, app sandboxing, default: no Google | Fully free stack, no modern security hardening |
+
+}
+
+@block{@block-name{/e/OS}
+  leading pro-privacy operating system for smartphones.
+  fully deGoogled mobile operating system + selected applications =
+  privacy-enabled internal environment for mobile phones
+}
+
+
+@block{@block-name{postmarketOS}
+  Extend the life of consumer electronics. By empowering people to have full
+  control of their devices, we promote a healthier and more sustainable society.
 }
 
 @block{@block-name{Replicant}
