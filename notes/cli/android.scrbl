@@ -37,7 +37,6 @@
   | Target Audience    | General users, privacy-conscious users       | Linux enthusiasts, hackers, experimenters         | Security/privacy-focused users, journalists, activists             | Free SW purists; FOSS advocates                |
   | Lifecycle Focus    | Extend device support beyond OEM updates     | 10-year lifecycle, true Linux experience          | Maximum security and privacy on modern HW                          | 100% SW freedom, but outdated and limited HW   |
   | Privacy & Security | De-Googling possible, privacy tools built-in | Full control, minimal proprietary blobs           | Hardened kernel, memory safety, app sandboxing, default: no Google | Fully free stack, no modern security hardening |
-
 }
 
 @block{@block-name{/e/OS}
@@ -45,7 +44,6 @@
   fully deGoogled mobile operating system + selected applications =
   privacy-enabled internal environment for mobile phones
 }
-
 
 @block{@block-name{postmarketOS}
   Extend the life of consumer electronics. By empowering people to have full
@@ -65,6 +63,9 @@
   https://grapheneos.org
   Private & secure mobile operating system with Android app compatibility.
   Non-profit open source project.
+
+  WebUSB-based installer
+  https://grapheneos.org/install/web#booting-into-the-bootloader-interface
 }
 
 @block{@block-name{LineageOS}
