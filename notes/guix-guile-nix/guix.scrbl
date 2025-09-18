@@ -369,6 +369,11 @@
 
   https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix
 
+  When `guix build ...` returns 'hash mismatch for store item' for a package
+  consiting of a single file, e.g. emacs-frame-fns from www.emacswiki.org, then
+  check with `guix build --source -e '(...)' --check --no-grafts` if the source
+  file changed
+
   ;; inspect package and bag
   (use-modules (gnu packages maven) (guix) (guix build-system))
   (package-derivation (open-connection) maven)
