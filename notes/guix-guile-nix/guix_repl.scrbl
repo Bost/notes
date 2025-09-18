@@ -15,7 +15,7 @@
   ,use (ice-9 pretty-print) ;; ,use is an alias for ,import or (import ...)
   ;; ,use (guix read-print) ; pretty-printer smarter than (ice-9 pretty-print).
   ;; (pretty-print-with-comments (current-output-port) '1)
-  ,pretty-print '(begin ...) 
+  ,pretty-print '(begin ...)
   ,h inspect       ;; REPL debugging:
   ,inspect EXP                 [,i] - Inspect the result(s) of evaluating EXP.
   ,pretty-print EXP           [,pp] - Pretty-print the result(s) of evaluating EXP.
@@ -37,6 +37,9 @@
   > ,up [COUNT] ; ,frame [COUNT] ,down [COUNT]
   ;; Show locally-bound variables in the selected frame
   ,locals
+
+  ;; backtrace abbreviated / path expansion
+  strace -e open,openat -o /tmp/outfile.strace guix home roll-back | rg guix
 
   ;; guix repl / List procedures provided by the REPL:
   scheme@"@"(guile-user)> ,module (srfi srfi-1)

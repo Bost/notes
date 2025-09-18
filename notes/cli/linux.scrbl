@@ -1247,6 +1247,9 @@
   # max printed string size 10000
   # *.strace file should be handled correctly by strace-mode emacs plugin
   # -f, --follow-forks
+  # -e expr   Modifies which events to trace or how to trace them by specifying
+  #           a qualifying expression.  The format of the expression is:
+  #              [qualifier=][!]value[,value]...
   strace -f -e trace=file,network -s 10000 -o outfile.strace PROCESS ARGS
 
   # check file types and compare values
