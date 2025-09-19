@@ -114,7 +114,7 @@
   Documentation string encoding:
   Single quote chararcter ie. ASCII apostrophe \\='
   Accent grave \\=`
-  https://www.gnu.org/software/emacs/manual/html_node/elisp/Documentation-Tips.htmy
+  https://www.gnu.org/software/emacs/manual/html_node/elisp/Documentation-Tips.html
   (defun foo () "(equal (list 1 (list 2 3)) \\='(1 (2 3)))" 42)
 
   (get-buffer " *Echo Area 0*")
