@@ -625,21 +625,21 @@
   gpg --list-keys
 
   # add / import a package to the distribution
-  guix import elpa --archive=melpa vline
+  guix import elpa --archive=melpa <package-name-as-on-melpa>
 
   # Update package definitions to the latest style. `guix style` may not do any
   # change or throw: error: mkstemp: Read-only file system
   # in this case use the ./pre-inst-env :
   cd $GUIX_CHECKOUT
   guix shell --development guix         # -D, --development
-  ./pre-inst-env guix style <package>
-  ./pre-inst-env guix lint <package>
+  ./pre-inst-env guix style <package-name-as-in-guix>
+  ./pre-inst-env guix lint <package-name-as-in-guix>
   # TODO update my own package definitions
   guix style --load-path=/path/to/channel my-package1 my-package2 ...
   guix style --load-path=~/dev/guix-packages ...
 
   # edit package defition
-  guix edit PACKAGE
+  guix edit <package-name-as-in-guix>
 
   # search for existing service type 'console'
   guix system search console
