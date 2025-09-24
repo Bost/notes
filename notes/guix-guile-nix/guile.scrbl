@@ -32,6 +32,11 @@
 }
 
 @block{@block-name{Guile Scheme}
+  (define fun-symbol 'string-append)
+  ;; resolve `fun-symbol' to a procedure `fun' in the current-module
+  (define fun (eval fun-symbol (current-module)))
+  (fun "a" "b") ⇒ "ab"
+
   (string-replace-substring "x-X-x" "x" "y") ⇒ "y-X-y"
 
   ;; sort list alphabetically
