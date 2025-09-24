@@ -153,13 +153,13 @@
     (define* (partial fun #:rest args)
       (lambda x (apply fun (append args x))))
 
-    (define* (fun x y #:key kw (kw-opt1 'o1) (kw-opt2 'o2) #:rest args)
-      "kw-opt1, kw-opt2 are keywords and optional arguments at the same time"
+    (define* (fun x y #:key kw (kw-opt1 'o1) (kw-opt2 'o2) #:allow-other-keys #:rest args)
+      "kw-opt1, kw-opt2 are keywords and optional arguments at the same time."
       (list x y kw kw-opt1 kw-opt2 args))
-    (fun 'x #:kw '42 'args)                ;; (x #:kw #f o1 o2 (42 args))
-    (apply fun (list 'x #:kw '42 'args))   ;; (x #:kw #f o1 o2 (42 args))
-    (fun 'x 'y #:kw '42 #:kw-opt1 'ox #:kw-opt2 'oy 'args)
-    ;; (x y 42 ox oy (#:kw 42 #:kw-opt1 ox #:kw-opt2 oy args))
+    (fun 'x #:kw '42 #:other-kw 0 'args)              ;; (x #:kw #f o1 o2 (42 #:other-kw 0 args))
+    (apply fun (list 'x #:kw '42 #:other-kw 0 'args)) ;; (x #:kw #f o1 o2 (42 #:other-kw 0 args))
+    (fun 'x 'y #:kw '42 #:kw-opt1 'ox #:kw-opt2 'oy #:other-kw 0 'args)
+    ;; (x y 42 ox oy (#:kw 42 #:kw-opt1 ox #:kw-opt2 oy #:other-kw 0 args))
 
     (define* (fun x #:optional (y 'y-default-val) z) (list x y z))
     (fun 1)         ;; (1 y-default-val #f)
