@@ -20,7 +20,9 @@
     ;; Get value stored under the key "Oregon" from the alist `capitals`
     (assoc-ref capitals "Oregon")   ;; ⇒ "Salem"
   }
-  plist - property list (see plist in emacs-lisp)
+  plist - property list. See also plist in emacs-lisp
+  (plist-get (list :y 2 #:x 1) #:y)   ; => 2
+  (plist-get (list :y 2 #:x 1) #:z)   ; => #f
 
   ;; hashmap, dictionary
   (use-modules (ice-9 hash-table))
