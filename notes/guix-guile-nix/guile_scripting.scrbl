@@ -46,6 +46,7 @@
 
     ;; Formatted output like fprintf from (use-modules (ice-9 format))
     ;; https://www.gnu.org/software/guile/manual/html_node/Formatted-Output.html
+    ;; http://gnu.ist.utl.pt/software/guile/docs/docs-1.6/guile-ref/Formatted-Output.html
     |                        | Destination       | Style     | Result        |                                 |
     |------------------------+-------------------+-----------+---------------+---------------------------------|
     | (format #t "~a\n" "x") | stdout (terminal) | aesthetic | x (newline)   | Print readable form to terminal |
@@ -53,9 +54,12 @@
     | (format #f "~a\n" "x") | return string     | aesthetic | "x\n"         | Return readable form as string  |
     | (format #f "~s\n" "x") | return string     | standard  | "\"x\"\n"     | Return with quotes as string    |
     ;;
-    ;; #t outputs to current output port (usually terminal), #f returns a string
-    ;; ~a gives aesthetic/readable format, ~s gives standard/quoted format (like `write` vs `display`)
-    ;; ;; Use ~a for human-readable output, ~s for machine-readable/serializable output
+    ;; #t outputs to current output port (usually terminal)
+    ;; #f returns a string
+    ;; ~a gives aesthetic/readable format, for human-readable output
+    ;; ~s gives standard/quoted format (like `write` vs `display`),
+    ;;    for machine-readable/serializable output
+    ;; ~y pretty-print
 
     ;; https://www.draketo.de/software/guile-capture-stdout-stderr.html
     (use-modules (ice-9 rdelim)
