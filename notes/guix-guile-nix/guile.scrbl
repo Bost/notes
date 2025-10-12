@@ -191,21 +191,33 @@
   ;; new style uses
   with-exception-handler raise-exception
 
+  ;; https://codeberg.org/ZelphirKaltstahl/guile-examples/src/branch/master/exception-handling/example-01-rnrs-exceptions-conditions.scm
+  ;; R6RS's or R7RS's guard expression is a wrapper around with-exception-handler
+  ;; with #:unwind? set to #t. It is a macro enabling some convenience. The guard
+  ;; expression allows for a cond expression, which enables to specify different
+  ;; handlers for different exception.
+
   @lisp{
     ;; try-catch
     (begin
       (use-modules (ice-9 exceptions))
-      (guard (exception (else (format #t "[catch] An exception was thrown:\n")
-                              (format #t "[catch] ~a\n\n" exception)))
-        (format #t "[try]")
+      (guard (condition
+              [else (format #t "[catch else] condition: ~a\n" condition)])
+        (format #t "[try] ...\n")
         (/ 1 0)
         (format #t "[try] Unreachable\n"))
       (format #t "Moving on.\n"))
 
-    ;; ignore exception
+    ;; try-catch with fat arrow macro
     (begin
-      (use-modules (ice-9 exceptions))
-      (guard (exception (else #f)) (/ 1 0))
+      (guard (condition
+              [(error? condition)
+               => (lambda (test-value)
+                    (format #t "[catch error] condition: ~a\n" condition)
+                    (format #t "[catch error] test-value: ~a\n" test-value))])
+        (format #t "[try] ...\n")
+        (/ 1 0)
+        (format #t "[try] Unreachable\n"))
       (format #t "Moving on.\n"))
 
     ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
@@ -219,25 +231,26 @@
       (read-reason read-exception-reason)
       (read-severity read-exception-severity))
     ;;
+    ;; try-catch guard
     (with-exception-handler
         (lambda (exception)
           (cond
-           ((and (read-exception? exception)
-                 (eq? (read-exception-reason exception)  'almost-full))
-            (format #t "the disk is almost full, only has ~a left.\n"
+           [(and (read-exception? exception)
+                 (eq? (read-exception-reason exception) 'almost-full))
+            (format #t "[catch] The disk is almost full, only has ~a left.\n"
                     (disk-space-amount))
-            (format #t "please provide a different file size: ")
+            (format #t "[catch] Please provide a different file size: ")
             (let ((new-file-size (read)))
               (if (disk-space-left? new-file-size)
                   new-file-size
-                  (raise-exception exception))))
-           (else (raise-exception exception))))
+                  (raise-exception exception)))]
+           [else (raise-exception exception)]))
       (lambda ()
-        (let ((file-size (if (disk-space-left? 1028)
+        (let [(file-size (if (disk-space-left? 1028)
                              1028
                              (raise-continuable
-                              (make-read-exception 'almost-full 'medium)))))
-          (format #t "writing ~a\n" file-size))))
+                              (make-read-exception 'almost-full 'medium))))]
+          (format #t "Writing ~a\n" file-size)))))
 
     (throw 'my-exception)
     (throw 'my-exception "Some description of <my-exception>")
