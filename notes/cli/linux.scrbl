@@ -1062,8 +1062,9 @@
   # last tty (tty switching is also possible by ~M-'some-f-key'>~)
 
   # mount windows shares under linux
+  # -o, --options <list>    comma-separated list of mount options
   sudo mount.cifs //WINDOWS_MACHINE/path/to/dir path/to/dir \
-       -o user=WINDOWS_USERNAME
+       --options user=WINDOWS_USERNAME
 
   # resize disk of a virtual machine
   set file /path/to/some-name.iso.qcow2
@@ -1095,13 +1096,17 @@
   df -h
 
   # :virtualbox mount shared folder
-  sudo mount -t vboxsf share /home/username/share/
+  # -t, --types <list>      limit the set of filesystem types
+  sudo mount --types vboxsf share /home/username/share/
 
   # readonly to readwrite
-  sudo mount -o remount,rw /partition/identifier /mount/point
+  #  -o, --options <list>    comma-separated list of mount options
+  sudo mount --options remount,rw /partition/identifier /mount/point
 
-  # mounted filesystems - table layout; -t --table
-  mount | column -t
+  # mounted filesystems - table layout
+  # -t, --table                      create a table
+  # -s, --separator <string>         possible table delimiters
+  mount | column --table
 
   # filter out some columns, remove table headers, etc. with `column`:
   guix package --list-available="emacs-(ace-jump-helm-line|yasnippet).*" \
@@ -1113,7 +1118,9 @@
   | awk '{print "("$1, "\""$2"\"", $4")"}'
 
   # align csv file
-  cat data.csv | column -t -s ';'
+  # -t, --table                      create a table
+  # -s, --separator <string>         possible table delimiters
+  cat data.csv | column --table --separator ';'
 
   # :xml command line XML tool (formating)
   xmllint
@@ -1334,6 +1341,11 @@
   # network - retcode==1 - online; retcode!=1 offline
   nm-online --exit; echo "retcode: $?"
 
+  # find out / obtain the names of wired (Ethernet) / WiFi network interfaces
+  # Ethernet interfaces have a type of 1
+  rg -l '1' /sys/class/net/*/type | cut -d'/' -f5   # wired (Ethernet)
+  iw dev | awk '$1=="Interface"{print $2}'          # WiFi
+
   # wifi net nmcli - command-line tool for controlling NetworkManager
   nm-applet
   man nmcli-examples
@@ -1470,7 +1482,9 @@
 
   # super fast ram disk
   sudo mkdir -p /mnt/ram
-  sudo mount -t tmpfs /mnt/ram -o size=8192M
+  # -t, --types <list>      limit the set of filesystem types
+  # -o, --options <list>    comma-separated list of mount options
+  sudo mount --types tmpfs /mnt/ram --options size=8192M
 
   # mount / umount (usb) disk without 'root' as the mount command.
   udiskie --verbose    # user-level daemon for auto-mounting
