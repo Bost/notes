@@ -1,6 +1,19 @@
 #lang notes
 
 @block{@block-name{Shells: Bash & Fish-shell}
+  Bash has a feature called “subshells”, where it will start another shell process for certain things. That shell will then be independent and e.g. any changes it makes to variables won’t be visible in the main shell.
+  #
+  Fish does not currently have subshells. You will have to find a different solution.
+  The isolation can usually be achieved by scoping variables (with set -l), but if you really do need to run your code in a new shell environment you can use fish -c 'your code here' to do so explicitly.
+  () subshells are often confused with {} grouping, which does not use a subshell. When you just need to group, you can use begin; end in fish
+  #
+  Subshells are also frequently confused with command substitutions, which bash writes as `command` or $(command) and fish writes as $(command) or (command). Bash also uses subshells to implement them.
+  #
+  TODO list of fish functions using () grouping
+  ❯ cd $dtf/.config/fish/functions                                                                                                                                                                                                                                                                    ─╯
+  ❯ rg -l -g '*.{fish}' '.\(' | rg -v tide\|getopps
+
+
   # check if a file contains only binary zeros
   # https://stackoverflow.com/a/20226139/5151982
   # bash (`cat` shouldn't be used in scripts, only on command line)

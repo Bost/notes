@@ -1,5 +1,15 @@
 #lang notes
 
+@block{@block-name{PIOSEE}
+  Problem: Identify the issue
+  Information: Gather data / information about the situation
+  Options: Create a list of possible actions / options / alternatives
+  Select: For every option asses the risk and choose the most appropriate option
+  Execute: Implement the chosen action.
+           Communicate with the team and everyone involved / affected
+  Evaluate: Monitor the situation. Assess the effectiveness.
+            Search for possible improvements
+}
 
 @block{@block-name{Color models}
   Systems (RGB, HSL, LCH, OKLCH etc.) to describe colors.
