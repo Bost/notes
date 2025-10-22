@@ -1,5 +1,9 @@
 #lang notes
 
+@block{@block-name{Module Scoping}
+  TODO clarify usage - just once: @"@" ? Or twice: @"@"@"@"?
+}
+
 @block{@block-name{List-like structures}
   | Feature     | Alist Association List | Plist Property List          | Hash Table                        |
   |-------------+------------------------+------------------------------+-----------------------------------|
