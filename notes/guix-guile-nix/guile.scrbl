@@ -264,6 +264,26 @@
 
 @block{@block-name{Various code snippets}
   @lisp{
+    (use-modules (ice-9 match))
+    (match (list 1 2) [(f s) (list "f: " f "s: " s)]) ; => ("f: " 1 "s: " 2)
+
+    (use-modules (srfi srfi-9)) ; define-record-type
+    (use-modules (ice-9 match))
+    (let ()
+      (define-record-type person
+        (make-person name friends)
+        person?
+        (name    person-name)
+        (friends person-friends))
+      ;;
+      (letrec ((alice (make-person "Alice" (delay (list bob))))
+               (bob   (make-person "Bob" (delay (list alice)))))
+        (match alice
+          (($ person name (= force (($ person "Bob"))))
+           (list 'friend-of-bob name))
+          (_ #f))))
+    ;; => (friend-of-bob "Alice")
+
     (use-modules) (srfi srfi-13)   ;; String Library
     (string->number "1")           ;; => 1
     (string->number* "1")          ;; from (guix ui)
