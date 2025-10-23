@@ -606,7 +606,10 @@
   | ~y y~ | M-x magit-show-refs            | list branches                  |
   | ~M-w~ | M-x magit-copy-buffer-revision | top sha1 to clipboard          |
   ;; magit: spin-off / spinoff
-  git branch --track <new-branch-name>
+  git branch --track <new-branch> <remote-branch>
+  ;; Use '--track' so that `git pull` and `git push` can be uses without
+  ;; specifying the remote branch name - git will use the upstream branch by
+  ;; default.
 
   | M-x spell         | check word             |
   | M-x flyspell-mode | ? check all document ? |
