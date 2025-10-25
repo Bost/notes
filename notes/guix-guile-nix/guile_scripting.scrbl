@@ -42,7 +42,7 @@
 
     ;; Read environment variable
     (getenv "HOME")
-    (getenv "UNDEF") ; => #f
+    (getenv "UNDEF") ;; => #f
 
     ;; Formatted output like fprintf from (use-modules (ice-9 format))
     ;; https://www.gnu.org/software/guile/manual/html_node/Formatted-Output.html
@@ -60,6 +60,11 @@
     ;; ~s gives standard/quoted format (like `write` vs `display`),
     ;;    for machine-readable/serializable output
     ;; ~y pretty-print
+
+    ;; padding
+    (format #t "~5,'*d" 12)   ;; => ***12
+    (format #t "~5,'0d" 12)   ;; => 00012
+    (format #t "~3d"    1234) ;; => 1234
 
     ;; https://www.draketo.de/software/guile-capture-stdout-stderr.html
     (use-modules (ice-9 rdelim)
