@@ -264,6 +264,12 @@
 
 @block{@block-name{Various code snippets}
   @lisp{
+    (use-modules (srfi srfi-111)) ; Mutable containers
+    (define (incr! a-box) (set-box! a-box (+ (unbox a-box) 1)))
+    (define y (box 0))
+    (incr! y)
+    (unbox y)  ; => 1
+
     (use-modules (ice-9 match))
     (match (list 1 2) [(f s) (list "f: " f "s: " s)]) ; => ("f: " 1 "s: " 2)
 
@@ -539,12 +545,17 @@
 }
 
 @block{@block-name{Equality}
-  | eqv?   | (eqv? 3 (+ 1 2)) => #t     (eqv? 1 1.0) => #f        |
-  ;;
-  |        | returns `#t' if X and Y are:                         |
-  | equal? | the same type, and their contents or value are equal |
-  | eq?    | the same object, except for numbers and characters   |
-  | =      | numerically equal                                    |
+  | Data type     | Interned?  | Compared by | Example true?      | Preferred |
+  | ------------- | ---------  | ----------- | ------------------ | --------- |
+  | Symbol        | Yes        | Identity    | (eq? 'a 'a)        | eq?       |
+  | Keyword       | Yes        | Identity    | (eq? #:a #:a)      | eq?       |
+  | Boolean       | Yes        | Identity    | (eq? #t #t)        | eq?       |
+  | Character     | No (value) | Value       | (eqv? #\a #\a)     | eqv?      |
+  | Number        | No         | Value       | (= 3 3)            | =         |
+  | String        | No         | Content     | (string=? "a" "a") | string=?  |
+  | List / Vector | No         | Structure   | (equal? '(1) '(1)) | equal?    |
+  |               |            |             |                    |           |
+  Use `equal?` when unsure but want safe generality:
 }
 
 @block{@block-name{SXML}
