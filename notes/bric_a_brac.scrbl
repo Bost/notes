@@ -423,6 +423,11 @@
   # See
   # Youtube-dl fork with additional features and fixes
   # https://github.com/yt-dlp/yt-dlp
+
+  # Extract audio from video
+  # -vn          : Disable video
+  # -acodec copy : Copy the audio stream without re-encoding
+  ffmpeg -i input.mp4 -vn -acodec copy output.m4a
 }
 
 @block{@block-name{code_aster}
