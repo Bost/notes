@@ -188,7 +188,7 @@
   }
 }
 
-@block{@block-name{Exceptions}
+@block{@block-name{Guards / Exceptions / try-catch}
   ;; See https://vijaymarupudi.com/blog/2022-02-13-error-handling-in-guile.html
   ;; old style uses
   catch with-throw-handler throw
