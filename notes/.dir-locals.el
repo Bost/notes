@@ -37,7 +37,7 @@
       ;;    ))
 
 
-      ;; no number highlighting in comments. Test case:
+      ;; No number highlighting in comments. Test case:
       ;; # foo 42 bar
       (font-lock-refresh-defaults)
 
@@ -57,14 +57,15 @@
       (defun notes=find-file--guix.scrbl ()
         (interactive)
         (find-file
-         (format "%s/guix.scrbl" home-dir)))
+         (format "%s/guix-guile-nix/guix.scrbl" home-dir)))
 
-      (dolist (state-map `(,scribble-mode-map))
-        ;; See also `set-local-keymap'
-        (bind-keys
-         :map state-map
-         ;; The binding description doesn't appear in the `M-x helm-descbinds'
-         ;; if the binding is defined using lambda:
-         ;;    ("<some-key>" . (lambda () (interactive) ...))
-         ("<s-f4>"  . notes=find-file--guix.scrbl)
-         )))))))
+      (with-eval-after-load 'scribble-mode
+        (dolist (state-map `(,scribble-mode-map))
+          ;; See also `set-local-keymap'
+          (bind-keys
+           :map state-map
+           ;; The binding description doesn't appear in the `M-x helm-descbinds'
+           ;; if the binding is defined using lambda:
+           ;;    ("<some-key>" . (lambda () (interactive) ...))
+           ("<s-f4>" . notes=find-file--guix.scrbl)
+           ))))))))
