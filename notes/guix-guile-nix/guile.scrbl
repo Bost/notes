@@ -121,6 +121,7 @@
   ;; *unspecified* is a value apart from both: empty list and boolean false
   (eq? *unspecified* '()) ; => #f
   (eq? *unspecified* #f)  ; => #f
+  (eq? *unspecified* #t)  ; => #f
 
   Tail Call Optimisation
   the compiler will rewrite the recursive form into a serialised iterative form.
