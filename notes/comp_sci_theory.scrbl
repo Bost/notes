@@ -220,7 +220,7 @@
 
 @block{@block-name{Theorem provers vs. proof assistants}
   https://en.wikipedia.org/wiki/Proof_assistant
-  both are used for formal verification and automated reasoning.
+  Both are used for formal verification and automated reasoning.
   TPs focuse on automated proof search and providing a "yes" or "no" answer.
   PAs provide an interactive environment for users to construct, verify, and
   interact with formal proofs. PAs offer a higher level of interactivity and
@@ -230,12 +230,12 @@
 
 @block{@block-name{Haskell / Agda comparison}
   Coq:
-  formal proof management system. It provides a formal language to write
+  Formal proof management system. It provides a formal language to write
   mathematical definitions, executable algorithms and theorems together with an
   environment for semi-interactive development of machine-checked proofs.
 
   Agda:
-  dependently typed functional programming language and a proof assistant (i.e. an
+  Dependently typed functional programming language and a proof assistant (i.e. an
   interactive system for writing and checking proofs), based on intuitionistic
   type theory, a foundational system for constructive mathematics developed by Per
   Martin-Löf.
@@ -244,21 +244,21 @@
   Language for Type-Driven Development
 
   Lean:
-  theorem prover and programming language, based on the calculus of
+  Theorem prover and programming language, based on the calculus of
   constructions with inductive types.
 
   ACL2 A Computational Logic for Applicative Common Lisp
-  theorem prover based on Common Lisp. It uses a variant of Lisp syntax called
+  Theorem prover based on Common Lisp. It uses a variant of Lisp syntax called
   ACL2 syntax, which extends Common Lisp with additional constructs for
   specifying logical formulas and proof goals.
 
   HOL Higher Order Logic
-  theorem prover, which has various implementations, including HOL4 and HOL
+  Theorem prover, which has various implementations, including HOL4 and HOL
   Light. HOL Light, in particular, is implemented in OCaml but provides a
   Lisp-like syntax for specifying and manipulating formal proofs.
 
   Haskell:
-  statically typed, purely functional programming language with type inference
+  Statically typed, purely functional programming language with type inference
   and lazy evaluation.
 
  |             | Haskell                              | Agda                                     |

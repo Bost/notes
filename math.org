@@ -56,7 +56,7 @@ functions for that region.
 
 * Algebra
 An algebra over a field $F$ is a tuple $(A, +, \cdot, \times)$ where:
-+ $(A, +)$ is an abelian group (under addition),
++ $(A, +)$ is an Abelian group (under addition),
 + $(A, \cdot)$ is a vector space over $F$,
 + $(A, \times)$ is a ring,
 + and the operations are compatible, satisfying distributive laws.
