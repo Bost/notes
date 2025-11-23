@@ -37,8 +37,8 @@ _Category - informal description_:
 |                    2 | Composition                      |
 |                    3 | Associativity law of composition |
 
-- Is context rich and content poor
-- Is mathematical context where construction is possible.
+- Is context-rich and content-poor
+- Is a mathematical context where construction is possible.
   + Functors: Constructors
   + Natural Transformations: Comparison of constructions
 - Example in programming:
