@@ -17,6 +17,10 @@
     # 2.1 without proxy
     # -f, --fail                 Fail fast with no output on HTTP errors
     # -s, --silent               Silent mode
+    # -S, --show-error           When used with -s, show an error if it fails
+    # -L, --location             When requested page moved, redo the request on the new place.
+    #                            If used together with -i, --include or -I,
+    # sudo: -E, --preserve-env
     curl -fsSL https://deb.nodesource.com/setup_$nodeJsVer.x | sudo -E bash -
     sudo apt install --yes nodejs
     ## 2.2 behind proxy
