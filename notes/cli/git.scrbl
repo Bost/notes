@@ -1,6 +1,10 @@
 #lang notes
 
 @block{@block-name{Git}
+  HEAD - usually points to a branch, except detached HEAD
+  git reset / checkout - move branch
+  git revert - add new commit doing the oposit (history preserved)
+
   # https://softwaredoug.com/blog/2022/11/09/idiot-proof-git-aliases.html
 
   # Git Annex - sync large files

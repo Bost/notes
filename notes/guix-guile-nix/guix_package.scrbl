@@ -25,6 +25,13 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
 }
 
 @block{@block-name{Various commands}
+  guix hash -S git -f hex -H sha1 $dgx/COPYING
+  94a9ed024d3859793618152ea559a168bbcbb5e2
+  # -S git: read the data as the same way as Git
+  (echo -en "blob $(cat $dgx/COPYING | wc -c)\0" ; cat $dgx/COPYING) | sha1sum
+  94a9ed024d3859793618152ea559a168bbcbb5e2  -
+  # See https://archive.softwareheritage.org/swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2
+
   guix install glibc    # contains ldd
   guix install gcc:lib  # contains libstdc++.so.6, defines LIBRARY_PATH
   guix install iproute2 # contains ss socket statistics

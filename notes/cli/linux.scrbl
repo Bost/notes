@@ -855,7 +855,8 @@
   wget http://server/fileX.ext -P ./path/to/dir/      # ... directory
 
   # download fileX.txt and save it under different location / name
-  curl -O http://server/fileX.txt > ./path/to/fileY.txt
+  # -O, --remote-name          Write output to a file named as the remote file
+  curl --remote-name http://server/fileX.txt > ./path/to/fileY.txt
 
   # network ask http://ifconfig.me about myself (ua: User Agent)
   curl ifconfig.me/ip/host/ua/port/
@@ -865,16 +866,17 @@
 
   # enforce using http_proxy instead of https_proxy in case of
   # SSL23_GET_SERVER_HELLO
-  curl -v --proxy $http_proxy https://www.google.com
+  curl --verbose --proxy $http_proxy https://www.google.com
 
   # show request/response headers
-  curl -v URL
+  curl --verbose URL
 
   # in bash: (doesn't work in fish)
   curl --request GET \
    "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=test"
 
-  curl --request POST -H 'Content-Type: application/json' -d '{"x":"1", "y":"2"}' URL
+  curl --request POST --header \
+    'Content-Type: application/json' -d '{"x":"1", "y":"2"}' URL
   curl --request POST --form variable=value URL
 
   # iproute2 network - like ifconfig. State of network interfaces
