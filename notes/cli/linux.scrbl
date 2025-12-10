@@ -1304,7 +1304,7 @@
   # enterprise cryptographic filesystem for Linux
   ecryptfs
 
-  # file attributes: see `info ls`
+  # file attributes / permissions: see `info ls`
   # -  regular file
   # b  block special file
   # c  character special file
