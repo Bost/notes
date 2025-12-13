@@ -1,6 +1,11 @@
 #lang notes
 
 @block{@block-name{Git}
+  # When git submodule shows
+  #   fatal: No url found for submodule path '...' in .gitmodules
+  git ls-files --stage | grep 160000
+  # See https://stackoverflow.com/a/4185579
+
   HEAD - usually points to a branch, except detached HEAD
   git reset / checkout - move branch
   git revert - add new commit doing the oposit (history preserved)

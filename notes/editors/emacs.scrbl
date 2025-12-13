@@ -1,37 +1,5 @@
 #lang notes
 
-@block{@block-name{Signature made by expired key}
-  When:
-      An error occurred ... (error: (bad-signature queue-0.2.el.sig))
-  Then:
-  1. in the *Error* buffer look fo:
-      Signature made by expired key <some-expired-key>
-  and try to update the GPG keys manually
-  gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys <some-expired-key>
-  alternativelly:
-  1. (setq package-check-signature nil)
-  2. M-x dotspacemacs/sync-configuration-layers / ~SPC f e R~
-  3. M-x spacemacs/restart-emacs-resume-layouts / ~SPC q r~
-  ;;
-  See also
-  https://emacs.stackexchange.com/a/53142
-  https://metaredux.com/posts/2019/12/09/dealing-with-expired-elpa-gpg-keys.html
-  It seems like the package gnu-elpa-keyring-update is not needed
-
-  # Extend the expiration date of an already expired GPG key
-  gpg --list-keys
-  gpg --edit-key <key-id>
-  gpg> key 0 # or key 1, etc.
-  gpg> expire
-  (follow prompts)
-  gpg> save
-  # Now that you've updated your key, you can send it out:
-  # gpg --keyserver pgp.mit.edu --send-keys <key-id>
-  #
-  # see also
-  # https://riseup.net/en/security/message-security/openpgp/best-practices/#use-an-expiration-date-less-than-two-years
-}
-
 @block{@block-name{debug / edebug}
   System Crafters: Learning To Use the Emacs Debugger
   https://youtu.be/LfwSc-lfFxM

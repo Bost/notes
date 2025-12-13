@@ -242,6 +242,72 @@
   }
 }
 
+@block{@block-name{GPG Signature made by expired key}
+  When:
+      An error occurred ... (error: (bad-signature queue-0.2.el.sig))
+  Then:
+  1. in the *Error* buffer look fo:
+      Signature made by expired key <some-expired-key>
+  and try to update the GPG keys manually
+  gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys <some-expired-key>
+  alternativelly:
+  1. (setq package-check-signature nil)
+  2. M-x dotspacemacs/sync-configuration-layers / ~SPC f e R~
+  3. M-x spacemacs/restart-emacs-resume-layouts / ~SPC q r~
+  ;;
+  See also
+  https://emacs.stackexchange.com/a/53142
+  https://metaredux.com/posts/2019/12/09/dealing-with-expired-elpa-gpg-keys.html
+  It seems like the package gnu-elpa-keyring-update is not needed
+
+  # Extend the expiration date of an already expired GPG key
+  gpg --list-keys
+  gpg --edit-key <key-id>
+  gpg> key 0 # or key 1, etc.
+  gpg> expire
+  ... [ follow prompts ] ...
+  gpg> save
+  # Now that you've updated your key, you can send it out:
+  # gpg --keyserver pgp.mit.edu --send-keys <key-id>
+  #
+  # see also
+  # https://riseup.net/en/security/message-security/openpgp/best-practices/#use-an-expiration-date-less-than-two-years
+}
+
+@block{@block-name{GPG Change email address}
+  $ gpg --edit-key <key-id>
+  ...
+  gpg> adduid
+  ... [ follow prompts ] ...
+  [ultimate] (1)  SOME NAME <old-email>
+  [ unknown] (2). SOME NAME <new-email>
+  gpg> uid 1
+  ... [ the * appears next to (1) ] ...
+  [ultimate] (1)* SOME NAME <old-email>
+  [ unknown] (2). SOME NAME <new-email>
+  gpg> revuid
+  ... [ follow prompts ] ...
+  [ revoked] (1)  SOME NAME <old-email>
+  [ unknown] (2). SOME NAME <new-email>
+  gpg> uid 2
+  ... [ the * appears next to (2) ] ...
+  [ultimate] (1)  SOME NAME <old-email>
+  [ unknown] (2)* SOME NAME <new-email>
+  gpg> expire
+  ... [ follow prompts ] ...
+  [ultimate] (1)  SOME NAME <old-email>
+  [ unknown] (2)* SOME NAME <new-email>
+  gpg> list
+  ... [ 'unknown' still appears next to <new-email>. Changes not saved ]
+  [ultimate] (1)  SOME NAME <old-email>
+  [ unknown] (2)* SOME NAME <new-email>
+  gpg> save
+  $ gpg --edit-key <key-id>
+  ... [ the order new <-> old is changed ] ...
+  [ultimate] (1). SOME NAME <new-email>
+  [ultimate] (2)  SOME NAME <old-email>
+}
+
 @block{@block-name{Andrew Tropin}
   https://fosstodon.org/@"@"abcdw
 
