@@ -140,7 +140,7 @@
   gpg --expert --full-generate-key
   # gpg --batch --generate-key ... # see bottom of the webpage:
   # https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html#Unattended-GPG-key-generation
-
+  #
   # creating a key for signing and encrypting is the easiest. Choose:
   # "(9) ECC and ECC" - "can do all" key with Elliptic Curve Cryptography.
   #                   (i.e. ECC primary key and ECC encryption subkey).
@@ -166,8 +166,8 @@
   "gpg --export-secret-keys --passphrase-fd=0 --pinentry-mode=loopback | \
    gpg --import --batch --yes"
   # However:
-  gpg --list-keys
-  gpg --list-secret-keys
+  gpg --list-keys # --fingerprint
+  gpg --list-secret-keys # --fingerprint
   # show NOTHING!!!
 
   # copy / transfer keys and ownertrust to a new machine / computer
