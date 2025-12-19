@@ -217,7 +217,7 @@
   Prompt=normal
   #
   # 2. `download package information`; and `install available upgrades`.
-  # See also full-upgrade / `apt list --upgradable -a`
+  # See also full-upgrade / `apt list --upgradable`
   sudo apt update && sudo apt upgrade
   #
   # 3. remove / install / upgrade of packages updates and upgrades the OS

@@ -5,17 +5,18 @@
 @block{@block-name{GUI composition}
   https://unix.stackexchange.com/a/464321
 
-  | Component             | Examples                               |
-  |-----------------------+----------------------------------------|
-  | Desktop Environment   | GNOME, KDE Plasma, Xfce, Cinnamon      |
-  | Window Manager        | Mutter, KWin, Xfwm, i3, Openbox        |
-  | Widget Toolkit        | GTK, Qt, FLTK, EFL                     |
-  | Display Server        | X.Org Server (X11), Weston, Sway, Mir  |
-  | Display Protocol      | X11, Wayland                           |
-  | Display Manager       | GDM, SDDM, LightDM                     |
-  | Operating System      | Linux, FreeBSD, Windows, macOS         |
-  | Kernel                | Linux, NT, XNU                         |
-  | Hardware              | GPU, monitor, keyboard, mouse          |
+  | Component           | Examples                              | Commands                                           |
+  |---------------------+---------------------------------------+----------------------------------------------------|
+  | Desktop Environment | GNOME, KDE Plasma, Xfce, Cinnamon     | echo $XDG_CURRENT_DESKTOP or echo $DESKTOP_SESSION |
+  | Window Manager      | Mutter, KWin, Xfwm, i3, Openbox       | wmctrl -m or echo $WINDOW_MANAGER                  |
+  | Widget Toolkit      | GTK, Qt, FLTK, EFL                    |                                                    |
+  | Display Protocol    | X11, Wayland                          | echo $XDG_SESSION_TYPE                             |
+  | Display Server      | X.Org Server (X11), Weston, Sway, Mir | echo $XDG_SESSION_TYPE                             |
+  | Display Manager     | GDM, SDDM, LightDM                    |                                                    |
+  | Operating System    | Linux, FreeBSD, Windows, macOS        |                                                    |
+  | Kernel              | Linux, NT, XNU                        |                                                    |
+  | Hardware            | GPU, monitor, keyboard, mouse         |                                                    |
+
 
   XOrg: old, many different programs for setting everything
   Wayland:replaces xorg; uses HW accelerated graphics
