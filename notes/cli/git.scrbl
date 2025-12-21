@@ -1,5 +1,65 @@
 #lang notes
 
+@block{@block-name{auth: channel-a & channel-b}
+  channel-a: Add dependency on channel-b
+
+  badkid=$(gpg --list-keys --keyid-format LONG --with-colons Bad | awk -F: '/^pub:/ { print $5 }')
+  # gpg --armor --export 'Bad Guy' > attacker-in-channel-b-$badkid.key
+  baduid=$(gpg --list-keys --with-colons $badkid | awk -F: '/^uid:/ { print $10 }')
+  badfip=$(gpg --fingerprint $badkid | sed -n '2p' | sed 's/^[[:space:]]*//')
+  badname=$(echo "$baduid" | cut -d '<' -f1 | xargs)
+  bademail=$(echo "$baduid" | cut -d '<' -f2 | cut -d '>' -f1)
+
+  GIT_COMMITTER_NAME="$badname"
+  GIT_COMMITTER_EMAIL="$bademail"
+
+  echo "GIT_COMMITTER_NAME  : $GIT_COMMITTER_NAME"
+  echo "GIT_COMMITTER_EMAIL : $GIT_COMMITTER_EMAIL"
+
+
+  GIT_AUTHOR_NAME="$badname" \
+  GIT_AUTHOR_EMAIL="$bademail" \
+  GIT_COMMITTER_NAME="$badname" \
+  GIT_COMMITTER_EMAIL="$bademail" \
+  git commit -S$badkid -m "channel-b: Add attacker-in-channel-b to .guix-authorizations"
+
+  echo "Bad content in channel-b" > bad-in-channel-b.txt                                                                                      ─╯
+  git add bad-in-channel-b.txt                                                                                                                ─╯
+
+
+  GIT_AUTHOR_NAME="$badname" \
+  GIT_AUTHOR_EMAIL="$bademail" \
+  GIT_COMMITTER_NAME="$badname" \
+  GIT_COMMITTER_EMAIL="$bademail" \
+  git commit -S$badkid -m "channel-b: Bad commit"
+
+  GIT_AUTHOR_NAME="$badname" \
+  GIT_AUTHOR_EMAIL="$bademail" \
+  GIT_COMMITTER_NAME="$badname" \
+  GIT_COMMITTER_EMAIL="$bademail" \
+  git commit -S$badkid -m "channel-b: [tampered] Create channel-b with .guix-authorizations"
+
+  ❯ git co keyring                                                                                                                              ─╯
+  ❯ git reset --hard keyring-hack                                                                                                               ─╯
+  ❯ git co master                                                                                                                               ─╯
+  ❯ git reset --hard master-hack                                                                                                                ─╯
+
+  GIT_AUTHOR_NAME="$badname" \
+  GIT_AUTHOR_EMAIL="$bademail" \
+  GIT_COMMITTER_NAME="$badname" \
+  GIT_COMMITTER_EMAIL="$bademail" \
+  git rebase --interactive master-good master-hack-2
+
+  GIT_AUTHOR_NAME="$badname" \
+  GIT_AUTHOR_EMAIL="$bademail" \
+  GIT_COMMITTER_NAME="$badname" \
+  GIT_COMMITTER_EMAIL="$bademail" \
+  git rebase --interactive f96cb26 master-hack-2
+
+  ("045D D405 56B6 C4D4 ED93 7053 A740 61D5 6CFE 8E89"
+  name "attacker-in-channel-b")
+}
+
 @block{@block-name{Git}
   # When git submodule shows
   #   fatal: No url found for submodule path '...' in .gitmodules
