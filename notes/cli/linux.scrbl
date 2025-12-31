@@ -178,6 +178,14 @@
 }
 
 @block{@block-name{Various}
+  # When:
+  $ sudo do-release-upgrade
+  Checking for a new Ubuntu release
+  Please install all available updates for your release before upgrading.
+  # do
+  $ apt list --upgradable
+  $ sudo apt-get --with-new-pkgs upgrade <list-of-packages>
+
   nscd: name service cache daemon
   Caching for accesses of the passwd, group and hosts
 
