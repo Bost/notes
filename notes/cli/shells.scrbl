@@ -568,3 +568,22 @@
       ;
   echo "bar"
 }
+
+@block{@block-name{Command substitution}
+  # works the same in bash and fish-shell
+  $ printf "<%s>\n" "$(seq 0 1)"
+  <0
+  1>
+  $ printf "<%s>\n" $(seq 0 1)
+  <0>
+  <1>
+  $ printf "<%s>\n" "`seq 0 1`"
+  <0
+  1>
+  $ printf "<%s>\n" `seq 0 1`
+  <0>
+  <1>
+  # process substitution
+  $ printf "<%s>\n" <(seq 0 1)
+  </dev/fd/63>
+}
