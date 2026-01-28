@@ -1692,13 +1692,38 @@
   # 3. Format partition as ext4 (or ext2 or ext3):
   sudo mkfs.ext4 $diskPart -L <lbl-fsys-...> # -L <volume-label>
   #
-  # 4. verify:
+  # 4. verify with:
   lsblk --output \
           FSTYPE,PARTTYPE,PATH,MODEL,TRAN,LABEL,SIZE,PARTLABEL,MOUNTPOINTS \
         | sed 's/PARTLABEL/PARTLBL  /g' | sed 's/LABEL/FSLBL/g'
-  #
+  # 4. ... or verify also with:
   sudo parted $diskRoot print
+  # Model: VendorCo ProductCode (scsi)
+  # Disk /dev/sdd: 31.5GB
+  # Sector size (logical/physical): 512B/512B
+  # Partition Table: msdos
+  # Disk Flags:
+  #
+  # Number  Start   End     Size    Type     File system  Flags
+  # 2      1185MB  1188MB  2949kB  primary               esp
+  #
+  # 4. ... or verify also with:
   sudo fdisk --list $diskRoot
+  # Disk /dev/sdd: 29.3 GiB, 31457280000 bytes, 61440000 sectors
+  # Disk model: ProductCode
+  # Units: sectors of 1 * 512 = 512 bytes
+  # Sector size (logical/physical): 512 bytes / 512 bytes
+  # I/O size (minimum/optimal): 512 bytes / 512 bytes
+  # Disklabel type: dos
+  # Disk identifier: 0x00000000
+  #
+  # Device     Boot   Start     End Sectors  Size Id Type
+  # /dev/sdd1  *          0 2315063 2315064  1.1G  0 Empty
+  # /dev/sdd2       2315064 2320823    5760  2.8M ef EFI (FAT-12/16/32)
+  #
+  # 4. ... or verify also with:
+  sudo file --special-files $diskRoot
+  # /dev/sdd: ISO 9660 CD-ROM filesystem data (DOS/MBR boot sector) 'GUIX_X86_64-LINUX_1.5.0' (bootable)
   #
   # In the context of Linux tools like blkid and lsblk, it is not possible to
   # assign a custom label directly to the entire hard drive (as opposed to

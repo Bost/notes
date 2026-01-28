@@ -52,8 +52,8 @@
   (iota 6)        ⇒ (0 1 2 3 4 5)
   (iota 4 2.5 -2) ⇒ (2.5 0.5 -1.5 -3.5)
 
-  (define my-list '(a b c d e))
-  (list-ref my-list 2)  ;; nth element of a list
+  (define my-list '(a0 b1 c2 d3 e4))
+  (list-ref my-list 2) ;; => c2 (nth element of a list)
 
   https://sourcegraph.com/search
   https://sourcehut.org
@@ -118,10 +118,16 @@
   (unspecified? *unspecified*)        ; => #t
   ;; The evaluated expression has no result specified:
   (equal? (when #f #t) *unspecified*) ; => #t
+  ;; However:
+  (equal? (when #f #t))               ; => #t
+  (equal? *unspecified*)              ; => #t
+  ;; *unspecified* is truthy. WTF!?!
+  (if (when #f #t) #t #f)  ; => #t
+  (if *unspecified* #t #f) ; => #t
   ;; *unspecified* is a value apart from both: empty list and boolean false
-  (eq? *unspecified* '()) ; => #f
-  (eq? *unspecified* #f)  ; => #f
-  (eq? *unspecified* #t)  ; => #f
+  (eq? *unspecified* '())  ; => #f
+  (eq? *unspecified* #f)   ; => #f
+  (eq? *unspecified* #t)   ; => #f
 
   Tail Call Optimisation
   the compiler will rewrite the recursive form into a serialised iterative form.
@@ -505,6 +511,7 @@
              (odd?  (lambda (n) (if (zero? n) #f (even? (- n 1))))))
       (even? 88))
 
+    (use-modules (srfi srfi-88)) ; provides keyword objects
     (keyword? #:foo)   ;; => #t
     ;; (keyword? :foo) ;; => error
     ;; (keyword? foo:) ;; => error
@@ -565,4 +572,17 @@
   associated suite of tools[which?] implements XPath, SAX and XSLT for SXML in
   Scheme[2][3] and are available in the GNU Guile implementation of that
   language.
+}
+
+@block{@block-name{Exactness}
+  ;; https://www.gnu.org/software/guile/docs/docs-2.0/guile-ref/Exactness.html
+  (exact? 2)           ; ⇒ #t
+  (exact? 0.5)         ; ⇒ #f
+  (exact? (/ 2))       ; ⇒ #t
+  (inexact->exact 0.5) ; ⇒ 1/2
+  ;; 12/10 is not exactly representable as a double (on most platforms).
+  ;; However, when reading a decimal number that has been marked exact with the
+  ;; "#e" prefix, Guile is able to represent it correctly.
+  (inexact->exact 1.2) ; ⇒ 5404319552844595/4503599627370496
+  #e1.2                ; ⇒ 6/5
 }
