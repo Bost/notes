@@ -1733,6 +1733,11 @@
   # :usb :drive gnome userspace virtual fs
   mount | grep gvfs; cd ...
 
+  # list USB devices
+  lsusb
+  lsusb --verbose
+  udevadm info --query=all --name=$diskRoot
+
   # How do I find out what process is accesing the partition? When:
   udisksctl unmount --block-device=$diskPart
   # returns:
