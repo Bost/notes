@@ -225,10 +225,26 @@
   # test "$(declare -p myvar)" =~ "declare -a" && \
   #     echo "Array: true" || echo "Array: false"
 
+  echo "Array length : ${#myvar[@"@"]}"
+
   # compute calculate fish-shell
   # examples https://nicolas-van.github.io/programming-with-fish-shell
   math "1 + 2"
   set jobs (math round (nproc) \* 0.9) # should be 22 on ecke
+
+  # 'scalarstr' is a scalar string variable (a normal bash variable) whose
+  # contents are a multi-line string.
+  scalarstr =$'Alpha one\nBeta two\nGamma three'
+  # declaration with double quotes: $"a a\nb b\nc c" don't work
+
+  # Iterate over scalar string variable:
+  for s in "$scalarstr"; do echo "s: $s"; done # prints 's: ' just once
+  printf "length / number of chars: %s\n" \
+         ${#scalarstr}
+  printf "length / number of bytes (e.g. utf-8): %s\n" \
+         $(printf '%s' "$scalarstr" | wc -c)
+  printf "length / number of entries (incl. empty lines): %s\n" \
+         $(printf '%s\n' "$scalarstr" | wc -l)
 }
 
 @block{@block-name{Bash double brackets}
