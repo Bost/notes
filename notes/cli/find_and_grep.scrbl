@@ -163,6 +163,14 @@
   # grep
   # \Z  matches the EOF end-of-file
 
+  # [[:blank:]] only matches spaces and tabs, not newlines
+  # -z, --null-data        a data line ends in 0 byte, not newline
+  $ echo -e "aaa\n123" | grep -z  "aaa\s123"
+  aaa
+  123
+  $ echo -e "aaa 123" | grep -z  "aaa\s123"
+  aaa 123
+
   # Save output to a file
   find ~/test/ -type f -fprint output.txt
 
