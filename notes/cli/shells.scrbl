@@ -10,7 +10,7 @@
   Subshells are also frequently confused with command substitutions, which bash writes as `command` or $(command) and fish writes as $(command) or (command). Bash also uses subshells to implement them.
   #
   TODO list of fish functions using () grouping
-  ❯ cd $dtf/.config/fish/functions                                                                                                                                                                                                                                                                    ─╯
+  ❯ cd $dtf/.config/fish/functions
   ❯ rg -l -g '*.{fish}' '.\(' | rg -v tide\|getopps
 
 
