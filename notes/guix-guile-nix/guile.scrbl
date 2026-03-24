@@ -165,6 +165,7 @@
     ;; '#:rest' is a synonym for the dotted syntax rest argument.
     (define* (partial fun #:rest args)
       (lambda x (apply fun (append args x))))
+    ;; see https://codeberg.org/kakafarm/srfi-26-cuter/src/branch/master/srfi/srfi-26-cuter.scm
 
     (define* (fun x y #:key kw (kw-opt1 'o1) (kw-opt2 'o2) #:allow-other-keys #:rest args)
       "kw-opt1, kw-opt2 are keywords and optional arguments at the same time."
@@ -270,6 +271,9 @@
 }
 
 @block{@block-name{Various code snippets}
+  map      - for transforming lists and returning new data
+  for-each - for doing side effects and discarding results
+
   @lisp{
     (use-modules (srfi srfi-111)) ; Mutable containers
     (define (incr! a-box) (set-box! a-box (+ (unbox a-box) 1)))

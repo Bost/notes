@@ -376,7 +376,7 @@
 
   ;; inspect package and bag
   (use-modules (gnu packages maven) (guix) (guix build-system))
-  (package-derivation (open-connection) maven)
+  (package-derivation (open-connection "file:///var/guix/daemon-socket/socket") maven)
   (package-name maven)
   (package-inputs maven)
   (package-outputs maven)
@@ -395,7 +395,7 @@
   ;;
   ;; 2. The store - store access mediated by daemon
   ,use (guix store)
-  (define daemon (open-connection))
+  (define daemon (open-connection "file:///var/guix/daemon-socket/socket"))
   (add-text-to-store daemon "foo.txt" "Hi REPL")
   (valid-path? daemon (add-text-to-store daemon "foo.txt" "Hi REPL"))
   ;; 3. From packages to derivations
