@@ -100,6 +100,8 @@
   history | awk '{$1="";print substr($0,2)}'
   # -w write the current history to the history file
   history -w /dev/stdout
+  # edit command with number 406 on the prompt without executing it
+  #!406:p
 
   # bash
   # remove line(s) from shell history (i.e. password) see also ~/.bash_history
@@ -237,7 +239,7 @@
   scalarstr =$'Alpha one\nBeta two\nGamma three'
   # declaration with double quotes: $"a a\nb b\nc c" don't work
 
-  # Iterate over scalar string variable:
+  # bash: Iterate over scalar string variable:
   for s in "$scalarstr"; do echo "s: $s"; done # prints 's: ' just once
   printf "length / number of chars: %s\n" \
          ${#scalarstr}

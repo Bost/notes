@@ -1738,6 +1738,12 @@
   lsusb --verbose
   udevadm info --query=all --name=$diskRoot
 
+  # usb speeds
+  | 480M   | USB 2.0 |
+  | 5000M  | USB 3.0 |
+  | 10000M | USB 3.1 |
+  lsusb -t
+
   # How do I find out what process is accesing the partition? When:
   udisksctl unmount --block-device=$diskPart
   # returns:
