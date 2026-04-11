@@ -932,8 +932,26 @@
   # Execute a command as another user
   pkexec
 
-  # last logged-in users
+  # logged-in users on a Linux machine
   last
+  who
+  w
+  users
+  lastlog
+
+  # logged-in users in the NextCloud
+  # detect database type (MariaDB/MySQL PostgreSQL)
+  sudo cat /var/www/nextcloud/config/config.php | \
+       grep -A5 "dbtype\|dbname\|dbuser\|dbpassword"
+  # then if on MariaDB/MySQL:
+  mysql --verbose \
+      --user=$dbuser --password=$dbpassword \
+      --host=$dbhost \
+      --database=$dbname -e \
+      "SELECT uid, login_name, FROM_UNIXTIME(last_activity) AS last_active
+   FROM oc_authtoken
+   ORDER BY last_activity DESC
+   LIMIT 20;"
 
   # :processsor :cpu :architecture :cores 32 (i686) /64 (x86_64) bit
   lscpu

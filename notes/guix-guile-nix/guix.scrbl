@@ -197,6 +197,9 @@
 
   # manipulate, export, import nix / normalized archives (nars)
   guix archive
+  #
+  https://bordeaux.guix.gnu.org/nar/lzip/m5jkdj1j4r0nj6q1fgh67c5h4z0x8pqp-gdbm-1.25
+  https://ci.guix.gnu.org/nar/lzip/2x4kl1jb5kjl362rn8ycy3f5gy7qb2l9-glibc-for-fhs-2.41
 
   # copy items to and from a remote store over SSH
   guix copy

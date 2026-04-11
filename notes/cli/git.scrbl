@@ -223,8 +223,9 @@
   git log --pretty=format:'%cd' --author=<Name>
   git config --unset log.date
 
-  # count of commits on a branch
-  git rev-list --count <branch-name>
+  # count / number of commits ...
+  git rev-list --count <branch-name>  # ... on a branch
+  git rev-list --count A^..B          # ... between the commits A and B
 
   # show content of file in the ...
   git show ff0011:file.txt # ... commit ff0011
