@@ -378,6 +378,7 @@
 
 @block{@block-name{TLS Transport Layer Security}
   protocol; successor of deprecated SSL Secure Sockets Layer
+  TLS handshake
 }
 
 @block{@block-name{DNS Domain Name System}

@@ -186,6 +186,13 @@
   git diff --name-only 5890e37..ebbf4c0      # between 2 commits
   git diff --name-status <branch1> <branch2> # show modification types for files
 
+  # ~ tilde, ^ caret : walk backward through history
+  # <commit>^n picks the nth parent of one commit
+  # <commit>~n follows the first parent n times
+  # ^ can choose among multiple parents; ~ cannot.
+  # Git revision syntax is ancestor-oriented, not descendant-oriented.
+  # No direct forward equivalent of ~ / ^ exists.
+
   # --name-status option is a parameter for `git diff` and `git log`.
   # list modified files along with the type of modification:
   # A: / M: / D: / R: / C: / U: / T:
@@ -463,6 +470,12 @@
 
   # list all deleted files in the repo
   git log --diff-filter=D --summary
+
+  # show the commit where a file was added / introduced
+  git log --diff-filter=A -- path/to/file # (A = Added)
+  git log --diff-filter=A --oneline -- path/to/file
+  # just show the commit hash directly:
+  git log --diff-filter=A --format="%H" -- path/to/file
 
   # bisect: find the first GOOD commit
   # "Maybe you mistook good and bad revs" see http://stackoverflow.com/a/17153598
