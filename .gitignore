@@ -1,3 +1,12 @@
+### gitignore settings for a racket project:
+*~
+\#*
+.\#*
+.DS_Store
+compiled/
+/doc/
+
+### original gitignore settings:
 # 7-sketches/7-sketches.pdf
 # 7-sketches/template.pdf
 /7-sketches/auto/
