@@ -204,7 +204,7 @@
 
   # -w --word-regexp     Only show matches surrounded by word boundaries
   # -g --glob Include or exclude files and directories. Use it to specify file
-  #           extensions. Precede a glob with a ! to exclude it.
+  #           extensions. Precede a glob with a ! to exclude / skip it.
   rg --no-ignore-vcs -g '*.{el}' -w "info-constant-ref-item\b" ~/.emacs.d
   # with -w much less is returned
   rg --no-ignore-vcs -g '*.{el}' -w "\sdelete\s" ~/.emacs.d

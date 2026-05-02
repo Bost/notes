@@ -141,17 +141,17 @@
 
   # fish-shell variables
   # unset a shell var
-  set --erase myvar        # set -e myvar
+  set --erase V        # set -e V
   # var scope is local to the current block
-  set --local myvar 1      # set -l myvar 1
+  set --local V 1      # set -l V 1
   # var exported to all child processes (environmetal var)
-  set --export  myvar 1    # set -x myvar 1
-  set -unexport myvar      # set -u myvar
+  set --export  V 1    # set -x V 1
+  set -unexport V      # set -u V
   # var shared between all current user's fish instances on the current computer
   # preserved across restarts of the shell
-  set --universal myvar 1  # set -U myvar 1
+  set --universal V 1  # set -U V 1
   # show info about a var
-  set --show myvar         # set -S myvar
+  set --show V         # set -S V
   # show info about all vars
   set --show               # set -S
 
@@ -164,13 +164,13 @@
   test -L /path/to/link                      # symbolic link exists
   test -d /path/to/dir                       # directory exists
   test -z (ls -A /path/to/dir)               # directory is emptys
-  # true if the length of $myvar is non-zero i.e. non-empty string
-  # https://stackoverflow.com/a/47743269; always use "" around the myvar
-  test -n "$myvar" && echo "true: defAndNonEmpty: '$myvar'" || echo "false: undefOrEmpty"
-  # true if the length of $myvar is zero i.e. empty string
-  test -z "$myvar" && echo "true: undefOrEmpty" || echo "false: defAndNonEmpty: '$myvar'"
-  set -q myvar && echo "myvar set to '$myvar'" || echo "myvar unset"
-  test -z "$myvar" && echo "myvar empty: '$myvar'" || echo "myvar not empty: '$myvar'"
+  # true if the length of $V is non-zero i.e. non-empty string
+  # https://stackoverflow.com/a/47743269; always use "" around the V
+  test -n "$V" && echo "t: defAndNonEmpty: '$V'" || echo "f: undefOrEmpty"
+  # true if the length of $V is zero i.e. empty string
+  test -z "$V" && echo "t: undefOrEmpty" || echo "f: defAndNonEmpty: '$V'"
+  set -q V && echo "V set to '$V'" || echo "V unset"
+  test -z "$V" && echo "V empty: '$V'" || echo "V not empty: '$V'"
 
   # fish shell: (sequencing) empty array; no indexOutOfBounds thrown / produced
   set aaa  # empty array
@@ -184,11 +184,12 @@
   # returns: (seq (count bbb)): ''
 
   # bash-shell exists / existence-tests
-  # ${var+x} is a parameter expansion which evaluates to nothing if var is
-  # unset, and substitutes the string x otherwise.
+  # ${V+x}  - parameter expansion
+  #   - expands to nothing if V is UNSET
+  #   - expands to "x" if V is SET (even if empty)
   # variable blank vs. unset - see https://stackoverflow.com/a/13864829
-  if [ -z ${myvar+x} ]; then echo "myvar unset"; else echo "myvar set to '$myvar'"; fi
-  test -z ${myvar+x} &&      echo "myvar unset"  ||   echo "myvar set to '$myvar'"
+  if [ -z ${V+x} ]; then echo "V unset"; else echo "V set to '$V'"; fi
+  test -z ${V+x} &&      echo "V unset"  ||   echo "V set to '$V'"
 
   # bash string equality / compare
   # See https://tldp.org/LDP/abs/html/comparison-ops.html
@@ -206,28 +207,30 @@
   for idx in $(seq 0 $[${#array[@"@"]} - 1]); do
       echo "$idx: ${array[$idx]}"
   done
+  #
+  # Internal Field Separator: tells 'read' to split on ':' instead of whitespace
+  # read -r     don't treat \ as escape (always good practice)
+  # <<<         feeds the string into 'read' as input
+  IFS=: read -r a b c <<< "x:y:z"
+  printf 'a=%s b=%s c=%s\n' "$a" "$b" "$c" # returns: a=x b=y c=z
 
   # bash operator: =~ equal tilde operator: test variable against a regex
-  unset myvar && myvar="some42"
-  if [[ "$myvar" =~ ^[a-z]*[0-9] ]]; then
-      echo "Match"
-  else
-      echo "No match"
-  fi
+  unset V && V="some42"
+  [[ "$V" =~ ^[a-z]*[0-9] ]] && echo "match" || echo "no match"
 
   # bash: test if variable is an array https://stackoverflow.com/a/27254437
   # Warning: if variable is once declared as array/non-array it's not enough
   # just to reassign it a new value. It must be unset!
-  unset myvar && myvar=("a" "b")
-  unset myvar && myvar="ab"
+  unset V && V=("a" "b")
+  unset V && V="ab"
   # -p	display the attributes and value of each NAME
-  declare -p myvar 2> /dev/null | grep -q '^declare -a' && \
+  declare -p V 2> /dev/null | grep -q '^declare -a' && \
       echo "Array: true" || echo "Array: false"
   # this doesn't work:
-  # test "$(declare -p myvar)" =~ "declare -a" && \
+  # test "$(declare -p V)" =~ "declare -a" && \
   #     echo "Array: true" || echo "Array: false"
 
-  echo "Array length : ${#myvar[@"@"]}"
+  echo "Array length : ${#V[@"@"]}"
 
   # compute calculate fish-shell
   # examples https://nicolas-van.github.io/programming-with-fish-shell
@@ -346,12 +349,40 @@
   !$   # last argument of the last command
   $?   # last cmd exit / return code / retcode (0 success); adduser joe; echo $?
   !:-  # last command without the last argument
-  :    # if; no-op, nope, empty operation
+  :    # if; no-op, noop, nope, empty operation
   > file.txt  # empty file.txt
   $-   # use(?) build-in commands
   # last argument of the previous command. At the shell startup, it gives the
   # absolute filename of the shell script being executed
   $_
+
+  # : (colon) is a no-op / noop builtin:
+  # - does nothing
+  # - always succeeds
+  # - BUT evaluates its arguments (important for expansions with side effects)
+  : "${V:=default}"
+  # ${V:=default}  — parameter expansion with assignment:
+  # - if V is unset OR empty → assign "default" to V
+  # - otherwise → leave V unchanged
+  # Meaning:
+  #   "ensure V has a value; if not, set it to 'default'"
+  # Equivalent (explicit form):
+  if [ -z "${V+x}" ] || [ -z "$V" ]; then
+      V="default"
+  fi
+
+  # Always assigns (even if already set)
+  V="${V:-default}"
+  # Assigns only if unset or empty (no-op wrapper triggers expansion)
+  : "${V:=default}"
+  # However when:
+  readonly V="some-value"
+  V="${V:-default}"    # error (attempt to assign)
+  : "${V:=default}"    # OK (no assignment needed)
+
+  ${V:=x}	# set if unset or empty
+  ${V=x}	# set if unset only
+  ${V:-x}	# use default, but don't assign
 
   # the cmd takes x and y as if they were pressed during its execution
   (echo x; echo y) | cmd
