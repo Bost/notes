@@ -1170,6 +1170,9 @@
   unzip /path/to/file.zip -d /path/to/extract-dir
   # unzip and untar in one step / with one command
   # -z, --gzip, --gunzip, --ungzip   Filter the archive through gzip
+  # -x, --extract, --get
+  # -v, --verbose
+  # -f, --file=ARCHIVE
   tar -zxvf file.tar.gz
 
   # :gzip :zip :compression list file content
@@ -1179,12 +1182,10 @@
   tar --list --file FILE.tbz2
   tar --list --file FILE.tgz
   tar --list --file FILE.7z
-  # -l  list files (short format)
-  unzip -l file.zip
+  unzip -l file.zip                         # -l  list files (short format)
 
-  # tar / untar
-  tar czf ./path/to/tarfile.gz file0 file1
-  tar xzf ./path/to/tarfile.gz
+  tar czf ./path/to/tarfile.gz file0 file1  # tar / ...
+  tar xzf ./path/to/tarfile.gz              # ... / untar
 
   # Remove all files previously extracted from a tar(.gz) file
   # tar:
