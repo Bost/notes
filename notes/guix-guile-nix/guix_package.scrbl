@@ -52,7 +52,8 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   guix package --list-available=ema # -A ema
 
   # export the list installed packages; can't use tilda ~
-  guix package --profile=$HOME/.guix-home/profile --export-manifest > manifest.scm
+  #   -p, --profile=PROFILE
+  guix package -p $HOME/.guix-home/profile --export-manifest > manifest.scm
   # reproduce, i.e. reinstall packages
   guix package --manifest=manifest.scm # -m manifest.scm
 
@@ -70,7 +71,7 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
 
   # remove package with different-than-default output
   $ guix package --profile=/home/bost/.guix-profile --list-installed
-  bind	9.16.38	utils	/gnu/store/6rw5zfyn5ydjvsyd6xx9lrnppkqns2iw-bind-9.16.38-utils
+  bind	9.16.38	utils	/gnu/store/...-bind-9.16.38-utils
   $ guix package --profile=/home/bost/.guix-profile --remove bind
   guix package: error: package 'bind' not found in profile
   $ guix package --profile=/home/bost/.guix-profile --remove bind:utils
@@ -89,8 +90,9 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
 @block{@block-name{Substitutes}
   https://guix.gnu.org/manual/en/html_node/Substitutes.html
   guix weather       # report on the availability of pre-built package binaries
-  guix weather --system=x86_64-linux --substitute-urls="https://bordeaux.guix.gnu.org https://ci.guix.gnu.org" python-numpy
-  guix weather --system=x86_64-linux --substitute-urls=https://ci.guix.gnu.org firefox
+  #   -s, --system=SYSTEM
+  guix weather -s x86_64-linux --substitute-urls="https://bordeaux.guix.gnu.org https://ci.guix.gnu.org" python-numpy
+  guix weather -s x86_64-linux --substitute-urls=https://ci.guix.gnu.org firefox
 
   Substitute is a pre-built item which can be downloaded from a server, i.e. a
   substitute for local build result. It can be anything resulting from a
@@ -102,10 +104,20 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
 
   NAR / nar Nix Archive
   binary, platform independent
+
+  # https://ci.guix.gnu.org/search?query=system%3Ax86_64-linux+icedove-minimal
+  # TODO obtain the build number of a successfull build, then
+  $ curl --silent https://ci.guix.gnu.org/build/<build-number>/log/raw | \
+         gunzip --stdout | rg 'building path|build-succeeded'
+  building path(s) `/gnu/store/...-icedove-minimal-140.10.2'
+  @ build-succeeded /gnu/store/...-icedove-minimal-140.10.2.drv -
+  # watch: -n, --interval <secs>  seconds to wait between updates
+  # curl: -I, --head        Show document info only
+  # curl: -s, --silent      Silent mode
+  $ watch -n 30 'curl -sI https://ci.guix.gnu.org/<building path...>.narinfo | head'
 }
 
 @block{@block-name{Derivations}
-
   Lower-level APIs are available to interact with the daemon and the store.
 
   To instruct the daemon to perform a build action, provide it with
@@ -129,6 +141,9 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   - The file name of a build script in the store, along with the arguments to be
     passed.
   - A list of environment variables to be defined.
+
+  # -d, --derivations      return the derivation paths of the given packages
+  guix build --derivations firefox
 }
 
 @block{@block-name{Creating packages}
