@@ -100,6 +100,11 @@
   [bluetooth]# pair <MAC address>
   [bluetooth]# connect <MAC address>
 
+  # bluetooth Multipoint BC500 by Shokz
+  1. Start with your headphones powered off.
+  2. Press & hold "Volume +" until you hear "pairing" (LED flashes red & blue)
+  3. Press & hold the multifunction button and "Volume +" until you hear "multipoint enabled"
+
   # rfkill - enable / disable wireless devices
   sudo rfkill list
   sudo hciconfig hci0 up

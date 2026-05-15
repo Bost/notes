@@ -260,6 +260,8 @@
 
   guix shell --search-paths    # display needed environment variable definitions
 
+  https://github.com/nuthub/guix-shell-examples
+
   # Building / Compile / Compiling Guix:
   # https://www.rohleder.de/~mike/guix-workflow/guix-workflow.html
   # on error: 'configure: error: C compiler cannot create executables'
