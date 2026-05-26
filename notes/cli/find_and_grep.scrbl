@@ -256,6 +256,11 @@
   rg --no-ignore-vcs -tlisp -tc -tsh           "(['\"\\[\\(\s]|^)load-path(['\"\\]\\)\s]|\$)" $dgx $dev/guile
   rg --no-ignore-vcs -g '*.{scm,c,cc,h,hh,sh}' "(['\"\\[\\(\s]|^)load-path(['\"\\]\\)\s]|\$)" (pwd)
   rg                 -g '*.{scm,c,cc,h,hh,sh}' "(['\"\\[\\(\s]|^)x-x(['\"\\]\\)\s]|\$)"       $dev/notes/notes/testfile.scrbl
+
+  # Search for Guile Scheme definitions: def-public def* def*-public define
+  # define-public define-syntax
+  rg -tlisp '^[^;#|]*\b(def(-public|\*)?(-\*)?|define(-public|-syntax)?)\b'
+  grep -E '^[^;#|]*\b(def(-public|\*)?(-\*)?|define(-public|-syntax)?)\b' (find . -type f -name '*.scm')
   #+END_SRC
 }
 
