@@ -1,7 +1,10 @@
 #lang notes
 
-@block{@block-name{Module Scoping}
-  TODO clarify usage - just once: @"@" ? Or twice: @"@"@"@"?
+@block{@block-name{Module Scoping: single @"@" vs twice @"@"@"@"}
+  @"@"@"@" can be used like @"@", but does not check whether the variable that
+  is being accessed is actually exported. Thus, @"@"@"@" can be thought of as
+  the impolite version of @"@" and should only be used as a last resort or for
+  debugging, for example.
 }
 
 @block{@block-name{List-like structures}

@@ -107,7 +107,7 @@
   # remove line(s) from shell history (i.e. password) see also ~/.bash_history
   history -d <cmdNrX> <cmdNrY>
 
-  # fish-shell see also ~/.config/fish/fish_history
+  # fish-shell see also ~/.local/share/fish/fish_history
   history delete --contains <substring>
   history delete --contains "history delete --contains"
 

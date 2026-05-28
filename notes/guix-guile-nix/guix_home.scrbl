@@ -47,7 +47,7 @@
 
   # -L --load-path
   # -c --cores
-  guix home --allow-downgrades -c 24 \
+  guix home --allow-downgrades \
             -L $dotf/guix/home -L $dgxp/packages/bost/packages/patches \
             reconfigure $dotf/guix/home/home-config-ecke.scm
 

@@ -267,7 +267,7 @@
   guix time-machine --commit=<sha1> --disable-authentication -- describe
   # lock / freeze; -c --cores
   guix describe --format=channels > /tmp/channels.scm
-  guix pull --channels=/tmp/channels.scm --allow-downgrades -c 24 && gxhre -c 24
+  guix pull --channels=/tmp/channels.scm --allow-downgrades && gxhre
   # guix pull --roll-back
 
   guix time-machine --commit=4270c484ca -- pull

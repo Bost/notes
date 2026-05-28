@@ -23,6 +23,7 @@
 
   ;; repl: access module variables without importing the whole module
   (@"@" (my module) public-variable)
+  ;; twice @"@"@"@" doesn't check if the private-variable is actually exported
   (@"@"@"@" (my module) private-variable)
 
   # disable colors and readline bindings defined in the .guile

@@ -220,14 +220,14 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   set --export GUIX_PACKAGE_PATH $lp/bost/packages/patches
   guix build --load-path=$lp --keep-failed emacs-spacemacs
 
-  # build the packages' source derivations: the [at] char must be used twice
+  # build the packages' source derivations
   # -L --load-path; -S --source; -e --expression
-  guix build -L $lp -S -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
+  guix build -L $lp -S -e '(@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
   # force rebuild
-  guix build -L $lp --check --no-grafts -e '(@"@"@"@" (bost gnu packages emacs-xyz) <emacs-package>)'
+  guix build -L $lp -e '(@"@" (bost gnu packages emacs-xyz) <emacs-package>)' --check --no-grafts
 
   # build...
-  guix build -c 24 -K -L $lp -e '(@(bost gnu packages guake) guake)'
+  guix build -K -L $lp -e '(@(bost gnu packages guake) guake)'
   # ... and test package without installing it:
   guix shell -L $lp --file=src/bost/gnu/packages/guake.scm
 
