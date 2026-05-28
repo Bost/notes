@@ -277,6 +277,14 @@
   map      - for transforming lists and returning new data
   for-each - for doing side effects and discarding results
 
+  (define (f x) (list x (* x 2)))
+  (define lst '(1 2 3))
+  (map f lst)               ;=> ((1 2) (2 4) (3 6))
+  (concatenate (map f lst)) ;=> (1 2 2 4 3 6)
+  (append-map f lst)        ;=> (1 2 2 4 3 6)
+  (equal? (concatenate (map f lst)) (append-map f lst)) ;=> #t
+  ;; (append-map f lst) is essentially (concatenate (map f lst))
+
   @lisp{
     (use-modules (srfi srfi-111)) ; Mutable containers
     (define (incr! a-box) (set-box! a-box (+ (unbox a-box) 1)))
@@ -528,7 +536,6 @@
     (keyword? foo:)    ;; => #t
     ;; `(keyword? :foo:)` works if any of the `(read-set! ...)` is evaluated.
 
-
     ,use (srfi srfi-64)  ;; Testing
     ;; Initialize and give a name to a simple testsuite.
     (test-begin "vec-test")
@@ -593,3 +600,4 @@
   (inexact->exact 1.2) ; ⇒ 5404319552844595/4503599627370496
   #e1.2                ; ⇒ 6/5
 }
+
