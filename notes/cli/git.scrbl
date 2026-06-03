@@ -251,6 +251,8 @@
   git checkout path/to/file
   # discard unstaged changes in the working directory.
   git restore .
+  # unstage file
+  git restore --staged <file>
   # discard staged and unstaged changes, resetting everything to the last commit
   git reset --hard
 

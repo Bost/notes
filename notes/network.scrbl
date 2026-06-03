@@ -42,7 +42,15 @@
   the same network will typically expose your device MAC address. Other nodes on
   the network may be able to discern some information about which nodes you are
   peered with.
+}
 
+@block{@block-name{Multicast DNS (mDNS)}
+  Multicast DNS (mDNS)
+  protocol that allows devices on a local network to discover each other and
+  resolve hostnames into IP addresses without the need for a centralized Domain
+  Name System (DNS) server.
+  It operates over multicast IP, specifically IPv4 address 224.0.0.251 and IPv6
+  address FF02::FB.
 }
 
 @block{@block-name{NTP Network Time Protocol}
