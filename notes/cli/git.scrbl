@@ -16,7 +16,6 @@
   echo "GIT_COMMITTER_NAME  : $GIT_COMMITTER_NAME"
   echo "GIT_COMMITTER_EMAIL : $GIT_COMMITTER_EMAIL"
 
-
   GIT_AUTHOR_NAME="$badname" \
   GIT_AUTHOR_EMAIL="$bademail" \
   GIT_COMMITTER_NAME="$badname" \
@@ -25,7 +24,6 @@
 
   echo "Bad content in channel-b" > bad-in-channel-b.txt                                                                                      ─╯
   git add bad-in-channel-b.txt                                                                                                                ─╯
-
 
   GIT_AUTHOR_NAME="$badname" \
   GIT_AUTHOR_EMAIL="$bademail" \

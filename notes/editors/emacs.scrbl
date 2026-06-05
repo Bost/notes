@@ -974,17 +974,33 @@
   https://www.gnu.org/software/emacs/manual/html_node/elisp/Sequences-Arrays-Vectors.html
   https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html
 
-  | Function | Input Type                          | Return Value              | Purpose             |
-  |----------+-------------------------------------+---------------------------+---------------------|
-  | mapcar   | List only                           | New list of results       | Transform elements  |
-  | mapc     | List only                           | Original list             | Side effects only   |
-  | map      | Any sequence (list, vector, string) | New sequence of same type | Generalized mapping |
+  |           | Input Type                          | Return Value                          | Purpose                         |
+  |-----------+-------------------------------------+---------------------------------------+---------------------------------|
+  | mapcar    | List only                           | New list of results                   | Transform elements              |
+  | mapc      | List only                           | Original list                         | Side effects only               |
+  | map       | Any sequence (list, vector, string) | New sequence of chosen result type    | Generalized mapping             |
+  | dolist    | List only                           | nil, or explicit result form          | Simple side-effect iteration    |
+  | while     | Any manual traversal                | nil                                   | Low-level looping               |
+  | cl-loop   | Lists, sequences, ranges, etc.      | Depends on clauses used               | Powerful declarative iteration  |
+  | cl-dolist | List only                           | nil, or explicit result form          | Common Lisp-style dolist        |
+  | seq-map   | Any sequence                        | New list of results                   | Generic sequence transformation |
+  | seq-do    | Any sequence                        | Original sequence                     | Side effects over sequences     |
+  | mapcan    | List only                           | Concatenated result list, destructive | Map and concatenate lists       |
+  | mapconcat | Sequence                            | String                                | Map elements and join as string |
 
-  | Function | Best For                               | Speed (Relative)                           | Memory Usage           |
-  |----------+----------------------------------------+--------------------------------------------+------------------------|
-  | mapcar   | Transforming lists                     | Fast (optimized)                           | Allocates new list     |
-  | mapc     | Side-effect loops                      | Fastest (no allocation)                    | No allocation          |
-  | map      | Mixed sequences (lists, vectors, etc.) | Slower for lists, fast for vectors/strings | Allocates new sequence |
+  |           | Best For                                  | Speed (Relative)                        | Memory Usage                    |
+  |-----------+-------------------------------------------+-----------------------------------------+---------------------------------|
+  | mapcar    | Transforming lists                        | Fast, optimized                         | Allocates new list              |
+  | mapc      | Side-effect loops over lists              | Very fast, no result allocation         | No result allocation            |
+  | map       | Mixed sequences: lists, vectors, strings  | More general, sometimes less direct     | Allocates result sequence       |
+  | dolist    | Simple list iteration with side effects   | Very fast, idiomatic                    | No result allocation by default |
+  | while     | Custom traversal or early exit logic      | Fastest possible when carefully written | No result allocation by default |
+  | cl-loop   | Complex iteration, filtering, collecting  | Usually fast enough, but macro-heavy    | Depends on clauses              |
+  | cl-dolist | Common Lisp compatibility / style         | Similar to dolist                       | No result allocation by default |
+  | seq-map   | Generic sequence transformation           | Convenient, slightly more abstraction   | Allocates new list              |
+  | seq-do    | Generic side-effect iteration             | Convenient for arbitrary sequences      | No result allocation            |
+  | mapcan    | Mapping to lists and flattening one level | Fast, but destructive                   | Reuses / mutates result lists   |
+  | mapconcat | Producing strings from sequences          | Efficient and idiomatic for strings     | Allocates result string         |
 
   @lisp{
     (benchmark-run 10000 (mapcar #'1+ '(1 2 3 4 5)))

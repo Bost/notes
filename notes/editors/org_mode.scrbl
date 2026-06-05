@@ -33,13 +33,33 @@
   #+end_src
 
   #+begin_src fish :exports both :results output
-  crep 'mpstat\|iostat'
+  crep 'mpstat|iostat|pidstat'
+  #+end_src
+
+  #+begin_src fish :exports both :results output
+  # pidstat - monitoring individual tasks managed by the Linux kernel
+  # -d  Report I/O statistics
+  # -p  { pid[,...] | SELF | ALL }
+  # five reports at two second intervals
+  pidstat --human -d -p "$(pgrep --oldest bitcoind)" 2 5
+  #+end_src
+
+  #+begin_src fish :exports both :results output
+  # CPU statistics and input/output statistics for devices and partitions
+  # -x Display extended statistics, five reports at two second intervals
+  iostat -x --human 2 5
   #+end_src
 
   #+begin_src clojure :results silent
   ;; ":results silent" causes result to be displayed in the mini-buffer
   ;; M-x cider-jack-in
   (+ 1 4)
+  #+end_src
+
+  #+begin_src fish :exports both :results output
+  # mpstat - Report processors related statistics.
+  # five reports of statistics for all processors at two second intervals.
+  mpstat -P ALL 2 5
   #+end_src
 
   #+begin_src clojure
