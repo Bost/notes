@@ -477,6 +477,13 @@
   # just show the commit hash directly:
   git log --diff-filter=A --format="%H" -- path/to/file
 
+  # all commits which touched this path
+  git config --global alias.touched '!f() { git log --oneline -- "$1"; }; f'
+  # full log instead of one-line output:
+  git config --global alias.touched-full '!f() { git log -- "$1"; }; f'
+  # just hashes:
+  git config --global alias.touched-hashes '!f() { git log --format="%H" -- "$1"; }; f'
+
   # bisect: find the first GOOD commit
   # "Maybe you mistook good and bad revs" see http://stackoverflow.com/a/17153598
   git bisect start --term-new=fixed --term-old=unfixed

@@ -174,13 +174,13 @@
 
   # fish shell: (sequencing) empty array; no indexOutOfBounds thrown / produced
   set aaa  # empty array
-  printf "(seq (count aaa)): '%s'\n" (seq (count $aaa))
-  for i in (seq (count $aaa)); printf "aaa[$i]: %s\n" $aaa[$i]; end
+  printf '(seq (count aaa)): "%s"\n' (seq (count $aaa))
+  for i in (seq (count $aaa)); printf 'aaa[%s]: %s\n' $s $aaa[$i]; end
   # returns: (seq (count aaa)): ''
   #
   set bbb  # empty array
-  printf "(seq (count bbb)): '%s'\n" (seq (count $bbb))
-  for i in $bbb; printf "bbb[$i]: %s\n" $bbb[$i]; end
+  printf '(seq (count bbb)): "%s"\n' (seq (count $bbb))
+  for i in $bbb; printf 'bbb[%s]: %s\n' $i $bbb[$i]; end
   # returns: (seq (count bbb)): ''
 
   # bash-shell exists / existence-tests
@@ -244,11 +244,11 @@
 
   # bash: Iterate over scalar string variable:
   for s in "$scalarstr"; do echo "s: $s"; done # prints 's: ' just once
-  printf "length / number of chars: %s\n" \
-         ${#scalarstr}
-  printf "length / number of bytes (e.g. utf-8): %s\n" \
+  printf 'length / number of chars: %s\n' \
+         "${#scalarstr}"
+  printf 'length / number of bytes (e.g. utf-8): %s\n' \
          $(printf '%s' "$scalarstr" | wc -c)
-  printf "length / number of entries (incl. empty lines): %s\n" \
+  printf 'length / number of entries (incl. empty lines): %s\n' \
          $(printf '%s\n' "$scalarstr" | wc -l)
 }
 
@@ -496,8 +496,8 @@
   for file in /path/to/dir/*.ext; do echo $file; done
 
   # for-loop over the range 2 to 5 (4 times)
-  for i in (seq 2 5); printf "i: %s\n" $i; end         # fish-shell
-  for i in $(seq 2 5); do printf "i: %s\n" $i; done    # bash
+  for i in (seq 2 5); printf 'i: %s\n' $i; end         # fish-shell
+  for i in $(seq 2 5); do printf 'i: %s\n' $i; done    # bash
 
   # syntax - single / double brackets; variables
   https://unix.stackexchange.com/a/416716
@@ -596,7 +596,7 @@
   echo $fruits      # whiskey apple banana cherry
   set --erase fruits[1]
   count $fruits     # 5
-  for e in "apple" "banana" "cherry"; printf "%s\n" $e; end
+  for e in "apple" "banana" "cherry"; printf '%s\n' "$e"; end
 
   # create an array with a sequence of numbers and print its length
   # bash - without 'echo' it returns 'bash: 6: command not found'
@@ -620,19 +620,19 @@
 
 @block{@block-name{Command substitution}
   # works the same in bash and fish-shell
-  $ printf "<%s>\n" "$(seq 0 1)"
+  $ printf '<%s>\n' "$(seq 0 1)"
   <0
   1>
-  $ printf "<%s>\n" $(seq 0 1)
+  $ printf '<%s>\n' $(seq 0 1)
   <0>
   <1>
-  $ printf "<%s>\n" "`seq 0 1`"
+  $ printf '<%s>\n' "`seq 0 1`"
   <0
   1>
-  $ printf "<%s>\n" `seq 0 1`
+  $ printf '<%s>\n' `seq 0 1`
   <0>
   <1>
   # process substitution
-  $ printf "<%s>\n" <(seq 0 1)
+  $ printf '<%s>\n' <(seq 0 1)
   </dev/fd/63>
 }
