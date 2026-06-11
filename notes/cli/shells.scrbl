@@ -229,7 +229,6 @@
   # this doesn't work:
   # test "$(declare -p V)" =~ "declare -a" && \
   #     echo "Array: true" || echo "Array: false"
-
   echo "Array length : ${#V[@"@"]}"
 
   # compute calculate fish-shell
@@ -492,7 +491,7 @@
 
   # Show numerical values for each of the 256 colors in bash
 
-  # iterate / loop through files in a directory
+  # iterate / for-loop through files in a directory
   for file in /path/to/dir/*.ext; do echo $file; done
 
   # for-loop over the range 2 to 5 (4 times)

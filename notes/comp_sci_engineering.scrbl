@@ -157,6 +157,13 @@
 
 @block{@block-name{Various}
 
+  NVM Express (NVMe, Non-Volatile Memory Express)
+  logical-device interface specification for accessing a computer's non-volatile
+  storage media usually attached via the PCI Express bus
+
+  PCI Express (PCIe, Peripheral Component Interconnect Express)
+  high-speed standard used to connect hardware components inside computers
+
   | EFI      | Extensible Firmware Interface                      |
   | UEFI     | Unified Extensible Firmware Interface              |
   | GUID     | Globally Unique Identifier - part of the UEFI      |
