@@ -269,6 +269,9 @@
   # interactively choose hunks of patch; see --interactive
   git add --patch # -p, --patch
 
+  # create patch consisting of commits e.g. for a pull request
+  git format-patch upstream/master
+
   # How to apply a patch generated with git format-patch?
   # https://stackoverflow.com/a/2250170
   git apply --stat file.patch   # preview what the file.patch will do
