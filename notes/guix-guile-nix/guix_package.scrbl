@@ -418,10 +418,11 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
     environment in which they are performed to produce an item in the store
 
   Syntactic forms, all of them are "in the context of the store content":
-  | #~     | gexp            | quasiquote; like `                                              |
-  | #$     | ungexp          | unquote; like ,                                                 |
-  | #+     | ungexp-native   | same role as #$, but it's a reference to a native package build |
-  | #$@"@" | ungexp-splicing | unquote-splicing / splice; like ,@"@"                           |
+  | #~obj     | gexp                   | quasiquote; like `                                                    |
+  | #$obj     | ungexp                 | unquote; like ,                                                       |
+  | #+obj     | ungexp-native          | same role as #$, but it's a reference to a native package build       |
+  | #$@"@"lst | ungexp-splicing        | unquote-splicing / splice; like ,@"@"                                 |
+  | #+@"@"lst | ungexp-native-splicing | Like #$@"@", but refers to native builds of the objects listed in lst |
 
 }
 
