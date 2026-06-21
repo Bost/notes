@@ -420,7 +420,7 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   Syntactic forms, all of them are "in the context of the store content":
   | #~     | gexp            | quasiquote; like `                                              |
   | #$     | ungexp          | unquote; like ,                                                 |
-  | #+     |                 | same role as #$, but it's a reference to a native package build |
+  | #+     | ungexp-native   | same role as #$, but it's a reference to a native package build |
   | #$@"@" | ungexp-splicing | unquote-splicing / splice; like ,@"@"                           |
 
 }
