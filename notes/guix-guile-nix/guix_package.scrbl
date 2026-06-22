@@ -114,7 +114,7 @@ https://gitlab.com/alezost-config/guix/-/blob/master/misc/shell-script-example/g
   # watch: -n, --interval <secs>  seconds to wait between updates
   # curl: -I, --head        Show document info only
   # curl: -s, --silent      Silent mode
-  $ watch -n 30 'curl -sI https://ci.guix.gnu.org/<building path...>.narinfo | head'
+  $ watch -n 30 'curl -sI https://ci.guix.gnu.org/<store-path-hash>.narinfo | head'
 }
 
 @block{@block-name{Derivations}

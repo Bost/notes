@@ -386,6 +386,7 @@
   (package-inputs maven)
   (package-outputs maven)
   (package->bag maven)
+  ((compose bag->derivation package->bag) maven)
 
   Ludovic Courtès: Your Distro Is A Scheme Library
   https://youtu.be/CdixrlQzAN8
@@ -411,6 +412,13 @@
   ;; build-system
   ;; package --> bag --> derivation <-- origin
   ;;
+  ;; Internally, high-level objects are lowered, using their compiler, to either
+  ;; derivations or store items:
+  ;;   lowering a package     -> derivation
+  ;;   lowering a plain-file  -> store item
+  ;; This is achieved using the lower-object monadic procedure.
+  ;;
+  ;;
   ;; 4. Staging: Hosting build-side code
   #~(symlink #$coreutils #$output) ;; output is a derivation-output
   (#~(symlink #$coreutils #$output)) ;; query the input
@@ -420,8 +428,21 @@
   ,enter-store-monad
   (gexp->derivation "foo" #~(symlink #$coreutils #$output))
   ;;
-  ;; Doesn't work> (neither form the store)
-  ;; (build-derivations (list (gexp->derivation "foo" #~(symlink #$coreutils #$output))))
+  (use-modules (guix store) (guix monads) (guix gexp) (guix derivations) (gnu packages base))
+  (with-store store
+    (run-with-store store
+      (mlet %store-monad ((drv (gexp->derivation "foo" #~(symlink #$coreutils #$output))))
+        (mbegin %store-monad
+          (built-derivations (list drv))
+          (return (derivation->output-path drv))))))
+  ;; must call `lower-object`:
+  (with-store store
+    (run-with-store store
+      (mlet %store-monad ((drv (lower-object (program-file "hello" #~(display "Hi!")))))
+        (mbegin %store-monad
+          (built-derivations (list drv))
+          (return (derivation->output-path drv))))))
+  ;;
   ,q ;; exit the store
   (define os (load "/home/bost/dev/dotfiles/guix/systems/syst-ecke.scm"))
   (operating-system? os)
