@@ -273,6 +273,10 @@
 
 @block{@block-name{Artificial Intelligence}
 
+  MCP (Model Context Protocol)
+  open-source standard for connecting AI applications to interact safely and
+  structuredly with external tools, data, and systems.
+
   RNN Recurrent Neural Network
   allow previous outputs to be used as inputs and has hidden states.
 
