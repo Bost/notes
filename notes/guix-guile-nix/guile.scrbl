@@ -520,6 +520,15 @@
      (list
       "git" "config" "--local" "--list")))
 
+    ;; case-lambda - Scheme's counterpart to Clojure's multi-arity
+    (defn greet                          ; clojure
+      ([] (greet "world"))
+      ([name] (str "Hello, " name "!")))
+    (define greet                        ; scheme
+      (case-lambda
+        (() (greet "world"))
+        ((name) (string-append "Hello, " name "!"))))
+
     ;; `letrec` - like `let`, but enables function definitons which can refer each
     ;; other
     (letrec ((even? (lambda (n) (if (zero? n) #t (odd?  (- n 1)))))

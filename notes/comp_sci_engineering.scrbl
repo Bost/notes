@@ -157,6 +157,11 @@
 
 @block{@block-name{Various}
 
+  TOCTOU, TOCTTOU or TOC/TOU time-of-check to time-of-use
+  class of software bugs caused by a race condition involving the checking of
+  the state of a part of a system (such as a security credential) and the use of
+  the results of that check.
+
   NVM Express (NVMe, Non-Volatile Memory Express)
   logical-device interface specification for accessing a computer's non-volatile
   storage media usually attached via the PCI Express bus
