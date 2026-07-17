@@ -46,7 +46,24 @@
   (define fun (eval fun-symbol (current-module)))
   (fun "a" "b") ⇒ "ab"
 
+  ;; Replace all occurrences of "x" with "y"
+  (use-modules (ice-9 string-fun))
   (string-replace-substring "x-X-x" "x" "y") ⇒ "y-X-y"
+
+  ;; Replace characters 4–9 of s1 with the whole of s2
+  (string-replace "xxx ABC yyy" "B-C-A" 4 7) ⇒ "xxx B-C-A yyy"
+
+  ;; Insert without deleting anything: make start1 = end1
+  (string-replace "Hello world" ", cruel" 5 5) ⇒ "Hello, cruel world"
+
+  ;; Delete a region: replace it with the empty string
+  (string-replace "foo-bar-baz" "" 3 7) ⇒ "foobaz"
+
+  ;; Use only a slice of s2 via start2/end2; s1[1,3) replaced by s2[0,2) = "xy"
+  (string-replace "aaaa" "xyz" 1 3 0 2) ⇒ "axya"
+
+  ;; With no indices at all, s2 simply replaces all of s1
+  (string-replace "anything" "everything") ⇒ "everything"
 
   ;; sort list alphabetically
   (sort (list "a" "c" "b") string<?)
@@ -609,4 +626,3 @@
   (inexact->exact 1.2) ; ⇒ 5404319552844595/4503599627370496
   #e1.2                ; ⇒ 6/5
 }
-
