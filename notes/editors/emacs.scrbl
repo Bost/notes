@@ -333,8 +333,8 @@
   | ~M-s-left~  | paredit-forward-barf-sexp (vygrcaj) |
 
   ;; https://www.emacswiki.org/emacs/RegularExpression#regexp
-  | \\#                   | increment the number found         |
-  | \\s-                  | increment the whitespace           |
+  | \#                    | increment the number found         |
+  | \s-                   | increment the whitespace           |
   | %s#\(.\{2\}\)#aa#g    | match / find exactly 2 occurrences |
   | \(.*?\)               | lazy match                         |
   | \(.\{2\}\)            | match / find exactly 2 occurrences |
@@ -342,8 +342,8 @@
 
   ;; regexp, syntax table, syntax classes (must be enclosed by square brackets)
   ;; [[:<classname>:]] is POSIX character class equivalent (humand readable)
-  | [^[:space:]] | \\S- non-whitespace                                            |
-  | [[:space:]]  | \\s- whitespace, typically [\t\r\n\v\f], see syntax table      |
+  | [^[:space:]] | \S- non-whitespace                                             |
+  | [[:space:]]  | \s- whitespace, typically [\t\r\n\v\f], see syntax table       |
   | [[:blank:]]  | space or tab character                                         |
   | [[:print:]]  | printing char: whitespace or graphic char matched by [:graph:] |
 
