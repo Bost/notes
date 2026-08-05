@@ -62,6 +62,15 @@
   ;; quit / terminate the repl with exit / return code 0
   scheme@"@"(guile-user)> (primitive-exit 0)
 
+  # Run Guile snippet from the CLI:
+  $ echo '(display "Hi\n")' | guix repl /dev/stdin
+  Hi
+  # In fish-shell:
+  🐠 guix repl (echo '(display "Hi\n")' | psub)
+  Hi
+  🐠 functions psub | rg ".*description '(.*)'" --replace '$1'
+  Read from stdin into a file and output the filename. Remove the file when the command that called psub exits.
+
   $ guix repl --load-path=.
   $ guix repl << EOF
     ;; it won't work - %default-system-profile is not exported
