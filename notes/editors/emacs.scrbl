@@ -79,11 +79,19 @@
   (setq wrapped-copy (symbol-function 'emacs-version))
   (fset 'fn (lambda () (funcall wrapped-copy)))
 
+  Emacs quote translation
   Documentation string encoding:
-  Single quote chararcter ie. ASCII apostrophe \\='
+  Single quote chararacter ie. ASCII apostrophe \\='
   Accent grave \\=`
   https://www.gnu.org/software/emacs/manual/html_node/elisp/Documentation-Tips.html
   (defun foo () "(equal (list 1 (list 2 3)) \\='(1 (2 3)))" 42)
+
+  Emacs quote translation
+  Single quote chararacter ie. ASCII apostrophe in a message:
+  The translation applies only to the format string, not to %s arguments:
+  (message "%s" "Here's a hack") ; => Here's a hack
+  (let ((text-quoting-style 'straight))
+    (message "Here's a test"))  ; => Here's a test
 
   (get-buffer " *Echo Area 0*")
   (current-buffer) ;; #<buffer emacs.scrbl>
