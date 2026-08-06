@@ -5,6 +5,18 @@
 @block{@block-name{Find and Grep / RipGrep}
   #+BEGIN_SRC fish :results output
 
+  # fish-shell
+  # 1. recursively find the all file extensions
+  set allExts (fd -t f '.\.' | sd '.*/' '' | sd '.*\.' '' | sort -u)
+  set exts (printf '%s\n' $allExts | rg '^(jpg|pdf)$')
+  # 2. list the corresponding files
+  set pairs (printf '-e\n%s\n' $exts) # prints pairs '-e/extension'
+  set files (fd -t f $pairs)
+  eza -l $files
+  # 3. make them read only and list them again
+  chmod a-w $files
+  eza -l $files
+
   # new line separator for each grep result sh script
   grep "pattern" /path/to/file | awk '{print $0,"\n"}'
 
