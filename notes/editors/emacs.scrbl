@@ -149,8 +149,10 @@
   (hash-table-size my=ht)  ;; size that can be used as an argument to `make-hash-table`
   (hash-table-count my=ht) ;; number of elements in the table
 
-  (setq lst '(a b c))     ; => (a b c)
-  (remove 'b lst)         ; => (a c)
+  (setq ls '(a b c))                                ; => (a b)
+  ;; remove doesn't modify the ls (setq ls ...) is needed
+  (list (remove 'b ls) ls (setq ls (remove 'b ls))) ;=> ((a) (a b) (a))
+
   (remove 'b '(a b c))    ; => (a c)
   (add-to-list 'lst 'b)   ; => (a b c)
   (add-to-list '(a c) 'b) ; => Wrong type argument: symbolp, (a c)
