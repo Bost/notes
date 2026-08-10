@@ -309,8 +309,21 @@
     (incr! y)
     (unbox y)  ; => 1
 
+    ;; https://systemcrafters.net/learning-guile-scheme/match-expressions/
+    ;; https://3e8.org/pub/scheme/doc/match.pdf
     (use-modules (ice-9 match))
     (match (list 1 2) [(f s) (list "f: " f "s: " s)]) ; => ("f: " 1 "s: " 2)
+    ;; match-lambda
+    ;; Creates a function of one argument and performs match on it.
+    ;; Equivalent to (lambda (expr) (match expr clause …))
+
+    ;; match-lambda*
+    ;; Like match-lambda, but performs match on the list of whole arguments.
+
+    ;; TODO match-let match-let* match-letrec : Generalize let, let*, and letrec
+
+    ;; match-define
+    ;; Like toplevel define, but allows a pattern instead of variables.
 
     (use-modules (srfi srfi-9)) ; define-record-type
     (use-modules (ice-9 match))
