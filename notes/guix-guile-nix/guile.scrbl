@@ -174,7 +174,7 @@
     ;; 'lambda*' is ‘lambda’ with allowed optional and keyword argument.
     ;; 'define*' is syntactic sugar for 'lambda*'
 
-    (use-modules (srfi srfi-26))
+    (use-modules (srfi srfi-26))  ; Conveniently specialize selected parameters
     (map (cut * 2 <>) '(1 2 3 4)) ;; => (2 4 6 8)
     (map (cut * 2) '(1 2 3 4))    ;; => Wrong number of arguments ...
     ;; Also variadic function arguments:

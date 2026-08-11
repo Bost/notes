@@ -321,7 +321,7 @@
   #
   git clone --depth=1 -b dev https://gitlab.com/rostislav.svoboda/dotfiles
   mkdir -p ~/.config/guix
-  cp dotfiles/.config/guix/channels.scm ~/.config/guix
+  cp $dtf/.config/guix/channels.scm ~/.config/guix
   guix pull
   guix hash
 
