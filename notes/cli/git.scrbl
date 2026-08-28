@@ -105,8 +105,8 @@
   git branch           --contains <commit>
   git branch --remotes --contains <commit>
 
-  # show file changes against remote branch
-  git diff <branch1> <branch2> <filepath>
+  # compare file between branches / show file changes against remote branch
+  git diff <branch1> <branch2> -- /path/to/file
 
   # show particular changed word / staged changes
   git diff --word-diff / --cached

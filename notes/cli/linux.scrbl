@@ -105,11 +105,6 @@
   2. Press & hold "Volume +" until you hear "pairing" (LED flashes red & blue)
   3. Press & hold the multifunction button and "Volume +" until you hear "multipoint enabled"
 
-  # rfkill - enable / disable wireless devices
-  sudo rfkill list
-  sudo hciconfig hci0 up
-  hcitool scan
-
   # xfce applet; See Settings -> Session and Startup -> Application autostart
   blueman-manager
 
@@ -1354,7 +1349,9 @@
   timeout 5s COMMAND
 
   # network - retcode==1 - online; retcode!=1 offline
-  nm-online --exit; echo "retcode: $?"
+  # Waits for NetworkManager to finish activating startup network connections.
+  # Exit immediately if NetworkManager is not running or connecting
+  nm-online --exit; echo "fish-retcode: $status" # echo "bash-retcode: $?"
 
   # find out / obtain the names of wired (Ethernet) / WiFi network interfaces
   # Ethernet interfaces have a type of 1
@@ -1362,6 +1359,18 @@
   iw dev | awk '$1=="Interface"{print $2}'          # WiFi
 
   # wifi net nmcli - command-line tool for controlling NetworkManager
+  | Identifier      | Meaning                           | Example           |
+  | --------------- | --------------------------------- | ----------------- |
+  | SSID            | Broadcast Wi‑Fi network name      | FriendsWifi       |
+  | BSSID           | MAC address of an  access point   | AA:BB:CC:DD:EE:FF |
+  | Connection name | Local NetworkManager profile name | FriendsWifi 1     |
+  #
+  set conName "<permanent-MAC-address>" # connection name
+  set ssid "<SSID>"
+  # iw - show / manipulate wireless devices and their configuration
+  # get the wireless interface name
+  set iface (iw dev | awk '$1=="Interface"{print $2}'); echo $iface #=> wlo1
+
   nm-applet
   man nmcli-examples
   nmcli --ask device wifi list               # 1. list
@@ -1369,15 +1378,33 @@
   # neverssl.com will never use SSL (also known as TLS). No encryption, no
   # strong authentication, no HSTS, no HTTP/2.0, just plain old unencrypted HTTP
   firefox http://neverssl.com    # login on a wifi network via browser
-  # iw - show / manipulate wireless devices and their configuration
-  # get the wireless interface name
-  set iface (iw dev | awk '$1=="Interface"{print $2}'); echo $iface
-  nmcli --ask device disconnect $iface       # 3. disconnect e.g. wl01 wlan0
+  nmcli --ask device disconnect $iface       # 3. disconnect e.g. wlo1 wlan0
   # general status and operations
   nmcli --ask general # also: nmcli general status
   # See also
   # nmtui - Text User Interface for controlling NetworkManager
   # nm-applet, nm-connection-editor, NetworkManager
+
+  # wifi, rfkill - enable / disable wireless devices
+  sudo rfkill list
+  # sudo hciconfig hci0 up  # hciconfig - configure Bluetooth devices
+  hcitool scan              # hcitool - manage Bluetooth connections & devices
+  nmcli --ask --fields GENERAL,IP4,IP6 device show $iface
+  sudo dmesg --level=emerg,alert,crit,err,warn
+
+  set fields "SSID,BSSID,CHAN,FREQ,SIGNAL,SECURITY"
+  nmcli --fields $fields device wifi list --rescan yes ifname $iface
+
+  sudo nmcli --ask device disconnect $iface
+  sudo ip link set $iface down
+  sudo ip link set $iface up
+  sudo nmcli --ask device wifi rescan ifname $iface
+  nmcli --ask device wifi list ifname $iface
+  sudo nmcli --ask device connect $iface
+
+  nmcli --ask connection show "$ssid"              # show details
+  sudo nmcli --ask connection delete id "$conName"
+  nmcli --ask device wifi connect "$ssid" ifname $iface
 
   # display installed packages
   rpm -qa
