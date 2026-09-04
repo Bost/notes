@@ -523,6 +523,10 @@
   git cherry-pick --strategy-option=theirs      # -X --strategy-option
 
   git worktree add /path/to/dir branch
+
+  |                            |  move all unpushed commits  | move only selected commits |
+  | check out the new branch   |  magit-branch-spinoff (b s) | magit-cherry-spinoff (A s) |
+  | stay on the current branch |  magit-branch-spinout (b S) | magit-cherry-spinout (A n) |
 }
 
 @block{@block-name{Mercurial}
