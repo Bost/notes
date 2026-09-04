@@ -522,6 +522,7 @@
   # resolve any conflicts by overriding with the changes made in the <commit>
   git cherry-pick --strategy-option=theirs      # -X --strategy-option
 
+  git worktree add /path/to/dir branch
 }
 
 @block{@block-name{Mercurial}
