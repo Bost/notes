@@ -343,7 +343,7 @@
 }
 
 @block{@block-name{Bric a brac}
-  shrug ¯\_(ツ)_/¯
+  shrug ¯\_(ツ)_/¯ 🤷‍♂️
 
   Nikita Voloboev: Everything I Know
   https://wiki.nikiv.dev/

@@ -156,6 +156,8 @@
 }
 
 @block{@block-name{Various}
+  UUID - Universally Unique Identifier: 128-bit number
+  GUID - Globally Unique Identifier is also used (in software from Microsoft)
 
   TOCTOU, TOCTTOU or TOC/TOU time-of-check to time-of-use
   class of software bugs caused by a race condition involving the checking of
