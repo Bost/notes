@@ -141,9 +141,10 @@
   # (After a merge conflict.)
 
   # Git Merge Conflicts
-  UPPER=HEAD = "My version" (current branch before the merge)
-  LOWER=c999896ff = "Their version" (incoming changes from the branch you're merging)
-  ediff-merge = "Final version" (the one you'll save as the resolved file)
+  git rebase current-our-UPPER-branch incomming-their-LOWER-branch
+  UPPER=HEAD     | My/our version | current branch before the merge
+  LOWER=<commit> | Their version  | incoming changes from the branch you're merging
+  ediff-merge    | Final version  | the one you'll save as the resolved file
 
   # list all files changed / touched in a particular commit
   # see

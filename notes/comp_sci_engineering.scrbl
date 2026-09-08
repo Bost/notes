@@ -155,7 +155,22 @@
     "standard" web development.
 }
 
+@block{@block-name{Service Set}
+  SSID - Service Set Identifier, is simply Wi-Fi network name.
+  BSSID - Basic Service Set Identifier: 48-bit, follows MAC address conventions
+
+  Service Set types:
+  (A) Infrastructure / Independent Basic Service Set - created by access point
+  (B) Extended Service Set ESS - multiple access points, which appears as a
+  single network,such as a network covering office space too large for coverage
+  by a single access point.
+  (C) Mesh Basic Service Set (MBSS)
+}
+
 @block{@block-name{Various}
+  PSK Pre-Shared Key - shared secret which was previously shared between the two
+  parties using some secure channel before it needs to be used
+
   UUID - Universally Unique Identifier: 128-bit number
   GUID - Globally Unique Identifier is also used (in software from Microsoft)
 

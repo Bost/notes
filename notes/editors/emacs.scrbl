@@ -851,6 +851,9 @@
   ;; M-x shell-command: top: capture top output from stdout
   ~M-! RET top -c -n -1 -b -w 200~
 
+  | ~C-M-a~   | M-x beginning-of-defun                |
+  | ~C-M-e~   | M-x end-of-defun                      |
+
   | ~C-M-u~   | M-x backward-up-list                  |
   | ~C-M-d~   | M-x down-list                         |
   | ~SPC k 0~ | M-x evil-lisp-state-beginning-of-sexp |
