@@ -344,6 +344,7 @@
 
 @block{@block-name{Bric a brac}
   shrug ¯\_(ツ)_/¯ 🤷‍♂️
+  facepalm (－‸ლ) 🤦‍♂️
 
   Nikita Voloboev: Everything I Know
   https://wiki.nikiv.dev/
