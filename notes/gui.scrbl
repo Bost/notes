@@ -162,8 +162,8 @@
 
 @block{@block-name{GSettings & dconf}
   dconf
-  - Simple tool for manipulating a key-based dconf database, similar to
-    `gsettings`.
+  - tool for manipulating a key-based dconf database, like `gsettings`.
+  - backend to Gsettings
   - Replacement for `gconf`.
   - Manages a range settings, like e.g. GDM, application, and proxy settings.
 
@@ -179,11 +179,18 @@
   - Front end for dconf; for modifying the dconf backend storage itself, use the
     dconf tool; but gsettings should be used by preference.
 
-  https://bmaupin.github.io/wiki/operating-systems/linux/ubuntu/ubuntu-gsettings-dconf.html
-
   dconf-editor             - Graphical editor for gsettings and dconf database
   gsettings-data-convert   - GConf to GSettings data migration
   gsettings-schema-convert - GConf to GSettings schema conversion
+
+  gsettings list-recursively guake.general
+  gsettings set guake.general window-height 80
+  gsettings reset-recursively guake.general   # back to defaults
+
+  # capture / save, only keys whose value differs from the schema default
+  dconf dump /org/guake/ > guake.dconf
+  # restore / load, e.g. from a Guix Home activation snippet
+  dconf load /org/guake/ < guake.dconf
 }
 
 @block{@block-name{Sway}
