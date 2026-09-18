@@ -210,6 +210,7 @@
   herd reload-modules <module-name> # e.g. herd reload-modules apache
   #
   sudo herd configuration sshd
+  sudo herd stop shepherd # reboot / restart machine / computer / Guix System
 
   # list all available system services
   guix system search .

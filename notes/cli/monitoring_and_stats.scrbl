@@ -6,17 +6,17 @@
 
   # network - grouping bandwidth per process; "net top"
   sudo nethogs wlan0
-  
+
   # :top :htop explained; see also atop iotop
   https://peteris.rocks/blog/htop/
-  
+
   # monitor disk I/O usage
   sudo iotop -oPa
-  
+
   # HDD SSD - hard disk / hard drive information
   sudo hdparm -I FILESYSTEM # see: df -h
   sudo hdparm -I /dev/sda1
-  
+
   # load average explained
   curl --silent https://raw.githubusercontent.com/torvalds/linux/v5.1/kernel/sched/loadavg.c | head -n 8
   # process queuing: load-average > nr-of-processors * cores-per-processor
@@ -33,10 +33,10 @@
 
   # :ps full command line; (needed b/c command is separated by the \0 byte)
   tr '\0' ' ' < /proc/PROCESS_ID/cmdline
-  
+
   # :ps :top :htop - all information related to PROCESS_ID
   ls /proc/PROCESS_ID
-  
+
   # :ps :top :htop - current working directory of PROCESS_ID
   cat /proc/PROCESS_ID/cwd
 

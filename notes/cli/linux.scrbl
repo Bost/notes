@@ -518,7 +518,7 @@
   # single IP and host name.
   sudo nmap -sn IP_RANGE
 
-  # network - show open ports
+  # network - show open ports; 631/tcp - printer
   nmap localhost | grep -i open # 631/tcp  open ipp - Internet Printing Protocol
   nmap www.google.com | grep -i open
 
@@ -1626,8 +1626,8 @@
   # create temporary file
   mktemp
 
-  # printer: Command-Line Printing and Options
-  http://localhost:631/help/options.html
+  http://localhost:631/help/options.html # Command-Line Printing and Options
+  lpstat -e  # available destinations (printers) on the network
 
   # YAML: YAML Ain't Markup Language
   # human-readable data-serialization language. Python style indentation

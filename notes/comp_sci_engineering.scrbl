@@ -168,6 +168,20 @@
 }
 
 @block{@block-name{Various}
+  Sockets: `socket(domain, type, protocol)` - type signature in C.
+  is an endpoint in the Berkeley/POSIX API
+  on Linux it's just a file descriptor. It's how you reach either protocol
+  domain: AF_INET / AF_INET6 (network), AF_UNIX (local), AF_PACKET (raw frames)
+  type: SOCK_STREAM (TCP), SOCK_DGRAM (UDP), SOCK_RAW
+  #
+  Typical flows:
+  TCP server: socket → bind → listen → accept (each accept yields a new fd for that connection)
+  TCP client: socket → connect
+  UDP: socket → bind → sendto / recvfrom, no accept, no connect required
+  #
+  Common confusion
+  When people say "socket connection" colloquially, they usually mean WebSocket
+
   PSK Pre-Shared Key - shared secret which was previously shared between the two
   parties using some secure channel before it needs to be used
 

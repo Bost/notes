@@ -158,6 +158,17 @@
     Xft/Hinting 0
     Xft/HintStyle "hintnote"
     Xft/DPI 184320 # 1024 * DPI
+
+  /tmp/.X11-unix?
+  directory holding the Unix-domain sockets that X servers listen on.
+  Each running X display gets a socket named after its display number:
+  display
+  :0 → /tmp/.X11-unix/X0
+  :1 → X1
+  etc.
+  #
+  DISPLAY=:0      client connects to X server's socket
+  DISPLAY=host:0  client connects to X server's TCP port
 }
 
 @block{@block-name{GSettings & dconf}
