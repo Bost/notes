@@ -378,6 +378,9 @@
   # |---------+---------------|
   # | content | other content |
   # :end:
+
+  # Download video transcript / subtitles
+  yt-dlp --skip-download --write-auto-subs URL
 }
 
 @block{@block-name{Languages}
