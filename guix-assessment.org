@@ -1,0 +1,134 @@
+#+title: Guix assessment
+
+This is a personal assessment based on several years of using and occasionally contributing to GNU Guix. The scores are subjective and are intended as notes about the project's technical design, development process and governance rather than as recommendations for or against using Guix.
+
+* Rating legend
+
+- Score = How well Guix handles this feature or property.
+- Impact = How strongly this feature or property affects Guix as a distribution and development project overall, considering users and contributors.
+- Scope = The group or level most directly affected.
+
+| Score | Meaning                                                            |
+|-------+--------------------------------------------------------------------|
+|     5 | Excellent - a clear strength; unusually well designed or executed. |
+|     4 | Good - works well, with noticeable but limited shortcomings.       |
+|     3 | Mixed - meaningful strengths and weaknesses; broadly adequate.     |
+|     2 | Poor - substantial shortcomings or recurring practical problems.   |
+|     1 | Very poor - fundamentally deficient, dysfunctional or harmful.     |
+
+| Impact | Meaning                                                            |
+|--------+--------------------------------------------------------------------|
+|      5 | Very high - foundational or project-wide consequences.             |
+|      4 | High - substantial and recurring consequences.                     |
+|      3 | Moderate - noticeable consequences in ordinary use or development. |
+|      2 | Limited - affects narrower workflows or subsets of people.         |
+|      1 | Low - mostly cosmetic, occasional or peripheral.                   |
+
+* 1 Technical architecture and user experience
+
+| Feature / property               | Scope                         | Score | Impact | Short description                                                                                         |
+|----------------------------------+-------------------------------+-------+--------+-----------------------------------------------------------------------------------------------------------|
+| Functional package model         | User / Project                |     5 |      5 | Extremely coherent model with explicit dependencies and immutable outputs.                                |
+| Rollbacks / generations          | User                          |     5 |      4 | One of Guix's strongest practical features.                                                               |
+| User channels                    | User / Contributor            |     5 |      4 | Excellent way to maintain personal packages and system extensions without forking Guix.                   |
+| guix shell                       | User                          |     5 |      4 | Very convenient, composable and unusually well integrated with the package manager.                       |
+| Scheme / Guile extensibility     | Contributor / Maintainer      |     5 |      5 | A real programming language is vastly more expressive than YAML-style configuration.                      |
+| Package introspection            | User / Contributor            |     5 |      4 | Dependencies, derivations and build graphs are unusually transparent and inspectable.                     |
+| Build isolation                  | User / Project                |     5 |      5 | Very strong isolation and explicitness compared with conventional distributions.                          |
+| Overall architectural coherence  | Project                       |     5 |      5 | Few operating-system/package-management projects have such a consistent underlying model.                 |
+| Declarative configuration        | User / Project                |     4 |      5 | Powerful and elegant, although complexity leaks through fairly often.                                     |
+| Package transformations          | User / Contributor            |     4 |      3 | Very powerful mechanism for modifying package graphs without duplicating definitions.                     |
+| Reproducible builds              | User / Project                |     4 |      5 | Strong infrastructure and unusually serious engineering, but not universally reproducible.                |
+| Environment reproducibility      | User / Project                |     4 |      5 | Excellent when sources, substitutes and historical dependencies remain obtainable.                        |
+| Cross-compilation                | Contributor / Project         |     4 |      3 | Architecturally elegant and deeply integrated, though packages do not always cooperate.                   |
+| System configuration             | User                          |     4 |      5 | Unified model for packages and services, but considerably more complex than conventional configuration.   |
+| Service framework                | User / Contributor            |     4 |      4 | Conceptually excellent and highly composable, although learning and debugging it can be difficult.        |
+| Garbage collection               | User                          |     4 |      3 | Well-designed and explicit, but managing roots and old generations remains necessary.                     |
+| Packaging simple software        | Contributor                   |     4 |      3 | Pleasant once familiar with Guix conventions.                                                             |
+| Documentation                    | User / Contributor            |     4 |      4 | Extensive and technically strong, though sometimes easier as reference material than as a learning path.  |
+| guix time-machine                | User / Project                |     3 |      4 | Great concept, but less magical than the name suggests for sufficiently old revisions.                    |
+| Source availability robustness   | User / Project                |     3 |      5 | Historical builds can fail because external source artifacts disappear or change.                         |
+| Binary substitutes               | User / Project                |     3 |      5 | Fine when substitutes exist; painful when an innocent operation unexpectedly becomes a large build.       |
+| Dynamic typing                   | Contributor / Maintainer      |     3 |      3 | Fits Scheme nicely, but Guix is complex enough that stronger static checking could prevent many mistakes. |
+| Community package availability   | User                          |     3 |      5 | Large enough for serious use, but substantially smaller than Debian, Arch or Nix ecosystems.              |
+| Overall day-to-day ergonomics    | User                          |     3 |      5 | Excellent when operating inside Guix's happy path; noticeably rough once you leave it.                    |
+| Error messages / debugging       | User / Contributor            |     2 |      4 | Guile, macros, gexps and derivation boundaries can produce errors far removed from the actual mistake.    |
+| Store disk usage                 | User                          |     2 |      4 | Immutability and multiple generations naturally consume substantial disk space.                           |
+| Rebuild amplification            | User / Project                |     2 |      5 | Small dependency changes can invalidate very large portions of the graph.                                 |
+| FHS compatibility                | User                          |     2 |      3 | Software assuming /usr, /lib or conventional filesystem layouts frequently needs special handling.        |
+| Proprietary binary compatibility | User                          |     2 |      2 | Vendor binaries often require patching, wrappers or containers to work comfortably.                       |
+| Packaging difficult software     | Contributor / Maintainer      |     2 |      4 | Bundled dependencies, language ecosystems and unconventional builds can become labor-intensive.           |
+| Contribution workflow            | Contributor                   |     2 |      4 | More ceremony than necessary for small or occasional contributions.                                       |
+| Commit-message conventions       | Contributor                   |     2 |      2 | Consistency is useful, but the rules create disproportionate friction for trivial changes.                |
+| Commit authentication            | Contributor / Maintainer      |     2 |      3 | Strong security idea, but operationally cumbersome, especially for small personal channels.               |
+
+* 2 Governance and decision-making
+
+| Feature / property           | Scope                | Score | Impact | Short description                                                                                     |
+|------------------------------+----------------------+-------+--------+-------------------------------------------------------------------------------------------------------|
+| Development transparency     | Governance / Project |     4 |      4 | Major decisions are public, documented and leave a useful historical record of rationale and dissent. |
+| Consensus as an aspiration   | Governance / Project |     4 |      4 | Encourages objections to be understood and alternatives to be considered instead of simply outvoted.  |
+| GCD process                  | Governance / Project |     2 |      5 | Well-intentioned and carefully specified, but slow, procedural and disproportionately heavy.          |
+| Consensus as a decision rule | Governance / Project |     2 |      5 | Strongly favors the status quo and can turn one unresolved objection into an effective veto.          |
+| Governance scalability       | Governance / Project |     2 |      5 | Requiring broad consensus becomes increasingly costly as the project and number of concerns grow.     |
+| Decision-making efficiency   | Governance / Project |     2 |      5 | 30-60 days of discussion plus formal deliberation is excessive for many software-project decisions.   |
+
+* 3 Community representation and governance access
+
+| Feature / property               | Scope                    | Score | Impact | Short description                                                                                         |
+|----------------------------------+--------------------------+-------+--------+-----------------------------------------------------------------------------------------------------------|
+| Community participation          | Contributor / Governance |     3 |      4 | Discussion is broadly open, anyone can propose a GCD. Formal deliberation is limited to team members.     |
+| Governance accessibility         | Contributor / Governance |     3 |      4 | Team membership does not require commit access. Joining a team is still the gateway to formal influence.  |
+| Representation of contributors   | Governance / Project     |     2 |      5 | Governance privileges formal team membership over other substantial forms of contribution.                |
+| Equality of community membership | Governance / Project     |     2 |      4 | Creates a meaningful distinction between formally enfranchised team members and other contributors/users. |
+
+* 4 Contribution and code-review process
+
+| Feature / property          | Scope                              | Score | Impact | Short description                                                                                        |
+|-----------------------------+------------------------------------+-------+--------+----------------------------------------------------------------------------------------------------------|
+| Code review capacity        | Contributor / Maintainer / Project |     2 |      5 | Review is a persistent bottleneck; patches may wait a long time because too few contributors do reviews. |
+| Distribution of review work | Contributor / Maintainer / Project |     2 |      5 | Review responsibility is weakly distributed, making it difficult to know who will take ownership.        |
+| Contributor feedback loop   | Contributor / Project              |     2 |      5 | Slow or absent reviews can make substantial contributions frustrating and allow patches to bitrot.       |
+
+* 5 Communication and deliberation
+
+| Feature / property             | Scope                    | Score | Impact | Short description                                                                                        |
+|--------------------------------+--------------------------+-------+--------+----------------------------------------------------------------------------------------------------------|
+| Communication channels         | Contributor / Project    |     3 |      4 | Mailing lists, IRC and Codeberg open and archived. Discussion is fragmented across several media.        |
+| Discussion structure           | Contributor / Governance |     2 |      4 | Long discussions remain mostly chronological/threaded streams rather than a structured map of arguments. |
+| Discussion discoverability     | Contributor / Governance |     2 |      4 | Joining an established discussion can require reading large amounts of history to reconstruct its state. |
+| Decision-state visibility      | Governance / Project     |     2 |      5 | It is often unclear which questions are settled, unresolved, obsolete or have branched into new topics.  |
+| Late-participant accessibility | Contributor / Governance |     2 |      4 | Accumulated context gives continuous participants a substantial advantage over people joining later.     |
+
+* 6 Release engineering and quality assurance
+
+| Feature / property       | Scope                       | Score | Impact | Short description                                                                                            |
+|--------------------------+-----------------------------+-------+--------+--------------------------------------------------------------------------------------------------------------|
+| Release process design   | Maintainer / Project        |     4 |      4 | GCD 005 introduces release teams, freezes, testing periods, package sets and retrospectives.                 |
+| QA infrastructure        | User / Maintainer / Project |     4 |      4 | Dedicated QA infrastructure exposes branch builds, substitute availability and reproducibility results.      |
+| CI / build-farm coverage | User / Project              |     3 |      5 | Strong for major architectures, but coverage and substitutes remain considerably weaker on others.           |
+| Change integration       | Maintainer / Project        |     3 |      4 | Team branches help isolate large transitions, but integrating graph-wide changes remains expensive.          |
+| Stable-release option    | User / Project              |     2 |      3 | Guix remains primarily rolling; there is still no slower-moving supported branch comparable to NixOS stable. |
+| Release cadence          | User / Project              |     2 |      3 | Historically very irregular; an annual release process has now been adopted, but this is still maturing.     |
+
+* 7 Project sustainability and coordination
+
+| Feature / property            | Scope                              | Score | Impact | Short description                                                                                       |
+|-------------------------------+------------------------------------+-------+--------+---------------------------------------------------------------------------------------------------------|
+| Team responsibility clarity   | Maintainer / Project               |     3 |      4 | Teams provide useful ownership, but responsibilities, membership and duties remain somewhat fluid.      |
+| Cross-team coordination       | Maintainer / Project               |     3 |      4 | Teams enable autonomy, but large transitions and shared dependencies require substantial coordination.  |
+| Knowledge transfer            | Maintainer / Project               |     3 |      4 | Much knowledge is public, but significant operational knowledge remains embedded in people and history. |
+| Volunteer sustainability      | Contributor / Maintainer / Project |     2 |      5 | Important areas depend on scarce volunteer time, making overload and stalled work recurring risks.      |
+| Bus factor / knowledge spread | Maintainer / Project               |     2 |      5 | Specialized knowledge and responsibility can become concentrated in relatively few contributors.        |
+| Roadmap / priority visibility | User / Contributor / Project       |     2 |      4 | Decentralization gives contributors freedom, but makes overall project priorities difficult to discern. |
+
+* 8 Project principles, security and ecosystem constraints
+
+| Feature / property             | Scope                  | Score | Impact | Short description                                                                                         |
+|--------------------------------+------------------------+-------+--------+-----------------------------------------------------------------------------------------------------------|
+| Free-software policy coherence | User / Project         |     5 |      5 | The project's software-freedom principles are unusually explicit and consistently reflected in design.    |
+| Supply-chain provenance        | User / Project         |     5 |      5 | Guix treats source, derivation and binary provenance as first-class properties rather than afterthoughts. |
+| Reduced binary bootstrap       | Project                |     5 |      4 | Guix makes an unusually serious effort to minimize opaque bootstrap binaries in the trusted base.         |
+| Substitute authentication      | User / Project         |     4 |      4 | Strong content/authenticity model for binary substitutes, though it adds trust-management complexity.     |
+| Guix Home                      | User                   |     4 |      3 | Extends the declarative/generational model cleanly to user packages, services and dotfiles.               |
+| Hardware compatibility         | User                   |     2 |      4 | Linux-libre and free-firmware requirements exclude otherwise common hardware, notably some WiFi devices.  |
