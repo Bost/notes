@@ -500,6 +500,7 @@
   https://www.cyberciti.biz/faq/unix-linux-bash-script-check-if-variable-is-empty/
   https://www.cyberciti.biz/faq/linux-unix-howto-check-if-bash-variable-defined-not/
 
+  # bash tests
   # FILE1 -ot FILE2: FILE1 is older than FILE2
   #        -b FILE:  FILE exists and it's block special
   #        -c FILE:  FILE exists and it's character special

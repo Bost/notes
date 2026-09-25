@@ -178,6 +178,20 @@
 }
 
 @block{@block-name{Various}
+
+  # cooperative mutual exclusion/synchronization between processes, using an
+  # open file as the object being locked. E.g. prevent two instances of a script
+  # from running simultaneously
+  flock      # manage locks from shell scripts
+
+  age        # simple, modern, and secure file encryption
+  mountpoint # see if a directory or file is a mountpoint
+  runuser    # run a command with substitute user and group ID
+  zstd       # zstd, zstdmt, unzstd, zstdcat - compress or decompress .zst files
+
+  # streaming a large archive avoids storing an additional decrypted copy:
+  age --decrypt --identity key.txt archive.tar.zst.age | restore-from-backup.sh -
+
   # When:
   $ sudo do-release-upgrade
   Checking for a new Ubuntu release
