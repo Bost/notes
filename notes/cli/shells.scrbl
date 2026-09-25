@@ -94,7 +94,7 @@
   # bash fish-shell - sequence from 0 to 10 (both included) increment by 2
   seq 0 2 10
 
-  # bash history without line numbers
+  # bash: history without line numbers
   # https://stackoverflow.com/q/7110119/5151982
   history | cut -c 8-
   history | awk '{$1="";print substr($0,2)}'
@@ -103,24 +103,21 @@
   # edit command with number 406 on the prompt without executing it
   #!406:p
 
-  # bash
-  # remove line(s) from shell history (i.e. password) see also ~/.bash_history
+  # bash: Remove line(s) from shell history (i.e. password). See ~/.bash_history
   history -d <cmdNrX> <cmdNrY>
 
-  # fish-shell see also ~/.local/share/fish/fish_history
+  # fish-shell: See also ~/.local/share/fish/fish_history
   history delete --contains <substring>
   history delete --contains "history delete --contains"
 
-  # bash
-  # see what the shell does with the various types of quoting
+  # bash: What the shell does with the various types of quoting
   # https://unix.stackexchange.com/a/417408
   printf -- '<%s>\n' G "G" 'G' \G "\G" '\G' \\G "\\G" '\\G'
 
-  # bash
-  # secure (password) prompt; doesn't work in fish
+  # bash: secure (password) prompt; doesn't work in fish
   read -s
 
-  # fish-shell retval retcode return-code exit-code (in bash $?)
+  # fish-shell: retval retcode return-code exit-code (in bash $?)
   # retcode interpretation / meaning
   # https://fishshell.com/docs/current/language.html#variables-status
   $status
@@ -132,38 +129,37 @@
   # show content of foo fn / list fns
   type foo / functions foo / functions -n
 
-  # fish-shell
+  # fish-shell:
   functions # list available functions
   abbr      # list available abbreviations
   alias     # list available aliases
   # copy 'foo' fn to a new fn 'bar' / erase the 'bar'
   functions -c foo bar / functions -e bar
 
-  # fish-shell variables
-  # unset a shell var
+  # fish-shell: variables, unset a shell variable
   set --erase V        # set -e V
-  # var scope is local to the current block
+  # variable scope is local to the current block
   set --local V 1      # set -l V 1
-  # var exported to all child processes (environmetal var)
-  set --export  V 1    # set -x V 1
-  set -unexport V      # set -u V
-  # var shared between all current user's fish instances on the current computer
-  # preserved across restarts of the shell
+  # variable exported to all child processes (environmental variable)
+  set --export   V 1   # set -x V 1
+  set --unexport V     # set -u V
+  # variable shared between all current user's fish instances on the current
+  # computer preserved across restarts of the shell
   set --universal V 1  # set -U V 1
-  # show info about a var
+  # show info about a variable
   set --show V         # set -S V
   # show info about all vars
-  set --show               # set -S
+  set --show           # set -S
 
   # fish-shell - all function arguments from 3rd to the last
   $argv[3..-1]
 
-  # fish-shell exists / existence-tests
+  # fish-shell: exists / existence-tests
   test (string escape -- $argv) = "--switch" # string equality / compare
   test -e /path/to/file.txt                  # file exists
   test -L /path/to/link                      # symbolic link exists
   test -d /path/to/dir                       # directory exists
-  test -z (ls -A /path/to/dir)               # directory is emptys
+  test -z /path/to/dir                       # directory exists and is empty
   # true if the length of $V is non-zero i.e. non-empty string
   # https://stackoverflow.com/a/47743269; always use "" around the V
   test -n "$V" && echo "t: defAndNonEmpty: '$V'" || echo "f: undefOrEmpty"

@@ -338,3 +338,7 @@
   [2] TLS version, ciphers, handshake info
   [3] traffic patterns/fingerprints
 }
+
+@block{@block-name{Linux Unified Key Setup (LUKS)}
+  disk encryption specification
+}

@@ -41,6 +41,22 @@
 }
 
 @block{@block-name{Guile Scheme}
+  (use-modules (system vm program))
+  (define (procedure-location proc)
+    "Return (FILE LINE COLUMN) of PROC's definition / source location, or #f if unknown."
+    ((compose
+      (lambda (src)
+        (and src
+             (list (or (%search-load-path (source:file src))
+                       (source:file src))
+                   (source:line-for-user src)
+                   (source:column src))))
+      (lambda (srcs) (and (pair? srcs) (car srcs)))
+      program-sources)
+     proc))
+  (procedure-location and-map)
+  ;; => ("/…/share/guile/3.0/ice-9/boot-9.scm" <line> <column>)
+
   (define fun-symbol 'string-append)
   ;; resolve `fun-symbol' to a procedure `fun' in the current-module
   (define fun (eval fun-symbol (current-module)))
@@ -549,6 +565,8 @@
       (lambda (cmd) (string-join cmd " ")))
      (list
       "git" "config" "--local" "--list")))
+
+    (case 'a [(a) "a"] [(b) "b"] [else "else"])
 
     ;; case-lambda - Scheme's counterpart to Clojure's multi-arity
     (defn greet                          ; clojure
