@@ -39,6 +39,14 @@
         Compression yes
   }
 
+  # -- ends SSH option parsing. It doesn't quote or protect the remote command.
+  # '...' prevents the local shell from expanding variables, wildcards, or
+  # substitutions inside the command. The remote shell then interprets that text.
+  # E.g.: print the hostname of the remote machine
+  ssh remote 'echo $(hostname)'
+  # E.g. print the hostname of the machine where I'm typing the ssh command
+  ssh remote -- echo $(hostname)
+
   # SSH Tunneling
   # https://iximiuz.com/en/posts/ssh-tunnels/
   # https://hackertarget.com/ssh-examples-tunnels/
