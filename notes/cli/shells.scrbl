@@ -632,3 +632,20 @@
   $ printf '<%s>\n' <(seq 0 1)
   </dev/fd/63>
 }
+
+@block{@block-name{shopt - SHell OPTions}
+  # Bash builtin that turns optional shell behaviours on or off. It's
+  # Bash-specific: POSIX sh, Zsh and Fish don't have it.
+  shopt -s opt...   # set (enable) options
+  shopt -u opt...   # unset (disable) options
+  shopt opt         # show whether opt is on or off
+  shopt -q opt      # quiet query: exit status 0 if on, 1 if off (for scripts)
+  shopt             # list all shopt options and their state
+  shopt -p          # print them as re-runnable `shopt -s/-u` commands
+
+  # set -o / set +o handles the older, POSIX-ish options: errexit, nounset,
+  # pipefail, noclobber etc.
+  # shopt handles Bash's own extensions: nullglob, dotglob, globstar, extglob,
+  # failglob, nocaseglob, inherit_errexit, lastpipe, etc.
+  # shopt -o can access the set -o options, but nobody really uses it that way.
+}
