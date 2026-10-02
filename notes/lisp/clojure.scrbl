@@ -67,11 +67,11 @@
   | GraalVM | JVM Compiler Interface: Plugin own JIT Compiler into VM |
   |         | Compiler written in Java, replacement for HotSpot       |
 
-  Class libraries + JVM make a Java Runtime Environment (JRE) or Java Developers
-  Kit (JDK).
+  Class libraries + JVM = JRE (Java Runtime Environment) or JDK (Java
+  Developers Kit).
 
   When JVM starts Graal begins to compile itself
-  JVMCI protocol: between JMV and Graal -> {Truffle, TruffleRuby}
+  JVMCI protocol: between JVM and Graal -> {Truffle, TruffleRuby}
   Truffle language framework
   spec-provider - creates clojure spec from examples
   zprint - pretty printer for clojure; has also an emacs package 'zprint-mode'
@@ -98,25 +98,25 @@
   xml - first class support
   default get/set methods & constructor
   function & imperative
-  staticaly typed
+  statically typed
   traits (multiple inheritance)
 
   clojuredocs - graphic representation of example
 
   Rick Hickey - TBD (To Better Do)
-  - User interfaces on top of programatic interfaces
+  - User interfaces on top of programmatic interfaces
   - use composable services
   - abstractions; no bespoke protocols and formats
 
   Clojure AI
-  Eric Weinstein: Machine learning with Clojure and Apache Stark
+  Eric Weinstein: Machine learning with Clojure and Apache Spark
   Apache Spark:
   Supervised learning, Generalization
   Classification or regression, generalizing from labeled to unlabeled data
   cluster computing framework - ideal for large data sets
-  RDD Resilient Distrib Dataset
-  Datase: RDD + Spark SQL execution engine
-  DataFrame: dataset ordanized into named columns
+  RDD Resilient Distributed Dataset
+  Dataset: RDD + Spark SQL execution engine
+  DataFrame: dataset organized into named columns
 
   Los Angeles police stop data, 600.000 http://bit.ly/2f9jVwn
   Decision Trees (binary classifier) robust in noise; good for binary
@@ -142,14 +142,14 @@
   Music: what is the relation between harmony and ryth; model of musical creativity
   How represent speach context? - history of lisp - ClojureD
   Create experience dbase
-  Android App: picture comparision
+  Android App: picture comparison
   put together: chess languages ;;
   Problemy tazke pre comp, lahke pre cloveka (arimaa - until 2020, etc.)
   Lang words as a sound: celular automata: cell dyies / is born: play a tone
 
   Code as a Lego Block - TED Talk
   http://www.ted.com/talks/ayah_bdeir_building_blocks_that_blink_beep_and_teach.html
-  Polylit - SW architecture that applies functional thinking at the system scale
+  Polylith - SW architecture that applies functional thinking at the system scale
   https://github.com/polyfy/polylith
   https://polylith.gitbook.io/polylith/
 
@@ -318,7 +318,7 @@
     lein install
     lein localrepo install target/virgil-x.y.z.jar lein-virgil x.y.z
     lein deploy clojars
-    # create / open remotelly accessible repl (nrepl)
+    # create / open remotely accessible repl (nrepl)
     lein repl :headless :host 0.0.0.0 :port <portNr>
     #
     # deps.edn; clojure -M:outdated corresponds to `lein ancient`
@@ -368,8 +368,7 @@
     i Step in to a function
     o Step out of the current sexp (like up-list)
     O Force-step out of the current sexp
-    h Skip all sexps up to “here” (current position). Move the cursor before
-    doing this.
+    h Skip all sexps up to "here" (move the cursor first)
     H Force-step to “here”
     c Continue without stopping
     e Eval code in current context
@@ -550,7 +549,7 @@
   ;; (A * B) could be seen as a product (e.g. join)
   ;; (A + B) coproduct (e.g. disjoint union) of A and B
 
-  ;; see https://github.com/clojure/data.priority-map
+  ;; https://github.com/clojure/data.priority-map
   ;; sorted map   - entries sorted by key
   ;; priority map - entries sorted by value; see conj, peek, pop
 
@@ -602,7 +601,7 @@
 
   ;; undefine / clean just one thing
   (let [the-ns *ns* #_'my.data]
-    (ns-unmap the-ns 'old-definiton)
+    (ns-unmap the-ns 'old-definition)
     ;; see namespace aliasing
     (ns-unmap 'current-namespace 'local-alias))
 
@@ -703,7 +702,7 @@
   ;; work. File is created in the REPL working directory
   ((comp (partial spit "data.edn") pr-str) {:a 1 :b 2})
   (clojure.pprint/pprint *large-map* (clojure.java.io/writer "/tmp/data.edn"))
-  ;; read hash-map from an eden file
+  ;; read hash-map from an edn file
   ((comp read-string slurp) "/tmp/data.edn")
 
   ;; difference of sets
@@ -801,7 +800,7 @@
   ;;; specialisations
   ;;; mastery vs. novelty (expensive)
   ;;; dealing with complexity of options
-  ;; REPL: java -jar clojure; TODO see the video "The most beautifull programm"
+  ;; REPL: java -jar clojure; TODO see the video "The most beautiful program"
   user=> (->> (read) eval prn (while true))
   user=> (loop [] (println (eval (read))) (recur))
 
@@ -867,7 +866,7 @@
   ;; => true
 
   ;; CRDT - Conflict-free Replicated Data Type
-  ;; synchronize state across uncoordinates nodes in an eventually consistent way
+  ;; synchronize state across uncoordinated nodes in an eventually consistent way
 
   ;;
   ;; lein boot deps.end
@@ -878,7 +877,7 @@
   ;; remove any nil, empty, or whitespace-only element
   (remove clojure.string/blank? ["" "  " false nil "\n" "\n"]) ;; => ()
 
-  ;; clojurescript: print to formated string
+  ;; clojurescript: print to formatted string
   (goog.string/format "val: '%s'" 'foo)
 
   ;; deeply nested data structure: truncate the output

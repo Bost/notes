@@ -29,7 +29,7 @@
   feature-clojure     ;;
 
   @block{@block-name{RDE channel lock / channel freeze}
-    YouTube: Andrew Torpin: guix shell: Overview
+    YouTube: Andrew Tropin: guix shell: Overview
     https://youtu.be/UMCHuHSlVWk?t=1622
     # full freeze of Guix channels to the versions defined in 'channels.scm'
     guix describe --format=channels > ./channels.scm
@@ -63,5 +63,5 @@
   guix shell flatpak - flatpak apps in a guix shell
 
   guix install nix
-  nix-shell -t htop - Nix hast the largest amount of available packages
+  nix-shell -t htop - Nix has the largest amount of available packages
 }

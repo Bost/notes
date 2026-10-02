@@ -34,14 +34,11 @@
   guix home reconfigure
   guix home --keep-failed -L $dotf/guix/home reconfigure $dot/guix/home/home-configuration.scm
 
-  # initialize or generate a home environment definition from dotfiles and put
-  # it to /dst/dir
+  # generate a home environment definition from dotfiles into /dst/dir
   guix home import /dst/dir
 
-  # build some configuration without installing anything
+  # build / try out some configuration without installing anything
   guix home build /path/to/configuration.scm
-
-  # try out some configuration without installing anything
   guix home container /path/to/configuration.scm
   guix home --keep-failed -L $dotf/guix/home container $dotf/guix/home/home-configuration.scm
 

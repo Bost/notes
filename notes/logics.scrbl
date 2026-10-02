@@ -22,7 +22,7 @@
   Examples-of-Logics:
   | Logical Judgement   | Branch of Logic      | Computation phenomenon                                      |
   |---------------------+----------------------+-------------------------------------------------------------|
-  |                     | Intuitionistic Logic | Curry-Howard Correspondance                                 |
+  |                     | Intuitionistic Logic | Curry-Howard Correspondence                                 |
   | K knows A           | Epistemic Logic      | Distributed Computing                                       |
   | A is true at time t | Temporal Logic       | Reactive Programming (partial evaluation)                   |
   | A is resource       | Linear Logic         | Concurrent Computation (\pi calculus)                       |
@@ -39,10 +39,10 @@
   based on Girard’s Logic of Unity ([[https://news.ycombinator.com/item?id=17641476][discussion]])
 
   In logic: terms encode proofs, In programming: terms are programming language
-  a.k.a Traditional a.k.a Constructive Logic: endless resources, no need for construction / destruction
+  a.k.a Traditional a.k.a Constructive Logic: endless resources, no construction / destruction
 
   Expressions:
-  | Expression               | Name / Logical connective  | Explanation / Noqte                                      |
+  | Expression               | Name / Logical connective  | Explanation / Note                                       |
   |--------------------------+----------------------------+----------------------------------------------------------|
   | $A,B,C$                  | propositions               |                                                          |
   | $X$                      | propositional constant     |                                                          |
@@ -70,7 +70,7 @@
 @block{@block-name{Linear logic}
   notions of:
   - state
-  - limited resources: construction / descruction
+  - limited resources: construction / destruction
 
   ? Unique pointers in C\texttt{++} ?
   "Stuff moved from place to place and it cannot be used twice, only once"\\
@@ -122,8 +122,7 @@
   The semantics of propositional logic determines the logical value (i.e.
   truth or falsehood) of each formula with respect to some given valuation,
   i.e. a mapping from propositional variables to logical values.
-
-  A formula is satisfiable if there exists a valuation under which it is true.
+  A formula is satisfiable if it is true under some valuation.
 }
 
 @block{@block-name{Predicate Logic}
@@ -150,7 +149,7 @@
 
   sequence of states == behavior
   state: assignment of values to variables
-  programm is modeled by a set of behaviors representing all possible executions
+  program is modeled by a set of behaviors representing all possible executions
 
   Theorem:
   intersection of behaviors satisfying properties:
@@ -171,6 +170,6 @@
 
   Informal Specification:
   e.g. pretty-printing can't be exactly specified
-  Set of rules/requiremens/axioms is usually a bad spec: consequesces of rules
+  Set of rules/requirements/axioms is usually a bad spec: consequences of rules
   are hard to understand
-  }
+}
