@@ -33,7 +33,7 @@
   C-b up / down / left / right  # move between the panes
   C-b z   # toggle zoom of the active pane
   C-b c / x   # create (open) / kill (close) window
-  C-b n / n   # switch between windows; * indicated active window
+  C-b n / p   # switch between windows; * indicates active window
   C-b , <window-name>   # rename window
   C-b d   # disconnect from a session
   tmux attach -t <target-number>  # connect to session <target-number>
@@ -44,29 +44,26 @@
   tmux new -s <session-name>  # open a new session called <session-name>
 
   # Reload configuration
-  tmux source $XDG_XONFIG_HOME/tmux.conf
+  tmux source $XDG_CONFIG_HOME/tmux.conf
 
   https://tmuxcheatsheet.com/
   https://github.com/tmux-plugins/tpm
 }
 
 @block{@block-name{Verify Ubuntu download}
-  # Obtain key(s) 0x46181433FBB75451 and 0xD94AA3F0EFE21092 from the Ubuntu key
-  # server
+  # Obtain the keys from the Ubuntu key server
   gpg --keyid-format long --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x46181433FBB75451 0xD94AA3F0EFE21092
   # Inspect the key fingerprints
   gpg --keyid-format long --list-keys --with-fingerprint 0x46181433FBB75451 0xD94AA3F0EFE21092
   # Verify the SHA256 checksum file
   gpg --keyid-format long --verify SHA256SUMS.gpg SHA256SUMS
-  # Verify the ISO file
-  # --ignore-missing  don't fail or report status for missing files
+  # Verify the ISO file; --ignore-missing: don't report missing files
   sha256sum --ignore-missing --check SHA256SUMS
 }
 
 @block{@block-name{Udev}
-  Userspace Device udev
-  https://en.wikipedia.org/wiki/Udev
-  device manager for linux kernel; manages nodes in the /dev directory
+  Userspace Device udev - device manager for the linux kernel; manages nodes
+  in /dev https://en.wikipedia.org/wiki/Udev
 }
 
 @block{@block-name{Grub}
@@ -200,8 +197,7 @@
   $ apt list --upgradable
   $ sudo apt-get --with-new-pkgs upgrade <list-of-packages>
 
-  nscd: name service cache daemon
-  Caching for accesses of the passwd, group and hosts
+  nscd: name service cache daemon - caches passwd, group and hosts accesses
 
   # set the keyboard using the X Keyboard Extension
   $ setxkbmap -query
@@ -436,8 +432,7 @@
   # https://unix.stackexchange.com/a/336919
   # https://www.geeksforgeeks.org/coproc-command-in-linux-with-examples/
   #
-  # connect to localhost:30003 and send there the content of file-with-messages
-  # line by line
+  # send file-with-messages line by line to localhost:30003
   cat file-with-messages | nc localhost 30003
 
   # :arp - network security auditing tool
@@ -562,8 +557,7 @@
   # view PDF documents / files
   evince file.pdf
   libre file.pdf
-  # gv, the PostScript and PDF viewer using Ghostscript as a back-end doesn't
-  # work
+  # gv (PostScript and PDF viewer, Ghostscript back-end) doesn't work
 
   # centos update
   su -c 'yum update'

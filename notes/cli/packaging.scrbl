@@ -29,8 +29,7 @@
 }
 
 @block{@block-name{snap}
-  # Packaging and deployment system developed by Canonical for OSes with Linux
-  # kernel and the systemd.
+  # Canonical's packaging and deployment system for Linux with systemd.
   # Compare Snap vs Apt
   # https://www.baeldung.com/linux/snap-vs-apt-package-management-system
 
@@ -73,8 +72,8 @@
   sudo find /snap -name libffmpeg.so
   snap run --shell dofus
   snap run --debug-log dofus
-  # setting, i.e. exporting SNAP_LIBRARY_PATH LD_LIBRARY_PATH doesn't help
-  # snap is running in some kind of a container.
+  # exporting SNAP_LIBRARY_PATH and LD_LIBRARY_PATH doesn't help - snap runs in
+  # a kind of container
   echo $SNAP_LIBRARY_PATH
   echo $LD_LIBRARY_PATH
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(dirname /path/to/libffmpeg.so)
@@ -82,7 +81,7 @@
   unset LD_LIBRARY_PATH
   unset SNAP_LIBRARY_PATH
   #
-  # following installs some libraries - may or may not not help
+  # may or may not help
   sudo apt install libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
   #
   sudo apt install --yes plocate
@@ -98,7 +97,7 @@
   mkdir ~/ffmpeg
   cp /path/to/libffmpeg.so ~/ffmpeg/libffmpeg.so.<postfix>
   chmod +x ~/ffmpeg/*
-  # following doesn't help snap is running in some kind of a container.
+  # doesn't help either (container)
   sudo rm -f /lib/x86_64-linux-gnu/libffmpeg.so && \
   sudo ln -s ~/ffmpeg/libffmpeg.so.<postfix> /lib/x86_64-linux-gnu/libffmpeg.so
 }
@@ -108,10 +107,8 @@
   nsenter
 
   # Compare `apt upgrade` vs `apt dist-upgrade` vs `apt full-upgrade`
-  apt upgrade      # upgrade packages to their latest versions w/o removing or
-                   # adding new packages. Suitable for routine package updates.
-  apt full-upgrade # can handle complex package dependencies; for major system
-                   # upgrades or significant package changes.
+  apt upgrade      # routine updates; doesn't remove or add packages
+  apt full-upgrade # handles complex dependencies; for major upgrades
   apt dist-upgrade # alias for full-upgrade
 
   # install additional ubuntu software
@@ -181,7 +178,7 @@
   # :dpkg :list-ppa
   sudo ppa-purge <ppa:user/ppa-name>
 
-  # withouth "sudo", download source PACKAGE to current directory
+  # without "sudo", download source PACKAGE to current directory
   apt source <package>
 
   # Advanced Package Tool; apt is a replacement for apt-get
@@ -205,19 +202,19 @@
   /etc/update-manager/release-upgrades
   Prompt=normal
   #
-  # 2. `download package information`; and `install available upgrades`.
-  # See also full-upgrade / `apt list --upgradable`
+  # 2. download package information; install available upgrades
   sudo apt update && sudo apt upgrade
   #
-  # 3. remove / install / upgrade of packages updates and upgrades the OS
+  # 3. upgrade the OS
   sudo do-release-upgrade # may require: `--devel-release` - see
                           # https://wiki.ubuntu.com/FocalFossa/ReleaseNotes WTF?
   #
   # 4. check for unsupported / unavailable / obsolete packages
   ubuntu-security-status --unavailable
 
-  # :apt :aptitude show installed packages
+  # :apt :aptitude show / list installed packages; no sudo needed
   dpkg --get-selections
+  dpkg --get-selections | grep -v deinstall
 
   # :apt :aptitude list of installed files from a packageName (dpkg-query -L works too)
   dpkg -L packageName
@@ -271,14 +268,13 @@
   lsof /var/lib/apt/lists/lock
   lsof /var/cache/apt/archives/lock
   lsof /var/lib/dpkg/lock-frontend
-  # 2. kill any the processes returned by the lsof's above:
+  # 2. kill them:
   sudo kill -9 <PID>
-  # 3. safely remove the lock files:
+  # 3. remove the lock files:
   sudo rm /var/lib/apt/lists/lock
   sudo rm /var/cache/apt/archives/lock
   sudo rm /var/lib/dpkg/lock
-  # 3. reconfigure the packages:
-  # -a or --pending  all unpacked but unconfigured packages are configured
+  # 4. configure all unpacked but unconfigured packages; -a --pending
   sudo dpkg --configure -a
 
   # select fastest / best ubuntu mirror

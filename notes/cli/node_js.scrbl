@@ -45,7 +45,7 @@
     yarn add                  # add package to use in your current package
     yarn global add <package>
     yarn init                 # initialize development of a package
-    yarn install              # install all dependecies defined in package.json
+    yarn install              # install all dependencies defined in package.json
     yarn publish              # publish package to a package manager
     yarn remove               # remove unused package from your current package
     yarn upgrade
@@ -56,7 +56,7 @@
     npm update --global
     npm list
 
-    # install the package and save is inside of the dependencies the package.json
+    # install the package and save it to the dependencies in package.json
     npm install --save <package>
 
     # install the electron package

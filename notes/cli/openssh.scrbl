@@ -15,15 +15,14 @@
     chmod 600 ~/.ssh/config # -rw-------
     # Override SSH Config File Option:
 
-    # use all other options but to connect as user root instead of <User>:
+    # Override SSH Config File Option: connect as root instead of <User>
     ssh -o "User=root" dev
-    # ignore all of the options specified in the ssh configuration file:
+    # ignore the ssh configuration file / use another one
     ssh -F /dev/null user@"@"example.com
     ssh -F <configfile> user@"@"example.com
     # see also /etc/ssh/ssh_config
 
-    # example configuration; in Emacs Tramp files can be access by
-    # /ssh:pinky-ygg:/path/to/file
+    # example configuration; Emacs Tramp: /ssh:pinky-ygg:/path/to/file
     Host pinky-ygg
         HostName 200:554d:3eb1:5bc5:6d7b:42f4:8792:efb8
         Port 50621
@@ -54,11 +53,10 @@
   ssh -N -L local:remote  # -L local
   ssh -N -R remote:local  # -R remote
   ssh -N -D port host     # -D dynamic port forwarding
-  #  -N      Don't execute a remote command / don't launch shell.
-  #          Useful for just for forwarding ports. See ssh_config.
+  #  -N  don't execute a remote command / don't launch shell; for forwarding
+  #      ports only. See ssh_config.
   #
-  # ssh reverse tunnel can be used to access web hook for telegram chat bot
-  # during development:
+  # ssh reverse tunnel: access web hook for telegram chat bot during development
   # https://www.youtube.com/live/rx8_ZFv1IV0?si=f3_ouy4yaSa6RG1-&t=1320
   #
   # Force almost any program to work over proxy; intercepts network calls
@@ -112,9 +110,8 @@
   # connect using private key instead of password
   ssh -p 2220 -i ./sshkey.private bandit14@"@"localhost
 
-  # sshfs - network filesystem client to connect to SSH servers
+  # sshfs - mount a directory/filesystem securely over ssh
   # See http://fuse.sourceforge.net/sshfs.html.
-  # mount a folder/filesystem securely over a network
   sshfs USER@"@"HOST:/path/to/dir ./path/to/mount/point
 
   # Edit text files with VIM over ssh/scp

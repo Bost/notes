@@ -36,7 +36,7 @@
   ls       -d -1 $PWD/path/to/file
   exa      -d -1 $PWD/path/to/file
 
-  # listing: file all extentions / filetypes in current directory
+  # listing: find all extensions / filetypes in current directory
   find ./ -type f | perl -ne 'print $1 if m/\.([^.\/]+)$/' | sort -u
 
   # https://www.putorius.net/linux-find-command.html

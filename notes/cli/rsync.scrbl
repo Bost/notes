@@ -13,11 +13,9 @@
   # --copy-links, -L         transform symlink into referent file/dir
   rsync -Lav bost@"@"lukas:/run/current-system/configuration.scm $dotf/
 
-  # recursive copy `dotfiles` and `cheat` to server:~/dev/
-  # i.e. create `server:~/dev/dotfiles/` and `server:~/dev/cheat/`
+  # recursive copy; creates `server:~/dev/dotfiles/` and `server:~/dev/cheat/`
   rsync -avz dotfiles cheat server:~/dev/
-  # recursive copy of only the content of `dotfiles` and `cheat`.
-  # i.e. create only the `server:~/dev/`
+  # trailing slash: copy only the content of `dotfiles` and `cheat` to `server:~/dev/`
   rsync -avz dotfiles/ cheat/ server:~/dev
 
   # recursive copy only certain types of files using include option
@@ -43,15 +41,14 @@
   # rsync options: short / long versions
   # -h --human-readable
   # -a --archive # -rlptgoD (no -H,-A,-X); recursive, preserve almost everything
+  #              # i.e. copy also the file metadata
   # -v --verbose
   # -z --compress
   # -r --recursive
   # -n --dry-run
   # -p --perms   # preserve permissions
 
-  # show / monitor overall progress without seeing progress for each individual
-  # file with overall percentage and estimated time remaining for the entire
-  # operation
+  # show / monitor overall progress (percentage, remaining time), not per file
   rsync --archive --info=progress2 /src/path/to/dir /dst/path/
 
   # bash: transfer with timeout

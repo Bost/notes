@@ -45,8 +45,7 @@
   set --local diskPart /dev/sd<letter><number>
   #
   # SMART status of the hdd drive / all SMART information about the device
-  sudo smartctl --all $diskRoot     # -a, --all
-  # all SMART and non-SMART information about the device.
-  sudo smartctl --xall $diskRoot    # -x, --xall
-
+  sudo smartctl --all $diskRoot     # -a
+  # all SMART and non-SMART information
+  sudo smartctl --xall $diskRoot    # -x
 }
