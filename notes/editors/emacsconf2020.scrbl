@@ -6,10 +6,8 @@ https://emacsconf.org/2020/talks/07/#transcript
 
 Beyond Vim and Emacs: A Scalable UI Paradigm
 
-A keybinding does different thing in a different context.
-
-Higher level editing modes.
-Mode for editing modes
+A keybinding does different things in different contexts.
+Higher level editing modes; a mode for editing modes.
 
 @block{@block-name{charater mode}
 }

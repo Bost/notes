@@ -31,7 +31,7 @@
   # cores per processor
   cat /proc/cpuinfo | grep cores
 
-  # :ps full command line; (needed b/c command is separated by the \0 byte)
+  # :ps full command line (arguments are separated by \0 bytes)
   tr '\0' ' ' < /proc/PROCESS_ID/cmdline
 
   # :ps :top :htop - all information related to PROCESS_ID

@@ -148,8 +148,8 @@
   Unicode Box Lines, Shapes ┌ ┬ ┐
   Unicode Geometric Shapes ◩ ◐ ⋈ ⬢
   APL Programing Language Symbols
-  There are more math symbols but are outside of BMP. In particular, there are several complete set of styled English alphabet, such as double-struck chars (ℂ ℝ ⅈ ⅉ) gothic-styled letters (ℭ ℑ ℌ ℜ ℨ), scripted letter forms (ℓ ℱ ℒ ℛ).
-  For a complete list, see:
+  More math symbols outside of BMP: styled English alphabets, e.g. double-struck
+  (ℂ ℝ ⅈ ⅉ), gothic (ℭ ℑ ℌ ℜ ℨ), script (ℓ ℱ ℒ ℛ).
   Math Font ℤ ℚ ℝ ℂ ℜ ℑ ℵ
   Unicode: Greek Alphabet α β γ
   ~ TILDE
@@ -158,7 +158,6 @@
   〜 WAVE DASH
   ∿ SINE WAVE
   ≈ ALMOST EQUAL TO
-  Another example:
   ⩳ EQUALS SIGN ABOVE TILDE OPERATOR
   ≌ ALL EQUAL TO
   ⩯ ALMOST EQUAL TO WITH CIRCUMFLEX ACCENT

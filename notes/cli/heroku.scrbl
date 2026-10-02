@@ -2,7 +2,7 @@
 
 @block{@block-name{Heroku}
   heroku login --app <APP-NAME>
-  # Use Git to clone the repository / source code to a local machine
+  # clone the repository / source code to a local machine
   heroku git:clone  --app <APP-NAME>
 
   # Show configuration / List all environment variables

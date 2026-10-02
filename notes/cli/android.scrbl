@@ -13,19 +13,12 @@
   Android Package Kit (APK)
   Android Open Source Project (AOSP)
   OTA (over-the-air) updates
-  OEM Original Equipment Manufacturer, the one who sells and manages SW (e.g.
-      Samsung, Motorola, Google)
+  OEM Original Equipment Manufacturer: sells and manages SW (e.g. Samsung,
+      Motorola, Google)
 
-  WebUSB
-  JavaScript API specification for securely providing access to USB devices from
-  web applications
+  WebUSB - JavaScript API for secure access to USB devices from web applications
 
-  Android distributions:
-  LineageOS
-  postmarketOS
-  GrapheneOS
-  Replicant
-  /e/OS
+  Android distributions: LineageOS, postmarketOS, GrapheneOS, Replicant, /e/OS
 
   | Feature / Aspect   | LineageOS                                    | postmarketOS                                      | GrapheneOS                                                         | Replicant                                      |
   |--------------------+----------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+------------------------------------------------|
@@ -110,7 +103,7 @@
   rsync -avz $host:/usr/lib/android-sdk/ /usr/lib/
 }
 
-@block{@block-name{Androind: USB transfer with Media Transfer Protocol}
+@block{@block-name{Android: USB transfer with Media Transfer Protocol}
   PTP Picture Transfer Protocol
   MTP Media Transfer Protocol
 

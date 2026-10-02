@@ -125,11 +125,8 @@
   # indicate how a command would be interpreted
   type --all <cmd> # all of possible definitions of <cmd>
 
-  # fish-shell
-  # show content of foo fn / list fns
+  # fish-shell: show content of foo fn / list fns
   type foo / functions foo / functions -n
-
-  # fish-shell:
   functions # list available functions
   abbr      # list available abbreviations
   alias     # list available aliases
@@ -189,7 +186,7 @@
 
   # bash string equality / compare
   # See https://tldp.org/LDP/abs/html/comparison-ops.html
-  # using double brackets '[[' and ']]' is a bashishm
+  # double brackets '[[' and ']]' are a bashism
   [[ $a == z* ]]   # True if $a starts with an "z" (pattern matching)
   [[ $a == "z*" ]] # True if $a is equal to z* (literal matching)
   [ $a == z* ]     # File globbing and word splitting take place
@@ -399,8 +396,8 @@
   mmv \*.JPG \#1.jpc
   mmv \* \#1.rexx
 
-  # bash visual calender for...
-  cal 2 2004   # ... februar 2004
+  # bash visual calendar for...
+  cal 2 2004   # ... february 2004
   cal -y 2004  # ... the whole year 2004
 
   # bash ? define function in bash ?
@@ -439,7 +436,7 @@
 
   # bash redirect stderr (2) to stdout (1) and save it to command.log
   ./command.sh 2>&1 | tee command.log
-  # suppress stderr messagess
+  # suppress stderr messages
   ./script.sh 2> /dev/null
   # separate / combine sdterr and stdout; doesn't work with the tee command
   ./command.sh 1>str.out 2>str.err / ./command.sh &>combined.out
