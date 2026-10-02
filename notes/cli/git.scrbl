@@ -1,14 +1,13 @@
 #lang notes
 
 @block{@block-name{Git}
-  # When git submodule shows
-  #   fatal: No url found for submodule path '...' in .gitmodules
+  # submodule error: fatal: No url found for submodule path '...' in .gitmodules
   git ls-files --stage | grep 160000
-  # See https://stackoverflow.com/a/4185579
+  # https://stackoverflow.com/a/4185579
 
-  HEAD - usually points to a branch, except detached HEAD
+  HEAD - points to a branch, except in detached HEAD state
   git reset / checkout - move branch
-  git revert - add new commit doing the oposit (history preserved)
+  git revert - add a new commit doing the opposite (history preserved)
 
   # https://softwaredoug.com/blog/2022/11/09/idiot-proof-git-aliases.html
 
@@ -49,7 +48,7 @@
   # so far before updating
   git submodule update --init
 
-  # remove / delete / uninstall
+  # submodule remove / delete / uninstall
   set subMod relative/path/to/submodule
   git submodule deinit $subMod && \
   git rm $subMod && \
@@ -78,7 +77,7 @@
   GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL;
   GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"; fi' -- --all'
 
-  # reuse commit message
+  # amend commit; reuse commit message
   git commit --amend --no-edit
 
   # change the author (name, email) in the last commit
@@ -99,7 +98,7 @@
   # remove / delete a remote branch or tag
   git push --delete <origin> <branch-or-tag>
 
-  # list branches that contain a given commit
+  # list branches containing a given commit
   # https://stackoverflow.com/a/1419637/5151982
   # -r, --remotes
   git branch           --contains <commit>
@@ -111,20 +110,20 @@
   # show particular changed word / staged changes
   git diff --word-diff / --cached
 
-  # no plus minus signs
+  # diff without plus minus signs
   git diff --color <sha1> <sha1> | sed -r "s/^([^-+ ]*)[-+ ]/\\1/" | less -r
 
   # stats/statistics: number of lines changed between two commits
   git diff --stat <commit-ish> <commit-ish>
   git diff --stat cmt..cmt~                  # commit vs.its parent/predecessor
 
-  # files changed between two...
+  # files changed ...
   git diff --name-only HEAD~1                # in last commit
   git diff --name-only <branch1> <branch2>   # between 2 branches
   git diff --name-only <branch1>..<branch2>  # between 2 branches
-  git diff --name-only <branch>              # between <branch> and the HEAD
+  git diff --name-only <branch>              # between <branch> and HEAD
   git diff --name-only 5890e37..ebbf4c0      # between 2 commits
-  git diff --name-status <branch1> <branch2> # show modification types for files
+  git diff --name-status <branch1> <branch2> # with modification types
 
   # ~ tilde, ^ caret : walk backward through history
   # <commit>^n picks the nth parent of one commit
@@ -147,8 +146,7 @@
   ediff-merge    | Final version  | the one you'll save as the resolved file
 
   # list all files changed / touched in a particular commit
-  # see
-  # `diff-tree` won't work when looking at the root commit. (Use --root flag)
+  # `diff-tree` needs --root for the root commit
   git diff-tree --no-commit-id --name-only               -r <commit-ish>
   git diff-tree --no-commit-id             --name-status -r <commit-ish>
   git show --pretty=""         --name-only                  <commit-ish>
@@ -158,15 +156,15 @@
   git log   --perl-regexp <filepath>
   git lg-20 --perl-regexp <filepath>
 
-  # count of files changed in the since the <tag>
+  # count of files changed since the <tag>
   git log --format=oneline --patch <tag>..HEAD | wc -l
 
   #  show only commit-ids (shows only Author and Date / AuthorDate)
   git log --pretty=format:' "%h"' master..dev  # shortened commit id
   git log --pretty=format:' "%H"' master..dev  # full commit id
-  # show also Commit (Commiter) and CommitDate
+  # show also Commit (Committer) and CommitDate
   git log --pretty=fuller --author=<Name>
-  # show dates in the local timezone (seems like UTC doesn't work)
+  # show dates in the local timezone (UTC seems not to work)
   git config log.date local    # don't forget to unset it!
   git log --pretty=format:'%cd' --author=<Name>
   git config --unset log.date
@@ -179,11 +177,13 @@
   git show ff0011:file.txt # ... commit ff0011
   git show :0:file         # ... stage area (i.e. index, incoming changes)
   git show :1:file         # ... common ancestor
-  git show :2:file         # ... target on the current branch where I am
-  git show :3:file         # ... the one I am bringing in
+  git show :2:file         # ... target on the current branch
+  git show :3:file         # ... the one being brought in
 
-  # show older version of a file
+  # show / checkout older revision of a file (under a new / different name)
   git show REVISION:path/to/file
+  git show HEAD^:main.cpp > old_main.cpp
+  git show <commit>:gnu/packages/emacs-xyz.scm > gnu/packages/emacs-xyz.cef.scm
 
   # copy file from a BRANCH to /path/to/file
   git checkout BRANCH -- /path/to/file
@@ -215,7 +215,7 @@
   # create patch consisting of commits e.g. for a pull request
   git format-patch upstream/master
 
-  # How to apply a patch generated with git format-patch?
+  # apply a patch generated with git format-patch
   # https://stackoverflow.com/a/2250170
   git apply --stat file.patch   # preview what the file.patch will do
   git apply --check file.patch  # dry run to detect errors
@@ -283,7 +283,7 @@
   # -e, --email    Show the email address of each author.
   git shortlog --summary --numbered --email
 
-  # join all lines
+  # join all lines / join lines into columns
   # -i, --regexp-ignore-case; -s, --summary; -n, --numbered
   $ git shortlog -isn --grep='.*release.*since.*' | awk '{print $1}' | tr '\n' ' '
   2 1 1 1 1 1 1
@@ -296,8 +296,7 @@
   # list all commits for a specific day / date / timestamp
   git log --after="2013-12-11 00:00" --before="2013-12-11 23:57"
   gitk    --since="2013-11-12 00:00"  --until="2013-11-13 00:00" & disown
-  # list all commits for a specific committer / user / author on the master
-  # branch
+  # list all commits of a specific committer / user / author on master
   git      log master --author=John
   git shortlog master --author=John
 
@@ -329,11 +328,11 @@
   # github: do not ask for username
   .git/config: url = https://Bost@"@"github.com/Bost/reponame.git
 
-  # search in commit content, ie code-changes, not in commit messages
+  # search in commit content, i.e. code-changes, not in commit messages
   git grep <regexp> $(git rev-list --abbrev-commit --all)
-  # search in the lib/util subtree
+  # ... in the lib/util subtree
   git grep <regexp> $(git rev-list --abbrev-commit --all -- lib/util) -- lib/util
-  # Search all revisions between rev1 and rev2
+  # ... in all revisions between rev1 and rev2
   git grep <regexp> $(git rev-list --abbrev-commit <rev1>..<rev2>)
   # search in commit content; -p --patch
   git log -S<string>  -- path_containing_change
