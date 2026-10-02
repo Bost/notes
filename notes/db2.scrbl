@@ -1,7 +1,6 @@
 #lang notes
 
 @block{@block-name{Various}
-  # ???
   db2init
 
   # load ixf file

@@ -3,9 +3,8 @@
 @block{@block-name{Continuation Passing Style}
   [[https://youtu.be/c-7AW4yFXNs][YouTube: Tiago Cogumbreiro - Continuation passing style intro]]
   [[https://cogumbreiro.github.io/teaching/cs450/s21/lecture32.html][Tiago Cogumbreiro - Lecture 32: Monadic continuations]]
-  CPS is a form of inversion of control.
-  CPS: "Control the Control-Flow"
-  CPS: computation abstracted with function
+  CPS: a form of inversion of control; "Control the Control-Flow";
+  computation abstracted with function
 
   Returning a value is a function call
   try-catch is dual to bind

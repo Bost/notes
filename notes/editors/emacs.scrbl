@@ -351,7 +351,7 @@
   | \(http[[:print:]]*\)/ | match / find url                   |
 
   ;; regexp, syntax table, syntax classes (must be enclosed by square brackets)
-  ;; [[:<classname>:]] is POSIX character class equivalent (humand readable)
+  ;; [[:<classname>:]] is POSIX character class equivalent (human readable)
   | [^[:space:]] | \S- non-whitespace                                             |
   | [[:space:]]  | \s- whitespace, typically [\t\r\n\v\f], see syntax table       |
   | [[:blank:]]  | space or tab character                                         |
@@ -473,7 +473,7 @@
   | ~C-x C-w~ | M-x write-file                    | save as                    |
 
   ;; Introduction to EShell: https://youtu.be/RhYNu6i_uY4
-  ;; Video ransscript: http://howardism.org/Technical/Emacs/eshell-present.html
+  ;; Video transcript: http://howardism.org/Technical/Emacs/eshell-present.html
   ;; open command output in a buffer
   ifconfig > #<buffer interfaces>
   ;; combing elisp functions (message) with OS programs
@@ -488,7 +488,7 @@
 
   ;; cli: noninteractive run
   emacs --batch --eval '(message "Hello world")'
-  ;; noninteractive run of an eslip script
+  ;; noninteractive run of an elisp script
   #!/usr/bin/emacs --script
   (message "Hello world")
 
@@ -505,7 +505,7 @@
 
   ;; yasnippet - yet another snippets. Example
   ;; `defn' `M-/' type in the defn-name, then `TAB' to complete ...
-  ;; hippie-expand (dabbrev-expand?) (code completition)
+  ;; hippie-expand (dabbrev-expand?) (code completion)
   ~M-/~
 
   | ~C-S-Backspace~ | M-x kill-whole-line - delete whole line |
@@ -603,7 +603,7 @@
   ;; start a bash command line
   M-x shell / M-x term / M-x eshell
 
-  ;; Dired Refecene Card / Cheatsheet
+  ;; Dired Reference Card / Cheatsheet
   http://www.gnu.org/software/emacs/refcards/pdf/dired-ref.pdf
   ;; TODO have a look at dired sorting
   https://www.emacswiki.org/emacs/DiredSortBySizeAndExtension
@@ -704,7 +704,7 @@
 
   | M-x align-regexp | align at the given regexp |
 
-  ~C-n~ ;; auto completition
+  ~C-n~ ;; auto completion
 
   | ~C-SPC~          | region: set mark (start region) |
   | ~C-x r k~        | region: kill selected region    |
@@ -779,17 +779,17 @@
   ;; log-edit-commit-ring / Kill commit / Tested / Signed-off by
   ~M-p~ / ~M-n~ / ~C-c C-k~ / ~C-c C-t~ / ~C-c C-s~
 
-  ;; M-x magit-status: rebase / ineractive-rebase
+  ;; M-x magit-status: rebase / interactive-rebase
   ~R~ / ~E~
 
   ;; M-x magit-reset-quickly - press:
   ~o~
   ;; then type: "HEAD~"
 
-  ;; M-x magit-ineractive-rebase: squash / pick / reword
+  ;; M-x magit-interactive-rebase: squash / pick / reword
   ~s~ / ~c~ / ~r~
 
-  ;; M-x magit-status: reset (discard all uncommited) changes
+  ;; M-x magit-status: reset (discard all uncommitted) changes
   ;; working tree unchanged
   ~x~ (X)
 

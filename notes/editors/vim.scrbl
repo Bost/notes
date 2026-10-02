@@ -8,9 +8,7 @@
   " TODO C-r register, C-r C-o / C-r / C-p
 
   " substitute (replace) pattern and save changes in all buffers
-  ```vim
   :bufdo %s/pattern/replacement/ge | update
-  ```
   " substitute (replace) pattern from current line
   :.,$s/pattern/replacement/gc
   " confirm, ignore case, case sensitive, number of matches; print lines
@@ -33,7 +31,7 @@
   " save a file as a sudo
   :w !sudo tee %
 
-  "
+  " global command
   :[range]g/pattern/cmd
 
   " delete all lines matching / not matching a pattern
@@ -94,7 +92,7 @@
 
   " lower / upper of movement m
   gum / gUm/
-  " lisp to cammelCode conversion: cammel-code to cammelCode
+  " lisp to camelCase conversion: camel-case to camelCase
   :'<,'>s/-\(.\)/\U\1/g
 
   " replace mode, replace 1 char, replace char and move right
@@ -135,7 +133,7 @@
   " close, open, toggle current / all folds from cursor/ all folds
   zc zo za / zC zO zA / zR
 
-  " display current guifont / guifond dialog window
+  " display current guifont / guifont dialog window
   :set guifont=? / :set guifont=*
 
   " change to the directory of the current file
@@ -153,7 +151,7 @@
   " reverts the document back to how it was 15 minutes ago / reverse the :earlier command
   :earlier 15m / :later
 
-  " figure out where cindent got set/unset (for debuging)
+  " figure out where cindent got set/unset (for debugging)
   :verbose set cindent?
 
   " :registers clear / copy register val: m &lt;- \'\' / m &lt;- n
@@ -168,8 +166,7 @@
   " :registers display registers: system, default, a, b, c
   :reg *0abc
 
-
-  " :registers store curret line to register q
+  " :registers store current line to register q
   "qY
 
   " :registers current / alternate filename
@@ -190,7 +187,6 @@
   " yank current line, paste it below, select copied line, replace every char with =
   yypVr=
 
-
   " switch to the alternate file (the one with #)
   C-^ / C-6
 
@@ -199,7 +195,6 @@
 
   " print (insert) 78 "-" chars at once
   78i-<Esc>;
-
 
   " :visual change the marking direction in visual mode
   o
@@ -337,7 +332,7 @@
   " :splits open the file browser in a new window split
   :vsplit ./:vsplit./:vsp ./:sp./:split.
 
-  " :splits open horizontal viewport 10 lines higt (good for notes)
+  " :splits open horizontal viewport 10 lines high (good for notes)
   :10sp
 
   " open vim / gvim from the command line with file0, file1 in separate tabs
@@ -409,8 +404,6 @@
   " :surround mark / yank / change / delete the whole html tag
   vat / yat / cat / dat
 
-
-
   " :surround delete html tag / current paragraph (f.e. a function) / word
   da&lt; / dap / daw
 
@@ -441,7 +434,7 @@
   " :spellcheck spelling suggestions / auto replace with 1st suggestion
   z= / 1z=
 
-  " :spelllang ally spell language to viewport / buffer
+  " :spelllang apply spell language to viewport / buffer
   :windo set spelllang=en_us / :bufdo set spelllang=en_us
 
   " :spellcheck add word under cursor to spellfile / editing session
@@ -479,7 +472,7 @@
   :SPUpdate
 
   " SpaceVim: Updating failed, The plugin dir is dirty
-  " a branch must by checked-out. "Detached HEAD" won't work
+  " a branch must be checked-out. "Detached HEAD" won't work
   cd ~/.SpaceVim && git status
 
   " page up / down: forward / backward

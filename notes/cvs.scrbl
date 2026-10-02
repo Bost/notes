@@ -19,7 +19,7 @@
   # commit file with multi-line commit message
   cvs commit -m "fst-comment-line\nsnd-comment-line" path/to/file.ext
 
-  # update file
+  # log of a file
   cvs log    -P -d ./path/to/file.ext
 
   # reminder to leave in 15 minutes / at 13:55
@@ -51,6 +51,5 @@
   cvs -d cvs -t -d :pserver:faizal@"@"localhost:/myrepos \
       ci -m "test" -l "src/foo/Foo.ext"
 
-  #
   cvs add file.ext
 }

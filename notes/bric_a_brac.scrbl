@@ -4,7 +4,7 @@
   Problem: Identify the issue
   Information: Gather data / information about the situation
   Options: Create a list of possible actions / options / alternatives
-  Select: For every option asses the risk and choose the most appropriate option
+  Select: For every option assess the risk and choose the most appropriate option
   Execute: Implement the chosen action.
            Communicate with the team and everyone involved / affected
   Evaluate: Monitor the situation. Assess the effectiveness.
@@ -12,8 +12,8 @@
 }
 
 @block{@block-name{Color models}
-  Systems (RGB, HSL, LCH, OKLCH etc.) to describe colors.
-  The model determines how easy it is to manipulate or think about a color.
+  Systems (RGB, HSL, LCH, OKLCH etc.) describing colors; determine how easy it
+  is to manipulate or think about a color.
   See more https://jakub.kr/components/oklch-colors
 }
 
@@ -45,7 +45,7 @@
   42
 }
 
-@block{@block-name{Sway / i3 / keys keybingings / Refcard / Reference Card}
+@block{@block-name{Sway / i3 / keys keybindings / Refcard / Reference Card}
   | Alt + Enter         | open new terminal                 |
   | Alt + j             | focus left                        |
   | Alt + k             | focus down                        |
