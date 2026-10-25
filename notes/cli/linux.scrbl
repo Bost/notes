@@ -614,7 +614,7 @@
   # delete /tmp/xyz$$ on shell exit / shell error
   trap "rm -f /tmp/xyz$$; exit" ERR EXIT
 
-  # fist / last 5 lines from file
+  # first / last 5 lines from file
   head -n 5 file / tail -n 5 file
 
   # process environment variables (separated by null-chars)
@@ -636,14 +636,21 @@
   xfce4-clipman-plugin  # clipboard manager
   xfce4-screenshooter
 
+  # clipboard / clipman / editor history (Nvim, Emacs, Spacemacs)
+  ~/.cache/xfce4/clipman/textsrc
+  # Emacs / Spacemacs
+  M-: (expand-file-name savehist-file)
+  ~/.local/share/spacemacs/spgx/.cache/savehist
+  # Nvim
+  rm -f "${XDG_STATE_HOME:-$HOME/.local/state}/nvim/shada/main.shada"
+
   # The X server maintains three selections: PRIMARY, SECONDARY and CLIPBOARD.
   # - PRIMARY: for copying and pasting via the middle mouse button.
   #
   # Copy text to clipboard so that it is available in a text editor
   echo "foo" | xsel -bi # -b --clipboard; -i --input
   #
-  # `tee /dev/tty` Writes the input to both the terminal and passes it along to
-  # the next command in the pipe, which copies it to clipboard
+  # `tee /dev/tty` writes to the terminal and passes it along to the clipboard
   echo "foo" | tee /dev/tty | xsel -bi
   #
   # show normal clipboard content in/on the terminal / command line
@@ -683,7 +690,7 @@
   # remove all files except survivor.txt; doesn't work in fish
   rm -f !(survivor.txt)
 
-  # insert autocompletition result (use together with other progs)
+  # insert autocompletion result (use together with other progs)
   Esc *
 
   # :batch - run / execute a command at:
@@ -761,7 +768,7 @@
   # create directory tree with multiple subdirs
   mkdir -p ./path/{sub1,sub2}/{1..100}/{src,bin,bak}
 
-  # auto-create partent dir "./pth" and do --preserve=mode,ownership,timestamps
+  # auto-create parent dir "./pth" and do --preserve=mode,ownership,timestamps
   cp --parents -p                                   ./pth/src.ext ./pth/dst.ext
   cp --parents --preserve=mode,ownership,timestamps ./pth/src.ext ./pth/dst.ext
 
@@ -834,8 +841,7 @@
   sudo dpkg-reconfigure tzdata
   # tzselect - user-specific timezone change
 
-  # stop-watch; ctrl-d to stop; measure execution time; or try to install
-  # stopwatch
+  # stop-watch; ctrl-d to stop; or install stopwatch
   time read
 
   # process ID of a running program
@@ -883,7 +889,7 @@
   # routing table
   ip route
   # list routes with pretty output format
-  routel     # just a wrapper arount `ip route` ?
+  routel     # just a wrapper around `ip route` ?
   # Address Resolution Protocol table
   ip neighbour
 
@@ -1026,8 +1032,7 @@
 
   # create a SHA checksum file containing checksums
   sha256sum file1.ext file2.txt > SHA256SUMS.asc
-  # read SHA checksums from the SHA256SUMS.asc file and check / verify them
-  #  against the SHA checksums of the files in the current directory
+  # check / verify SHA256SUMS.asc against the files in the current directory
   sha256sum --check SHA256SUMS.asc | grep OK # -c, --check
   sha256sum --binary file.iso      | grep OK # -b, --binary
 
@@ -1097,7 +1102,7 @@
 
   # Ubuntu: Extend your default LVM space
   # https://packetpushers.net/ubuntu-extend-your-default-lvm-space/
-  # some userfull commands
+  # some useful commands
   lsblk
   sudo cfdisk
   findmnt --real --output \
@@ -1139,7 +1144,7 @@
   # -s, --separator <string>         possible table delimiters
   cat data.csv | column --table --separator ';'
 
-  # :xml command line XML tool (formating)
+  # :xml command line XML tool (formatting)
   xmllint
 
   # shared library / shared object dependencies
@@ -1211,8 +1216,17 @@
   mtr google.com
   mtr --report www.google.com # -r --report
   ethtool eth0
-  ip neigh show | grep REACHABLE
-  ip link show
+
+  ip link show                # Show all network interfaces
+  ip link show dev enp3s0     # Show one particular interface
+  ip address show dev enp3s0  # Show interface IP addresses
+  ip neigh show               # Show neighbour table
+  ip -4 neigh show            # Show IPv4 neighbours
+  ip -6 neigh show            # Show IPv6 neighbours
+  ip neigh show dev enp3s0    # Show neighbours on a particular interface
+  ip neigh show nud reachable # Show entries in the REACHABLE state
+  ip route show               # Show the routing table
+  ip route get 8.8.8.8        # Determine how the kernel would route a packet
 
   # iproute2 network - open / listening ports and PIDs of associated processes
   # tcp (-t) udp (-u)
@@ -1336,8 +1350,7 @@
   # ?  some other file type
 
   # :debian-goodies
-  # display all the dependencies of the given package and when each dependency
-  # was installed
+  # all dependencies of the given package and when each was installed
   which-pkg-broke vim
   # list the enhancements for all installed packages
   check-enhancements --installed-packages
@@ -1357,8 +1370,7 @@
   timeout 5s COMMAND
 
   # network - retcode==1 - online; retcode!=1 offline
-  # Waits for NetworkManager to finish activating startup network connections.
-  # Exit immediately if NetworkManager is not running or connecting
+  # wait for NetworkManager startup connections; exit immediately if not running
   nm-online --exit; echo "fish-retcode: $status" # echo "bash-retcode: $?"
 
   # find out / obtain the names of wired (Ethernet) / WiFi network interfaces
@@ -1437,7 +1449,7 @@
   sudo adduser USER
   sudo deluser --remove-home USER             # userdel is a low level utility
   sudo passwd USER        # set / change password for the USER
-  sudo usermod --groups GROUP --append USER   # app USER to the GROUP
+  sudo usermod --groups GROUP --append USER   # add USER to the GROUP
   # euid - effective user id: number or id; see whoami
   sudo pkill -KILL --euid USER                # logout / logoff different user
 
@@ -1470,8 +1482,8 @@
   mvn install / mvn clean # mvn install seems not to be needed
   # https://www.mkyong.com/maven/how-to-enable-proxy-setting-in-maven/
   {M2_HOME}/settings.xml
-  # Cleanup local maven repository. It removes all snapshot from more than
-  # 6 months: https://gist.github.com/cescoffier/1582615
+  # Cleanup local maven repository: remove snapshots older than 6 months
+  # https://gist.github.com/cescoffier/1582615
 
   # :HPKP HTTP Public Key Pinning; similar to HSTS header
   # Create your HPKP hash: https://report-uri.io/home/pkp_hash
@@ -1803,7 +1815,7 @@
   | 10000M | USB 3.1 |
   lsusb -t
 
-  # How do I find out what process is accesing the partition? When:
+  # How do I find out what process is accessing the partition? When:
   udisksctl unmount --block-device=$diskPart
   # returns:
   #   Error unmounting ...: ... target is busy / la cible est active
@@ -1844,7 +1856,7 @@
   speaker-test
   arecord / aplay
   pacmd list-sources
-  # 1. verify iterface in:
+  # 1. verify interface in:
   qjackctl
   # then A. "pause" pulseaudio while qjackctl runs and "respawn" pulseaudio when
   # qjackctl is terminated.
