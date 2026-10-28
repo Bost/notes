@@ -239,11 +239,11 @@
   # add all *.txt files under given path; must not be a bare repo
   git ls-files [path] | grep \'\.txt$\' | xargs git add
 
-  # create bare (empty) repo in the...
+  # create repo in <dir> / in the current dir
   git init <dir>
-  git init       # ...current dir
+  git init
 
-  # recursivelly add all *.txt files from src/ to a repo located in path/to/dir
+  # recursively add all *.txt files from src/ to a repo located in path/to/dir
   git --git-dir=path/to/dir add "src/**/*.txt"
 
   # commit to a repo located in gitDir under given Name
@@ -359,7 +359,7 @@
   # ignore line ending changes
   git config --global core.autocrlf true
 
-  # show formated commit logs
+  # show formatted commit logs
   git log --pretty=format:'%h %s'
 
   # a kind of 'gitk --all'
@@ -445,7 +445,7 @@
   # generate build number: nearest tag + nr of commits on top + sha1
   git describe master
 
-  # list tags a given point
+  # list tags at a given point
   git tag --points-at master
   git tag --points-at emacs-26
   git tag --points-at HEAD
@@ -461,24 +461,28 @@
   # push only tags, not the code
   git push --tags origin
 
-  # create lightweight tag - it won't be pushed by `git push ...`
+  # lightweight tag - not pushed by `git push ...`
   git tag <tagname>
-  # annotated, signed tag(s) with a message will be pushed by `git push ...`
+  # annotated, signed tag(s) with a message - pushed by `git push ...`
   git tag --annotate <tagname>
 
-  # push all branches at once / simultaneously
+  # push all / multiple branches at once / simultaneously
   git push --follow-tags --verbose --force <remote> --all
-  # push multiple branches at once / simultaneously
   git push <remote> branch1 branch2
   # cycle keyseq guix: forced push; develop: normal, non-forced push
   git push github develop --force cycle keyseq guix
+
+  # Overwrite the remote branch regardless of what happened there
+  git push --force
+  # Overwrite the remote branch only if it is still at the commit I expect
+  git push --force-with-lease
 
   # merge srcProj into dstProj
   cd path/to/dstProj
   git remote add srcProj /path/to/srcProj
   git fetch srcProj --tags
   git merge --allow-unrelated-histories srcProj/<branch>
-  # git merge --continue      # in case any conflicts; after resolving them
+  # git merge --continue      # after resolving conflicts, if any
   git remote remove srcProj
 
   # Sign all commits by default
