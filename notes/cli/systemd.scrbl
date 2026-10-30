@@ -7,12 +7,11 @@
   service manager that runs as PID 1 and starts the rest of the system. It's an
   init system. Consists of [...] sections
 
-  # !!! [Service], [Unit] etc. are CAPITAL SENSITIVE !!!
+  # !!! [Service], [Unit] etc. are case sensitive !!!
 
   Systemd Deep-Dive: A Complete, Easy to Understand Guide for Everyone
   https://youtu.be/Kzpm-rGAXos
-  Unit vs Service
-  systemd manages units, service is a type of unit
+  Unit vs Service: systemd manages units, service is a type of unit
 
   [Service]
   # Default. Will be started as soon as you start it
@@ -55,10 +54,9 @@
        systemctl --user enable        <unit>
        systemctl --user disable       <unit>
 
-  # creates the override-file which will be merged with the original unit
-  # configuration
+  # create an override-file merged with the original unit configuration
   sudo systemctl edit        httpd.service
-  # the entire service file
+  # edit the entire service file
   sudo systemctl edit --full httpd.service
 
   # Ubuntu 11.10 or later
@@ -75,11 +73,9 @@
 
   sudo systemctl daemon-reload
 
-  # all units from the systemctl --failed list
+  # remove all units / a unit from the systemctl --failed list
   # see also: service obliteration https://superuser.com/a/936976
        systemctl reset-failed
-
-  # remove unit from the systemctl --failed list
        systemctl reset-failed <unit>
 
   # switch off bluetooth
@@ -103,10 +99,9 @@
   # something is mounted; similar to /etc/fstab
   mounts
 
-  # can replace cron. systemd timers have some additional features
+  # can replace cron, with additional features
   timers
-  
+
   # :systemd Control the systemd login manager - logging data
   loginctl
-
 }

@@ -28,9 +28,8 @@
 
   # Install on Guix:
   npm install --global heroku
-  # It may lead to:
-  #    fatal error: uv.h: No such file or directory
-  # which apparently may be ignored. See https://help.heroku.com/1104958
+  # 'fatal error: uv.h: No such file or directory' may be ignored.
+  # See https://help.heroku.com/1104958
   sudo rm /usr/local/bin/heroku
   sudo ln -s /home/bost/.npm-packages/bin/heroku /usr/local/bin/heroku
 
@@ -41,10 +40,8 @@
   # Deploy to test / production / etc.
   heroku pipelines:promote --app <APP-NAME>
 
-  # `heroku ...` adds a new environment variable "PORT". Its default value
-  # is 5000 when running `heroku local ...`. It can be changed using the '-p'
-  # parameter. The value of "PORT" is random when the app is running on a
-  # Heroku-server. See `(System/getenv "PORT")`
+  # `heroku ...` sets the env variable "PORT": 5000 for `heroku local ...`
+  # (change with '-p'); random on a Heroku-server. See `(System/getenv "PORT")`
   heroku local -p 7000
 }
 

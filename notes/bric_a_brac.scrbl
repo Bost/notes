@@ -28,10 +28,9 @@
   | Afficher les raccourcis                 | Ctrl /                 |
 }
 
-@block{@block-name{An arbitrary precision calculators}
-  Coq can be compiled to OCaml?
-  Write part of your program in Coq and prove its correctness, and then write
-  the rest in pleasant OCaml.
+@block{@block-name{Coq and OCaml}
+  Coq can be compiled to OCaml? Write and prove part of a program in Coq, the
+  rest in pleasant OCaml.
 }
 
 @block{@block-name{An arbitrary precision calculators}

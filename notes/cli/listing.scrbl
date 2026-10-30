@@ -40,8 +40,7 @@
   find ./ -type f | perl -ne 'print $1 if m/\.([^.\/]+)$/' | sort -u
 
   # https://www.putorius.net/linux-find-command.html
-  # listing: matched files with find command
-  # -iname  like -name but case insensitive
+  # listing: matched files with find command; -iname case insensitive -name
   find . -type f -iname "my*" -ls
 
   ;; dired:

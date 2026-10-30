@@ -30,8 +30,7 @@
 @block{@block-name{Stacks}
   LAMP Linux Apache, MySQL, PHP
   LEMP (container stack) Linux, (E)Nginx, MariaDB (MySQL replacement), PHP
-  - open source web platform
-  - to run dynamic web sites and servers.
+  - open source web platform for dynamic web sites and servers
   LEPP (container stack) Linux, (E)Nginx, PostgreSQL, PHP
 }
 

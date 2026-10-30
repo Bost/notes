@@ -1,6 +1,6 @@
 #lang notes
 
-@block{@block-name{Crypthography}
+@block{@block-name{Cryptography}
   Pseudo Random Number Generator PRNG and Random Number Generator RNG are only
   as good as their underlying entropy source.
 
@@ -104,7 +104,7 @@
   Currying: Partial function application; Fixing some function parameters
   Application takes precedence over abstraction e.g. λx.M N = λx.(M N)
   Successive abstraction λxy.e = λx.(λy.e)
-  Variable occurences in a λ-term; Free / Bounded / Binding
+  Variable occurrences in a λ-term; Free / Bounded / Binding
   TODO what is a normal form of a λ-term
 
   @block{@block-name{TODO Positive properties of an Untyped λ-Calculus}
@@ -129,14 +129,14 @@
   @block{@block-name{No more self application}
   }
 
-  @block{@block-name{No infinite reduction sequencies (i.e. calculations)}
+  @block{@block-name{No infinite reduction sequences (i.e. calculations)}
   }
 
   @block{@block-name{Not every simply typed function needs to have a fixed point.}
     Drawback: the λ-> is much too weak to encapsulate every computable function
     and hence it's not usable for the formalization of math.
 
-    Contains simple (basic) and funtion types
+    Contains simple (basic) and function types
     e ::= x:τ | (λ(x:σ).(e:τ)):(σ->τ) | e:τ e':τ | c:τ
     e:τ                   - λ-term; expression of a simply typed λ-calculus; e.g. e:τ, e':τ, f:τ, g:τ, h:τ are simply typed λ-terms
     x:τ                   - type variable of the simple type τ; e.g. x:τ, y:τ, z:τ
@@ -179,21 +179,19 @@
   transformation from ("eval") from
   "F. William Lawvere: Diagonal arguments and cartesian closed categories."
   http://tac.mta.ca/tac/reprints/articles/15/tr15abs.html
-
 }
 
-@block{@block-name{TODO Eta η-extentionality principle}
-  λA​ looks a bit like the η-extentionality principle. See
+@block{@block-name{TODO Eta η-extensionality principle}
+  λA​ looks a bit like the η-extensionality principle. See
   "F. William Lawvere: Diagonal arguments and cartesian closed categories."
   http://tac.mta.ca/tac/reprints/articles/15/tr15abs.html
-
 }
 
 @block{@block-name{Tautology - "this is always true"}
 }
 
-@block{@block-name{Type Theory: Extention of lambda calculus with explicit types}
-  @block{@block-name{ITT Inentional Type Theory}
+@block{@block-name{Type Theory: Extension of lambda calculus with explicit types}
+  @block{@block-name{ITT Intensional Type Theory}
   }
 
   @block{@block-name{OTT Observational Type Theory}
@@ -201,7 +199,7 @@
   ? From context Gamma a M can be derrived such that x:A.B ?
   Context $\Gamma, x:A, y:Bx$ (e.g. $x$ be a number with property $Bx$, $y$ is a variable for the proof of type $Bx$)
   What's the point of having a number? Well we can count up to that number.
-  Depandent type theory is the master theory of all programming languages. If you understand dependent type theory then you understand everything (every programming language)
+  Dependent type theory is the master theory of all programming languages: understand it and you understand every programming language
   Maybe Type: A or B (e.g. A or Fail, A or AirMessage)
   }
 
@@ -210,7 +208,7 @@
 }
 
 @block{@block-name{Axiom of Choice - see "Type Theory Foundations, Lecture 3-wJLTE8rnqH0.mp4"}
-  "the greatest intelectual achievement???"
+  "the greatest intellectual achievement???"
   Predicate = vyrok = tvrdenie
   Proposition = ???
   (Banach Tarsky Paradox: Slice up an object with a volume into parts with no
@@ -267,20 +265,20 @@
  |             |                                      | and universal quantification             |
  |-------------|--------------------------------------|------------------------------------------|
  | Type system | Unsound                              | sound                                    |
- |             | (arbitrary properties can be prooven |                                          |
+ |             | (arbitrary properties can be proven  |                                          |
  |             | i.e. every single type is inhabited) |                                          |
  |             | (loop : A, loop = loop)              |                                          |
  |-------------|--------------------------------------|------------------------------------------|
  |             |                                      | ? Always terminates ?                    |
 }
 
-@block{@block-name{Modus Pones: applications of a function to an argument: Agda, Coq, Isabelle}
-  @block{@block-name{MP naturally generalizes to instationation of universal quantifiers}
+@block{@block-name{Modus Ponens: applications of a function to an argument: Agda, Coq, Isabelle}
+  @block{@block-name{MP naturally generalizes to instantiation of universal quantifiers}
   }
 }
 
 @block{@block-name{Goedel's Incompleteness Theorem:}
-  Every principle is either (A) too restrictive or (leaves out a good programm) or
+  Every principle is either (A) too restrictive (leaves out a good program) or
   (B) not restrictive enough (allows some bad programs)
 }
 
@@ -307,8 +305,8 @@
   https://why3.lri.fr/
   git clone https://scm.gforge.inria.fr/anonscm/git/why3/why3.git
 
-  A user can write WhyML programs directly and get correct-by-construction OCaml
-  programs through an automated extraction mechanism
+  WhyML programs -> correct-by-construction OCaml programs (automated
+  extraction)
 }
 
 @block{@block-name{The trinity of Philosophy, Computer Science and Mathematics}
@@ -321,14 +319,14 @@
 }
 
 @block{@block-name{PT 1 - Judgements & Propositions}
-  @block{@block-name{judgement (obj of knowledge); judgemens are made about propositions}
+  @block{@block-name{judgement (obj of knowledge); judgements are made about propositions}
   'A is true', 'A is false', M : A - M is a proof of A i.e. M is a program which has a type of A
   'A' - proposition
   'true' - judgement on a proposition
   experiment, observation
   sampling, counter examples
   judge, jury, religion, boss, conviction "No bugs in my code!"
-  "I don't see why not": psycho (the oposing party must find argument)
+  "I don't see why not": psycho (the opposing party must find argument)
   A mathematical proof:
     - an argument that convinces other mathematicians
     - verification of a proposition by a chain of logical deductions from a set of axioms
@@ -347,7 +345,7 @@
   @block{@block-name{Local completeness: elim. rules not too weak}
   }
 
-  @block{@block-name{LOcal expantion: witness for the completeness of the rules}
+  @block{@block-name{Local expansion: witness for the completeness of the rules}
   }
 }
 
@@ -380,16 +378,13 @@
   Wikipedia: Left Recursion
   https://en.wikipedia.org/wiki/Left_recursion
 
-  Occurs when the definition of LR is satisfied via several substitutions. It
-  entails a set of rules following the pattern:
-
+  Left Recursion satisfied via several substitutions; rules follow the pattern:
     | A0 -> β0 A1 α |
     | A1 -> β1 A2 α |
     | An -> βn A0 α |
-
-  where [e "β0,β1, ... ,βn"] are sequences that can each yield the empty string,
-  while [e "α0,α1, ... ,αn"] may be any sequences of terminal and nonterminal
-  symbols at all. Note that these sequences may be empty. The derivation
+  where [e "β0,β1, ... ,βn"] can each yield the empty string, [e "α0,α1, ...
+  ,αn"] are any (possibly empty) sequences of terminals and nonterminals. The
+  derivation
   [e "A0 => β0 A1 α0 =>^+ A1 α0 =>^+ β1 A2 α1 α0 =>^+ ... =>^+ A0 αn ... α1 α0"]
   then gives A0 as leftmost in its final sentential form.
 }
@@ -546,7 +541,7 @@
   @block{@block-name{The Little Typer}
     Atom is a type.
 
-    Judgment is an attitude taken towards an expression. E.g. "Something is an Atom".
+    Judgment - an attitude towards an expression, e.g. "Something is an Atom".
 
     Four forms of Judgment
     1. ___ is a ___. (declaration)

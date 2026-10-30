@@ -21,10 +21,8 @@
   curl --silent https://raw.githubusercontent.com/torvalds/linux/v5.1/kernel/sched/loadavg.c | head -n 8
   # process queuing: load-average > nr-of-processors * cores-per-processor
   uptime               # load average from /proc/uptime
-  # top report / output to stdout:
-  # -n --iterations Number of iterations
-  # -b --batch mode
-  top --batch-mode --iterations 1
+  # top report / output to stdout
+  top --batch-mode --iterations 1    # -b -n 1
   cat /proc/loadavg    # 4. column: processes running/total; 5.: last used pid
   # number of processors
   lscpu | grep "^CPU"

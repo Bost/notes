@@ -98,8 +98,7 @@
   # https://stackoverflow.com/q/7110119/5151982
   history | cut -c 8-
   history | awk '{$1="";print substr($0,2)}'
-  # -w write the current history to the history file
-  history -w /dev/stdout
+  history -w /dev/stdout  # -w write the current history to the history file
   # edit command with number 406 on the prompt without executing it
   #!406:p
 
@@ -117,8 +116,7 @@
   # bash: secure (password) prompt; doesn't work in fish
   read -s
 
-  # fish-shell: retval retcode return-code exit-code (in bash $?)
-  # retcode interpretation / meaning
+  # fish-shell: retval retcode return-code exit-code (in bash $?); meaning
   # https://fishshell.com/docs/current/language.html#variables-status
   $status
 
@@ -212,8 +210,7 @@
   [[ "$V" =~ ^[a-z]*[0-9] ]] && echo "match" || echo "no match"
 
   # bash: test if variable is an array https://stackoverflow.com/a/27254437
-  # Warning: if variable is once declared as array/non-array it's not enough
-  # just to reassign it a new value. It must be unset!
+  # Warning: to change array/non-array, reassigning is not enough - unset it!
   unset V && V=("a" "b")
   unset V && V="ab"
   # -p	display the attributes and value of each NAME
@@ -229,8 +226,7 @@
   math "1 + 2"
   set jobs (math round (nproc) \* 0.9) # should be 22 on ecke
 
-  # 'scalarstr' is a scalar string variable (a normal bash variable) whose
-  # contents are a multi-line string.
+  # scalar string variable (a normal bash variable) with a multi-line string
   scalarstr =$'Alpha one\nBeta two\nGamma three'
   # declaration with double quotes: $"a a\nb b\nc c" don't work
 
@@ -246,24 +242,21 @@
 
 @block{@block-name{Bash double brackets}
   https://stackoverflow.com/a/3427931/5151982
-  bash extension. In sh-compatible scripts only the single bracket must be used
-  (i.e. use the #!/bin/bash shebang line if using use double brackets)
+  bash extension; sh-compatible scripts must use single brackets (use the
+  #!/bin/bash shebang line for double brackets)
 
-  # regular file - none of:
-  # directory, symbolic link, device, other special type
+  # regular file - not a directory, symbolic link, device, other special type
 
   # bash: correctly handle empty strings or file names with spaces in them:
   [ -f "$file" ] && printf -- "is a regular file\n" || printf -- "else ...\n"
   [[ -f $file ]] && printf -- "is a regular file\n" || printf -- "else ...\n"
   #
-  # double brackets lets you use && and || operators for boolean tests and <, >
-  # for string comparisons. single bracket cannot do this.
-  # =~ does regular expression matches
+  # double brackets: && || for boolean tests, < > for string comparisons,
+  # =~ for regular expression matches
   [ "$answer" = y -o "$answer" = yes ] && echo "then..." || echo "else..."
   [[ $answer =~ ^y(es)?$ ]]            && echo "then..." || echo "else..."
   #
-  # pattern matching aka globbing for free. Maybe you're less strict about how
-  # to type yes. Maybe you're okay if the user types y-anything:
+  # pattern matching aka globbing for free; e.g. accept y-anything:
   [[ $ANSWER = y* ]] && printf -- "then...\n" || printf -- "else...\n"
 }
 
@@ -276,28 +269,27 @@
   bind -P / help bind # list functions and bindings in console / web browser
 
   # fish shell key bindings / shortcuts
-  # Ctrl+i - TAB, Ctrl+j - newline (\n)
-  # \cg - Ctrl+g: cancel
-  # \ck kill-line
-  # \cl - Ctrl+l: clear
-  # \cr - Ctrl+r: search history
-  # \cu backward-kill-line
-  # \cy - Ctrl+y: yank
-  # \cz - Ctrl+z: undo
-  # \e/ - Alt+/: redo
-  # \ee - Alt+e: edit_command_buffer - run Emacs
-  # \eh - Alt+h: __fish_man_page
-  # \el - Alt+l: __fish_list_current_token
-  # List contents of token under the cursor if it is a directory, otherwise list
-  # the contents of the current directory
-  # \eo - Alt+o: __fish_preview_current_file
-  # \ep - Alt+p: __fish_paginate, i.e. puts '&| less' at the end of line
-  # \es - Alt+s: add sudo before the last command
-  # \et - Alt+t: transpose-words / swap words
-  # \ew - Alt+w: __fish_whatis_current_token
-  # \e. - Alt+.: history-token-search-backward
-  # get the parameter / argument of the last command
-  Esc-. ???
+  Ctrl+i - TAB, Ctrl+j - newline (\n)
+  \cg - Ctrl+g: cancel
+  \ck kill-line
+  \cl - Ctrl+l: clear
+  \cr - Ctrl+r: search history
+  \cu backward-kill-line
+  \cy - Ctrl+y: yank
+  \cz - Ctrl+z: undo
+  \e/ - Alt+/: redo
+  \ee - Alt+e: edit_command_buffer - run Emacs
+  \eh - Alt+h: __fish_man_page
+  \el - Alt+l: __fish_list_current_token - list the directory under the
+        cursor, otherwise the current directory
+  \eo - Alt+o: __fish_preview_current_file
+  \ep - Alt+p: __fish_paginate, i.e. puts '&| less' at the end of line
+  \es - Alt+s: add sudo before the last command
+  \et - Alt+t: transpose-words / swap words
+  \ew - Alt+w: __fish_whatis_current_token
+  \e. - Alt+.: history-token-search-backward
+  get the parameter / argument of the last command
+  Esc+<key>: like Alt+<key>
 
   # bash key bindings / shortcuts
   # \cl - Ctrl+l: clear
@@ -307,9 +299,7 @@
   # bind: list of available shell commands; doesn't work on Guix
   /etc/inputrc
 
-  # bash undo & yank
-  # type partial cmd, kill this cmd, check something you forgot, yank the cmd,
-  # resume typing
+  # bash undo & yank: kill a partial cmd, check something, yank it back
   C-u ... C-y / Ctrl-u ... Ctrl-y
 
   # alias escape command aliases
@@ -362,8 +352,7 @@
   if [ -z "${V+x}" ] || [ -z "$V" ]; then
       V="default"
   fi
-
-  # Always assigns (even if already set)
+  # always assigns (even if already set):
   V="${V:-default}"
   # Assigns only if unset or empty (no-op wrapper triggers expansion)
   : "${V:=default}"
@@ -388,9 +377,8 @@
   echo $[$(nproc) * 0.9]
   echo $[$(nproc) * 95 / 100] # workaround for the above problem
 
-  # bash insert contents of file.txt into input of tr and output results to
-  # fileNew.txt
-  tr '[A-Z]' '[a-z]' < file.txt > fileNew.txt
+  # bash: file.txt as input of tr, output to newfile.txt
+  tr '[A-Z]' '[a-z]' < file.txt > newfile.txt
 
   # bash mass file move / copy / rename
   mmv \*.JPG \#1.jpc
@@ -474,12 +462,10 @@
 
   # bash eval string
 
-  # bash
-  # bugs in bash/sh scripts http://www.shellcheck.net/
+  # bash: bugs in bash/sh scripts http://www.shellcheck.net/
   sudo apt install shellcheck
 
-  # bash fish-shell
-  # help text that matches each argument
+  # bash fish-shell: help text that matches each argument
   http://explainshell.com/
 
   # Show numerical values for each of the 256 colors in bash
@@ -580,7 +566,7 @@
   # fish
   set fruits "apple" "banana" "cherry" # i.e. list / array
   count $fruits     # 3
-  # arrays in fish are indexed from 1, i.e. index starts from 1
+  # arrays in fish are indexed from 1
   echo $fruits[1] # Output: apple
   echo $fruits[2] # Output: banana
   set --append fruits "orange" "grape"

@@ -30,7 +30,7 @@
   # Process a binary file as if it were text; equivalent to --binary-files=text
   grep --binary-files=text -oP "[[:alnum:]]{4,}" binary-mixed-with-text.txt
 
-  # look up all indices of all Info manuals.
+  # look up all indices of all Info manuals / search full text of all Info documents
   info --apropos "search-string"
   # search in all Info documents for some string, not just in the indices
   # zgrep - search possibly compressed files for a regular expression
@@ -78,7 +78,7 @@
   find . ... -mtime -7
   fd --type=d --max-depth=1 --changed-before="2024-10-01" guix-home-legacy-configs-backup
 
-  # flatteb all xml files from all src subdirs to dst, fork off a new copy
+  # flatten all xml files from all src subdirs to dst, fork off a new copy
   # process for every file; TODO test it!
 
   find . -not -path "*/\.*"            # skip / exclude hidden files and dirs
@@ -134,7 +134,7 @@
   l (find /var/log/guix/drvs/ -type f -newermt (date +%Y-%m-%d\ %H:%M -d '60 minutes ago') -name "*.drv.gz")
   l (find /var/log/guix/drvs/ -type f -newermt (date +%Y-%m-%d\ %H:%M -d '30 minutes ago') -name "*.drv.gz")
 
-  # substitute / replace all occurences of ... with ...
+  # substitute / replace all occurrences of ... with ...
   find . -type f -name "*.fish" -print0 | xargs -0 sed --in-place "s/apt-get/apt/g"
 
   # skip the "Permission denied" and "Invalid argument" errors
@@ -176,7 +176,7 @@
   # \Z  matches the EOF end-of-file
 
   # [[:blank:]] only matches spaces and tabs, not newlines
-  # -z, --null-data        a data line ends in 0 byte, not newline
+  # -z, --null-data  a data line ends in 0 byte, not newline
   $ echo -e "aaa\n123" | grep -z  "aaa\s123"
   aaa
   123
@@ -252,7 +252,7 @@
   rg     -t clojure --word-regexp SearchText
 
   # fish-shell, ripgrep and sed the stream editor
-  # first item of a fish-shell arrays starts at / is indexed with 1 not 0
+  # fish-shell arrays are indexed from 1, not 0
   set oldNew "oldText" "newText"
   set sFiles (rg --files-with-matches --type racket $oldNew[1])
   sed --in-place "s/$oldNew[1]/$oldNew[2]/g" $sFiles
@@ -282,9 +282,8 @@
   text processing, data extraction, reporting tool
   https://learnbyexample.github.io/learn_gnuawk/awk-introduction.html
 
-  # comment out the lines 92 to 93 and preview the edit with bat (the cat clone)
+  # comment out the lines 92 to 93 / line 92 and preview with bat (cat clone)
   sed '92,93 s/^/;;/' /path/to/file.scm | bat --line-range 92:93 --language scm
-  # comment out the line 92 and preview the edit with bat (the cat clone)
   sed '92 s/^/;;/' /path/to/file.scm | bat --line-range 92:93 --language scm
   sed "92 s/\(\s*\)\(.*\)/\1;; \2/" /path/to/file.scm | bat -r 92:93 -l scm
 
@@ -297,16 +296,16 @@
   awk 'NR >= 10 && NR <= 20' /path/to/file > /path/to/cut-file
   # awk is for tabular data
 
-  # replace / substitute 1st occurence
+  # replace / substitute 1st occurrence
   sed --in-place "s/foo/FOO/" /path/to/file
 
   # append two lines at the end of the file / EOF
   sed --in-place '$ aline3\nline4' /path/to/file  # doesnt work
 
-  # add 'FOO' behind the 1st occurence of '#+title: something'
+  # add 'FOO' behind the 1st occurrence of 'foo: something'
   sed --in-place "s/\(foo: .*\)/\1\nFOO/" /path/to/file
 
-  # replace all occurences of "foo" (globally)
+  # replace all occurrences of "foo" (globally)
   sed --in-place "s/foo/FOO/g" /path/to/file
 
   # remove / delete empty lines (globally)
